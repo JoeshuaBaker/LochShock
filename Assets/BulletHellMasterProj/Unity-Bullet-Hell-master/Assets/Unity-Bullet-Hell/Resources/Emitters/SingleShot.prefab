@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3453500415576585352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3152926, y: 0.108174376, z: 0}
+  m_LocalPosition: {x: 0.009535101, y: 0.33319694, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,13 +48,45 @@ MonoBehaviour:
     end: 0
     id: 0
     ProjectilePrefab: {fileID: 0}
+    speed:
+      keys:
+      - a: 1
+        b: 1
+        c: 1
+        d: 1
+        range: {x: 0, y: 1}
+    speedMinMax: {x: 0, y: 1}
+    rotation:
+      keys:
+      - a: 1
+        b: 1
+        c: 1
+        d: 1
+        range: {x: 0, y: 1}
+    rotationMinMax: {x: 0, y: 1}
+    scale:
+      keys:
+      - a: 1
+        b: 1
+        c: 1
+        d: 1
+        range: {x: 0, y: 1}
+    scaleMinMax: {x: 0, y: 1}
     Scale: 0.05
     TimeToLive: 5
     CoolOffTime: 0.1
     AutoFire: 0
-    Direction: {x: 0.9458778, y: 0.32452312}
+    Direction: {x: 0.028605303, y: 0.9995908}
     Speed: 1
     MaxSpeed: 100
+    SpeedFloor: 0
+    SpeedCeil: 1
+    SpeedCurves: []
+    speedCurveSelector: 0
+    TurnFloor: 0
+    TurnCeil: 0
+    TurningCurves: []
+    TurningCurveSelector: 0
     RotationSpeed: 0
     CollisionDetection: 1
     BounceOffSurfaces: 1
