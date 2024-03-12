@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3453500415576585352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3453500415576585398}
+  - component: {fileID: 1144824061936674021}
+  - component: {fileID: 3453500415576585399}
+  m_Layer: 0
+  m_Name: Popgun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3453500415576585398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453500415576585352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32927123, y: 0.05188034, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1144824061936674021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453500415576585352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statBlock:
+    blockType: 0
+    playerStats:
+      blockType: 0
+      health: 0
+      walkSpeed: 0
+      runSpeed: 0
+    gunStats:
+      blockType: 0
+      magazineSize: 6
+      reloadSpeed: 1.5
+      fireSpeed: 0.5
+      bulletsPerShot: 1
+      bulletSpread: 0
+    bulletStats:
+      blockType: 0
+      damage: 1
+      speed: 2
+      size: 1
+      knockback: 1
+      bounce: 1
+      pierce: 0
+      lifetime: 6
+  emitter: {fileID: 0}
+  reloadIndicator: {fileID: 0}
+  ammoIndicator: {fileID: 0}
+--- !u!114 &3453500415576585399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453500415576585352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 7946185625395132580, guid: 37c8dfb28b3db6442a984cbbd84fbe90, type: 3}
+  Scale: 0.15
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.6226415, g: 0, b: 0, a: 1}
+    key1: {r: 0.3679245, g: 0, b: 0, a: 1}
+    key2: {r: 0.91039276, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  TimeToLive: 30
+  CoolOffTime: 0.5
+  AutoFire: 0
+  Direction: {x: 0.9878137, y: 0.15564102}
+  Speed: 1.63
+  MaxSpeed: 10
+  RotationSpeed: 0
+  CollisionDetection: 1
+  BounceOffSurfaces: 1
+  CullProjectilesOutsideCameraBounds: 1
+  IsFixedTimestep: 1
+  FixedTimestepRate: 0.01
+  DrawOutlines: 1
+  OutlineSize: 0.03
+  OutlineColor:
+    serializedVersion: 2
+    key0: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    key1: {r: 0.8396226, g: 0.50016683, b: 0.14653791, a: 1}
+    key2: {r: 0.91039276, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 30647
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  Gravity: {x: 0, y: 0}
+  BounceAbsorbtionY: 0
+  BounceAbsorbtionX: 0
+  Acceleration: 0
+  UseColorPulse: 1
+  PulseSpeed: 25
+  UseStaticPulse: 1
+  GroupCount: 1
+  GroupSpacing: 1
+  SpokeCount: 1
+  SpokeSpacing: 1
+  MirrorPairRotation: 0
+  PairGroupDirection: 0
+  UseFollowTarget: 0
+  Target: {fileID: 0}
+  FollowTargetType: 0
+  FollowIntensity: 0.6
+  UseOutlineColorPulse: 1
+  OutlinePulseSpeed: 0
+  UseOutlineStaticPulse: 0
+  damage: 0
+  bouncesRemaining: 0
+  piercesRemaining: 0
+  knockback: 0

@@ -6,6 +6,7 @@ using BulletHell;
 
 public class Player : MonoBehaviour
 {
+    public StatBlock stats;
     public SpriteRenderer bodyRenderer;
     public SpriteRenderer limbRenderer;
     public string spriteSheetDirectory;
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     public string[] limbSpriteName;
     public float limbTransitionTime = 0.5f;
     public Transform hpBar;
-    public ProjectileEmitterAdvanced[] guns;
+    public Gun[] guns;
     public int maxHp = 100;
     public bool isSplit = false;
     public float splitAmount = 0.35f;
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
             }
 
             gun.transform.localPosition = xy/3;
-            gun.props.Direction = xy;
+            gun.emitter.Direction = xy;
             if(isSplit)
                 dir *= -1;
         }
@@ -217,14 +218,7 @@ public class Player : MonoBehaviour
     {
         foreach(var gun in guns) 
         {
-            if(Input.GetKey(KeyCode.Space))
-            {
-                gun.props.AutoFire = true;
-            }
-            else
-            {
-                gun.props.AutoFire = false;
-            }
+            gun.Shoot();
         }
     }
 

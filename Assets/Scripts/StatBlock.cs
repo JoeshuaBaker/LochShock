@@ -47,6 +47,8 @@ public class StatBlock
     {
         public BlockType blockType;
         public float damage;
+        public float speed;
+        public float size;
         public float knockback;
         public float bounce;
         public float pierce;
@@ -57,7 +59,7 @@ public class StatBlock
 
     public static StatBlock Combine(IEnumerable<StatBlock> blocks)
     {
-        StatBlock combinedBlock = new StatBlock();
+        StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base) ?? new StatBlock();
         IEnumerable<IGrouping<BlockType, StatBlock>> groupedBlocks = blocks.GroupBy(x => x.blockType);
         foreach(StatBlock additiveBlock in groupedBlocks.Where(x => x.Key == BlockType.Additive))
         {
@@ -73,6 +75,8 @@ public class StatBlock
             combinedBlock.gunStats.OnFire.AddRange(additiveBlock.gunStats.OnFire);
 
             combinedBlock.bulletStats.damage += additiveBlock.bulletStats.damage;
+            combinedBlock.bulletStats.speed += additiveBlock.bulletStats.speed;
+            combinedBlock.bulletStats.size += additiveBlock.bulletStats.size;
             combinedBlock.bulletStats.knockback += additiveBlock.bulletStats.knockback;
             combinedBlock.bulletStats.bounce += additiveBlock.bulletStats.bounce;
             combinedBlock.bulletStats.pierce += additiveBlock.bulletStats.pierce;
@@ -86,24 +90,26 @@ public class StatBlock
 
         foreach (StatBlock multiplicativeBlock in groupedBlocks.Where(x => x.Key == BlockType.Multiplicative))
         {
-                multBlock.playerStats.health += multiplicativeBlock.playerStats.health;
-                multBlock.playerStats.runSpeed += multiplicativeBlock.playerStats.runSpeed;
-                multBlock.playerStats.walkSpeed += multiplicativeBlock.playerStats.walkSpeed;
+            multBlock.playerStats.health += multiplicativeBlock.playerStats.health;
+            multBlock.playerStats.runSpeed += multiplicativeBlock.playerStats.runSpeed;
+            multBlock.playerStats.walkSpeed += multiplicativeBlock.playerStats.walkSpeed;
 
-                multBlock.gunStats.magazineSize += multiplicativeBlock.gunStats.magazineSize;
-                multBlock.gunStats.reloadSpeed += multiplicativeBlock.gunStats.reloadSpeed;
-                multBlock.gunStats.fireSpeed += multiplicativeBlock.gunStats.fireSpeed;
-                multBlock.gunStats.bulletsPerShot += multiplicativeBlock.gunStats.bulletsPerShot;
-                multBlock.gunStats.bulletSpread += multiplicativeBlock.gunStats.bulletSpread;
-                multBlock.gunStats.OnFire.AddRange(multiplicativeBlock.gunStats.OnFire);
+            multBlock.gunStats.magazineSize += multiplicativeBlock.gunStats.magazineSize;
+            multBlock.gunStats.reloadSpeed += multiplicativeBlock.gunStats.reloadSpeed;
+            multBlock.gunStats.fireSpeed += multiplicativeBlock.gunStats.fireSpeed;
+            multBlock.gunStats.bulletsPerShot += multiplicativeBlock.gunStats.bulletsPerShot;
+            multBlock.gunStats.bulletSpread += multiplicativeBlock.gunStats.bulletSpread;
+            multBlock.gunStats.OnFire.AddRange(multiplicativeBlock.gunStats.OnFire);
 
-                multBlock.bulletStats.damage += multiplicativeBlock.bulletStats.damage;
-                multBlock.bulletStats.knockback += multiplicativeBlock.bulletStats.knockback;
-                multBlock.bulletStats.bounce += multiplicativeBlock.bulletStats.bounce;
-                multBlock.bulletStats.pierce += multiplicativeBlock.bulletStats.pierce;
-                multBlock.bulletStats.lifetime += multiplicativeBlock.bulletStats.lifetime;
-                multBlock.bulletStats.OnHit.AddRange(multiplicativeBlock.bulletStats.OnHit);
-                multBlock.bulletStats.OnDestroy.AddRange(multiplicativeBlock.bulletStats.OnDestroy);
+            multBlock.bulletStats.damage += multiplicativeBlock.bulletStats.damage;
+            multBlock.bulletStats.speed += multiplicativeBlock.bulletStats.speed;
+            multBlock.bulletStats.size += multiplicativeBlock.bulletStats.size;
+            multBlock.bulletStats.knockback += multiplicativeBlock.bulletStats.knockback;
+            multBlock.bulletStats.bounce += multiplicativeBlock.bulletStats.bounce;
+            multBlock.bulletStats.pierce += multiplicativeBlock.bulletStats.pierce;
+            multBlock.bulletStats.lifetime += multiplicativeBlock.bulletStats.lifetime;
+            multBlock.bulletStats.OnHit.AddRange(multiplicativeBlock.bulletStats.OnHit);
+            multBlock.bulletStats.OnDestroy.AddRange(multiplicativeBlock.bulletStats.OnDestroy);
         }
 
         combinedBlock.playerStats.health    *= 1 + multBlock.playerStats.health;
@@ -118,6 +124,8 @@ public class StatBlock
         combinedBlock.gunStats.OnFire.AddRange(multBlock.gunStats.OnFire);
 
         combinedBlock.bulletStats.damage    *= 1 + multBlock.bulletStats.damage;
+        combinedBlock.bulletStats.speed     *= 1 + multBlock.bulletStats.speed;
+        combinedBlock.bulletStats.size      *= 1 + multBlock.bulletStats.size;
         combinedBlock.bulletStats.knockback *= 1 + multBlock.bulletStats.knockback;
         combinedBlock.bulletStats.bounce    *= 1 + multBlock.bulletStats.bounce;
         combinedBlock.bulletStats.pierce    *= 1 + multBlock.bulletStats.pierce;
