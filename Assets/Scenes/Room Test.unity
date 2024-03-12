@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402107388}
   - component: {fileID: 402107387}
+  - component: {fileID: 402107389}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -347,6 +348,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &402107389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402107386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statBlock:
+    blockType: 0
+    playerStats:
+      blockType: 0
+      health: 0
+      walkSpeed: 0
+      runSpeed: 0
+    gunStats:
+      blockType: 0
+      magazineSize: 0
+      reloadSpeed: 0
+      fireSpeed: 0
+      bulletsPerShot: 0
+      bulletSpread: 0
+    bulletStats:
+      blockType: 0
+      damage: 0
+      knockback: 0
+      bounce: 0
+      pierce: 0
+      lifetime: 0
 --- !u!1 &406426429
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +568,7 @@ MonoBehaviour:
       Data: 9|BulletHell.ProjectileTypeCounters, Assembly-CSharp
     - Name: ActiveProjectiles
       Entry: 3
-      Data: 1413
+      Data: 4051
     - Name: TotalProjectilesAssigned
       Entry: 3
       Data: 4051
@@ -561,10 +595,10 @@ MonoBehaviour:
       Data: 0
     - Name: TotalProjectilesAssigned
       Entry: 3
-      Data: 0
+      Data: 50000
     - Name: TotalGroups
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -583,8 +617,8 @@ MonoBehaviour:
   - {fileID: 8841699598713729355, guid: 0f551be8e27b097479e5473b72406f5b, type: 3}
   - {fileID: 6229722539795054817, guid: 85f54bf78c41d8a4f959d2ada5c915f6, type: 3}
   EmittersArray:
-  - {fileID: 876850791}
   - {fileID: 0}
+  - {fileID: 876850791}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

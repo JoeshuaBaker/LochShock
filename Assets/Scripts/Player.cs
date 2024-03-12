@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSprites;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
-    public AK.Wwise.Event clapEvent;
 
     private void Start() {
         currentHp = maxHp;
@@ -220,10 +219,6 @@ public class Player : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Space))
             {
-                if(gun.props.AutoFire == false)
-                {
-                    clapEvent.Post(gameObject);
-                }
                 gun.props.AutoFire = true;
             }
             else
