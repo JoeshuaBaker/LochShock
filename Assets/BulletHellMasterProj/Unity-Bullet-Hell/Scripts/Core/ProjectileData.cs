@@ -13,7 +13,8 @@ namespace BulletHell
         public float Scale;
         public float TimeToLive;
         public float Speed;
-        public int damage;
+        public int Damage;
+        public float Knockback;
 
         public ColorPulse Pulse;
         public ColorPulse OutlinePulse;

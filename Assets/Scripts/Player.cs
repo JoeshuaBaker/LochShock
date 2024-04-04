@@ -6,6 +6,8 @@ using BulletHell;
 
 public class Player : MonoBehaviour
 {
+    public static Player activePlayer;
+
     public StatBlock stats;
     public SpriteRenderer bodyRenderer;
     public SpriteRenderer limbRenderer;
@@ -28,6 +30,10 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSprites;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
+    private void Awake()
+    {
+        activePlayer = this;
+    }
 
     private void Start() {
         currentHp = maxHp;

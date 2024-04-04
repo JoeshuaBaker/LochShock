@@ -38,10 +38,10 @@ namespace BulletHell
         [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected bool UseOutlineStaticPulse;
 
         [Foldout("Additional Properties", true)]
-        public int damage = 0;
+        public int Damage = 0;
         public int bouncesRemaining = 0;
         public int piercesRemaining = 0;
-        public float knockback = 0;
+        public float Knockback = 0;
 
         private EmitterGroup[] Groups;
         private int LastGroupCountPoll = -1;
@@ -66,10 +66,10 @@ namespace BulletHell
             CoolOffTime = stats.gunStats.fireSpeed;
             SpokeCount = (int) stats.gunStats.bulletsPerShot;
 
-            damage = (int) stats.bulletStats.damage;
+            Damage = (int) stats.bulletStats.damage;
             Speed = stats.bulletStats.speed;
             Scale = stats.bulletStats.size;
-            knockback = stats.bulletStats.knockback;
+            Knockback = stats.bulletStats.knockback;
             bouncesRemaining = (int) stats.bulletStats.bounce;
             piercesRemaining = (int) stats.bulletStats.pierce;
             TimeToLive = stats.bulletStats.lifetime;
@@ -170,7 +170,8 @@ namespace BulletHell
                         node.Item.FollowTarget = UseFollowTarget;
                         node.Item.FollowIntensity = FollowIntensity;
                         node.Item.Target = Target;
-                        node.Item.damage = damage;
+                        node.Item.Damage = Damage;
+                        node.Item.Knockback = Knockback;
 
                         if (left)
                         {
