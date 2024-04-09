@@ -9,8 +9,8 @@ public class MapPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Map randomMap = maps[(int)(Random.value * maps.Count)];
-        Instantiate(randomMap, this.transform);
+        //Map randomMap = maps[(int)(Random.value * maps.Count)];
+        //Instantiate(randomMap, this.transform);
     }
 
     // Update is called once per frame
