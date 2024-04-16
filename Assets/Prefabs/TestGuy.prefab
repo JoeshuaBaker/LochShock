@@ -244,7 +244,7 @@ RectTransform:
   - {fileID: 192472113}
   - {fileID: 2024821376}
   m_Father: {fileID: 1879192211907270929}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -561,7 +561,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -501807191979153984, guid: c6c68acf8694e37428ba7e53baf812ee, type: 3}
+  m_Sprite: {fileID: -2344925874462802665, guid: 3841bc859d2eb7242aa5086ebaf4ff90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -686,6 +686,7 @@ Transform:
   - {fileID: 1879192212127832641}
   - {fileID: 2591084273840435711}
   - {fileID: 6626157703889797950}
+  - {fileID: 6454134539557908772}
   - {fileID: 9149283876406945470}
   - {fileID: 1102412098}
   m_Father: {fileID: 0}
@@ -754,14 +755,14 @@ MonoBehaviour:
       lifetime: 0
   bodyRenderer: {fileID: 4316206238441668970}
   limbRenderer: {fileID: 3939555228529853539}
-  spriteSheetDirectory: Sprites/Sprite_Player/Player/
-  bodySpriteName: OJMechPlayerBody
+  spriteSheetDirectory: Sprites/Sprite_Player/Allies/
+  bodySpriteName: MechPlayerBody
   limbSpriteName:
-  - OJMechGeneralArmLegLeft2
-  - OJMechGeneralArmLegLeft1
-  - OJMechGeneralArmLegNeutral
-  - OJMechGeneralArmLegRight1
-  - OJMechGeneralArmLegRight2
+  - MechGeneralArmLegLeft2
+  - MechGeneralArmLegLeft1
+  - MechGeneralArmLegNeutral
+  - MechGeneralArmLegRight1
+  - MechGeneralArmLegRight2
   limbTransitionTime: 0.05
   hpBar: {fileID: 1879192211301024669}
   guns:
@@ -959,12 +960,94 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7564994379316534292, guid: ab48293c9efce244b922fedb98a8a7b8, type: 3}
+  m_Sprite: {fileID: -1258121713777919856, guid: 05c4dd4e5074609498d3f563cd6aa655, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.4, y: 0.4}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &8342140113515304604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6454134539557908772}
+  - component: {fileID: 3006511753813725052}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6454134539557908772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342140113515304604}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1879192211907270929}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3006511753813725052
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342140113515304604}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 553862989
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7bb7e283db7af5745899be8c6ca81ead, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.5, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1003,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1058,6 +1141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &9149283876406945470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+  m_PrefabInstance: {fileID: 5842722745194566152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6842865635108910829 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
@@ -1069,8 +1157,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &9149283876406945470 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-  m_PrefabInstance: {fileID: 5842722745194566152}
-  m_PrefabAsset: {fileID: 0}
