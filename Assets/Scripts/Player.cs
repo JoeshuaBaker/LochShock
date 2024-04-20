@@ -103,6 +103,8 @@ public class Player : MonoBehaviour
             holdDirection.x += 1;
         }
 
+        holdDirection = holdDirection.normalized;
+
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             currentVel = holdDirection * slowVel;
@@ -158,8 +160,11 @@ public class Player : MonoBehaviour
                 xy = xy + offset;
                 xy = xy.normalized;
             }
+            float angleBetween = Vector2.Angle(Vector2.right, xy);
 
-            gun.transform.localPosition = xy/3;
+            gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
+
+            //gun.transform.localPosition = xy/3;
             gun.emitter.Direction = xy;
             if(isSplit)
                 dir *= -1;
