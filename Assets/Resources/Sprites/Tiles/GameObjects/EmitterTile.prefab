@@ -117,6 +117,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3835523170241097738, guid: e4761835b53097a4ead754ec78058f14, type: 3}
+      propertyPath: emitterSpawnLocation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7254501017189159937, guid: e4761835b53097a4ead754ec78058f14, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -181,7 +185,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmitterTile
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7989438685226850362, guid: e4761835b53097a4ead754ec78058f14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4761835b53097a4ead754ec78058f14, type: 3}
 --- !u!4 &44266239612437195 stripped
 Transform:

@@ -50,7 +50,9 @@ namespace BulletHell
 
         public new void Awake()
         {
+            LayerMask = (1 << UnityEngine.LayerMask.NameToLayer("Enemy"));
             base.Awake();
+            ContactFilter.useLayerMask = true;
 
             Groups = new EmitterGroup[10];
             RefreshGroups();

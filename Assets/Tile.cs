@@ -6,4 +6,5 @@ public class Tile : MonoBehaviour
 {
     public bool startTile;
     public bool endTile;
+    public bool emitterSpawnLocation;
 }
