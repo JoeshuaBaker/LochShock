@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BulletHell;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -32,11 +33,12 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSprites;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
+    public Light2D light2d;
     private void Awake()
     {
         activePlayer = this;
     }
-
+    
     private void Start() {
         currentHp = maxHp;
         slowFastRatio = slowVel / fastVel;
@@ -71,6 +73,14 @@ public class Player : MonoBehaviour
         Move();
         MouseAim();
         Shoot();
+        SetVision();
+    }
+
+    public void SetVision()
+    {
+        // stats.playerStats.totalVision
+        light2d.pointLightInnerRadius = stats.playerStats.totalVision;
+
     }
 
     public void updateHp(int hpChange) {

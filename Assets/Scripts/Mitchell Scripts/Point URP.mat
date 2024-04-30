@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightningMat 1
-  m_Shader: {fileID: -6465566751694194690, guid: a30528dd04f29b448946b961cd0564db, type: 3}
+  m_Name: Point URP
+  m_Shader: {fileID: -6465566751694194690, guid: 521336dbd0c40be4591c8a7ad860cbba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,14 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _EmissionMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 67cdff2a0e0edb94d8b3e14ba2ed565e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,8 +31,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - Color_d2bf86744c494c68ae450867097a0adc: {r: 6.724853, g: 24.074974, b: 25.688938, a: 0}
-    - Vector2_82a6146fda23446699989737b259c84f: {r: 0, g: 3, b: 0, a: 0}
+    m_Floats:
+    - _Smoothness: 0.5
+    m_Colors: []
   m_BuildTextureStacks: []

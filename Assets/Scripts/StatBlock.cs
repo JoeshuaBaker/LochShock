@@ -28,6 +28,7 @@ public class StatBlock
         public float health;
         public float walkSpeed;
         public float runSpeed;
+        public float totalVision;
     }
 
     [Serializable]
