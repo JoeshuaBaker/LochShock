@@ -17,12 +17,14 @@ public class Player : MonoBehaviour
     public float limbTransitionTime = 0.5f;
     public Transform hpBar;
     public Gun[] guns;
+    public World world;
     public int maxHp = 100;
     public bool isSplit = false;
     public float splitAmount = 0.35f;
     public int currentHp = 100;
     public float fastVel = 1.5f;
     public float slowVel = 0.5f;
+    public Vector3 distSinceLastProjectileTick = Vector3.zero;
     private float slowFastRatio = 0.5f / 1.5f;
     public float leftRightDrift = 0f;
     private Vector2 currentVel = new Vector2(0f, 0f);
@@ -132,11 +134,25 @@ public class Player : MonoBehaviour
             }
         }
 
-        this.transform.position = new Vector3(
-            this.transform.position.x + currentVel.x*Time.deltaTime,
-            this.transform.position.y + currentVel.y*Time.deltaTime,
-            this.transform.position.z
-        );
+        if(world == null)
+        {
+            this.transform.position = new Vector3(
+                this.transform.position.x + currentVel.x * Time.deltaTime,
+                this.transform.position.y + currentVel.y * Time.deltaTime,
+                this.transform.position.z
+            );
+        }
+        else
+        {
+            Vector2 moveVector = new Vector2(currentVel.x * -Time.deltaTime, currentVel.y * -Time.deltaTime);
+            world.transform.position = new Vector3(
+                world.transform.position.x + moveVector.x,
+                world.transform.position.y + moveVector.y,
+                world.transform.position.z
+            );
+
+            distSinceLastProjectileTick = new Vector3(moveVector.x, moveVector.y, Time.deltaTime);
+        }
     }
 
     private void MouseAim()

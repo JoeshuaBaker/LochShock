@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class TestEnemy : Enemy
 {
-    
+    public override int EnemyId()
+    {
+        return 0;
+    }
 }

@@ -5,31 +5,115 @@ using UnityEngine;
 [RequireComponent(typeof(MapPool))]
 public class World : MonoBehaviour
 {
-    public MapPool mapPool;
     public Player player;
-    public int numMapsLoaded = 5;
-    Queue<Map> mapQueue;
+
+    //Map Variables
+    public MapPool mapPool;
+    Queue<int> mapQueue;
     List<Map> loadedMaps;
+    Queue<Map> activeMaps;
+    Map mostRecentMap = null;
+    int numMapsInPool = 0;
+    int distToCullMap = 45;
+
+    //Enemy Variables
+    public EnemyPool enemyPool;
+    public float horizontalSpawnBarrier = 16f;
+    public float verticalSpawnBarrier = 12f;
+    public float enemySpawn;
+    public float enemySpawnRate = 10f;
+    public float enemySpawnRateFloor = 1f;
+    public float enemySpawnRateDecay = 0.05f;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetupMaps();
+        SetupEnemies();
+    }
+
+    void Update()
+    {
+        UpdateMaps();
+        UpdateEnemies();
+    }
+
+    void SetupMaps()
+    {
         mapPool = GetComponent<MapPool>();
-        mapQueue = new Queue<Map>(Shuffle(mapPool.maps));
+        mapQueue = new Queue<int>();
         loadedMaps = new List<Map>();
+        activeMaps = new Queue<Map>();
+        numMapsInPool = mapPool.maps.Count;
 
-        Map last = null;
-        for(int i = 0; i < numMapsLoaded; i++)
+        for (int i = 0; i < numMapsInPool; i++)
         {
-            Map map = mapQueue.Dequeue();
-            map = Instantiate(map, this.transform);
-            loadedMaps.Add(map);
+            Map map = mapPool.maps[i];
 
-            if(last != null)
+            //if there are abnormally wide maps we may need to set our cull distance higher to account.
+            //as of right now, all maps are width=30 so this shouldnt do anything. just insurance for future.
+            float mapWidth = Mathf.Abs(map.endTiles[0].transform.position.x - map.startTiles[0].transform.position.x);
+            if ((int)(mapWidth * 1.5f) > distToCullMap)
             {
-                PositionMap(last, map);
+                distToCullMap = (int)(mapWidth * 1.5f);
             }
-            last = map;
+
+            map = Instantiate(map, this.transform);
+            map.gameObject.SetActive(false);
+            loadedMaps.Add(map);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnMap();
+        }
+    }
+
+    void SetupEnemies()
+    {
+        enemySpawn = 0f;
+    }
+
+    void UpdateMaps()
+    {
+        //cull maps too far behind player
+        if (player.transform.position.x - activeMaps.Peek().transform.position.x > distToCullMap)
+        {
+            Map cullMap = activeMaps.Dequeue();
+            cullMap.gameObject.SetActive(false);
+        }
+
+        //spawn next map if player gets too close to most recent map
+        if (player.transform.position.x - mostRecentMap.transform.position.x > -distToCullMap)
+        {
+            SpawnMap();
+        }
+    }
+
+    void UpdateEnemies()
+    {
+        enemySpawn -= Time.deltaTime;
+        enemySpawnRate = Mathf.Max(enemySpawnRate - enemySpawnRateDecay * Time.deltaTime, enemySpawnRateFloor);
+
+        if(enemySpawn <= 0f)
+        {
+            enemySpawn = enemySpawnRate;
+
+            Enemy urchin = enemyPool.GetEnemy(typeof(Urchin));
+
+            if(urchin == null)
+            {
+                return;
+            }
+
+            bool leftright = Random.Range(0f, 1f) < 0.5f;
+            bool updown = Random.Range(0f, 1f) < 0.5f;
+            Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
+            Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
+            Vector3 spawnPosition = new Vector3(
+                horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
+
+            urchin.transform.localPosition = spawnPosition;
         }
     }
 
@@ -51,19 +135,49 @@ public class World : MonoBehaviour
         right.transform.position = right.transform.position + difference;
     }
 
-    public static List<T> Shuffle<T>(IList<T> list)
+    void SpawnMap()
     {
-        List<T> listCopy = new List<T>(list);
-        int n = list.Count;
-        while (n > 1)
+        int mapIndex = GetOpenMapIndex();
+        Map nextMap = loadedMaps[mapIndex];
+        ResetMap(nextMap);
+    }
+
+    void ResetMap(Map map)
+    {
+        map.gameObject.SetActive(true);
+        activeMaps.Enqueue(map);
+        if(mostRecentMap != null)
         {
-            n--;
-            int k = Random.Range(0, n + 1);
-            T value = listCopy[k];
-            listCopy[k] = listCopy[n];
-            listCopy[n] = value;
+            PositionMap(mostRecentMap, map);
+        }
+        mostRecentMap = map;
+    }
+
+    private void RefillMapQueue()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            mapQueue.Enqueue(Random.Range(0, numMapsInPool));
+        }
+    }
+
+    private int GetOpenMapIndex()
+    {
+        if (mapQueue.Count < 10)
+        {
+            RefillMapQueue();
         }
 
-        return listCopy;
+        int mapIndex = mapQueue.Dequeue();
+        while (loadedMaps[mapIndex].gameObject.activeSelf == true)
+        {
+            if (mapQueue.Count < 10)
+            {
+                RefillMapQueue();
+            }
+            mapIndex = mapQueue.Dequeue();
+        }
+
+        return mapIndex;
     }
 }

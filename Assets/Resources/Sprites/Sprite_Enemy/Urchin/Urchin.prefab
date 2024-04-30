@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 806233481462864128}
   - component: {fileID: 806233481462864141}
   - component: {fileID: 806233481462864140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Urchin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806233481462864131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.726, y: 0.282, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,9 +102,12 @@ MonoBehaviour:
   rb: {fileID: 806233481462864141}
   maxHp: 1
   currentHp: 1
+  instanceId: 0
   hitFreezeColor: {r: 1, g: 0.5704684, b: 0.36320752, a: 1}
   freezeTime: 0
   freezeTimePerHit: 0.4
+  player: {fileID: 0}
+  animator: {fileID: 806233481462864128}
   speed: 1
 --- !u!95 &806233481462864128
 Animator:
@@ -161,4 +164,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.087378144
+  m_Radius: 0.3157045

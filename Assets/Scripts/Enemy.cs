@@ -12,6 +12,7 @@ public abstract class Enemy : BulletCollidable
     //Internal state variables
     public int maxHp = 10;
     public int currentHp = 10;
+    public int instanceId = 0;
 
     public Color hitFreezeColor = new Color(220, 243, 255, 1f);
     public float freezeTime;
@@ -62,4 +63,15 @@ public abstract class Enemy : BulletCollidable
     {
         Destroy(this.gameObject);
     }
+
+    public virtual void Reset()
+    {
+        currentHp = maxHp;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        instanceId = 0;
+        this.gameObject.SetActive(true);
+    }
+
+    public abstract int EnemyId();
 }
