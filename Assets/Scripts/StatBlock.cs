@@ -29,6 +29,9 @@ public class StatBlock
         public float walkSpeed;
         public float runSpeed;
         public float totalVision;
+        public float visionConeAngle;
+        public float visionConeRadius;
+        public float visionProximityRadius;
     }
 
     [Serializable]

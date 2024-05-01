@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public static Player activePlayer;
 
     public StatBlock stats;
+    public bool onPath;
+    public float offPathCounter;
     public SpriteRenderer bodyRenderer;
     public SpriteRenderer limbRenderer;
     public string spriteSheetDirectory;
@@ -33,7 +35,10 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSprites;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
-    public Light2D light2d;
+    public Light2D playerVisionCone;
+    public Light2D playerVisionProximity;
+   
+
     private void Awake()
     {
         activePlayer = this;
@@ -78,8 +83,39 @@ public class Player : MonoBehaviour
 
     public void SetVision()
     {
-        // stats.playerStats.totalVision
-        light2d.pointLightInnerRadius = stats.playerStats.totalVision;
+        float totalVis = stats.playerStats.totalVision;
+
+        if (onPath == true)
+        {
+            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.001f, 1f);
+            
+            if ( offPathCounter > 0)
+            {
+                stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.03f, 1f);
+                offPathCounter = offPathCounter - 1f;
+            }
+        } 
+        else
+        {
+            stats.playerStats.totalVision = Mathf.Max (stats.playerStats.totalVision - 0.003f, 0f);
+
+            if (offPathCounter < 10)
+            {
+
+                stats.playerStats.totalVision = Math.Max (stats.playerStats.totalVision - 0.03f, 0f);
+                offPathCounter = offPathCounter + 1f;
+
+            }
+        }
+
+        playerVisionCone.pointLightInnerRadius = Mathf.Max (totalVis * stats.playerStats.visionConeRadius, 4f);
+        playerVisionCone.pointLightOuterRadius = playerVisionCone.pointLightInnerRadius * 3f;
+        playerVisionCone.pointLightInnerAngle = Mathf.Max (totalVis * stats.playerStats.visionConeAngle, 10f);
+        playerVisionCone.pointLightOuterAngle = playerVisionCone.pointLightInnerAngle * 3.5f;
+        playerVisionCone.intensity = Mathf.Min(totalVis * 2.5f, 1f);
+
+        playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
+        playerVisionProximity.intensity = Mathf.Min(totalVis * 2.5f, 1f);
 
     }
 

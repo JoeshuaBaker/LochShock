@@ -982,7 +982,10 @@ MonoBehaviour:
       health: 0
       walkSpeed: 0
       runSpeed: 0
-      totalVision: 0
+      totalVision: 1
+      visionConeAngle: 20
+      visionConeRadius: 7
+      visionProximityRadius: 10
     gunStats:
       blockType: 2
       magazineSize: 0
@@ -999,6 +1002,8 @@ MonoBehaviour:
       bounce: 0
       pierce: 0
       lifetime: 0
+  onPath: 0
+  offPathCounter: 0
   bodyRenderer: {fileID: 4316206238441668970}
   limbRenderer: {fileID: 3939555228529853539}
   spriteSheetDirectory: Sprites/Sprite_Player/Allies/
@@ -1013,14 +1018,18 @@ MonoBehaviour:
   hpBar: {fileID: 1879192211301024669}
   guns:
   - {fileID: 6842865635108910829}
+  world: {fileID: 0}
   maxHp: 100
   isSplit: 0
   splitAmount: 0.35
   currentHp: 30
   fastVel: 5.6
   slowVel: 3.5
+  distSinceLastProjectileTick: {x: 0, y: 0, z: 0}
   leftRightDrift: 0
   bodySprites: []
+  playerVisionCone: {fileID: 648271616}
+  playerVisionProximity: {fileID: 1448059005}
 --- !u!1 &1879192211954146350
 GameObject:
   m_ObjectHideFlags: 0
