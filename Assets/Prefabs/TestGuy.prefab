@@ -1002,18 +1002,30 @@ MonoBehaviour:
       bounce: 0
       pierce: 0
       lifetime: 0
-  onPath: 0
+  onPath: 1
   offPathCounter: 0
   bodyRenderer: {fileID: 4316206238441668970}
   limbRenderer: {fileID: 3939555228529853539}
   spriteSheetDirectory: Sprites/Sprite_Player/Allies/
-  bodySpriteName: MechPlayerBody
+  bodySpriteName: MechBodyUpdate
   limbSpriteName:
   - MechGeneralArmLegLeft2
   - MechGeneralArmLegLeft1
   - MechGeneralArmLegNeutral
   - MechGeneralArmLegRight1
   - MechGeneralArmLegRight2
+  limbSpriteUpName:
+  - MechTurnUpLeft2
+  - MechTurnUpLeft1
+  - MechTurnUpNeutral
+  - MechTurnUpRight1
+  - MechTurnUpRight2
+  limbSpriteDownName:
+  - MechTurnDownLeft2
+  - MechTurnDownLeft1
+  - MechTurnDownNeutral
+  - MechTurnDownRIght1
+  - MechTurnDownRight2
   limbTransitionTime: 0.03
   hpBar: {fileID: 1879192211301024669}
   guns:

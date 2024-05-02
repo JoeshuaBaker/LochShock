@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public string spriteSheetDirectory;
     public string bodySpriteName;
     public string[] limbSpriteName;
+    public string[] limbSpriteUpName;
+    public string[] limbSpriteDownName;
     public float limbTransitionTime = 0.5f;
     public Transform hpBar;
     public Gun[] guns;
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
     private Vector2 currentVel = new Vector2(0f, 0f);
     public Sprite[] bodySprites;
     public Sprite[][] limbSprites;
+    public Sprite[][] limbSpritesUp;
+    public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
     public Light2D playerVisionCone;
@@ -57,9 +61,14 @@ public class Player : MonoBehaviour
         bodySprites = Resources.LoadAll<Sprite>(bodyPath);
 
         limbSprites = new Sprite[limbSpriteName.Length][];
+        limbSpritesUp = new Sprite[limbSpriteName.Length][];
+        limbSpritesDown = new Sprite[limbSpriteName.Length][];
         for(int i = 0; i < limbSprites.Length; i++)
         {
             limbSprites[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteName[i]);
+            limbSpritesUp[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteUpName[i]);
+            limbSpritesDown[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteDownName[i]);
+            
         }
 
         vectors = new Vector2[bodySprites.Length];
@@ -282,9 +291,20 @@ public class Player : MonoBehaviour
             Debug.LogError("Could not find limb lookup for leftRightDrift value of " + leftRightDrift);
             return;
         }
-
+      
         Sprite[] limbDriftSprites = limbSprites[index];
         limbRenderer.sprite = limbDriftSprites[lowestIndex];
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            Sprite[] limbDriftSpritesUp = limbSpritesUp[index];
+            limbRenderer.sprite = limbDriftSpritesUp[lowestIndex];
+        }
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            Sprite[] limbDriftSpritesDown = limbSpritesDown[index];
+            limbRenderer.sprite = limbDriftSpritesDown[lowestIndex];
+        }
     }
 
     private void Shoot()
