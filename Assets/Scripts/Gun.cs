@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (Input.GetKey(KeyCode.Space) && !reloading && magazine > 0 && bulletCooldown == 0)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
             //todo add bullet spread
             emitter.FireProjectile(emitter.Direction, 0f);
