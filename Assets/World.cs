@@ -12,6 +12,7 @@ public class World : MonoBehaviour
     Queue<int> mapQueue;
     List<Map> loadedMaps;
     Queue<Map> activeMaps;
+    public Map playerInBounds = null;
     Map mostRecentMap = null;
     int numMapsInPool = 0;
     int distToCullMap = 45;
@@ -69,6 +70,11 @@ public class World : MonoBehaviour
         }
     }
 
+    public Tile TileUnderPlayer(Vector3 position)
+    {
+        return playerInBounds?.TileAt(position);
+    }
+
     void SetupEnemies()
     {
         enemySpawn = 0f;
@@ -87,6 +93,16 @@ public class World : MonoBehaviour
         if (player.transform.position.x - mostRecentMap.transform.position.x > -distToCullMap)
         {
             SpawnMap();
+        }
+
+        playerInBounds = null;
+        foreach(Map map in activeMaps)
+        {
+            if (map.IsWithinBounds(player.transform.position))
+            {
+                playerInBounds = map;
+                break;
+            }
         }
     }
 

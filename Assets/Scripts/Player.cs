@@ -63,12 +63,12 @@ public class Player : MonoBehaviour
         limbSprites = new Sprite[limbSpriteName.Length][];
         limbSpritesUp = new Sprite[limbSpriteName.Length][];
         limbSpritesDown = new Sprite[limbSpriteName.Length][];
+
         for(int i = 0; i < limbSprites.Length; i++)
         {
             limbSprites[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteName[i]);
             limbSpritesUp[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteUpName[i]);
             limbSpritesDown[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteDownName[i]);
-            
         }
 
         vectors = new Vector2[bodySprites.Length];
@@ -83,7 +83,8 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void Update() {
+    private void Update() 
+    {
         Move();
         MouseAim();
         Shoot();
@@ -93,8 +94,18 @@ public class Player : MonoBehaviour
     public void SetVision()
     {
         float totalVis = stats.playerStats.totalVision;
+        Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
 
-        if (onPath == true)
+        if(tileUnderPlayer != null)
+        {
+            onPath = tileUnderPlayer.collider2d.OverlapPoint(this.transform.position.xy());
+        }
+        else
+        {
+            onPath = false;
+        }
+
+        if (onPath)
         {
             stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.001f, 1f);
             
@@ -128,7 +139,8 @@ public class Player : MonoBehaviour
 
     }
 
-    public void updateHp(int hpChange) {
+    public void updateHp(int hpChange) 
+    {
         currentHp += hpChange;
         if(currentHp > maxHp)
         {
@@ -141,7 +153,8 @@ public class Player : MonoBehaviour
         hpBar.localScale = new Vector3((float)currentHp/(float)maxHp, 1, 1);
     }
 
-    private void Move() {
+    private void Move() 
+    {
         Vector2 holdDirection = new Vector2(0,0);
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -189,25 +202,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(world == null)
-        {
-            this.transform.position = new Vector3(
-                this.transform.position.x + currentVel.x * Time.deltaTime,
-                this.transform.position.y + currentVel.y * Time.deltaTime,
-                this.transform.position.z
-            );
-        }
-        else
-        {
-            Vector2 moveVector = new Vector2(currentVel.x * -Time.deltaTime, currentVel.y * -Time.deltaTime);
-            world.transform.position = new Vector3(
-                world.transform.position.x + moveVector.x,
-                world.transform.position.y + moveVector.y,
-                world.transform.position.z
-            );
-
-            distSinceLastProjectileTick = new Vector3(moveVector.x, moveVector.y, Time.deltaTime);
-        }
+        this.transform.position = new Vector3(
+            this.transform.position.x + currentVel.x * Time.deltaTime,
+            this.transform.position.y + currentVel.y * Time.deltaTime,
+            this.transform.position.z
+        );
     }
 
     private void MouseAim()

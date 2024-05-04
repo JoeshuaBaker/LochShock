@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 3835523170241097738, guid: e4761835b53097a4ead754ec78058f14, type: 3}
+      propertyPath: collider2d
+      value: 
+      objectReference: {fileID: 2739719969357278088}
     - target: {fileID: 4278176304169193685, guid: e4761835b53097a4ead754ec78058f14, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -106,3 +110,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7989438685226850362, guid: e4761835b53097a4ead754ec78058f14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4761835b53097a4ead754ec78058f14, type: 3}
+--- !u!60 &2739719969357278088 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4278176304169193685, guid: e4761835b53097a4ead754ec78058f14, type: 3}
+  m_PrefabInstance: {fileID: 2115093570727328605}
+  m_PrefabAsset: {fileID: 0}

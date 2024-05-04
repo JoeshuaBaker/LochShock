@@ -325,10 +325,6 @@ namespace BulletHell
 
                     // calculate where projectile will be at the end of this frame
                     Vector2 deltaPosition = node.Item.Velocity * tick;
-                    Vector3 distSinceLastProjectileTick = Player.activePlayer.distSinceLastProjectileTick;
-                    Vector2 dist = new Vector2(distSinceLastProjectileTick.x, distSinceLastProjectileTick.y);
-                    float timeRatio = tick / distSinceLastProjectileTick.z;
-                    deltaPosition += dist * timeRatio;
                     float distance = deltaPosition.magnitude;
 
                     // If flag set - return projectiles that are no longer in view 
