@@ -111,33 +111,13 @@ public class World : MonoBehaviour
         enemySpawn -= Time.deltaTime;
         enemySpawnRate = Mathf.Max(enemySpawnRate - enemySpawnRateDecay * Time.deltaTime, enemySpawnRateFloor);
 
-        //if (enemySpawn <= 0f)
-        //{
-        //    enemySpawn = enemySpawnRate;
-
-        //    Enemy eye = enemyPool.GetEnemy(typeof(Eye));
-
-        //    if (eye == null)
-        //    {
-        //        return;
-        //    }
-
-        //    bool leftright = Random.Range(0f, 1f) < 0.5f;
-        //    bool updown = Random.Range(0f, 1f) < 0.5f;
-        //    Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
-        //    Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
-        //    Vector3 spawnPosition = new Vector3(
-        //        horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
-
-        //    eye.transform.localPosition = spawnPosition;
-        //}
         if (enemySpawn <= 0f)
         {
             enemySpawn = enemySpawnRate;
 
-            Enemy ring = enemyPool.GetEnemy(typeof(Ring));
+            Enemy eye = enemyPool.GetEnemy(typeof(Eye));
 
-            if (ring == null)
+            if (eye == null)
             {
                 return;
             }
@@ -149,8 +129,28 @@ public class World : MonoBehaviour
             Vector3 spawnPosition = new Vector3(
                 horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
 
-            ring.transform.localPosition = spawnPosition;
+            eye.transform.localPosition = spawnPosition;
         }
+        //if (enemySpawn <= 0f)
+        //{
+        //    enemySpawn = enemySpawnRate;
+
+        //    Enemy ring = enemyPool.GetEnemy(typeof(Ring));
+
+        //    if (ring == null)
+        //    {
+        //        return;
+        //    }
+
+        //    bool leftright = Random.Range(0f, 1f) < 0.5f;
+        //    bool updown = Random.Range(0f, 1f) < 0.5f;
+        //    Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
+        //    Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
+        //    Vector3 spawnPosition = new Vector3(
+        //        horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
+
+        //    ring.transform.localPosition = spawnPosition;
+        //}
         //if (enemySpawn <= 0f)
         //{
         //    enemySpawn = enemySpawnRate;

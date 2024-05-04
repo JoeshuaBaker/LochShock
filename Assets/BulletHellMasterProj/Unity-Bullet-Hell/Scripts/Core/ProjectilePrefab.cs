@@ -14,7 +14,7 @@ namespace BulletHell
         public bool PixelSnap;
 
         [SerializeField] protected bool StaticColor = false;
-        [ConditionalField(nameof(StaticColor)), SerializeField] protected Color Color;
+        [ConditionalField(nameof(StaticColor)), SerializeField, ColorUsage(true, true)] protected Color Color;
         [SerializeField, Range(1, 1000000)] private int MaxProjectileCount;
         
         public bool IsStaticColor { get { return StaticColor; } }

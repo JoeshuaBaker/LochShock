@@ -55,11 +55,17 @@ public class Eye : Enemy
         }
         else animator.SetBool("CloseEye", false);
 
-        animator.SetFloat("RandomTransition", Random.Range(0f, 1f));
- 
        
 
+        animator.SetFloat("RandomTransition", Random.Range(0f, 1f));
+
+
+      
         rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y).normalized * speed;
+
+  
+
+
     }
 
     public override void Die()
