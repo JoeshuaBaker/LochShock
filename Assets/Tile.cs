@@ -16,6 +16,6 @@ public class Tile : MonoBehaviour
 
     public void Start()
     {
-        collider2d ??= GetComponent<Collider2D>();
+        collider2d = GetComponent<Collider2D>();
     }
 }
