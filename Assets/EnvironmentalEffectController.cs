@@ -117,5 +117,6 @@ public class EnvironmentalEffectController : MonoBehaviour
     {
         var emission = rain.emission;
         emission.rateOverTime = Mathf.Min((gameTime * ( 750f / maxTimeScaling )) + (timeSinceOrbUsed * (250f / orbResetTime)) , 1000f ) - 100f;
+        //this probably needs to be looked at again so itdoesnt start raining too soon
     }
 }

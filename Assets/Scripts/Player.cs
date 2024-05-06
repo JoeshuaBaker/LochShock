@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 
         if (onPath)
         {
-            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.001f, 1f);
+            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.0003f, 1f);
             
             if ( offPathCounter > 0)
             {

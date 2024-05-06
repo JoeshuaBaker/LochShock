@@ -125,7 +125,20 @@ public class World : MonoBehaviour
             bool leftright = Random.Range(0f, 1f) < 0.5f;
             bool updown = Random.Range(0f, 1f) < 0.5f;
             Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
-            Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
+            Vector2 lerpVecBase = Vector2.right;
+
+            if (!leftright)
+            {
+                if(updown)
+                {
+                    lerpVecBase = new Vector2(1, 1);
+                }
+                else
+                {
+                    lerpVecBase = new Vector2(1, -1);
+                }
+            }
+            Vector2 lerpVec = Vector2.Lerp(lerpVecBase, diagonal, Random.Range(0f, 1f));
             Vector3 spawnPosition = new Vector3(
                 horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
 
