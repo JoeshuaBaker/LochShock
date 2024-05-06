@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     private Vector2 mouseDirection;
     public Light2D playerVisionCone;
     public Light2D playerVisionProximity;
+    public float orbsHeld;
    
 
     private void Awake()
