@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Gun : MonoBehaviour
 {
     public StatBlock statBlock;
-    public ProjectileEmitterAdvanced emitter;
+    public GunEmitter emitter;
     public Image reloadIndicator;
     public Image ammoIndicator;
 

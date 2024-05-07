@@ -61,15 +61,54 @@ public class StatBlock
         public List<Action> OnDestroy = new List<Action>();
     }
 
+    public StatBlock Copy()
+    {
+        StatBlock copy = new StatBlock();
+        copy.blockType = this.blockType;
+
+        copy.playerStats.blockType                  = playerStats.blockType;
+        copy.playerStats.health                     = playerStats.health;
+        copy.playerStats.walkSpeed                  = playerStats.walkSpeed;
+        copy.playerStats.runSpeed                   = playerStats.runSpeed;
+        copy.playerStats.totalVision                = playerStats.totalVision;
+        copy.playerStats.visionConeAngle            = playerStats.visionConeAngle;
+        copy.playerStats.visionConeRadius           = playerStats.visionConeRadius;
+        copy.playerStats.visionProximityRadius      = playerStats.visionProximityRadius;
+
+        copy.gunStats.blockType         = gunStats.blockType;
+        copy.gunStats.magazineSize      = gunStats.magazineSize;
+        copy.gunStats.reloadSpeed       = gunStats.reloadSpeed;
+        copy.gunStats.fireSpeed         = gunStats.fireSpeed;
+        copy.gunStats.bulletsPerShot    = gunStats.bulletsPerShot;
+        copy.gunStats.bulletSpread      = gunStats.bulletSpread;
+        copy.gunStats.OnFire            = gunStats.OnFire;
+
+        copy.bulletStats.blockType      = bulletStats.blockType;
+        copy.bulletStats.damage         = bulletStats.damage;
+        copy.bulletStats.speed          = bulletStats.speed;
+        copy.bulletStats.size           = bulletStats.size;
+        copy.bulletStats.knockback      = bulletStats.knockback;
+        copy.bulletStats.bounce         = bulletStats.bounce;
+        copy.bulletStats.pierce         = bulletStats.pierce;
+        copy.bulletStats.lifetime       = bulletStats.lifetime;
+        copy.bulletStats.OnHit          = bulletStats.OnHit;
+        copy.bulletStats.OnDestroy      = bulletStats.OnDestroy;
+        return copy;
+    }
+
     public static StatBlock Combine(IEnumerable<StatBlock> blocks)
     {
         StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base) ?? new StatBlock();
         IEnumerable<IGrouping<BlockType, StatBlock>> groupedBlocks = blocks.GroupBy(x => x.blockType);
         foreach(StatBlock additiveBlock in groupedBlocks.Where(x => x.Key == BlockType.Additive))
         {
-            combinedBlock.playerStats.health    += additiveBlock.playerStats.health;
-            combinedBlock.playerStats.runSpeed  += additiveBlock.playerStats.runSpeed;
-            combinedBlock.playerStats.walkSpeed += additiveBlock.playerStats.walkSpeed;
+            combinedBlock.playerStats.health                += additiveBlock.playerStats.health;
+            combinedBlock.playerStats.runSpeed              += additiveBlock.playerStats.runSpeed;
+            combinedBlock.playerStats.walkSpeed             += additiveBlock.playerStats.walkSpeed;
+            combinedBlock.playerStats.totalVision           += additiveBlock.playerStats.totalVision;
+            combinedBlock.playerStats.visionConeAngle       += additiveBlock.playerStats.visionConeAngle;
+            combinedBlock.playerStats.visionConeRadius      += additiveBlock.playerStats.visionConeRadius;
+            combinedBlock.playerStats.visionProximityRadius += additiveBlock.playerStats.visionProximityRadius;
 
             combinedBlock.gunStats.magazineSize += additiveBlock.gunStats.magazineSize;
             combinedBlock.gunStats.reloadSpeed += additiveBlock.gunStats.reloadSpeed;
@@ -97,6 +136,10 @@ public class StatBlock
             multBlock.playerStats.health += multiplicativeBlock.playerStats.health;
             multBlock.playerStats.runSpeed += multiplicativeBlock.playerStats.runSpeed;
             multBlock.playerStats.walkSpeed += multiplicativeBlock.playerStats.walkSpeed;
+            multBlock.playerStats.totalVision += multiplicativeBlock.playerStats.totalVision;
+            multBlock.playerStats.visionConeAngle += multiplicativeBlock.playerStats.visionConeAngle;
+            multBlock.playerStats.visionConeRadius += multiplicativeBlock.playerStats.visionConeRadius;
+            multBlock.playerStats.visionProximityRadius += multiplicativeBlock.playerStats.visionProximityRadius;
 
             multBlock.gunStats.magazineSize += multiplicativeBlock.gunStats.magazineSize;
             multBlock.gunStats.reloadSpeed += multiplicativeBlock.gunStats.reloadSpeed;
@@ -116,9 +159,13 @@ public class StatBlock
             multBlock.bulletStats.OnDestroy.AddRange(multiplicativeBlock.bulletStats.OnDestroy);
         }
 
-        combinedBlock.playerStats.health    *= 1 + multBlock.playerStats.health;
-        combinedBlock.playerStats.runSpeed  *= 1 + multBlock.playerStats.runSpeed;
-        combinedBlock.playerStats.walkSpeed *= 1 + multBlock.playerStats.walkSpeed;
+        combinedBlock.playerStats.health                *= 1 + multBlock.playerStats.health;
+        combinedBlock.playerStats.runSpeed              *= 1 + multBlock.playerStats.runSpeed;
+        combinedBlock.playerStats.walkSpeed             *= 1 + multBlock.playerStats.walkSpeed;
+        combinedBlock.playerStats.totalVision           *= 1 + multBlock.playerStats.totalVision;
+        combinedBlock.playerStats.visionConeAngle       *= 1 + multBlock.playerStats.visionConeAngle;
+        combinedBlock.playerStats.visionConeRadius      *= 1 + multBlock.playerStats.visionConeRadius;
+        combinedBlock.playerStats.visionProximityRadius *= 1 + multBlock.playerStats.visionProximityRadius;
 
         combinedBlock.gunStats.magazineSize     *= 1 + multBlock.gunStats.magazineSize;
         combinedBlock.gunStats.reloadSpeed      *= 1 + multBlock.gunStats.reloadSpeed;
