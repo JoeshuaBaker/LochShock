@@ -23,12 +23,29 @@ namespace BulletHell
         public Gradient Color;
 
         [Foldout("General", true)]
-        public float TimeToLive = 5;
-        [Range(0.01f, 5f)] public float CoolOffTime = 0.1f;
+        public StatBlock stats;
+        public float TimeToLive { 
+            get
+            {
+                return stats.bulletStats.lifetime;
+            }
+        }
+        public float CoolOffTime
+        {
+            get
+            {
+                return stats.gunStats.fireSpeed;
+            }
+        }
         public bool AutoFire = true;
         public Vector2 Direction = Vector2.up;        
-        [Range(0.001f, 10f)] public float Speed = 1;
-        [Range(1f, 100f)] public float MaxSpeed = 100;        
+        public float Speed
+        {
+            get
+            {
+                return stats.bulletStats.speed;
+            }
+        }    
         public float RotationSpeed = 0;        
         public CollisionDetectionType CollisionDetection = CollisionDetectionType.CircleCast;
         public bool BounceOffSurfaces = true;        

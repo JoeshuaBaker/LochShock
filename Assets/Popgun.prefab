@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3453500415576585398}
   - component: {fileID: 1144824061936674021}
-  - component: {fileID: 3453500415576585399}
+  - component: {fileID: 4877568093956301522}
   m_Layer: 0
   m_Name: Popgun
   m_TagString: Untagged
@@ -51,6 +51,10 @@ MonoBehaviour:
       health: 0
       walkSpeed: 0
       runSpeed: 0
+      totalVision: 0
+      visionConeAngle: 0
+      visionConeRadius: 0
+      visionProximityRadius: 0
     gunStats:
       blockType: 0
       magazineSize: 6
@@ -67,10 +71,10 @@ MonoBehaviour:
       bounce: 1
       pierce: 0
       lifetime: 6
-  emitter: {fileID: 0}
+  emitter: {fileID: 4877568093956301522}
   reloadIndicator: {fileID: 0}
   ammoIndicator: {fileID: 0}
---- !u!114 &3453500415576585399
+--- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +83,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3453500415576585352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d5e135218c29f344997b66c4fcd304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 7946185625395132580, guid: 37c8dfb28b3db6442a984cbbd84fbe90, type: 3}
@@ -88,7 +92,7 @@ MonoBehaviour:
     serializedVersion: 2
     key0: {r: 0.6226415, g: 0, b: 0, a: 1}
     key1: {r: 0.3679245, g: 0, b: 0, a: 1}
-    key2: {r: 0.91039276, g: 1, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -96,7 +100,7 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 65535
-    ctime2: 65535
+    ctime2: 0
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -113,12 +117,39 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  TimeToLive: 30
-  CoolOffTime: 0.5
-  AutoFire: 0
-  Direction: {x: 0.9878137, y: 0.15564102}
+  stats:
+    blockType: 0
+    playerStats:
+      blockType: 0
+      health: 0
+      walkSpeed: 0
+      runSpeed: 0
+      totalVision: 0
+      visionConeAngle: 0
+      visionConeRadius: 0
+      visionProximityRadius: 0
+    gunStats:
+      blockType: 0
+      magazineSize: 0
+      reloadSpeed: 0
+      fireSpeed: 0
+      bulletsPerShot: 0
+      bulletSpread: 0
+    bulletStats:
+      blockType: 0
+      damage: 0
+      speed: 0
+      size: 0
+      knockback: 0
+      bounce: 0
+      pierce: 0
+      lifetime: 0
+  TimeToLive: 5
+  CoolOffTime: 0.1
+  AutoFire: 1
+  Direction: {x: 0, y: 1}
   Speed: 1.63
-  MaxSpeed: 10
+  MaxSpeed: 100
   RotationSpeed: 0
   CollisionDetection: 1
   BounceOffSurfaces: 1
@@ -160,23 +191,23 @@ MonoBehaviour:
   BounceAbsorbtionY: 0
   BounceAbsorbtionX: 0
   Acceleration: 0
-  UseColorPulse: 1
-  PulseSpeed: 25
-  UseStaticPulse: 1
+  UseColorPulse: 0
+  PulseSpeed: 0
+  UseStaticPulse: 0
   GroupCount: 1
   GroupSpacing: 1
-  SpokeCount: 1
-  SpokeSpacing: 1
+  SpokeCount: 3
+  SpokeSpacing: 25
   MirrorPairRotation: 0
   PairGroupDirection: 0
   UseFollowTarget: 0
   Target: {fileID: 0}
   FollowTargetType: 0
-  FollowIntensity: 0.6
-  UseOutlineColorPulse: 1
+  FollowIntensity: 0
+  UseOutlineColorPulse: 0
   OutlinePulseSpeed: 0
   UseOutlineStaticPulse: 0
-  damage: 0
+  Damage: 0
   bouncesRemaining: 0
   piercesRemaining: 0
-  knockback: 0
+  Knockback: 0

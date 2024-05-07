@@ -7,7 +7,22 @@ namespace BulletHell
         public Vector2 Velocity;
         public float Acceleration;
         public Vector2 Gravity;
-        public Vector2 Position;
+        private Vector2 position;
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+                if(Outline.Item != null)
+                {
+                    Outline.Item.position = value;
+                }
+            }
+        }
         public float Rotation;
         public Color Color;
         public float Scale;
@@ -15,6 +30,22 @@ namespace BulletHell
         public float Speed;
         public int Damage;
         public float Knockback;
+        public float Radius { 
+            get
+            {
+                float radius = 0;
+                if (Outline.Item != null)
+                {
+                    radius = Outline.Item.Scale / 2f;
+                }
+                else
+                {
+                    radius = Scale / 2f;
+                }
+
+                return radius;
+            }
+        }
 
         public ColorPulse Pulse;
         public ColorPulse OutlinePulse;
@@ -25,5 +56,10 @@ namespace BulletHell
 
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
+
+        public Vector2 DeltaPosition(float tick)
+        {
+            return Velocity * tick;
+        }
     }
 }
