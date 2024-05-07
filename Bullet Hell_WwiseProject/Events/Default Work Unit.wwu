@@ -3,17 +3,11 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Play_SFX" ID="{483BDF69-28FF-410E-9109-AF24A486AA6A}">
+				<Folder Name="Ambiance" ID="{7845C763-C8A0-470B-B903-11F208DD80E6}" ShortID="806728296">
 					<ChildrenList>
-						<Action Name="" ID="{5CCFA05C-30B4-47F0-A6ED-21C2A9668FC1}" ShortID="1368302">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="SFX" ID="{229E74FC-BE91-4069-9FDA-9C831FCD5943}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="AmbLake" ID="{F3F71949-41FC-4252-A1FC-298B38EA8B5D}"/>
 					</ChildrenList>
-				</Event>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
