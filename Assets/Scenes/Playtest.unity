@@ -228,6 +228,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02509473ea917004d939933de5989004, type: 3}
+--- !u!114 &4321636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+  m_PrefabInstance: {fileID: 5404810199159674301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5e135218c29f344997b66c4fcd304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100071002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5013847309292825894, guid: 4f953ed650c6f4a44b49fd719952e15e, type: 3}
@@ -1658,6 +1669,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.039
       objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 4321636}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.bulletStats.size
       value: 0.4
