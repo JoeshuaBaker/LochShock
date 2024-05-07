@@ -6,6 +6,9 @@
 				<Folder Name="Ambiance" ID="{B8109F3D-0C9E-4094-9449-7A4492727AC2}" ShortID="436482347">
 					<ChildrenList>
 						<BlendContainer Name="Lake+Rain" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" ShortID="902917704">
+							<PropertyList>
+								<Property Name="BlendBehavior" Type="int16" Value="1"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
@@ -16,6 +19,14 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="Rain" ID="{C035F74D-DCF9-4416-9809-ED13AC8BB4FF}" ShortID="853913070">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
@@ -39,6 +50,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="Shore" ID="{DB51A92D-6723-4364-B227-39201DDD9FDF}" ShortID="414932559">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
@@ -48,17 +62,17 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Lake+Rain Ambiance 2-freetousesounds - Ocean Sounds Royalty Free Ocean Sound Ef - 05 Ocean, Atlantic, Waves, Splashing, Massive Rock Formation, Calm, Small Hidden Cave, Low Rumble, Daytime, Cascais" ID="{1F4B1DA0-1198-43EC-A04A-1742B204200F}">
+										<AudioFileSource Name="Lake+Rain Cascais" ID="{5AF685C0-F4E3-475F-97FA-E3714037EA69}">
 											<Language>SFX</Language>
-											<AudioFile>Lake+Rain Ambiance 2-freetousesounds - Ocean Sounds Royalty Free Ocean Sound Ef - 05 Ocean, Atlantic, Waves, Splashing, Massive Rock Formation, Calm, Small Hidden Cave, Low Rumble, Daytime, Cascais.wav</AudioFile>
+											<AudioFile>Lake+Rain Cascais.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="119063269"/>
+												<MediaID ID="151858203"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Lake+Rain Ambiance 2-freetousesounds - Ocean Sounds Royalty Free Ocean Sound Ef - 05 Ocean, Atlantic, Waves, Splashing, Massive Rock Formation, Calm, Small Hidden Cave, Low Rumble, Daytime, Cascais" ID="{1F4B1DA0-1198-43EC-A04A-1742B204200F}" Platform="Linked"/>
+										<ActiveSource Name="Lake+Rain Cascais" ID="{5AF685C0-F4E3-475F-97FA-E3714037EA69}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>

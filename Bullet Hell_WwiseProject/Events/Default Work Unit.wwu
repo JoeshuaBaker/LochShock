@@ -5,7 +5,17 @@
 			<ChildrenList>
 				<Folder Name="Ambiance" ID="{7845C763-C8A0-470B-B903-11F208DD80E6}" ShortID="806728296">
 					<ChildrenList>
-						<Event Name="AmbLake" ID="{F3F71949-41FC-4252-A1FC-298B38EA8B5D}"/>
+						<Event Name="AmbLake" ID="{F3F71949-41FC-4252-A1FC-298B38EA8B5D}">
+							<ChildrenList>
+								<Action Name="" ID="{ABD48560-6BEC-4C22-8F6C-7413F54231B9}" ShortID="474210297">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Lake+Rain" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
