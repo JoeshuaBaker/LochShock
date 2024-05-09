@@ -48,7 +48,7 @@ public class OrbScript : MonoBehaviour
             else
             {
                 this.transform.position = this.transform.position + directionToPlayer.normalized * collectSpeedStart;
-                collectSpeedStart = collectSpeedStart + collectSpeedGrowth;
+                collectSpeedStart = collectSpeedStart + (collectSpeedGrowth * (60f * Time.deltaTime));
             }
 
             

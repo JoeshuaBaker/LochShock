@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ExplosionMat
+  m_Shader: {fileID: -6465566751694194690, guid: 9db2d1eb60417334ba427eed539f662b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_9fa3081cd7434ecfbf9a65468b790dbe:
+        m_Texture: {fileID: 2800000, guid: 80a5129934de8164ca325641835c6ea5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_11a4deabba2541bb81f1d6ce09b935ce: 0.493
+    - Vector1_3217078a1b40403eb3ae7e32e931a8fb: 0.3
+    - Vector1_43a91215eec04ae5afa6fce3150b37e5: 0.823
+    m_Colors:
+    - Color_cdcc986c8a564ca7837027bea3f3135a: {r: 0, g: 3.9215686, b: 4, a: 1}
+    - Color_f9381cd6fc9f476cb0abacf1a23389a6: {r: 0, g: 0.19391608, b: 0.21698093, a: 0.5176471}
+  m_BuildTextureStacks: []
