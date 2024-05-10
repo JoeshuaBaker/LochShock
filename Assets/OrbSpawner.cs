@@ -9,6 +9,7 @@ public class OrbSpawner : MonoBehaviour
     public float minOrbVariation;
     public float maxOrbVariation;
     public GameObject orb;
+    public Transform orbParent;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class OrbSpawner : MonoBehaviour
     }
     void spawnOrb()
     {
-        Instantiate(orb).transform.position = nextOrbX;
+        GameObject spawnedOrb = Instantiate(orb);
+        spawnedOrb.transform.position = nextOrbX;
+        spawnedOrb.transform.parent = orbParent;
     }
 }
