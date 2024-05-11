@@ -90234,7 +90234,31 @@ MonoBehaviour:
   largeCrater: {fileID: -9009283520853653472, guid: 62989a593a161e945bfd3767ca66d86a, type: 3}
   activePlayer: {fileID: 2073718743}
   craterTime: 0
+  craterInterval: 0
   randomCrater: 0
+--- !u!114 &1598683932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598683930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88d1ca7864cde846ae47b6c5c2cc489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSize: 3
+  minSize: 0.3
+  maxSlow: 0.5
+  minFast: 2
+  explosionPrefab: {fileID: 1626496987188483947, guid: ee70f88950fb51543ba72b56575fbbf4, type: 3}
+  noDebrisBelow: 0.5
+  craterCreator: {fileID: 1598683931}
+  activePlayer: {fileID: 2073718743}
+  explosionTime: 0
+  explosionInterval: 1
+  explosionSize: 1
 --- !u!114 &1598683933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110197,7 +110221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1985263424
 Transform:
   m_ObjectHideFlags: 0
