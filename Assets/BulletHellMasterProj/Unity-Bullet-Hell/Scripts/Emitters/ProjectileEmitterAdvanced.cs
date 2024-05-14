@@ -23,12 +23,22 @@ namespace BulletHell
         protected int GroupCount {
             get
             {
-                return (int) stats.gunStats.bulletsPerShot;
+                return (int) stats.gunStats.bulletStreams;
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
-        [Range(1, 10), SerializeField] protected int SpokeCount = 3;
-        [Range(0, 100), SerializeField] protected float SpokeSpacing = 25;
+        protected int SpokeCount {
+            get
+            {
+                return (int)stats.gunStats.bulletsPerShot;
+            }
+        }
+        protected float SpokeSpacing {
+            get
+            {
+                return stats.gunStats.spreadAngle;
+            }
+        }
         [SerializeField] protected bool MirrorPairRotation;
         [ConditionalField(nameof(MirrorPairRotation)), SerializeField] protected bool PairGroupDirection;
 
@@ -131,9 +141,6 @@ namespace BulletHell
                 else Interval = CoolOffTime;
             }
 
-            List<int> fs = new List<int>();
-            List<float> rotations = new List<float>();
-
             for (int g = 0; g < GroupCount; g++)
             {
                 if (Projectiles.AvailableCount >= SpokeCount)
@@ -169,9 +176,6 @@ namespace BulletHell
                             rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
                         }
 
-
-                        rotations.Add(rotation);
-                        fs.Add(f);
                         node.Item.Velocity = Speed * Rotate(group.Direction, rotation).normalized;
 
                         // Keep track of active projectiles                       
@@ -197,21 +201,6 @@ namespace BulletHell
                         Groups[g].Direction = Rotate(Groups[g].Direction, RotationSpeed);
                 }
             }
-
-            string rotDebug = "Rotations: ";
-            string fDebug = "fs: ";
-
-            foreach(var rotation in rotations)
-            {
-                rotDebug += rotation + ", ";
-            }
-            foreach(var f in fs)
-            {
-                fDebug += f + ", ";
-            }
-
-            Debug.Log(rotDebug);
-            Debug.Log(fDebug);
 
             return node;
         }

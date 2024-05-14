@@ -317,6 +317,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: SpokeCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: GroupSpacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: SpokeSpacing
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270928, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Name
       value: TestGuy
@@ -387,7 +399,7 @@ PrefabInstance:
       objectReference: {fileID: 876329987}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.size
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.speed
@@ -431,6 +443,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.reloadSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.spreadAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.bulletStreams
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.bulletsPerShot
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9149283876406945471, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}

@@ -41,7 +41,7 @@ public class StatBlock
         public float magazineSize;
         public float reloadSpeed;
         public float fireSpeed;
-        public float shotStreams;
+        public float bulletStreams;
         public float bulletsPerShot;
         public float spreadAngle;
         public float accuracy;
@@ -91,7 +91,7 @@ public class StatBlock
             combinedBlock.gunStats.magazineSize += additiveBlock.gunStats.magazineSize;
             combinedBlock.gunStats.reloadSpeed += additiveBlock.gunStats.reloadSpeed;
             combinedBlock.gunStats.fireSpeed += additiveBlock.gunStats.fireSpeed;
-            combinedBlock.gunStats.shotStreams += additiveBlock.gunStats.shotStreams;
+            combinedBlock.gunStats.bulletStreams += additiveBlock.gunStats.bulletStreams;
             combinedBlock.gunStats.bulletsPerShot += additiveBlock.gunStats.bulletsPerShot;
             combinedBlock.gunStats.spreadAngle += additiveBlock.gunStats.spreadAngle;
             combinedBlock.gunStats.accuracy += additiveBlock.gunStats.accuracy;
@@ -125,7 +125,7 @@ public class StatBlock
             multBlock.gunStats.magazineSize += multiplicativeBlock.gunStats.magazineSize;
             multBlock.gunStats.reloadSpeed += multiplicativeBlock.gunStats.reloadSpeed;
             multBlock.gunStats.fireSpeed += multiplicativeBlock.gunStats.fireSpeed;
-            multBlock.gunStats.shotStreams += multiplicativeBlock.gunStats.shotStreams;
+            multBlock.gunStats.bulletStreams += multiplicativeBlock.gunStats.bulletStreams;
             multBlock.gunStats.bulletsPerShot += multiplicativeBlock.gunStats.bulletsPerShot;
             multBlock.gunStats.spreadAngle += multiplicativeBlock.gunStats.spreadAngle;
             multBlock.gunStats.accuracy += multiplicativeBlock.gunStats.accuracy;
@@ -154,7 +154,7 @@ public class StatBlock
         combinedBlock.gunStats.magazineSize     *= 1 + multBlock.gunStats.magazineSize;
         combinedBlock.gunStats.reloadSpeed      *= 1 + multBlock.gunStats.reloadSpeed;
         combinedBlock.gunStats.fireSpeed        *= 1 + multBlock.gunStats.fireSpeed;
-        combinedBlock.gunStats.shotStreams      *= 1 + multBlock.gunStats.shotStreams;
+        combinedBlock.gunStats.bulletStreams      *= 1 + multBlock.gunStats.bulletStreams;
         combinedBlock.gunStats.bulletsPerShot   *= 1 + multBlock.gunStats.bulletsPerShot;
         combinedBlock.gunStats.spreadAngle      *= 1 + multBlock.gunStats.spreadAngle;
         combinedBlock.gunStats.accuracy         *= 1 + multBlock.gunStats.accuracy;
