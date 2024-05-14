@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{A9ADB622-EC91-48D7-8A75-33EBE198A6BD}" SchemaVersion="103">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{A9ADB622-EC91-48D7-8A75-33EBE198A6BD}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{A9ADB622-EC91-48D7-8A75-33EBE198A6BD}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="PathStatus" ID="{AA56E69A-3D29-4E7D-83C0-75B051980D6B}">
+					<ChildrenList>
+						<State Name="None" ID="{89C50FDB-A53E-423D-A13C-F7D29B074A99}"/>
+						<State Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+						<State Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+							<EndState Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<Folder Name="Ambiance" ID="{B8109F3D-0C9E-4094-9449-7A4492727AC2}" ShortID="436482347">
 					<ChildrenList>
-						<BlendContainer Name="Lake+Rain" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" ShortID="902917704">
+						<BlendContainer Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" ShortID="902917704">
 							<PropertyList>
 								<Property Name="BlendBehavior" Type="int16" Value="1"/>
 							</PropertyList>
@@ -18,14 +18,9 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Rain" ID="{C035F74D-DCF9-4416-9809-ED13AC8BB4FF}" ShortID="853913070">
+								<Sound Name="Amb_Lake Waves_2024-05-13 20_55_17" ID="{610A70E7-0549-4A49-9CCF-49ACC5C56B29}" ShortID="1047178869">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-6</Value>
-											</ValueList>
-										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -36,20 +31,45 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Rain" ID="{17C038E8-FF69-4F7E-B992-74D1528A8F4D}">
+										<AudioFileSource Name="Amb_Lake Waves_2024-05-13 20_55_17" ID="{DBCB0D26-881B-4773-8EB1-9F243A563081}">
 											<Language>SFX</Language>
-											<AudioFile>Lake+Rain Ambiance 3-Rain, Thunder [drain, water, drizzle, shower] [2024-05-02 195846].wav</AudioFile>
+											<AudioFile>Amb_Lake Waves_2024-05-13 20_55_17.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="293187494"/>
+												<MediaID ID="181209012"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
+									<StateInfo>
+										<StateGroupList>
+											<StateGroupInfo>
+												<StateGroupRef Name="PathStatus" ID="{AA56E69A-3D29-4E7D-83C0-75B051980D6B}"/>
+											</StateGroupInfo>
+										</StateGroupList>
+										<CustomStateList>
+											<CustomState>
+												<StateRef Name="None" ID="{89C50FDB-A53E-423D-A13C-F7D29B074A99}"/>
+												<CustomState Name="" ID="{C4D30162-EBC4-4DB7-90FD-7B1B4F354EE8}" ShortID="326397663"/>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+												<CustomState Name="" ID="{AE27C715-D963-4FF3-89A6-A8E9AE8A8B87}" ShortID="931632295"/>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+												<CustomState Name="" ID="{D8B40AE4-3DAB-435A-A41B-87FADB0352F1}" ShortID="73055628">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64" Value="-20"/>
+													</PropertyList>
+												</CustomState>
+											</CustomState>
+										</CustomStateList>
+									</StateInfo>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Rain" ID="{17C038E8-FF69-4F7E-B992-74D1528A8F4D}" Platform="Linked"/>
+										<ActiveSource Name="Amb_Lake Waves_2024-05-13 20_55_17" ID="{DBCB0D26-881B-4773-8EB1-9F243A563081}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Shore" ID="{DB51A92D-6723-4364-B227-39201DDD9FDF}" ShortID="414932559">
+								<Sound Name="Amb_Pathway Waves_2024-05-13 20_55_17" ID="{7C4DE3A1-FE11-4748-8465-0A637AC0CEE1}" ShortID="873224343">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 									</PropertyList>
@@ -62,21 +82,211 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Lake+Rain Cascais" ID="{5AF685C0-F4E3-475F-97FA-E3714037EA69}">
+										<AudioFileSource Name="Amb_Pathway Waves_2024-05-13 20_55_17" ID="{BD7E9779-4DFA-4421-9F3C-7F76C38CAFE0}">
 											<Language>SFX</Language>
-											<AudioFile>Lake+Rain Cascais.wav</AudioFile>
+											<AudioFile>Amb_Pathway Waves_2024-05-13 20_55_17.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="151858203"/>
+												<MediaID ID="897932015"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
+									<StateInfo>
+										<StateGroupList>
+											<StateGroupInfo>
+												<StateGroupRef Name="PathStatus" ID="{AA56E69A-3D29-4E7D-83C0-75B051980D6B}"/>
+											</StateGroupInfo>
+										</StateGroupList>
+										<CustomStateList>
+											<CustomState>
+												<StateRef Name="None" ID="{89C50FDB-A53E-423D-A13C-F7D29B074A99}"/>
+												<CustomState Name="" ID="{845EE5AD-0D0E-4CBE-9F89-2152A6C2ACBC}" ShortID="324019767"/>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+												<CustomState Name="" ID="{8E4C50BD-A38B-4476-8C48-DBAA0BC0E061}" ShortID="263445328">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64" Value="-9"/>
+													</PropertyList>
+												</CustomState>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+												<CustomState Name="" ID="{BF290B76-8865-4BC5-826D-BEA967C2D9ED}" ShortID="681484125"/>
+											</CustomState>
+										</CustomStateList>
+									</StateInfo>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Lake+Rain Cascais" ID="{5AF685C0-F4E3-475F-97FA-E3714037EA69}" Platform="Linked"/>
+										<ActiveSource Name="Amb_Pathway Waves_2024-05-13 20_55_17" ID="{BD7E9779-4DFA-4421-9F3C-7F76C38CAFE0}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 							<ObjectLists/>
+						</BlendContainer>
+						<BlendContainer Name="Rain" ID="{955645EB-4F21-4B77-A9C7-D7961AFECAF9}" ShortID="822109816">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Amb_Little Rain_2024-05-13 21_51_30" ID="{DBD47253-F66F-45F8-A9AA-0CA721EED4CA}" ShortID="825429968">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Amb_Little Rain_2024-05-13 21_51_30" ID="{9EE7CA6A-07EB-4AB0-A803-0C26BA1D8306}">
+											<Language>SFX</Language>
+											<AudioFile>Amb_Little Rain_2024-05-13 21_51_30.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="538056478"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Amb_Little Rain_2024-05-13 21_51_30" ID="{9EE7CA6A-07EB-4AB0-A803-0C26BA1D8306}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Amb_Lot of Rain_2024-05-13 21_51_30" ID="{8B8C9C5A-D61A-487D-B3C9-D7A25806BFDF}" ShortID="777306645">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Amb_Lot of Rain_2024-05-13 21_51_30" ID="{557BDA10-C087-4F2D-BFEB-FA44D357BDB6}">
+											<Language>SFX</Language>
+											<AudioFile>Amb_Lot of Rain_2024-05-13 21_51_30.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="403072202"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Amb_Lot of Rain_2024-05-13 21_51_30" ID="{557BDA10-C087-4F2D-BFEB-FA44D357BDB6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Amb_Mid Rain tbh_2024-05-13 21_51_30" ID="{9A913DC6-21FF-4E8B-97BF-9A73816047E5}" ShortID="219373471">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Amb_Mid Rain tbh_2024-05-13 21_51_30" ID="{2A30EB6B-D785-44FC-8C08-753DC7873544}">
+											<Language>SFX</Language>
+											<AudioFile>Amb_Mid Rain tbh_2024-05-13 21_51_30.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="328935521"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Amb_Mid Rain tbh_2024-05-13 21_51_30" ID="{2A30EB6B-D785-44FC-8C08-753DC7873544}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+							<BlendTrackList>
+								<BlendTrack Name="GameSync_RainAmount" ID="{C39516D2-9AAA-41A9-99D4-AE57131BFABF}" ShortID="645419384">
+									<PropertyList>
+										<Property Name="EnableCrossFading" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{8AB537D3-FBD0-4035-AB7C-DF9927957291}" ShortID="691080538">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{51A4D0A3-EA03-45AB-BE1F-ECE9671DD0E7}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>31.4606741573034</XPos>
+																<YPos>-11.2213486206497</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>1000</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="LayerCrossFadeControlInput">
+											<ObjectRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+										</Reference>
+									</ReferenceList>
+									<BlendTrackAssocList>
+										<BlendTrackAssoc>
+											<ItemRef Name="Amb_Little Rain_2024-05-13 21_51_30" ID="{DBD47253-F66F-45F8-A9AA-0CA721EED4CA}"/>
+											<CrossfadingInfo>
+												<LeftEdgePos>0</LeftEdgePos>
+												<LeftFadingMode>Automatic</LeftFadingMode>
+												<RightEdgePos>490.63670411985</RightEdgePos>
+												<RightFadingMode>Automatic</RightFadingMode>
+											</CrossfadingInfo>
+										</BlendTrackAssoc>
+										<BlendTrackAssoc>
+											<ItemRef Name="Amb_Lot of Rain_2024-05-13 21_51_30" ID="{8B8C9C5A-D61A-487D-B3C9-D7A25806BFDF}"/>
+											<CrossfadingInfo>
+												<LeftEdgePos>250.187265917603</LeftEdgePos>
+												<LeftFadingMode>Automatic</LeftFadingMode>
+												<RightEdgePos>743.071411048689</RightEdgePos>
+												<RightFadingMode>Automatic</RightFadingMode>
+											</CrossfadingInfo>
+										</BlendTrackAssoc>
+										<BlendTrackAssoc>
+											<ItemRef Name="Amb_Mid Rain tbh_2024-05-13 21_51_30" ID="{9A913DC6-21FF-4E8B-97BF-9A73816047E5}"/>
+											<CrossfadingInfo>
+												<LeftEdgePos>490.63670411985</LeftEdgePos>
+												<LeftFadingMode>Automatic</LeftFadingMode>
+												<RightEdgePos>1000</RightEdgePos>
+												<RightFadingMode>Automatic</RightFadingMode>
+											</CrossfadingInfo>
+										</BlendTrackAssoc>
+									</BlendTrackAssocList>
+								</BlendTrack>
+							</BlendTrackList>
 						</BlendContainer>
 					</ChildrenList>
 				</Folder>
