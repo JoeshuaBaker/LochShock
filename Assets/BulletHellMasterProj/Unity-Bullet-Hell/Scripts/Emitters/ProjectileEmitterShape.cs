@@ -37,8 +37,8 @@ namespace BulletHell
                     node = Projectiles.Get();
 
                     node.Item.Position = transform.position + TemplatePositions[n];
-                    node.Item.Scale = Scale;
-                    node.Item.TimeToLive = TimeToLive - leakedTime;
+                    node.Item.ApplyStatBlock(stats.gunStats);
+                    node.Item.stats.lifetime = stats.gunStats.lifetime - leakedTime;
                     node.Item.Velocity = Speed * Direction.normalized;
                     node.Item.Position += node.Item.Velocity * leakedTime;
                     node.Item.Color = new Color(0.6f, 0.7f, 0.6f, 1);
@@ -50,7 +50,7 @@ namespace BulletHell
                         Pool<ProjectileData>.Node outlineNode = ProjectileOutlines.Get();
 
                         outlineNode.Item.Position = node.Item.Position;
-                        outlineNode.Item.Scale = node.Item.Scale + OutlineSize;
+                        outlineNode.Item.stats.size = node.Item.stats.size + OutlineSize;
                         outlineNode.Item.Color = OutlineColor.Evaluate(0);
 
                         node.Item.Outline = outlineNode;

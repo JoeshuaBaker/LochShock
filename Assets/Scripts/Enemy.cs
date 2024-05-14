@@ -34,8 +34,8 @@ public abstract class Enemy : BulletCollidable
 
     public override void ProcessCollision(ProjectileData projectile)
     {
-        TakeDamage(projectile.Damage);
-        ApplyKnockback(projectile.Velocity.normalized * projectile.Knockback);
+        TakeDamage(projectile.stats.damage);
+        ApplyKnockback(projectile.Velocity.normalized * projectile.stats.knockback);
     }
 
     public virtual void ApplyKnockback(Vector2 force)
@@ -44,14 +44,14 @@ public abstract class Enemy : BulletCollidable
         rb.AddForce(force*10);
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         if(damage > 0)
         {
             freezeTime = freezeTimePerHit;
         }
 
-        currentHp = Mathf.Max(currentHp - damage, 0);
+        currentHp = (int)Mathf.Max(currentHp - damage, 0);
 
         if (currentHp == 0)
         {

@@ -25,22 +25,18 @@ namespace BulletHell
         }
         public float Rotation;
         public Color Color;
-        public float Scale;
-        public float TimeToLive;
-        public float Speed;
-        public int Damage;
-        public float Knockback;
+        public StatBlock.GunStats stats;
         public float Radius { 
             get
             {
                 float radius = 0;
                 if (Outline.Item != null)
                 {
-                    radius = Outline.Item.Scale / 2f;
+                    radius = Outline.Item.stats.size / 2f;
                 }
                 else
                 {
-                    radius = Scale / 2f;
+                    radius = stats.size / 2f;
                 }
 
                 return radius;
@@ -56,6 +52,11 @@ namespace BulletHell
 
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
+
+        public void ApplyStatBlock(StatBlock.GunStats stats)
+        {
+            this.stats = stats;
+        }
 
         public Vector2 DeltaPosition(float tick)
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -114,77 +115,51 @@ public class World : MonoBehaviour
         if (enemySpawn <= 0f)
         {
             enemySpawn = enemySpawnRate;
+            SpawnRandomEnemy();
 
-            Enemy eye = enemyPool.GetEnemy(typeof(Eye));
-
-            if (eye == null)
-            {
-                return;
-            }
-
-            bool leftright = Random.Range(0f, 1f) < 0.5f;
-            bool updown = Random.Range(0f, 1f) < 0.5f;
-            Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
-            Vector2 lerpVecBase = Vector2.right;
-
-            if (!leftright)
-            {
-                if(updown)
-                {
-                    lerpVecBase = new Vector2(1, 1);
-                }
-                else
-                {
-                    lerpVecBase = new Vector2(1, -1);
-                }
-            }
-            Vector2 lerpVec = Vector2.Lerp(lerpVecBase, diagonal, Random.Range(0f, 1f));
-            Vector3 spawnPosition = new Vector3(
-                horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
-
-            eye.transform.localPosition = spawnPosition;
+            // To Spawn a specific enemy:
+            //SetupEnemy(enemyPool.GetEnemy(typeof(Eye)));
+            // Replace 'Urchin' with enemy type desired
         }
-        //if (enemySpawn <= 0f)
-        //{
-        //    enemySpawn = enemySpawnRate;
 
-        //    Enemy ring = enemyPool.GetEnemy(typeof(Ring));
+    }
 
-        //    if (ring == null)
-        //    {
-        //        return;
-        //    }
+    void SpawnRandomEnemy()
+    {
+        List<Type> enemyTypes = enemyPool.GetAvailableEnemyTypes();
 
-        //    bool leftright = Random.Range(0f, 1f) < 0.5f;
-        //    bool updown = Random.Range(0f, 1f) < 0.5f;
-        //    Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
-        //    Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
-        //    Vector3 spawnPosition = new Vector3(
-        //        horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
+        Enemy enemy = enemyPool.GetEnemy(enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Count)]);
+        SetupEnemy(enemy);
+    }
 
-        //    ring.transform.localPosition = spawnPosition;
-        //}
-        //if (enemySpawn <= 0f)
-        //{
-        //    enemySpawn = enemySpawnRate;
+    void SetupEnemy(Enemy enemy)
+    {
+        if (enemy == null)
+        {
+            return;
+        }
 
-        //    Enemy urchin = enemyPool.GetEnemy(typeof(Urchin));
+        bool leftright = UnityEngine.Random.Range(0f, 1f) < 0.5f;
+        bool updown = UnityEngine.Random.Range(0f, 1f) < 0.5f;
+        Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
+        Vector2 lerpVecBase = Vector2.right;
 
-        //    if (urchin == null)
-        //    {
-        //        return;
-        //    }
+        if (!leftright)
+        {
+            if (updown)
+            {
+                lerpVecBase = new Vector2(1, 1);
+            }
+            else
+            {
+                lerpVecBase = new Vector2(1, -1);
+            }
+        }
+        Vector2 lerpVec = Vector2.Lerp(lerpVecBase, diagonal, UnityEngine.Random.Range(0f, 1f));
+        Vector3 spawnPosition = new Vector3(
+            horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
 
-        //    bool leftright = Random.Range(0f, 1f) < 0.5f;
-        //    bool updown = Random.Range(0f, 1f) < 0.5f;
-        //    Vector2 diagonal = new Vector2(leftright ? 1 : -0.25f, updown ? 1 : -1);
-        //    Vector2 lerpVec = Vector2.Lerp(Vector2.right, diagonal, Random.Range(0f, 1f));
-        //    Vector3 spawnPosition = new Vector3(
-        //        horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
-
-        //    urchin.transform.localPosition = spawnPosition;
-        //}
-
+        enemy.transform.localPosition = spawnPosition;
     }
 
     void PositionMap(Map left, Map right)
@@ -227,7 +202,7 @@ public class World : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            mapQueue.Enqueue(Random.Range(0, numMapsInPool));
+            mapQueue.Enqueue(UnityEngine.Random.Range(0, numMapsInPool));
         }
     }
 

@@ -19,10 +19,10 @@ public class StatBlock
     public BlockType blockType;
     public PlayerStats playerStats = new PlayerStats();
     public GunStats gunStats = new GunStats();
-    public BulletStats bulletStats = new BulletStats();
+    public Events events = new Events();
     
     [Serializable]
-    public class PlayerStats
+    public struct PlayerStats
     {
         public BlockType blockType;
         public float health;
@@ -35,21 +35,16 @@ public class StatBlock
     }
 
     [Serializable]
-    public class GunStats
+    public struct GunStats
     {
         public BlockType blockType;
         public float magazineSize;
         public float reloadSpeed;
         public float fireSpeed;
+        public float shotStreams;
         public float bulletsPerShot;
-        public float bulletSpread;
-        public List<Action> OnFire = new List<Action>();
-    }
-
-    [Serializable]
-    public class BulletStats
-    {
-        public BlockType blockType;
+        public float spreadAngle;
+        public float accuracy;
         public float damage;
         public float speed;
         public float size;
@@ -57,6 +52,11 @@ public class StatBlock
         public float bounce;
         public float pierce;
         public float lifetime;
+    }
+
+    public class Events
+    {
+        public List<Action> OnFire = new List<Action>();
         public List<Action> OnHit = new List<Action>();
         public List<Action> OnDestroy = new List<Action>();
     }
@@ -65,34 +65,12 @@ public class StatBlock
     {
         StatBlock copy = new StatBlock();
         copy.blockType = this.blockType;
+        copy.playerStats = this.playerStats;
+        copy.gunStats = this.gunStats;
 
-        copy.playerStats.blockType                  = playerStats.blockType;
-        copy.playerStats.health                     = playerStats.health;
-        copy.playerStats.walkSpeed                  = playerStats.walkSpeed;
-        copy.playerStats.runSpeed                   = playerStats.runSpeed;
-        copy.playerStats.totalVision                = playerStats.totalVision;
-        copy.playerStats.visionConeAngle            = playerStats.visionConeAngle;
-        copy.playerStats.visionConeRadius           = playerStats.visionConeRadius;
-        copy.playerStats.visionProximityRadius      = playerStats.visionProximityRadius;
-
-        copy.gunStats.blockType         = gunStats.blockType;
-        copy.gunStats.magazineSize      = gunStats.magazineSize;
-        copy.gunStats.reloadSpeed       = gunStats.reloadSpeed;
-        copy.gunStats.fireSpeed         = gunStats.fireSpeed;
-        copy.gunStats.bulletsPerShot    = gunStats.bulletsPerShot;
-        copy.gunStats.bulletSpread      = gunStats.bulletSpread;
-        copy.gunStats.OnFire            = gunStats.OnFire;
-
-        copy.bulletStats.blockType      = bulletStats.blockType;
-        copy.bulletStats.damage         = bulletStats.damage;
-        copy.bulletStats.speed          = bulletStats.speed;
-        copy.bulletStats.size           = bulletStats.size;
-        copy.bulletStats.knockback      = bulletStats.knockback;
-        copy.bulletStats.bounce         = bulletStats.bounce;
-        copy.bulletStats.pierce         = bulletStats.pierce;
-        copy.bulletStats.lifetime       = bulletStats.lifetime;
-        copy.bulletStats.OnHit          = bulletStats.OnHit;
-        copy.bulletStats.OnDestroy      = bulletStats.OnDestroy;
+        copy.events.OnFire      = events.OnFire;
+        copy.events.OnHit       = events.OnHit;
+        copy.events.OnDestroy   = events.OnDestroy;
         return copy;
     }
 
@@ -113,19 +91,22 @@ public class StatBlock
             combinedBlock.gunStats.magazineSize += additiveBlock.gunStats.magazineSize;
             combinedBlock.gunStats.reloadSpeed += additiveBlock.gunStats.reloadSpeed;
             combinedBlock.gunStats.fireSpeed += additiveBlock.gunStats.fireSpeed;
+            combinedBlock.gunStats.shotStreams += additiveBlock.gunStats.shotStreams;
             combinedBlock.gunStats.bulletsPerShot += additiveBlock.gunStats.bulletsPerShot;
-            combinedBlock.gunStats.bulletSpread += additiveBlock.gunStats.bulletSpread;
-            combinedBlock.gunStats.OnFire.AddRange(additiveBlock.gunStats.OnFire);
+            combinedBlock.gunStats.spreadAngle += additiveBlock.gunStats.spreadAngle;
+            combinedBlock.gunStats.accuracy += additiveBlock.gunStats.accuracy;
 
-            combinedBlock.bulletStats.damage += additiveBlock.bulletStats.damage;
-            combinedBlock.bulletStats.speed += additiveBlock.bulletStats.speed;
-            combinedBlock.bulletStats.size += additiveBlock.bulletStats.size;
-            combinedBlock.bulletStats.knockback += additiveBlock.bulletStats.knockback;
-            combinedBlock.bulletStats.bounce += additiveBlock.bulletStats.bounce;
-            combinedBlock.bulletStats.pierce += additiveBlock.bulletStats.pierce;
-            combinedBlock.bulletStats.lifetime += additiveBlock.bulletStats.lifetime;
-            combinedBlock.bulletStats.OnHit.AddRange(additiveBlock.bulletStats.OnHit);
-            combinedBlock.bulletStats.OnDestroy.AddRange(additiveBlock.bulletStats.OnDestroy);
+            combinedBlock.gunStats.damage           += additiveBlock.gunStats.damage;
+            combinedBlock.gunStats.speed            += additiveBlock.gunStats.speed;
+            combinedBlock.gunStats.size             += additiveBlock.gunStats.size;
+            combinedBlock.gunStats.knockback        += additiveBlock.gunStats.knockback;
+            combinedBlock.gunStats.bounce           += additiveBlock.gunStats.bounce;
+            combinedBlock.gunStats.pierce           += additiveBlock.gunStats.pierce;
+            combinedBlock.gunStats.lifetime         += additiveBlock.gunStats.lifetime;
+
+            combinedBlock.events.OnFire.AddRange(additiveBlock.events.OnFire);
+            combinedBlock.events.OnHit.AddRange(additiveBlock.events.OnHit);
+            combinedBlock.events.OnDestroy.AddRange(additiveBlock.events.OnDestroy);
         }
 
         //Add all multipliers together, then apply them once at the end.
@@ -144,19 +125,22 @@ public class StatBlock
             multBlock.gunStats.magazineSize += multiplicativeBlock.gunStats.magazineSize;
             multBlock.gunStats.reloadSpeed += multiplicativeBlock.gunStats.reloadSpeed;
             multBlock.gunStats.fireSpeed += multiplicativeBlock.gunStats.fireSpeed;
+            multBlock.gunStats.shotStreams += multiplicativeBlock.gunStats.shotStreams;
             multBlock.gunStats.bulletsPerShot += multiplicativeBlock.gunStats.bulletsPerShot;
-            multBlock.gunStats.bulletSpread += multiplicativeBlock.gunStats.bulletSpread;
-            multBlock.gunStats.OnFire.AddRange(multiplicativeBlock.gunStats.OnFire);
+            multBlock.gunStats.spreadAngle += multiplicativeBlock.gunStats.spreadAngle;
+            multBlock.gunStats.accuracy += multiplicativeBlock.gunStats.accuracy;
 
-            multBlock.bulletStats.damage += multiplicativeBlock.bulletStats.damage;
-            multBlock.bulletStats.speed += multiplicativeBlock.bulletStats.speed;
-            multBlock.bulletStats.size += multiplicativeBlock.bulletStats.size;
-            multBlock.bulletStats.knockback += multiplicativeBlock.bulletStats.knockback;
-            multBlock.bulletStats.bounce += multiplicativeBlock.bulletStats.bounce;
-            multBlock.bulletStats.pierce += multiplicativeBlock.bulletStats.pierce;
-            multBlock.bulletStats.lifetime += multiplicativeBlock.bulletStats.lifetime;
-            multBlock.bulletStats.OnHit.AddRange(multiplicativeBlock.bulletStats.OnHit);
-            multBlock.bulletStats.OnDestroy.AddRange(multiplicativeBlock.bulletStats.OnDestroy);
+            multBlock.gunStats.damage       += multiplicativeBlock.gunStats.damage;
+            multBlock.gunStats.speed        += multiplicativeBlock.gunStats.speed;
+            multBlock.gunStats.size         += multiplicativeBlock.gunStats.size;
+            multBlock.gunStats.knockback    += multiplicativeBlock.gunStats.knockback;
+            multBlock.gunStats.bounce       += multiplicativeBlock.gunStats.bounce;
+            multBlock.gunStats.pierce       += multiplicativeBlock.gunStats.pierce;
+            multBlock.gunStats.lifetime += multiplicativeBlock.gunStats.lifetime;
+
+            multBlock.events.OnFire.AddRange(multiplicativeBlock.events.OnFire);
+            multBlock.events.OnHit.AddRange(multiplicativeBlock.events.OnHit);
+            multBlock.events.OnDestroy.AddRange(multiplicativeBlock.events.OnDestroy);
         }
 
         combinedBlock.playerStats.health                *= 1 + multBlock.playerStats.health;
@@ -170,19 +154,22 @@ public class StatBlock
         combinedBlock.gunStats.magazineSize     *= 1 + multBlock.gunStats.magazineSize;
         combinedBlock.gunStats.reloadSpeed      *= 1 + multBlock.gunStats.reloadSpeed;
         combinedBlock.gunStats.fireSpeed        *= 1 + multBlock.gunStats.fireSpeed;
+        combinedBlock.gunStats.shotStreams      *= 1 + multBlock.gunStats.shotStreams;
         combinedBlock.gunStats.bulletsPerShot   *= 1 + multBlock.gunStats.bulletsPerShot;
-        combinedBlock.gunStats.bulletSpread     *= 1 + multBlock.gunStats.bulletSpread;
-        combinedBlock.gunStats.OnFire.AddRange(multBlock.gunStats.OnFire);
+        combinedBlock.gunStats.spreadAngle      *= 1 + multBlock.gunStats.spreadAngle;
+        combinedBlock.gunStats.accuracy         *= 1 + multBlock.gunStats.accuracy;
 
-        combinedBlock.bulletStats.damage    *= 1 + multBlock.bulletStats.damage;
-        combinedBlock.bulletStats.speed     *= 1 + multBlock.bulletStats.speed;
-        combinedBlock.bulletStats.size      *= 1 + multBlock.bulletStats.size;
-        combinedBlock.bulletStats.knockback *= 1 + multBlock.bulletStats.knockback;
-        combinedBlock.bulletStats.bounce    *= 1 + multBlock.bulletStats.bounce;
-        combinedBlock.bulletStats.pierce    *= 1 + multBlock.bulletStats.pierce;
-        combinedBlock.bulletStats.lifetime  *= 1 + multBlock.bulletStats.lifetime;
-        combinedBlock.bulletStats.OnHit.AddRange(multBlock.bulletStats.OnHit);
-        combinedBlock.bulletStats.OnDestroy.AddRange(multBlock.bulletStats.OnDestroy);
+        combinedBlock.gunStats.damage    *= 1 + multBlock.gunStats.damage;
+        combinedBlock.gunStats.speed     *= 1 + multBlock.gunStats.speed;
+        combinedBlock.gunStats.size      *= 1 + multBlock.gunStats.size;
+        combinedBlock.gunStats.knockback *= 1 + multBlock.gunStats.knockback;
+        combinedBlock.gunStats.bounce    *= 1 + multBlock.gunStats.bounce;
+        combinedBlock.gunStats.pierce    *= 1 + multBlock.gunStats.pierce;
+        combinedBlock.gunStats.lifetime *= 1 + multBlock.gunStats.lifetime;
+
+        combinedBlock.events.OnFire.AddRange(multBlock.events.OnFire);
+        combinedBlock.events.OnHit.AddRange(multBlock.events.OnHit);
+        combinedBlock.events.OnDestroy.AddRange(multBlock.events.OnDestroy);
 
         return combinedBlock;
     }

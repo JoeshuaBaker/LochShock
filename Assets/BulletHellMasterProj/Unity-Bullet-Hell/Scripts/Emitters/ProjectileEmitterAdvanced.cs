@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace BulletHell
 {
@@ -18,8 +19,13 @@ namespace BulletHell
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected float PulseSpeed;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
 
-        [Foldout("Spokes", true)]
-        [Range(1, 10), SerializeField] protected int GroupCount = 1;
+        //[Foldout("Spokes", true)]
+        protected int GroupCount {
+            get
+            {
+                return (int) stats.gunStats.bulletsPerShot;
+            }
+        }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
         [Range(1, 10), SerializeField] protected int SpokeCount = 3;
         [Range(0, 100), SerializeField] protected float SpokeSpacing = 25;
@@ -114,7 +120,7 @@ namespace BulletHell
 
         public override Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime)
         {
-            Pool<ProjectileData>.Node node = new Pool<ProjectileData>.Node();
+            Pool<ProjectileData>.Node node = Projectiles.Get();
 
             Direction = direction;
             RefreshGroups();
@@ -125,16 +131,48 @@ namespace BulletHell
                 else Interval = CoolOffTime;
             }
 
+            List<int> fs = new List<int>();
+            List<float> rotations = new List<float>();
+
             for (int g = 0; g < GroupCount; g++)
             {
                 if (Projectiles.AvailableCount >= SpokeCount)
                 {
                     float rotation = 0;
-                    bool left = true;
+                    bool swap = false;
 
                     for (int n = 0; n < SpokeCount; n++)
                     {
-                        node = SetupBullet(Groups[g], rotation, left);
+                        var group = Groups[g];
+                        node = SetupBullet(Groups[g]);
+                        float spacing = SpokeSpacing;
+                        int f;
+
+                        if (SpokeCount % 2 == 0)
+                        {
+                            f = (n + 2) / 2;
+                        }
+                        else
+                        {
+                            f = (n+1) / 2;
+                        }
+
+                        if (swap)
+                        {
+                            f *= -1;
+                        }
+
+                        rotation = spacing * f;
+
+                        if(SpokeCount % 2 == 0)
+                        {
+                            rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
+                        }
+
+
+                        rotations.Add(rotation);
+                        fs.Add(f);
+                        node.Item.Velocity = Speed * Rotate(group.Direction, rotation).normalized;
 
                         // Keep track of active projectiles                       
                         PreviousActiveProjectileIndexes[ActiveProjectileIndexesPosition] = node.NodeIndex;
@@ -150,7 +188,7 @@ namespace BulletHell
 
                         UpdateProjectile(ref node, leakedTime);
 
-                        left = !left;
+                        swap = !swap;
                     }
 
                     if (Groups[g].InvertRotation)
@@ -160,16 +198,29 @@ namespace BulletHell
                 }
             }
 
+            string rotDebug = "Rotations: ";
+            string fDebug = "fs: ";
+
+            foreach(var rotation in rotations)
+            {
+                rotDebug += rotation + ", ";
+            }
+            foreach(var f in fs)
+            {
+                fDebug += f + ", ";
+            }
+
+            Debug.Log(rotDebug);
+            Debug.Log(fDebug);
+
             return node;
         }
 
-        public virtual Pool<ProjectileData>.Node SetupBullet(EmitterGroup group, float rotation, bool left)
+        public virtual Pool<ProjectileData>.Node SetupBullet(EmitterGroup group)
         {
-            var node = Projectiles.Get();
+            Pool<ProjectileData>.Node node = Projectiles.Get();
             node.Item.Position = transform.position;
-            node.Item.Speed = Speed;
-            node.Item.Scale = Scale;
-            node.Item.TimeToLive = TimeToLive;
+            node.Item.ApplyStatBlock(stats.gunStats);
             node.Item.Gravity = Gravity;
             if (UseFollowTarget && FollowTargetType == FollowTargetType.LockOnShot && Target != null)
             {
@@ -181,23 +232,13 @@ namespace BulletHell
             node.Item.FollowIntensity = FollowIntensity;
             node.Item.Target = Target;
 
-            if (left)
-            {
-                node.Item.Velocity = Speed * Rotate(group.Direction, rotation).normalized;
-                rotation += SpokeSpacing;
-            }
-            else
-            {
-                node.Item.Velocity = Speed * Rotate(group.Direction, -rotation).normalized;
-            }
-
             // Setup outline if we have one
             if (ProjectilePrefab.Outline != null && DrawOutlines)
             {
                 Pool<ProjectileData>.Node outlineNode = ProjectileOutlines.Get();
 
                 outlineNode.Item.Position = node.Item.Position;
-                outlineNode.Item.Scale = node.Item.Scale + OutlineSize;
+                outlineNode.Item.stats.size = node.Item.stats.size+ OutlineSize;
                 outlineNode.Item.Color = OutlineColor.Evaluate(0);
 
                 node.Item.Outline = outlineNode;
@@ -277,9 +318,9 @@ namespace BulletHell
         {
             if (node.Active)
             {
-                node.Item.TimeToLive -= tick;
+                node.Item.stats.lifetime -= tick;
 
-                if (node.Item.TimeToLive > 0)
+                if (node.Item.stats.lifetime > 0)
                 {
                     UpdateProjectileVisuals(ref node, tick);
 
@@ -301,7 +342,7 @@ namespace BulletHell
             // If flag set - return projectiles that are no longer in view 
             if (CullProjectilesOutsideCameraBounds)
             {
-                Bounds bounds = new Bounds(node.Item.Position, new Vector3(node.Item.Scale, node.Item.Scale, node.Item.Scale));
+                Bounds bounds = new Bounds(node.Item.Position, new Vector3(node.Item.stats.size, node.Item.stats.size, node.Item.stats.size));
                 if (!GeometryUtility.TestPlanesAABB(Planes, bounds))
                 {
                     ReturnNode(node);
@@ -321,13 +362,13 @@ namespace BulletHell
             // follow target
             if (FollowTargetType == FollowTargetType.Homing && node.Item.FollowTarget && node.Item.Target != null)
             {
-                node.Item.Speed += Acceleration * tick;
+                node.Item.stats.speed += Acceleration * tick;
 
                 Vector2 desiredVelocity = (new Vector2(Target.transform.position.x, Target.transform.position.y) - node.Item.Position).normalized;
-                desiredVelocity *= node.Item.Speed;
+                desiredVelocity *= node.Item.stats.speed;
 
                 Vector2 steer = desiredVelocity - node.Item.Velocity;
-                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.Speed);
+                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.stats.speed);
             }
             else
             {
@@ -458,7 +499,7 @@ namespace BulletHell
             }
             else
             {
-                data.Color = Color.Evaluate(1 - data.TimeToLive / TimeToLive);
+                data.Color = Color.Evaluate(1 - data.stats.lifetime / TimeToLive);
             }
 
             //outline
@@ -477,7 +518,7 @@ namespace BulletHell
                 }
                 else
                 {
-                    data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.TimeToLive / TimeToLive);
+                    data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.stats.lifetime / TimeToLive);
                 }
             }
         }

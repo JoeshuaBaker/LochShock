@@ -46,6 +46,11 @@ public class Gun : MonoBehaviour
         ApplyStatBlock(statBlock);
         emitter.ApplyStatBlock(statBlock);
         magazine = maxMagazine;
+
+        if(emitter == null)
+        {
+            emitter = GetComponent<GunEmitter>();
+        }
     }
 
     void ApplyStatBlock(StatBlock stats)

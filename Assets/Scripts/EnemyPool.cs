@@ -7,6 +7,7 @@ public class EnemyPool : MonoBehaviour
 {
     public List<EnemyBuffer> enemyBuffers;
     public Dictionary<Type, Enemy[]> enemies;
+    private List<Type> activeEnemyTypes;
     public Transform enemyParent;
 
     [Serializable]
@@ -19,6 +20,7 @@ public class EnemyPool : MonoBehaviour
     void Start()
     {
         enemies = new Dictionary<Type, Enemy[]>();
+        activeEnemyTypes = new List<Type>();
         foreach (EnemyBuffer buffer in enemyBuffers)
         {
             Enemy[] enemyArray = new Enemy[buffer.bufferSize];
@@ -29,6 +31,7 @@ public class EnemyPool : MonoBehaviour
             bufferParent.name = enemyPrefab.name + "s";
 
             enemies.Add(enemyPrefab.GetType(), enemyArray);
+            activeEnemyTypes.Add(enemyPrefab.GetType());
             for (int i = 0; i < buffer.bufferSize; i++)
             {
                 enemyArray[i] = Instantiate(buffer.enemyPrefab, bufferParent.transform);
@@ -62,5 +65,10 @@ public class EnemyPool : MonoBehaviour
         }
 
         return instance;
+    }
+
+    public List<Type> GetAvailableEnemyTypes()
+    {
+        return activeEnemyTypes;
     }
 }

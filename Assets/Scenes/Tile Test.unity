@@ -382,6 +382,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 876329987}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.bounce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.pierce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.bulletStats.size
       value: 0.4
       objectReference: {fileID: 0}
@@ -390,12 +414,20 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.lifetime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.bulletStats.bounce
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.fireSpeed
       value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: statBlock.gunStats.knockback
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.reloadSpeed
@@ -596,6 +628,17 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &876329987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+  m_PrefabInstance: {fileID: 776874480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5e135218c29f344997b66c4fcd304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1167408396
 GameObject:
   m_ObjectHideFlags: 3
@@ -818,6 +861,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2986951450654661572, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemyBuffers.Array.data[0].enemyPrefab
+      value: 
+      objectReference: {fileID: 2459650366552557337, guid: 463e85dcde607ba4a929d81b54069ef2, type: 3}
     - target: {fileID: 2986951450654661592, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: m_Name
       value: World
