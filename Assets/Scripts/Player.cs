@@ -108,35 +108,37 @@ public class Player : MonoBehaviour
 
         if (onPath)
         {
-            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.0003f, 1f);
+            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.0005f, 1f);
             
             if ( offPathCounter > 0)
             {
-                stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.03f, 1f);
+                stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.04f, 1f);
                 offPathCounter = offPathCounter - 1f;
             }
         } 
         else
         {
-            stats.playerStats.totalVision = Mathf.Max (stats.playerStats.totalVision - 0.003f, 0f);
+            stats.playerStats.totalVision = Mathf.Max (stats.playerStats.totalVision - 0.0025f, 0f);
 
             if (offPathCounter < 10)
             {
-
-                stats.playerStats.totalVision = Math.Max (stats.playerStats.totalVision - 0.03f, 0f);
+                if (stats.playerStats.totalVision > .2f)
+                {
+                    stats.playerStats.totalVision = Math.Max(stats.playerStats.totalVision - 0.04f, 0f);
+                }
                 offPathCounter = offPathCounter + 1f;
 
             }
         }
 
         playerVisionCone.pointLightInnerRadius = Mathf.Max (totalVis * stats.playerStats.visionConeRadius, 4f);
-        playerVisionCone.pointLightOuterRadius = playerVisionCone.pointLightInnerRadius * 3f;
+        playerVisionCone.pointLightOuterRadius = playerVisionCone.pointLightInnerRadius * 4.3f;
         playerVisionCone.pointLightInnerAngle = Mathf.Max (totalVis * stats.playerStats.visionConeAngle, 10f);
-        playerVisionCone.pointLightOuterAngle = playerVisionCone.pointLightInnerAngle * 3.5f;
-        playerVisionCone.intensity = Mathf.Min(totalVis * 2.5f, 1f);
+        playerVisionCone.pointLightOuterAngle = playerVisionCone.pointLightInnerAngle * 4.3f;
+        playerVisionCone.intensity = Mathf.Min(totalVis * 3.3f, 1f);
 
         playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
-        playerVisionProximity.intensity = Mathf.Min(totalVis * 2.5f, 1f);
+        playerVisionProximity.intensity = Mathf.Min(totalVis * 3.3f, 1f);
 
     }
 

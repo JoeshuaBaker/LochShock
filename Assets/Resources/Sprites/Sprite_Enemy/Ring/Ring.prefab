@@ -100,12 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2752186799855417909}
   rb: {fileID: 2752186799855417907}
-  maxHp: 1
+  maxHp: 8
   currentHp: 1
   instanceId: 0
   hitFreezeColor: {r: 220, g: 243, b: 255, a: 1}
   freezeTime: 0
-  freezeTimePerHit: 0.4
+  freezeTimePerHit: 0.2
   player: {fileID: 0}
   animator: {fileID: 2752186799855417906}
   speed: 1
@@ -140,7 +140,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 3
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 0
