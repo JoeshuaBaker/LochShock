@@ -111,16 +111,18 @@ public class World : MonoBehaviour
     {
         enemySpawn -= Time.deltaTime;
         enemySpawnRate = Mathf.Max(enemySpawnRate - enemySpawnRateDecay * Time.deltaTime, enemySpawnRateFloor);
-
-        if (enemySpawn <= 0f)
+       
+        for (float i = enemySpawn; i <= enemySpawnRate; i += enemySpawnRate)
         {
-            enemySpawn = enemySpawnRate;
+            enemySpawn += enemySpawnRate;
             SpawnRandomEnemy();
-
-            // To Spawn a specific enemy:
-            //SetupEnemy(enemyPool.GetEnemy(typeof(Eye)));
-            // Replace 'Urchin' with enemy type desired
         }
+
+       
+        //    // To Spawn a specific enemy:
+        //    //SetupEnemy(enemyPool.GetEnemy(typeof(Eye)));
+        //    // Replace 'Urchin' with enemy type desired
+        
 
     }
 
