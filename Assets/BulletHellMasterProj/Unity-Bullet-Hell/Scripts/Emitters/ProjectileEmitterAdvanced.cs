@@ -350,7 +350,7 @@ namespace BulletHell
                 {
                     if (node.Active)
                     {
-                        trailRenderer.transform.position = node.Item.Position;
+                        trailRenderer.transform.position = node.Item.Position + (-node.Item.Velocity.normalized)*node.Item.stats.size*0.5f;
                     }
                     else
                     {
