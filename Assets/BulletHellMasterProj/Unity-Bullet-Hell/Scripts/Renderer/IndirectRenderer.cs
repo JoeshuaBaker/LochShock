@@ -87,7 +87,7 @@ namespace BulletHell
             ArgsBuffer.SetData(args);
 
             // Instruct the GPU to draw
-            Graphics.DrawMeshInstancedIndirect(Mesh, 0, Material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), ArgsBuffer);
+            Graphics.DrawMeshInstancedIndirect(Mesh, 0, Material, new Bounds(Player.activePlayer.transform.position, new Vector3(25.0f, 20.0f, 10.0f)), ArgsBuffer);
         }
 
         // Cleanup

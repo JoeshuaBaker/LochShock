@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace BulletHell
 {   
@@ -49,6 +50,8 @@ namespace BulletHell
         public Transform Target;
         public bool FollowTarget;
         public float FollowIntensity;
+
+        public HashSet<string> IgnoreList;
 
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;

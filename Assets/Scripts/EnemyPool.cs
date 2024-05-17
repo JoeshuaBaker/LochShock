@@ -35,6 +35,7 @@ public class EnemyPool : MonoBehaviour
             for (int i = 0; i < buffer.bufferSize; i++)
             {
                 enemyArray[i] = Instantiate(buffer.enemyPrefab, bufferParent.transform);
+                enemyArray[i].name = enemyPrefab.GetType().ToString() + " " + i;
                 enemyArray[i].gameObject.SetActive(false);
             }
         }

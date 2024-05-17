@@ -26,9 +26,9 @@ namespace BulletHell
             }
         }
 
-        public override Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime)
+        public override void FireProjectile(Vector2 direction, float leakedTime)
         {
-            Pool<ProjectileData>.Node node = new Pool<ProjectileData>.Node();
+            Pool<ProjectileData>.Node node;
 
             if (Projectiles.AvailableCount >= TemplatePositions.Count)
             {
@@ -71,13 +71,8 @@ namespace BulletHell
                     UpdateProjectile(ref node, leakedTime);
 
                 }
-
-
-
                 Direction = Rotate(Direction, RotationSpeed);
             }
-
-            return node;
         }
 
         public new void UpdateEmitter(float tick)

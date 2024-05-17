@@ -27,6 +27,7 @@ namespace BulletHell
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
+        [Range(0, 90), SerializeField] protected float AccuracyAngle = 30;
         protected int SpokeCount {
             get
             {
@@ -58,10 +59,14 @@ namespace BulletHell
         protected bool PreviousMirrorPairRotation = false;
         protected bool PreviousPairGroupDirection = false;
 
+        public TrailTest trailTest;
+        public Dictionary<int, TrailRenderer> rendererDict;
+
         public new void Awake()
         {
             base.Awake();
 
+            rendererDict = new Dictionary<int, TrailRenderer>();
             Groups = new EmitterGroup[10];
             RefreshGroups();
         }
@@ -128,18 +133,12 @@ namespace BulletHell
             }
         }
 
-        public override Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime)
+        public override void FireProjectile(Vector2 direction, float leakedTime)
         {
-            Pool<ProjectileData>.Node node = Projectiles.Get();
+            Pool<ProjectileData>.Node node;
 
             Direction = direction;
             RefreshGroups();
-
-            if (!AutoFire)
-            {
-                if (Interval > 0) return node;
-                else Interval = CoolOffTime;
-            }
 
             for (int g = 0; g < GroupCount; g++)
             {
@@ -171,12 +170,14 @@ namespace BulletHell
 
                         rotation = spacing * f;
 
-                        if(SpokeCount % 2 == 0)
+                        if (SpokeCount % 2 == 0)
                         {
                             rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
                         }
 
-                        node.Item.Velocity = Speed * Rotate(group.Direction, rotation).normalized;
+                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.gunStats.accuracy, 0f, 1f);
+                        Vector2 accuracyDirection = Rotate(group.Direction, randomAccuracyAngle);
+                        node.Item.Velocity = Speed * Rotate(accuracyDirection, rotation).normalized;
 
                         // Keep track of active projectiles                       
                         PreviousActiveProjectileIndexes[ActiveProjectileIndexesPosition] = node.NodeIndex;
@@ -192,6 +193,17 @@ namespace BulletHell
 
                         UpdateProjectile(ref node, leakedTime);
 
+                        if (trailTest != null)
+                        {
+                            TrailRenderer renderer = trailTest.GetRenderer();
+                            renderer.transform.position = node.Item.Position;
+                            renderer.startWidth = node.Item.stats.size;
+                            renderer.endWidth = 0;
+                            renderer.gameObject.SetActive(true);
+                            renderer.Clear();
+                            rendererDict.Add(node.NodeIndex, renderer);
+                        }
+
                         swap = !swap;
                     }
 
@@ -201,8 +213,6 @@ namespace BulletHell
                         Groups[g].Direction = Rotate(Groups[g].Direction, RotationSpeed);
                 }
             }
-
-            return node;
         }
 
         public virtual Pool<ProjectileData>.Node SetupBullet(EmitterGroup group)
@@ -220,6 +230,14 @@ namespace BulletHell
             node.Item.FollowTarget = UseFollowTarget;
             node.Item.FollowIntensity = FollowIntensity;
             node.Item.Target = Target;
+            if(node.Item.IgnoreList == null)
+            {
+                node.Item.IgnoreList = new HashSet<string>();
+            }
+            else
+            {
+                node.Item.IgnoreList.Clear();
+            }
 
             // Setup outline if we have one
             if (ProjectilePrefab.Outline != null && DrawOutlines)
@@ -322,6 +340,25 @@ namespace BulletHell
                     DestroyBullet(ref node);
                 }
             }
+
+            if (trailTest != null)
+            {
+                TrailRenderer trailRenderer = null;
+                rendererDict.TryGetValue(node.NodeIndex, out trailRenderer);
+
+                if(trailRenderer != null)
+                {
+                    if (node.Active)
+                    {
+                        trailRenderer.transform.position = node.Item.Position;
+                    }
+                    else
+                    {
+                        trailRenderer.gameObject.SetActive(false);
+                        rendererDict.Remove(node.NodeIndex);
+                    }
+                }
+            }
         }
 
         protected virtual void UpdateProjectileVisuals(ref Pool<ProjectileData>.Node node, float tick)
@@ -393,10 +430,8 @@ namespace BulletHell
                 ProcessHit(ref node, tick);
                 PhysicsMove(ref node, tick);
             }
-            else
-            {
-                NonPhysicsMove(ref node, tick);
-            }
+
+            NonPhysicsMove(ref node, tick);
         }
 
         // Put whatever hit code you want here such as damage events

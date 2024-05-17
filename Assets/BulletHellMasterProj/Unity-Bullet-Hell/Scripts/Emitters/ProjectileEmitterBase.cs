@@ -209,7 +209,7 @@ namespace BulletHell
             return v;
         }
 
-        public abstract Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime);
+        public abstract void FireProjectile(Vector2 direction, float leakedTime);
 
         protected abstract void UpdateProjectile(ref Pool<ProjectileData>.Node node, float tick);
 

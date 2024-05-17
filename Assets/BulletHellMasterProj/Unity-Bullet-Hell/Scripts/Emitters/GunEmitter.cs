@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace BulletHell
 {
     public class GunEmitter : ProjectileEmitterAdvanced
     {
+        RaycastHit2D bounceTarget;
         public new void Awake()
         {
             LayerMask = (1 << UnityEngine.LayerMask.NameToLayer("Enemy"));
@@ -13,7 +15,7 @@ namespace BulletHell
 
         void Start()
         {
-            // To allow for the enable / disable checkbox in Inspector
+
         }
 
         public void ApplyStatBlock(StatBlock stats)
@@ -23,14 +25,80 @@ namespace BulletHell
 
         protected override void ProcessHit(ref Pool<ProjectileData>.Node node, float tick)
         {
-            foreach (var hit in RaycastHitBuffer)
+            for (int i = 0; i < RaycastHitBuffer.Length; i++)
             {
-                BulletCollidable bulletCollidable = hit.transform.GetComponent<BulletCollidable>();
+                string hitName = RaycastHitBuffer[i].transform.name;
+                if (node.Item.IgnoreList.Contains(hitName))
+                {
+                    RaycastHitBuffer[i].distance = -1;
+                    continue;
+                }
+
+                BulletCollidable bulletCollidable = RaycastHitBuffer[i].transform.GetComponent<BulletCollidable>();
                 if (bulletCollidable != null)
                 {
+                    node.Item.IgnoreList.Add(hitName);
                     bulletCollidable.ProcessCollision(node.Item);
                 }
+
+                if(i == 0 || (bounceTarget.distance == -1 && RaycastHitBuffer[i].distance > -1))
+                {
+                    bounceTarget = RaycastHitBuffer[i];
+                }
             }
+        }
+
+        protected override void PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
+        {
+            if(node.Item.stats.pierce > 0)
+            {
+                foreach(var hit in RaycastHitBuffer)
+                {
+                    if(hit.distance > -1)
+                    {
+                        node.Item.stats.pierce--;
+
+                        //clear ignorelist of pierce targets, except for this one.
+                        if(node.Item.stats.pierce <= 0)
+                        {
+                            node.Item.IgnoreList.Clear();
+                            node.Item.IgnoreList.Add(hit.transform.name);
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (node.Item.stats.bounce > 0)
+            {
+                node.Item.stats.bounce--;
+                // Calculate the position the projectile is bouncing off the wall at
+                Vector2 projectedNewPosition = node.Item.Position + (node.Item.DeltaPosition(tick) * bounceTarget.fraction);
+                Vector2 directionOfHitFromCenter = bounceTarget.point - projectedNewPosition;
+                float distanceToContact = (bounceTarget.point - projectedNewPosition).magnitude;
+                float remainder = node.Item.Radius - distanceToContact;
+
+                // reposition projectile to the point of impact 
+                node.Item.Position = projectedNewPosition - (directionOfHitFromCenter.normalized * remainder);
+
+                // reflect the velocity for a bounce effect -- will work well on static surfaces
+                node.Item.Velocity = Vector2.Reflect(node.Item.Velocity, bounceTarget.normal);
+
+                // calculate remaining distance after bounce
+                node.Item.Position += node.Item.Velocity * tick * (1 - bounceTarget.fraction);
+
+                // Absorbs energy from bounce
+                node.Item.Velocity = new Vector2(node.Item.Velocity.x * (1 - BounceAbsorbtionX), node.Item.Velocity.y * (1 - BounceAbsorbtionY));
+            }
+            else
+            {
+                DestroyBullet(ref node);
+            }
+        }
+
+        protected override void NonPhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
+        {
+            base.NonPhysicsMove(ref node, tick);
+
         }
     }
 }

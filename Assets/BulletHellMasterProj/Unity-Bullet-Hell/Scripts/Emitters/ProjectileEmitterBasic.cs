@@ -5,7 +5,7 @@ namespace BulletHell
     // Most basic emitter implementation
     public class ProjectileEmitterBasic : ProjectileEmitterBase
     {
-        public override Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime)
+        public override void FireProjectile(Vector2 direction, float leakedTime)
         {
             Pool<ProjectileData>.Node node = Projectiles.Get();
 
@@ -18,8 +18,6 @@ namespace BulletHell
             node.Item.Acceleration = Acceleration;
 
             Direction = Rotate(Direction, RotationSpeed);
-            
-            return node;
         }
 
         protected override void UpdateProjectile(ref Pool<ProjectileData>.Node node, float tick)
