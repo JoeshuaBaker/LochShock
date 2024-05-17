@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public Light2D playerVisionCone;
     public Light2D playerVisionProximity;
     public float orbsHeld;
+    public Inventory inventory;
    
 
     private void Awake()
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
     
     private void Update() 
     {
+        UpdateStatBlocks();
         Move();
         MouseAim();
         Shoot();
@@ -314,6 +316,22 @@ public class Player : MonoBehaviour
         foreach(var gun in guns) 
         {
             gun.Shoot();
+        }
+    }
+
+    private void UpdateStatBlocks()
+    {
+        var allStats = inventory.GetItemStats();
+        if(guns.Length > 0)
+        {
+            allStats.Add(guns[0].stats);
+        }
+        allStats.Add(this.stats);
+
+        var combinedStats = StatBlock.Combine(allStats);
+        if(guns.Length > 0)
+        {
+            guns[0].ApplyStatBlock(combinedStats);
         }
     }
 

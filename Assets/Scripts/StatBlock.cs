@@ -61,6 +61,18 @@ public class StatBlock
         public List<Action> OnDestroy = new List<Action>();
     }
 
+    public StatBlock()
+    {
+
+    }
+
+    public StatBlock(BlockType blockType)
+    {
+        this.blockType = blockType;
+        playerStats.blockType = blockType;
+        gunStats.blockType = blockType;
+    }
+
     public StatBlock Copy()
     {
         StatBlock copy = new StatBlock();
@@ -76,9 +88,10 @@ public class StatBlock
 
     public static StatBlock Combine(IEnumerable<StatBlock> blocks)
     {
-        StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base) ?? new StatBlock();
-        IEnumerable<IGrouping<BlockType, StatBlock>> groupedBlocks = blocks.GroupBy(x => x.blockType);
-        foreach(StatBlock additiveBlock in groupedBlocks.Where(x => x.Key == BlockType.Additive))
+        StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base).Copy() ?? new StatBlock(BlockType.Base);
+        IEnumerable<StatBlock> additiveBlocks = blocks.Where(x => x.blockType == BlockType.Additive);
+
+        foreach (StatBlock additiveBlock in additiveBlocks)
         {
             combinedBlock.playerStats.health                += additiveBlock.playerStats.health;
             combinedBlock.playerStats.runSpeed              += additiveBlock.playerStats.runSpeed;
@@ -111,8 +124,9 @@ public class StatBlock
 
         //Add all multipliers together, then apply them once at the end.
         StatBlock multBlock = new StatBlock();
+        IEnumerable<StatBlock> multBlocks = blocks.Where(x => x.blockType == BlockType.Multiplicative);
 
-        foreach (StatBlock multiplicativeBlock in groupedBlocks.Where(x => x.Key == BlockType.Multiplicative))
+        foreach (StatBlock multiplicativeBlock in multBlocks)
         {
             multBlock.playerStats.health += multiplicativeBlock.playerStats.health;
             multBlock.playerStats.runSpeed += multiplicativeBlock.playerStats.runSpeed;

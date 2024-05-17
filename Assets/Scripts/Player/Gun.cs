@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
-    public StatBlock statBlock;
+    public StatBlock stats;
+    public StatBlock combinedStats;
     public GunEmitter emitter;
     public Image reloadIndicator;
     public Image ammoIndicator;
@@ -24,6 +25,7 @@ public class Gun : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
+            Debug.Log("Inside shoot bullet");
             //todo add bullet spread
             emitter.FireProjectile(emitter.Direction, 0f);
             magazine -= 1;
@@ -43,8 +45,9 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ApplyStatBlock(statBlock);
-        emitter.ApplyStatBlock(statBlock);
+        ApplyStatBlock(stats);
+        combinedStats = new StatBlock(StatBlock.BlockType.Additive);
+        emitter.ApplyStatBlock(stats);
         magazine = maxMagazine;
 
         if(emitter == null)
@@ -53,8 +56,9 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void ApplyStatBlock(StatBlock stats)
+    public void ApplyStatBlock(StatBlock stats)
     {
+        combinedStats = stats;
         reloadSpeed = stats.gunStats.reloadSpeed;
         fireSpeed = stats.gunStats.fireSpeed;
         maxMagazine = (int) stats.gunStats.magazineSize;
@@ -63,8 +67,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApplyStatBlock(statBlock);
-        emitter.ApplyStatBlock(statBlock);
+        emitter.ApplyStatBlock(combinedStats);
         reloadTimer = Mathf.Max(reloadTimer - Time.deltaTime, 0);
         bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
 
