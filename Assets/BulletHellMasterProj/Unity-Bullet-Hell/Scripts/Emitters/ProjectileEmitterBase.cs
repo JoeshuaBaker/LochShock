@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 namespace BulletHell
 {
@@ -75,7 +75,7 @@ namespace BulletHell
 
         // Collision layer
         protected int LayerMask = 1;
-        protected RaycastHit2D[] RaycastHitBuffer = new RaycastHit2D[1];
+        protected List<RaycastHit2D> RaycastHitBuffer = new List<RaycastHit2D>();
 
         // For cull check
         protected Plane[] Planes = new Plane[6];

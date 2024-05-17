@@ -25,12 +25,14 @@ namespace BulletHell
 
         protected override void ProcessHit(ref Pool<ProjectileData>.Node node, float tick)
         {
-            for (int i = 0; i < RaycastHitBuffer.Length; i++)
+            for (int i = 0; i < RaycastHitBuffer.Count; i++)
             {
                 string hitName = RaycastHitBuffer[i].transform.name;
                 if (node.Item.IgnoreList.Contains(hitName))
                 {
-                    RaycastHitBuffer[i].distance = -1;
+                    var hitStruct = RaycastHitBuffer[i];
+                    hitStruct.distance = -1;
+                    RaycastHitBuffer[i] = hitStruct;
                     continue;
                 }
 

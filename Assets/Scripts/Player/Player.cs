@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public StatBlock stats;
     public bool onPath;
     public float offPathCounter;
+    public Collider2D hitbox;
     public SpriteRenderer bodyRenderer;
     public SpriteRenderer limbRenderer;
     public string spriteSheetDirectory;
@@ -23,12 +24,18 @@ public class Player : MonoBehaviour
     public Transform hpBar;
     public Gun[] guns;
     public World world;
-    public int maxHp = 100;
-    public bool isSplit = false;
-    public float splitAmount = 0.35f;
+    public int maxHp
+    {
+        get
+        {
+            return (int)stats.playerStats.health;
+        }
+    }
     public int currentHp = 100;
     public float fastVel = 1.5f;
     public float slowVel = 0.5f;
+    public float onHitKillRadius = 6f;
+    public float onHitKillDistanceDelay = 0.1f;
     public Vector3 distSinceLastProjectileTick = Vector3.zero;
     private float slowFastRatio = 0.5f / 1.5f;
     public float leftRightDrift = 0f;
@@ -43,7 +50,8 @@ public class Player : MonoBehaviour
     public Light2D playerVisionProximity;
     public float orbsHeld;
     public Inventory inventory;
-   
+    ContactFilter2D hitFilter;
+    List<Collider2D> hitBuffer;
 
     private void Awake()
     {
@@ -52,6 +60,14 @@ public class Player : MonoBehaviour
     
     private void Start() {
         currentHp = maxHp;
+        hitbox = GetComponent<Collider2D>();
+        hitBuffer = new List<Collider2D>();
+        hitFilter = new ContactFilter2D
+        {
+            useTriggers = false,
+            layerMask = 1 << LayerMask.NameToLayer("Enemy"),
+            useLayerMask = true
+        };
         slowFastRatio = slowVel / fastVel;
 
         if(bodyRenderer == null || limbRenderer == null)
@@ -89,6 +105,7 @@ public class Player : MonoBehaviour
     {
         UpdateStatBlocks();
         Move();
+        Physics();
         MouseAim();
         Shoot();
         SetVision();
@@ -144,7 +161,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void updateHp(int hpChange) 
+    public void UpdateHp(int hpChange) 
     {
         currentHp += hpChange;
         if(currentHp > maxHp)
@@ -155,7 +172,7 @@ public class Player : MonoBehaviour
         {
             currentHp = maxHp;
         }
-        hpBar.localScale = new Vector3((float)currentHp/(float)maxHp, 1, 1);
+        hpBar.localScale = new Vector3((float)currentHp/(float)maxHp, 1f, 1f);
     }
 
     private void Move() 
@@ -214,9 +231,32 @@ public class Player : MonoBehaviour
         );
     }
 
+    private void Physics()
+    {
+        int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
+        if(result > 0)
+        {
+            TakeDamageFromEnemy(-1);
+        }
+    }
+
+    private void TakeDamageFromEnemy(int damage)
+    {
+        UpdateHp(damage);
+        Physics2D.OverlapCircle(this.transform.position.xy(), onHitKillRadius, hitFilter, hitBuffer);
+
+        foreach (Collider2D enemyCollider in hitBuffer)
+        {
+            Enemy enemy = enemyCollider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Die((enemy.transform.position - this.transform.position).magnitude*onHitKillDistanceDelay);  
+            }
+        }
+    }
+
     private void MouseAim()
     {
-        int dir = 1;
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
         Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
@@ -227,22 +267,8 @@ public class Player : MonoBehaviour
 
         foreach (var gun in guns)
         {
-            if(isSplit)
-            {
-                Vector2 offset = new Vector2(xy.y*dir, -xy.x*dir);
-                offset = offset.normalized;
-                offset = offset*splitAmount;
-                xy = xy + offset;
-                xy = xy.normalized;
-            }
-            float angleBetween = Vector2.Angle(Vector2.right, xy);
-
             gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
-
-            //gun.transform.localPosition = xy/3;
             gun.emitter.Direction = xy;
-            if(isSplit)
-                dir *= -1;
         }
 
         DrawSprites();

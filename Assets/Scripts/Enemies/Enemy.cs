@@ -53,7 +53,7 @@ public abstract class Enemy : BulletCollidable
 
         currentHp = (int)Mathf.Max(currentHp - damage, 0);
 
-        if (currentHp == 0)
+        if (currentHp <= 0)
         {
             Die();
         }
@@ -61,7 +61,12 @@ public abstract class Enemy : BulletCollidable
 
     public virtual void Die()
     {
-        Destroy(this.gameObject);
+        Die(0f);
+    }
+
+    public virtual void Die(float delay)
+    {
+        Destroy(gameObject, delay);
     }
 
     public virtual void Reset()
@@ -71,6 +76,7 @@ public abstract class Enemy : BulletCollidable
         rb.angularVelocity = 0f;
         instanceId = 0;
         this.gameObject.SetActive(true);
+        this.gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
     public abstract int EnemyId();

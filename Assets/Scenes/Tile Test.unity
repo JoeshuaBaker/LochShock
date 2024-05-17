@@ -333,6 +333,14 @@ PrefabInstance:
       propertyPath: SpokeSpacing
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1879192211301024642, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211301024669, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270928, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Name
       value: TestGuy
@@ -389,6 +397,14 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1383976882}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: onHitKillRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.playerStats.health
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Size.x
       value: 0.125
@@ -399,7 +415,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211954146348, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192212127832641, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192212127832641, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192212127832641, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.642
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: emitter

@@ -25,7 +25,6 @@ public class Gun : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
-            Debug.Log("Inside shoot bullet");
             //todo add bullet spread
             emitter.FireProjectile(emitter.Direction, 0f);
             magazine -= 1;
