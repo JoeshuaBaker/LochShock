@@ -41,7 +41,7 @@ public class CraterCreator : MonoBehaviour
         
     }
 
-    public GameObject CreateCrater (Vector3 craterPos, float craterSize)
+    public GameObject CreateCrater (Vector3 craterPos, int craterSize)
     {
         GameObject spawnedCrater = Instantiate(crater);
         spawnedCrater.transform.position = new Vector3(craterPos.x , craterPos.y , 0f);
@@ -59,21 +59,21 @@ public class CraterCreator : MonoBehaviour
             craterSprite.sprite = largeCrater;
             sp.radius = .5f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 4, 7));
-            craterImp.GenerateImpulse(3f);
+           // craterImp.GenerateImpulse(3f);
         }
         else if (craterSize == 2)
         {
             craterSprite.sprite = mediumCrater;
             sp.radius = .45f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 3, 6));
-            craterImp.GenerateImpulse(2f);
+            //craterImp.GenerateImpulse(2f);
         }
         else if (craterSize == 1)
         {
             craterSprite.sprite = smallCrater;
             sp.radius = .35f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 2, 4));
-            craterImp.GenerateImpulse(1f);
+           // craterImp.GenerateImpulse(1f);
         }
         else
         {

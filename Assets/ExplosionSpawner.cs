@@ -13,6 +13,7 @@ public class ExplosionSpawner : MonoBehaviour
     public GameObject explosionPrefab;
     public float noDebrisBelow;
     public CraterCreator craterCreator;
+    public Transform effectParent;
 
 
     [Header("test fields")]
@@ -20,6 +21,7 @@ public class ExplosionSpawner : MonoBehaviour
     public float explosionTime;
     public float explosionInterval;
     public float explosionSize;
+    public float randomRange;
 
     // Start is called before the first frame update
     void Start()
@@ -30,22 +32,43 @@ public class ExplosionSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        randomRange = Random.Range(0f, 1f);
+        explosionSize = Random.Range(0.1f, 3f);
+
         explosionTime = explosionTime + Time.deltaTime;
         if (explosionTime > explosionInterval)
         {
-            CreateExplosion(activePlayer.transform.position , activePlayer.transform.rotation , explosionSize);
+            if (randomRange >= 0.5f)
+            {
+                CreateExplosion(activePlayer.transform.position, explosionSize, Random.rotation);
+            }
+            else
+            {
+                CreateExplosion(activePlayer.transform.position, explosionSize);
+            }
             explosionTime = 0f;
         }
     }
 
-    public GameObject CreateExplosion(Vector3 explosionPos , Quaternion explosionRot ,float size)
+    public void CreateExplosion(Vector3 explosionPos , float size)
+    {
+        CreateExplosion (explosionPos , size , new Quaternion(0f,0f,0f,1f) );
+        craterCreator.CreateCrater(explosionPos , Mathf.RoundToInt(size));
+    }
+
+    public GameObject CreateExplosion(Vector3 explosionPos, float size, Quaternion explosionRot )
     {
         float explosionSize = Mathf.Clamp(size, minSize , maxSize);
-       
+
         GameObject spawnedExplosion = Instantiate(explosionPrefab);
+        spawnedExplosion.transform.parent = effectParent;
+
         spawnedExplosion.transform.position = new Vector3(explosionPos.x , explosionPos.y , 0f);
         spawnedExplosion.transform.rotation = explosionRot; //rotating explosion
         spawnedExplosion.transform.localScale = new Vector3( explosionSize , explosionSize , explosionSize );
+
+        CinemachineImpulseSource explosionImp = spawnedExplosion.GetComponent<CinemachineImpulseSource>();
+        explosionImp.GenerateImpulse(explosionSize);
 
         Light2D explosionLight = spawnedExplosion.GetComponentInChildren<Light2D>();
         explosionLight.pointLightOuterRadius = (explosionLight.pointLightOuterRadius * (explosionSize * 0.75f));
@@ -70,8 +93,11 @@ public class ExplosionSpawner : MonoBehaviour
             }
             if (i == 2)
             {
+                if (explosionRot != new Quaternion(0f, 0f, 0f, 1f))
+                {
+                    expPSMain.startLifetime = new ParticleSystem.MinMaxCurve(0.36f, 0.54f); // setting debris duration for rotatable explosion
+                }
 
-                //expPSMain.startLifetime = new ParticleSystem.MinMaxCurve(0.36f, 0.54f); // setting debris duration for rotatable explosion
                 expPSMain.startSpeed = new ParticleSystem.MinMaxCurve((expPSMain.startSpeed.constantMin * Mathf.Min( explosionSize , 2f )) , (expPSMain.startSpeed.constantMax * Mathf.Min( explosionSize , 2f )));
 
                 if (explosionSize > noDebrisBelow)
@@ -87,8 +113,6 @@ public class ExplosionSpawner : MonoBehaviour
             }
             
         }
-
-        craterCreator.CreateCrater( spawnedExplosion.transform.position , 3f ); //rotated explosion spawn no crater
 
         return spawnedExplosion;
     }
