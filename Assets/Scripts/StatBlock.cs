@@ -24,7 +24,6 @@ public class StatBlock
     [Serializable]
     public struct PlayerStats
     {
-        public BlockType blockType;
         public float health;
         public float walkSpeed;
         public float runSpeed;
@@ -37,7 +36,6 @@ public class StatBlock
     [Serializable]
     public struct GunStats
     {
-        public BlockType blockType;
         public float magazineSize;
         public float reloadSpeed;
         public float fireSpeed;
@@ -54,11 +52,22 @@ public class StatBlock
         public float lifetime;
     }
 
+    [Serializable]
     public class Events
     {
         public List<Action> OnFire = new List<Action>();
-        public List<Action> OnHit = new List<Action>();
+        public List<OnHitAction> OnHit = new List<OnHitAction>();
         public List<Action> OnDestroy = new List<Action>();
+
+        public Events Copy()
+        {
+            Events copy = new Events();
+
+            copy.OnFire.AddRange(this.OnFire);
+            copy.OnHit.AddRange(this.OnHit);
+            copy.OnDestroy.AddRange(this.OnDestroy);
+            return copy;
+        }
     }
 
     public StatBlock()
@@ -69,20 +78,13 @@ public class StatBlock
     public StatBlock(BlockType blockType)
     {
         this.blockType = blockType;
-        playerStats.blockType = blockType;
-        gunStats.blockType = blockType;
     }
 
-    public StatBlock Copy()
+    public virtual StatBlock Copy()
     {
         StatBlock copy = new StatBlock();
-        copy.blockType = this.blockType;
-        copy.playerStats = this.playerStats;
-        copy.gunStats = this.gunStats;
-
-        copy.events.OnFire      = events.OnFire;
-        copy.events.OnHit       = events.OnHit;
-        copy.events.OnDestroy   = events.OnDestroy;
+        copy.events = events.Copy();
+        
         return copy;
     }
 

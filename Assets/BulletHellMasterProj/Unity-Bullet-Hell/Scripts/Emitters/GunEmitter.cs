@@ -36,11 +36,23 @@ namespace BulletHell
                     continue;
                 }
 
-                BulletCollidable bulletCollidable = RaycastHitBuffer[i].transform.GetComponent<BulletCollidable>();
-                if (bulletCollidable != null)
+                Enemy enemy = RaycastHitBuffer[i].transform.GetComponent<Enemy>();
+                if (enemy != null)
                 {
                     node.Item.IgnoreList.Add(hitName);
-                    bulletCollidable.ProcessCollision(node.Item);
+                    enemy.ProcessCollision(node.Item);
+                    foreach(OnHitAction onHit in stats.events.OnHit)
+                    {
+                        onHit.OnHit(Player.activePlayer, this, node.Item, enemy);
+                    }
+                }
+                else
+                {
+                    BulletCollidable bulletCollidable = RaycastHitBuffer[i].transform.GetComponent<BulletCollidable>();
+                    if(bulletCollidable != null)
+                    {
+                        bulletCollidable.ProcessCollision(node.Item);
+                    }
                 }
 
                 if(i == 0 || (bounceTarget.distance == -1 && RaycastHitBuffer[i].distance > -1))

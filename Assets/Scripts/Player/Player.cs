@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     public static Player activePlayer;
 
     public StatBlock stats;
+    public StatBlock combinedStats;
+    public List<StatBlock> allStats;
+    public List<Buff.Instance> buffs;
     public bool onPath;
     public float offPathCounter;
     public Collider2D hitbox;
@@ -68,6 +72,8 @@ public class Player : MonoBehaviour
             layerMask = 1 << LayerMask.NameToLayer("Enemy"),
             useLayerMask = true
         };
+        buffs = new List<Buff.Instance>();
+
         slowFastRatio = slowVel / fastVel;
 
         if(bodyRenderer == null || limbRenderer == null)
@@ -173,6 +179,29 @@ public class Player : MonoBehaviour
             currentHp = maxHp;
         }
         hpBar.localScale = new Vector3((float)currentHp/(float)maxHp, 1f, 1f);
+    }
+
+    public void AddBuff(Buff.Instance buffInstance)
+    {
+        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName == buffInstance.buff.buffName);
+
+        //replace lowest duration buff if we are at stack limit
+        if (buffInstance.buff.stackLimit != 0 && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
+        {
+            Buff.Instance lowestDurationBuff = matchingBuffs.First();
+
+            foreach (var buff in matchingBuffs)
+            {
+                if (buff.currentDuration < lowestDurationBuff.currentDuration)
+                {
+                    lowestDurationBuff = buff;
+                }
+            }
+
+            buffs.Remove(lowestDurationBuff);
+        }
+
+        buffs.Add(buffInstance);
     }
 
     private void Move() 
@@ -347,14 +376,24 @@ public class Player : MonoBehaviour
 
     private void UpdateStatBlocks()
     {
+        foreach (var buff in buffs)
+        {
+            buff.currentDuration -= Time.deltaTime;
+        }
+
+        buffs.RemoveAll(buff => buff.currentDuration <= 0f);
+
         var allStats = inventory.GetItemStats();
         if(guns.Length > 0)
         {
             allStats.Add(guns[0].stats);
         }
         allStats.Add(this.stats);
+        allStats.AddRange(buffs.Select(x => x.buff.stats));
 
+        this.allStats = allStats;
         var combinedStats = StatBlock.Combine(allStats);
+        this.combinedStats = combinedStats;
         if(guns.Length > 0)
         {
             guns[0].ApplyStatBlock(combinedStats);
