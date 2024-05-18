@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3bc0bc183d4da429ada36366afeed6, type: 3}
   m_Name: Attack Speed Buff
   m_EditorClassIdentifier: 
-  buffName: 0
-  duration: 0
-  stackable: 0
+  buffName: Attack Speed
+  duration: 5
+  stackLimit: 5
   stats:
-    blockType: 0
+    blockType: 1
     playerStats:
-      blockType: 0
       health: 0
       walkSpeed: 0
       runSpeed: 0
@@ -27,10 +26,9 @@ MonoBehaviour:
       visionConeRadius: 0
       visionProximityRadius: 0
     gunStats:
-      blockType: 0
       magazineSize: 0
       reloadSpeed: 0
-      fireSpeed: 0
+      fireSpeed: -0.25
       bulletStreams: 0
       bulletsPerShot: 0
       spreadAngle: 0
@@ -42,3 +40,5 @@ MonoBehaviour:
       bounce: 0
       pierce: 0
       lifetime: 0
+    events:
+      OnHit: []
