@@ -74,7 +74,11 @@ MonoBehaviour:
       pierce: 0
       lifetime: 0
     events:
+      OnFire: []
       OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
   combinedStats:
     blockType: 0
     playerStats:
@@ -101,10 +105,15 @@ MonoBehaviour:
       pierce: 0
       lifetime: 0
     events:
+      OnFire: []
       OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
   emitter: {fileID: 4877568093956301522}
   reloadIndicator: {fileID: 0}
   ammoIndicator: {fileID: 0}
+  ammoIndicatorShadow: {fileID: 0}
 --- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +182,11 @@ MonoBehaviour:
       pierce: 0
       lifetime: 0
     events:
+      OnFire: []
       OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
   AutoFire: 1
   Direction: {x: 0, y: 1}
   RotationSpeed: 0
@@ -232,6 +245,7 @@ MonoBehaviour:
   OutlinePulseSpeed: 0
   UseOutlineStaticPulse: 0
   trailTest: {fileID: 0}
+  gun: {fileID: 1144824061936674021}
 --- !u!1 &7251769693225134365
 GameObject:
   m_ObjectHideFlags: 0
