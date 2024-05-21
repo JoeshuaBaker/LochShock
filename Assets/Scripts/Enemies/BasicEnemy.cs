@@ -37,12 +37,12 @@ public abstract class BasicEnemy : Enemy
                 AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
                 if (!animState.IsName(deathAnimationState))
                 {
-                    animator.SetBool(deathBool, true);
+                    DeathAnimationBegin();
                 }
 
                 if (animState.IsName(deathAnimationState) && animState.normalizedTime >= 1f)
                 {
-                    this.gameObject.SetActive(false);
+                    DisableGameObject();
                 }
                 return;
             }
@@ -85,5 +85,15 @@ public abstract class BasicEnemy : Enemy
         animator.SetBool(deathBool, false);
         rb.simulated = true;
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
+    }
+
+    public virtual void DeathAnimationBegin()
+    {
+        animator.SetBool(deathBool, true);
+    }
+
+    public virtual void DisableGameObject()
+    {
+        this.gameObject.SetActive(false);
     }
 }
