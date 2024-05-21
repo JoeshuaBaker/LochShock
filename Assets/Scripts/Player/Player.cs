@@ -282,6 +282,9 @@ public class Player : MonoBehaviour
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
             if (enemy != null)
             {
+                //Audio Section
+                AkSoundEngine.PostEvent("PlayWipe", this.gameObject);
+
                 enemy.Die((enemy.transform.position - this.transform.position).magnitude*onHitKillDistanceDelay);  
             }
         }

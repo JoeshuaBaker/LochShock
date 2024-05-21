@@ -29,6 +29,11 @@ public class Gun : MonoBehaviour
         {
             //todo add bullet spread
             emitter.FireProjectile(emitter.Direction, 0f);
+
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayShoot", this.gameObject);
+
+
             magazine -= 1;
             bulletCooldown = fireSpeed;
             if(magazine == 0)

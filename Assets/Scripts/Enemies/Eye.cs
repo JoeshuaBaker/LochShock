@@ -11,4 +11,14 @@ public class Eye : BasicEnemy
     {
         return 1;
     }
+
+
+    public override void DeathAnimationBegin()
+    {
+        base.DeathAnimationBegin();
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayTestTone", this.gameObject);
+    }
+
 }

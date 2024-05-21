@@ -11,16 +11,56 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2908710206">
+		<SoundBank Id="1355168291" Language="SFX" Hash="285841777">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="SFX" Hash="1111532934">
+		<SoundBank Id="1492361653" Language="SFX" Hash="551501552">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>Sounds.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3072088024" Name="PlayMusic_BassOnly" ObjectPath="\Events\Default Work Unit\Music\PlayMusic_BassOnly" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="416321817" Language="SFX">
+							<ShortName>Bass Only.wav</ShortName>
+							<Path>SFX/Bass Only_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1489638472" Name="PlayShoot" ObjectPath="\Events\Default Work Unit\GameplayCombat\PlayShoot" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+					<IncludedMemoryFiles>
+						<File Id="496341410" Language="SFX">
+							<ShortName>GunFireBase.wav</ShortName>
+							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
+						</File>
+						<File Id="915397359" Language="SFX">
+							<ShortName>GunFireBase.wav</ShortName>
+							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
+						</File>
+						<File Id="1033818243" Language="SFX">
+							<ShortName>GunFireBase.wav</ShortName>
+							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2052572755" Name="PlayTestTone" ObjectPath="\Events\Default Work Unit\PlayTestTone" DurationType="OneShot" DurationMin="0.193818" DurationMax="0.193818">
+					<IncludedMemoryFiles>
+						<File Id="14718603" Language="SFX">
+							<ShortName>TestTone.wav</ShortName>
+							<Path>SFX/TestTone_9E7EF7AC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\PlayWipe" DurationType="OneShot" DurationMin="5.089544" DurationMax="5.089544">
+					<IncludedMemoryFiles>
+						<File Id="686230852" Language="SFX">
+							<ShortName>Wipe.wav</ShortName>
+							<Path>SFX/Wipe_601AC76E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2367080787" Name="RainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\RainAmbiance" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="328935521" Language="SFX">
@@ -42,10 +82,6 @@
 						<File Id="181209012" Language="SFX">
 							<ShortName>Amb_Lake Waves_2024-05-13 20_55_17.wav</ShortName>
 							<Path>SFX/Amb_Lake Waves_2024-05-13 20_55_17_D79FB2B7.wem</Path>
-						</File>
-						<File Id="897932015" Language="SFX">
-							<ShortName>Amb_Pathway Waves_2024-05-13 20_55_17.wav</ShortName>
-							<Path>SFX/Amb_Pathway Waves_2024-05-13 20_55_17_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

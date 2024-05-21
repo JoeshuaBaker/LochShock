@@ -29,6 +29,58 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Music" ID="{A2A256B0-3C23-4991-B8ED-527F511294EC}" ShortID="224857255">
+					<ChildrenList>
+						<Event Name="PlayMusic_BassOnly" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
+							<ChildrenList>
+								<Action Name="" ID="{01651180-0D79-4B32-951B-3EC5EF26A43D}" ShortID="450733968">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicManager" ID="{D4EAE3D2-5488-4F8B-8B77-EEB201692168}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Event Name="PlayTestTone" ID="{06D121EB-CB28-43D5-A7B0-B7607B7562AA}">
+					<ChildrenList>
+						<Action Name="" ID="{A0D6B1F6-6B3B-4E16-86DB-E5698BFE6043}" ShortID="475509525">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TestTone" ID="{BFC3A85B-3F24-4477-B7A7-3D7D47381EF8}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Folder Name="GameplayCombat" ID="{4D9C4F42-3AE7-4572-A0FE-46D29E32A6CE}" ShortID="415756600">
+					<ChildrenList>
+						<Event Name="PlayShoot" ID="{0B6D0470-EA04-4ECC-AFC3-92E0D3BBBD13}">
+							<ChildrenList>
+								<Action Name="" ID="{8B86386C-86C7-4D7A-BAB6-F54E805ADFFC}" ShortID="553632983">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Shoot" ID="{9BF1CD7F-50AA-4CC1-88CE-14A783B1C78D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}">
+							<ChildrenList>
+								<Action Name="" ID="{529BE96E-DB1A-4570-9BFB-529D800DE54F}" ShortID="761204">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

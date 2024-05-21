@@ -9,4 +9,12 @@ public class Urchin : BasicEnemy
     {
         return 2;
     }
+
+    public override void DeathAnimationBegin()
+    {
+        base.DeathAnimationBegin();
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayTestTone", this.gameObject);
+    }
 }
