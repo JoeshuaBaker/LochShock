@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.UI;
+using TMPro;
 
 public class Gun : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Gun : MonoBehaviour
     public StatBlock combinedStats;
     public GunEmitter emitter;
     public Image reloadIndicator;
-    public Image ammoIndicator;
+    public TextMeshProUGUI ammoIndicator;
+    public TextMeshProUGUI ammoIndicatorShadow;
 
     private bool reloading;
     private float reloadSpeed;
@@ -77,7 +79,9 @@ public class Gun : MonoBehaviour
             bulletCooldown = 0;
         }
 
-        ammoIndicator.fillAmount = (float)magazine / (float)maxMagazine;
+        string displayAmmo = magazine.ToString();
+        ammoIndicator.text = displayAmmo;
+        ammoIndicatorShadow.text = displayAmmo;
         reloadIndicator.gameObject.SetActive(reloading);
 
         if (reloading)

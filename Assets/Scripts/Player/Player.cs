@@ -117,6 +117,9 @@ public class Player : MonoBehaviour
         SetVision();
     }
 
+  
+
+
     public void SetVision()
     {
         float totalVis = stats.playerStats.totalVision;
