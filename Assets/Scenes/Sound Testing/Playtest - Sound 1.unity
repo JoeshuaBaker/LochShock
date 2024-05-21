@@ -5147,6 +5147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
+  OrbItemPrefabs: []
 --- !u!4 &120168435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7734091189212076598, guid: 02509473ea917004d939933de5989004, type: 3}
@@ -5209,6 +5210,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6471815fa80d0cd4e837dce8d098d212, type: 3}
+--- !u!114 &321291335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5378267405598117165, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+  m_PrefabInstance: {fileID: 1287091888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &326684148
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,7 +5563,7 @@ Transform:
   - {fileID: 1430954378}
   - {fileID: 429761366}
   m_Father: {fileID: 328528457}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429761365
 GameObject:
@@ -10543,6 +10555,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &501825478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6065635506613868009, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+  m_PrefabInstance: {fileID: 1287091888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540120392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6757236581088368914, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
@@ -10565,6 +10588,17 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &577316834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 63978276916629048, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+  m_PrefabInstance: {fileID: 1287091888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &588817182
 GameObject:
   m_ObjectHideFlags: 0
@@ -30278,6 +30312,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &868635930 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1036748845003612239, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+  m_PrefabInstance: {fileID: 5404810199159674301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &969939578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50231,17 +50276,6 @@ MonoBehaviour:
   eventIdInternal: 0
   valueGuidInternal: 
   m_callbackDataInternal: {fileID: 0}
---- !u!114 &1471266423 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 648271616, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 5404810199159674301}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1511568097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55766,6 +55800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2073718743}
+  world: {fileID: 0}
   nextOrbX: {x: 0, y: 0, z: 0}
   minOrbVariation: 22
   maxOrbVariation: 25
@@ -71272,7 +71307,7 @@ PrefabInstance:
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: light2d
       value: 
-      objectReference: {fileID: 1471266423}
+      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: slowVel
       value: 3.5
@@ -71289,6 +71324,10 @@ PrefabInstance:
       propertyPath: onHitKillRadius
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: playerVisionCone
+      value: 
+      objectReference: {fileID: 868635930}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: onHitKillDistanceDelay
       value: 0.05
@@ -71350,6 +71389,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4321636}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: ammoIndicator
+      value: 
+      objectReference: {fileID: 321291335}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: reloadIndicator
+      value: 
+      objectReference: {fileID: 501825478}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: ammoIndicatorShadow
+      value: 
+      objectReference: {fileID: 577316834}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.size
       value: 0.3
       objectReference: {fileID: 0}
@@ -71359,7 +71410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.damage
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.pierce
