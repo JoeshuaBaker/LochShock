@@ -44,6 +44,11 @@ public abstract class Enemy : BulletCollidable
         rb.AddForce(force*10);
     }
 
+    public bool IsDead()
+    {
+        return currentHp <= 0;
+    }
+
     public virtual void TakeDamage(float damage)
     {
         if(damage > 0)

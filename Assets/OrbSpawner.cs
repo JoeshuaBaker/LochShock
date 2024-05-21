@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrbSpawner : MonoBehaviour
 {
     public Player player;
+    public World world;
     public Vector3 nextOrbX;
     public float minOrbVariation;
     public float maxOrbVariation;
@@ -14,20 +15,33 @@ public class OrbSpawner : MonoBehaviour
     void Start()
     {
         player = Player.activePlayer;
-        nextOrbX = new Vector3 (player.transform.position.x + Random.Range(minOrbVariation, maxOrbVariation), 0f ,0f);
-        spawnOrb();
+        if(world == null)
+        {
+            world = GetComponent<World>();
+        }
+        nextOrbX = player.transform.position;
     }
 
     void Update()
     {
         if (player.transform.position.x > nextOrbX.x)
         {
-            nextOrbX = new Vector3 (nextOrbX.x + Random.Range(minOrbVariation, maxOrbVariation), 0f, 0f);
-            spawnOrb();
+            TrySpawnNextOrb();
         }
-
     }
-    void spawnOrb()
+
+    void TrySpawnNextOrb()
+    {
+        float nextOrbXPos = nextOrbX.x + Random.Range(minOrbVariation, maxOrbVariation);
+        Tile tile = world.RandomPathTileAtXPosition(nextOrbXPos);
+        if (tile != null)
+        {
+            nextOrbX = new Vector3(nextOrbXPos + 0.5f, tile.transform.position.y + 0.5f, tile.transform.position.z);
+            SpawnOrb();
+        }
+    }
+
+    void SpawnOrb()
     {
         GameObject spawnedOrb = Instantiate(orb);
         spawnedOrb.transform.position = nextOrbX;

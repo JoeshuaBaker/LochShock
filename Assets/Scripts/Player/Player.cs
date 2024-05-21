@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     public Inventory inventory;
     ContactFilter2D hitFilter;
     List<Collider2D> hitBuffer;
+    private float secondTimer = 0;
 
     private void Awake()
     {
@@ -106,10 +107,11 @@ public class Player : MonoBehaviour
             currentDegrees += degrees;
         }
     }
-    
-    private void Update() 
+
+    private void Update()
     {
         UpdateStatBlocks();
+        OnSecond();
         Move();
         Physics();
         MouseAim();
@@ -119,6 +121,47 @@ public class Player : MonoBehaviour
 
   
 
+    public void UpdateHp(int hpChange)
+    {
+        currentHp += hpChange;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        else if (currentHp < 0)
+        {
+            currentHp = maxHp;
+        }
+        hpBar.localScale = new Vector3((float)currentHp / (float)maxHp, 1f, 1f);
+    }
+
+    public void CollectOrb()
+    {
+        orbsHeld += 1;
+    }
+
+    public void AddBuff(Buff.Instance buffInstance)
+    {
+        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName == buffInstance.buff.buffName);
+
+        //replace lowest duration buff if we are at stack limit
+        if (buffInstance.buff.stackLimit != 0 && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
+        {
+            Buff.Instance lowestDurationBuff = matchingBuffs.First();
+
+            foreach (var buff in matchingBuffs)
+            {
+                if (buff.currentDuration < lowestDurationBuff.currentDuration)
+                {
+                    lowestDurationBuff = buff;
+                }
+            }
+
+            buffs.Remove(lowestDurationBuff);
+        }
+
+        buffs.Add(buffInstance);
+    }
 
     public void SetVision()
     {
@@ -168,43 +211,6 @@ public class Player : MonoBehaviour
         playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
         playerVisionProximity.intensity = Mathf.Min(totalVis * 3.3f, 1f);
 
-    }
-
-    public void UpdateHp(int hpChange) 
-    {
-        currentHp += hpChange;
-        if(currentHp > maxHp)
-        {
-            currentHp = maxHp;
-        }
-        else if(currentHp < 0)
-        {
-            currentHp = maxHp;
-        }
-        hpBar.localScale = new Vector3((float)currentHp/(float)maxHp, 1f, 1f);
-    }
-
-    public void AddBuff(Buff.Instance buffInstance)
-    {
-        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName == buffInstance.buff.buffName);
-
-        //replace lowest duration buff if we are at stack limit
-        if (buffInstance.buff.stackLimit != 0 && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
-        {
-            Buff.Instance lowestDurationBuff = matchingBuffs.First();
-
-            foreach (var buff in matchingBuffs)
-            {
-                if (buff.currentDuration < lowestDurationBuff.currentDuration)
-                {
-                    lowestDurationBuff = buff;
-                }
-            }
-
-            buffs.Remove(lowestDurationBuff);
-        }
-
-        buffs.Add(buffInstance);
     }
 
     private void Move() 
@@ -380,6 +386,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnSecond()
+    {
+        secondTimer -= Time.deltaTime;
+
+        if(secondTimer <= 0)
+        {
+            secondTimer = 1;
+            foreach(OnSecondAction onSecondAction in combinedStats.events.OnSecond)
+            {
+                onSecondAction.OnSecond(this);
+            }
+        }
+    }
+
     private void UpdateStatBlocks()
     {
         foreach (var buff in buffs)
@@ -405,5 +425,4 @@ public class Player : MonoBehaviour
             guns[0].ApplyStatBlock(combinedStats);
         }
     }
-
 }

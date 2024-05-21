@@ -5,7 +5,10 @@ using BulletHell;
 
 public abstract class OnHitAction : ScriptableAction
 {
-    public abstract void OnHit(Player player, GunEmitter gun, ProjectileData projectile, Enemy enemy);
+    public virtual void OnHit(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    {
+        PlayTriggerSfx(player.gameObject);
+    }
 
     public override string GetLabel()
     {

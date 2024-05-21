@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using BulletHell;
 using UnityEngine;
 
@@ -14,10 +12,11 @@ public class OnHitApplyBuff : OnHitAction
             $"(New Fire Rate: {stats.gunStats.fireSpeed * (1f + buff.stats.gunStats.fireSpeed)}).";
     }
 
-    public override void OnHit(Player player, GunEmitter gun, ProjectileData projectile, Enemy enemy)
+    public override void OnHit(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         if(IsValidTrigger())
         {
+            base.OnHit(player, gun, projectile, enemy);
             player.AddBuff(buff.GetInstance());
         }
     }

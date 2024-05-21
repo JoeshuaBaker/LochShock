@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.UI;
@@ -18,7 +16,6 @@ public class Gun : MonoBehaviour
     private float reloadSpeed;
     private float reloadTimer;
     private float fireSpeed;
-    private float bulletSpread; //not implemented
     private float bulletCooldown;
     private int maxMagazine;
     private int magazine;
@@ -27,12 +24,15 @@ public class Gun : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
-            //todo add bullet spread
             emitter.FireProjectile(emitter.Direction, 0f);
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayShoot", this.gameObject);
 
+            foreach(OnFireAction onFire in combinedStats.events.OnFire)
+            {
+                onFire.OnFire(Player.activePlayer, this);
+            }
 
             magazine -= 1;
             bulletCooldown = fireSpeed;
@@ -60,6 +60,8 @@ public class Gun : MonoBehaviour
         {
             emitter = GetComponent<GunEmitter>();
         }
+
+        emitter.gun = this;
     }
 
     public void ApplyStatBlock(StatBlock stats)
@@ -82,6 +84,11 @@ public class Gun : MonoBehaviour
             reloading = false;
             magazine = maxMagazine;
             bulletCooldown = 0;
+
+            foreach(OnReloadAction onReload in combinedStats.events.OnReload)
+            {
+                onReload.OnReload(Player.activePlayer, this);
+            }
         }
 
         string displayAmmo = magazine.ToString();

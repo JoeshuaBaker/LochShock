@@ -55,9 +55,11 @@ public class StatBlock
     [Serializable]
     public class Events
     {
-        public List<Action> OnFire = new List<Action>();
+        public List<OnFireAction> OnFire = new List<OnFireAction>();
         public List<OnHitAction> OnHit = new List<OnHitAction>();
-        public List<Action> OnDestroy = new List<Action>();
+        public List<OnKillAction> OnKill = new List<OnKillAction>();
+        public List<OnReloadAction> OnReload = new List<OnReloadAction>();
+        public List<OnSecondAction> OnSecond = new List<OnSecondAction>();
 
         public Events Copy()
         {
@@ -65,7 +67,9 @@ public class StatBlock
 
             copy.OnFire.AddRange(this.OnFire);
             copy.OnHit.AddRange(this.OnHit);
-            copy.OnDestroy.AddRange(this.OnDestroy);
+            copy.OnKill.AddRange(this.OnKill);
+            copy.OnReload.AddRange(this.OnReload);
+            copy.OnSecond.AddRange(this.OnSecond);
             return copy;
         }
     }
@@ -121,7 +125,9 @@ public class StatBlock
 
             combinedBlock.events.OnFire.AddRange(additiveBlock.events.OnFire);
             combinedBlock.events.OnHit.AddRange(additiveBlock.events.OnHit);
-            combinedBlock.events.OnDestroy.AddRange(additiveBlock.events.OnDestroy);
+            combinedBlock.events.OnKill.AddRange(additiveBlock.events.OnKill);
+            combinedBlock.events.OnReload.AddRange(additiveBlock.events.OnReload);
+            combinedBlock.events.OnSecond.AddRange(additiveBlock.events.OnSecond);
         }
 
         //Add all multipliers together, then apply them once at the end.
@@ -156,7 +162,9 @@ public class StatBlock
 
             multBlock.events.OnFire.AddRange(multiplicativeBlock.events.OnFire);
             multBlock.events.OnHit.AddRange(multiplicativeBlock.events.OnHit);
-            multBlock.events.OnDestroy.AddRange(multiplicativeBlock.events.OnDestroy);
+            multBlock.events.OnKill.AddRange(multiplicativeBlock.events.OnKill);
+            multBlock.events.OnReload.AddRange(multiplicativeBlock.events.OnReload);
+            multBlock.events.OnSecond.AddRange(multiplicativeBlock.events.OnSecond);
         }
 
         combinedBlock.playerStats.health                *= 1 + multBlock.playerStats.health;
@@ -185,7 +193,9 @@ public class StatBlock
 
         combinedBlock.events.OnFire.AddRange(multBlock.events.OnFire);
         combinedBlock.events.OnHit.AddRange(multBlock.events.OnHit);
-        combinedBlock.events.OnDestroy.AddRange(multBlock.events.OnDestroy);
+        combinedBlock.events.OnKill.AddRange(multBlock.events.OnKill);
+        combinedBlock.events.OnReload.AddRange(multBlock.events.OnReload);
+        combinedBlock.events.OnSecond.AddRange(multBlock.events.OnSecond);
 
         return combinedBlock;
     }

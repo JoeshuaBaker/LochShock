@@ -71,6 +71,24 @@ public class World : MonoBehaviour
         }
     }
 
+    public Tile RandomPathTileAtXPosition(float xPos)
+    {
+        Tile tileAtPos = null;
+        foreach(Map map in activeMaps)
+        {
+            if(map.IsWithinBounds(new Vector3(xPos, map.transform.position.y, map.transform.position.z)))
+            {
+                tileAtPos = map.GetRandomTileAtXPos(xPos);
+                if(tileAtPos != null)
+                {
+                    return tileAtPos;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public Tile TileUnderPlayer(Vector3 position)
     {
         return playerInBounds?.TileAt(position);

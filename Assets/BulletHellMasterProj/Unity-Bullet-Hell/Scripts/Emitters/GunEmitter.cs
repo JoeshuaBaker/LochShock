@@ -5,6 +5,7 @@ namespace BulletHell
 {
     public class GunEmitter : ProjectileEmitterAdvanced
     {
+        public Gun gun;
         RaycastHit2D bounceTarget;
         public new void Awake()
         {
@@ -43,7 +44,15 @@ namespace BulletHell
                     enemy.ProcessCollision(node.Item);
                     foreach(OnHitAction onHit in stats.events.OnHit)
                     {
-                        onHit.OnHit(Player.activePlayer, this, node.Item, enemy);
+                        onHit.OnHit(Player.activePlayer, gun, node.Item, enemy);
+                    }
+
+                    if(enemy.IsDead())
+                    {
+                        foreach(OnKillAction onKill in stats.events.OnKill)
+                        {
+                            onKill.OnKill(Player.activePlayer, gun, node.Item, enemy);
+                        }
                     }
                 }
                 else

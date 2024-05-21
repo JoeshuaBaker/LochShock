@@ -27,6 +27,7 @@ public class Map : MonoBehaviour
 
     void Reset()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("Terrain");
         startTiles = new List<Tile>();
         endTiles = new List<Tile>();
         emitterSpawnTiles = new List<Tile>();
@@ -74,7 +75,28 @@ public class Map : MonoBehaviour
             {
                 emitterSpawnTiles.Add(tile);
             }
+
+            tile.gameObject.layer = LayerMask.NameToLayer("Terrain");
         }
+    }
+
+    public Tile GetRandomTileAtXPos(float xPos)
+    {
+        List<Tile> tilesAtXPos = new List<Tile>();
+        foreach(Tile tile in childTiles)
+        {
+            if(Mathf.Abs(tile.transform.position.x - xPos) < 0.1f)
+            {
+                tilesAtXPos.Add(tile);
+            }
+        }
+
+        if (tilesAtXPos.Count > 0)
+        {
+            return tilesAtXPos[Random.Range(0, tilesAtXPos.Count)];
+        }
+
+        return null;
     }
 
     public bool IsWithinBounds(Vector3 position)

@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class ScriptableAction : ScriptableObject
 {
+    public AK.Wwise.Event onTriggerEvent;
     public float chanceToTrigger = 1.0f;
     public float cooldown = 0f;
     private double lastTriggerTime = -1;
@@ -20,5 +21,13 @@ public abstract class ScriptableAction : ScriptableObject
         }
 
         return isValidTrigger;
+    }
+
+    public void PlayTriggerSfx(GameObject audioSource)
+    {
+        if(onTriggerEvent != null)
+        {
+            onTriggerEvent.Post(audioSource);
+        }
     }
 }
