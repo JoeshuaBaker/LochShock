@@ -28,7 +28,7 @@ MonoBehaviour:
     gunStats:
       magazineSize: 0
       reloadSpeed: 0
-      fireSpeed: -0.25
+      fireSpeed: -0.1
       bulletStreams: 0
       bulletsPerShot: 0
       spreadAngle: 0
@@ -41,4 +41,8 @@ MonoBehaviour:
       pierce: 0
       lifetime: 0
     events:
+      OnFire: []
       OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
