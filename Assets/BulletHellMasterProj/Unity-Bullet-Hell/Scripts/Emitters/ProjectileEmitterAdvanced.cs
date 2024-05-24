@@ -388,13 +388,13 @@ namespace BulletHell
             // follow target
             if (FollowTargetType == FollowTargetType.Homing && node.Item.FollowTarget && node.Item.Target != null)
             {
-                node.Item.stats.speed += Acceleration * tick;
+                node.Item.stats.velocity += Acceleration * tick;
 
                 Vector2 desiredVelocity = (new Vector2(Target.transform.position.x, Target.transform.position.y) - node.Item.Position).normalized;
-                desiredVelocity *= node.Item.stats.speed;
+                desiredVelocity *= node.Item.stats.velocity;
 
                 Vector2 steer = desiredVelocity - node.Item.Velocity;
-                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.stats.speed);
+                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.stats.velocity);
             }
             else
             {

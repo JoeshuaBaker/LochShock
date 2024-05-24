@@ -48,7 +48,7 @@ namespace BulletHell
         {
             get
             {
-                return stats.gunStats.speed;
+                return stats.gunStats.velocity;
             }
         }    
         public float RotationSpeed = 0;        

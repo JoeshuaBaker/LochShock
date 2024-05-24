@@ -43,10 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256039a17ae7c2948822224d43c5f8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: dbbd522edea80d440acce658eba316f7, type: 3}
+  rarity: 1
+  level: 1
+  levelUpCost: 0
+  baseDisassembleValue: 0
+  disassembleRefundRatio: 0.7
   itemStats:
   - blockType: 0
     playerStats:
-      blockType: 0
       health: 0
       walkSpeed: 0
       runSpeed: 0
@@ -55,7 +60,6 @@ MonoBehaviour:
       visionConeRadius: 0
       visionProximityRadius: 0
     gunStats:
-      blockType: 0
       magazineSize: 0
       reloadSpeed: 0
       fireSpeed: 0
@@ -70,9 +74,14 @@ MonoBehaviour:
       bounce: 0
       pierce: 0
       lifetime: 0
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
   - blockType: 1
     playerStats:
-      blockType: 1
       health: 0
       walkSpeed: 0
       runSpeed: 0
@@ -81,7 +90,6 @@ MonoBehaviour:
       visionConeRadius: 0
       visionProximityRadius: 0
     gunStats:
-      blockType: 1
       magazineSize: 0
       reloadSpeed: 0
       fireSpeed: 0
@@ -96,3 +104,40 @@ MonoBehaviour:
       bounce: 0
       pierce: 0
       lifetime: 0
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
+  levelUpStats:
+  - blockType: 0
+    playerStats:
+      health: 0
+      walkSpeed: 0
+      runSpeed: 0
+      totalVision: 0
+      visionConeAngle: 0
+      visionConeRadius: 0
+      visionProximityRadius: 0
+    gunStats:
+      magazineSize: 0
+      reloadSpeed: 0
+      fireSpeed: 0
+      bulletStreams: 0
+      bulletsPerShot: 0
+      spreadAngle: 0
+      accuracy: 0
+      damage: 0
+      speed: 0
+      size: 0
+      knockback: 0
+      bounce: 0
+      pierce: 0
+      lifetime: 0
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []

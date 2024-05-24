@@ -144,20 +144,32 @@ public class Player : MonoBehaviour
     {
         IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName == buffInstance.buff.buffName);
 
-        //replace lowest duration buff if we are at stack limit
-        if (buffInstance.buff.stackLimit != 0 && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
+        if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
         {
-            Buff.Instance lowestDurationBuff = matchingBuffs.First();
-
-            foreach (var buff in matchingBuffs)
+            Buff.Instance matchingBuff = matchingBuffs.First();
+            matchingBuff.currentDuration = matchingBuff.buff.duration;
+            if (matchingBuff.stats.stacks < matchingBuff.buff.stackLimit)
             {
-                if (buff.currentDuration < lowestDurationBuff.currentDuration)
+                matchingBuff.stats.stacks += 1;
+            }
+
+            return;
+        }
+
+        //replace lowest duration buff if the buff is copyable and we are at stack limit
+        else if (buffInstance.buff.stackType == Buff.StackType.Copyable && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
+        {
+            Buff.Instance lowestDuration = matchingBuffs.First();
+
+            foreach (var matchingBuff in matchingBuffs)
+            {
+                if (matchingBuff.currentDuration <= lowestDuration.currentDuration)
                 {
-                    lowestDurationBuff = buff;
+                    lowestDuration = matchingBuff;
                 }
             }
 
-            buffs.Remove(lowestDurationBuff);
+            buffs.Remove(lowestDuration);
         }
 
         buffs.Add(buffInstance);

@@ -411,10 +411,6 @@ PrefabInstance:
       propertyPath: onHitKillRadius
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.playerStats.health
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Size.x
       value: 0.125
@@ -486,6 +482,10 @@ PrefabInstance:
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.lifetime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.gunStats.velocity
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: statBlock.gunStats.speed
