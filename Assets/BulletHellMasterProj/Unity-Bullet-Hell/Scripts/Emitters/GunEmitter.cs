@@ -7,6 +7,7 @@ namespace BulletHell
     {
         public Gun gun;
         RaycastHit2D bounceTarget;
+        HashSet<int> ignoreList;
         public new void Awake()
         {
             LayerMask = (1 << UnityEngine.LayerMask.NameToLayer("Enemy"));
@@ -16,7 +17,7 @@ namespace BulletHell
 
         void Start()
         {
-
+            ignoreList = new HashSet<int>();
         }
 
         public void ApplyStatBlock(StatBlock stats)
@@ -26,14 +27,15 @@ namespace BulletHell
 
         protected override void ProcessHit(ref Pool<ProjectileData>.Node node, float tick)
         {
+            ignoreList.Clear();
+            bounceTarget.distance = int.MaxValue;
+
             for (int i = 0; i < RaycastHitBuffer.Count; i++)
             {
                 string hitName = RaycastHitBuffer[i].transform.name;
                 if (node.Item.IgnoreList.Contains(hitName))
                 {
-                    var hitStruct = RaycastHitBuffer[i];
-                    hitStruct.distance = -1;
-                    RaycastHitBuffer[i] = hitStruct;
+                    ignoreList.Add(i);
                     continue;
                 }
 
@@ -64,34 +66,38 @@ namespace BulletHell
                     }
                 }
 
-                if(i == 0 || (bounceTarget.distance == -1 && RaycastHitBuffer[i].distance > -1))
+                if(RaycastHitBuffer[i].distance < bounceTarget.distance)
                 {
                     bounceTarget = RaycastHitBuffer[i];
                 }
             }
         }
 
-        protected override void PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
+        protected override bool PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
         {
+            bool bounceMove = false;
             if(node.Item.stats.pierce > 0)
             {
-                foreach(var hit in RaycastHitBuffer)
+                for(int i = 0; i < RaycastHitBuffer.Count; i++)
                 {
-                    if(hit.distance > -1)
+                    if (ignoreList.Contains(i))
                     {
-                        node.Item.stats.pierce--;
+                        continue;
+                    }
 
-                        //clear ignorelist of pierce targets, except for this one.
-                        if(node.Item.stats.pierce <= 0)
-                        {
-                            node.Item.IgnoreList.Clear();
-                            node.Item.IgnoreList.Add(hit.transform.name);
-                            break;
-                        }
+                    var hit = RaycastHitBuffer[i];
+                    node.Item.stats.pierce--;
+
+                    //clear ignorelist of pierce targets, except for this one.
+                    if (node.Item.stats.pierce <= 0)
+                    {
+                        node.Item.IgnoreList.Clear();
+                        node.Item.IgnoreList.Add(hit.transform.name);
+                        break;
                     }
                 }
             }
-            else if (node.Item.stats.bounce > 0)
+            else if (node.Item.stats.bounce > 0 && bounceTarget.distance != int.MaxValue)
             {
                 node.Item.stats.bounce--;
                 // Calculate the position the projectile is bouncing off the wall at
@@ -99,6 +105,7 @@ namespace BulletHell
                 Vector2 directionOfHitFromCenter = bounceTarget.point - projectedNewPosition;
                 float distanceToContact = (bounceTarget.point - projectedNewPosition).magnitude;
                 float remainder = node.Item.Radius - distanceToContact;
+                var lastPosition = node.Item.Position;
 
                 // reposition projectile to the point of impact 
                 node.Item.Position = projectedNewPosition - (directionOfHitFromCenter.normalized * remainder);
@@ -109,19 +116,33 @@ namespace BulletHell
                 // calculate remaining distance after bounce
                 node.Item.Position += node.Item.Velocity * tick * (1 - bounceTarget.fraction);
 
+                if ((node.Item.Position - lastPosition).magnitude > 3f)
+                {
+                    Debug.Log($"Bullet {node.NodeIndex} moved from {lastPosition} to {node.Item.Position}");
+                }
+
                 // Absorbs energy from bounce
                 node.Item.Velocity = new Vector2(node.Item.Velocity.x * (1 - BounceAbsorbtionX), node.Item.Velocity.y * (1 - BounceAbsorbtionY));
+                bounceMove = true;
             }
             else
             {
-                DestroyBullet(ref node);
+                for (int i = 0; i < RaycastHitBuffer.Count; i++)
+                {
+                    if(!ignoreList.Contains(i))
+                    {
+                        DestroyBullet(ref node);
+                        break;
+                    }
+                }
             }
+
+            return bounceMove;
         }
 
         protected override void NonPhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
         {
             base.NonPhysicsMove(ref node, tick);
-
         }
     }
 }

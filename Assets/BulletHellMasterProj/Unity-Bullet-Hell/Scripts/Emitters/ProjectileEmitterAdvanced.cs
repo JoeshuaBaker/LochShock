@@ -198,6 +198,10 @@ namespace BulletHell
                             TrailRenderer renderer = trailTest.GetRenderer();
                             renderer.transform.position = node.Item.Position;
                             renderer.startWidth = node.Item.stats.size;
+                            if(node.Item.stats.size > 1f)
+                            {
+                                renderer.time = trailTest.trailPrefab.time + node.Item.stats.size * 0.01f;
+                            }
                             renderer.endWidth = 0;
                             renderer.gameObject.SetActive(true);
                             renderer.Clear();
@@ -339,23 +343,25 @@ namespace BulletHell
                 {
                     DestroyBullet(ref node);
                 }
-            }
 
-            if (trailTest != null)
-            {
-                TrailRenderer trailRenderer = null;
-                rendererDict.TryGetValue(node.NodeIndex, out trailRenderer);
-
-                if(trailRenderer != null)
+                if (trailTest != null)
                 {
-                    if (node.Active)
+                    TrailRenderer trailRenderer = null;
+                    rendererDict.TryGetValue(node.NodeIndex, out trailRenderer);
+
+                    if (trailRenderer != null)
                     {
-                        trailRenderer.transform.position = node.Item.Position + (-node.Item.Velocity.normalized)*node.Item.stats.size*0.5f;
-                    }
-                    else
-                    {
-                        trailRenderer.gameObject.SetActive(false);
-                        rendererDict.Remove(node.NodeIndex);
+                        if (node.Active)
+                        {
+                            trailRenderer.transform.position = node.Item.Position;
+                        }
+                        else
+                        {
+                            trailRenderer.transform.position = trailTest.transform.position;
+                            trailRenderer.Clear();
+                            trailRenderer.gameObject.SetActive(false);
+                            rendererDict.Remove(node.NodeIndex);
+                        }
                     }
                 }
             }
@@ -371,7 +377,7 @@ namespace BulletHell
                 Bounds bounds = new Bounds(node.Item.Position, new Vector3(node.Item.stats.size, node.Item.stats.size, node.Item.stats.size));
                 if (!GeometryUtility.TestPlanesAABB(Planes, bounds))
                 {
-                    ReturnNode(node);
+                    ReturnNode(ref node);
                     return;
                 }
             }
@@ -424,14 +430,19 @@ namespace BulletHell
         protected virtual void ProcessCollision(ref Pool<ProjectileData>.Node node, float tick)
         {
             int collisionResult = CheckCollision(ref node, tick);
+            bool bounceMove = false;
 
             if (collisionResult > 0)
             {
                 ProcessHit(ref node, tick);
-                PhysicsMove(ref node, tick);
+                bounceMove = PhysicsMove(ref node, tick);
             }
 
-            NonPhysicsMove(ref node, tick);
+            if(!bounceMove)
+            {
+                NonPhysicsMove(ref node, tick);
+            }
+
         }
 
         // Put whatever hit code you want here such as damage events
@@ -440,8 +451,9 @@ namespace BulletHell
 
         }
 
-        protected virtual void PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
+        protected virtual bool PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
         {
+            bool bounceMove = false;
             // Collision was detected, should we bounce off or destroy the projectile?
             if (BounceOffSurfaces)
             {
@@ -462,11 +474,14 @@ namespace BulletHell
 
                 // Absorbs energy from bounce
                 node.Item.Velocity = new Vector2(node.Item.Velocity.x * (1 - BounceAbsorbtionX), node.Item.Velocity.y * (1 - BounceAbsorbtionY));
+                bounceMove = true;
             }
             else
             {
                 DestroyBullet(ref node);
             }
+
+            return bounceMove;
         }
 
         protected virtual void NonPhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
@@ -476,7 +491,7 @@ namespace BulletHell
 
         protected virtual void DestroyBullet(ref Pool<ProjectileData>.Node node)
         {
-            ReturnNode(node);
+            ReturnNode(ref node);
         }
 
         private void UpdateProjectileNodePulse(float tick, ref ProjectileData data)

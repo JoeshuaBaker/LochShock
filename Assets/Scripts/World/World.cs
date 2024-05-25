@@ -180,6 +180,7 @@ public class World : MonoBehaviour
             horizontalSpawnBarrier * lerpVec.x, verticalSpawnBarrier * lerpVec.y, 0) + (player.transform.position - this.transform.position);
 
         enemy.transform.localPosition = spawnPosition;
+        enemy.Reset();
     }
 
     void PositionMap(Map left, Map right)

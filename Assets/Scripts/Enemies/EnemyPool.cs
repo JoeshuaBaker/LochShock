@@ -60,7 +60,6 @@ public class EnemyPool : MonoBehaviour
 
             if(instance != null)
             {
-                instance.Reset();
                 instance.instanceId = i;
             }
         }

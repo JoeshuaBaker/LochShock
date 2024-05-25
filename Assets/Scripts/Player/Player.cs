@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 
     public void AddBuff(Buff.Instance buffInstance)
     {
-        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName == buffInstance.buff.buffName);
+        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName.Equals(buffInstance.buff.buffName, StringComparison.CurrentCultureIgnoreCase));
 
         if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
         {
@@ -427,7 +427,7 @@ public class Player : MonoBehaviour
             allStats.Add(guns[0].stats);
         }
         allStats.Add(this.stats);
-        allStats.AddRange(buffs.Select(x => x.buff.stats));
+        allStats.AddRange(buffs.Select(x => x.stats));
 
         this.allStats = allStats;
         var combinedStats = StatBlock.Combine(allStats);

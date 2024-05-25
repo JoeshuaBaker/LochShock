@@ -301,7 +301,7 @@ namespace BulletHell
             }
         }
 
-        protected void ReturnNode(Pool<ProjectileData>.Node node)
+        protected void ReturnNode(ref Pool<ProjectileData>.Node node)
         {
             if (node.Active)
             {
@@ -326,7 +326,7 @@ namespace BulletHell
                     break;
 
                 Pool<ProjectileData>.Node node = Projectiles.GetActive(ActiveProjectileIndexes[i]);
-                ReturnNode(node);
+                ReturnNode(ref node);
 
                 ActiveProjectileIndexes[i] = -1;
             }

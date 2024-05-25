@@ -264,8 +264,8 @@ namespace BulletHell
             RefreshEmitters();
 #endif
 
-            DrawEmitters();
-            UpdateEmitters();               
+            UpdateEmitters();
+            DrawEmitters();             
         }
           
         public void UpdateEmitters()

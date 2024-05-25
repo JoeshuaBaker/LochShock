@@ -8,6 +8,7 @@ public class TrailTest : MonoBehaviour
     public int bufferSize = 250;
     public TrailRenderer[] trailRenderers;
     public TrailRenderer trailPrefab;
+    public int nextTrailIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +23,14 @@ public class TrailTest : MonoBehaviour
 
     public TrailRenderer GetRenderer()
     {
-        foreach(var renderer in trailRenderers)
+        TrailRenderer next = null;
+        int i = 0;
+        while ((next = trailRenderers[nextTrailIndex++]).gameObject.activeSelf && i++ < bufferSize)
         {
-            if(!renderer.gameObject.activeSelf)
-            {
-                //renderer.gameObject.SetActive(true);
-                return renderer;
-            }
+            nextTrailIndex %= bufferSize;
         }
-        return null;
+
+        nextTrailIndex %= bufferSize;
+        return next;
     }
 }

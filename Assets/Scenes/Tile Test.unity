@@ -411,6 +411,30 @@ PrefabInstance:
       propertyPath: onHitKillRadius
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.gunStats.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.gunStats.bounce
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.gunStats.pierce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.playerStats.runSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.gunStats.magazineSize
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: stats.playerStats.walkSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Size.x
       value: 0.125
@@ -663,7 +687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68516f35aeadfd34796cfa5855af7678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - {fileID: 8498731354206902999, guid: 4f819b8050c44e3479e9d8faefa784af, type: 3}
   OrbItemPrefabs:
   - {fileID: 3839646629918745725, guid: d02a1fe99aed0404593c0fd852c721e9, type: 3}
   - {fileID: 4489208686998937835, guid: 9793c3c8292fc2645a6dc69f5dc53d07, type: 3}
