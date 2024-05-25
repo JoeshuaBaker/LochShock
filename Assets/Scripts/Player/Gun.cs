@@ -11,6 +11,11 @@ public class Gun : MonoBehaviour
     public Image reloadIndicator;
     public TextMeshProUGUI ammoIndicator;
     public TextMeshProUGUI ammoIndicatorShadow;
+    public ParticleSystem muzzleFlashMain;
+    public ParticleSystem muzzleFlashFar;
+    public ParticleSystem muzzleFlashClose;
+    public ParticleSystem ejectedCasing;
+    public Animator lightAnimator;
 
     private bool reloading;
     private float reloadSpeed;
@@ -25,6 +30,15 @@ public class Gun : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
             emitter.FireProjectile(emitter.Direction, 0f);
+
+            //Particle Systems
+            muzzleFlashMain.Emit(15);
+            muzzleFlashFar.Emit(5);
+            muzzleFlashClose.Emit(25);
+            ejectedCasing.Emit(1);
+
+            //light
+            lightAnimator.Play("Base Layer.MuzzleFlashLight" , 0 , 0f);
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayShoot", this.gameObject);

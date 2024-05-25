@@ -114,6 +114,11 @@ MonoBehaviour:
   reloadIndicator: {fileID: 0}
   ammoIndicator: {fileID: 0}
   ammoIndicatorShadow: {fileID: 0}
+  muzzleFlashMain: {fileID: 0}
+  muzzleFlashFar: {fileID: 0}
+  muzzleFlashClose: {fileID: 0}
+  ejectedCasing: {fileID: 0}
+  lightAnimator: {fileID: 0}
 --- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +478,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -1292,7 +1297,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5203,8 +5208,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -650498447
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -5238,12 +5243,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3453500415576585398}
     m_Modifications:
+    - target: {fileID: 225365683155742612, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: m_Name
+      value: Muzzle_Flash_Far_PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: lengthInSec
       value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683241656643, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 225365683241656643, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
@@ -5255,12 +5280,36 @@ PrefabInstance:
       value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 225365683241656643, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683241656643, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683241656701, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: m_Name
+      value: Muzzle_Flash_Main_PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683928062776, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: m_Name
+      value: Muzzle_Flash_Close_PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: prewarm
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: lengthInSec
       value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: moveWithTransform
@@ -5272,11 +5321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667382644979543760, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.90972877
+      value: 1.239
       objectReference: {fileID: 0}
     - target: {fileID: 3667382644979543760, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09088034
+      value: -0.039
       objectReference: {fileID: 0}
     - target: {fileID: 3667382644979543760, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
       propertyPath: m_LocalPosition.z

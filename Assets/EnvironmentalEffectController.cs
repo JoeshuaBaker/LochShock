@@ -9,6 +9,8 @@ public class EnvironmentalEffectController : MonoBehaviour
     public bool initialLightDestroyed;
     [SerializeField]
     private float startingIntensity;
+    public float minInitialIntensity;
+    public float minIntensityCutOff;
     public Light2D lightningLight;
     public Animator lightningAnimator;
     [Header("Lightning Attributes")]
@@ -57,16 +59,21 @@ public class EnvironmentalEffectController : MonoBehaviour
         if (!initialLightDestroyed)
         {
             float intensityTimePast;
-            intensityTimePast = startingIntensity - (0.005f * gameTime);
+            intensityTimePast = Mathf.Max (startingIntensity - (0.005f * gameTime), minInitialIntensity);
 
-            if (intensityTimePast < 0)
+            //if (intensityTimePast < 0)
+            //{
+            //    Object.Destroy(initialLight.gameObject);
+            //    initialLightDestroyed = true;
+            //}
+            //else
+            if (stats.playerStats.totalVision >= minIntensityCutOff)
             {
-                Object.Destroy(initialLight.gameObject);
-                initialLightDestroyed = true;
+                initialLight.intensity = intensityTimePast * stats.playerStats.totalVision;
             }
             else
             {
-                initialLight.intensity = intensityTimePast * stats.playerStats.totalVision;
+                initialLight.intensity = 0f;
             }
         }
     }

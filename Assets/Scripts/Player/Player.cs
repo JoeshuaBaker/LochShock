@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.Experimental.Rendering.Universal;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -57,6 +58,23 @@ public class Player : MonoBehaviour
     ContactFilter2D hitFilter;
     List<Collider2D> hitBuffer;
     private float secondTimer = 0;
+
+    [Header("Death Animation Components")]
+    public bool isDead;
+    public ParticleSystem damagePS;
+    public ParticleSystem diePS;
+    public ParticleSystem gunDropPS;
+    public GameObject ring;
+    public Animator ringAnimator;
+    public GameObject slashParent;
+    public GameObject slashOne;
+    public GameObject slashTwo;
+    public GameObject mechDying;
+    public SpriteRenderer mechShadow;
+    public SpriteRenderer hitboxSprite;
+    public CinemachineImpulseSource playerShake;
+    public ExplosionSpawner explosionSpawner;
+
 
     private void Awake()
     {
@@ -117,6 +135,8 @@ public class Player : MonoBehaviour
         MouseAim();
         Shoot();
         SetVision();
+        CheckDeath();
+        
     }
 
   
@@ -130,7 +150,7 @@ public class Player : MonoBehaviour
         }
         else if (currentHp < 0)
         {
-            currentHp = maxHp;
+            currentHp = 0;
         }
         hpBar.localScale = new Vector3((float)currentHp / (float)maxHp, 1f, 1f);
     }
@@ -293,6 +313,50 @@ public class Player : MonoBehaviour
     private void TakeDamageFromEnemy(int damage)
     {
         UpdateHp(damage);
+
+        
+        damagePS.Stop();
+        damagePS.Play();
+
+        if (currentHp == 0)
+        {
+            slashParent.transform.localScale = new Vector3(1f, 1f, 1f);
+            slashOne.SetActive(false);
+            slashOne.SetActive(true);
+            slashTwo.SetActive(false);
+            slashTwo.SetActive(true);
+
+            gunDropPS.Play();
+
+            diePS.Play();
+
+            bodyRenderer.enabled = false;
+            limbRenderer.enabled = false;
+            mechShadow.enabled = false;
+
+            mechDying.SetActive(true);
+
+            ring.transform.position = this.transform.position;
+            ringAnimator.Play("RingExpandExtraLarge");
+
+            playerShake.GenerateImpulse(3f);
+
+            playerVisionCone.enabled = false;
+        }
+
+        else 
+        {
+            slashParent.transform.localScale = new Vector3(0.2f, 0.2f, 1f);
+            slashOne.SetActive(false);
+            slashOne.SetActive(true);
+
+            ring.transform.position = this.transform.position;
+            ringAnimator.Play("RingExpandExtraLarge");
+
+            playerShake.GenerateImpulse(2f);
+        }
+
+
         Physics2D.OverlapCircle(this.transform.position.xy(), onHitKillRadius, hitFilter, hitBuffer);
 
         foreach (Collider2D enemyCollider in hitBuffer)
@@ -306,6 +370,22 @@ public class Player : MonoBehaviour
                 enemy.Die((enemy.transform.position - this.transform.position).magnitude*onHitKillDistanceDelay);  
             }
         }
+    }
+
+    private void CheckDeath()
+    {
+        if ( damagePS.isStopped == true && currentHp == 0 && isDead == false)
+        {
+            
+            explosionSpawner.CreateExplosion(new Vector3 ( this.transform.position.x , (this.transform.position.y - 0.5f ) , this.transform.position.z) , 3f);
+            ring.transform.position = this.transform.position;
+            ringAnimator.Play("RingExpandExtraLarge");
+            mechDying.SetActive(false);
+            hitboxSprite.enabled = false;
+            isDead = true;
+            
+        }
+
     }
 
     private void MouseAim()
