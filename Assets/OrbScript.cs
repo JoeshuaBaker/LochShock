@@ -12,7 +12,11 @@ public class OrbScript : MonoBehaviour
     public float cullDistance = 25f;
     public ParticleSystem collectParticle;
     public bool spawnedParticle;
- 
+
+    //Audio Variables
+    private bool stage1 = false;
+    private bool stage2 = false;
+
     void Start()
     {
         player = Player.activePlayer;
@@ -25,10 +29,16 @@ public class OrbScript : MonoBehaviour
         if(directionToPlayer.magnitude < collectionRange)
         {
             isCollected = true;
+
+            //Audio Section
+            OrbAudio(1);  
         }
 
         if(isCollected)
         {
+            //Audio Section
+            OrbAudio(2);
+
             if (directionToPlayer.magnitude < (directionToPlayer.normalized * collectSpeedStart).magnitude)
             {
                 this.transform.position = player.transform.position;
@@ -39,7 +49,10 @@ public class OrbScript : MonoBehaviour
                     player.CollectOrb();
                     spawnedParticle = true;
                 }
-              
+
+                //Audio Section
+                OrbAudio(3);
+
                 Destroy (this.gameObject);
             }
             else
@@ -53,6 +66,30 @@ public class OrbScript : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    void OrbAudio(int count)
+    {
+        if((stage1 && count == 1) || (stage2 && count == 2))
+        {
+            return;
+        }
+
+        AkSoundEngine.PostEvent("PlayOrbCollect", this.gameObject);
+
+        if (count == 1)
+        {
+            stage1 = true;
+            return;
+        }
+        if (count == 2)
+        {
+            stage2 = true;
+            return;
+        }
+
+        return;
 
     }
  

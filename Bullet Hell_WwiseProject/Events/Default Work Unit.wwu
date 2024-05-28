@@ -27,11 +27,22 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="PlayThunder" ID="{7EC4C370-D4E2-40D2-9A15-5E2F3BB38E3C}">
+							<ChildrenList>
+								<Action Name="" ID="{44273239-CAE0-43C5-98A3-CD9A47B65230}" ShortID="695870254">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Thunder" ID="{66A8C78F-A1EC-4155-A631-0C989467A1A4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Music" ID="{A2A256B0-3C23-4991-B8ED-527F511294EC}" ShortID="224857255">
 					<ChildrenList>
-						<Event Name="PlayMusic_BassOnly" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
+						<Event Name="PlayMusic" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
 							<ChildrenList>
 								<Action Name="" ID="{01651180-0D79-4B32-951B-3EC5EF26A43D}" ShortID="450733968">
 									<ReferenceList>
@@ -57,28 +68,62 @@
 				</Event>
 				<Folder Name="GameplayCombat" ID="{4D9C4F42-3AE7-4572-A0FE-46D29E32A6CE}" ShortID="415756600">
 					<ChildrenList>
-						<Event Name="PlayShoot" ID="{0B6D0470-EA04-4ECC-AFC3-92E0D3BBBD13}">
+						<Folder Name="Player" ID="{B86FD775-C608-44C9-9561-38BBD6FF96DA}" ShortID="1035282387">
 							<ChildrenList>
-								<Action Name="" ID="{8B86386C-86C7-4D7A-BAB6-F54E805ADFFC}" ShortID="553632983">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Shoot" ID="{9BF1CD7F-50AA-4CC1-88CE-14A783B1C78D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="PlayShoot" ID="{0B6D0470-EA04-4ECC-AFC3-92E0D3BBBD13}">
+									<ChildrenList>
+										<Action Name="" ID="{8B86386C-86C7-4D7A-BAB6-F54E805ADFFC}" ShortID="553632983">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Shoot" ID="{9BF1CD7F-50AA-4CC1-88CE-14A783B1C78D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}">
+									<ChildrenList>
+										<Action Name="" ID="{529BE96E-DB1A-4570-9BFB-529D800DE54F}" ShortID="761204">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}">
+						</Folder>
+						<Folder Name="Enemies" ID="{3D9E8264-1158-493D-B513-1139E105BCC0}" ShortID="1064064018">
 							<ChildrenList>
-								<Action Name="" ID="{529BE96E-DB1A-4570-9BFB-529D800DE54F}" ShortID="761204">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="EnemyDie" ID="{0CF15808-1758-4EBA-9630-DFE989D1CD1D}">
+									<ChildrenList>
+										<Action Name="" ID="{7448F525-E35F-4C16-962E-E2CF2A929C5A}" ShortID="303442248">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Enemy Death" ID="{EBD680D8-2492-4C93-B4DE-D4FE13E56509}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
+						</Folder>
+						<Folder Name="Items" ID="{C56B4B09-5FC5-43FB-BD64-D424FA141ABB}" ShortID="840472236">
+							<ChildrenList>
+								<Event Name="PlayOrbCollect" ID="{DA149DD3-5684-4870-B35C-6523535CA887}">
+									<ChildrenList>
+										<Action Name="" ID="{20EDAC4A-E5A8-407D-A3F2-A6951AD6FD8E}" ShortID="303278449">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="OrbCollect" ID="{71BA56DE-4176-43FC-AA64-CA16D14865AE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

@@ -7,7 +7,9 @@ public class AmbianceAudioController : MonoBehaviour
     public World world;
     public ParticleSystem rain;
     public AK.Wwise.RTPC rainAmountRTPC;
-    private bool onPath;
+
+    private bool onPath = true;
+    private bool reChecker= true;
 
 
     // Start is called before the first frame update
@@ -36,15 +38,19 @@ public class AmbianceAudioController : MonoBehaviour
             onPath = false;
         }
 
-        if(onPath)
+        
+
+        if(onPath && !reChecker)
         {
             AkSoundEngine.SetState("PathStatus", "OnPath");
+            reChecker = true;
             //Debug.Log("On Path");
             return;
         }
-        else
+        else if(!onPath && reChecker)
         {
             AkSoundEngine.SetState("PathStatus", "OffPath");
+            reChecker = false;
             //Debug.Log("Off Path");
             return;
         }
@@ -52,7 +58,7 @@ public class AmbianceAudioController : MonoBehaviour
 
     public void RainMaker()
     {
-        Debug.Log(rain.particleCount);
+        //Debug.Log(rain.particleCount);
         rainAmountRTPC.SetGlobalValue((float)rain.particleCount);
         return;
     }

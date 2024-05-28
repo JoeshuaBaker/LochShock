@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
-  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+  - PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Virtual Acoustics
       ObjectType: 5
@@ -21,13 +21,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: d4ec20f06be02847954704653aca2ac7
-    ParentPath: Virtual Acoustics\Default Work Unit
+    ParentPath: Virtual Acoustics/Default Work Unit
     guid: d4ec20f06be02847954704653aca2ac7
     GuidInternal: 
-    m_lastTime: -8584925997518056342
+    m_lastTime: -8584865633474775808
     List: []
   AuxBusWwu:
-  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+  - PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Master-Mixer Hierarchy
       ObjectType: 5
@@ -35,10 +35,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 7de6e886571843449f36181150391d0f
-    ParentPath: Master-Mixer Hierarchy\Default Work Unit
+    ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: 7de6e886571843449f36181150391d0f
     GuidInternal: 
-    m_lastTime: -8584853356931370379
+    m_lastTime: -8584853360754775808
     List:
     - name: AmbianceBus
       guid: 51ba35c458f9ff48b1415d53af45a6dc
@@ -56,7 +56,7 @@ MonoBehaviour:
       - ElementName: AmbianceBus
         ObjectType: 2
         guid: 51ba35c458f9ff48b1415d53af45a6dc
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\AmbianceBus
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/AmbianceBus
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
       id: 3803692087
@@ -70,7 +70,7 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus
     - name: MusicBus
       guid: d05ec4f2c164fb489fd421f033c1904f
       id: 2886307548
@@ -87,7 +87,7 @@ MonoBehaviour:
       - ElementName: MusicBus
         ObjectType: 2
         guid: d05ec4f2c164fb489fd421f033c1904f
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\MusicBus
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/MusicBus
     - name: SFXBus
       guid: a114f070f07ef94395b3cfb69a9af38d
       id: 3803850708
@@ -104,9 +104,9 @@ MonoBehaviour:
       - ElementName: SFXBus
         ObjectType: 2
         guid: a114f070f07ef94395b3cfb69a9af38d
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/SFXBus
   BankWwu:
-  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+  - PhysicalPath: SoundBanks/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: SoundBanks
       ObjectType: 5
@@ -114,10 +114,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: a6190015a8117441af12793e912b48af
-    ParentPath: SoundBanks\Default Work Unit
+    ParentPath: SoundBanks/Default Work Unit
     guid: a6190015a8117441af12793e912b48af
     GuidInternal: 
-    m_lastTime: -8584853356930990357
+    m_lastTime: -8584853360754775808
     List:
     - name: Sounds
       guid: ae75aaeba45ea4409d020229b09a152f
@@ -132,9 +132,9 @@ MonoBehaviour:
       - ElementName: Sounds
         ObjectType: 7
         guid: ae75aaeba45ea4409d020229b09a152f
-      Path: SoundBanks\Default Work Unit\Sounds
+      Path: SoundBanks/Default Work Unit/Sounds
   EventWwu:
-  - PhysicalPath: Events\Default Work Unit.wwu
+  - PhysicalPath: Events/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Events
       ObjectType: 5
@@ -142,10 +142,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: c6a86fcf9e1b834fb22623621508c181
-    ParentPath: Events\Default Work Unit
+    ParentPath: Events/Default Work Unit
     guid: c6a86fcf9e1b834fb22623621508c181
     GuidInternal: 
-    m_lastTime: -8584853356932990471
+    m_lastTime: -8584847318684775808
     List:
     - name: Ambiance
       guid: 63c74578a0c80b47b90311f208dd80e6
@@ -160,10 +160,53 @@ MonoBehaviour:
       - ElementName: Ambiance
         ObjectType: 4
         guid: 63c74578a0c80b47b90311f208dd80e6
-      Path: Events\Default Work Unit\Ambiance
+      Path: Events/Default Work Unit/Ambiance
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Enemies
+      guid: 64829e3d58113d49b5131139e105bcc0
+      id: 2242381963
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Enemies
+        ObjectType: 4
+        guid: 64829e3d58113d49b5131139e105bcc0
+      Path: Events/Default Work Unit/GameplayCombat/Enemies
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: EnemyDie
+      guid: 0858f10c5817ba4e9630dfe989d1cd1d
+      id: 794424115
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Enemies
+        ObjectType: 4
+        guid: 64829e3d58113d49b5131139e105bcc0
+      - ElementName: EnemyDie
+        ObjectType: 3
+        guid: 0858f10c5817ba4e9630dfe989d1cd1d
+      Path: Events/Default Work Unit/GameplayCombat/Enemies/EnemyDie
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: GameplayCombat
       guid: 424f9c4de73a7245a0fe46d29e32a6ce
       id: 1118842833
@@ -177,7 +220,27 @@ MonoBehaviour:
       - ElementName: GameplayCombat
         ObjectType: 4
         guid: 424f9c4de73a7245a0fe46d29e32a6ce
-      Path: Events\Default Work Unit\GameplayCombat
+      Path: Events/Default Work Unit/GameplayCombat
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Items
+      guid: 094b6bc5c55ffb43bd64d424fa141abb
+      id: 2151963051
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Items
+        ObjectType: 4
+        guid: 094b6bc5c55ffb43bd64d424fa141abb
+      Path: Events/Default Work Unit/GameplayCombat/Items
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -194,13 +257,33 @@ MonoBehaviour:
       - ElementName: Music
         ObjectType: 4
         guid: b056a2a2233c9149b8ed527f511294ec
-      Path: Events\Default Work Unit\Music
+      Path: Events/Default Work Unit/Music
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: PlayMusic_BassOnly
+    - name: Player
+      guid: 75d76fb808c6c944956138bbd6ff96da
+      id: 1069431850
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      Path: Events/Default Work Unit/GameplayCombat/Player
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PlayMusic
       guid: 3a7174ffe17c9b488ed857c210fb9013
-      id: 3072088024
+      id: 417627684
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -211,13 +294,36 @@ MonoBehaviour:
       - ElementName: Music
         ObjectType: 4
         guid: b056a2a2233c9149b8ed527f511294ec
-      - ElementName: PlayMusic_BassOnly
+      - ElementName: PlayMusic
         ObjectType: 3
         guid: 3a7174ffe17c9b488ed857c210fb9013
-      Path: Events\Default Work Unit\Music\PlayMusic_BassOnly
+      Path: Events/Default Work Unit/Music/PlayMusic
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: PlayOrbCollect
+      guid: d39d14da84567048b35c6523535ca887
+      id: 1780443284
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Items
+        ObjectType: 4
+        guid: 094b6bc5c55ffb43bd64d424fa141abb
+      - ElementName: PlayOrbCollect
+        ObjectType: 3
+        guid: d39d14da84567048b35c6523535ca887
+      Path: Events/Default Work Unit/GameplayCombat/Items/PlayOrbCollect
+      maxAttenuation: 0
+      maxDuration: 0.571156
+      minDuration: 0.274444
     - name: PlayShoot
       guid: 70046d0b04eacc4eafc392e0d3bbbd13
       id: 1489638472
@@ -231,10 +337,13 @@ MonoBehaviour:
       - ElementName: GameplayCombat
         ObjectType: 4
         guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
       - ElementName: PlayShoot
         ObjectType: 3
         guid: 70046d0b04eacc4eafc392e0d3bbbd13
-      Path: Events\Default Work Unit\GameplayCombat\PlayShoot
+      Path: Events/Default Work Unit/GameplayCombat/Player/PlayShoot
       maxAttenuation: 0
       maxDuration: 0.204995
       minDuration: 0.135275
@@ -251,10 +360,30 @@ MonoBehaviour:
       - ElementName: PlayTestTone
         ObjectType: 3
         guid: eb21d10628cbd543a7b0b7607b7562aa
-      Path: Events\Default Work Unit\PlayTestTone
+      Path: Events/Default Work Unit/PlayTestTone
       maxAttenuation: 0
-      maxDuration: 0.193818
-      minDuration: 0.193818
+      maxDuration: 0
+      minDuration: 0
+    - name: PlayThunder
+      guid: 70c3c47ee2d4d2409a155e2f3bb38e3c
+      id: 3903208307
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: Ambiance
+        ObjectType: 4
+        guid: 63c74578a0c80b47b90311f208dd80e6
+      - ElementName: PlayThunder
+        ObjectType: 3
+        guid: 70c3c47ee2d4d2409a155e2f3bb38e3c
+      Path: Events/Default Work Unit/Ambiance/PlayThunder
+      maxAttenuation: 0
+      maxDuration: 7.624824
+      minDuration: 7.624824
     - name: PlayWipe
       guid: 0344522df45e43439fa22347b4771030
       id: 1760503306
@@ -268,13 +397,16 @@ MonoBehaviour:
       - ElementName: GameplayCombat
         ObjectType: 4
         guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
       - ElementName: PlayWipe
         ObjectType: 3
         guid: 0344522df45e43439fa22347b4771030
-      Path: Events\Default Work Unit\GameplayCombat\PlayWipe
+      Path: Events/Default Work Unit/GameplayCombat/Player/PlayWipe
       maxAttenuation: 0
-      maxDuration: 5.089544
-      minDuration: 5.089544
+      maxDuration: 6.194671
+      minDuration: 6.194671
     - name: RainAmbiance
       guid: 7e608a13be72c94c8aaeae0654146864
       id: 2367080787
@@ -291,7 +423,7 @@ MonoBehaviour:
       - ElementName: RainAmbiance
         ObjectType: 3
         guid: 7e608a13be72c94c8aaeae0654146864
-      Path: Events\Default Work Unit\Ambiance\RainAmbiance
+      Path: Events/Default Work Unit/Ambiance/RainAmbiance
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -311,12 +443,12 @@ MonoBehaviour:
       - ElementName: WaterAmbiance
         ObjectType: 3
         guid: 5c6bd20d37f87a43b56c2b1fccdae94c
-      Path: Events\Default Work Unit\Ambiance\WaterAmbiance
+      Path: Events/Default Work Unit/Ambiance/WaterAmbiance
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
   RtpcWwu:
-  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+  - PhysicalPath: Game Parameters/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Game Parameters
       ObjectType: 5
@@ -324,10 +456,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 04512ad76ca662438fc51952dd0ab339
-    ParentPath: Game Parameters\Default Work Unit
+    ParentPath: Game Parameters/Default Work Unit
     guid: 04512ad76ca662438fc51952dd0ab339
     GuidInternal: 
-    m_lastTime: -8584859360356765462
+    m_lastTime: -8584859396784775808
     List:
     - name: RainAmount
       guid: 6aea375d0f089642a940898df0761b5c
@@ -342,9 +474,9 @@ MonoBehaviour:
       - ElementName: RainAmount
         ObjectType: 13
         guid: 6aea375d0f089642a940898df0761b5c
-      Path: Game Parameters\Default Work Unit\RainAmount
+      Path: Game Parameters/Default Work Unit/RainAmount
   StateWwu:
-  - PhysicalPath: States\Default Work Unit.wwu
+  - PhysicalPath: States/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: States
       ObjectType: 5
@@ -352,10 +484,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 22b6ada991ecd7488a7533ebe198a6bd
-    ParentPath: States\Default Work Unit
+    ParentPath: States/Default Work Unit
     guid: 22b6ada991ecd7488a7533ebe198a6bd
     GuidInternal: 
-    m_lastTime: -8584859360354155313
+    m_lastTime: -8584859402004775808
     List:
     - name: PathStatus
       guid: 9ae656aa293d7d4e83c075b051980d6b
@@ -370,7 +502,7 @@ MonoBehaviour:
       - ElementName: PathStatus
         ObjectType: 9
         guid: 9ae656aa293d7d4e83c075b051980d6b
-      Path: States\Default Work Unit\PathStatus
+      Path: States/Default Work Unit/PathStatus
       values:
       - name: None
         guid: db0fc5893ea53d42a13cf7d29b074a99
@@ -424,7 +556,7 @@ MonoBehaviour:
       ValueIcons: []
       valuesInternal: []
   SwitchWwu:
-  - PhysicalPath: Switches\Default Work Unit.wwu
+  - PhysicalPath: Switches/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Switches
       ObjectType: 5
@@ -432,13 +564,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 1777090260d8a445847dfd213f15b723
-    ParentPath: Switches\Default Work Unit
+    ParentPath: Switches/Default Work Unit
     guid: 1777090260d8a445847dfd213f15b723
     GuidInternal: 
-    m_lastTime: -8584925997518066342
+    m_lastTime: -8584865633474775808
     List: []
   TriggerWwu:
-  - PhysicalPath: Triggers\Default Work Unit.wwu
+  - PhysicalPath: Triggers/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Triggers
       ObjectType: 5
@@ -446,13 +578,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: ed31e0cf23bb034d84367d6991d06817
-    ParentPath: Triggers\Default Work Unit
+    ParentPath: Triggers/Default Work Unit
     guid: ed31e0cf23bb034d84367d6991d06817
     GuidInternal: 
-    m_lastTime: -8584925997518056342
+    m_lastTime: -8584865633474775808
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 06000000070000000a000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
