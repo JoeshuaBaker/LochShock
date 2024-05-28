@@ -373,7 +373,7 @@ public class Player : MonoBehaviour
 
     private void CheckDeath()
     {
-        if ( damagePS.isStopped == true && currentHp == 0 && isDead == false)
+        if (damagePS.isStopped == true && currentHp == 0 && isDead == false)
         {
             
             explosionSpawner.CreateExplosion(new Vector3 ( this.transform.position.x , (this.transform.position.y - 0.5f ) , this.transform.position.z) , 3f);

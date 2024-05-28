@@ -3,6 +3,7 @@ using BulletHell;
 using UnityEngine.UI;
 using TMPro;
 
+//Extend Item
 public class Gun : MonoBehaviour
 {
     public StatBlock stats;

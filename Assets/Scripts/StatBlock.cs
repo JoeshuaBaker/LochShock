@@ -36,8 +36,8 @@ public class StatBlock
     public const float VISIONPROXIMITYRADIUS_MIN = 0f;
 
     public const float MAGAZINESIZE_MIN = 1f;
-    public const float RELOADSPEED_MIN = 1f/60f;
-    public const float FIRESPEED_MIN = 1f/60f;
+    public const float RELOADSPEED_MIN = 1f / 60f;
+    public const float FIRESPEED_MIN = 1f / 60f;
     public const float BULLETSTREAMS_MIN = 1f;
     public const float BULLETSTREAMS_MAX = 10f;
     public const float BULLETSPERSHOT_MIN = 1f;
@@ -127,7 +127,7 @@ public class StatBlock
         copy.gunStats = this.gunStats;
         copy.stacks = this.stacks;
         copy.events = events.Copy();
-        
+
         return copy;
     }
 
@@ -135,16 +135,24 @@ public class StatBlock
     {
         //Sort blocks by type
         StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base).Copy() ?? new StatBlock(BlockType.Base);
-        List<StatBlock> additiveBlocks  = new List<StatBlock>();
-        List<StatBlock> multBlocks      = new List<StatBlock>();
-        List<StatBlock> xMultblocks     = new List<StatBlock>();
-        List<StatBlock> setBlocks       = new List<StatBlock>();
+        List<StatBlock> additiveBlocks = new List<StatBlock>();
+        List<StatBlock> multBlocks = new List<StatBlock>();
+        List<StatBlock> xMultblocks = new List<StatBlock>();
+        List<StatBlock> setBlocks = new List<StatBlock>();
 
         //Sort all blocks into their respective groups by type
-        foreach(var block in blocks)
+        foreach (var block in blocks)
         {
             switch (block.blockType)
             {
+                //treat all base stat blocks beyond the first as additive stat blocks
+                case BlockType.Base:
+                    if (block != combinedBlock)
+                    {
+                        additiveBlocks.Add(block);
+                    }
+                    break;
+
                 case BlockType.Additive:
                     additiveBlocks.Add(block);
                     break;
@@ -170,7 +178,7 @@ public class StatBlock
             combinedBlock.events.OnSecond.AddRange(block.events.OnSecond);
         }
 
-        if(additiveBlocks.Count > 0)
+        if (additiveBlocks.Count > 0)
         {
             //Add together additive blocks
             foreach (StatBlock additiveBlock in additiveBlocks)
@@ -285,7 +293,7 @@ public class StatBlock
                 combinedBlock.gunStats.knockback *= 1 + xMultBlock.gunStats.knockback * xMultBlock.stacks;
                 combinedBlock.gunStats.bounce *= 1 + xMultBlock.gunStats.bounce * xMultBlock.stacks;
                 combinedBlock.gunStats.pierce *= 1 + xMultBlock.gunStats.pierce * xMultBlock.stacks;
-                combinedBlock.gunStats.lifetime *= 1 + xMultBlock.gunStats.lifetime* xMultBlock.stacks;
+                combinedBlock.gunStats.lifetime *= 1 + xMultBlock.gunStats.lifetime * xMultBlock.stacks;
             }
         }
 
@@ -367,22 +375,94 @@ public class StatBlock
         combinedBlock.playerStats.visionConeRadius = Mathf.Max(combinedBlock.playerStats.visionConeRadius, VISIONCONERADIUS_MIN);
         combinedBlock.playerStats.visionProximityRadius = Mathf.Max(combinedBlock.playerStats.visionProximityRadius, VISIONPROXIMITYRADIUS_MIN);
 
-        combinedBlock.gunStats.magazineSize     = Mathf.Max(combinedBlock.gunStats.magazineSize, MAGAZINESIZE_MIN);
-        combinedBlock.gunStats.reloadSpeed      = Mathf.Max(combinedBlock.gunStats.reloadSpeed, RELOADSPEED_MIN);
-        combinedBlock.gunStats.fireSpeed        = Mathf.Max(combinedBlock.gunStats.fireSpeed, FIRESPEED_MIN);
-        combinedBlock.gunStats.bulletStreams    = Mathf.Clamp(combinedBlock.gunStats.bulletStreams, BULLETSTREAMS_MIN, BULLETSTREAMS_MAX);
-        combinedBlock.gunStats.bulletsPerShot   = Mathf.Clamp(combinedBlock.gunStats.bulletsPerShot, BULLETSPERSHOT_MIN, BULLETSPERSHOT_MAX);
-        combinedBlock.gunStats.spreadAngle      = Mathf.Clamp(combinedBlock.gunStats.spreadAngle, SPREADANGLE_MIN, SPREADANGLE_MAX);
-        combinedBlock.gunStats.accuracy         = Mathf.Clamp(combinedBlock.gunStats.accuracy, ACCURACY_MIN, ACCURACY_MAX);
+        combinedBlock.gunStats.magazineSize = Mathf.Max(combinedBlock.gunStats.magazineSize, MAGAZINESIZE_MIN);
+        combinedBlock.gunStats.reloadSpeed = Mathf.Max(combinedBlock.gunStats.reloadSpeed, RELOADSPEED_MIN);
+        combinedBlock.gunStats.fireSpeed = Mathf.Max(combinedBlock.gunStats.fireSpeed, FIRESPEED_MIN);
+        combinedBlock.gunStats.bulletStreams = Mathf.Clamp(combinedBlock.gunStats.bulletStreams, BULLETSTREAMS_MIN, BULLETSTREAMS_MAX);
+        combinedBlock.gunStats.bulletsPerShot = Mathf.Clamp(combinedBlock.gunStats.bulletsPerShot, BULLETSPERSHOT_MIN, BULLETSPERSHOT_MAX);
+        combinedBlock.gunStats.spreadAngle = Mathf.Clamp(combinedBlock.gunStats.spreadAngle, SPREADANGLE_MIN, SPREADANGLE_MAX);
+        combinedBlock.gunStats.accuracy = Mathf.Clamp(combinedBlock.gunStats.accuracy, ACCURACY_MIN, ACCURACY_MAX);
 
-        combinedBlock.gunStats.damage       = Mathf.Max(combinedBlock.gunStats.damage, DAMAGE_MIN);
-        combinedBlock.gunStats.velocity     = Mathf.Clamp(combinedBlock.gunStats.velocity, VELOCITY_MIN, VELOCITY_MAX);
-        combinedBlock.gunStats.size         = Mathf.Clamp(combinedBlock.gunStats.size, SIZE_MIN, SIZE_MAX);
-        combinedBlock.gunStats.knockback    = Mathf.Max(combinedBlock.gunStats.knockback, KNOCKBACK_MIN);
-        combinedBlock.gunStats.bounce       = Mathf.Max(combinedBlock.gunStats.bounce, BOUNCE_MIN);
-        combinedBlock.gunStats.pierce       = Mathf.Max(combinedBlock.gunStats.pierce, PIERCE_MIN);
-        combinedBlock.gunStats.lifetime     = Mathf.Clamp(combinedBlock.gunStats.lifetime, LIFETIME_MIN, LIFETIME_MAX);
+        combinedBlock.gunStats.damage = Mathf.Max(combinedBlock.gunStats.damage, DAMAGE_MIN);
+        combinedBlock.gunStats.velocity = Mathf.Clamp(combinedBlock.gunStats.velocity, VELOCITY_MIN, VELOCITY_MAX);
+        combinedBlock.gunStats.size = Mathf.Clamp(combinedBlock.gunStats.size, SIZE_MIN, SIZE_MAX);
+        combinedBlock.gunStats.knockback = Mathf.Max(combinedBlock.gunStats.knockback, KNOCKBACK_MIN);
+        combinedBlock.gunStats.bounce = Mathf.Max(combinedBlock.gunStats.bounce, BOUNCE_MIN);
+        combinedBlock.gunStats.pierce = Mathf.Max(combinedBlock.gunStats.pierce, PIERCE_MIN);
+        combinedBlock.gunStats.lifetime = Mathf.Clamp(combinedBlock.gunStats.lifetime, LIFETIME_MIN, LIFETIME_MAX);
 
         return combinedBlock;
+    }
+
+    public StatBlockContext GetStackBlockContext()
+    {
+        StatBlockContext statBlockContext = new StatBlockContext();
+
+        UpdateStatBlockContext(this, ref statBlockContext);
+
+        return statBlockContext;
+    }
+
+    public static StatBlockContext GetCombinedStatBlockContext(IEnumerable<StatBlock> statBlocks)
+    {
+        StatBlockContext statBlockContext = new StatBlockContext();
+
+        foreach (StatBlock statBlock in statBlocks)
+        {
+            UpdateStatBlockContext(statBlock, ref statBlockContext);
+        }
+
+        return statBlockContext;
+    }
+
+    public static void UpdateStatBlockContext(StatBlock statBlock, ref StatBlockContext statBlockContext)
+    {
+        statBlockContext.AddContext(nameof(statBlock.playerStats.health), statBlock.blockType, nameof(statBlock.playerStats.health).SplitCamelCase(), statBlock.playerStats.health * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.runSpeed), statBlock.blockType, nameof(statBlock.playerStats.runSpeed).SplitCamelCase(), statBlock.playerStats.runSpeed * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.walkSpeed), statBlock.blockType, nameof(statBlock.playerStats.walkSpeed).SplitCamelCase(), statBlock.playerStats.walkSpeed * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.totalVision), statBlock.blockType, nameof(statBlock.playerStats.totalVision).SplitCamelCase(), statBlock.playerStats.totalVision * statBlock.stacks, isPercentage: true);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeAngle), statBlock.blockType, nameof(statBlock.playerStats.visionConeAngle).SplitCamelCase(), statBlock.playerStats.visionConeAngle * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeRadius), statBlock.blockType, nameof(statBlock.playerStats.visionConeRadius).SplitCamelCase(), statBlock.playerStats.visionConeRadius * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionProximityRadius), statBlock.blockType, nameof(statBlock.playerStats.visionProximityRadius).SplitCamelCase(), statBlock.playerStats.visionProximityRadius * statBlock.stacks);
+
+        statBlockContext.AddContext(nameof(statBlock.gunStats.magazineSize), statBlock.blockType, nameof(statBlock.gunStats.magazineSize).SplitCamelCase(), statBlock.gunStats.magazineSize * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.reloadSpeed), statBlock.blockType, nameof(statBlock.gunStats.reloadSpeed).SplitCamelCase(), statBlock.gunStats.reloadSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.fireSpeed), statBlock.blockType, nameof(statBlock.gunStats.fireSpeed).SplitCamelCase(), statBlock.gunStats.fireSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletStreams), statBlock.blockType, nameof(statBlock.gunStats.bulletStreams).SplitCamelCase(), statBlock.gunStats.bulletStreams * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletsPerShot), statBlock.blockType, nameof(statBlock.gunStats.bulletsPerShot).SplitCamelCase(), statBlock.gunStats.bulletsPerShot * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.spreadAngle), statBlock.blockType, nameof(statBlock.gunStats.spreadAngle).SplitCamelCase(), statBlock.gunStats.spreadAngle * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.accuracy), statBlock.blockType, nameof(statBlock.gunStats.accuracy).SplitCamelCase(), statBlock.gunStats.accuracy * statBlock.stacks, isPercentage: true);
+
+        statBlockContext.AddContext(nameof(statBlock.gunStats.damage), statBlock.blockType, nameof(statBlock.gunStats.damage).SplitCamelCase(), statBlock.gunStats.damage * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.velocity), statBlock.blockType, "Bullet Velocity", statBlock.gunStats.velocity * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.size), statBlock.blockType, "Bullet Size", statBlock.gunStats.size * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.knockback), statBlock.blockType, nameof(statBlock.gunStats.knockback).SplitCamelCase(), statBlock.gunStats.knockback * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bounce), statBlock.blockType, nameof(statBlock.gunStats.bounce).SplitCamelCase(), statBlock.gunStats.bounce * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.pierce), statBlock.blockType, nameof(statBlock.gunStats.pierce).SplitCamelCase(), statBlock.gunStats.pierce * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.lifetime), statBlock.blockType, nameof(statBlock.gunStats.lifetime).SplitCamelCase(), statBlock.gunStats.lifetime * statBlock.stacks);
+    }
+
+    public static IEnumerable<string> GetEventTooltips(StatBlock statBlock)
+    {
+        List<string> eventTooltips = new List<string>();
+        eventTooltips.AddRange(statBlock.events.OnFire.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+        eventTooltips.AddRange(statBlock.events.OnHit.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+        eventTooltips.AddRange(statBlock.events.OnKill.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+        eventTooltips.AddRange(statBlock.events.OnReload.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+        eventTooltips.AddRange(statBlock.events.OnSecond.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+
+        return eventTooltips;
+    }
+
+    public static IEnumerable<string> GetEventTooltips(IEnumerable<StatBlock> statBlocks)
+    {
+        List<string> eventTooltips = new List<string>();
+
+        foreach(var statBlock in statBlocks)
+        {
+            eventTooltips.AddRange(GetEventTooltips(statBlock));
+        }
+
+        return eventTooltips;
     }
 }

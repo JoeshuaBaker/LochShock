@@ -52,6 +52,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 5979630fbeb4d8a4f8cf3f7d0e8d230a, type: 3}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: rarity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: itemStats.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -111,9 +119,21 @@ PrefabInstance:
       propertyPath: itemStats.Array.data[0].gunStats.bulletsPerShot
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: itemStats.Array.data[1].events.OnFire.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: itemStats.Array.data[1].events.OnFire.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
     - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: m_Name
       value: The Framerate Destroyer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
