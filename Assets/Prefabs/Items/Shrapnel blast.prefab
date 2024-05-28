@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2563218117458641031
+--- !u!1001 &1227289798941575855
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -52,24 +52,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
-      propertyPath: itemStats.Array.data[1].gunStats.damage
-      value: -0.15
+      propertyPath: rarity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.accuracy
-      value: -0.03
+      propertyPath: levelUpCost
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
-      propertyPath: itemStats.Array.data[1].gunStats.accuracy
-      value: 0
+      propertyPath: itemStats.Array.data[0].gunStats.damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.Array.data[0].gunStats.damage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.bulletsPerShot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.Array.data[0].gunStats.bulletsPerShot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: m_Name
-      value: Parallel shot
+      value: Shrapnel blast
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
