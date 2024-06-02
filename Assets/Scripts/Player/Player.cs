@@ -139,8 +139,6 @@ public class Player : MonoBehaviour
         
     }
 
-  
-
     public void UpdateHp(int hpChange)
     {
         currentHp += hpChange;
@@ -501,11 +499,11 @@ public class Player : MonoBehaviour
         buffs.RemoveAll(buff => buff.currentDuration <= 0f);
 
         var allStats = inventory.GetItemStats();
-        if(guns.Length > 0)
-        {
-            allStats.Add(guns[0].stats);
-        }
         allStats.Add(this.stats);
+        if (guns.Length > 0)
+        {
+            allStats.AddRange(guns[0].stats);
+        }
         allStats.AddRange(buffs.Select(x => x.stats));
 
         this.allStats = allStats;

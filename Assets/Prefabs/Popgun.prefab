@@ -48,8 +48,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    blockType: 0
+  icon: {fileID: 21300000, guid: 7bd8940c023065f42bad0a8874fecbdb, type: 3}
+  rarity: 1
+  itemType: 1
+  level: 1
+  baseLevelUpCost: 0
+  levelUpCostScalar: 1.25
+  baseDisassembleValue: 0
+  disassembleRefundRatio: 0.7
+  itemStats:
+  - blockType: 4
+    playerStats:
+      health: 0
+      walkSpeed: 0
+      runSpeed: 0
+      totalVision: 0
+      visionConeAngle: 0
+      visionConeRadius: 0
+      visionProximityRadius: 0
+    gunStats:
+      magazineSize: 6
+      reloadSpeed: 1
+      fireSpeed: 0.5
+      bulletStreams: 1
+      bulletsPerShot: 1
+      spreadAngle: 0
+      accuracy: 1
+      damage: 10
+      velocity: 3.5
+      size: 0.5
+      knockback: 5
+      bounce: 0
+      pierce: 0
+      lifetime: 4
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
+    stacks: 1
+  levelUpStats:
+  - blockType: 4
     playerStats:
       health: 0
       walkSpeed: 0
@@ -67,7 +107,7 @@ MonoBehaviour:
       spreadAngle: 0
       accuracy: 0
       damage: 0
-      speed: 0
+      velocity: 0
       size: 0
       knockback: 0
       bounce: 0
@@ -79,6 +119,7 @@ MonoBehaviour:
       OnKill: []
       OnReload: []
       OnSecond: []
+    stacks: 0
   combinedStats:
     blockType: 0
     playerStats:
@@ -98,7 +139,7 @@ MonoBehaviour:
       spreadAngle: 0
       accuracy: 0
       damage: 0
-      speed: 0
+      velocity: 0
       size: 0
       knockback: 0
       bounce: 0
@@ -110,6 +151,7 @@ MonoBehaviour:
       OnKill: []
       OnReload: []
       OnSecond: []
+    stacks: 1
   emitter: {fileID: 4877568093956301522}
   reloadIndicator: {fileID: 0}
   ammoIndicator: {fileID: 0}
@@ -119,6 +161,13 @@ MonoBehaviour:
   muzzleFlashClose: {fileID: 0}
   ejectedCasing: {fileID: 0}
   lightAnimator: {fileID: 0}
+  reloading: 0
+  reloadSpeed: 0
+  reloadTimer: 0
+  fireSpeed: 0
+  bulletCooldown: 0
+  maxMagazine: 0
+  magazine: 0
 --- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +229,7 @@ MonoBehaviour:
       spreadAngle: 0
       accuracy: 0
       damage: 0
-      speed: 0
+      velocity: 0
       size: 0
       knockback: 0
       bounce: 0
@@ -192,6 +241,7 @@ MonoBehaviour:
       OnKill: []
       OnReload: []
       OnSecond: []
+    stacks: 1
   AutoFire: 1
   Direction: {x: 0, y: 1}
   RotationSpeed: 0

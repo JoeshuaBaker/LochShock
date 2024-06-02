@@ -4,9 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 
 //Extend Item
-public class Gun : MonoBehaviour
+public class Gun : Item
 {
-    public StatBlock stats;
     public StatBlock combinedStats;
     public GunEmitter emitter;
     public Image reloadIndicator;
@@ -18,13 +17,13 @@ public class Gun : MonoBehaviour
     public ParticleSystem ejectedCasing;
     public Animator lightAnimator;
 
-    private bool reloading;
-    private float reloadSpeed;
-    private float reloadTimer;
-    private float fireSpeed;
-    private float bulletCooldown;
-    private int maxMagazine;
-    private int magazine;
+    [SerializeField] private bool reloading;
+    [SerializeField] private float reloadSpeed;
+    [SerializeField] private float reloadTimer;
+    [SerializeField] private float fireSpeed;
+    [SerializeField] private float bulletCooldown;
+    [SerializeField] private int maxMagazine;
+    [SerializeField] private int magazine;
 
     public void Shoot()
     {
@@ -66,9 +65,11 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ApplyStatBlock(stats);
+        if(itemStats.Length > 0)
+        {
+            ApplyStatBlock(itemStats[0]);
+        }
         combinedStats = new StatBlock(StatBlock.BlockType.Additive);
-        emitter.ApplyStatBlock(stats);
         magazine = maxMagazine;
 
         if(emitter == null)
@@ -115,5 +116,11 @@ public class Gun : MonoBehaviour
         {
             reloadIndicator.fillAmount = reloadTimer / reloadSpeed;
         }
+    }
+
+    private void Reset()
+    {
+        itemStats = new StatBlock[] { new StatBlock(StatBlock.BlockType.Base) };
+        levelUpStats = new StatBlock[] { new StatBlock(StatBlock.BlockType.Base) };
     }
 }

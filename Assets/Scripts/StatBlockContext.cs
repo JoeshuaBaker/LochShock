@@ -139,16 +139,17 @@ public class StatBlockContext
     private Dictionary<string, StatContext> statDictionary = new Dictionary<string, StatContext>();
 
     public void AddContext(
-        string key, 
+        string key,
         StatBlock.BlockType blockType,
         string valueName,
         float value,
         bool isPercentage = false,
         bool positiveIsGood = true,
         bool flipSign = false,
-        string text = "%value%")
+        string text = "%value%",
+        float baseValue = 0f)
     {
-        if(value != 0)
+        if(value != 0 && !(blockType == StatBlock.BlockType.Base && value == baseValue))
         {
             string typeKey = key + (int)blockType;
             bool contextExists = statDictionary.TryGetValue(typeKey, out StatContext existingContext);

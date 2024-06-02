@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
         {
             if(item != null)
             {
-                statBlocks.AddRange(item.itemStats);
+                statBlocks.AddRange(item.stats);
             }
         }
 

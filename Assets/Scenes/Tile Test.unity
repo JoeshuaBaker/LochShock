@@ -309,11 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &489097089 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8190157738596198406, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &527951893
 GameObject:
   m_ObjectHideFlags: 3
@@ -424,11 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470e29d197b58f84987c6dc11b5a6097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &734961445 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6968092548742661795, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &776874480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -526,11 +516,11 @@ PrefabInstance:
       objectReference: {fileID: 1419033872}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.bounce
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.gunStats.pierce
@@ -581,37 +571,13 @@ PrefabInstance:
       value: 0.642
       objectReference: {fileID: 0}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: emitter
-      value: 
-      objectReference: {fileID: 876329987}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: ammoIndicator
       value: 
       objectReference: {fileID: 1380081661}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: ejectedCasing
-      value: 
-      objectReference: {fileID: 1102294266}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: lightAnimator
-      value: 
-      objectReference: {fileID: 734961445}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashFar
-      value: 
-      objectReference: {fileID: 1691846529}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashMain
-      value: 
-      objectReference: {fileID: 489097089}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: reloadIndicator
       value: 
       objectReference: {fileID: 808812506}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashClose
-      value: 
-      objectReference: {fileID: 1069298346}
     - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: ammoIndicatorShadow
       value: 
@@ -848,27 +814,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &876329987 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5e135218c29f344997b66c4fcd304a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!198 &1069298346 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8190157738174026362, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1102294266 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6806691829671128440, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1380081661 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5378267405598117165, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
@@ -998,11 +943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0c06cb5ed18d64da0aa2fc5b7ed2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &1691846529 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8190157738476594910, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-  m_PrefabInstance: {fileID: 776874480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1705667523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,7 +953,7 @@ PrefabInstance:
     - target: {fileID: 2840904393595432378, guid: 485d3092db3bdb4479f726d7341663cd, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 7735501930855755236, guid: c6f2e043608dae44ca1127be252654ca, type: 3}
+      objectReference: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
     - target: {fileID: 8672000542395815764, guid: 485d3092db3bdb4479f726d7341663cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

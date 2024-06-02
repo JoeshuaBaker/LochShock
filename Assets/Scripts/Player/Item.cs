@@ -45,6 +45,24 @@ public class Item : MonoBehaviour
         }
     }
 
+    private IEnumerable<StatBlock> _stats = null;
+    public IEnumerable<StatBlock> stats
+    {
+        get
+        {
+            if (_stats == null)
+            {
+                _stats = itemStats.Concat(levelUpStats);
+            }
+
+            foreach(var levelUpStat in levelUpStats)
+            {
+                levelUpStat.stacks = level - 1;
+            }
+
+            return _stats;
+        }
+    }
     public StatBlock[] itemStats = new StatBlock[]
     {
         new StatBlock(StatBlock.BlockType.xMult)
@@ -56,7 +74,7 @@ public class Item : MonoBehaviour
 
     public StatBlockContext GetStatBlockContext()
     {
-        return StatBlock.GetCombinedStatBlockContext(itemStats.Concat(levelUpStats));
+        return StatBlock.GetCombinedStatBlockContext(stats);
     }
 
     public IEnumerable<string> GetEventTooltips()

@@ -134,7 +134,8 @@ public class StatBlock
     public static StatBlock Combine(IEnumerable<StatBlock> blocks)
     {
         //Sort blocks by type
-        StatBlock combinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base).Copy() ?? new StatBlock(BlockType.Base);
+        StatBlock baseCombinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base) ?? new StatBlock(BlockType.Base);
+        StatBlock combinedBlock = baseCombinedBlock.Copy() ;
         List<StatBlock> additiveBlocks = new List<StatBlock>();
         List<StatBlock> multBlocks = new List<StatBlock>();
         List<StatBlock> xMultblocks = new List<StatBlock>();
@@ -147,7 +148,7 @@ public class StatBlock
             {
                 //treat all base stat blocks beyond the first as additive stat blocks
                 case BlockType.Base:
-                    if (block != combinedBlock)
+                    if (block != baseCombinedBlock)
                     {
                         additiveBlocks.Add(block);
                     }
@@ -427,19 +428,24 @@ public class StatBlock
 
         statBlockContext.AddContext(nameof(statBlock.gunStats.magazineSize), statBlock.blockType, nameof(statBlock.gunStats.magazineSize).SplitCamelCase(), statBlock.gunStats.magazineSize * statBlock.stacks);
         statBlockContext.AddContext(nameof(statBlock.gunStats.reloadSpeed), statBlock.blockType, nameof(statBlock.gunStats.reloadSpeed).SplitCamelCase(), statBlock.gunStats.reloadSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.fireSpeed), statBlock.blockType, nameof(statBlock.gunStats.fireSpeed).SplitCamelCase(), statBlock.gunStats.fireSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletStreams), statBlock.blockType, nameof(statBlock.gunStats.bulletStreams).SplitCamelCase(), statBlock.gunStats.bulletStreams * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletsPerShot), statBlock.blockType, nameof(statBlock.gunStats.bulletsPerShot).SplitCamelCase(), statBlock.gunStats.bulletsPerShot * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.fireSpeed), statBlock.blockType, "Fire Rate", statBlock.gunStats.fireSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletStreams), statBlock.blockType, nameof(statBlock.gunStats.bulletStreams).SplitCamelCase(), statBlock.gunStats.bulletStreams * statBlock.stacks, baseValue: BULLETSTREAMS_MIN);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletsPerShot), statBlock.blockType, nameof(statBlock.gunStats.bulletsPerShot).SplitCamelCase(), statBlock.gunStats.bulletsPerShot * statBlock.stacks, baseValue: BULLETSPERSHOT_MIN);
         statBlockContext.AddContext(nameof(statBlock.gunStats.spreadAngle), statBlock.blockType, nameof(statBlock.gunStats.spreadAngle).SplitCamelCase(), statBlock.gunStats.spreadAngle * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.accuracy), statBlock.blockType, nameof(statBlock.gunStats.accuracy).SplitCamelCase(), statBlock.gunStats.accuracy * statBlock.stacks, isPercentage: true);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.accuracy), statBlock.blockType, nameof(statBlock.gunStats.accuracy).SplitCamelCase(), statBlock.gunStats.accuracy * statBlock.stacks, isPercentage: true, baseValue: ACCURACY_MAX);
 
         statBlockContext.AddContext(nameof(statBlock.gunStats.damage), statBlock.blockType, nameof(statBlock.gunStats.damage).SplitCamelCase(), statBlock.gunStats.damage * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.velocity), statBlock.blockType, "Bullet Velocity", statBlock.gunStats.velocity * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.size), statBlock.blockType, "Bullet Size", statBlock.gunStats.size * statBlock.stacks);
         statBlockContext.AddContext(nameof(statBlock.gunStats.knockback), statBlock.blockType, nameof(statBlock.gunStats.knockback).SplitCamelCase(), statBlock.gunStats.knockback * statBlock.stacks);
         statBlockContext.AddContext(nameof(statBlock.gunStats.bounce), statBlock.blockType, nameof(statBlock.gunStats.bounce).SplitCamelCase(), statBlock.gunStats.bounce * statBlock.stacks);
         statBlockContext.AddContext(nameof(statBlock.gunStats.pierce), statBlock.blockType, nameof(statBlock.gunStats.pierce).SplitCamelCase(), statBlock.gunStats.pierce * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.lifetime), statBlock.blockType, nameof(statBlock.gunStats.lifetime).SplitCamelCase(), statBlock.gunStats.lifetime * statBlock.stacks);
+
+        //Hidden properties for guns
+        if (statBlock.blockType != BlockType.Base)
+        {
+            statBlockContext.AddContext(nameof(statBlock.gunStats.size), statBlock.blockType, "Bullet Size", statBlock.gunStats.size * statBlock.stacks);
+            statBlockContext.AddContext(nameof(statBlock.gunStats.velocity), statBlock.blockType, "Bullet Velocity", statBlock.gunStats.velocity * statBlock.stacks);
+            statBlockContext.AddContext(nameof(statBlock.gunStats.lifetime), statBlock.blockType, nameof(statBlock.gunStats.lifetime).SplitCamelCase(), statBlock.gunStats.lifetime * statBlock.stacks);
+        }
     }
 
     public static IEnumerable<string> GetEventTooltips(StatBlock statBlock)
