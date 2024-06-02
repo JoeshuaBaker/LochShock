@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public Transform hpBar;
     public Gun[] guns;
     public World world;
+    public GameplayUI gameplayUI;
     public int maxHp
     {
         get
@@ -136,7 +137,7 @@ public class Player : MonoBehaviour
         Shoot();
         SetVision();
         CheckDeath();
-        
+        UpdateUI();
     }
 
     public void UpdateHp(int hpChange)
@@ -380,7 +381,6 @@ public class Player : MonoBehaviour
             mechDying.SetActive(false);
             hitboxSprite.enabled = false;
             isDead = true;
-            
         }
 
     }
@@ -512,6 +512,25 @@ public class Player : MonoBehaviour
         if(guns.Length > 0)
         {
             guns[0].ApplyStatBlock(combinedStats);
+        }
+    }
+
+    public void UpdateUI()
+    {
+        if(gameplayUI != null)
+        {
+            if(guns.Count() > 0)
+            {
+                gameplayUI.SetAmmo(guns[0].magazine, guns[0].maxMagazine);
+            }
+
+            gameplayUI.SetHp(currentHp, maxHp);
+            gameplayUI.SetOrbs((int)orbsHeld);
+
+            if(isDead)
+            {
+                gameplayUI.ShowSignalLost();
+            }
         }
     }
 }

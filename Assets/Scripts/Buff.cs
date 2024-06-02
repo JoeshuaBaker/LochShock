@@ -28,6 +28,12 @@ public class Buff : ScriptableObject
 
     public Instance GetInstance()
     {
+        if (string.IsNullOrEmpty(buffName))
+        {
+            buffName = name;
+            Debug.LogWarning($"Warning: Set buff name on buff {name}");
+        }
+
         return new Instance
         {
             buff = this,

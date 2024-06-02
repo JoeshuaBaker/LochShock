@@ -17,13 +17,13 @@ public class Gun : Item
     public ParticleSystem ejectedCasing;
     public Animator lightAnimator;
 
-    [SerializeField] private bool reloading;
-    [SerializeField] private float reloadSpeed;
-    [SerializeField] private float reloadTimer;
-    [SerializeField] private float fireSpeed;
-    [SerializeField] private float bulletCooldown;
-    [SerializeField] private int maxMagazine;
-    [SerializeField] private int magazine;
+    private bool reloading;
+    private float reloadSpeed;
+    private float reloadTimer;
+    private float fireSpeed;
+    private float bulletCooldown;
+    public int maxMagazine;
+    public int magazine;
 
     public void Shoot()
     {
