@@ -10,7 +10,7 @@ public static class Utilities
         return new Vector2(vec3.x, vec3.y);
     }
 
-    public static string SplitCamelCase(this string str)
+    public static string SplitCamelCaseLower(this string str)
     {
         return Regex.Replace(
             Regex.Replace(
@@ -21,5 +21,18 @@ public static class Utilities
             @"(\p{Ll})(\P{Ll})",
             "$1 $2"
         ).Replace("  ", " ").ToLower();
+    }
+
+    public static string SplitCamelCase(this string str)
+    {
+        return Regex.Replace(
+            Regex.Replace(
+                str,
+                @"(\P{Ll})(\P{Ll}\p{Ll})",
+                "$1$2"
+            ),
+            @"(\p{Ll})(\P{Ll})",
+            "$1 $2"
+        ).Replace("  ", " ");
     }
 }

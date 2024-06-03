@@ -418,33 +418,33 @@ public class StatBlock
 
     public static void UpdateStatBlockContext(StatBlock statBlock, ref StatBlockContext statBlockContext)
     {
-        statBlockContext.AddContext(nameof(statBlock.playerStats.health), statBlock.blockType, nameof(statBlock.playerStats.health).SplitCamelCase(), statBlock.playerStats.health * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.runSpeed), statBlock.blockType, nameof(statBlock.playerStats.runSpeed).SplitCamelCase(), statBlock.playerStats.runSpeed * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.walkSpeed), statBlock.blockType, nameof(statBlock.playerStats.walkSpeed).SplitCamelCase(), statBlock.playerStats.walkSpeed * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.totalVision), statBlock.blockType, nameof(statBlock.playerStats.totalVision).SplitCamelCase(), statBlock.playerStats.totalVision * statBlock.stacks, isPercentage: true);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeAngle), statBlock.blockType, nameof(statBlock.playerStats.visionConeAngle).SplitCamelCase(), statBlock.playerStats.visionConeAngle * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeRadius), statBlock.blockType, nameof(statBlock.playerStats.visionConeRadius).SplitCamelCase(), statBlock.playerStats.visionConeRadius * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.playerStats.visionProximityRadius), statBlock.blockType, nameof(statBlock.playerStats.visionProximityRadius).SplitCamelCase(), statBlock.playerStats.visionProximityRadius * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.health), statBlock.blockType, nameof(statBlock.playerStats.health).SplitCamelCaseLower(), statBlock.playerStats.health * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.runSpeed), statBlock.blockType, nameof(statBlock.playerStats.runSpeed).SplitCamelCaseLower(), statBlock.playerStats.runSpeed * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.walkSpeed), statBlock.blockType, nameof(statBlock.playerStats.walkSpeed).SplitCamelCaseLower(), statBlock.playerStats.walkSpeed * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.totalVision), statBlock.blockType, nameof(statBlock.playerStats.totalVision).SplitCamelCaseLower(), statBlock.playerStats.totalVision * statBlock.stacks, isPercentage: true);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeAngle), statBlock.blockType, nameof(statBlock.playerStats.visionConeAngle).SplitCamelCaseLower(), statBlock.playerStats.visionConeAngle * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionConeRadius), statBlock.blockType, nameof(statBlock.playerStats.visionConeRadius).SplitCamelCaseLower(), statBlock.playerStats.visionConeRadius * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.playerStats.visionProximityRadius), statBlock.blockType, nameof(statBlock.playerStats.visionProximityRadius).SplitCamelCaseLower(), statBlock.playerStats.visionProximityRadius * statBlock.stacks);
 
-        statBlockContext.AddContext(nameof(statBlock.gunStats.magazineSize), statBlock.blockType, nameof(statBlock.gunStats.magazineSize).SplitCamelCase(), statBlock.gunStats.magazineSize * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.reloadSpeed), statBlock.blockType, nameof(statBlock.gunStats.reloadSpeed).SplitCamelCase(), statBlock.gunStats.reloadSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.magazineSize), statBlock.blockType, nameof(statBlock.gunStats.magazineSize).SplitCamelCaseLower(), statBlock.gunStats.magazineSize * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.reloadSpeed), statBlock.blockType, nameof(statBlock.gunStats.reloadSpeed).SplitCamelCaseLower(), statBlock.gunStats.reloadSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
         statBlockContext.AddContext(nameof(statBlock.gunStats.fireSpeed), statBlock.blockType, "Fire Rate", statBlock.gunStats.fireSpeed * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletStreams), statBlock.blockType, nameof(statBlock.gunStats.bulletStreams).SplitCamelCase(), statBlock.gunStats.bulletStreams * statBlock.stacks, baseValue: BULLETSTREAMS_MIN);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletsPerShot), statBlock.blockType, nameof(statBlock.gunStats.bulletsPerShot).SplitCamelCase(), statBlock.gunStats.bulletsPerShot * statBlock.stacks, baseValue: BULLETSPERSHOT_MIN);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.spreadAngle), statBlock.blockType, nameof(statBlock.gunStats.spreadAngle).SplitCamelCase(), statBlock.gunStats.spreadAngle * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.accuracy), statBlock.blockType, nameof(statBlock.gunStats.accuracy).SplitCamelCase(), statBlock.gunStats.accuracy * statBlock.stacks, isPercentage: true, baseValue: ACCURACY_MAX);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletStreams), statBlock.blockType, nameof(statBlock.gunStats.bulletStreams).SplitCamelCaseLower(), statBlock.gunStats.bulletStreams * statBlock.stacks, baseValue: BULLETSTREAMS_MIN);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bulletsPerShot), statBlock.blockType, nameof(statBlock.gunStats.bulletsPerShot).SplitCamelCaseLower(), statBlock.gunStats.bulletsPerShot * statBlock.stacks, baseValue: BULLETSPERSHOT_MIN);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.spreadAngle), statBlock.blockType, nameof(statBlock.gunStats.spreadAngle).SplitCamelCaseLower(), statBlock.gunStats.spreadAngle * statBlock.stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.accuracy), statBlock.blockType, nameof(statBlock.gunStats.accuracy).SplitCamelCaseLower(), statBlock.gunStats.accuracy * statBlock.stacks, isPercentage: true, baseValue: ACCURACY_MAX);
 
-        statBlockContext.AddContext(nameof(statBlock.gunStats.damage), statBlock.blockType, nameof(statBlock.gunStats.damage).SplitCamelCase(), statBlock.gunStats.damage * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.knockback), statBlock.blockType, nameof(statBlock.gunStats.knockback).SplitCamelCase(), statBlock.gunStats.knockback * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.bounce), statBlock.blockType, nameof(statBlock.gunStats.bounce).SplitCamelCase(), statBlock.gunStats.bounce * statBlock.stacks);
-        statBlockContext.AddContext(nameof(statBlock.gunStats.pierce), statBlock.blockType, nameof(statBlock.gunStats.pierce).SplitCamelCase(), statBlock.gunStats.pierce * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.damage), statBlock.blockType, nameof(statBlock.gunStats.damage).SplitCamelCaseLower(), statBlock.gunStats.damage * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.knockback), statBlock.blockType, nameof(statBlock.gunStats.knockback).SplitCamelCaseLower(), statBlock.gunStats.knockback * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.bounce), statBlock.blockType, nameof(statBlock.gunStats.bounce).SplitCamelCaseLower(), statBlock.gunStats.bounce * statBlock.stacks);
+        statBlockContext.AddContext(nameof(statBlock.gunStats.pierce), statBlock.blockType, nameof(statBlock.gunStats.pierce).SplitCamelCaseLower(), statBlock.gunStats.pierce * statBlock.stacks);
 
         //Hidden properties for guns
         if (statBlock.blockType != BlockType.Base)
         {
             statBlockContext.AddContext(nameof(statBlock.gunStats.size), statBlock.blockType, "Bullet Size", statBlock.gunStats.size * statBlock.stacks);
             statBlockContext.AddContext(nameof(statBlock.gunStats.velocity), statBlock.blockType, "Bullet Velocity", statBlock.gunStats.velocity * statBlock.stacks);
-            statBlockContext.AddContext(nameof(statBlock.gunStats.lifetime), statBlock.blockType, nameof(statBlock.gunStats.lifetime).SplitCamelCase(), statBlock.gunStats.lifetime * statBlock.stacks);
+            statBlockContext.AddContext(nameof(statBlock.gunStats.lifetime), statBlock.blockType, nameof(statBlock.gunStats.lifetime).SplitCamelCaseLower(), statBlock.gunStats.lifetime * statBlock.stacks);
         }
     }
 

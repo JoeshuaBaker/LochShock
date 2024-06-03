@@ -79,12 +79,6 @@ public class Item : MonoBehaviour
 
     public IEnumerable<string> GetEventTooltips()
     {
-        var debugConcatStats = itemStats.Concat(levelUpStats);
-        Debug.Log("Concat count" + debugConcatStats.Count());
-        foreach(var stat in debugConcatStats)
-        {
-            Debug.Log(stat.events.OnHit.Count());
-        }
         return StatBlock.GetEventTooltips(itemStats.Concat(levelUpStats));
     }
 }

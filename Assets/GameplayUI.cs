@@ -11,19 +11,19 @@ public class GameplayUI : MonoBehaviour
     public TMP_Text activeAmmoText;
     public TMP_Text inactiveAmmoText;
     public Transform healthParent;
-    public List<Image> healthList;
+    public List<Animator> healthList;
     public Transform orbParent;
     public List<Image> orbList;
-    public Image healthPrefab;
+    public Animator healthPrefab;
     public Image orbPrefab;
 
     public Animator signalLost;
 
-    //Health Images
-    public Sprite emptyHealthSprite;
-    public Sprite fullHealthSprite;
-    public Sprite emptyArmorSprite;
-    public Sprite fullArmorSprite;
+    //Animator State Names For Health
+    private string fullHealthAnim = "UIHeartBeat";
+    private string emptyHealthAnim = "UIHeartEmpty";
+    private string fullArmorAnim = "UIArmorShine";
+    private string emptyArmorAnim = "UIArmorEmpty";
 
     private void Start()
     {
@@ -37,6 +37,18 @@ public class GameplayUI : MonoBehaviour
         SetDistance();
     }
 
+    private void SetAnimStateIfNotSet(Animator anim, AnimatorStateInfo info, string state, float normalizedTime)
+    {
+        if(!anim.gameObject.activeSelf)
+        {
+            anim.gameObject.SetActive(true);
+        }
+        if (!info.IsName(state))
+        {
+            anim.Play(state, 0, normalizedTime + Time.deltaTime);
+        }
+    }
+
     public void SetHp(int currentHp, int maxHp, int currentArmor = -1, int maxArmor = -1)
     {
         int iconsNeeded = Mathf.Max(maxHp + maxArmor, maxHp);
@@ -48,25 +60,28 @@ public class GameplayUI : MonoBehaviour
             }
         }
 
+        float syncTime = 0f;
         for(int i = 0; i < healthList.Count; i++)
         {
-            healthList[i].gameObject.SetActive(true);
+            Animator current = healthList[i];
+            AnimatorStateInfo stateInfo = current.GetCurrentAnimatorStateInfo(0);
+            if (i == 0) syncTime = stateInfo.normalizedTime;
 
             if (i < currentHp)
             {
-                healthList[i].sprite = fullHealthSprite;
+                SetAnimStateIfNotSet(current, stateInfo, fullHealthAnim, syncTime);
             }
             else if (i < maxHp)
             {
-                healthList[i].sprite = emptyHealthSprite;
+                SetAnimStateIfNotSet(current, stateInfo, emptyHealthAnim, syncTime);
             }
             else if (currentArmor > -1 && i - maxHp < currentArmor)
             {
-                healthList[i].sprite = fullArmorSprite;
+                SetAnimStateIfNotSet(current, stateInfo, fullArmorAnim, syncTime);
             }
             else if (maxArmor > -1 && i - maxHp < maxArmor)
             {
-                healthList[i].sprite = emptyArmorSprite;
+                SetAnimStateIfNotSet(current, stateInfo, emptyArmorAnim, syncTime);
             }
             else
             {
@@ -107,7 +122,7 @@ public class GameplayUI : MonoBehaviour
 
     public void SetTime()
     {
-        timeText.text = $"{(int)(Time.timeSinceLevelLoad / 60f)}:{(int)(Time.timeSinceLevelLoad % 60f)}";
+        timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
     }
 
     public void SetDistance()

@@ -8,7 +8,12 @@ using UnityEngine.UI;
 public class ItemDataFrame : MonoBehaviour
 {
     public Item item;
-    private Item cachedItem;
+    public bool isStash = false;
+    public Item.ItemType slotType = Item.ItemType.Item;
+    public InventoryUI.InventoryUIState inventoryUIState;
+    public Transform fullFrameParent;
+    public Transform emptyFrameParent;
+    public Animator flyinAnimator;
     public Image icon;
     public TMP_Text itemName;
     public TMP_Text itemLevel;
@@ -17,67 +22,113 @@ public class ItemDataFrame : MonoBehaviour
     public Sprite[] frameRarities;
     public TMP_Text itemStatusSlot;
     public TMP_Text itemData;
-    public Button levelUpButton;
-    public TMP_Text levelUpButtonText;
-    public Button disassembleButton;
-    public TMP_Text disassembleButtonText;
+    public Button topButton;
+    public TMP_Text topButtonText;
+    public Button bottomButton;
+    public TMP_Text bottomButtonText;
+    public TMP_Text emptyFrameSlotText;
+    public TMP_Text emptyFrameSlotGlowText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(item != null)
+        {
+            slotType = item.itemType;
+            ReflectInventoryState(inventoryUIState, item);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(item != null && cachedItem == null)
-        {
-            UpdateFields();
-            cachedItem = item;
-        }
-
-        if(item != null && cachedItem != null && item != cachedItem)
-        {
-            UpdateFields();
-            cachedItem = item;
-        }
+        
     }
 
-    void UpdateFields()
+    private void SetItem(Item item)
     {
-        if (item != null)
+        this.item = item;
+        topButton.interactable = item != null;
+        bottomButton.interactable = item != null;
+
+        if (item == null)
         {
-            icon.sprite = item.icon;
-            if((int)item.rarity < frameRarities.Length)
-            {
-                itemFrame.sprite = frameRarities[(int)item.rarity];
-            }
-            itemName.text = item.name;
-            itemLevel.text = "Lv " + item.level.ToString();
-            itemRarity.text = item.rarity.ToString();
-            itemStatusSlot.text = item.itemType.ToString();
-            levelUpButtonText.text = $"Level Up ({item.levelUpCost})";
-            disassembleButtonText.text = $"Disassemble ({item.disassembleValue})";
-
-            StatBlockContext context = item.GetStatBlockContext();
-            IEnumerable<string> itemDataStrings = context.GetStatContextStrings();
-            IEnumerable<string> eventStrings = item.GetEventTooltips();
-
-            string itemDataString = "";
-            foreach(string data in itemDataStrings)
-            {
-                itemDataString += data + Environment.NewLine;
-            }
-
-            itemDataString += Environment.NewLine;
-
-            foreach(string eventString in eventStrings)
-            {
-                itemDataString += eventString + Environment.NewLine;
-            }
-
-            itemData.text = itemDataString.TrimEnd();
+            return;
         }
+
+        icon.sprite = item.icon;
+        if ((int)item.rarity < frameRarities.Length)
+        {
+            itemFrame.sprite = frameRarities[(int)item.rarity];
+        }
+        itemName.text = item.name;
+        itemLevel.text = "Lv " + item.level.ToString();
+        itemRarity.text = item.rarity.ToString();
+        itemStatusSlot.text = item.itemType.ToString();
+        topButtonText.text = topButtonText.text.Replace("%value%", item.levelUpCost.ToString());
+        bottomButtonText.text = bottomButtonText.text.Replace("%value%", item.disassembleValue.ToString());
+
+        StatBlockContext context = item.GetStatBlockContext();
+        IEnumerable<string> itemDataStrings = context.GetStatContextStrings();
+        IEnumerable<string> eventStrings = item.GetEventTooltips();
+
+        string itemDataString = "";
+        foreach (string data in itemDataStrings)
+        {
+            itemDataString += data + Environment.NewLine;
+        }
+
+        itemDataString += Environment.NewLine;
+
+        foreach (string eventString in eventStrings)
+        {
+            itemDataString += eventString + Environment.NewLine;
+        }
+
+        itemData.text = itemDataString.TrimEnd();
+    }
+
+    public void ReflectInventoryState(InventoryUI.InventoryUIState state, Item item, int offset = 0)
+    {
+        inventoryUIState = state;
+
+        switch (state)
+        {
+            case InventoryUI.InventoryUIState.Inventory:
+                gameObject.SetActive(true);
+                flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));
+                fullFrameParent.gameObject.SetActive(item != null);
+                if(isStash)
+                {
+                    emptyFrameSlotText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
+                    emptyFrameSlotGlowText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
+                }
+                else
+                {
+                    emptyFrameSlotText.text = slotType.ToString();
+                    emptyFrameSlotGlowText.text = slotType.ToString();
+                }
+                break;
+
+            case InventoryUI.InventoryUIState.Orb:
+                gameObject.SetActive(item != null);
+                fullFrameParent.gameObject.SetActive(item != null);
+                flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));
+                break;
+
+            default:
+                topButtonText.text = "";
+                bottomButtonText.text = "";
+                break;
+        }
+
+        SetItem(item);
+    }
+
+    public void SetupButton(Button button, TMP_Text buttonText, Action<ItemDataFrame> function, string functionName, bool hasValue)
+    {
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => { function.Invoke(this); });
+        buttonText.text = $"{functionName}{(hasValue ? " (%value%)" : "")}";
     }
 }

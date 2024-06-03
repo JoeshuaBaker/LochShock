@@ -73,7 +73,7 @@ public class StatBlockContext
             switch (type)
             {
                 case StatBlock.BlockType.Set:
-                    return $"{valueName.SplitCamelCase()} is always ";
+                    return $"{valueName.SplitCamelCaseLower()} is always ";
 
                 default:
                 case StatBlock.BlockType.Base:
@@ -112,7 +112,7 @@ public class StatBlockContext
                 case StatBlock.BlockType.PlusMult:
                 case StatBlock.BlockType.Additive:
                 case StatBlock.BlockType.xMult:
-                    return valueName.SplitCamelCase();
+                    return valueName.SplitCamelCaseLower();
             }
         }
 

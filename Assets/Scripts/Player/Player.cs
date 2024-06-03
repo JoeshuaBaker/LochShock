@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public string[] limbSpriteDownName;
     public float limbTransitionTime = 0.5f;
     public Transform hpBar;
-    public Gun[] guns;
     public World world;
     public GameplayUI gameplayUI;
     public int maxHp
@@ -395,14 +394,10 @@ public class Player : MonoBehaviour
         xy = xy.normalized;
         mouseDirection = xy;
 
-        foreach (var gun in guns)
-        {
-            gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
-            gun.emitter.Direction = xy;
-        }
+        inventory.activeGun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
+        inventory.activeGun.emitter.Direction = xy;
 
         DrawSprites();
-
     }
 
     private void DrawSprites()
@@ -469,10 +464,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        foreach(var gun in guns) 
-        {
-            gun.Shoot();
-        }
+        inventory.activeGun.Shoot();
     }
 
     private void OnSecond()
@@ -500,29 +492,20 @@ public class Player : MonoBehaviour
 
         var allStats = inventory.GetItemStats();
         allStats.Add(this.stats);
-        if (guns.Length > 0)
-        {
-            allStats.AddRange(guns[0].stats);
-        }
+        allStats.AddRange(inventory.activeGun.stats);
         allStats.AddRange(buffs.Select(x => x.stats));
 
         this.allStats = allStats;
         var combinedStats = StatBlock.Combine(allStats);
         this.combinedStats = combinedStats;
-        if(guns.Length > 0)
-        {
-            guns[0].ApplyStatBlock(combinedStats);
-        }
+        inventory.activeGun.ApplyStatBlock(combinedStats);
     }
 
     public void UpdateUI()
     {
         if(gameplayUI != null)
         {
-            if(guns.Count() > 0)
-            {
-                gameplayUI.SetAmmo(guns[0].magazine, guns[0].maxMagazine);
-            }
+            gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine);
 
             gameplayUI.SetHp(currentHp, maxHp);
             gameplayUI.SetOrbs((int)orbsHeld);
