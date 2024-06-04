@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     private Dictionary<Item.ItemType, Item[]> itemMap;
     public int scrap = 0;
     public List<Item> OrbItemPrefabs;
+    public List<Item> TwoOrbItemPrefabs;
     public InventoryUI inventoryUI;
 
     private void Start()
@@ -30,7 +31,7 @@ public class Inventory : MonoBehaviour
         {
             for(int i = 0; i < Player.activePlayer.orbsHeld; i++)
             {
-                AddItem(OrbItemPrefabs[Random.Range(0, OrbItemPrefabs.Count)]);
+                //ListOrbItemPrefabs[Random.Range(0, OrbItemPrefabs.Count)]);
             }
             
             if(inventoryUI != null)
