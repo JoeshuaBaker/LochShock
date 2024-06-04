@@ -17,8 +17,8 @@ public class InventoryUI : MonoBehaviour
 
     //Internal State Variables
     public InventoryUIState state = InventoryUIState.Close;
-
     bool isSetup = false;
+    public Inventory inventory;
 
     //Item Frames
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
@@ -28,7 +28,8 @@ public class InventoryUI : MonoBehaviour
     public ItemDataFrame[] activeItemFrames = new ItemDataFrame[1];
     public ItemDataFrame[] stashItemFrames = new ItemDataFrame[2];
 
-    //Buttons
+    //Prefab References
+    public Transform bottomFrameParent;
     public Button statsButton;
     public TMP_Text statsButtonText;
     public Button inventoryButton;
@@ -76,14 +77,13 @@ public class InventoryUI : MonoBehaviour
         isSetup = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TransitionState(InventoryUIState newState, Inventory inventory = null, Item[] items = null)
     {
-
-    }
-
-    public void TransitionState(InventoryUIState newState, List<Item> items = null)
-    {
+        if(inventory != null)
+        {
+            this.inventory = inventory;
+        }
+        
         if(!isSetup)
         {
             Setup();
@@ -115,8 +115,10 @@ public class InventoryUI : MonoBehaviour
         state = newState;
     }
 
-    private void Inventory(InventoryUIState newState, List<Item> items)
+    private void Inventory(InventoryUIState newState, Item[] items)
     {
+        bottomFrameParent.gameObject.SetActive(true);
+
         Inventory inventory = Player.activePlayer.inventory;
         Gun[] weapons = inventory.guns;
         Item[] activeItem = inventory.activeItem;
@@ -149,11 +151,16 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void Orb(InventoryUIState newState, List<Item> items)
+    private void Orb(InventoryUIState newState, Item[] items)
     {
+        if (items.Length <= 5)
+        {
+            bottomFrameParent.gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < allFrames.Length; i++)
         {
-            bool inRange = i < items.Count;
+            bool inRange = i < items.Length;
             ItemDataFrame frame = allFrames[i];
             frame.ReflectInventoryState(newState, inRange ? items[i] : null);
 
@@ -180,7 +187,8 @@ public class InventoryUI : MonoBehaviour
 
     public void Take(ItemDataFrame itemDataFrame)
     {
-        Debug.Log("Take called on item frame " + itemDataFrame.name);
+        inventory.AddItem(itemDataFrame.item);
+        TransitionState(InventoryUIState.Close);
     }
 
     public void Stash(ItemDataFrame itemDataFrame)

@@ -156,11 +156,11 @@ MonoBehaviour:
   reloadIndicator: {fileID: 0}
   ammoIndicator: {fileID: 0}
   ammoIndicatorShadow: {fileID: 0}
-  muzzleFlashMain: {fileID: 0}
-  muzzleFlashFar: {fileID: 0}
-  muzzleFlashClose: {fileID: 0}
-  ejectedCasing: {fileID: 0}
-  lightAnimator: {fileID: 0}
+  muzzleFlashMain: {fileID: 2358985088711768590}
+  muzzleFlashFar: {fileID: 2358985088730576086}
+  muzzleFlashClose: {fileID: 2358985089367228530}
+  ejectedCasing: {fileID: 1108940243575455600}
+  lightAnimator: {fileID: 3577588874445100203}
   maxMagazine: 0
   magazine: 0
 --- !u!114 &4877568093956301522
@@ -5413,5 +5413,20 @@ PrefabInstance:
 --- !u!4 &1259122784123303325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3667382644979543760, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+  m_PrefabInstance: {fileID: 2566036481042094925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2358985088711768590 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 225365683241656643, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+  m_PrefabInstance: {fileID: 2566036481042094925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2358985088730576086 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 225365683155742619, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
+  m_PrefabInstance: {fileID: 2566036481042094925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2358985089367228530 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 225365683928062783, guid: 1ad68da7eb2a0b945a306d8804d7b777, type: 3}
   m_PrefabInstance: {fileID: 2566036481042094925}
   m_PrefabAsset: {fileID: 0}

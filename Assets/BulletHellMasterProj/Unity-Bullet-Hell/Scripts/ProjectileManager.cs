@@ -199,7 +199,7 @@ namespace BulletHell
             int nextEmpty = -1;
             for (int n = 0; n < EmittersArray.Length; n++)
             {
-                if (EmittersArray[n] == null)
+                if (EmittersArray[n] == null || EmittersArray[n] == emitter)
                     nextEmpty = n;
             }
 
@@ -209,6 +209,7 @@ namespace BulletHell
             }
             else
             {
+                Debug.Log("Initialize Emitter " + emitter.gameObject.name);
                 EmittersArray[nextEmpty] = emitter;
                 ProjectileTypeCounters[emitter.ProjectilePrefab.Index].TotalGroups++;
 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bee95a633f17de4ba00dfd247762129, type: 3}
+  m_Name: ItemResourcesAtlas
+  m_EditorClassIdentifier: 
+  baseGunsPath: Prefabs/Guns
+  baseItemsPath: Prefabs/Items
+  baseActiveItemsPath: Prefabs/ActiveItems
+  commonFolderName: 01_Common
+  uncommonFolderName: 02_Uncommon
+  rareFolderName: 03_Rare
+  epicFolderName: 04_Epic
+  legendaryFolderName: 05_Legendary
+  debugItem:
+  - {fileID: 7583245605134079979, guid: b5a9900c5155b884890586b8d431a488, type: 3}
+  - {fileID: 4918159624701369328, guid: 489e9a820ad15864c8c9623c3e2bed84, type: 3}

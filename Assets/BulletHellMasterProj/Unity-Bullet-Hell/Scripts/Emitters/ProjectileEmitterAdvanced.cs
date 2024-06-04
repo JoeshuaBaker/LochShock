@@ -71,9 +71,11 @@ namespace BulletHell
             RefreshGroups();
         }
 
-        void Start()
+        
+
+        public virtual void Start()
         {
-            // To allow for the enable / disable checkbox in Inspector
+            ProjectileManager.RegisterEmitter(this);
         }
 
         protected void RefreshGroups()

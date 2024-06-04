@@ -29,6 +29,10 @@ public class Gun : Item
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
+            if(emitter == null)
+            {
+                emitter = GetComponent<GunEmitter>();
+            }
             emitter.FireProjectile(emitter.Direction, 0f);
 
             //Particle Systems

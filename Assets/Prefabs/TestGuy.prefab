@@ -463,6 +463,7 @@ GameObject:
   - component: {fileID: 1879192211907270929}
   - component: {fileID: 1879192211907270934}
   - component: {fileID: 1879192211907270932}
+  - component: {fileID: 2296521488769380062}
   m_Layer: 0
   m_Name: TestGuy
   m_TagString: Untagged
@@ -623,8 +624,6 @@ MonoBehaviour:
   - MechTurnDownRight2
   limbTransitionTime: 0.03
   hpBar: {fileID: 1879192211301024669}
-  guns:
-  - {fileID: 6842865635108910829}
   world: {fileID: 0}
   gameplayUI: {fileID: 0}
   currentHp: 5
@@ -653,6 +652,61 @@ MonoBehaviour:
   hitboxSprite: {fileID: 3006511753813725052}
   playerShake: {fileID: 4982996356575460773}
   explosionSpawner: {fileID: 0}
+--- !u!114 &2296521488769380062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879192211907270928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68516f35aeadfd34796cfa5855af7678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeGun: {fileID: 0}
+  guns:
+  - {fileID: 0}
+  - {fileID: 0}
+  activeItem:
+  - {fileID: 0}
+  itemStash:
+  - {fileID: 0}
+  - {fileID: 0}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  scrap: 0
+  orbItemPools:
+  - numOrbsSpent: 1
+    numDrops: 3
+    legendaryChance: 0
+    epicChance: 2
+    rareChance: 10
+    uncommonChance: 40
+  - numOrbsSpent: 2
+    numDrops: 3
+    legendaryChance: 0
+    epicChance: 15
+    rareChance: 25
+    uncommonChance: 30
+  - numOrbsSpent: 3
+    numDrops: 4
+    legendaryChance: 5
+    epicChance: 25
+    rareChance: 40
+    uncommonChance: 30
+  - numOrbsSpent: 4
+    numDrops: 5
+    legendaryChance: 15
+    epicChance: 35
+    rareChance: 50
+    uncommonChance: 0
+  itemResourcesAtlas: {fileID: 11400000, guid: 6851d2033f03e1640a6c53eb629d8597, type: 2}
+  inventoryUI: {fileID: 0}
 --- !u!1 &1879192211954146350
 GameObject:
   m_ObjectHideFlags: 0
@@ -30774,27 +30828,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
---- !u!198 &6806691829671128440 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1108940243575455600, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-  m_PrefabInstance: {fileID: 5842722745194566152}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9149283876406945470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
   m_PrefabInstance: {fileID: 5842722745194566152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6842865635108910829 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+--- !u!198 &6806691829671128440 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1108940243575455600, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
   m_PrefabInstance: {fileID: 5842722745194566152}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1036748845003612239 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6878897641901945415, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}

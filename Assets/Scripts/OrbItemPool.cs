@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Linq;
 
+[System.Serializable]
 public class OrbItemPool
 {
     //global ratios for type of item drop
@@ -15,13 +17,53 @@ public class OrbItemPool
     [Range(0, 100)] public int rareChance = 0;
     [Range(0, 100)] public int uncommonChance = 0;
 
-    public Item[] GetItems()
+    public Item[] GetItems(ItemResourcesAtlas atlas)
     {
         Item[] drops = new Item[numDrops];
         
         for(int i = 0; i < numDrops; i++)
         {
+            Item.Rarity rarity = Item.Rarity.Common;
+            Item.ItemType type = Item.ItemType.Item;
+            int rarityRoll = Random.Range(0, 100);
+            float itemRoll = Random.Range(0f, 1f);
+            int cumulativeRarity = 0;
+            float cumulativeType = 0;
 
+            if(rarityRoll < (cumulativeRarity += legendaryChance))
+            {
+                rarity = Item.Rarity.Legendary;
+            }
+            else if(rarityRoll < (cumulativeRarity += epicChance))
+            {
+                rarity = Item.Rarity.Epic;
+            }
+            else if(rarityRoll < (cumulativeRarity += rareChance))
+            {
+                rarity = Item.Rarity.Rare;
+            }
+            else if(rarityRoll < (cumulativeRarity += uncommonChance))
+            {
+                rarity = Item.Rarity.Uncommon;
+            }
+
+            if(itemRoll < (cumulativeType += weaponChance))
+            {
+                type = Item.ItemType.Weapon;
+            }
+            else if(itemRoll < (cumulativeType += activeItemChance))
+            {
+                type = Item.ItemType.Active;
+            }
+
+            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x)).ToArray();
+            if (list == null || list.Length == 0)
+            {
+                i--;
+                continue;
+            }
+
+            drops[i] = list[Random.Range(0, list.Length)];
         }
 
         return drops;

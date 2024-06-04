@@ -12,8 +12,10 @@ public class Inventory : MonoBehaviour
     public Item[] items = new Item[5];
     private Dictionary<Item.ItemType, Item[]> itemMap;
     public int scrap = 0;
-    public List<Item> OrbItemPrefabs;
-    public List<Item> TwoOrbItemPrefabs;
+    public OrbItemPool[] orbItemPools;
+
+    //External References
+    public ItemResourcesAtlas itemResourcesAtlas;
     public InventoryUI inventoryUI;
 
     private void Start()
@@ -23,23 +25,23 @@ public class Inventory : MonoBehaviour
         itemMap.Add(Item.ItemType.Item, items);
         itemMap.Add(Item.ItemType.Weapon, guns);
         itemMap.Add(Item.ItemType.Active, activeItem);
+
+        itemResourcesAtlas.Setup();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && Player.activePlayer.orbsHeld > 0 && OrbItemPrefabs != null && OrbItemPrefabs.Count > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && Player.activePlayer.orbsHeld > 0 && orbItemPools != null && orbItemPools.Length > 0)
         {
-            for(int i = 0; i < Player.activePlayer.orbsHeld; i++)
-            {
-                //ListOrbItemPrefabs[Random.Range(0, OrbItemPrefabs.Count)]);
-            }
+            int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
+            Player.activePlayer.orbsHeld -= orbsSpent;
+
+            Item[] items = orbItemPools[orbsSpent-1].GetItems(itemResourcesAtlas);
             
             if(inventoryUI != null)
             {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory);
+                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
             }
-
-            Player.activePlayer.orbsHeld = 0;
         }
     }
 
