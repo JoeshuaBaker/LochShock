@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
         Active
     }
 
+    public string displayName;
     public Sprite icon;
     public Rarity rarity;
     public ItemType itemType;
@@ -80,5 +81,22 @@ public class Item : MonoBehaviour
     public IEnumerable<string> GetEventTooltips()
     {
         return StatBlock.GetEventTooltips(itemStats.Concat(levelUpStats));
+    }
+
+    public void LevelUp()
+    {
+        level++;
+        foreach(StatBlock levelStats in levelUpStats)
+        {
+            levelStats.stacks = level;
+        }
+    }
+
+    public void Start()
+    {
+        if(string.IsNullOrEmpty(displayName))
+        {
+            displayName = name;
+        }
     }
 }

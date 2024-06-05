@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
-    public Light2D playerVisionCone;
+    
     public Light2D playerVisionProximity;
     public float orbsHeld;
     public Inventory inventory;
@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 
     public void SetVision()
     {
-        float totalVis = stats.playerStats.totalVision;
+        float totalVis = combinedStats.playerStats.totalVision;
         Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
 
         if(tileUnderPlayer != null)
@@ -209,34 +209,29 @@ public class Player : MonoBehaviour
 
         if (onPath)
         {
-            stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.0005f, 1f);
+            stats.playerStats.totalVision = Mathf.Min (totalVis + 0.0005f, 1f);
             
             if ( offPathCounter > 0)
             {
-                stats.playerStats.totalVision = Mathf.Min (stats.playerStats.totalVision + 0.04f, 1f);
+                stats.playerStats.totalVision = Mathf.Min (totalVis + 0.04f, 1f);
                 offPathCounter = offPathCounter - 1f;
             }
         } 
         else
         {
-            stats.playerStats.totalVision = Mathf.Max (stats.playerStats.totalVision - 0.0025f, 0f);
+            stats.playerStats.totalVision = Mathf.Max (totalVis - 0.0025f, 0f);
 
             if (offPathCounter < 10)
             {
-                if (stats.playerStats.totalVision > .2f)
+                if (totalVis > .2f)
                 {
-                    stats.playerStats.totalVision = Math.Max(stats.playerStats.totalVision - 0.04f, 0f);
+                    stats.playerStats.totalVision = Math.Max(totalVis - 0.04f, 0f);
                 }
                 offPathCounter = offPathCounter + 1f;
-
             }
         }
 
-        playerVisionCone.pointLightInnerRadius = Mathf.Max (totalVis * stats.playerStats.visionConeRadius, 4f);
-        playerVisionCone.pointLightOuterRadius = playerVisionCone.pointLightInnerRadius * 4.3f;
-        playerVisionCone.pointLightInnerAngle = Mathf.Max (totalVis * stats.playerStats.visionConeAngle, 10f);
-        playerVisionCone.pointLightOuterAngle = playerVisionCone.pointLightInnerAngle * 4.3f;
-        playerVisionCone.intensity = Mathf.Min(totalVis * 3.3f, 1f);
+        inventory.activeGun?.UpdateVisionCone(totalVis, combinedStats.playerStats.visionConeRadius, combinedStats.playerStats.visionConeAngle);
 
         playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
         playerVisionProximity.intensity = Mathf.Min(totalVis * 3.3f, 1f);
@@ -341,11 +336,7 @@ public class Player : MonoBehaviour
 
             playerShake.GenerateImpulse(3f);
 
-            playerVisionCone.enabled = false;
-
-            //Audio Section
-            AkSoundEngine.PostEvent("PlayDeathStart", this.gameObject);
-
+            inventory.activeGun.visionCone.enabled = false;
         }
 
         else 
@@ -469,6 +460,7 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         inventory.activeGun.Shoot();
+        inventory.activeGun.UpdateActiveGun();
     }
 
     private void OnSecond()
@@ -509,7 +501,8 @@ public class Player : MonoBehaviour
     {
         if(gameplayUI != null)
         {
-            gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine);
+            gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine,
+                inventory.inactiveGun == null ? -1 : inventory.inactiveGun.magazine, inventory.inactiveGun == null ? -1 : inventory.inactiveGun.maxMagazine);
 
             gameplayUI.SetHp(currentHp, maxHp);
             gameplayUI.SetOrbs((int)orbsHeld);

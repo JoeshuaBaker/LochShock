@@ -56,10 +56,10 @@ namespace BulletHell
 
         protected EmitterGroup[] Groups;
         protected int LastGroupCountPoll = -1;
+        protected int emitterId = -1;
         protected bool PreviousMirrorPairRotation = false;
         protected bool PreviousPairGroupDirection = false;
 
-        public TrailTest trailTest;
         public Dictionary<int, TrailRenderer> rendererDict;
 
         public new void Awake()
@@ -71,9 +71,11 @@ namespace BulletHell
             RefreshGroups();
         }
 
-        void Start()
+        
+
+        public virtual void Start()
         {
-            // To allow for the enable / disable checkbox in Inspector
+            emitterId = ProjectileManager.RegisterEmitter(this);
         }
 
         protected void RefreshGroups()
@@ -193,8 +195,9 @@ namespace BulletHell
 
                         UpdateProjectile(ref node, leakedTime);
 
-                        if (trailTest != null)
+                        if (TrailTest.activeTrails != null && !rendererDict.ContainsKey(node.NodeIndex))
                         {
+                            TrailTest trailTest = TrailTest.activeTrails;
                             TrailRenderer renderer = trailTest.GetRenderer();
                             renderer.transform.position = node.Item.Position;
                             renderer.startWidth = node.Item.stats.size;
@@ -344,7 +347,7 @@ namespace BulletHell
                     DestroyBullet(ref node);
                 }
 
-                if (trailTest != null)
+                if (TrailTest.activeTrails != null)
                 {
                     TrailRenderer trailRenderer = null;
                     rendererDict.TryGetValue(node.NodeIndex, out trailRenderer);
@@ -357,7 +360,7 @@ namespace BulletHell
                         }
                         else
                         {
-                            trailRenderer.transform.position = trailTest.transform.position;
+                            trailRenderer.transform.position = TrailTest.activeTrails.transform.position;
                             trailRenderer.Clear();
                             trailRenderer.gameObject.SetActive(false);
                             rendererDict.Remove(node.NodeIndex);

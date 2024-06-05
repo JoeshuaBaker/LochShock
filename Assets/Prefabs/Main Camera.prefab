@@ -198,6 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 2870254780083196662}
+  reloadIndicator: {fileID: 6065635506613868009}
+  ammoIndicator: {fileID: 5378267405598117165}
+  ammoIndicatorShadow: {fileID: 63978276916629048}
 --- !u!1 &5005469731197392835
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,6 +5889,8 @@ MonoBehaviour:
   initialLight: {fileID: 6757236580057782085}
   initialLightDestroyed: 0
   startingIntensity: 0.25
+  minInitialIntensity: 0
+  minIntensityCutOff: 0
   lightningLight: {fileID: 6757236579080593291}
   lightningAnimator: {fileID: 6757236579080593293}
   baseLightningChance: 0.0003

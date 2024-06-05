@@ -15,9 +15,10 @@ namespace BulletHell
             ContactFilter.useLayerMask = true;
         }
 
-        void Start()
+        public override void Start()
         {
             ignoreList = new HashSet<int>();
+            base.Start();
         }
 
         public void ApplyStatBlock(StatBlock stats)
