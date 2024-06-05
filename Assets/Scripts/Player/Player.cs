@@ -332,7 +332,7 @@ public class Player : MonoBehaviour
             mechDying.SetActive(true);
 
             ring.transform.position = this.transform.position;
-            ringAnimator.Play("RingExpandExtraLarge");
+            ringAnimator.Play("RingExpandExtraLargeRed");
 
             playerShake.GenerateImpulse(3f);
 
@@ -350,7 +350,7 @@ public class Player : MonoBehaviour
             slashOne.SetActive(true);
 
             ring.transform.position = this.transform.position;
-            ringAnimator.Play("RingExpandExtraLarge");
+            ringAnimator.Play("RingExpandExtraLargeRed");
 
             playerShake.GenerateImpulse(2f);
         }

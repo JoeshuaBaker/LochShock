@@ -68,8 +68,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.Array.data[0].stacks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: levelUpStats.Array.data[1].stacks
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: levelUpStats.Array.data[0].blockType
@@ -103,6 +107,14 @@ PrefabInstance:
       propertyPath: levelUpStats.Array.data[1].gunStats.reloadSpeed
       value: -0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: itemStats.Array.data[1].events.OnReload.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: itemStats.Array.data[1].events.OnReload.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 30d171cc5eee5c04ca50dc35f6171709, type: 2}
     - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: m_Name
       value: 02_reload_speed

@@ -30,7 +30,7 @@ public class Crosshair : MonoBehaviour
         var screenPoint = Input.mousePosition;
         screenPoint.z = 19.5f;
 
-        crosshair.transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+        crosshair.transform.position = new Vector3( screenPoint.x , screenPoint.y , 0f );
         crosshair.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
 

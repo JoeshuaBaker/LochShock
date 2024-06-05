@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a590f59719959a4eaa1e430ef8ea68c, type: 3}
   m_Name: OnHitAttackSpeed
   m_EditorClassIdentifier: 
-  chanceToTrigger: 0.05
+  onTriggerEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  chanceToTrigger: 1
   cooldown: 0
   buff: {fileID: 11400000, guid: e8aa322fe3524c542baa1b2f94fd5d18, type: 2}
