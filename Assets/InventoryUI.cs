@@ -19,6 +19,8 @@ public class InventoryUI : MonoBehaviour
     public InventoryUIState state = InventoryUIState.Close;
     bool isSetup = false;
     public Inventory inventory;
+    private InventoryUIState lastState = InventoryUIState.Close;
+    private Item[] lastItems = null;
 
     //Item Frames
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
@@ -74,6 +76,8 @@ public class InventoryUI : MonoBehaviour
             itemFrame.slotType = Item.ItemType.Item;
         }
 
+        scrapText.text = inventory.scrap.ToString();
+
         isSetup = true;
     }
 
@@ -112,12 +116,16 @@ public class InventoryUI : MonoBehaviour
                 break;
         }
 
+        lastState = state;
+        lastItems = items;
         state = newState;
     }
 
     private void Inventory(InventoryUIState newState, Item[] items)
     {
         bottomFrameParent.gameObject.SetActive(true);
+        inventoryButton.interactable = true;
+        inventoryButtonText.text = "Return";
 
         Inventory inventory = Player.activePlayer.inventory;
         Gun[] weapons = inventory.guns;
@@ -125,6 +133,13 @@ public class InventoryUI : MonoBehaviour
         Item[] itemStash = inventory.itemStash;
         Item[] heldItems = inventory.items;
         int offset = 0;
+
+        //Set buttons to level up and disassemble
+        foreach (ItemDataFrame frame in allFrames)
+        {
+            frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+            frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
+        }
 
         for (int i = 0; i < weaponItemFrames.Length; i++)
         {
@@ -142,17 +157,14 @@ public class InventoryUI : MonoBehaviour
         {
             bottomItemFrames[i].ReflectInventoryState(newState, heldItems[i], offset++);
         }
-
-        //Set buttons to level up and disassemble
-        foreach (ItemDataFrame frame in allFrames)
-        {
-            frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
-            frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
-        }
     }
 
     private void Orb(InventoryUIState newState, Item[] items)
     {
+        inventoryButton.interactable = true;
+        inventoryButtonText.text = "Inventory";
+        scrapText.text = inventory.scrap.ToString();
+
         if (items.Length <= 5)
         {
             bottomFrameParent.gameObject.SetActive(false);
@@ -162,11 +174,12 @@ public class InventoryUI : MonoBehaviour
         {
             bool inRange = i < items.Length;
             ItemDataFrame frame = allFrames[i];
-            frame.ReflectInventoryState(newState, inRange ? items[i] : null);
 
             //Set buttons to Take and Disassemble
             frame.SetupButton(frame.topButton, frame.topButtonText, Take, nameof(Take).SplitCamelCase(), false);
             frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
+
+            frame.ReflectInventoryState(newState, inRange ? items[i] : null);
         }
     }
 
@@ -177,7 +190,14 @@ public class InventoryUI : MonoBehaviour
 
     public void OnInventoryButtonPressed()
     {
-        TransitionState(InventoryUIState.Inventory);
+        if(state == InventoryUIState.Inventory)
+        {
+            TransitionState(lastState, inventory, lastItems);
+        }
+        else
+        {
+            TransitionState(InventoryUIState.Inventory, inventory, lastItems);
+        }
     }
 
     public void OnContinueButtonPressed()
@@ -185,24 +205,41 @@ public class InventoryUI : MonoBehaviour
         TransitionState(InventoryUIState.Close);
     }
 
-    public void Take(ItemDataFrame itemDataFrame)
+    public void Take(ItemDataFrame frame)
     {
-        inventory.AddItem(itemDataFrame.item);
+        inventory.AddItem(frame.item);
         TransitionState(InventoryUIState.Close);
     }
 
-    public void Stash(ItemDataFrame itemDataFrame)
+    public void Stash(ItemDataFrame frame)
     {
-        Debug.Log("Stash called on item frame " + itemDataFrame.name);
+        Debug.Log("Stash called on item frame " + frame.name);
     }
 
-    public void LevelUp(ItemDataFrame itemDataFrame)
+    public void LevelUp(ItemDataFrame frame)
     {
-        Debug.Log("Level Up called on item frame " + itemDataFrame.name);
+        Debug.Log("Level up button pressed on item " + frame.item.name);
+        inventory.LevelUp(frame.item);
+        frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+        frame.ReflectInventoryState(state, frame.item);
+        scrapText.text = inventory.scrap.ToString();
     }
 
-    public void Disassemble(ItemDataFrame itemDataFrame)
+    public void Disassemble(ItemDataFrame frame)
     {
-        Debug.Log("Disassemble called on item frame " + itemDataFrame.name);
+        inventory.DisassembleItem(frame.item);
+
+        if(state == InventoryUIState.Inventory)
+        {
+            frame.ReflectInventoryState(state, null);
+        }
+        else if(state == InventoryUIState.Orb)
+        {
+            TransitionState(InventoryUIState.Inventory);
+            inventoryButtonText.text = "Inventory";
+            inventoryButton.interactable = false;
+        }
+
+        scrapText.text = inventory.scrap.ToString();
     }
 }

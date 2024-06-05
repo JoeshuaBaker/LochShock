@@ -5,10 +5,16 @@ using BulletHell;
 
 public class TrailTest : MonoBehaviour
 {
+    public static TrailTest activeTrails;
     public int bufferSize = 250;
     public TrailRenderer[] trailRenderers;
     public TrailRenderer trailPrefab;
     public int nextTrailIndex = 0;
+    private void Awake()
+    {
+        activeTrails = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

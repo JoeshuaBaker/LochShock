@@ -14,6 +14,7 @@ public class ItemDataFrame : MonoBehaviour
     public Transform fullFrameParent;
     public Transform emptyFrameParent;
     public Animator flyinAnimator;
+    public Image invDataFrameImage;
     public Image icon;
     public TMP_Text itemName;
     public TMP_Text itemLevel;
@@ -65,6 +66,10 @@ public class ItemDataFrame : MonoBehaviour
         itemLevel.text = "Lv " + item.level.ToString();
         itemRarity.text = item.rarity.ToString();
         itemStatusSlot.text = item.itemType.ToString();
+        if(topButtonText.text.Contains("%value%"))
+        {
+            topButton.interactable = Player.activePlayer.inventory.scrap >= item.levelUpCost;
+        }
         topButtonText.text = topButtonText.text.Replace("%value%", item.levelUpCost.ToString());
         bottomButtonText.text = bottomButtonText.text.Replace("%value%", item.disassembleValue.ToString());
 
@@ -96,9 +101,12 @@ public class ItemDataFrame : MonoBehaviour
         {
             case InventoryUI.InventoryUIState.Inventory:
                 gameObject.SetActive(true);
-                flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));
+                if(this.item != item)
+                {
+                    flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));
+                }
                 fullFrameParent.gameObject.SetActive(item != null);
-                if(isStash)
+                if (isStash)
                 {
                     emptyFrameSlotText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
                     emptyFrameSlotGlowText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
@@ -108,9 +116,19 @@ public class ItemDataFrame : MonoBehaviour
                     emptyFrameSlotText.text = slotType.ToString();
                     emptyFrameSlotGlowText.text = slotType.ToString();
                 }
+
+                if (isStash)
+                {
+                    invDataFrameImage.color = Color.grey;
+                }
+                else
+                {
+                    invDataFrameImage.color = Color.white;
+                }
                 break;
 
             case InventoryUI.InventoryUIState.Orb:
+                invDataFrameImage.color = Color.white;
                 gameObject.SetActive(item != null);
                 fullFrameParent.gameObject.SetActive(item != null);
                 flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));

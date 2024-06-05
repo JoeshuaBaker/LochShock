@@ -153,13 +153,11 @@ MonoBehaviour:
       OnSecond: []
     stacks: 1
   emitter: {fileID: 4877568093956301522}
-  reloadIndicator: {fileID: 0}
-  ammoIndicator: {fileID: 0}
-  ammoIndicatorShadow: {fileID: 0}
   muzzleFlashMain: {fileID: 2358985088711768590}
   muzzleFlashFar: {fileID: 2358985088730576086}
   muzzleFlashClose: {fileID: 2358985089367228530}
   ejectedCasing: {fileID: 1108940243575455600}
+  visionCone: {fileID: 6878897641901945415}
   lightAnimator: {fileID: 3577588874445100203}
   maxMagazine: 0
   magazine: 0
@@ -237,7 +235,7 @@ MonoBehaviour:
       OnReload: []
       OnSecond: []
     stacks: 1
-  AutoFire: 1
+  AutoFire: 0
   Direction: {x: 0, y: 1}
   RotationSpeed: 0
   CollisionDetection: 1
@@ -294,7 +292,6 @@ MonoBehaviour:
   UseOutlineColorPulse: 0
   OutlinePulseSpeed: 0
   UseOutlineStaticPulse: 0
-  trailTest: {fileID: 0}
   gun: {fileID: 1144824061936674021}
 --- !u!1 &7251769693225134365
 GameObject:

@@ -1,5 +1,6 @@
 using UnityEngine;
 using BulletHell;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,13 +9,11 @@ public class Gun : Item
 {
     public StatBlock combinedStats;
     public GunEmitter emitter;
-    public Image reloadIndicator;
-    public TextMeshProUGUI ammoIndicator;
-    public TextMeshProUGUI ammoIndicatorShadow;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
     public ParticleSystem muzzleFlashClose;
     public ParticleSystem ejectedCasing;
+    public Light2D visionCone;
     public Animator lightAnimator;
 
     private bool reloading;
@@ -27,7 +26,7 @@ public class Gun : Item
 
     public void Shoot()
     {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !reloading && magazine > 0 && bulletCooldown == 0)
+        if (Input.GetKey(KeyCode.Mouse0) && !reloading && magazine > 0 && bulletCooldown == 0)
         {
             if(emitter == null)
             {
@@ -60,10 +59,15 @@ public class Gun : Item
                 reloading = true;
             }
         }
-        else
-        {
-            emitter.AutoFire = false;
-        }
+    }
+
+    public void UpdateVisionCone(float totalVis, float coneRadius, float coneAngle)
+    {
+        visionCone.pointLightInnerRadius = Mathf.Max(totalVis * coneRadius, 4f);
+        visionCone.pointLightOuterRadius = visionCone.pointLightInnerRadius * 4.3f;
+        visionCone.pointLightInnerAngle = Mathf.Max(totalVis * coneAngle, 10f);
+        visionCone.pointLightOuterAngle = visionCone.pointLightInnerAngle * 4.3f;
+        visionCone.intensity = Mathf.Min(totalVis * 3.3f, 1f);
     }
 
     // Start is called before the first frame update
@@ -93,11 +97,15 @@ public class Gun : Item
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
+    }
+
+    public void UpdateActiveGun()
     {
         emitter.ApplyStatBlock(combinedStats);
         reloadTimer = Mathf.Max(reloadTimer - Time.deltaTime, 0);
-        bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
 
         if(reloading && reloadTimer == 0)
         {
@@ -111,15 +119,7 @@ public class Gun : Item
             }
         }
 
-        string displayAmmo = magazine.ToString();
-        ammoIndicator.text = displayAmmo;
-        ammoIndicatorShadow.text = displayAmmo;
-        reloadIndicator.gameObject.SetActive(reloading);
-
-        if (reloading)
-        {
-            reloadIndicator.fillAmount = reloadTimer / reloadSpeed;
-        }
+        Crosshair.activeCrosshair.UpdateCrosshair(reloading, reloadTimer / reloadSpeed, magazine.ToString());
     }
 
     private void Reset()

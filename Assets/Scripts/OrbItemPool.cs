@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 
 [System.Serializable]
@@ -17,9 +18,17 @@ public class OrbItemPool
     [Range(0, 100)] public int rareChance = 0;
     [Range(0, 100)] public int uncommonChance = 0;
 
-    public Item[] GetItems(ItemResourcesAtlas atlas)
+    public Item[] GetItems(ItemResourcesAtlas atlas, Item[] ignoreList = null)
     {
         Item[] drops = new Item[numDrops];
+        HashSet<string> ignoreListNames = new HashSet<string>();
+        foreach(Item item in ignoreList)
+        {
+            if(item != null)
+            {
+                ignoreListNames.Add(item.name);
+            }
+        }
         
         for(int i = 0; i < numDrops; i++)
         {
@@ -56,7 +65,7 @@ public class OrbItemPool
                 type = Item.ItemType.Active;
             }
 
-            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x)).ToArray();
+            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x) && !ignoreListNames.Contains(x.name)).ToArray();
             if (list == null || list.Length == 0)
             {
                 i--;

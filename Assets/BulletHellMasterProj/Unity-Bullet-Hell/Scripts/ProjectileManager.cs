@@ -193,7 +193,7 @@ namespace BulletHell
         }
 
         // When adding emitter during play mode - you can register them with this function
-        public void RegisterEmitter(ProjectileEmitterBase emitter)
+        public int RegisterEmitter(ProjectileEmitterBase emitter)
         {
             // Should probably use Emittercount here - find the next empty slot in the array
             int nextEmpty = -1;
@@ -228,6 +228,7 @@ namespace BulletHell
                 EmitterCount++;
             }
 
+            return nextEmpty;
         }
 
         public ProjectilePrefab GetProjectilePrefab(int index)
