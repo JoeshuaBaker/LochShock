@@ -102,21 +102,25 @@ public class EnvironmentalEffectController : MonoBehaviour
             {
                 //Debug.Log("LightningSTRIKE" + lightningPick);
                 lightningAnimator.SetBool("LightningStrike", true);
+                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
             }
             else if (lightningPick < isLightningLargeScaling)
             {
                 //Debug.Log("lightningLarge" + lightningPick);
                 lightningAnimator.SetBool("LightningLarge", true);
+                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
             }
             else if (lightningPick < isLightningMediumScaling)
             {
                 //Debug.Log("lightningMedium" + lightningPick);
                 lightningAnimator.SetBool("LightningMedium", true);
+                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
             }
             else
             {
                 //Debug.Log("lightning small" + lightningPick);
                 lightningAnimator.SetBool("LightningSmall", true);
+                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
             }
         }
     }

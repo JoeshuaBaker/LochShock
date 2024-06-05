@@ -2,8 +2,15 @@
 <WwiseDocument Type="WorkUnit" ID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}" SchemaVersion="103">
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="13"/>
+			</PropertyList>
 			<ChildrenList>
 				<Folder Name="Ambiance" ID="{7845C763-C8A0-470B-B903-11F208DD80E6}" ShortID="806728296">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="14"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="WaterAmbiance" ID="{0DD26B5C-F837-437A-B56C-2B1FCCDAE94C}">
 							<ChildrenList>
@@ -38,12 +45,37 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="PlaySplats" ID="{AC5276C6-29C6-4122-B8F6-BD0087732AC8}">
+							<ChildrenList>
+								<Action Name="" ID="{E2406CFE-AF39-4875-8782-5A5671BD6B98}" ShortID="407096079">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Splats" ID="{FC0E2D61-B29F-4A94-8583-373EA3DDA5BB}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Music" ID="{A2A256B0-3C23-4991-B8ED-527F511294EC}" ShortID="224857255">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="3"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Event Name="PlayMusic" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
 							<ChildrenList>
+								<Action Name="" ID="{BF7FD76E-3A92-44B4-8647-94C54D0A68D6}" ShortID="720294651">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicManager" ID="{D4EAE3D2-5488-4F8B-8B77-EEB201692168}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{01651180-0D79-4B32-951B-3EC5EF26A43D}" ShortID="450733968">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -55,20 +87,17 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Event Name="PlayTestTone" ID="{06D121EB-CB28-43D5-A7B0-B7607B7562AA}">
-					<ChildrenList>
-						<Action Name="" ID="{A0D6B1F6-6B3B-4E16-86DB-E5698BFE6043}" ShortID="475509525">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="TestTone" ID="{BFC3A85B-3F24-4477-B7A7-3D7D47381EF8}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Folder Name="GameplayCombat" ID="{4D9C4F42-3AE7-4572-A0FE-46D29E32A6CE}" ShortID="415756600">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<Folder Name="Player" ID="{B86FD775-C608-44C9-9561-38BBD6FF96DA}" ShortID="1035282387">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="2"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Event Name="PlayShoot" ID="{0B6D0470-EA04-4ECC-AFC3-92E0D3BBBD13}">
 									<ChildrenList>
@@ -92,9 +121,67 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Folder Name="PlayerDie" ID="{C4618826-859A-497F-8719-6421CFC6CCF1}" ShortID="930821937">
+									<ChildrenList>
+										<Event Name="PlayExplosion" ID="{DCC34B0D-FCEB-4338-A3A3-114036F6BF32}">
+											<ChildrenList>
+												<Action Name="" ID="{E6CB04F8-E9B3-4E30-BA09-0D7F60C21CD4}" ShortID="706445521">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayDeathStart" ID="{7C0692DD-5C38-4CBC-A99A-7DE58D6B1644}">
+											<ChildrenList>
+												<Action Name="" ID="{F558E911-8A9B-419F-863B-35B271FCA413}" ShortID="112963210">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="DeathBuildUp" ID="{79B8E3DE-D0CF-416F-8AC0-7D7BA09654CD}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{5DAD9E80-CAED-4671-884E-0258F73558E8}" ShortID="691774611">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="DeathBlip" ID="{36E1D449-6FD7-4BDD-82AD-8F261685F47C}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayDeathBoom" ID="{B78F4269-38D9-41EC-9375-C93244390B1C}">
+											<ChildrenList>
+												<Action Name="" ID="{1B07323D-E715-41A9-A7AA-C70B3D2AD353}" ShortID="905602308">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="DeathBoom" ID="{CAC0FA22-B079-4A4E-901B-D35AEFD43879}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{F1CD1BE4-E60E-4441-8CE4-7E7D87534471}" ShortID="463097297">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="41"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Enemies" ID="{3D9E8264-1158-493D-B513-1139E105BCC0}" ShortID="1064064018">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="23"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Event Name="EnemyDie" ID="{0CF15808-1758-4EBA-9630-DFE989D1CD1D}">
 									<ChildrenList>
@@ -110,6 +197,10 @@
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Items" ID="{C56B4B09-5FC5-43FB-BD64-D424FA141ABB}" ShortID="840472236">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="18"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Event Name="PlayOrbCollect" ID="{DA149DD3-5684-4870-B35C-6523535CA887}">
 									<ChildrenList>
@@ -124,6 +215,182 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Intro" ID="{1AA3D947-C7AE-4084-B39D-69D6744284A2}" ShortID="656589388">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="27"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="PlayIntroAll" ID="{12401E66-43B0-4819-8EAC-4681AAD2C2CD}">
+							<ChildrenList>
+								<Action Name="" ID="{970C5D92-5924-43E3-BC2B-24D2C5F07A6B}" ShortID="809816342">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayIntroDrone" ID="{69EF5893-4BAB-4D47-882C-EB7BA2836F21}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{75605D26-710F-4785-B521-E6B843AA1EFC}" ShortID="59031979">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayIntroStart" ID="{F572AFB0-54FE-4BB9-94D1-B9F3A374E612}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayIntroStart" ID="{F572AFB0-54FE-4BB9-94D1-B9F3A374E612}">
+							<ChildrenList>
+								<Action Name="" ID="{D18059E6-96D2-4BF0-899F-5E349892BC0D}" ShortID="606944703">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_NEMESIS" ID="{B6E08245-5AC4-4411-94F6-C16E6DDBB181}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{07C4FB07-B3D7-42B3-9B90-CDC9BC26B262}" ShortID="478610241">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_PP Drone C" ID="{3EC39D19-ACF5-484F-8025-72C86A167F6E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{5E3B7A02-931D-4375-8F3C-1A6DA20BC0A6}" ShortID="368274289">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_Shock" ID="{FE993E68-3AA1-4E8F-A41F-EA53AA33E9DB}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{B72E566F-4196-46AE-BDE0-BAEDD11F6568}" ShortID="777811584">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_SLIDE" ID="{6135EBBF-6AA1-44F2-AD2D-B8BA96E73217}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayIntroDrone" ID="{69EF5893-4BAB-4D47-882C-EB7BA2836F21}">
+							<ChildrenList>
+								<Action Name="" ID="{671D85C2-DDCD-4233-95C6-816D185F3B8D}" ShortID="906107573">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_PP Drone F" ID="{3BC0355C-066D-42A5-8DE8-A323E83EA919}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayIntroLaugh" ID="{DC352F8F-EB6E-47AC-94A0-CC0FFAECDCE1}">
+							<ChildrenList>
+								<Action Name="" ID="{A9E34DFA-701F-412F-AF62-7BE70A81151C}" ShortID="759074803">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_Laugh" ID="{A9726CA2-6DEF-4519-8D7C-7EF8009D287E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{36E2A1EA-DF61-4E65-B5FD-2C769BFEAC50}" ShortID="331189453">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Delay" Type="Real64" Value="1.5"/>
+										<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Intro_PP Drone F" ID="{3BC0355C-066D-42A5-8DE8-A323E83EA919}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayLogo" ID="{724B6024-8F09-4514-862F-811B3E4A0543}">
+							<ChildrenList>
+								<Action Name="" ID="{B85D8067-B405-495C-A94B-009A3511BB3E}" ShortID="772762061">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Logo" ID="{9D7B5E7D-E853-4788-8ABC-EF2D60E99F16}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Utilities" ID="{AF4D3D93-82E6-430E-B0A9-B6A2706D2937}" ShortID="779666267">
+					<ChildrenList>
+						<Event Name="PlayTestTone" ID="{06D121EB-CB28-43D5-A7B0-B7607B7562AA}">
+							<ChildrenList>
+								<Action Name="" ID="{A0D6B1F6-6B3B-4E16-86DB-E5698BFE6043}" ShortID="475509525">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TestTone" ID="{BFC3A85B-3F24-4477-B7A7-3D7D47381EF8}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="StopAll" ID="{5F79B385-67A5-4830-864E-1FA41FBB4D84}">
+							<ChildrenList>
+								<Action Name="" ID="{026BEFE9-C7D6-4A5F-9D2B-C5FA66B9F0F7}" ShortID="386491496">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Menu" ID="{1D774B86-8247-4062-B3C8-33BBA9A52C7E}" ShortID="796528734">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="8"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="PlayMenuOpen" ID="{840B0845-E983-4943-9C89-7EBC7895C657}">
+							<ChildrenList>
+								<Action Name="" ID="{F1B34A2F-7C03-4ED9-ADA4-BD66D84F3736}" ShortID="133267475">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayMenuClose" ID="{64958D55-6071-4B98-A00C-DF5013D0D8B2}">
+							<ChildrenList>
+								<Action Name="" ID="{2283AEE8-AB79-47FA-8EF1-AA1369D69DC9}" ShortID="351074298">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Close Menu" ID="{F44BE716-883C-456B-A2D6-DEF01C27C9AD}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayItemGet" ID="{ED57CB6E-3FAC-4CED-9EF3-949381F19C66}">
+							<ChildrenList>
+								<Action Name="" ID="{83533D9D-9AB9-4499-8ADC-02FFC7AA3C5B}" ShortID="790567206">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Item Get" ID="{6D599817-4C35-4AD0-B2B9-CD9E92E5ED76}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

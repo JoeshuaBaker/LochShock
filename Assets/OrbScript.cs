@@ -69,28 +69,24 @@ public class OrbScript : MonoBehaviour
 
     }
 
-    void OrbAudio(int count)
+    void OrbAudio(int orbStage)
     {
-        if((stage1 && count == 1) || (stage2 && count == 2))
+        if((stage1 == true && orbStage == 1) || (stage2 == true && orbStage == 2))
         {
             return;
         }
 
         AkSoundEngine.PostEvent("PlayOrbCollect", this.gameObject);
 
-        if (count == 1)
+        switch (orbStage)
         {
-            stage1 = true;
-            return;
+            case 1:
+                stage1 = true;
+                return;
+            case 2:
+                stage2 = true;
+                return;
         }
-        if (count == 2)
-        {
-            stage2 = true;
-            return;
-        }
-
         return;
-
-    }
- 
+    } 
 }

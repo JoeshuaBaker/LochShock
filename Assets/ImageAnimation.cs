@@ -18,6 +18,7 @@ public class ImageAnimation : MonoBehaviour
 
     void Awake()
     {
+        playing = false;
         image = GetComponent<Image>();
         sprites = Resources.LoadAll<Sprite>(spritePath);
     }

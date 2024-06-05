@@ -11,17 +11,146 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2606842663">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1451794901">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="SFX" Hash="692010217">
+		<SoundBank Id="1492361653" Language="SFX" Hash="1218382151">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>Sounds.bnk</Path>
 			<IncludedEvents>
 				<Event Id="794424115" Name="EnemyDie" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\EnemyDie" DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1290774814" Name="PlayDeathBoom" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathBoom" DurationType="OneShot" DurationMin="3.876597" DurationMax="3.876597">
+					<IncludedMemoryFiles>
+						<File Id="316136356" Language="SFX">
+							<ShortName>DeathBoom.wav</ShortName>
+							<Path>SFX/DeathBoom_84B5407B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<ActionPostEvent>
+						<ActionPostEventEntry Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayWipe"/>
+					</ActionPostEvent>
+				</Event>
+				<Event Id="180348757" Name="PlayDeathStart" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathStart" DurationType="OneShot" DurationMin="10.145792" DurationMax="10.145792">
+					<IncludedMemoryFiles>
+						<File Id="20665016" Language="SFX">
+							<ShortName>DeathBuildUp.wav</ShortName>
+							<Path>SFX/DeathBuildUp_10C4C929.wem</Path>
+						</File>
+						<File Id="178169467" Language="SFX">
+							<ShortName>DeathBlip.wav</ShortName>
+							<Path>SFX/DeathBlip_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="182906760" Name="PlayExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion" DurationType="OneShot" DurationMin="1.717235" DurationMax="2.84007">
+					<IncludedMemoryFiles>
+						<File Id="22615286" Language="SFX">
+							<ShortName>Explosion_5.wav</ShortName>
+							<Path>SFX/Explosion_5_6872035A.wem</Path>
+						</File>
+						<File Id="246812119" Language="SFX">
+							<ShortName>Explosion_2.wav</ShortName>
+							<Path>SFX/Explosion_2_AEE514D4.wem</Path>
+						</File>
+						<File Id="602627737" Language="SFX">
+							<ShortName>Explosion_4.wav</ShortName>
+							<Path>SFX/Explosion_4_6858CCDA.wem</Path>
+						</File>
+						<File Id="792472396" Language="SFX">
+							<ShortName>Explosion_0.wav</ShortName>
+							<Path>SFX/Explosion_0_1C35C006.wem</Path>
+						</File>
+						<File Id="839005815" Language="SFX">
+							<ShortName>Explosion_1.wav</ShortName>
+							<Path>SFX/Explosion_1_BA9541D6.wem</Path>
+						</File>
+						<File Id="839353267" Language="SFX">
+							<ShortName>Explosion_3.wav</ShortName>
+							<Path>SFX/Explosion_3_160DE2E8.wem</Path>
+						</File>
+						<File Id="895364418" Language="SFX">
+							<ShortName>Explosion_6.wav</ShortName>
+							<Path>SFX/Explosion_6_827838E5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2624888416" Name="PlayIntroAll" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionPostEvent>
+						<ActionPostEventEntry Id="3284677241" Name="PlayIntroStart" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroStart"/>
+						<ActionPostEventEntry Id="3995809935" Name="PlayIntroDrone" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroDrone"/>
+					</ActionPostEvent>
+				</Event>
+				<Event Id="3995809935" Name="PlayIntroDrone" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroDrone" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="105630765" Language="SFX">
+							<ShortName>Intro_PP Drone F.wav</ShortName>
+							<Path>SFX/Intro_PP Drone F_266454AC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="406165590" Name="PlayIntroLaugh" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroLaugh" DurationType="OneShot" DurationMin="2.791405" DurationMax="2.791405">
+					<IncludedMemoryFiles>
+						<File Id="244289141" Language="SFX">
+							<ShortName>Intro_Laugh.wav</ShortName>
+							<Path>SFX/Intro_Laugh_C4B985DD.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3284677241" Name="PlayIntroStart" ObjectPath="\Events\Default Work Unit\Intro\PlayIntroStart" DurationType="OneShot" DurationMin="6.773017" DurationMax="6.773017">
+					<IncludedMemoryFiles>
+						<File Id="39921148" Language="SFX">
+							<ShortName>Intro_NEMESIS.wav</ShortName>
+							<Path>SFX/Intro_NEMESIS_062B77FF.wem</Path>
+						</File>
+						<File Id="339030648" Language="SFX">
+							<ShortName>Intro_SLIDE.wav</ShortName>
+							<Path>SFX/Intro_SLIDE_F9CA0C53.wem</Path>
+						</File>
+						<File Id="525311383" Language="SFX">
+							<ShortName>Intro_PP Drone C.wav</ShortName>
+							<Path>SFX/Intro_PP Drone C_A022897D.wem</Path>
+						</File>
+						<File Id="651015063" Language="SFX">
+							<ShortName>Intro_Shock.wav</ShortName>
+							<Path>SFX/Intro_Shock_7AAF780A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1707287486" Name="PlayItemGet" ObjectPath="\Events\Default Work Unit\Menu\PlayItemGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
+					<IncludedMemoryFiles>
+						<File Id="605852712" Language="SFX">
+							<ShortName>Item Get.wav</ShortName>
+							<Path>SFX/Item Get_33C4700E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3538956422" Name="PlayLogo" ObjectPath="\Events\Default Work Unit\Intro\PlayLogo" DurationType="OneShot" DurationMin="1.78" DurationMax="1.78">
+					<IncludedMemoryFiles>
+						<File Id="231134162" Language="SFX">
+							<ShortName>Logo.wav</ShortName>
+							<Path>SFX/Logo_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
+					<IncludedMemoryFiles>
+						<File Id="444313976" Language="SFX">
+							<ShortName>Close Menu.wav</ShortName>
+							<Path>SFX/Close Menu_C952CEE8.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
+					<IncludedMemoryFiles>
+						<File Id="812118756" Language="SFX">
+							<ShortName>Open Menu.wav</ShortName>
+							<Path>SFX/Open Menu_C1FBCCBE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="417627684" Name="PlayMusic" ObjectPath="\Events\Default Work Unit\Music\PlayMusic" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="416321817" Language="SFX">
@@ -70,12 +199,47 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2052572755" Name="PlayTestTone" ObjectPath="\Events\Default Work Unit\PlayTestTone" DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3903208307" Name="PlayThunder" ObjectPath="\Events\Default Work Unit\Ambiance\PlayThunder" DurationType="OneShot" DurationMin="7.624824" DurationMax="7.624824">
+				<Event Id="127291008" Name="PlaySplats" ObjectPath="\Events\Default Work Unit\Ambiance\PlaySplats" DurationType="OneShot" DurationMin="0.091619" DurationMax="0.186869">
+					<IncludedMemoryFiles>
+						<File Id="232485856" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_F72F1153.wem</Path>
+						</File>
+						<File Id="396661611" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_99B27512.wem</Path>
+						</File>
+						<File Id="495085106" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_577B9026.wem</Path>
+						</File>
+						<File Id="712233213" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_625EF4F2.wem</Path>
+						</File>
+						<File Id="764445160" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_16477CB7.wem</Path>
+						</File>
+						<File Id="945210713" Language="SFX">
+							<ShortName>Splats.wav</ShortName>
+							<Path>SFX/Splats_4E63F28C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2052572755" Name="PlayTestTone" ObjectPath="\Events\Default Work Unit\Utilities\PlayTestTone" DurationType="OneShot" DurationMin="0.193818" DurationMax="0.193818">
+					<IncludedMemoryFiles>
+						<File Id="14718603" Language="SFX">
+							<ShortName>TestTone.wav</ShortName>
+							<Path>SFX/TestTone_9E7EF7AC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3903208307" Name="PlayThunder" ObjectPath="\Events\Default Work Unit\Ambiance\PlayThunder" DurationType="OneShot" DurationMin="7.661191" DurationMax="7.661191">
 					<IncludedMemoryFiles>
 						<File Id="662568726" Language="SFX">
 							<ShortName>Thunder.wav</ShortName>
-							<Path>SFX/Thunder_2CF2341C.wem</Path>
+							<Path>SFX/Thunder_6E8F1B53.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -103,6 +267,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3086540886" Name="StopAll" ObjectPath="\Events\Default Work Unit\Utilities\StopAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1495182018" Name="WaterAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\WaterAmbiance" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="181209012" Language="SFX">
@@ -117,6 +282,7 @@
 				</Event>
 			</IncludedEvents>
 			<GameParameters>
+				<GameParameter Id="3439749059" Name="SplatAmount" ObjectPath="\Game Parameters\Default Work Unit\SplatAmount"/>
 				<GameParameter Id="4231214299" Name="RainAmount" ObjectPath="\Game Parameters\Default Work Unit\RainAmount"/>
 			</GameParameters>
 		</SoundBank>
