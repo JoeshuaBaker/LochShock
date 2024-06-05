@@ -337,6 +337,10 @@ public class Player : MonoBehaviour
             playerShake.GenerateImpulse(3f);
 
             inventory.activeGun.visionCone.enabled = false;
+
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayDeathStart", this.gameObject);
+
         }
 
         else 
