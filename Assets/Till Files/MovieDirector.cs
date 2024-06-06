@@ -29,6 +29,7 @@ public class MovieDirector : MonoBehaviour
         ImageAnimation.playing = false;
         canvasVar.enabled = false;
         Video = VideoPlayerObject.gameObject.GetComponent<VideoPlayer>();
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame

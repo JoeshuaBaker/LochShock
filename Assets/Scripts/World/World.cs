@@ -33,6 +33,7 @@ public class World : MonoBehaviour
     void Start()
     {
         activeWorld = this;
+        Application.targetFrameRate = -1;
         SetupMaps();
         SetupEnemies();
     }
