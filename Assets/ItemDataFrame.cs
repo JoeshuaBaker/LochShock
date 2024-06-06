@@ -110,8 +110,8 @@ public class ItemDataFrame : MonoBehaviour
 
                 if (isStash)
                 {
-                    emptyFrameSlotText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
-                    emptyFrameSlotGlowText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
+                    emptyFrameSlotText.text = $"Stash";
+                    emptyFrameSlotGlowText.text = $"Stash";
                 }
                 else
                 {

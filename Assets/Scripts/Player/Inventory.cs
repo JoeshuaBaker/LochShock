@@ -179,6 +179,21 @@ public class Inventory : MonoBehaviour
         return index > -1;
     }
 
+    public int UnstashItem(Item item)
+    {
+        int index = Contains(item, out Item[] collection);
+        int spaceIndex = FirstEmptySpace(item.itemType, out Item[] emptyCollection);
+
+        if (collection == itemStash && collection != emptyCollection)
+        {
+            emptyCollection[spaceIndex] = collection[index];
+            collection[index] = null;
+            return spaceIndex;
+        }
+
+        return -1;
+    }
+
     public void DisassembleItem(Item item)
     {
         if(Contains(item))
@@ -198,6 +213,11 @@ public class Inventory : MonoBehaviour
             scrap -= item.levelUpCost;
             item.LevelUp();
         }
+    }
+
+    public bool HasNonStashSpaceFor(Item item)
+    {
+        return FirstEmptySpace(item.itemType, out Item[] collection) > -1 && collection != itemStash;
     }
 
     public bool HasSpaceFor(Item item)

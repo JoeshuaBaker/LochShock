@@ -142,7 +142,14 @@ public class InventoryUI : MonoBehaviour
         //Set buttons to level up and disassemble
         foreach (ItemDataFrame frame in allFrames)
         {
-            frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+            if(frame.isStash)
+            {
+                frame.SetupButton(frame.topButton, frame.topButtonText, Unstash, nameof(Unstash).SplitCamelCase(), false);
+            }
+            else
+            {
+                frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+            }
             frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
         }
 
@@ -179,12 +186,18 @@ public class InventoryUI : MonoBehaviour
         {
             bool inRange = i < items.Length;
             ItemDataFrame frame = allFrames[i];
+            Item item = i < items.Length ? items[i] : null;
 
             //Set buttons to Take and Disassemble
             frame.SetupButton(frame.topButton, frame.topButtonText, Take, nameof(Take).SplitCamelCase(), false);
             frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
 
-            frame.ReflectInventoryState(newState, inRange ? items[i] : null);
+            if(item != null && inventory.HasSpaceFor(item) && !inventory.HasNonStashSpaceFor(item))
+            {
+                frame.topButtonText.text = "Take (Stash)";
+            }
+
+            frame.ReflectInventoryState(newState, inRange ? item : null);
         }
     }
 
@@ -216,9 +229,36 @@ public class InventoryUI : MonoBehaviour
         TransitionState(InventoryUIState.Close);
     }
 
-    public void Stash(ItemDataFrame frame)
+    public void Unstash(ItemDataFrame frame)
     {
-        Debug.Log("Stash called on item frame " + frame.name);
+        Item item = frame.item;
+        int unstashIndex = inventory.UnstashItem(item);
+
+        if(unstashIndex > -1)
+        {
+            frame.ReflectInventoryState(state, null);
+            switch(item.itemType)
+            {
+                case Item.ItemType.Item:
+                    bottomItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    break;
+
+                case Item.ItemType.Weapon:
+                    weaponItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    break;
+
+                case Item.ItemType.Active:
+                    activeItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    break;
+            }
+        }
+        else
+        {
+            if(!frame.topButtonText.text.Contains("(Make Room)"))
+            {
+                frame.topButtonText.text += "(Make Room)";
+            }
+        }
     }
 
     public void LevelUp(ItemDataFrame frame)
