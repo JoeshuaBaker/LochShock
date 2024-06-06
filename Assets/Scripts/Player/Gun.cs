@@ -16,7 +16,6 @@ public class Gun : Item
     public Light2D visionCone;
     public Animator lightAnimator;
 
-    private bool reloading;
     private float reloadSpeed;
     private float reloadTimer;
     private float fireSpeed;
@@ -26,7 +25,7 @@ public class Gun : Item
 
     public void Shoot()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && !reloading && magazine > 0 && bulletCooldown == 0)
+        if (Input.GetKey(KeyCode.Mouse0) && magazine > 0 && bulletCooldown == 0)
         {
             if(emitter == null)
             {
@@ -53,11 +52,7 @@ public class Gun : Item
 
             magazine -= 1;
             bulletCooldown = fireSpeed;
-            if(magazine == 0)
-            {
-                reloadTimer = reloadSpeed;
-                reloading = true;
-            }
+            reloadTimer = 0;
         }
     }
 
@@ -105,13 +100,11 @@ public class Gun : Item
     public void UpdateActiveGun()
     {
         emitter.ApplyStatBlock(combinedStats);
-        reloadTimer = Mathf.Max(reloadTimer - Time.deltaTime, 0);
+        reloadTimer = Mathf.Min(reloadTimer + Time.deltaTime, reloadSpeed);
 
-        if(reloading && reloadTimer == 0)
+        if(reloadTimer >= reloadSpeed)
         {
-            reloading = false;
             magazine = maxMagazine;
-            bulletCooldown = 0;
 
             foreach(OnReloadAction onReload in combinedStats.events.OnReload)
             {
@@ -119,7 +112,7 @@ public class Gun : Item
             }
         }
 
-        Crosshair.activeCrosshair.UpdateCrosshair(reloading, reloadTimer / reloadSpeed, magazine.ToString());
+        Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
     }
 
     private void Reset()

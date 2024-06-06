@@ -16,6 +16,7 @@ namespace BulletHell
         [SerializeField] protected bool StaticColor = false;
         [ConditionalField(nameof(StaticColor)), SerializeField, ColorUsage(true, true)] protected Color Color;
         [SerializeField, Range(1, 1000000)] private int MaxProjectileCount;
+        [SerializeField, Range(1, 10000)] private int ProjectilesPerEmitterInstance;
         
         public bool IsStaticColor { get { return StaticColor; } }
         public Material Material { get; protected set; }        
@@ -57,6 +58,11 @@ namespace BulletHell
         public int GetMaxProjectileCount()
         {
             return MaxProjectileCount;
+        }
+
+        public int GetProjectilesPerEmitterInstance()
+        {
+            return ProjectilesPerEmitterInstance;
         }
     }
 }

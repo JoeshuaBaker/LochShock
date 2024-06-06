@@ -40,12 +40,6 @@ public class ItemDataFrame : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SetItem(Item item)
     {
         this.item = item;
@@ -105,7 +99,15 @@ public class ItemDataFrame : MonoBehaviour
                 {
                     flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(-.2f, 0f));
                 }
+
+                //disable disassemble button
+                if(item == Player.activePlayer.inventory.activeGun && !bottomButtonText.text.Contains("(E)"))
+                {
+                    bottomButtonText.text += "(E)";
+                }
+
                 fullFrameParent.gameObject.SetActive(item != null);
+
                 if (isStash)
                 {
                     emptyFrameSlotText.text = $"{nameof(InventoryUI.Stash).SplitCamelCase()}";
@@ -117,14 +119,7 @@ public class ItemDataFrame : MonoBehaviour
                     emptyFrameSlotGlowText.text = slotType.ToString();
                 }
 
-                if (isStash)
-                {
-                    invDataFrameImage.color = Color.grey;
-                }
-                else
-                {
-                    invDataFrameImage.color = Color.white;
-                }
+                invDataFrameImage.color = isStash ? Color.grey : Color.white;
                 break;
 
             case InventoryUI.InventoryUIState.Orb:

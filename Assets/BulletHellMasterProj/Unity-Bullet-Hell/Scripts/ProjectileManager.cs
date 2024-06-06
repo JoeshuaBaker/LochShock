@@ -166,7 +166,7 @@ namespace BulletHell
             {
                 if (EmittersArray[n] != null)
                 {
-                    int projectilesToAssign = EmittersArray[n].ProjectilePrefab.GetMaxProjectileCount();
+                    int projectilesToAssign = EmittersArray[n].ProjectilePrefab.GetProjectilesPerEmitterInstance();
 
                     if (projectilesToAssign == -1)
                     {
@@ -209,11 +209,10 @@ namespace BulletHell
             }
             else
             {
-                Debug.Log("Initialize Emitter " + emitter.gameObject.name);
                 EmittersArray[nextEmpty] = emitter;
                 ProjectileTypeCounters[emitter.ProjectilePrefab.Index].TotalGroups++;
 
-                int projectilesToAssign = emitter.ProjectilePrefab.GetMaxProjectileCount();
+                int projectilesToAssign = emitter.ProjectilePrefab.GetProjectilesPerEmitterInstance();
 
                 if (projectilesToAssign == -1)
                 {

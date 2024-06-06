@@ -7,6 +7,8 @@ using UnityEngine;
 public class World : MonoBehaviour
 {
     public Player player;
+    public static World activeWorld;
+    public bool paused = false;
 
     //Map Variables
     public MapPool mapPool;
@@ -30,6 +32,7 @@ public class World : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        activeWorld = this;
         SetupMaps();
         SetupEnemies();
     }
@@ -38,6 +41,12 @@ public class World : MonoBehaviour
     {
         UpdateMaps();
         UpdateEnemies();
+    }
+
+    public void Pause(bool pause)
+    {
+        Time.timeScale = pause ? 0f : 1f;
+        paused = pause;
     }
 
     void SetupMaps()

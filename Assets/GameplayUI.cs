@@ -122,7 +122,10 @@ public class GameplayUI : MonoBehaviour
 
     public void SetTime()
     {
-        timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
+        if(!Player.activePlayer.isDead)
+        {
+            timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
+        }
     }
 
     public void SetDistance()

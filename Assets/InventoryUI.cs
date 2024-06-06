@@ -40,6 +40,8 @@ public class InventoryUI : MonoBehaviour
     public TMP_Text continueButtonText;
     public TMP_Text scrapText;
 
+    public Action OnClose;
+
     // Start is called before the first frame update
     void Setup()
     {
@@ -97,6 +99,8 @@ public class InventoryUI : MonoBehaviour
             gameObject.SetActive(true);
         }
 
+        World.activeWorld.Pause(newState != InventoryUIState.Close);
+
         switch (newState)
         {
             case InventoryUIState.Inventory:
@@ -113,6 +117,8 @@ public class InventoryUI : MonoBehaviour
 
             case InventoryUIState.Close:
                 gameObject.SetActive(false);
+                OnClose?.Invoke();
+                OnClose = null;
                 break;
         }
 
@@ -127,7 +133,6 @@ public class InventoryUI : MonoBehaviour
         inventoryButton.interactable = true;
         inventoryButtonText.text = "Return";
 
-        Inventory inventory = Player.activePlayer.inventory;
         Gun[] weapons = inventory.guns;
         Item[] activeItem = inventory.activeItem;
         Item[] itemStash = inventory.itemStash;
@@ -218,7 +223,6 @@ public class InventoryUI : MonoBehaviour
 
     public void LevelUp(ItemDataFrame frame)
     {
-        Debug.Log("Level up button pressed on item " + frame.item.name);
         inventory.LevelUp(frame.item);
         frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
         frame.ReflectInventoryState(state, frame.item);
@@ -227,6 +231,27 @@ public class InventoryUI : MonoBehaviour
 
     public void Disassemble(ItemDataFrame frame)
     {
+        if (frame.item == inventory.activeGun)
+        {
+            if(inventory.inactiveGun == null)
+            {
+                frame.bottomButton.interactable = false;
+                frame.bottomButtonText.text = "Can't Disassemble.";
+                return;
+            }
+            else
+            {
+                inventory.SwitchWeapons();
+                foreach(var weaponFrame in weaponItemFrames)
+                {
+                    if(weaponFrame.item == inventory.activeGun && !weaponFrame.bottomButtonText.text.Contains("(E)"))
+                    {
+                        weaponFrame.bottomButtonText.text += "(E)";
+                    }
+                }
+            }
+        }
+
         inventory.DisassembleItem(frame.item);
 
         if(state == InventoryUIState.Inventory)

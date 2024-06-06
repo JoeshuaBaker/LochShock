@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private float secondTimer = 0;
 
     [Header("Death Animation Components")]
+    public bool dying;
     public bool isDead;
     public ParticleSystem damagePS;
     public ParticleSystem diePS;
@@ -128,6 +129,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (World.activeWorld.paused || isDead)
+        {
+            return;
+        }
+
         UpdateStatBlocks();
         OnSecond();
         Move();
@@ -240,6 +246,12 @@ public class Player : MonoBehaviour
 
     private void Move() 
     {
+        if (dying)
+        {
+            slowVel *= 0.98f;
+            fastVel *= 0.98f;
+        }
+
         Vector2 holdDirection = new Vector2(0,0);
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -307,9 +319,6 @@ public class Player : MonoBehaviour
     {
         UpdateHp(damage);
 
-        //Audio Section
-        AkSoundEngine.PostEvent("PlayWipe", this.gameObject);
-
         damagePS.Stop();
         damagePS.Play();
 
@@ -337,24 +346,39 @@ public class Player : MonoBehaviour
             playerShake.GenerateImpulse(3f);
 
             inventory.activeGun.visionCone.enabled = false;
+            dying = true;
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayDeathStart", this.gameObject);
 
         }
-
         else 
         {
             slashParent.transform.localScale = new Vector3(0.2f, 0.2f, 1f);
             slashOne.SetActive(false);
             slashOne.SetActive(true);
-
-            ring.transform.position = this.transform.position;
-            ringAnimator.Play("RingExpandExtraLargeRed");
-
-            playerShake.GenerateImpulse(2f);
         }
 
+        Bomb(true);
+    }
+
+    public void Bomb(bool isHit)
+    {
+        if(isHit)
+        {
+            ringAnimator.Play("RingExpandExtraLargeRed");
+        }
+        else
+        {
+            ringAnimator.Play("RingExpandLarge");
+        }
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayWipe", this.gameObject);
+
+        ring.transform.position = this.transform.position;
+
+        playerShake.GenerateImpulse(2f);
 
         Physics2D.OverlapCircle(this.transform.position.xy(), onHitKillRadius, hitFilter, hitBuffer);
 
@@ -363,7 +387,7 @@ public class Player : MonoBehaviour
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.Die((enemy.transform.position - this.transform.position).magnitude*onHitKillDistanceDelay);  
+                enemy.Die((enemy.transform.position - this.transform.position).magnitude * onHitKillDistanceDelay);
             }
         }
     }
@@ -372,7 +396,6 @@ public class Player : MonoBehaviour
     {
         if (damagePS.isStopped == true && currentHp == 0 && isDead == false)
         {
-            
             explosionSpawner.CreateExplosion(new Vector3 ( this.transform.position.x , (this.transform.position.y - 0.5f ) , this.transform.position.z) , 3f);
             ring.transform.position = this.transform.position;
             ringAnimator.Play("RingExpandExtraLarge");
@@ -463,8 +486,11 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        inventory.activeGun.Shoot();
-        inventory.activeGun.UpdateActiveGun();
+        if(!dying)
+        {
+            inventory.activeGun.Shoot();
+            inventory.activeGun.UpdateActiveGun();
+        }
     }
 
     private void OnSecond()

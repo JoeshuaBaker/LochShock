@@ -61,6 +61,10 @@ public abstract class BasicEnemy : Enemy
         }
 
         rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y).normalized * speed;
+        if(player.isDead)
+        {
+            rb.velocity = -rb.velocity;
+        }
     }
 
     public override void Die()
