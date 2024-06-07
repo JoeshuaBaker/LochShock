@@ -2994,7 +2994,7 @@ PrefabInstance:
       objectReference: {fileID: 778304412622747737, guid: 2e6607af629cfb94387d106b6c1ee135, type: 3}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRate
-      value: 0.06
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay
@@ -3005,8 +3005,140 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecayTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecayPerMinute
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].time
+      value: 0.16666558
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].time
+      value: 0.5986547
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].value
+      value: 0.000007145107
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].value
+      value: 0.50279
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].inSlope
+      value: 0.00010230653
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].inSlope
+      value: 1.5320355
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[3].inSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].inWeight
+      value: 0.41904384
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].outSlope
+      value: 0.00010230653
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].inWeight
+      value: 0.121815376
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].outSlope
+      value: 1.5320355
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[3].inWeight
+      value: 0.26102683
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[3].outSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[2].outWeight
+      value: 0.14968522
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].value
+      value: 0.0000007916242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].value
+      value: 0.9976425
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].inSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[2].inSlope
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].inWeight
+      value: 0.11410428
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].outSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[2].outSlope
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].outWeight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02509473ea917004d939933de5989004, type: 3}

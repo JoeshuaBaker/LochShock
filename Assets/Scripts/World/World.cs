@@ -30,8 +30,10 @@ public class World : MonoBehaviour
     public float enemySpawnRate = 1f;
     public float adjustedSpawnRate = 1f;
     public float enemySpawnRateFloor = .01f;
-    public float enemySpawnRateDecayPerMinute = 0.1f;
-    public float orbDecayPerMinute = 0.5f;
+    public AnimationCurve enemySpawnRateDecay = AnimationCurve.Linear(0, 0, 1, 1);
+    public AnimationCurve orbDecay = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    public float enemySpawnRateDecayTime = 10f;
+    public float orbDecayMaxtime = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -176,10 +178,10 @@ public class World : MonoBehaviour
     void UpdateEnemies()
     {
         enemySpawn -= Time.deltaTime;
-        adjustedSpawnRate = enemySpawnRate
-            * (Mathf.Pow(1f - enemySpawnRateDecayPerMinute, (Time.timeSinceLevelLoad / 60f)))
-            * (Mathf.Pow(1f - orbDecayPerMinute, Mathf.Max(Player.activePlayer.timeSinceOrbUsed - 15f, 0) / 60f));
-        adjustedSpawnRate = Mathf.Max(adjustedSpawnRate, enemySpawnRateFloor);
+        float levelLoadTimeRatio = Mathf.Min(Time.timeSinceLevelLoad / (enemySpawnRateDecayTime * 60f), 1f);
+        float orbTimeRatio = Mathf.Min(Player.activePlayer.timeSinceOrbUsed / (orbDecayMaxtime * 60f), 1f);
+        adjustedSpawnRate = Mathf.Lerp(enemySpawnRate, enemySpawnRateFloor, enemySpawnRateDecay.Evaluate(
+            Mathf.Min(levelLoadTimeRatio + (1f - levelLoadTimeRatio) * orbDecay.Evaluate(orbTimeRatio), 1f)));
        
         while (enemySpawn < adjustedSpawnRate)
         {

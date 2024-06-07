@@ -78,7 +78,7 @@ public abstract class Enemy : BulletCollidable
 
     public virtual void Reset()
     {
-        currentHp = (int)(maxHp + maxHp * ((1f - bonusHpPerMinute) * Time.timeSinceLevelLoad / 60f) * ((1f - bonusHpPerOrbUsedMinute) * Player.activePlayer.timeSinceOrbUsed / 60f));
+        currentHp = (int)(maxHp + maxHp * ((1f - bonusHpPerMinute) * Time.timeSinceLevelLoad / 60f) + maxHp * ((1f - bonusHpPerOrbUsedMinute) * Player.activePlayer.timeSinceOrbUsed / 60f));
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         instanceId = 0;
