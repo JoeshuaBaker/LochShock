@@ -7,6 +7,7 @@ using UnityEngine;
 public class World : MonoBehaviour
 {
     public Player player;
+    public GameObject spawnContainer;
     public static World activeWorld;
     public bool paused = false;
 
@@ -65,6 +66,10 @@ public class World : MonoBehaviour
                 player.transform.position = playerInBounds.startTiles[0].transform.position;
             }
 
+            if (spawnContainer != null)
+            {
+                spawnContainer.transform.position = player.transform.position;
+            }
         }
     }
 

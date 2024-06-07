@@ -145,7 +145,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: c6a86fcf9e1b834fb22623621508c181
     GuidInternal: 
-    m_lastTime: -8584840345928252036
+    m_lastTime: -8584838670046658553
     List:
     - name: Ambiance
       guid: 63c74578a0c80b47b90311f208dd80e6
@@ -295,6 +295,52 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: PlayAssaultRifle
+      guid: 9997b34aa30d33468efee447f34386da
+      id: 1703458158
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayAssaultRifle
+        ObjectType: 3
+        guid: 9997b34aa30d33468efee447f34386da
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayAssaultRifle
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
+    - name: PlayAutoShotgun
+      guid: cce61a435b504f4b86e8df8b60d0855a
+      id: 3449696796
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayAutoShotgun
+        ObjectType: 3
+        guid: cce61a435b504f4b86e8df8b60d0855a
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayAutoShotgun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayDeathBoom
       guid: 69428fb7d938ec419375c93244390b1c
       id: 1290774814
@@ -347,6 +393,52 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 10.145792
       minDuration: 10.145792
+    - name: PlayDoubleBarrelShotgun
+      guid: 35f8729442288d428be774456955a5d4
+      id: 4178281434
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayDoubleBarrelShotgun
+        ObjectType: 3
+        guid: 35f8729442288d428be774456955a5d4
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayDoubleBarrelShotgun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
+    - name: PlayDualPistol
+      guid: aa66c3643b3de44cab49ed8ae2a2e3c8
+      id: 1602582936
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayDualPistol
+        ObjectType: 3
+        guid: aa66c3643b3de44cab49ed8ae2a2e3c8
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayDualPistol
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: Player
       guid: 75d76fb808c6c944956138bbd6ff96da
       id: 1069431850
@@ -416,6 +508,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 2.84007
       minDuration: 1.717235
+    - name: PlayGoldenGun
+      guid: bca5b7dcd0302447b5b5a41294d3902c
+      id: 1053502162
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayGoldenGun
+        ObjectType: 3
+        guid: bca5b7dcd0302447b5b5a41294d3902c
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayGoldenGun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayIntroAll
       guid: 661e4012b04319488eac4681aad2c2cd
       id: 2624888416
@@ -496,9 +611,9 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 6.773017
       minDuration: 6.773017
-    - name: PlayItemGet
-      guid: 6ecb57edac3fed4c9ef3949381f19c66
-      id: 1707287486
+    - name: PlayLightningRifle
+      guid: e617dcbafbb3334ca6502d6726a9329a
+      id: 3530697091
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -506,16 +621,19 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: c6a86fcf9e1b834fb22623621508c181
-      - ElementName: Menu
+      - ElementName: GameplayCombat
         ObjectType: 4
-        guid: 864b771d47826240b3c833bba9a52c7e
-      - ElementName: PlayItemGet
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayLightningRifle
         ObjectType: 3
-        guid: 6ecb57edac3fed4c9ef3949381f19c66
-      Path: Events\Default Work Unit\Menu\PlayItemGet
+        guid: e617dcbafbb3334ca6502d6726a9329a
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayLightningRifle
       maxAttenuation: 0
-      maxDuration: 2.124601
-      minDuration: 2.124601
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayLogo
       guid: 24604b72098f1445862f811b3e4a0543
       id: 3538956422
@@ -576,6 +694,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.830677
       minDuration: 0.830677
+    - name: PlayMinigun
+      guid: a647adf24f1cdf4e86662b9dce7504ee
+      id: 1654325552
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayMinigun
+        ObjectType: 3
+        guid: a647adf24f1cdf4e86662b9dce7504ee
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayMinigun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayMusic
       guid: 3a7174ffe17c9b488ed857c210fb9013
       id: 417627684
@@ -596,6 +737,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: PlayNailgun
+      guid: 038b1624bb820a4a855e98ef97e7e7b8
+      id: 1261806239
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayNailgun
+        ObjectType: 3
+        guid: 038b1624bb820a4a855e98ef97e7e7b8
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayNailgun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayOrbCollect
       guid: d39d14da84567048b35c6523535ca887
       id: 1780443284
@@ -619,6 +783,95 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.571156
       minDuration: 0.274444
+    - name: PlayOrbGet
+      guid: 6ecb57edac3fed4c9ef3949381f19c66
+      id: 1243877330
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: Menu
+        ObjectType: 4
+        guid: 864b771d47826240b3c833bba9a52c7e
+      - ElementName: PlayOrbGet
+        ObjectType: 3
+        guid: 6ecb57edac3fed4c9ef3949381f19c66
+      Path: Events\Default Work Unit\Menu\PlayOrbGet
+      maxAttenuation: 0
+      maxDuration: 2.124601
+      minDuration: 2.124601
+    - name: PlayPlasmaCutter
+      guid: 2666edb8108e72478bfdbdb64c7fd7ea
+      id: 533922744
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayPlasmaCutter
+        ObjectType: 3
+        guid: 2666edb8108e72478bfdbdb64c7fd7ea
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayPlasmaCutter
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
+    - name: PlayRailgun
+      guid: a0b69ac0dec6f8429dfe21dd0e468aa9
+      id: 2843279659
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayRailgun
+        ObjectType: 3
+        guid: a0b69ac0dec6f8429dfe21dd0e468aa9
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayRailgun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
+    - name: PlayRevolver
+      guid: beab2da72b59d945b7cab55d9709ebcf
+      id: 1631291978
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayRevolver
+        ObjectType: 3
+        guid: beab2da72b59d945b7cab55d9709ebcf
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayRevolver
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayShoot
       guid: 70046d0b04eacc4eafc392e0d3bbbd13
       id: 1489638472
@@ -642,6 +895,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.204995
       minDuration: 0.135275
+    - name: PlaySniper
+      guid: cf4bc8832a8afc4793fe2b3d1c4bdf2e
+      id: 4187848682
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlaySniper
+        ObjectType: 3
+        guid: cf4bc8832a8afc4793fe2b3d1c4bdf2e
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlaySniper
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlaySplats
       guid: c67652acc6292241b8f6bd0087732ac8
       id: 127291008
@@ -662,6 +938,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.186869
       minDuration: 0.091619
+    - name: PlayTakehowbigyourthinkthebulletisandlikedoubleit
+      guid: 8c861fb390a6b64280f88d562b53e3bc
+      id: 3210216424
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayTakehowbigyourthinkthebulletisandlikedoubleit
+        ObjectType: 3
+        guid: 8c861fb390a6b64280f88d562b53e3bc
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayTakehowbigyourthinkthebulletisandlikedoubleit
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayTestTone
       guid: eb21d10628cbd543a7b0b7607b7562aa
       id: 2052572755
@@ -702,6 +1001,52 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 7.661191
       minDuration: 7.661191
+    - name: PlayTorch
+      guid: 89621517505a5149ae8f8b9fb228daee
+      id: 3035439363
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayTorch
+        ObjectType: 3
+        guid: 89621517505a5149ae8f8b9fb228daee
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayTorch
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
+    - name: PlayTrenchgun
+      guid: e556a90bf118de4686921f7451b514ab
+      id: 3634591065
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c6a86fcf9e1b834fb22623621508c181
+      - ElementName: GameplayCombat
+        ObjectType: 4
+        guid: 424f9c4de73a7245a0fe46d29e32a6ce
+      - ElementName: Player
+        ObjectType: 4
+        guid: 75d76fb808c6c944956138bbd6ff96da
+      - ElementName: PlayTrenchgun
+        ObjectType: 3
+        guid: e556a90bf118de4686921f7451b514ab
+      Path: Events\Default Work Unit\GameplayCombat\Player\PlayTrenchgun
+      maxAttenuation: 0
+      maxDuration: 0.204995
+      minDuration: 0.135275
     - name: PlayWipe
       guid: 0344522df45e43439fa22347b4771030
       id: 1760503306

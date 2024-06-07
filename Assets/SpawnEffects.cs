@@ -15,8 +15,6 @@ public class SpawnEffects : MonoBehaviour
     {
         GameObject world = GameObject.FindWithTag ("World");
         craterCreator = world.GetComponent<CraterCreator>();
-        
-
     }
 
     // Update is called once per frame
@@ -26,7 +24,10 @@ public class SpawnEffects : MonoBehaviour
 
         if (spawnAnimState.normalizedTime >= 0.005f && hasCrater == false)
         {
-            craterCreator.CreateCrater( this.transform.position , 3 );
+            if(craterCreator != null)
+            {
+                craterCreator.CreateCrater(this.transform.position, 3);
+            }
             spawnImp.GenerateImpulse(3f);
             hasCrater = true;
 
