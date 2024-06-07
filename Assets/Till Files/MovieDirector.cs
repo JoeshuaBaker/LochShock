@@ -33,6 +33,7 @@ public class MovieDirector : MonoBehaviour
         Video = VideoPlayerObject.gameObject.GetComponent<VideoPlayer>();
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
