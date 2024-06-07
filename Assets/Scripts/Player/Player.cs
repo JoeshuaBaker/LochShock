@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     public bool isDead;
     public ParticleSystem damagePS;
     public ParticleSystem diePS;
+    public ParticleSystem dieWallPS;
     public ParticleSystem gunDropPS;
     public GameObject ring;
     public Animator ringAnimator;
@@ -324,29 +325,11 @@ public class Player : MonoBehaviour
 
         if (currentHp == 0)
         {
-            slashParent.transform.localScale = new Vector3(1f, 1f, 1f);
-            slashOne.SetActive(false);
-            slashOne.SetActive(true);
-            slashTwo.SetActive(false);
-            slashTwo.SetActive(true);
-
-            gunDropPS.Play();
+            KillSelf();
 
             diePS.Play();
 
-            bodyRenderer.enabled = false;
-            limbRenderer.enabled = false;
-            mechShadow.enabled = false;
-
             mechDying.SetActive(true);
-
-            ring.transform.position = this.transform.position;
-            ringAnimator.Play("RingExpandExtraLargeRed");
-
-            playerShake.GenerateImpulse(3f);
-
-            inventory.activeGun.visionCone.enabled = false;
-            dying = true;
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayDeathStart", this.gameObject);
@@ -395,13 +378,8 @@ public class Player : MonoBehaviour
     private void CheckDeath()
     {
         if (damagePS.isStopped == true && currentHp == 0 && isDead == false)
-        {
-            explosionSpawner.CreateExplosion(new Vector3 ( this.transform.position.x , (this.transform.position.y - 0.5f ) , this.transform.position.z) , 3f);
-            ring.transform.position = this.transform.position;
-            ringAnimator.Play("RingExpandExtraLarge");
-            mechDying.SetActive(false);
-            hitboxSprite.enabled = false;
-            isDead = true;
+        {            
+            Execute();
         }
 
     }
@@ -542,5 +520,44 @@ public class Player : MonoBehaviour
                 gameplayUI.ShowSignalLost();
             }
         }
+    }
+
+    public void KillSelf()
+    {
+        slashParent.transform.localScale = new Vector3(1f, 1f, 1f);
+        slashOne.SetActive(false);
+        slashOne.SetActive(true);
+        slashTwo.SetActive(false);
+        slashTwo.SetActive(true);
+
+        gunDropPS.Play();
+
+        
+
+        bodyRenderer.enabled = false;
+        limbRenderer.enabled = false;
+        mechShadow.enabled = false;
+
+        ring.transform.position = this.transform.position;
+        ringAnimator.Play("RingExpandExtraLargeRed");
+
+        playerShake.GenerateImpulse(3f);
+
+        inventory.activeGun.visionCone.enabled = false;
+        dying = true;
+        return;
+    }
+
+    public void Execute()
+    {
+        explosionSpawner.CreateExplosion(new Vector3(this.transform.position.x, (this.transform.position.y - 0.5f), this.transform.position.z), 3f);
+        ring.transform.position = this.transform.position;
+        ringAnimator.Play("RingExpandExtraLarge");
+        mechDying.SetActive(false);
+        hitboxSprite.enabled = false;
+        isDead = true;
+
+        UpdateUI();
+        return;
     }
 }

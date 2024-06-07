@@ -43,7 +43,7 @@ public class Gun : Item
             lightAnimator.Play("Base Layer.MuzzleFlashLight" , 0 , 0f);
 
             //Audio Section
-            AkSoundEngine.PostEvent("PlayShoot", this.gameObject);
+            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject); ;
 
             foreach(OnFireAction onFire in combinedStats.events.OnFire)
             {

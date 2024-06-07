@@ -4,23 +4,38 @@ Event	ID	Name			Wwise Object Path	Notes
 	182906760	PlayExplosion			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion	
 	406165590	PlayIntroLaugh			\Default Work Unit\Intro\PlayIntroLaugh	
 	417627684	PlayMusic			\Default Work Unit\Music\PlayMusic	
+	533922744	PlayPlasmaCutter			\Default Work Unit\GameplayCombat\Player\PlayPlasmaCutter	
 	794424115	EnemyDie			\Default Work Unit\GameplayCombat\Enemies\EnemyDie	
+	1053502162	PlayGoldenGun			\Default Work Unit\GameplayCombat\Player\PlayGoldenGun	
 	1123853166	PlayMenuOpen			\Default Work Unit\Menu\PlayMenuOpen	
+	1243877330	PlayOrbGet			\Default Work Unit\Menu\PlayOrbGet	
+	1261806239	PlayNailgun			\Default Work Unit\GameplayCombat\Player\PlayNailgun	
 	1290774814	PlayDeathBoom			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathBoom	
 	1489638472	PlayShoot			\Default Work Unit\GameplayCombat\Player\PlayShoot	
 	1495182018	WaterAmbiance			\Default Work Unit\Ambiance\WaterAmbiance	
-	1707287486	PlayItemGet			\Default Work Unit\Menu\PlayItemGet	
+	1602582936	PlayDualPistol			\Default Work Unit\GameplayCombat\Player\PlayDualPistol	
+	1631291978	PlayRevolver			\Default Work Unit\GameplayCombat\Player\PlayRevolver	
+	1654325552	PlayMinigun			\Default Work Unit\GameplayCombat\Player\PlayMinigun	
+	1703458158	PlayAssaultRifle			\Default Work Unit\GameplayCombat\Player\PlayAssaultRifle	
 	1760503306	PlayWipe			\Default Work Unit\GameplayCombat\Player\PlayWipe	
 	1780443284	PlayOrbCollect			\Default Work Unit\GameplayCombat\Items\PlayOrbCollect	
 	2052572755	PlayTestTone			\Default Work Unit\Utilities\PlayTestTone	
 	2367080787	RainAmbiance			\Default Work Unit\Ambiance\RainAmbiance	
 	2624888416	PlayIntroAll			\Default Work Unit\Intro\PlayIntroAll	
+	2843279659	PlayRailgun			\Default Work Unit\GameplayCombat\Player\PlayRailgun	
+	3035439363	PlayTorch			\Default Work Unit\GameplayCombat\Player\PlayTorch	
 	3086540886	StopAll			\Default Work Unit\Utilities\StopAll	
+	3210216424	PlayTakehowbigyourthinkthebulletisandlikedoubleit			\Default Work Unit\GameplayCombat\Player\PlayTakehowbigyourthinkthebulletisandlikedoubleit	
 	3284677241	PlayIntroStart			\Default Work Unit\Intro\PlayIntroStart	
+	3449696796	PlayAutoShotgun			\Default Work Unit\GameplayCombat\Player\PlayAutoShotgun	
+	3530697091	PlayLightningRifle			\Default Work Unit\GameplayCombat\Player\PlayLightningRifle	
 	3538956422	PlayLogo			\Default Work Unit\Intro\PlayLogo	
+	3634591065	PlayTrenchgun			\Default Work Unit\GameplayCombat\Player\PlayTrenchgun	
 	3837843530	PlayMenuClose			\Default Work Unit\Menu\PlayMenuClose	
 	3903208307	PlayThunder			\Default Work Unit\Ambiance\PlayThunder	
 	3995809935	PlayIntroDrone			\Default Work Unit\Intro\PlayIntroDrone	
+	4178281434	PlayDoubleBarrelShotgun			\Default Work Unit\GameplayCombat\Player\PlayDoubleBarrelShotgun	
+	4187848682	PlaySniper			\Default Work Unit\GameplayCombat\Player\PlaySniper	
 
 State Group	ID	Name			Wwise Object Path	Notes
 	1049845630	PathStatus			\Default Work Unit\PathStatus	
@@ -44,7 +59,7 @@ Effect plug-ins	ID	Name	Type				Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	14718603	TestTone	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\TestTone_9E7EF7AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\TestTone		34256
 	20665016	DeathBuildUp	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBuildUp_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBuildUp		1253016
-	22615286	Explosion_5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_5_6872035A.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_5		320788
+	22615286	Explosion_5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_5_B1CBE153.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_5		320788
 	39921148	Intro_NEMESIS	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Intro_NEMESIS_062B77FF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Intro\Intro_NEMESIS		896904
 	101129085	Wipe	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Wipe_Full_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Wipe		1092804
 	105630765	Intro_PP Drone F	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Intro_PP Drone F_266454AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Intro\Intro_PP Drone F		15336108
@@ -54,7 +69,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	232485856	Splats_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_F72F1153.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_03		17652
 	244289141	Intro_Laugh	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Intro_Laugh_C4B985DD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Intro\Intro_Laugh		536016
 	246812119	Explosion_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_2_AEE514D4.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_2		316552
-	316136356	DeathBoom	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBoom_84B5407B.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBoom		744372
+	316136356	DeathBoom	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBoom_3F3B76C3.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBoom		744372
 	328935521	Amb_Mid Rain tbh_2024-05-13 21_51_30	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Amb_Mid Rain tbh_2024-05-13 21_51_30_EB10802F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Rain\Amb_Mid Rain tbh_2024-05-13 21_51_30		19837108
 	339030648	Intro_SLIDE	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Intro_SLIDE_F9CA0C53.wem		\Actor-Mixer Hierarchy\Default Work Unit\Intro\Intro_SLIDE		538168
 	396661611	Splats_04	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_99B27512.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_04		35944
@@ -68,19 +83,19 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	563026468	OrbWhoosh	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbWhoosh_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\OrbCollect\OrbWhoosh		65536
 	563564699	OrbSnap	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbSnap_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\OrbCollect\OrbSnap		48476
 	598105689	Deanne B_-Intro	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Deanne B.-Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MusicManager\Deanne B_-Intro\Deanne B_-Intro		1843264
-	602627737	Explosion_4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_4_6858CCDA.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_4		346800
+	602627737	Explosion_4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_4_3AF9CDC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_4		346800
 	605852712	Item Get	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Item Get_33C4700E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Menu\Item Get		407988
 	651015063	Intro_Shock	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Intro_Shock_7AAF780A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Intro\Intro_Shock		1255640
 	662568726	Thunder	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Thunder_6E8F1B53.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Thunder		1471012
 	712233213	Splats_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_625EF4F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_02		22000
 	736708305	OrbCollect	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbCollect_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\OrbCollect\OrbCollect		55392
 	764445160	Splats	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_16477CB7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats		29248
-	792472396	Explosion_0	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_0_1C35C006.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_0		308788
+	792472396	Explosion_0	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_0_C1D362B9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_0		308788
 	812118756	Open Menu	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Open Menu_C1FBCCBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Menu\Open Menu		159552
-	839005815	Explosion_1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_1_BA9541D6.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_1		327284
-	839353267	Explosion_3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_3_160DE2E8.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_3		302984
+	839005815	Explosion_1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_1_2EB609F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_1		327284
+	839353267	Explosion_3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_3_B28FE775.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_3		302984
 	860048034	Deanne B_-Main Loop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Deanne B.-Main Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MusicManager\Deanne B-Main Loop\Deanne B_-Main Loop		9216064
-	895364418	Explosion_6	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_6_827838E5.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_6		359932
+	895364418	Explosion_6	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_6_F6A9A3BE.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_6		359932
 	897932015	Amb_Pathway Waves_2024-05-13 20_55_17	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Amb_Pathway Waves_2024-05-13 20_55_17_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Lake\Amb_Pathway Waves_2024-05-13 20_55_17		34736252
 	915397359	GunFire_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\GunFireBase_DF0567C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Shoot\GunFire_02		36224
 	945210713	Splats_05	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_4E63F28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_05		29848

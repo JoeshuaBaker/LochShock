@@ -116,6 +116,9 @@ public class InventoryUI : MonoBehaviour
                 return;
 
             case InventoryUIState.Close:
+                //Audio Section
+                AkSoundEngine.PostEvent("PlayMenuClose", this.gameObject);
+
                 gameObject.SetActive(false);
                 OnClose?.Invoke();
                 OnClose = null;
@@ -129,6 +132,9 @@ public class InventoryUI : MonoBehaviour
 
     private void Inventory(InventoryUIState newState, Item[] items)
     {
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayMenuOpen", this.gameObject);
+
         bottomFrameParent.gameObject.SetActive(true);
         inventoryButton.interactable = true;
         inventoryButtonText.text = "Return";
@@ -173,6 +179,9 @@ public class InventoryUI : MonoBehaviour
 
     private void Orb(InventoryUIState newState, Item[] items)
     {
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayOrbGet", this.gameObject);
+
         inventoryButton.interactable = true;
         inventoryButtonText.text = "Inventory";
         scrapText.text = inventory.scrap.ToString();

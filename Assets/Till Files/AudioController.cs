@@ -131,7 +131,7 @@ public class AudioController : MonoBehaviour
             }
 
             //Debug
-            //if (debugBooms) { Debug.Log("plumeCount = " + plumeCount); }
+            if (debugBooms) { Debug.Log("plumeCount = " + plumeCount); }
             if (debugBooms) { Debug.Log(plumeCheck); }
 
         }
