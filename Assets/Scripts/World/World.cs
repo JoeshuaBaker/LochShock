@@ -19,15 +19,18 @@ public class World : MonoBehaviour
     Map mostRecentMap = null;
     int numMapsInPool = 0;
     int distToCullMap = 45;
+    public Map startingMap;
 
     //Enemy Variables
     public EnemyPool enemyPool;
     public float horizontalSpawnBarrier = 16f;
     public float verticalSpawnBarrier = 12f;
     public float enemySpawn;
-    public float enemySpawnRate = 10f;
-    public float enemySpawnRateFloor = 1f;
-    public float enemySpawnRateDecay = 0.05f;
+    public float enemySpawnRate = 1f;
+    public float adjustedSpawnRate = 1f;
+    public float enemySpawnRateFloor = .01f;
+    public float enemySpawnRateDecayPerMinute = 0.1f;
+    public float orbDecayPerMinute = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,33 @@ public class World : MonoBehaviour
         Application.targetFrameRate = -1;
         SetupMaps();
         SetupEnemies();
+        player = Player.activePlayer;
+
+        if (player != null)
+        {
+            foreach (Map map in activeMaps)
+            {
+                if (map.IsWithinBounds(player.transform.position))
+                {
+                    playerInBounds = map;
+                    break;
+                }
+            }
+
+            if (startingMap != null)
+            {
+                startingMap = Instantiate(startingMap, this.transform);
+                PositionMap(startingMap, playerInBounds, false);
+                Tile startTile = startingMap.startTiles[UnityEngine.Random.Range(0, startingMap.startTiles.Count)];
+                player.transform.position = startTile.transform.position;
+                playerInBounds = startingMap;
+            }
+            else
+            {
+                player.transform.position = playerInBounds.startTiles[0].transform.position;
+            }
+
+        }
     }
 
     void Update()
@@ -101,7 +131,7 @@ public class World : MonoBehaviour
 
     public Tile TileUnderPlayer(Vector3 position)
     {
-        return playerInBounds?.TileAt(position);
+        return playerInBounds == null ? null : playerInBounds.TileAt(position);
     }
 
     void SetupEnemies()
@@ -124,7 +154,10 @@ public class World : MonoBehaviour
             SpawnMap();
         }
 
-        playerInBounds = null;
+        if(playerInBounds != startingMap)
+        {
+            playerInBounds = null;
+        }
         foreach(Map map in activeMaps)
         {
             if (map.IsWithinBounds(player.transform.position))
@@ -138,20 +171,16 @@ public class World : MonoBehaviour
     void UpdateEnemies()
     {
         enemySpawn -= Time.deltaTime;
-        enemySpawnRate = Mathf.Max(enemySpawnRate - enemySpawnRateDecay * Time.deltaTime, enemySpawnRateFloor);
+        adjustedSpawnRate = enemySpawnRate
+            * (Mathf.Pow(1f - enemySpawnRateDecayPerMinute, (Time.timeSinceLevelLoad / 60f)))
+            * (Mathf.Pow(1f - orbDecayPerMinute, Mathf.Max(Player.activePlayer.timeSinceOrbUsed - 15f, 0) / 60f));
+        adjustedSpawnRate = Mathf.Max(adjustedSpawnRate, enemySpawnRateFloor);
        
-        for (float i = enemySpawn; i <= enemySpawnRate; i += enemySpawnRate)
+        while (enemySpawn < adjustedSpawnRate)
         {
-            enemySpawn += enemySpawnRate;
+            enemySpawn += adjustedSpawnRate;
             SpawnRandomEnemy();
         }
-
-       
-        //    // To Spawn a specific enemy:
-        //    //SetupEnemy(enemyPool.GetEnemy(typeof(Eye)));
-        //    // Replace 'Urchin' with enemy type desired
-        
-
     }
 
     void SpawnRandomEnemy()
@@ -193,7 +222,7 @@ public class World : MonoBehaviour
         enemy.Reset();
     }
 
-    void PositionMap(Map left, Map right)
+    void PositionMap(Map left, Map right, bool positionRight = true)
     {
         Comparer<Tile> tileSorter = Comparer<Tile>.Create(
             (x, y) => (int)(x.transform.position.y - y.transform.position.y)
@@ -208,7 +237,14 @@ public class World : MonoBehaviour
         Tile rightMiddleTile = rightStartTiles[rightStartTiles.Count / 2];
 
         Vector3 difference = leftMiddleTile.transform.position - rightMiddleTile.transform.position + Vector3.right;
-        right.transform.position = right.transform.position + difference;
+        if(positionRight)
+        {
+            right.transform.position = right.transform.position + difference;
+        }
+        else
+        {
+            left.transform.position = left.transform.position - difference;
+        }
     }
 
     void SpawnMap()

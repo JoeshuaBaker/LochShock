@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     
     public Light2D playerVisionProximity;
     public float orbsHeld;
+    public float timeSinceOrbUsed;
     public Inventory inventory;
     ContactFilter2D hitFilter;
     List<Collider2D> hitBuffer;
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        CheckDeath();
         UpdateStatBlocks();
         OnSecond();
         Move();
@@ -142,8 +144,31 @@ public class Player : MonoBehaviour
         MouseAim();
         Shoot();
         SetVision();
-        CheckDeath();
+        UpdateInventory();
         UpdateUI();
+    }
+
+    public void UpdateInventory()
+    {
+        timeSinceOrbUsed += Time.deltaTime;
+
+        if (!dying && Input.GetKeyDown(KeyCode.Q))
+        {
+            if (inventory.Orb())
+            {
+                timeSinceOrbUsed = 0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            inventory.SwitchWeapons();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            inventory.OpenCloseInventory();
+        }
     }
 
     public void UpdateHp(int hpChange)
@@ -238,7 +263,16 @@ public class Player : MonoBehaviour
             }
         }
 
-        inventory.activeGun?.UpdateVisionCone(totalVis, combinedStats.playerStats.visionConeRadius, combinedStats.playerStats.visionConeAngle);
+        if(inventory.activeGun != null)
+        {
+            inventory.activeGun.visionCone.gameObject.SetActive(true);
+            inventory.activeGun.UpdateVisionCone(totalVis, combinedStats.playerStats.visionConeRadius, combinedStats.playerStats.visionConeAngle);
+        }
+        
+        if (inventory.inactiveGun != null)
+        {
+            inventory.inactiveGun.visionCone.gameObject.SetActive(false);
+        }
 
         playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
         playerVisionProximity.intensity = Mathf.Min(totalVis * 3.3f, 1f);

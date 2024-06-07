@@ -16,11 +16,13 @@ public class ImageAnimation : MonoBehaviour
     private float time = 0;
     public bool playing = false;
 
-    void Awake()
+    void Start()
     {
         playing = false;
         image = GetComponent<Image>();
-        sprites = Resources.LoadAll<Sprite>(spritePath);
+        //sprites = Resources.LoadAll<Sprite>(spritePath);
+        time = 0;
+        frame = 0;
     }
 
     private void Reset()

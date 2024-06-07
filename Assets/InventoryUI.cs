@@ -212,7 +212,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OnStatsButtonPressed()
     {
-        TransitionState(InventoryUIState.Stats);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
     }
 
     public void OnInventoryButtonPressed()

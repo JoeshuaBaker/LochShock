@@ -63,21 +63,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OpenCloseInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(inventoryUI != null)
         {
-            Orb();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchWeapons();
-        }
-
-        if((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape)) && inventoryUI != null)
-        {
-            if(inventoryUI.state == InventoryUI.InventoryUIState.Close)
+            if (inventoryUI.state == InventoryUI.InventoryUIState.Close)
             {
                 inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
             }
@@ -88,10 +78,10 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Orb()
+    public bool Orb()
     {
         if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0 || World.activeWorld.paused)
-            return;
+            return false;
 
         int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
         Player.activePlayer.orbsHeld -= orbsSpent;
@@ -109,6 +99,8 @@ public class Inventory : MonoBehaviour
         {
             Player.activePlayer.Bomb(false);
         }
+
+        return true;
     }
 
     public void SwitchWeapons()

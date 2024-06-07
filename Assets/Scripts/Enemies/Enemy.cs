@@ -12,6 +12,8 @@ public abstract class Enemy : BulletCollidable
     //Internal state variables
     public int maxHp = 10;
     public int currentHp = 10;
+    public float bonusHpPerMinute = 2f;
+    public float bonusHpPerOrbUsedMinute = 3f;
     public int instanceId = 0;
 
     public Color hitFreezeColor = new Color(220, 243, 255, 1f);
@@ -76,7 +78,7 @@ public abstract class Enemy : BulletCollidable
 
     public virtual void Reset()
     {
-        currentHp = maxHp;
+        currentHp = (int)(maxHp * ((1f-bonusHpPerMinute) * Time.timeSinceLevelLoad / 60f) * (bonusHpPerOrbUsedMinute * Player.activePlayer.timeSinceOrbUsed / 60f));
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         instanceId = 0;

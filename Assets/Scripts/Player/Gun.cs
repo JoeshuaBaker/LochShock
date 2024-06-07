@@ -105,6 +105,7 @@ public class Gun : Item
         if(reloadTimer >= reloadSpeed)
         {
             magazine = maxMagazine;
+            reloadTimer = 0;
 
             foreach(OnReloadAction onReload in combinedStats.events.OnReload)
             {

@@ -47,7 +47,7 @@ public class EnvironmentalEffectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeSinceOrbUsed = (timeSinceOrbUsed + Time.deltaTime) % orbResetTime;
+        timeSinceOrbUsed = Player.activePlayer.timeSinceOrbUsed;
         gameTime = Time.timeSinceLevelLoad;
         UpdateInitialLight();
         UpdateLightningLight();

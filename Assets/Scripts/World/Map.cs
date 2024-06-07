@@ -118,7 +118,7 @@ public class Map : MonoBehaviour
         int x = (int)(dist.x);
         int y = (int)(dist.y);
 
-        if (x >= 0 && x < xMax && y >= 0 && y < yMax)
+        if (tiles != null && x >= 0 && x < xMax && y >= 0 && y < yMax)
         {
             return tiles[x, y];
         }

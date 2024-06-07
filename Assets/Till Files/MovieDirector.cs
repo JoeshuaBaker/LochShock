@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MovieDirector : MonoBehaviour
 {
+    public GameObject titleUiContainer;
+    public GameObject tutorialWindow;
+    public string gameSceneName;
     public Canvas canvasVar;
     public ImageAnimation ImageAnimation;
     public GameObject VideoPlayerObject;
@@ -30,6 +33,7 @@ public class MovieDirector : MonoBehaviour
         canvasVar.enabled = false;
         Video = VideoPlayerObject.gameObject.GetComponent<VideoPlayer>();
         Application.targetFrameRate = 60;
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -57,17 +61,28 @@ public class MovieDirector : MonoBehaviour
             if (ImageAnimation.frame == holdFrame)
             {
                 ImageAnimation.playing = false;
-                if (Input.GetKey(KeyCode.Mouse0))
+                if(titleUiContainer != null)
                 {
+                    titleUiContainer.SetActive(true);
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    ImageAnimation.frame += 1;
                     ImageAnimation.playing = true;
                     PlaySound(2);
                 }
             }
 
-            if(ImageAnimation.frame == ImageAnimation.sprites.Length - 1)
+            if(ImageAnimation.frame == ImageAnimation.sprites.Length)
             {
-                PlaySound(2);
-                Invoke("RestartScene", 3.0f);
+                titleUiContainer.SetActive(false);
+                tutorialWindow.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    LoadGame();
+                }
+                //PlaySound(2);
+                //Invoke("RestartScene", 3.0f);
             }
         }
         //Debug.Log(Video.frame);
@@ -99,9 +114,18 @@ public class MovieDirector : MonoBehaviour
         return;
     }
 
-    void RestartScene()
+    void LoadGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(gameSceneName);
         return;
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 }
