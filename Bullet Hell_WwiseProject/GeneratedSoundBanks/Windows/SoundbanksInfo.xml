@@ -11,149 +11,16 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3136799499">
-			<ObjectPath>Init</ObjectPath>
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-		</SoundBank>
-		<SoundBank Id="1492361653" Language="SFX" Hash="1379587849">
-			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
-			<ShortName>Sounds</ShortName>
-			<Path>Sounds.bnk</Path>
+		<SoundBank Id="1125500713" Language="SFX" Hash="3722178791">
+			<ObjectPath>\SoundBanks\Default Work Unit\Intro</ObjectPath>
+			<ShortName>Intro</ShortName>
+			<Path>Intro.bnk</Path>
 			<IncludedEvents>
-				<Event Id="794424115" Name="EnemyDie" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\EnemyDie" DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1703458158" Name="PlayAssaultRifle" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayAssaultRifle" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
 					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3449696796" Name="PlayAutoShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayAutoShotgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1290774814" Name="PlayDeathBoom" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathBoom" DurationType="OneShot" DurationMin="3.876597" DurationMax="3.876597">
-					<IncludedMemoryFiles>
-						<File Id="316136356" Language="SFX">
-							<ShortName>DeathBoom.wav</ShortName>
-							<Path>SFX/DeathBoom_3F3B76C3.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-					<ActionPostEvent>
-						<ActionPostEventEntry Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayWipe"/>
-					</ActionPostEvent>
-				</Event>
-				<Event Id="180348757" Name="PlayDeathStart" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathStart" DurationType="OneShot" DurationMin="10.145792" DurationMax="10.145792">
-					<IncludedMemoryFiles>
-						<File Id="20665016" Language="SFX">
-							<ShortName>DeathBuildUp.wav</ShortName>
-							<Path>SFX/DeathBuildUp_10C4C929.wem</Path>
-						</File>
-						<File Id="178169467" Language="SFX">
-							<ShortName>DeathBlip.wav</ShortName>
-							<Path>SFX/DeathBlip_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4178281434" Name="PlayDoubleBarrelShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayDoubleBarrelShotgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1602582936" Name="PlayDualPistol" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayDualPistol" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="182906760" Name="PlayExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion" DurationType="OneShot" DurationMin="1.717235" DurationMax="2.84007">
-					<IncludedMemoryFiles>
-						<File Id="22615286" Language="SFX">
-							<ShortName>Explosion_5.wav</ShortName>
-							<Path>SFX/Explosion_5_B1CBE153.wem</Path>
-						</File>
-						<File Id="246812119" Language="SFX">
-							<ShortName>Explosion_2.wav</ShortName>
-							<Path>SFX/Explosion_2_AEE514D4.wem</Path>
-						</File>
-						<File Id="602627737" Language="SFX">
-							<ShortName>Explosion_4.wav</ShortName>
-							<Path>SFX/Explosion_4_3AF9CDC9.wem</Path>
-						</File>
-						<File Id="792472396" Language="SFX">
-							<ShortName>Explosion_0.wav</ShortName>
-							<Path>SFX/Explosion_0_C1D362B9.wem</Path>
-						</File>
-						<File Id="839005815" Language="SFX">
-							<ShortName>Explosion_1.wav</ShortName>
-							<Path>SFX/Explosion_1_2EB609F9.wem</Path>
-						</File>
-						<File Id="839353267" Language="SFX">
-							<ShortName>Explosion_3.wav</ShortName>
-							<Path>SFX/Explosion_3_B28FE775.wem</Path>
-						</File>
-						<File Id="895364418" Language="SFX">
-							<ShortName>Explosion_6.wav</ShortName>
-							<Path>SFX/Explosion_6_F6A9A3BE.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1053502162" Name="PlayGoldenGun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayGoldenGun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						<File Id="641663119" Language="SFX">
+							<ShortName>Click.wav</ShortName>
+							<Path>SFX/Click_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -199,22 +66,6 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3530697091" Name="PlayLightningRifle" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayLightningRifle" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="3538956422" Name="PlayLogo" ObjectPath="\Events\Default Work Unit\Intro\PlayLogo" DurationType="OneShot" DurationMin="1.78" DurationMax="1.78">
 					<IncludedMemoryFiles>
 						<File Id="231134162" Language="SFX">
@@ -239,7 +90,210 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1654325552" Name="PlayMinigun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayMinigun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="1243877330" Name="PlayOrbGet" ObjectPath="\Events\Default Work Unit\Menu\PlayOrbGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
+					<IncludedMemoryFiles>
+						<File Id="605852712" Language="SFX">
+							<ShortName>Item Get.wav</ShortName>
+							<Path>SFX/Item Get_33C4700E.wem</Path>
+						</File>
+						<File Id="812118756" Language="SFX">
+							<ShortName>Open Menu.wav</ShortName>
+							<Path>SFX/Open Menu_C1FBCCBE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="3136799499">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1492361653" Language="SFX" Hash="3935370708">
+			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
+			<ShortName>Sounds</ShortName>
+			<Path>Sounds.bnk</Path>
+			<IncludedEvents>
+				<Event Id="794424115" Name="EnemyDie" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\EnemyDie" DurationType="OneShot" DurationMin="0.723669" DurationMax="1.823531">
+					<IncludedMemoryFiles>
+						<File Id="125489747" Language="SFX">
+							<ShortName>EnemyDie0.wav</ShortName>
+							<Path>SFX/EnemyDie0_10C4C929.wem</Path>
+						</File>
+						<File Id="470682631" Language="SFX">
+							<ShortName>EnemyDie1.wav</ShortName>
+							<Path>SFX/EnemyDie1_6A1C84D9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1703458158" Name="PlayAssaultRifle" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayAssaultRifle" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
+					<IncludedMemoryFiles>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
+						</File>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
+						</File>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3449696796" Name="PlayAutoShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayAutoShotgun" DurationType="OneShot" DurationMin="3.773333" DurationMax="3.773333">
+					<IncludedMemoryFiles>
+						<File Id="348742600" Language="SFX">
+							<ShortName>BoomShot.wav</ShortName>
+							<Path>SFX/BoomShot_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
+					<IncludedMemoryFiles>
+						<File Id="641663119" Language="SFX">
+							<ShortName>Click.wav</ShortName>
+							<Path>SFX/Click_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1290774814" Name="PlayDeathBoom" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathBoom" DurationType="OneShot" DurationMin="3.876597" DurationMax="3.876597">
+					<IncludedMemoryFiles>
+						<File Id="316136356" Language="SFX">
+							<ShortName>DeathBoom.wav</ShortName>
+							<Path>SFX/DeathBoom_3F3B76C3.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<ActionPostEvent>
+						<ActionPostEventEntry Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayWipe"/>
+					</ActionPostEvent>
+				</Event>
+				<Event Id="180348757" Name="PlayDeathStart" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathStart" DurationType="OneShot" DurationMin="10.145792" DurationMax="10.145792">
+					<IncludedMemoryFiles>
+						<File Id="20665016" Language="SFX">
+							<ShortName>DeathBuildUp.wav</ShortName>
+							<Path>SFX/DeathBuildUp_10C4C929.wem</Path>
+						</File>
+						<File Id="178169467" Language="SFX">
+							<ShortName>DeathBlip.wav</ShortName>
+							<Path>SFX/DeathBlip_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4178281434" Name="PlayDoubleBarrelShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayDoubleBarrelShotgun" DurationType="OneShot" DurationMin="3.773333" DurationMax="3.773333">
+					<IncludedMemoryFiles>
+						<File Id="348742600" Language="SFX">
+							<ShortName>BoomShot.wav</ShortName>
+							<Path>SFX/BoomShot_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1602582936" Name="PlayDualPistol" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayDualPistol" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
+					<IncludedMemoryFiles>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
+						</File>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
+						</File>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="182906760" Name="PlayExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion" DurationType="OneShot" DurationMin="1.717235" DurationMax="2.84007">
+					<IncludedMemoryFiles>
+						<File Id="22615286" Language="SFX">
+							<ShortName>Explosion_5.wav</ShortName>
+							<Path>SFX/Explosion_5_B1CBE153.wem</Path>
+						</File>
+						<File Id="246812119" Language="SFX">
+							<ShortName>Explosion_2.wav</ShortName>
+							<Path>SFX/Explosion_2_AEE514D4.wem</Path>
+						</File>
+						<File Id="602627737" Language="SFX">
+							<ShortName>Explosion_4.wav</ShortName>
+							<Path>SFX/Explosion_4_3AF9CDC9.wem</Path>
+						</File>
+						<File Id="792472396" Language="SFX">
+							<ShortName>Explosion_0.wav</ShortName>
+							<Path>SFX/Explosion_0_C1D362B9.wem</Path>
+						</File>
+						<File Id="839005815" Language="SFX">
+							<ShortName>Explosion_1.wav</ShortName>
+							<Path>SFX/Explosion_1_2EB609F9.wem</Path>
+						</File>
+						<File Id="839353267" Language="SFX">
+							<ShortName>Explosion_3.wav</ShortName>
+							<Path>SFX/Explosion_3_B28FE775.wem</Path>
+						</File>
+						<File Id="895364418" Language="SFX">
+							<ShortName>Explosion_6.wav</ShortName>
+							<Path>SFX/Explosion_6_F6A9A3BE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1053502162" Name="PlayGoldenGun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayGoldenGun" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
+					<IncludedMemoryFiles>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
+						</File>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
+						</File>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3530697091" Name="PlayLightningRifle" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayLightningRifle" DurationType="OneShot" DurationMin="0.367167" DurationMax="0.462601">
+					<IncludedMemoryFiles>
+						<File Id="696228461" Language="SFX">
+							<ShortName>Zap_2.wav</ShortName>
+							<Path>SFX/Zap_2_10C4C929.wem</Path>
+						</File>
+						<File Id="890243623" Language="SFX">
+							<ShortName>Zap_1.wav</ShortName>
+							<Path>SFX/Zap_1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
+					<IncludedMemoryFiles>
+						<File Id="444313976" Language="SFX">
+							<ShortName>Close Menu.wav</ShortName>
+							<Path>SFX/Close Menu_C952CEE8.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
+					<IncludedMemoryFiles>
+						<File Id="812118756" Language="SFX">
+							<ShortName>Open Menu.wav</ShortName>
+							<Path>SFX/Open Menu_C1FBCCBE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1654325552" Name="PlayMinigun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayMinigun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
 					<IncludedMemoryFiles>
 						<File Id="496341410" Language="SFX">
 							<ShortName>GunFireBase.wav</ShortName>
@@ -271,7 +325,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1261806239" Name="PlayNailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayNailgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="1261806239" Name="PlayNailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayNailgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
 					<IncludedMemoryFiles>
 						<File Id="496341410" Language="SFX">
 							<ShortName>GunFireBase.wav</ShortName>
@@ -315,7 +369,71 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="533922744" Name="PlayPlasmaCutter" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayPlasmaCutter" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="148397444" Name="PlayOutOfAmmo" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayOutOfAmmo" DurationType="OneShot" DurationMin="0.970703" DurationMax="0.970703">
+					<IncludedMemoryFiles>
+						<File Id="400411533" Language="SFX">
+							<ShortName>OutOfAmmo.wav</ShortName>
+							<Path>SFX/OutOfAmmo_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="533922744" Name="PlayPlasmaCutter" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayPlasmaCutter" DurationType="OneShot" DurationMin="0.231771" DurationMax="0.231771">
+					<IncludedMemoryFiles>
+						<File Id="234192517" Language="SFX">
+							<ShortName>Hum.wav</ShortName>
+							<Path>SFX/Hum_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2843279659" Name="PlayRailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayRailgun" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
+					<IncludedMemoryFiles>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
+						</File>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
+						</File>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="785535932" Name="PlayReload" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayReload" DurationType="OneShot" DurationMin="1.069184" DurationMax="1.069184">
+					<IncludedMemoryFiles>
+						<File Id="105067499" Language="SFX">
+							<ShortName>Reload.wav</ShortName>
+							<Path>SFX/Reload_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1631291978" Name="PlayRevolver" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayRevolver" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
+					<IncludedMemoryFiles>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
+						</File>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
+						</File>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1489638472" Name="PlayShoot" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayShoot" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
 					<IncludedMemoryFiles>
 						<File Id="496341410" Language="SFX">
 							<ShortName>GunFireBase.wav</ShortName>
@@ -331,67 +449,31 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2843279659" Name="PlayRailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayRailgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="4187848682" Name="PlaySniper" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlaySniper" DurationType="OneShot" DurationMin="1.264737" DurationMax="2.104125">
 					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
+						<File Id="68460367" Language="SFX">
+							<ShortName>Fire_3.wav</ShortName>
+							<Path>SFX/Fire_3_10C4C929.wem</Path>
 						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
+						<File Id="772507813" Language="SFX">
+							<ShortName>Fire_1.wav</ShortName>
+							<Path>SFX/Fire_1_10C4C929.wem</Path>
 						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						<File Id="885275509" Language="SFX">
+							<ShortName>Fire_2.wav</ShortName>
+							<Path>SFX/Fire_2_10C4C929.wem</Path>
+						</File>
+						<File Id="957858280" Language="SFX">
+							<ShortName>Fire_0.wav</ShortName>
+							<Path>SFX/Fire_0_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1631291978" Name="PlayRevolver" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayRevolver" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="3928925152" Name="PlaySpawn" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlaySpawn" DurationType="OneShot" DurationMin="6.1385" DurationMax="6.1385">
 					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1489638472" Name="PlayShoot" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayShoot" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4187848682" Name="PlaySniper" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlaySniper" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
-					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						<File Id="693364141" Language="SFX">
+							<ShortName>Spawn.wav</ShortName>
+							<Path>SFX/Spawn_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -423,19 +505,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3210216424" Name="PlayTakehowbigyourthinkthebulletisandlikedoubleit" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayTakehowbigyourthinkthebulletisandlikedoubleit" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="3210216424" Name="PlayTakehowbigyourthinkthebulletisandlikedoubleit" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayTakehowbigyourthinkthebulletisandlikedoubleit" DurationType="OneShot" DurationMin="2.66723" DurationMax="4.233963">
 					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						<File Id="263340089" Language="SFX">
+							<ShortName>Big.wav</ShortName>
+							<Path>SFX/Big_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -455,7 +529,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3035439363" Name="PlayTorch" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayTorch" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="3035439363" Name="PlayTorch" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayTorch" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
 					<IncludedMemoryFiles>
 						<File Id="496341410" Language="SFX">
 							<ShortName>GunFireBase.wav</ShortName>
@@ -471,23 +545,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3634591065" Name="PlayTrenchgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayTrenchgun" DurationType="OneShot" DurationMin="0.135275" DurationMax="0.204995">
+				<Event Id="3634591065" Name="PlayTrenchgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayTrenchgun" DurationType="OneShot" DurationMin="3.773333" DurationMax="3.773333">
 					<IncludedMemoryFiles>
-						<File Id="496341410" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_BBAD1204.wem</Path>
-						</File>
-						<File Id="915397359" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_DF0567C9.wem</Path>
-						</File>
-						<File Id="1033818243" Language="SFX">
-							<ShortName>GunFireBase.wav</ShortName>
-							<Path>SFX/GunFireBase_D2642ADC.wem</Path>
+						<File Id="348742600" Language="SFX">
+							<ShortName>BoomShot.wav</ShortName>
+							<Path>SFX/BoomShot_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayWipe" DurationType="OneShot" DurationMin="6.194671" DurationMax="6.194671">
+				<Event Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayWipe" DurationType="OneShot" DurationMin="6.194671" DurationMax="6.194671">
 					<IncludedMemoryFiles>
 						<File Id="101129085" Language="SFX">
 							<ShortName>Wipe_Full.wav</ShortName>

@@ -213,6 +213,9 @@ public class InventoryUI : MonoBehaviour
     public void OnStatsButtonPressed()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
     }
 
     public void OnInventoryButtonPressed()
@@ -230,12 +233,18 @@ public class InventoryUI : MonoBehaviour
     public void OnContinueButtonPressed()
     {
         TransitionState(InventoryUIState.Close);
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
     }
 
     public void Take(ItemDataFrame frame)
     {
         inventory.AddItem(frame.item);
         TransitionState(InventoryUIState.Close);
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
     }
 
     public void Unstash(ItemDataFrame frame)
@@ -276,6 +285,9 @@ public class InventoryUI : MonoBehaviour
         frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
         frame.ReflectInventoryState(state, frame.item);
         scrapText.text = inventory.scrap.ToString();
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
     }
 
     public void Disassemble(ItemDataFrame frame)
@@ -313,6 +325,9 @@ public class InventoryUI : MonoBehaviour
             inventoryButtonText.text = "Inventory";
             inventoryButton.interactable = false;
         }
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
 
         scrapText.text = inventory.scrap.ToString();
     }

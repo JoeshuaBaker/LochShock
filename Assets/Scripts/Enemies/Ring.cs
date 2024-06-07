@@ -15,6 +15,7 @@ public class Ring : BasicEnemy
         base.DeathAnimationBegin();
 
         //Audio Section
-        //AkSoundEngine.PostEvent("PlayTestTone", this.gameObject);
+        AkSoundEngine.PostEvent("EnemyDie", this.gameObject);
+
     }
 }

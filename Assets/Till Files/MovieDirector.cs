@@ -28,7 +28,6 @@ public class MovieDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AkSoundEngine.PostEvent("StopAll", this.gameObject);
         ImageAnimation.playing = false;
         canvasVar.enabled = false;
         Video = VideoPlayerObject.gameObject.GetComponent<VideoPlayer>();
@@ -79,6 +78,8 @@ public class MovieDirector : MonoBehaviour
                 tutorialWindow.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    //Audio Section
+                    AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
                     LoadGame();
                 }
                 //PlaySound(2);

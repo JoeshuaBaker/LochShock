@@ -15,6 +15,7 @@ public class SpawnEffects : MonoBehaviour
     {
         GameObject world = GameObject.FindWithTag ("World");
         craterCreator = world.GetComponent<CraterCreator>();
+        AkSoundEngine.PostEvent("PlaySpawn", this.gameObject);
     }
 
     // Update is called once per frame

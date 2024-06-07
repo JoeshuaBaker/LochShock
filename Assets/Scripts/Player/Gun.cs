@@ -22,6 +22,7 @@ public class Gun : Item
     private float bulletCooldown;
     public int maxMagazine;
     public int magazine;
+    private bool reloadAudio = false;
 
     public void Shoot()
     {
@@ -43,7 +44,7 @@ public class Gun : Item
             lightAnimator.Play("Base Layer.MuzzleFlashLight" , 0 , 0f);
 
             //Audio Section
-            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject); ;
+            AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject); ;
 
             foreach(OnFireAction onFire in combinedStats.events.OnFire)
             {
@@ -53,6 +54,13 @@ public class Gun : Item
             magazine -= 1;
             bulletCooldown = fireSpeed;
             reloadTimer = 0;
+            reloadAudio = true;
+
+            //Audio Section
+            if (magazine == 0)
+            {                
+                AkSoundEngine.PostEvent("PlayOutOfAmmo", this.gameObject);
+            }            
         }
     }
 
@@ -107,7 +115,13 @@ public class Gun : Item
             magazine = maxMagazine;
             reloadTimer = 0;
 
-            foreach(OnReloadAction onReload in combinedStats.events.OnReload)
+            //Audio Section
+            if (reloadAudio)
+            {
+                AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
+            }
+
+            foreach (OnReloadAction onReload in combinedStats.events.OnReload)
             {
                 onReload.OnReload(Player.activePlayer, this);
             }
