@@ -108,7 +108,11 @@ public class Gun : Item
     public void UpdateActiveGun()
     {
         emitter.ApplyStatBlock(combinedStats);
-        reloadTimer = Mathf.Min(reloadTimer + Time.deltaTime, reloadSpeed);
+
+        if(magazine < maxMagazine)
+        {
+            reloadTimer = Mathf.Min(reloadTimer + Time.deltaTime, reloadSpeed);
+        }
 
         if(reloadTimer >= reloadSpeed)
         {

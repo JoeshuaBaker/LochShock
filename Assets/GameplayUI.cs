@@ -16,6 +16,7 @@ public class GameplayUI : MonoBehaviour
     public List<Image> orbList;
     public Animator healthPrefab;
     public Image orbPrefab;
+    public GameObject bombReminder;
 
     public Animator signalLost;
 
@@ -35,6 +36,11 @@ public class GameplayUI : MonoBehaviour
     {
         SetTime();
         SetDistance();
+
+        if(Input.GetKeyDown(KeyCode.Q) && bombReminder != null)
+        {
+            bombReminder.gameObject.SetActive(false);
+        }
     }
 
     private void SetAnimStateIfNotSet(Animator anim, AnimatorStateInfo info, string state, float normalizedTime)
