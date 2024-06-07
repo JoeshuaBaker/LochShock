@@ -2122,6 +2122,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2236798223364929980, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236798223364929980, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236798223364929980, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236798223364929980, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2377740563549362416, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3106,15 +3122,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].value
-      value: 0.0000007916242
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].value
-      value: 0.9976425
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].inSlope
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].inSlope
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[2].inSlope
@@ -3122,15 +3142,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].outSlope
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].inWeight
-      value: 0.11410428
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].outSlope
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[2].outSlope
@@ -3139,6 +3159,14 @@ PrefabInstance:
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].outWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: enemySpawnRateDecay.m_Curve.Array.data[1].tangentMode
+      value: 34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02509473ea917004d939933de5989004, type: 3}
