@@ -75,6 +75,8 @@ namespace BulletHell
 
         public virtual void Start()
         {
+            Debug.Log(ProjectileManager == null);
+            ProjectileManager.AddEmitter(this, ProjectilePrefab.GetProjectilesPerEmitterInstance());
             emitterId = ProjectileManager.RegisterEmitter(this);
         }
 
