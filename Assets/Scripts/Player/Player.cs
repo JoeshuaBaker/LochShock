@@ -387,7 +387,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            ringAnimator.Play("RingExpandLarge");
+            ringAnimator.Play("RingExpandExtraLarge");
         }
 
         //Audio Section
