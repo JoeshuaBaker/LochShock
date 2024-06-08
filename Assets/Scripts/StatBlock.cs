@@ -269,32 +269,45 @@ public class StatBlock
 
         if (xMultblocks.Count > 0)
         {
+            Func<float, float, float> xMultCombine = (float stat, float stacks) =>
+            {
+                float mult = 1f + stat;
+                if(mult > 0 && mult < 1f)
+                {
+                    return Mathf.Pow(mult, stacks);
+                }
+                else
+                {
+                    return Mathf.Pow(mult, stacks);
+                }
+            };
+
             //xMult: Multiply value by each block value.
             foreach (var xMultBlock in xMultblocks)
             {
-                combinedBlock.playerStats.health *= 1 + xMultBlock.playerStats.health * xMultBlock.stacks;
-                combinedBlock.playerStats.runSpeed *= 1 + xMultBlock.playerStats.runSpeed * xMultBlock.stacks;
-                combinedBlock.playerStats.walkSpeed *= 1 + xMultBlock.playerStats.walkSpeed * xMultBlock.stacks;
-                combinedBlock.playerStats.totalVision *= 1 + xMultBlock.playerStats.totalVision * xMultBlock.stacks;
-                combinedBlock.playerStats.visionConeAngle *= 1 + xMultBlock.playerStats.visionConeAngle * xMultBlock.stacks;
-                combinedBlock.playerStats.visionConeRadius *= 1 + xMultBlock.playerStats.visionConeRadius * xMultBlock.stacks;
-                combinedBlock.playerStats.visionProximityRadius *= 1 + xMultBlock.playerStats.visionProximityRadius * xMultBlock.stacks;
+                combinedBlock.playerStats.health                *= xMultCombine(xMultBlock.playerStats.health, xMultBlock.stacks);
+                combinedBlock.playerStats.runSpeed              *= xMultCombine(xMultBlock.playerStats.runSpeed, xMultBlock.stacks);
+                combinedBlock.playerStats.walkSpeed             *= xMultCombine(xMultBlock.playerStats.walkSpeed, xMultBlock.stacks);
+                combinedBlock.playerStats.totalVision           *= xMultCombine(xMultBlock.playerStats.totalVision, xMultBlock.stacks);
+                combinedBlock.playerStats.visionConeAngle       *= xMultCombine(xMultBlock.playerStats.visionConeAngle, xMultBlock.stacks);
+                combinedBlock.playerStats.visionConeRadius      *= xMultCombine(xMultBlock.playerStats.visionConeRadius, xMultBlock.stacks);
+                combinedBlock.playerStats.visionProximityRadius *= xMultCombine(xMultBlock.playerStats.visionProximityRadius, xMultBlock.stacks);
 
-                combinedBlock.gunStats.magazineSize *= 1 + xMultBlock.gunStats.magazineSize * xMultBlock.stacks;
-                combinedBlock.gunStats.reloadSpeed *= 1 + xMultBlock.gunStats.reloadSpeed * xMultBlock.stacks;
-                combinedBlock.gunStats.fireSpeed *= 1 + xMultBlock.gunStats.fireSpeed * xMultBlock.stacks;
-                combinedBlock.gunStats.bulletStreams *= 1 + xMultBlock.gunStats.bulletStreams * xMultBlock.stacks;
-                combinedBlock.gunStats.bulletsPerShot *= 1 + xMultBlock.gunStats.bulletsPerShot * xMultBlock.stacks;
-                combinedBlock.gunStats.spreadAngle *= 1 + xMultBlock.gunStats.spreadAngle * xMultBlock.stacks;
-                combinedBlock.gunStats.accuracy *= 1 + xMultBlock.gunStats.accuracy * xMultBlock.stacks;
+                combinedBlock.gunStats.magazineSize     *= xMultCombine(xMultBlock.gunStats.magazineSize, xMultBlock.stacks);
+                combinedBlock.gunStats.reloadSpeed      *= xMultCombine(xMultBlock.gunStats.reloadSpeed, xMultBlock.stacks);
+                combinedBlock.gunStats.fireSpeed        *= xMultCombine(xMultBlock.gunStats.fireSpeed, xMultBlock.stacks);
+                combinedBlock.gunStats.bulletStreams    *= xMultCombine(xMultBlock.gunStats.bulletStreams, xMultBlock.stacks);
+                combinedBlock.gunStats.bulletsPerShot   *= xMultCombine(xMultBlock.gunStats.bulletsPerShot, xMultBlock.stacks);
+                combinedBlock.gunStats.spreadAngle      *= xMultCombine(xMultBlock.gunStats.spreadAngle, xMultBlock.stacks);
+                combinedBlock.gunStats.accuracy         *= xMultCombine(xMultBlock.gunStats.accuracy, xMultBlock.stacks);
 
-                combinedBlock.gunStats.damage *= 1 + xMultBlock.gunStats.damage * xMultBlock.stacks;
-                combinedBlock.gunStats.velocity *= 1 + xMultBlock.gunStats.velocity * xMultBlock.stacks;
-                combinedBlock.gunStats.size *= 1 + xMultBlock.gunStats.size * xMultBlock.stacks;
-                combinedBlock.gunStats.knockback *= 1 + xMultBlock.gunStats.knockback * xMultBlock.stacks;
-                combinedBlock.gunStats.bounce *= 1 + xMultBlock.gunStats.bounce * xMultBlock.stacks;
-                combinedBlock.gunStats.pierce *= 1 + xMultBlock.gunStats.pierce * xMultBlock.stacks;
-                combinedBlock.gunStats.lifetime *= 1 + xMultBlock.gunStats.lifetime * xMultBlock.stacks;
+                combinedBlock.gunStats.damage   *= xMultCombine(xMultBlock.gunStats.damage, xMultBlock.stacks);
+                combinedBlock.gunStats.velocity *= xMultCombine(xMultBlock.gunStats.velocity, xMultBlock.stacks);
+                combinedBlock.gunStats.size     *= xMultCombine(xMultBlock.gunStats.size, xMultBlock.stacks);
+                combinedBlock.gunStats.knockback*= xMultCombine(xMultBlock.gunStats.knockback, xMultBlock.stacks);
+                combinedBlock.gunStats.bounce   *= xMultCombine(xMultBlock.gunStats.bounce, xMultBlock.stacks);
+                combinedBlock.gunStats.pierce   *= xMultCombine(xMultBlock.gunStats.pierce, xMultBlock.stacks);
+                combinedBlock.gunStats.lifetime *= xMultCombine(xMultBlock.gunStats.lifetime, xMultBlock.stacks);
             }
         }
 
