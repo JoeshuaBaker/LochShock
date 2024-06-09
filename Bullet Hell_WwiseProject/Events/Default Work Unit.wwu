@@ -14,6 +14,17 @@
 					<ChildrenList>
 						<Event Name="WaterAmbiance" ID="{0DD26B5C-F837-437A-B56C-2B1FCCDAE94C}">
 							<ChildrenList>
+								<Action Name="" ID="{4BEF7E83-D825-4BAD-B6C4-DB289852EC97}" ShortID="449077091">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{E3CC9A3C-C3C6-4432-B68C-A4F34E5A923B}" ShortID="572628914">
 									<ReferenceList>
 										<Reference Name="Target">
