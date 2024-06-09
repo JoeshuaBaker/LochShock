@@ -311,6 +311,10 @@ PrefabInstance:
       value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecayMaxtime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: orbDecayPerMinute
       value: 0.3
       objectReference: {fileID: 0}
@@ -333,6 +337,42 @@ PrefabInstance:
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: enemySpawnRateDecayPerMinute
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].value
+      value: -0.0023498535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].inSlope
+      value: -0.000021426124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].inSlope
+      value: 0.006161571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].outSlope
+      value: -0.000021426124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].inWeight
+      value: 0.76555026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].outSlope
+      value: 0.006161571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].outWeight
+      value: 0.40311006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[0].weightedMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: orbDecay.m_Curve.Array.data[1].weightedMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3461520090563742209, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: m_RootOrder
@@ -1307,8 +1347,8 @@ MonoBehaviour:
   player: {fileID: 2073718743}
   world: {fileID: 0}
   nextOrbX: {x: 0, y: 0, z: 0}
-  minOrbVariation: 58
-  maxOrbVariation: 65
+  minOrbVariation: 88
+  maxOrbVariation: 100
   orb: {fileID: 5721193926756044386, guid: 4f953ed650c6f4a44b49fd719952e15e, type: 3}
   orbParent: {fileID: 1435535729}
 --- !u!114 &1598683936
@@ -3377,7 +3417,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[0]
       value: 
-      objectReference: {fileID: 6002718498814329004, guid: 183baec78d4060548b7517ebb36c4b0f, type: 3}
+      objectReference: {fileID: 6777671413221197313, guid: 1a8a4c3ab6786b2419d8cadc2a1230af, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[1]
       value: 
