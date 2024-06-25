@@ -135,7 +135,7 @@ public class StatBlock
     {
         //Sort blocks by type
         StatBlock baseCombinedBlock = blocks.FirstOrDefault(x => x.blockType == BlockType.Base) ?? new StatBlock(BlockType.Base);
-        StatBlock combinedBlock = baseCombinedBlock.Copy() ;
+        StatBlock combinedBlock = baseCombinedBlock.Copy();
         List<StatBlock> additiveBlocks = new List<StatBlock>();
         List<StatBlock> multBlocks = new List<StatBlock>();
         List<StatBlock> xMultblocks = new List<StatBlock>();
