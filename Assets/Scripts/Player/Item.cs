@@ -64,6 +64,8 @@ public class Item : MonoBehaviour
             return _stats;
         }
     }
+    public NewStatBlock newStats;
+    public NewStatBlock newLevelUpStats;
     public StatBlock[] itemStats = new StatBlock[]
     {
         new StatBlock(StatBlock.BlockType.xMult)
@@ -98,5 +100,14 @@ public class Item : MonoBehaviour
         {
             displayName = name;
         }
+    }
+
+    public void TransferStats()
+    {
+        newStats = new NewStatBlock();
+        newStats.SetStatBlock(itemStats);
+
+        newLevelUpStats = new NewStatBlock();
+        newLevelUpStats.SetStatBlock(levelUpStats);
     }
 }
