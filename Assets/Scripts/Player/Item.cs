@@ -94,7 +94,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Start()
+    public virtual void Start()
     {
         if(string.IsNullOrEmpty(displayName))
         {

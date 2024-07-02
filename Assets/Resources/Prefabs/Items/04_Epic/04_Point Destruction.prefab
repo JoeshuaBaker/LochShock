@@ -188,6 +188,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp Set
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newStats.stats.Array.data[1].combineType
+      value: Assembly-CSharp PlusMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newStats.stats.Array.data[2].combineType
+      value: Assembly-CSharp PlusMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newStats.stats.Array.data[3].combineType
+      value: Assembly-CSharp PlusMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newStats.stats.Array.data[4].combineType
+      value: Assembly-CSharp XMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.accuracy
       value: 1
       objectReference: {fileID: 0}
@@ -250,6 +270,18 @@ PrefabInstance:
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: levelUpStats.Array.data[0].gunStats.reloadSpeed
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newLevelUpStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp PlusMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newLevelUpStats.stats.Array.data[1].combineType
+      value: Assembly-CSharp PlusMult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: newLevelUpStats.stats.Array.data[2].combineType
+      value: Assembly-CSharp PlusMult
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: newStats.stats.Array.data[0].statType.combinedValue

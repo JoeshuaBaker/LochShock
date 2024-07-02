@@ -7,6 +7,7 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
+    public NewStatBlock newCombinedStats;
     public StatBlock combinedStats;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
@@ -74,8 +75,10 @@ public class Gun : Item
     }
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         if(itemStats.Length > 0)
         {
             ApplyStatBlock(itemStats[0]);
@@ -97,6 +100,11 @@ public class Gun : Item
         reloadSpeed = stats.gunStats.reloadSpeed;
         fireSpeed = stats.gunStats.fireSpeed;
         maxMagazine = (int) stats.gunStats.magazineSize;
+    }
+
+    public void ApplyNewStatBlock(NewStatBlock stats)
+    {
+        newCombinedStats = stats;
     }
 
     // Update is called once per frame

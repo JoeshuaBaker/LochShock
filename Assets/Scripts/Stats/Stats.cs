@@ -6,36 +6,34 @@ using UnityEngine;
 [Serializable]
 public abstract class Stat
 {
-    [SerializeReference, SerializeReferenceButton] public StatType statType;
+    [SerializeReference, SerializeReferenceButton] public StatCombineType combineType;
     public float value;
+    [NonSerialized]
+    public float stacks = 1f;
     public Stat()
     {
-
+        stacks = 1f;
     }
 
     public Stat(float value)
     {
         this.value = value;
+        stacks = 1f;
     }
 
     public Stat(float value, StatBlock.BlockType statType)
     {
         this.value = value;
-        this.statType = StatType.GetStatTypeByEnum(statType);
+        this.combineType = StatCombineType.GetStatTypeByEnum(statType);
+        stacks = 1f;
     }
 
-    public virtual float Min()
-    {
-        return 0;
-    }
-    public virtual float Max()
-    {
-        return 0;
-    }
+    public virtual float Min => 0;
+    public virtual float Max => 0;
 
     public override string ToString()
     {
-        return "Stat Name: " + this.GetType().Name + ", Value: " + value + ", StatType: " + statType.GetType().Name;
+        return "Stat Name: " + this.GetType().Name + ", Value: " + value + ", StatType: " + combineType.GetType().Name;
     }
 
     public static Stat CreateStatByString(string statName, float value, StatBlock.BlockType statType)
@@ -121,7 +119,8 @@ public abstract class Stat
         }
 
         stat.value = value;
-        stat.statType = StatType.GetStatTypeByEnum(statType);
+        stat.combineType = StatCombineType.GetStatTypeByEnum(statType);
+        stat.stacks = 1f;
         return stat;
     }
 }

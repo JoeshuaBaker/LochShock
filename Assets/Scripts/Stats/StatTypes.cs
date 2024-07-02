@@ -1,17 +1,26 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
-public abstract class StatType
+public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<StatCombineType>
 {
-    public float combinedValue;
-    public abstract float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values);
-    public virtual string ModifyTooltip(string tooltip)
+    //float that stores last combined value, good for debugging!
+    protected float combinedValue;
+
+    //Determines what order stats are combined in. Lower priorities are combined first, higher priorities last.
+    public abstract int CombinePriority { get; }
+
+    //Tuple is designed to be passed in as "value, stacks"
+    public abstract float Combine(float baseValue, IEnumerable<Stat> stats);
+
+    public virtual string ModifyTooltip(string tooltip, float value)
     {
         return tooltip;
     }
 
-    public static StatType GetStatTypeByEnum(StatBlock.BlockType type)
+    public static StatCombineType GetStatTypeByEnum(StatBlock.BlockType type)
     {
         switch(type)
         {
@@ -29,33 +38,61 @@ public abstract class StatType
 
             default:
             case StatBlock.BlockType.Base:
-                return new Base();
+                return new BaseStat();
         }
+    }
+
+    public int Compare(StatCombineType x, StatCombineType y)
+    {
+        return x.CombinePriority.CompareTo(y.CombinePriority);
+    }
+
+    public override int GetHashCode()
+    {
+        return CombinePriority;
+    }
+
+    public override bool Equals(object obj)
+    {
+        var item = obj as StatCombineType;
+
+        if (item == null)
+        {
+            return false;
+        }
+        return item.CombinePriority == this.CombinePriority;
+    }
+
+    public int CompareTo(StatCombineType other)
+    {
+        return this.CombinePriority.CompareTo(other.CombinePriority);
     }
 }
 
-public class Additive : StatType
+public class Additive : StatCombineType
 {
-    public override float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values)
+    public override int CombinePriority => 100;
+    public override float Combine(float baseValue, IEnumerable<Stat> stats)
     {
         combinedValue = baseValue;
-        foreach(ValueTuple<float, float> value in values)
+        foreach(Stat stat in stats)
         {
-            combinedValue += value.Item1 * value.Item2;
+            combinedValue += stat.value * stat.stacks;
         }
 
         return combinedValue;
     }
 }
 
-public class PlusMult : StatType
+public class PlusMult : StatCombineType
 {
-    public override float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values)
+    public override int CombinePriority => 101;
+    public override float Combine(float baseValue, IEnumerable<Stat> stats)
     {
         combinedValue = 0;
-        foreach (ValueTuple<float, float> value in values)
+        foreach (Stat stat in stats)
         {
-            combinedValue += value.Item1 * value.Item2;
+            combinedValue += stat.value * stat.stacks;
         }
 
         combinedValue = baseValue * (1 + combinedValue);
@@ -64,14 +101,15 @@ public class PlusMult : StatType
     }
 }
 
-public class XMult : StatType
+public class XMult : StatCombineType
 {
-    public override float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values)
+    public override int CombinePriority => 102;
+    public override float Combine(float baseValue, IEnumerable<Stat> stats)
     {
         combinedValue = 0;
-        foreach (ValueTuple<float, float> value in values)
+        foreach (Stat stat in stats)
         {
-            combinedValue += value.Item1 * value.Item2;
+            combinedValue += stat.value * stat.stacks;
         }
 
         combinedValue = baseValue * (1 + combinedValue);
@@ -80,18 +118,57 @@ public class XMult : StatType
     }
 }
 
-public class Set : StatType
+public class Set : StatCombineType
 {
-    public override float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values)
+    public override int CombinePriority => 10000;
+    public override float Combine(float baseValue, IEnumerable<Stat> stats)
     {
-        return 0;
+        combinedValue = float.MaxValue;
+
+        foreach (Stat stat in stats)
+        {
+            float value = stat.value;
+            if(value > 0 && value < combinedValue)
+            {
+                combinedValue = value;
+            }
+        }
+
+        return combinedValue;
     }
 }
 
-public class Base : StatType
+public class BaseStat : Additive
 {
-    public override float Combine(float baseValue, IEnumerable<ValueTuple<float, float>> values)
+    public override int CombinePriority => 0;
+}
+
+public class Limit : StatCombineType
+{
+    public enum LimitType
     {
-        return 0;
+        Upper,
+        Lower
+    }
+    public LimitType limitType;
+    public override int CombinePriority => 9999;
+    public override float Combine(float baseValue, IEnumerable<Stat> stats)
+    {
+        combinedValue = baseValue;
+
+        foreach (Stat stat in stats)
+        {
+            float value = stat.value;
+            if (limitType == LimitType.Upper && combinedValue > value)
+            {
+                combinedValue = value;
+            }
+            else if(limitType == LimitType.Lower && combinedValue < value)
+            {
+                combinedValue = value;
+            }
+        }
+
+        return combinedValue;
     }
 }

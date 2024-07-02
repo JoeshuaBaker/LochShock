@@ -30,9 +30,23 @@ public class NewStatBlock
         }
     }
 
-    [SerializeReference, SerializeReferenceMenu] public Stat[] stats;
+    [SerializeReference, SerializeReferenceMenu] public List<Stat> stats = new List<Stat>();
     public Events events;
-    public float testFloat;
+    [SerializeField]
+    private float stacks = 1f;
+    public float Stacks
+    {
+        get { return stacks; }
+        set
+        {
+            foreach(Stat stat in stats)
+            {
+                stat.stacks = value;
+            }
+            stacks = value;
+        }
+    }
+    public bool active = false;
 
     public void SetStatBlock(IEnumerable<StatBlock> statBlocks)
     {
@@ -74,6 +88,36 @@ public class NewStatBlock
             events.AddEvents(block.events);
         }
 
-        stats = fieldStats.ToArray();
+        stats = fieldStats.ToList();
+    }
+
+    public IEnumerable<T> GetStats<T>() where T : Stat
+    {
+        return stats.Where(x => x is T) as IEnumerable<T>;
+    }
+
+    public T GetFirstStat<T>() where T : Stat
+    {
+        return stats.FirstOrDefault(x => x is T) as T;
+    }
+
+    public Stat GetFirstStat(Type type)
+    {
+        if(type != null)
+        {
+            return stats.FirstOrDefault(x => x != null && x.GetType() == type);
+        }
+
+        return null;
+    }
+
+    public IEnumerable<T> GetStatsByType<T, S>() where T : Stat where S : StatCombineType
+    {
+        return stats.Where(x => x is T && x.combineType is S) as IEnumerable<T>;
+    }
+
+    public T GetFirstStatByType<T, S>() where T : Stat where S : StatCombineType
+    {
+        return stats.FirstOrDefault(x => x is T && x.combineType is S) as T;
     }
 }
