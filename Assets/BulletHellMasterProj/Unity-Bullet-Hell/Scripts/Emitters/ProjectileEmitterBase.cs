@@ -22,24 +22,24 @@ namespace BulletHell
         public float Scale {
             get
             {
-                return stats.gunStats.size;
+                return stats.GetStatValue<Size>();
             }
         }
         public Gradient Color;
 
         [Foldout("General", true)]
-        public StatBlock stats;
+        public NewStatBlock stats;
         public float TimeToLive { 
             get
             {
-                return stats.gunStats.lifetime;
+                return stats.GetStatValue<Lifetime>();
             }
         }
         public float CoolOffTime
         {
             get
             {
-                return stats.gunStats.fireSpeed;
+                return stats.GetStatValue<FireSpeed>();
             }
         }
         public bool AutoFire = true;
@@ -48,7 +48,7 @@ namespace BulletHell
         {
             get
             {
-                return stats.gunStats.velocity;
+                return stats.GetStatValue<Velocity>();
             }
         }    
         public float RotationSpeed = 0;        
@@ -257,10 +257,10 @@ namespace BulletHell
 
         protected virtual void UpdateProjectileColor(ref ProjectileData data)
         {
-            data.Color = Color.Evaluate(1 - data.stats.lifetime / TimeToLive);
+            data.Color = Color.Evaluate(1 - data.lifetime / TimeToLive);
             if (data.Outline.Item != null)
             {
-                data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.stats.lifetime / TimeToLive);
+                data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.lifetime / TimeToLive);
             }
         }
 
@@ -277,7 +277,7 @@ namespace BulletHell
 
                 Pool<ProjectileData>.Node node = Projectiles.GetActive(ActiveProjectileIndexes[i]);
                
-                node.Item.stats.lifetime -= tick;
+                node.Item.lifetime -= tick;
 
                 ProjectileManager.UpdateBufferData(ProjectilePrefab, node.Item);
                 ActiveProjectileCount++;
@@ -305,7 +305,7 @@ namespace BulletHell
         {
             if (node.Active)
             {
-                node.Item.stats.lifetime = -1;
+                node.Item.lifetime = -1;
                 if (node.Item.Outline.Item != null)
                 {
                     ProjectileOutlines.Return(node.Item.Outline.NodeIndex);

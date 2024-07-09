@@ -21,7 +21,7 @@ namespace BulletHell
             base.Start();
         }
 
-        public void ApplyStatBlock(StatBlock stats)
+        public void ApplyStatBlock(NewStatBlock stats)
         {
             this.stats = stats;
         }
@@ -77,7 +77,7 @@ namespace BulletHell
         protected override bool PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
         {
             bool bounceMove = false;
-            if(node.Item.stats.pierce > 0)
+            if(node.Item.pierces > 0)
             {
                 for(int i = 0; i < RaycastHitBuffer.Count; i++)
                 {
@@ -87,10 +87,10 @@ namespace BulletHell
                     }
 
                     var hit = RaycastHitBuffer[i];
-                    node.Item.stats.pierce--;
+                    node.Item.pierces--;
 
                     //clear ignorelist of pierce targets, except for this one.
-                    if (node.Item.stats.pierce <= 0)
+                    if (node.Item.pierces <= 0)
                     {
                         node.Item.IgnoreList.Clear();
                         node.Item.IgnoreList.Add(hit.transform.name);
@@ -98,9 +98,9 @@ namespace BulletHell
                     }
                 }
             }
-            else if (node.Item.stats.bounce > 0 && bounceTarget.distance != int.MaxValue)
+            else if (node.Item.bounces > 0 && bounceTarget.distance != int.MaxValue)
             {
-                node.Item.stats.bounce--;
+                node.Item.bounces--;
                 // Calculate the position the projectile is bouncing off the wall at
                 Vector2 projectedNewPosition = node.Item.Position + (node.Item.DeltaPosition(tick) * bounceTarget.fraction);
                 Vector2 directionOfHitFromCenter = bounceTarget.point - projectedNewPosition;

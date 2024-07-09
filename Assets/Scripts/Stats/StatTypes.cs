@@ -78,6 +78,7 @@ public class Additive : StatCombineType
         foreach(Stat stat in stats)
         {
             combinedValue += stat.value * stat.stacks;
+            combinedValue = stat.Clamp(combinedValue);
         }
 
         return combinedValue;
@@ -93,6 +94,7 @@ public class PlusMult : StatCombineType
         foreach (Stat stat in stats)
         {
             combinedValue += stat.value * stat.stacks;
+            combinedValue = stat.Clamp(combinedValue);
         }
 
         combinedValue = baseValue * (1 + combinedValue);
@@ -106,13 +108,25 @@ public class XMult : StatCombineType
     public override int CombinePriority => 102;
     public override float Combine(float baseValue, IEnumerable<Stat> stats)
     {
-        combinedValue = 0;
+        combinedValue = baseValue;
+        Func<float, float, float> xMultCombine = (float stat, float stacks) =>
+        {
+            float mult = 1f + stat;
+            if (mult > 0 && mult < 1f)
+            {
+                return Mathf.Pow(mult, stacks);
+            }
+            else
+            {
+                return Mathf.Pow(mult, stacks);
+            }
+        };
+
         foreach (Stat stat in stats)
         {
-            combinedValue += stat.value * stat.stacks;
+            combinedValue *= xMultCombine(stat.value, stat.stacks);
+            combinedValue = stat.Clamp(combinedValue);
         }
-
-        combinedValue = baseValue * (1 + combinedValue);
 
         return combinedValue;
     }
@@ -127,11 +141,21 @@ public class Set : StatCombineType
 
         foreach (Stat stat in stats)
         {
+            if (stat.stacks < 1)
+                continue;
+
             float value = stat.value;
-            if(value > 0 && value < combinedValue)
+            if (value > 0 && value < combinedValue)
             {
                 combinedValue = value;
             }
+
+            combinedValue = stat.Clamp(combinedValue);
+        }
+
+        if(combinedValue == float.MaxValue)
+        {
+            combinedValue = baseValue;
         }
 
         return combinedValue;
@@ -158,15 +182,20 @@ public class Limit : StatCombineType
 
         foreach (Stat stat in stats)
         {
+            if (stat.stacks < 1)
+                continue;
+
             float value = stat.value;
             if (limitType == LimitType.Upper && combinedValue > value)
             {
                 combinedValue = value;
             }
-            else if(limitType == LimitType.Lower && combinedValue < value)
+            else if (limitType == LimitType.Lower && combinedValue < value)
             {
                 combinedValue = value;
             }
+
+            combinedValue = stat.Clamp(combinedValue);
         }
 
         return combinedValue;

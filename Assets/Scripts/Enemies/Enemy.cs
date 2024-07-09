@@ -36,8 +36,8 @@ public abstract class Enemy : BulletCollidable
 
     public override void ProcessCollision(ProjectileData projectile)
     {
-        TakeDamage(projectile.stats.damage);
-        ApplyKnockback(projectile.Velocity.normalized * projectile.stats.knockback);
+        TakeDamage(projectile.damage);
+        ApplyKnockback(projectile.Velocity.normalized * projectile.knockback);
     }
 
     public virtual void ApplyKnockback(Vector2 force)

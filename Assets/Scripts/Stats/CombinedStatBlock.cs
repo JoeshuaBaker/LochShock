@@ -72,7 +72,7 @@ public class CombinedStatBlock
                 
                 if(statType != null && aggregate != 0)
                 {
-                    Stat combinedStat = combinedStatBlock.GetFirstStat(statType);
+                    Stat combinedStat = combinedStatBlock.GetStat(statType);
                     if (combinedStat == null)
                     {
                         combinedStat = Activator.CreateInstance(statType) as Stat;

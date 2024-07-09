@@ -28,8 +28,19 @@ public abstract class Stat
         stacks = 1f;
     }
 
-    public virtual float Min => 0;
-    public virtual float Max => 0;
+    public virtual float Min => -1f;
+    public virtual float Max => -1f;
+
+    public float Clamp(float value)
+    {
+        float clampedValue = value;
+        if (Min > -1f && value < Min)
+            clampedValue = Min;
+        if (Max > -1f && value > Max)
+            clampedValue = Max;
+
+        return clampedValue;
+    }
 
     public override string ToString()
     {
@@ -125,21 +136,21 @@ public abstract class Stat
     }
 }
 
-public class Health : Stat { }
-public class WalkSpeed : Stat { }
-public class RunSpeed : Stat { }
-public class Vision : Stat { }
-public class MagazineSize : Stat { }
-public class ReloadSpeed : Stat { }
-public class FireSpeed : Stat { }
-public class BulletStreams : Stat { }
-public class BulletsPerShot : Stat { }
-public class SpreadAngle : Stat { }
-public class Accuracy : Stat { }
-public class Damage : Stat { }
-public class Velocity : Stat { }
-public class Size : Stat { }
-public class Knockback : Stat { }
-public class Bounce : Stat { }
-public class Pierce : Stat { }
-public class Lifetime : Stat { }
+public class Health : Stat { public override float Min => 0f; }
+public class WalkSpeed : Stat { public override float Min => 0f; }
+public class RunSpeed : Stat { public override float Min => 1f; }
+public class Vision : Stat { public override float Min => 0f; public override float Max => 1f; }
+public class MagazineSize : Stat { public override float Min => 1f; }
+public class ReloadSpeed : Stat { public override float Min => 1f / 60f; }
+public class FireSpeed : Stat { public override float Min => 1f / 60f; }
+public class BulletStreams : Stat { public override float Min => 1f; public override float Max => 10f; }
+public class BulletsPerShot : Stat { public override float Min => 1f; public override float Max => 25f; }
+public class SpreadAngle : Stat { public override float Min => 0f; public override float Max => 90f; }
+public class Accuracy : Stat { public override float Min => 0f; public override float Max => 1f; }
+public class Damage : Stat { public override float Min => 0f; }
+public class Velocity : Stat { public override float Min => 1f; public override float Max => 300f; }
+public class Size : Stat { public override float Min => 0.01f; public override float Max => 5f; }
+public class Knockback : Stat { public override float Min => 0f; }
+public class Bounce : Stat { public override float Min => 0f; }
+public class Pierce : Stat { public override float Min => 0f; }
+public class Lifetime : Stat { public override float Min => 0.05f; public override float Max => 5f; }

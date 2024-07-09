@@ -11,9 +11,16 @@ public class Player : MonoBehaviour
 {
     public static Player activePlayer;
 
-    public StatBlock stats;
-    public StatBlock combinedStats;
-    public List<StatBlock> allStats;
+    //public StatBlock stats;
+    //public StatBlock combinedStats;
+    //public List<StatBlock> allStats;
+
+    public NewStatBlock baseStats;
+    public NewStatBlock Stats {
+        get { return combinedNewStats.combinedStatBlock; }
+    }
+    public CombinedStatBlock combinedNewStats;
+
     public List<Buff.Instance> buffs;
     public bool onPath;
     public float offPathCounter;
@@ -33,7 +40,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return (int)stats.playerStats.health;
+            return (int)Stats.GetStatValue<Health>();
         }
     }
     public int currentHp = 100;
@@ -78,6 +85,12 @@ public class Player : MonoBehaviour
     public CinemachineImpulseSource playerShake;
     public ExplosionSpawner explosionSpawner;
 
+    //vision variables
+    public float totalVision = 1f;
+    private float visionConeAngle = 20f;
+    private float visionConeRadius = 7f;
+    private float visionProximityRadius = 10f;
+
 
     private void Awake()
     {
@@ -85,7 +98,7 @@ public class Player : MonoBehaviour
     }
     
     private void Start() {
-        currentHp = maxHp;
+        currentHp = (int) baseStats.GetStatValue<Health>();
         hitbox = GetComponent<Collider2D>();
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -95,6 +108,7 @@ public class Player : MonoBehaviour
             useLayerMask = true
         };
         buffs = new List<Buff.Instance>();
+        combinedNewStats = new CombinedStatBlock();
 
         slowFastRatio = slowVel / fastVel;
 
@@ -227,7 +241,6 @@ public class Player : MonoBehaviour
 
     public void SetVision()
     {
-        float totalVis = combinedStats.playerStats.totalVision;
         Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
 
         if(tileUnderPlayer != null)
@@ -241,23 +254,23 @@ public class Player : MonoBehaviour
 
         if (onPath)
         {
-            stats.playerStats.totalVision = Mathf.Min (totalVis + 0.0005f, 1f);
+            totalVision = Mathf.Min (totalVision + 0.0005f, 1f);
             
             if ( offPathCounter > 0)
             {
-                stats.playerStats.totalVision = Mathf.Min (totalVis + 0.04f, 1f);
+                totalVision = Mathf.Min (totalVision + 0.04f, 1f);
                 offPathCounter = offPathCounter - 1f;
             }
         } 
         else
         {
-            stats.playerStats.totalVision = Mathf.Max (totalVis - 0.0025f, 0f);
+            totalVision = Mathf.Max (totalVision - 0.0025f, 0f);
 
             if (offPathCounter < 10)
             {
-                if (totalVis > .2f)
+                if (totalVision > .2f)
                 {
-                    stats.playerStats.totalVision = Math.Max(totalVis - 0.04f, 0f);
+                    totalVision = Math.Max(totalVision - 0.04f, 0f);
                 }
                 offPathCounter = offPathCounter + 1f;
             }
@@ -266,7 +279,7 @@ public class Player : MonoBehaviour
         if(inventory.activeGun != null)
         {
             inventory.activeGun.visionCone.gameObject.SetActive(true);
-            inventory.activeGun.UpdateVisionCone(totalVis, combinedStats.playerStats.visionConeRadius, combinedStats.playerStats.visionConeAngle);
+            inventory.activeGun.UpdateVisionCone(totalVision, visionConeRadius, visionConeAngle);
         }
         
         if (inventory.inactiveGun != null)
@@ -274,8 +287,8 @@ public class Player : MonoBehaviour
             inventory.inactiveGun.visionCone.gameObject.SetActive(false);
         }
 
-        playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVis * stats.playerStats.visionProximityRadius, 3.5f);
-        playerVisionProximity.intensity = Mathf.Min(totalVis * 3.3f, 1f);
+        playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVision * visionProximityRadius, 3.5f);
+        playerVisionProximity.intensity = Mathf.Min(totalVision * 3.3f, 1f);
 
     }
 
@@ -512,7 +525,7 @@ public class Player : MonoBehaviour
         if(secondTimer <= 0)
         {
             secondTimer = 1;
-            foreach(OnSecondAction onSecondAction in combinedStats.events.OnSecond)
+            foreach(OnSecondAction onSecondAction in Stats.events.OnSecond)
             {
                 onSecondAction.OnSecond(this);
             }
@@ -528,15 +541,21 @@ public class Player : MonoBehaviour
 
         buffs.RemoveAll(buff => buff.currentDuration <= 0f);
 
-        var allStats = inventory.GetItemStats();
-        allStats.Add(this.stats);
-        allStats.AddRange(inventory.activeGun.stats);
-        allStats.AddRange(buffs.Select(x => x.stats));
+        //var allStats = inventory.GetItemStats();
+        //allStats.Add(this.stats);
+        //allStats.AddRange(inventory.activeGun.stats);
+        //allStats.AddRange(buffs.Select(x => x.stats));
 
-        this.allStats = allStats;
-        var combinedStats = StatBlock.Combine(allStats);
-        this.combinedStats = combinedStats;
-        inventory.activeGun.ApplyStatBlock(combinedStats);
+        //this.allStats = allStats;
+        //var combinedStats = StatBlock.Combine(allStats);
+        //this.combinedStats = combinedStats;
+        //inventory.activeGun.ApplyStatBlock(combinedStats);
+
+        var allNewStats = inventory.GetNewItemStats();
+        allNewStats.Add(this.baseStats);
+        allNewStats.AddRange(buffs.Select(x => x.newStats));
+        combinedNewStats.UpdateSources(allNewStats);
+        inventory.activeGun.ApplyNewStatBlock(combinedNewStats.combinedStatBlock);
     }
 
     public void UpdateUI()

@@ -970,66 +970,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850a4b074406c1d4fa6412e54cff6301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combinedStatBlock:
+    combinedStatBlock:
+      stats: []
+      stacks: 1
+      active: 0
+    sourcesList: []
   statBlock:
     stats:
     - id: 0
     - id: 1
     - id: 2
+    stacks: 1
+    active: 0
+  statBlock2:
+    stats:
     - id: 3
     - id: 4
-    testFloat: 0
+    - id: 5
+    stacks: 1
+    active: 0
   references:
     version: 1
     00000000:
       type: {class: Health, ns: , asm: Assembly-CSharp}
       data:
-        statType:
-          id: 5
-        value: 0
+        combineType:
+          id: 6
+        value: 10
     00000001:
       type: {class: Vision, ns: , asm: Assembly-CSharp}
       data:
-        statType:
-          id: 6
-        value: 0
+        combineType:
+          id: 7
+        value: 10
     00000002:
       type: {class: WalkSpeed, ns: , asm: Assembly-CSharp}
       data:
-        statType:
-          id: 7
-        value: 0
+        combineType:
+          id: 8
+        value: 10
     00000003:
       type: {class: Health, ns: , asm: Assembly-CSharp}
       data:
-        statType:
-          id: 8
-        value: 0
-    00000004:
-      type: {class: Health, ns: , asm: Assembly-CSharp}
-      data:
-        statType:
+        combineType:
           id: 9
-        value: 0
+        value: 1
+    00000004:
+      type: {class: Vision, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 10
+        value: 5
     00000005:
-      type: {class: Additive, ns: , asm: Assembly-CSharp}
+      type: {class: WalkSpeed, ns: , asm: Assembly-CSharp}
       data:
-        combinedValue: 0
+        combineType:
+          id: 11
+        value: 20
     00000006:
-      type: {class: PlusMult, ns: , asm: Assembly-CSharp}
-      data:
-        combinedValue: 0
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000007:
-      type: {class: Additive, ns: , asm: Assembly-CSharp}
-      data:
-        combinedValue: 0
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000008:
-      type: {class: PlusMult, ns: , asm: Assembly-CSharp}
-      data:
-        combinedValue: 0
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000009:
       type: {class: XMult, ns: , asm: Assembly-CSharp}
+    0000000A:
+      type: {class: Set, ns: , asm: Assembly-CSharp}
+    0000000B:
+      type: {class: Limit, ns: , asm: Assembly-CSharp}
       data:
-        combinedValue: 0
+        limitType: 0
 --- !u!4 &516113078
 Transform:
   m_ObjectHideFlags: 0
@@ -1273,6 +1285,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.playerStats.runSpeed
       value: 3.5
       objectReference: {fileID: 0}
@@ -1283,6 +1303,102 @@ PrefabInstance:
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: stats.playerStats.walkSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[0]
+      value: Assembly-CSharp Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[1]
+      value: Assembly-CSharp WalkSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[2]
+      value: Assembly-CSharp RunSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[3]
+      value: Assembly-CSharp Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[0]
+      value: Assembly-CSharp Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[1]
+      value: Assembly-CSharp WalkSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[2]
+      value: Assembly-CSharp RunSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[3]
+      value: Assembly-CSharp Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[0].value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[1].value
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[2].value
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[0].value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[1].value
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[2].value
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[1].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: newStats.stats.Array.data[3].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[1].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[3].combineType
+      value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270934, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Size.x

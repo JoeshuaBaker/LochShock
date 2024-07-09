@@ -64,6 +64,25 @@ public class Item : MonoBehaviour
             return _stats;
         }
     }
+    private IEnumerable<NewStatBlock> _newStats = null;
+    public IEnumerable<NewStatBlock> newStatsList
+    {
+        get
+        {
+            if (_newStats == null)
+            {
+                var newStatList = new List<NewStatBlock>();
+                newStatList.Add(newStats);
+                newStatList.Add(newLevelUpStats);
+                _newStats = newStatList;
+            }
+
+            newLevelUpStats.Stacks = level - 1;
+
+            return _newStats;
+        }
+    }
+
     public NewStatBlock newStats;
     public NewStatBlock newLevelUpStats;
     public StatBlock[] itemStats = new StatBlock[]

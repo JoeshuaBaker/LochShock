@@ -23,7 +23,7 @@ namespace BulletHell
         protected int GroupCount {
             get
             {
-                return (int) stats.gunStats.bulletStreams;
+                return (int) stats.GetStatValue<BulletStreams>();
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
@@ -31,13 +31,13 @@ namespace BulletHell
         protected int SpokeCount {
             get
             {
-                return (int)stats.gunStats.bulletsPerShot;
+                return (int)stats.GetStatValue<BulletsPerShot>();
             }
         }
         protected float SpokeSpacing {
             get
             {
-                return stats.gunStats.spreadAngle;
+                return stats.GetStatValue<SpreadAngle>();
             }
         }
         [SerializeField] protected bool MirrorPairRotation;
@@ -179,7 +179,7 @@ namespace BulletHell
                             rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
                         }
 
-                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.gunStats.accuracy, 0f, 1f);
+                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.GetStatValue<Accuracy>(), 0f, 1f);
                         Vector2 accuracyDirection = Rotate(group.Direction, randomAccuracyAngle);
                         node.Item.Velocity = Speed * Rotate(accuracyDirection, rotation).normalized;
 
@@ -202,10 +202,10 @@ namespace BulletHell
                             TrailTest trailTest = TrailTest.activeTrails;
                             TrailRenderer renderer = trailTest.GetRenderer();
                             renderer.transform.position = node.Item.Position;
-                            renderer.startWidth = node.Item.stats.size;
-                            if(node.Item.stats.size > 1f)
+                            renderer.startWidth = node.Item.size;
+                            if(node.Item.size > 1f)
                             {
-                                renderer.time = trailTest.trailPrefab.time + node.Item.stats.size * 0.01f;
+                                renderer.time = trailTest.trailPrefab.time + node.Item.size * 0.01f;
                             }
                             renderer.endWidth = 0;
                             renderer.gameObject.SetActive(true);
@@ -228,7 +228,7 @@ namespace BulletHell
         {
             Pool<ProjectileData>.Node node = Projectiles.Get();
             node.Item.Position = transform.position;
-            node.Item.ApplyStatBlock(stats.gunStats);
+            node.Item.ApplyStatBlock(stats);
             node.Item.Gravity = Gravity;
             if (UseFollowTarget && FollowTargetType == FollowTargetType.LockOnShot && Target != null)
             {
@@ -254,7 +254,7 @@ namespace BulletHell
                 Pool<ProjectileData>.Node outlineNode = ProjectileOutlines.Get();
 
                 outlineNode.Item.Position = node.Item.Position;
-                outlineNode.Item.stats.size = node.Item.stats.size+ OutlineSize;
+                outlineNode.Item.size = node.Item.size + OutlineSize;
                 outlineNode.Item.Color = OutlineColor.Evaluate(0);
 
                 node.Item.Outline = outlineNode;
@@ -334,9 +334,9 @@ namespace BulletHell
         {
             if (node.Active)
             {
-                node.Item.stats.lifetime -= tick;
+                node.Item.lifetime -= tick;
 
-                if (node.Item.stats.lifetime > 0)
+                if (node.Item.lifetime > 0)
                 {
                     UpdateProjectileVisuals(ref node, tick);
 
@@ -379,7 +379,7 @@ namespace BulletHell
             // If flag set - return projectiles that are no longer in view 
             if (CullProjectilesOutsideCameraBounds)
             {
-                Bounds bounds = new Bounds(node.Item.Position, new Vector3(node.Item.stats.size, node.Item.stats.size, node.Item.stats.size));
+                Bounds bounds = new Bounds(node.Item.Position, new Vector3(node.Item.size, node.Item.size, node.Item.size));
                 if (!GeometryUtility.TestPlanesAABB(Planes, bounds))
                 {
                     ReturnNode(ref node);
@@ -399,13 +399,13 @@ namespace BulletHell
             // follow target
             if (FollowTargetType == FollowTargetType.Homing && node.Item.FollowTarget && node.Item.Target != null)
             {
-                node.Item.stats.velocity += Acceleration * tick;
+                node.Item.velocity += Acceleration * tick;
 
                 Vector2 desiredVelocity = (new Vector2(Target.transform.position.x, Target.transform.position.y) - node.Item.Position).normalized;
-                desiredVelocity *= node.Item.stats.velocity;
+                desiredVelocity *= node.Item.velocity;
 
                 Vector2 steer = desiredVelocity - node.Item.Velocity;
-                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.stats.velocity);
+                node.Item.Velocity = Vector2.ClampMagnitude(node.Item.Velocity + steer * node.Item.FollowIntensity * tick, node.Item.velocity);
             }
             else
             {
@@ -543,7 +543,7 @@ namespace BulletHell
             }
             else
             {
-                data.Color = Color.Evaluate(1 - data.stats.lifetime / TimeToLive);
+                data.Color = Color.Evaluate(1 - data.lifetime / TimeToLive);
             }
 
             //outline
@@ -562,7 +562,7 @@ namespace BulletHell
                 }
                 else
                 {
-                    data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.stats.lifetime / TimeToLive);
+                    data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.lifetime / TimeToLive);
                 }
             }
         }

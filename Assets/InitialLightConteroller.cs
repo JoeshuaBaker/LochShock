@@ -8,13 +8,11 @@ public class InitialLightConteroller : MonoBehaviour
     public Light2D initialLight;
     [SerializeField]
     private float startingIntensity;
-    public StatBlock stats;
 
     // Start is called before the first frame update
     void Start()
     {
         initialLight.intensity = startingIntensity;
-        stats = Player.activePlayer.stats;
     }
 
     // Update is called once per frame
@@ -23,7 +21,7 @@ public class InitialLightConteroller : MonoBehaviour
         float intensityTimePast;
         intensityTimePast = startingIntensity - (0.005f * Time.timeSinceLevelLoad);
 
-        initialLight.intensity = intensityTimePast * stats.playerStats.totalVision;
+        initialLight.intensity = intensityTimePast * Player.activePlayer.totalVision;
 
         if (intensityTimePast < 0)
         {

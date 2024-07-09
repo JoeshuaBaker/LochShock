@@ -67,7 +67,7 @@ namespace BulletHell
         {
             if (index < TransformData.Length)
             {
-                TransformData[index] = new Vector4(data.Position.x, data.Position.y, data.stats.size, data.Rotation);
+                TransformData[index] = new Vector4(data.Position.x, data.Position.y, data.size, data.Rotation);
                 if (!StaticColor)
                     ColorData[index] = new Vector4(data.Color.r, data.Color.g, data.Color.b, data.Color.a);
             }

@@ -8,7 +8,7 @@ using TMPro;
 public class Gun : Item
 {
     public NewStatBlock newCombinedStats;
-    public StatBlock combinedStats;
+    //public StatBlock combinedStats;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
@@ -47,7 +47,7 @@ public class Gun : Item
             //Audio Section
             AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject); ;
 
-            foreach(OnFireAction onFire in combinedStats.events.OnFire)
+            foreach(OnFireAction onFire in newCombinedStats.events.OnFire)
             {
                 onFire.OnFire(Player.activePlayer, this);
             }
@@ -79,11 +79,11 @@ public class Gun : Item
     {
         base.Start();
 
-        if(itemStats.Length > 0)
+        if(newStats.stats.Count > 0)
         {
-            ApplyStatBlock(itemStats[0]);
+            ApplyNewStatBlock(newStats);
         }
-        combinedStats = new StatBlock(StatBlock.BlockType.Additive);
+        newCombinedStats = new NewStatBlock();
         magazine = maxMagazine;
 
         if(emitter == null)
@@ -94,17 +94,12 @@ public class Gun : Item
         emitter.gun = this;
     }
 
-    public void ApplyStatBlock(StatBlock stats)
-    {
-        combinedStats = stats;
-        reloadSpeed = stats.gunStats.reloadSpeed;
-        fireSpeed = stats.gunStats.fireSpeed;
-        maxMagazine = (int) stats.gunStats.magazineSize;
-    }
-
     public void ApplyNewStatBlock(NewStatBlock stats)
     {
         newCombinedStats = stats;
+        reloadSpeed = stats.GetStatValue<ReloadSpeed>();
+        fireSpeed = stats.GetStatValue<FireSpeed>();
+        maxMagazine = (int) stats.GetStatValue<MagazineSize>();
     }
 
     // Update is called once per frame
@@ -115,7 +110,7 @@ public class Gun : Item
 
     public void UpdateActiveGun()
     {
-        emitter.ApplyStatBlock(combinedStats);
+        emitter.ApplyStatBlock(newCombinedStats);
 
         if(magazine < maxMagazine)
         {
@@ -133,7 +128,7 @@ public class Gun : Item
                 AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
             }
 
-            foreach (OnReloadAction onReload in combinedStats.events.OnReload)
+            foreach (OnReloadAction onReload in newCombinedStats.events.OnReload)
             {
                 onReload.OnReload(Player.activePlayer, this);
             }

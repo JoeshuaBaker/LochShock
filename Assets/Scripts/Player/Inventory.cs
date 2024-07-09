@@ -135,6 +135,21 @@ public class Inventory : MonoBehaviour
         return statBlocks;
     }
 
+    public List<NewStatBlock> GetNewItemStats()
+    {
+        List<NewStatBlock> newStatBlocks = new List<NewStatBlock>();
+        newStatBlocks.AddRange(activeGun.newStatsList);
+        foreach (Item item in items)
+        {
+            if(item != null)
+            {
+                newStatBlocks.AddRange(item.newStatsList);
+            }
+        }
+
+        return newStatBlocks;
+    }
+
     public bool AddItem(Item item)
     {
         int index = FirstEmptySpace(item.itemType, out Item[] collection);

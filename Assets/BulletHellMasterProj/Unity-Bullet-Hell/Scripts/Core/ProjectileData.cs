@@ -26,21 +26,18 @@ namespace BulletHell
         }
         public float Rotation;
         public Color Color;
-        public StatBlock.GunStats stats;
+        public float pierces = 0f;
+        public float bounces = 0f;
+        public float size = 0f;
+        public float lifetime = 0f;
+        public float velocity = 0f;
+        public float damage = 0f;
+        public float knockback = 0f;
+
         public float Radius { 
             get
             {
-                float radius = 0;
-                if (Outline.Item != null)
-                {
-                    radius = Outline.Item.stats.size / 2f;
-                }
-                else
-                {
-                    radius = stats.size / 2f;
-                }
-
-                return radius;
+                return size / 2f;
             }
         }
 
@@ -56,9 +53,15 @@ namespace BulletHell
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
 
-        public void ApplyStatBlock(StatBlock.GunStats stats)
+        public void ApplyStatBlock(NewStatBlock stats)
         {
-            this.stats = stats;
+            pierces = stats.GetStatValue<Pierce>();
+            bounces = stats.GetStatValue<Bounce>();
+            size = stats.GetStatValue<Size>();
+            lifetime = stats.GetStatValue<Lifetime>();
+            velocity = stats.GetStatValue<Velocity>();
+            damage = stats.GetStatValue<Damage>();
+            knockback = stats.GetStatValue<Knockback>();
         }
 
         public Vector2 DeltaPosition(float tick)

@@ -35,13 +35,11 @@ public class EnvironmentalEffectController : MonoBehaviour
     public float maxTimeScaling;
     public float timeSinceOrbUsed;
     public float orbResetTime;
-    public StatBlock stats;
 
     // Start is called before the first frame update
     void Start()
     {
         initialLight.intensity = startingIntensity;
-        stats = Player.activePlayer.stats;
     }
 
     // Update is called once per frame
@@ -67,9 +65,9 @@ public class EnvironmentalEffectController : MonoBehaviour
             //    initialLightDestroyed = true;
             //}
             //else
-            if (stats.playerStats.totalVision >= minIntensityCutOff)
+            if (Player.activePlayer.totalVision >= minIntensityCutOff)
             {
-                initialLight.intensity = intensityTimePast * stats.playerStats.totalVision;
+                initialLight.intensity = intensityTimePast * Player.activePlayer.totalVision;
             }
             else
             {

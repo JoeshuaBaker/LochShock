@@ -464,11 +464,11 @@ public class StatBlock
     public static IEnumerable<string> GetEventTooltips(StatBlock statBlock)
     {
         List<string> eventTooltips = new List<string>();
-        eventTooltips.AddRange(statBlock.events.OnFire.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
-        eventTooltips.AddRange(statBlock.events.OnHit.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
-        eventTooltips.AddRange(statBlock.events.OnKill.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
-        eventTooltips.AddRange(statBlock.events.OnReload.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
-        eventTooltips.AddRange(statBlock.events.OnSecond.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.combinedStats)));
+        eventTooltips.AddRange(statBlock.events.OnFire.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(statBlock.events.OnHit.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(statBlock.events.OnKill.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(statBlock.events.OnReload.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(statBlock.events.OnSecond.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
 
         return eventTooltips;
     }
