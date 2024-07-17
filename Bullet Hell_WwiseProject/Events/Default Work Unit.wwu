@@ -178,46 +178,12 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}">
-											<ChildrenList>
-												<Action Name="" ID="{529BE96E-DB1A-4570-9BFB-529D800DE54F}" ShortID="761204">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-												<Action Name="" ID="{17126D84-49D2-492A-BFA5-95D5609CC0FF}" ShortID="906459164">
-													<PropertyList>
-														<Property Name="ActionType" Type="int16" Value="12"/>
-														<Property Name="Volume" Type="Real64" Value="-6"/>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="Dead" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-												<Action Name="" ID="{DE0588DF-AD6D-4C30-B18C-C40CB058B724}" ShortID="217638647">
-													<PropertyList>
-														<Property Name="ActionType" Type="int16" Value="16"/>
-														<Property Name="Delay" Type="Real64" Value="1.5"/>
-														<Property Name="FadeTime" Type="Real64" Value="0.75"/>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="Dead" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="PlayDoubleBarrelShotgun" ID="{9472F835-2842-428D-8BE7-74456955A5D4}">
 											<ChildrenList>
 												<Action Name="" ID="{DCD50CC5-B24C-4DBC-875A-F1BACD4621B1}" ShortID="354648176">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="BoomShot" ID="{56F6F995-4A61-4408-9F33-FE79C577D910}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="ShotgunShot" ID="{32F74405-CEEC-4D91-A8AF-B363100CAD14}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -225,21 +191,10 @@
 										</Event>
 										<Event Name="PlayDualPistol" ID="{64C366AA-3D3B-4CE4-AB49-ED8AE2A2E3C8}">
 											<ChildrenList>
-												<Action Name="" ID="{B761E85E-7F49-4A8E-B060-31F3D979E1B9}" ShortID="685818473">
+												<Action Name="" ID="{D4FEE226-947B-49EF-A82C-28F8E4A7B958}" ShortID="63629153">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Fire" ID="{E6EFAD7F-8064-4542-93F8-C89D45A92C4E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-												<Action Name="" ID="{321AE07E-0644-41C3-9CA1-EE65AD15AA7B}" ShortID="355936696">
-													<PropertyList>
-														<Property Name="FadeInCurve" Type="int16" Value="6"/>
-														<Property Name="FadeTime" Type="Real64" Value="0.1"/>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="Fire" ID="{E6EFAD7F-8064-4542-93F8-C89D45A92C4E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Pistol" ID="{1D76E02B-955D-427C-93D9-1B283A309A5E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -247,10 +202,10 @@
 										</Event>
 										<Event Name="PlayRevolver" ID="{A72DABBE-592B-45D9-B7CA-B55D9709EBCF}">
 											<ChildrenList>
-												<Action Name="" ID="{E31F3426-A678-4DBB-91E4-509C03163ADD}" ShortID="690460803">
+												<Action Name="" ID="{27398AB3-A529-4AFC-9516-C9EEF30637C1}" ShortID="778375268">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Fire" ID="{E6EFAD7F-8064-4542-93F8-C89D45A92C4E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Pistol" ID="{1D76E02B-955D-427C-93D9-1B283A309A5E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -269,10 +224,10 @@
 										</Event>
 										<Event Name="PlayAutoShotgun" ID="{431AE6CC-505B-4B4F-86E8-DF8B60D0855A}">
 											<ChildrenList>
-												<Action Name="" ID="{1E92EE61-4111-4437-A1F3-D40CDA0FF692}" ShortID="727565573">
+												<Action Name="" ID="{863B4683-0E7A-4E74-B128-89A7A355C21B}" ShortID="963810776">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="BoomShot" ID="{56F6F995-4A61-4408-9F33-FE79C577D910}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="ShotgunShot" ID="{32F74405-CEEC-4D91-A8AF-B363100CAD14}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -280,10 +235,10 @@
 										</Event>
 										<Event Name="PlayNailgun" ID="{24168B03-82BB-4A0A-855E-98EF97E7E7B8}">
 											<ChildrenList>
-												<Action Name="" ID="{8A411921-2169-469C-AE8E-8DE481F2FD3B}" ShortID="507743239">
+												<Action Name="" ID="{8FE58269-02CA-4539-BAD6-E38E0110CE07}" ShortID="65138977">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Shoot" ID="{9BF1CD7F-50AA-4CC1-88CE-14A783B1C78D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="NailgunSeq" ID="{AE6F8613-337B-46BD-8CF6-F597A10760C2}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -302,10 +257,10 @@
 										</Event>
 										<Event Name="PlayTrenchgun" ID="{0BA956E5-18F1-46DE-8692-1F7451B514AB}">
 											<ChildrenList>
-												<Action Name="" ID="{2533D83E-5E7F-4AEE-85CA-4D21CBA3C362}" ShortID="430847741">
+												<Action Name="" ID="{E7CDDDF1-8115-4769-85EF-596C8661F7B5}" ShortID="275650004">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="BoomShot" ID="{56F6F995-4A61-4408-9F33-FE79C577D910}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="ShotgunShot" ID="{32F74405-CEEC-4D91-A8AF-B363100CAD14}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -324,10 +279,10 @@
 										</Event>
 										<Event Name="PlayMinigun" ID="{F2AD47A6-1C4F-4EDF-8666-2B9DCE7504EE}">
 											<ChildrenList>
-												<Action Name="" ID="{FAB9BA7B-42C4-4454-B504-8FCAD5CB89A1}" ShortID="773289175">
+												<Action Name="" ID="{A652A3E8-60E1-4EDA-B48C-627917615397}" ShortID="916947732">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Shoot" ID="{9BF1CD7F-50AA-4CC1-88CE-14A783B1C78D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Minigun" ID="{51E9B1E9-67F2-484A-A98B-41835EB9AA2E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -346,10 +301,10 @@
 										</Event>
 										<Event Name="PlayRailgun" ID="{C09AB6A0-C6DE-42F8-9DFE-21DD0E468AA9}">
 											<ChildrenList>
-												<Action Name="" ID="{CCE06858-4B03-4299-8921-139E54ED365C}" ShortID="262441582">
+												<Action Name="" ID="{DDD7A89D-0E66-48E4-ABEA-5DD8490F1C0F}" ShortID="76254356">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Fire" ID="{E6EFAD7F-8064-4542-93F8-C89D45A92C4E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Railgun" ID="{05DF409E-5A37-4DAE-A33C-676C13E5E7AF}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -418,6 +373,40 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="Spawn" ID="{057AC2FF-06F5-4873-8690-05833054AC1B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}">
+									<ChildrenList>
+										<Action Name="" ID="{529BE96E-DB1A-4570-9BFB-529D800DE54F}" ShortID="761204">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{17126D84-49D2-492A-BFA5-95D5609CC0FF}" ShortID="906459164">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="12"/>
+												<Property Name="Volume" Type="Real64" Value="-6"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Dead" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{DE0588DF-AD6D-4C30-B18C-C40CB058B724}" ShortID="217638647">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="16"/>
+												<Property Name="Delay" Type="Real64" Value="1.5"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.75"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Dead" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

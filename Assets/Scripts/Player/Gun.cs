@@ -16,6 +16,7 @@ public class Gun : Item
     public ParticleSystem ejectedCasing;
     public Light2D visionCone;
     public Animator lightAnimator;
+    public AK.Wwise.Event gunAudioEvent;
 
     private float reloadSpeed;
     private float reloadTimer;
@@ -45,7 +46,8 @@ public class Gun : Item
             lightAnimator.Play("Base Layer.MuzzleFlashLight" , 0 , 0f);
 
             //Audio Section
-            AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject); ;
+            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
+            gunAudioEvent.Post(this.gameObject);
 
             foreach(OnFireAction onFire in newCombinedStats.events.OnFire)
             {
