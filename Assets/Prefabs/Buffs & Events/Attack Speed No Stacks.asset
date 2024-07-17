@@ -17,31 +17,9 @@ MonoBehaviour:
   duration: 5
   stackType: 0
   stackLimit: 1
-  stats:
-    blockType: 1
-    playerStats:
-      health: 0
-      walkSpeed: 0
-      runSpeed: 0
-      totalVision: 0
-      visionConeAngle: 0
-      visionConeRadius: 0
-      visionProximityRadius: 0
-    gunStats:
-      magazineSize: 0
-      reloadSpeed: 0
-      fireSpeed: -0.25
-      bulletStreams: 0
-      bulletsPerShot: 0
-      spreadAngle: 0
-      accuracy: 0
-      damage: 0
-      velocity: 0
-      size: 0
-      knockback: 0
-      bounce: 0
-      pierce: 0
-      lifetime: 0
+  newStats:
+    stats:
+    - id: 0
     events:
       OnFire: []
       OnHit: []
@@ -49,3 +27,14 @@ MonoBehaviour:
       OnReload: []
       OnSecond: []
     stacks: 1
+    active: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 1
+        value: -0.25
+    00000001:
+      type: {class: PlusMult, ns: , asm: Assembly-CSharp}

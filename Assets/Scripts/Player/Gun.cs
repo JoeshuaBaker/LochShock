@@ -7,8 +7,7 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
-    public NewStatBlock newCombinedStats;
-    //public StatBlock combinedStats;
+    public StatBlock newCombinedStats;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
@@ -81,11 +80,11 @@ public class Gun : Item
     {
         base.Start();
 
-        if(newStats.stats.Count > 0)
+        if(stats.stats.Count > 0)
         {
-            ApplyNewStatBlock(newStats);
+            ApplyNewStatBlock(stats);
         }
-        newCombinedStats = new NewStatBlock();
+        newCombinedStats = new StatBlock();
         magazine = maxMagazine;
 
         if(emitter == null)
@@ -96,7 +95,7 @@ public class Gun : Item
         emitter.gun = this;
     }
 
-    public void ApplyNewStatBlock(NewStatBlock stats)
+    public void ApplyNewStatBlock(StatBlock stats)
     {
         newCombinedStats = stats;
         reloadSpeed = stats.GetStatValue<ReloadSpeed>();

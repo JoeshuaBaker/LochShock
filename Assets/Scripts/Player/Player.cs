@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     //public StatBlock combinedStats;
     //public List<StatBlock> allStats;
 
-    public NewStatBlock baseStats;
-    public NewStatBlock Stats {
+    public StatBlock baseStats;
+    public StatBlock Stats {
         get { return combinedNewStats.combinedStatBlock; }
     }
     public CombinedStatBlock combinedNewStats;

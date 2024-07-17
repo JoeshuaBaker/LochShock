@@ -14,8 +14,6 @@ public class ReplaceItemStats : MonoBehaviour
         {
             Debug.Log("Found the script in: " + foundScript.gameObject);
 
-            //foundScript.TransferStats();
-
             UnityEditor.EditorUtility.SetDirty(foundScript);
         }
     }

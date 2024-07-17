@@ -16,13 +16,13 @@ public class Buff : ScriptableObject
     public float duration;
     public StackType stackType;
     public int stackLimit = 1;
-    public NewStatBlock newStats;
+    public StatBlock newStats;
 
     [System.Serializable]
     public class Instance
     {
         public Buff buff;
-        public NewStatBlock newStats;
+        public StatBlock newStats;
         public float currentDuration;
     }
 

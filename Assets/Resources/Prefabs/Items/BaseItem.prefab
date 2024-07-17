@@ -52,108 +52,19 @@ MonoBehaviour:
   levelUpCostScalar: 1.25
   baseDisassembleValue: 0
   disassembleRefundRatio: 0.7
-  newStats:
+  stats:
     stats: []
     stacks: 1
     active: 0
-  newLevelUpStats:
-    stats: []
-    stacks: 1
-    active: 0
-  itemStats:
-  - blockType: 0
-    playerStats:
-      health: 0
-      walkSpeed: 0
-      runSpeed: 0
-      totalVision: 0
-      visionConeAngle: 0
-      visionConeRadius: 0
-      visionProximityRadius: 0
-    gunStats:
-      magazineSize: 0
-      reloadSpeed: 0
-      fireSpeed: 0
-      bulletStreams: 0
-      bulletsPerShot: 0
-      spreadAngle: 0
-      accuracy: 0
-      damage: 0
-      velocity: 0
-      size: 0
-      knockback: 0
-      bounce: 0
-      pierce: 0
-      lifetime: 0
-    events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
-    stacks: 1
-  - blockType: 1
-    playerStats:
-      health: 0
-      walkSpeed: 0
-      runSpeed: 0
-      totalVision: 0
-      visionConeAngle: 0
-      visionConeRadius: 0
-      visionProximityRadius: 0
-    gunStats:
-      magazineSize: 0
-      reloadSpeed: 0
-      fireSpeed: 0
-      bulletStreams: 0
-      bulletsPerShot: 0
-      spreadAngle: 0
-      accuracy: 0
-      damage: 0
-      velocity: 0
-      size: 0
-      knockback: 0
-      bounce: 0
-      pierce: 0
-      lifetime: 0
-    events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
-    stacks: 1
   levelUpStats:
-  - blockType: 0
-    playerStats:
-      health: 0
-      walkSpeed: 0
-      runSpeed: 0
-      totalVision: 0
-      visionConeAngle: 0
-      visionConeRadius: 0
-      visionProximityRadius: 0
-    gunStats:
-      magazineSize: 0
-      reloadSpeed: 0
-      fireSpeed: 0
-      bulletStreams: 0
-      bulletsPerShot: 0
-      spreadAngle: 0
-      accuracy: 0
-      damage: 0
-      velocity: 0
-      size: 0
-      knockback: 0
-      bounce: 0
-      pierce: 0
-      lifetime: 0
-    events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
+    stats: []
     stacks: 1
+    active: 0
+  combinedStats:
+    combinedStatBlock:
+      stats: []
+      stacks: 1
+      active: 0
+    sourcesList: []
   references:
     version: 1

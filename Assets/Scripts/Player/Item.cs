@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using System.Linq;
 
 public class Item : MonoBehaviour
@@ -46,27 +47,27 @@ public class Item : MonoBehaviour
         }
     }
 
-    private IEnumerable<NewStatBlock> _newStats = null;
-    public IEnumerable<NewStatBlock> newStatsList
+    private IEnumerable<StatBlock> _newStats = null;
+    public IEnumerable<StatBlock> newStatsList
     {
         get
         {
             if (_newStats == null)
             {
-                var newStatList = new List<NewStatBlock>();
-                newStatList.Add(newStats);
-                newStatList.Add(newLevelUpStats);
+                var newStatList = new List<StatBlock>();
+                newStatList.Add(stats);
+                newStatList.Add(levelUpStats);
                 _newStats = newStatList;
             }
 
-            newLevelUpStats.Stacks = level - 1;
+            levelUpStats.Stacks = level - 1;
 
             return _newStats;
         }
     }
 
-    public NewStatBlock newStats;
-    public NewStatBlock newLevelUpStats;
+    public StatBlock stats;
+    public StatBlock levelUpStats;
     public CombinedStatBlock combinedStats;
 
     public StatBlockContext GetStatBlockContext()
@@ -77,13 +78,13 @@ public class Item : MonoBehaviour
 
     public IEnumerable<string> GetEventTooltips()
     {
-        return newStats.GetEventTooltips();
+        return stats.GetEventTooltips();
     }
 
     public void LevelUp()
     {
         level++;
-        newLevelUpStats.Stacks = level - 1;
+        levelUpStats.Stacks = level - 1;
         combinedStats.UpdateSources(newStatsList);
     }
 

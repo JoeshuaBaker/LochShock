@@ -6,7 +6,7 @@ public class OnHitApplyBuff : OnHitAction
 {
     public Buff buff;
 
-    public override string GetTooltip(NewStatBlock stats)
+    public override string GetTooltip(StatBlock stats)
     {
         return GetBuffTooltip(this, buff);
     }

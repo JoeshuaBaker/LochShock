@@ -6,7 +6,7 @@ using UnityEngine;
 public class OnReloadApplyBuff : OnReloadAction
 {
     public Buff buff;
-    public override string GetTooltip(NewStatBlock stats)
+    public override string GetTooltip(StatBlock stats)
     {
         return GetBuffTooltip(this, buff);
     }

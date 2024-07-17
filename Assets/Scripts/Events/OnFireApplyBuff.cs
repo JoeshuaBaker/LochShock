@@ -4,7 +4,7 @@ using UnityEngine;
 public class OnFireApplyBuff : OnFireAction
 {
     public Buff buff;
-    public override string GetTooltip(NewStatBlock stats)
+    public override string GetTooltip(StatBlock stats)
     {
         return GetBuffTooltip(this, buff);
     }

@@ -6,7 +6,7 @@ public class OnKillApplyBuff : OnKillAction
 {
     public Buff buff;
 
-    public override string GetTooltip(NewStatBlock stats)
+    public override string GetTooltip(StatBlock stats)
     {
         return GetBuffTooltip(this, buff);
     }

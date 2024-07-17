@@ -50,7 +50,7 @@ public class CombinedStatBlock
             }
         }
 
-        public void CombineStats(NewStatBlock combinedStatBlock)
+        public void CombineStats(StatBlock combinedStatBlock)
         {
             foreach(SortedList<StatCombineType, HashSet<Stat>> sortedStats in orderedStats.Values)
             {
@@ -86,22 +86,22 @@ public class CombinedStatBlock
         }
     }
 
-    public NewStatBlock combinedStatBlock;
+    public StatBlock combinedStatBlock;
 #if UNITY_EDITOR
     //Debug serializable list of sources to cross-check the combined stat block
-    public List<NewStatBlock> sourcesList;
+    public List<StatBlock> sourcesList;
 #endif
-    private HashSet<NewStatBlock> sources;
+    private HashSet<StatBlock> sources;
     private OrderedStats orderedStats;
 
     public CombinedStatBlock()
     {
-        sources = new HashSet<NewStatBlock>();
+        sources = new HashSet<StatBlock>();
         orderedStats = new OrderedStats();
-        combinedStatBlock = new NewStatBlock();
+        combinedStatBlock = new StatBlock();
     }
 
-    private void AddSource(NewStatBlock block)
+    private void AddSource(StatBlock block)
     {
         sources.Add(block);
 
@@ -111,7 +111,7 @@ public class CombinedStatBlock
         }
     }
 
-    private void CleanupSource(NewStatBlock block)
+    private void CleanupSource(StatBlock block)
     {
         foreach (Stat stat in block.stats)
         {
@@ -119,13 +119,13 @@ public class CombinedStatBlock
         }
     }
 
-    public void UpdateSources(IEnumerable<NewStatBlock> statBlocks)
+    public void UpdateSources(IEnumerable<StatBlock> statBlocks)
     {
         UpkeepSources(statBlocks);
         CombineSources();
     }
 
-    private void UpkeepSources(IEnumerable<NewStatBlock> statBlocks)
+    private void UpkeepSources(IEnumerable<StatBlock> statBlocks)
     {
         //Mark all sources potentially inactive this frame
         foreach (var source in sources)
@@ -169,7 +169,7 @@ public class CombinedStatBlock
     {
         StatBlockContext statBlockContext = new StatBlockContext();
 
-        foreach (NewStatBlock statBlock in sources)
+        foreach (StatBlock statBlock in sources)
         {
             statBlock.UpdateStatBlockContext(ref statBlockContext);
         }

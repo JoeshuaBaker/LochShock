@@ -28,7 +28,7 @@ namespace BulletHell
         public Gradient Color;
 
         [Foldout("General", true)]
-        public NewStatBlock stats;
+        public StatBlock stats;
         public float TimeToLive { 
             get
             {

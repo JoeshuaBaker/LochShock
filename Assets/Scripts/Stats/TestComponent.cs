@@ -5,12 +5,12 @@ using UnityEngine;
 public class TestComponent : MonoBehaviour
 {
     public CombinedStatBlock combinedStatBlock;
-    public NewStatBlock statBlock;
-    public NewStatBlock statBlock2;
+    public StatBlock statBlock;
+    public StatBlock statBlock2;
 
     private void Start()
     {
-        List<NewStatBlock> statBlocks = new List<NewStatBlock>();
+        List<StatBlock> statBlocks = new List<StatBlock>();
         statBlocks.Add(statBlock);
         statBlocks.Add(statBlock2);
 

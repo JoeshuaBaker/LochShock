@@ -53,7 +53,7 @@ namespace BulletHell
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
 
-        public void ApplyStatBlock(NewStatBlock stats)
+        public void ApplyStatBlock(StatBlock stats)
         {
             pierces = stats.GetStatValue<Pierce>();
             bounces = stats.GetStatValue<Bounce>();

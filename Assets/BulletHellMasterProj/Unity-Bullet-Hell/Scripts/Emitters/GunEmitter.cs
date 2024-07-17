@@ -21,7 +21,7 @@ namespace BulletHell
             base.Start();
         }
 
-        public void ApplyStatBlock(NewStatBlock stats)
+        public void ApplyStatBlock(StatBlock stats)
         {
             this.stats = stats;
         }

@@ -10,7 +10,7 @@ public abstract class ScriptableAction : ScriptableObject
     public float cooldown = 0f;
     private double lastTriggerTime = -1;
     public abstract string GetLabel();
-    public abstract string GetTooltip(NewStatBlock stats);
+    public abstract string GetTooltip(StatBlock stats);
 
     public bool IsValidTrigger()
     {
