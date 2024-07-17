@@ -46,24 +46,6 @@ public class Item : MonoBehaviour
         }
     }
 
-    private IEnumerable<StatBlock> _stats = null;
-    public IEnumerable<StatBlock> stats
-    {
-        get
-        {
-            if (_stats == null)
-            {
-                _stats = itemStats.Concat(levelUpStats);
-            }
-
-            foreach(var levelUpStat in levelUpStats)
-            {
-                levelUpStat.stacks = level - 1;
-            }
-
-            return _stats;
-        }
-    }
     private IEnumerable<NewStatBlock> _newStats = null;
     public IEnumerable<NewStatBlock> newStatsList
     {
@@ -85,32 +67,24 @@ public class Item : MonoBehaviour
 
     public NewStatBlock newStats;
     public NewStatBlock newLevelUpStats;
-    public StatBlock[] itemStats = new StatBlock[]
-    {
-        new StatBlock(StatBlock.BlockType.xMult)
-    };
-    public StatBlock[] levelUpStats = new StatBlock[]
-    {
-        new StatBlock(StatBlock.BlockType.xMult)
-    };
+    public CombinedStatBlock combinedStats;
 
     public StatBlockContext GetStatBlockContext()
     {
-        return StatBlock.GetCombinedStatBlockContext(stats);
+        combinedStats.UpdateSources(newStatsList);
+        return combinedStats.GetCombinedContext();
     }
 
     public IEnumerable<string> GetEventTooltips()
     {
-        return StatBlock.GetEventTooltips(itemStats.Concat(levelUpStats));
+        return newStats.GetEventTooltips();
     }
 
     public void LevelUp()
     {
         level++;
-        foreach(StatBlock levelStats in levelUpStats)
-        {
-            levelStats.stacks = level;
-        }
+        newLevelUpStats.Stacks = level - 1;
+        combinedStats.UpdateSources(newStatsList);
     }
 
     public virtual void Start()
@@ -119,14 +93,8 @@ public class Item : MonoBehaviour
         {
             displayName = name;
         }
-    }
 
-    public void TransferStats()
-    {
-        newStats = new NewStatBlock();
-        newStats.SetStatBlock(itemStats);
-
-        newLevelUpStats = new NewStatBlock();
-        newLevelUpStats.SetStatBlock(levelUpStats);
+        combinedStats = new CombinedStatBlock();
+        combinedStats.UpdateSources(newStatsList);
     }
 }

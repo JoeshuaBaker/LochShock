@@ -24,15 +24,6 @@ public class NewStatBlock
             OnSecond = new List<OnSecondAction>();
         }
 
-        public void AddEvents(StatBlock.Events events)
-        {
-            if (events.OnFire != null) OnFire.AddRange(events.OnFire);
-            if (events.OnHit != null) OnHit.AddRange(events.OnHit);
-            if (events.OnKill != null) OnKill.AddRange(events.OnKill);
-            if (events.OnReload != null) OnReload.AddRange(events.OnReload);
-            if (events.OnSecond != null) OnSecond.AddRange(events.OnSecond);
-        }
-
         public Events Copy()
         {
             Events copy = new Events();
@@ -75,49 +66,6 @@ public class NewStatBlock
         {
             stats = new List<Stat>();
         }
-    }
-
-    public void SetStatBlock(IEnumerable<StatBlock> statBlocks)
-    {
-        List<Stat> fieldStats = new List<Stat>();
-        events = new Events();
-
-        var playerStatFields = typeof(StatBlock.PlayerStats).GetFields()
-                            .Select(field => field.Name)
-                            .ToList();
-
-        playerStatFields.Remove("visionConeAngle");
-        playerStatFields.Remove("visionConeRadius");
-        playerStatFields.Remove("visionProximityRadius");
-
-        var gunStatFields = typeof(StatBlock.GunStats).GetFields()
-                            .Select(field => field.Name)
-                            .ToList();
-
-        foreach (var block in statBlocks)
-        {
-            foreach(var field in playerStatFields)
-            {
-                float value = (float) block.playerStats.GetType().GetField(field).GetValue(block.playerStats);
-                if(value != 0)
-                {
-                    fieldStats.Add(Stat.CreateStatByString(field, value, block.blockType));
-                }
-            }
-
-            foreach (var field in gunStatFields)
-            {
-                float value = (float)block.gunStats.GetType().GetField(field).GetValue(block.gunStats);
-                if (value != 0)
-                {
-                    fieldStats.Add(Stat.CreateStatByString(field, value, block.blockType));
-                }
-            }
-
-            events.AddEvents(block.events);
-        }
-
-        stats = fieldStats.ToList();
     }
 
     public IEnumerable<T> GetStats<T>() where T : Stat
@@ -172,5 +120,33 @@ public class NewStatBlock
         newStatBlock.events = this.events.Copy();
 
         return newStatBlock;
+    }
+
+    public IEnumerable<string> GetEventTooltips()
+    {
+        List<string> eventTooltips = new List<string>();
+        eventTooltips.AddRange(events.OnFire.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(events.OnHit.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(events.OnKill.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(events.OnReload.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(events.OnSecond.Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+
+        return eventTooltips;
+    }
+
+    public void UpdateStatBlockContext(ref StatBlockContext statBlockContext)
+    {
+        foreach(Stat stat in stats)
+        {
+            stat.UpdateStatBlockContext(ref statBlockContext);
+        }
+    }
+
+    public StatBlockContext GetStatBlockContext()
+    {
+        StatBlockContext statBlockContext = new StatBlockContext();
+        UpdateStatBlockContext(ref statBlockContext);
+
+        return statBlockContext;
     }
 }

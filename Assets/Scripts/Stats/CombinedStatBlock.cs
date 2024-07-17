@@ -164,4 +164,16 @@ public class CombinedStatBlock
     {
         orderedStats.CombineStats(combinedStatBlock);
     }
+
+    public StatBlockContext GetCombinedContext()
+    {
+        StatBlockContext statBlockContext = new StatBlockContext();
+
+        foreach (NewStatBlock statBlock in sources)
+        {
+            statBlock.UpdateStatBlockContext(ref statBlockContext);
+        }
+
+        return statBlockContext;
+    }
 }

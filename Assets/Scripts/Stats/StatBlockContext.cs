@@ -67,57 +67,8 @@ public class StatBlockContext
             return $"{highlight}{text.Replace("%value%", formattedValueString)}</color>";
         }
 
-        private static string GetPrefixByBlockType(StatBlock.BlockType type, string valueName, bool flipSign, float value)
-        {
-            bool plusMinus;
-            switch (type)
-            {
-                case StatBlock.BlockType.Set:
-                    return $"{valueName.SplitCamelCaseLower()} is always ";
-
-                default:
-                case StatBlock.BlockType.Base:
-                    return "";
-
-                case StatBlock.BlockType.PlusMult:
-                case StatBlock.BlockType.Additive:
-                    plusMinus = value >= 0;
-                    if(flipSign)
-                    {
-                        plusMinus = !plusMinus;
-                    }
-
-                    return plusMinus ? "+" : "-";
-
-                case StatBlock.BlockType.xMult:
-                    plusMinus = value >= 0;
-                    if(flipSign)
-                    {
-                        plusMinus = !plusMinus;
-                    }
-                    
-                    return plusMinus ? "x" : "-x";
-            }
-        }
-
-        private static string GetPostfixByBlockType(StatBlock.BlockType type, string valueName)
-        {
-            switch (type)
-            {
-                case StatBlock.BlockType.Set:
-                    return $"";
-
-                default:
-                case StatBlock.BlockType.Base:
-                case StatBlock.BlockType.PlusMult:
-                case StatBlock.BlockType.Additive:
-                case StatBlock.BlockType.xMult:
-                    return valueName.SplitCamelCaseLower();
-            }
-        }
-
         public StatContext(
-            StatBlock.BlockType blockType, 
+            StatCombineType blockType, 
             string valueName, 
             float value,
             bool isPercentage = false,
@@ -127,11 +78,11 @@ public class StatBlockContext
         {
             this.value = value;
             this.text = text;
-            this.isBaseStatBlock = blockType == StatBlock.BlockType.Base;
-            this.isPercentage = isPercentage || blockType == StatBlock.BlockType.PlusMult || blockType == StatBlock.BlockType.xMult;
+            this.isBaseStatBlock = blockType is BaseStat;
+            this.isPercentage = isPercentage || blockType is PlusMult || blockType is XMult;
             this.positiveIsGood = positiveIsGood;
-            this.valuePrefix = GetPrefixByBlockType(blockType, valueName, flipSign, value);
-            this.valuePostfix = GetPostfixByBlockType(blockType, valueName);
+            this.valuePrefix = blockType.GetTooltipPrefix(valueName, flipSign, value);
+            this.valuePostfix = blockType.GetTooltipPostfix(valueName);
         }
     }
 
@@ -140,7 +91,7 @@ public class StatBlockContext
 
     public void AddContext(
         string key,
-        StatBlock.BlockType blockType,
+        StatCombineType blockType,
         string valueName,
         float value,
         bool isPercentage = false,
@@ -149,9 +100,9 @@ public class StatBlockContext
         string text = "%value%",
         float baseValue = 0f)
     {
-        if(value != 0 && !(blockType == StatBlock.BlockType.Base && value == baseValue))
+        if(value != 0 && !(blockType is BaseStat && value == baseValue))
         {
-            string typeKey = key + (int)blockType;
+            string typeKey = key + blockType.CombinePriority;
             bool contextExists = statDictionary.TryGetValue(typeKey, out StatContext existingContext);
 
             if (contextExists)

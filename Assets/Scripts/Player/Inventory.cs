@@ -120,21 +120,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public List<StatBlock> GetItemStats()
-    {
-        List<StatBlock> statBlocks = new List<StatBlock>();
-        statBlocks.AddRange(activeGun.stats);
-        foreach (Item item in items)
-        {
-            if (item != null)
-            {
-                statBlocks.AddRange(item.stats);
-            }
-        }
-
-        return statBlocks;
-    }
-
     public List<NewStatBlock> GetNewItemStats()
     {
         List<NewStatBlock> newStatBlocks = new List<NewStatBlock>();

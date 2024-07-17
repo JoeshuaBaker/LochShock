@@ -16,14 +16,12 @@ public class Buff : ScriptableObject
     public float duration;
     public StackType stackType;
     public int stackLimit = 1;
-    public StatBlock stats;
     public NewStatBlock newStats;
 
     [System.Serializable]
     public class Instance
     {
         public Buff buff;
-        public StatBlock stats;
         public NewStatBlock newStats;
         public float currentDuration;
     }
@@ -39,7 +37,6 @@ public class Buff : ScriptableObject
         return new Instance
         {
             buff = this,
-            stats = this.stats.Copy(),
             newStats = this.newStats.DeepCopy(),
             currentDuration = duration
         };

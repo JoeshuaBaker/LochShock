@@ -136,10 +136,4 @@ public class Gun : Item
 
         Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
     }
-
-    private void Reset()
-    {
-        itemStats = new StatBlock[] { new StatBlock(StatBlock.BlockType.Base) };
-        levelUpStats = new StatBlock[] { new StatBlock(StatBlock.BlockType.Base) };
-    }
 }

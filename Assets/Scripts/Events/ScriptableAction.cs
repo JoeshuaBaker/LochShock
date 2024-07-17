@@ -36,7 +36,7 @@ public abstract class ScriptableAction : ScriptableObject
     public static string GetBuffTooltip(ScriptableAction action, Buff buff)
     {
         string tooltip = $"Gain {buff.buffName} {(action.chanceToTrigger < 1f ? $"({action.chanceToTrigger.ToString("P0")} chance)" :"")} for {buff.duration} seconds.{Environment.NewLine}";
-        StatBlockContext context = buff.stats.GetStackBlockContext();
+        StatBlockContext context = buff.newStats.GetStatBlockContext();
         IEnumerable<string> buffContextStrings = context.GetStatContextStrings();
         foreach (var contextString in buffContextStrings)
         {

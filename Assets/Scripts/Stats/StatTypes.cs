@@ -20,26 +20,14 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
         return tooltip;
     }
 
-    public static StatCombineType GetStatTypeByEnum(StatBlock.BlockType type)
+    public virtual string GetTooltipPrefix(string valueName, bool flipSign, float value)
     {
-        switch(type)
-        {
-            case StatBlock.BlockType.Additive:
-                return new Additive();
+        return "";
+    }
 
-            case StatBlock.BlockType.PlusMult:
-                return new PlusMult();
-
-            case StatBlock.BlockType.xMult:
-                return new XMult();
-
-            case StatBlock.BlockType.Set:
-                return new Set();
-
-            default:
-            case StatBlock.BlockType.Base:
-                return new BaseStat();
-        }
+    public virtual string GetTooltipPostfix(string valueName)
+    {
+        return valueName.SplitCamelCaseLower();
     }
 
     public int Compare(StatCombineType x, StatCombineType y)
@@ -83,6 +71,17 @@ public class Additive : StatCombineType
 
         return combinedValue;
     }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        bool plusMinus = value >= 0;
+        if (flipSign)
+        {
+            plusMinus = !plusMinus;
+        }
+
+        return plusMinus ? "+" : "-";
+    }
 }
 
 public class PlusMult : StatCombineType
@@ -100,6 +99,17 @@ public class PlusMult : StatCombineType
         combinedValue = baseValue * (1 + combinedValue);
 
         return combinedValue;
+    }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        bool plusMinus = value >= 0;
+        if (flipSign)
+        {
+            plusMinus = !plusMinus;
+        }
+
+        return plusMinus ? "+" : "-";
     }
 }
 
@@ -130,6 +140,17 @@ public class XMult : StatCombineType
 
         return combinedValue;
     }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        bool plusMinus = value >= 0;
+        if (flipSign)
+        {
+            plusMinus = !plusMinus;
+        }
+
+        return plusMinus ? "x" : "-x";
+    }
 }
 
 public class Set : StatCombineType
@@ -159,6 +180,16 @@ public class Set : StatCombineType
         }
 
         return combinedValue;
+    }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        return $"{valueName.SplitCamelCaseLower()} is always ";
+    }
+
+    public override string GetTooltipPostfix(string valueName)
+    {
+        return "";
     }
 }
 
@@ -199,5 +230,15 @@ public class Limit : StatCombineType
         }
 
         return combinedValue;
+    }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        return $"{valueName.SplitCamelCaseLower()} can't go {((limitType == LimitType.Upper) ? "above" : "below")} {value}.";
+    }
+
+    public override string GetTooltipPostfix(string valueName)
+    {
+        return "";
     }
 }

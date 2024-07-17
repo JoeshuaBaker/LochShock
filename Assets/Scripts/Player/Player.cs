@@ -212,9 +212,9 @@ public class Player : MonoBehaviour
         {
             Buff.Instance matchingBuff = matchingBuffs.First();
             matchingBuff.currentDuration = matchingBuff.buff.duration;
-            if (matchingBuff.stats.stacks < matchingBuff.buff.stackLimit)
+            if (matchingBuff.newStats.Stacks < matchingBuff.buff.stackLimit)
             {
-                matchingBuff.stats.stacks += 1;
+                matchingBuff.newStats.Stacks += 1;
             }
 
             return;
