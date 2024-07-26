@@ -4,6 +4,13 @@ using UnityEngine;
 [Serializable]
 public abstract class Stat
 {
+    public enum StatValueType
+    {
+        Value,
+        Percentage,
+        RelativeToBase
+    }
+
     [SerializeReference, SerializeReferenceButton] public StatCombineType combineType;
     public float value;
     [NonSerialized]
@@ -19,7 +26,7 @@ public abstract class Stat
         stacks = 1f;
     }
 
-    public string Name()
+    public virtual string Name()
     {
         return GetType().Name;
     }
@@ -31,6 +38,7 @@ public abstract class Stat
 
     public virtual float Min => -1f;
     public virtual float Max => -1f;
+    public virtual StatValueType ValueType => StatValueType.Value;
 
     public float Clamp(float value)
     {

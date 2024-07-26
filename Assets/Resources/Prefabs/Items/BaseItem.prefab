@@ -54,15 +54,33 @@ MonoBehaviour:
   disassembleRefundRatio: 0.7
   stats:
     stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   levelUpStats:
     stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   combinedStats:
     combinedStatBlock:
       stats: []
+      events:
+        OnFire: []
+        OnHit: []
+        OnKill: []
+        OnReload: []
+        OnSecond: []
       stacks: 1
       active: 0
     sourcesList: []

@@ -84,7 +84,7 @@ public class Additive : StatCombineType
     }
 }
 
-public class PlusMult : StatCombineType
+public class Mult : StatCombineType
 {
     public override int CombinePriority => 101;
     public override float Combine(float baseValue, IEnumerable<Stat> stats)
@@ -110,46 +110,6 @@ public class PlusMult : StatCombineType
         }
 
         return plusMinus ? "+" : "-";
-    }
-}
-
-public class XMult : StatCombineType
-{
-    public override int CombinePriority => 102;
-    public override float Combine(float baseValue, IEnumerable<Stat> stats)
-    {
-        combinedValue = baseValue;
-        Func<float, float, float> xMultCombine = (float stat, float stacks) =>
-        {
-            float mult = 1f + stat;
-            if (mult > 0 && mult < 1f)
-            {
-                return Mathf.Pow(mult, stacks);
-            }
-            else
-            {
-                return Mathf.Pow(mult, stacks);
-            }
-        };
-
-        foreach (Stat stat in stats)
-        {
-            combinedValue *= xMultCombine(stat.value, stat.stacks);
-            combinedValue = stat.Clamp(combinedValue);
-        }
-
-        return combinedValue;
-    }
-
-    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
-    {
-        bool plusMinus = value >= 0;
-        if (flipSign)
-        {
-            plusMinus = !plusMinus;
-        }
-
-        return plusMinus ? "x" : "-x";
     }
 }
 
@@ -196,6 +156,16 @@ public class Set : StatCombineType
 public class BaseStat : Additive
 {
     public override int CombinePriority => 0;
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        return "";
+    }
+
+    public override string GetTooltipPostfix(string valueName)
+    {
+        return valueName.SplitCamelCaseLower();
+    }
 }
 
 public class Limit : StatCombineType

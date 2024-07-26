@@ -1,19 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Health : Stat 
 { 
     public override float Min => 0f;
 }
 
-public class WalkSpeed : Stat 
-{ 
-    public override float Min => 0f; 
-}
-
-public class RunSpeed : Stat 
+public class MoveSpeed : Stat 
 {
     public override float Min => 1f; 
 }
@@ -22,6 +12,7 @@ public class Vision : Stat
 { 
     public override float Min => 0f; 
     public override float Max => 1f;
+    public override StatValueType ValueType => StatValueType.Percentage;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -37,6 +28,7 @@ public class MagazineSize : Stat
 public class ReloadSpeed : Stat 
 { 
     public override float Min => 1f / 60f;
+    public override StatValueType ValueType => StatValueType.RelativeToBase;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -47,10 +39,15 @@ public class ReloadSpeed : Stat
 public class FireSpeed : Stat 
 { 
     public override float Min => 1f / 60f;
+    public override StatValueType ValueType => StatValueType.RelativeToBase;
+    public override string Name()
+    {
+        return "Shots Per Second";
+    }
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, "Fire Rate", value * stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
+        context.AddContext(base.Name(), combineType, Name(), value * stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
     }
 }
 
@@ -81,7 +78,10 @@ public class SpreadAngle : Stat
     public override float Max => 90f;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
+        if (!(combineType is BaseStat))
+        {
+            context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
+        }
     }
 }
 
@@ -89,6 +89,7 @@ public class Accuracy : Stat
 { 
     public override float Min => 0f; 
     public override float Max => 1f;
+    public override StatValueType ValueType => StatValueType.Percentage;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
         context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: true, baseValue: Max);
@@ -104,6 +105,7 @@ public class Velocity : Stat
 { 
     public override float Min => 1f; 
     public override float Max => 300f;
+    public override StatValueType ValueType => StatValueType.RelativeToBase;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -115,9 +117,11 @@ public class Velocity : Stat
 }
 
 public class Size : Stat 
-{ 
+{
+    public const float MaxBulletSize = 5f;
     public override float Min => 0.01f; 
-    public override float Max => 5f;
+    public override float Max => 1f;
+    public override StatValueType ValueType => StatValueType.Percentage;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -130,7 +134,8 @@ public class Size : Stat
 
 public class Knockback : Stat 
 { 
-    public override float Min => 0f; 
+    public override float Min => 0f;
+    public override StatValueType ValueType => StatValueType.RelativeToBase;
 }
 
 public class Bounce : Stat 

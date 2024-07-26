@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 3453500415576585398}
   - component: {fileID: 1144824061936674021}
   - component: {fileID: 4877568093956301522}
+  - component: {fileID: 49417195416148088}
   m_Layer: 0
   m_Name: Base Gun
   m_TagString: Untagged
@@ -120,22 +121,45 @@ MonoBehaviour:
   baseDisassembleValue: 0
   disassembleRefundRatio: 0.7
   stats:
-    stats:
-    - id: 0
-    - id: 1
-    - id: 2
-    - id: 3
-    - id: 4
-    - id: 5
-    - id: 6
-    - id: 7
-    - id: 8
-    - id: 9
-    - id: 10
+    stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   levelUpStats:
     stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
+    stacks: 1
+    active: 0
+  combinedStats:
+    combinedStatBlock:
+      stats: []
+      events:
+        OnFire: []
+        OnHit: []
+        OnKill: []
+        OnReload: []
+        OnSecond: []
+      stacks: 1
+      active: 0
+    sourcesList: []
+  newCombinedStats:
+    stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   emitter: {fileID: 4877568093956301522}
@@ -145,98 +169,14 @@ MonoBehaviour:
   ejectedCasing: {fileID: 1108940243575455600}
   visionCone: {fileID: 6878897641901945415}
   lightAnimator: {fileID: 3577588874445100203}
+  gunAudioEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   maxMagazine: 0
   magazine: 0
   references:
     version: 1
-    00000000:
-      type: {class: MagazineSize, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 11
-        value: 12
-    00000001:
-      type: {class: ReloadSpeed, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 12
-        value: 1
-    00000002:
-      type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 13
-        value: 0.2
-    00000003:
-      type: {class: BulletStreams, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 14
-        value: 1
-    00000004:
-      type: {class: BulletsPerShot, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 15
-        value: 1
-    00000005:
-      type: {class: Accuracy, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 16
-        value: 1
-    00000006:
-      type: {class: Damage, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 17
-        value: 10
-    00000007:
-      type: {class: Velocity, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 18
-        value: 45
-    00000008:
-      type: {class: Size, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 19
-        value: 0.2
-    00000009:
-      type: {class: Knockback, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 20
-        value: 1
-    0000000A:
-      type: {class: Lifetime, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 21
-        value: 1
-    0000000B:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    0000000C:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    0000000D:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    0000000E:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    0000000F:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000010:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000011:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000012:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000013:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000014:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000015:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
 --- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +221,12 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   stats:
     stats: []
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   AutoFire: 0

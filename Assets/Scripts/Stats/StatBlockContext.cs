@@ -79,7 +79,7 @@ public class StatBlockContext
             this.value = value;
             this.text = text;
             this.isBaseStatBlock = blockType is BaseStat;
-            this.isPercentage = isPercentage || blockType is PlusMult || blockType is XMult;
+            this.isPercentage = isPercentage || blockType is Mult;
             this.positiveIsGood = positiveIsGood;
             this.valuePrefix = blockType.GetTooltipPrefix(valueName, flipSign, value);
             this.valuePostfix = blockType.GetTooltipPostfix(valueName);

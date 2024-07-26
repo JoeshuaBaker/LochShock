@@ -536,12 +536,23 @@ MonoBehaviour:
     - id: 0
     - id: 1
     - id: 2
-    - id: 3
+    events:
+      OnFire: []
+      OnHit: []
+      OnKill: []
+      OnReload: []
+      OnSecond: []
     stacks: 1
     active: 0
   combinedNewStats:
     combinedStatBlock:
       stats: []
+      events:
+        OnFire: []
+        OnHit: []
+        OnKill: []
+        OnReload: []
+        OnSecond: []
       stacks: 1
       active: 0
     sourcesList: []
@@ -610,33 +621,25 @@ MonoBehaviour:
       type: {class: Health, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 4
+          id: 3
         value: 5
     00000001:
-      type: {class: WalkSpeed, ns: , asm: Assembly-CSharp}
+      type: {class: MoveSpeed, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 5
-        value: 2.5
-    00000002:
-      type: {class: RunSpeed, ns: , asm: Assembly-CSharp}
-      data:
-        combineType:
-          id: 6
+          id: 4
         value: 3.5
-    00000003:
+    00000002:
       type: {class: Vision, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 7
+          id: 5
         value: 1
+    00000003:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000004:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000005:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000006:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
-    00000007:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
 --- !u!114 &1669104698779981372
 MonoBehaviour:

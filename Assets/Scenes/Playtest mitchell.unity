@@ -73746,58 +73746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: trailTest
-      value: 
-      objectReference: {fileID: 9092119}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: SpokeCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: BounceOffSurfaces
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.size
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.speed
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.lifetime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.fireSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.knockback
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.reloadSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.magazineSize
-      value: 555
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343514388084142298, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1879192211301024642, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -73970,46 +73918,6 @@ PrefabInstance:
       propertyPath: stats.playerStats.health
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[0]
-      value: Assembly-CSharp Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[1]
-      value: Assembly-CSharp WalkSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[2]
-      value: Assembly-CSharp RunSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[0].value
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[1].value
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[2].value
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[0].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[1].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: baseStats.stats.Array.data[2].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
     - target: {fileID: 1879192211954146348, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -74042,34 +73950,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.09
       objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: inventoryUI
-      value: 
-      objectReference: {fileID: 2073735060}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: items.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: guns.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: items.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: items.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: orbItemPools.Array.data[0].legendaryChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2296521488769380062, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: orbItemPools.Array.data[1].legendaryChance
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2940547589595043829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -74082,305 +73962,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4642306185413781397, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6254068847115709364, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6687090708491307901, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: rarity
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: emitter
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: ammoIndicator
-      value: 
-      objectReference: {fileID: 562616702}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: ejectedCasing
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: lightAnimator
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: lightAnimation
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashFar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashMain
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: reloadIndicator
-      value: 
-      objectReference: {fileID: 98965624}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: muzzleFlashClose
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: ammoIndicatorShadow
-      value: 
-      objectReference: {fileID: 1203585103}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.size
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.speed
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.bounce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.pierce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.size
-      value: 0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.accuracy
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.lifetime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.velocity
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.speed
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.fireSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.knockback
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.pierce
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.size
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.reloadSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.spreadAngle
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.speed
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.lifetime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.magazineSize
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.bounce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.fireSpeed
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.knockback
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnHit.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[1].stacks
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.lifetime
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.reloadSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnFire.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.bulletStats.knockback
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.bulletSpread
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.magazineSize
-      value: 555
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnHit.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[1].blockType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: statBlock.gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnFire.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnFire.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: stats.events.OnFire.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4d09d4b1a2b4bf94a87baed005db0b90, type: 2}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.size
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.bounce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.damage
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.pierce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.accuracy
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.lifetime
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.velocity
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.fireSpeed
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.knockback
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.reloadSpeed
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.spreadAngle
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.magazineSize
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[1].gunStats.magazineSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].events.OnFire.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].events.OnFire.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
-    - target: {fileID: 6842865635108910829, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: itemStats.Array.data[0].events.OnFire.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4d09d4b1a2b4bf94a87baed005db0b90, type: 2}
-    - target: {fileID: 6990057251078112489, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7079477806306197455, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_IsActive
@@ -74402,18 +73986,346 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 88fe4d74ef4435249976db37b25291e4, type: 2}
-    - target: {fileID: 9149283876406945408, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+    - target: {fileID: 0}
+      propertyPath: rarity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trailTest
+      value: 
+      objectReference: {fileID: 9092119}
+    - target: {fileID: 0}
+      propertyPath: SpokeCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9149283876406945470, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+    - target: {fileID: 0}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 2073735060}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ammoIndicator
+      value: 
+      objectReference: {fileID: 562616702}
+    - target: {fileID: 0}
+      propertyPath: ejectedCasing
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lightAnimator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lightAnimation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: muzzleFlashFar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: muzzleFlashMain
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reloadIndicator
+      value: 
+      objectReference: {fileID: 98965624}
+    - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: muzzleFlashClose
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BounceOffSurfaces
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9149283876406945470, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ammoIndicatorShadow
+      value: 
+      objectReference: {fileID: 1203585103}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.size
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.speed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.bounce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.pierce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.size
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.accuracy
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.lifetime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.velocity
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.speed
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.fireSpeed
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.knockback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.pierce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.size
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.reloadSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.spreadAngle
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.speed
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.lifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.magazineSize
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.bounce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.fireSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.knockback
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.bulletStreams
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnHit.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.gunStats.bulletsPerShot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[1].stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.lifetime
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.reloadSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnFire.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.bulletStats.knockback
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.bulletSpread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.magazineSize
+      value: 555
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.bulletStreams
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnHit.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[1].blockType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: statBlock.gunStats.bulletsPerShot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnFire.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnFire.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
+    - target: {fileID: 0}
+      propertyPath: stats.events.OnFire.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d09d4b1a2b4bf94a87baed005db0b90, type: 2}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.size
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.bounce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.damage
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.pierce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.accuracy
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.lifetime
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.velocity
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.fireSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.knockback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: orbItemPools.Array.data[0].legendaryChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: orbItemPools.Array.data[1].legendaryChance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.reloadSpeed
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.spreadAngle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.magazineSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[1].gunStats.magazineSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.bulletStreams
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].gunStats.bulletsPerShot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].events.OnFire.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].events.OnFire.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8964a599a4286564cbd1d80eedbaeb28, type: 2}
+    - target: {fileID: 0}
+      propertyPath: itemStats.Array.data[0].events.OnFire.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d09d4b1a2b4bf94a87baed005db0b90, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
 --- !u!212 &5404810199159674302 stripped
