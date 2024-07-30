@@ -8,7 +8,7 @@ public abstract class Stat
     {
         Value,
         Percentage,
-        RelativeToBase
+        Rate
     }
 
     [SerializeReference, SerializeReferenceButton] public StatCombineType combineType;

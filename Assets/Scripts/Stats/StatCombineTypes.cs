@@ -6,14 +6,11 @@ using UnityEngine;
 [Serializable]
 public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<StatCombineType>
 {
-    //float that stores last combined value, good for debugging!
-    protected float combinedValue;
-
     //Determines what order stats are combined in. Lower priorities are combined first, higher priorities last.
     public abstract int CombinePriority { get; }
 
     //Tuple is designed to be passed in as "value, stacks"
-    public abstract float Combine(float baseValue, IEnumerable<Stat> stats);
+    public abstract void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats);
 
     public virtual string ModifyTooltip(string tooltip, float value)
     {
@@ -57,19 +54,52 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
     }
 }
 
-public class Additive : StatCombineType
+public class BaseStat : StatCombineType
 {
-    public override int CombinePriority => 100;
-    public override float Combine(float baseValue, IEnumerable<Stat> stats)
+    public override int CombinePriority => 0;
+
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
     {
-        combinedValue = baseValue;
-        foreach(Stat stat in stats)
+        float combinedValue = 0;
+        foreach (Stat stat in stats)
         {
             combinedValue += stat.value * stat.stacks;
             combinedValue = stat.Clamp(combinedValue);
         }
 
-        return combinedValue;
+        baseValue = combinedValue;
+    }
+
+    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
+    {
+        return "";
+    }
+
+    public override string GetTooltipPostfix(string valueName)
+    {
+        return valueName.SplitCamelCaseLower();
+    }
+}
+
+public class Additive : StatCombineType
+{
+    public override int CombinePriority => 101;
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
+    {
+        Stat first = stats.FirstOrDefault();
+        if (first == null)
+        {
+            return;
+        }
+        
+        float combinedValue = baseValue;
+        foreach(Stat stat in stats)
+        {
+            combinedValue += stat.value * stat.stacks;
+        }
+
+        aggregate += first.ValueType == Stat.StatValueType.Rate ? -combinedValue : combinedValue;
+        aggregate = first.Clamp(aggregate);
     }
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
@@ -86,19 +116,38 @@ public class Additive : StatCombineType
 
 public class Mult : StatCombineType
 {
-    public override int CombinePriority => 101;
-    public override float Combine(float baseValue, IEnumerable<Stat> stats)
+    public override int CombinePriority => 100;
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
     {
-        combinedValue = 0;
+        Stat first = stats.FirstOrDefault();
+        if (first == null)
+        {
+            return;
+        }
+
+        float combinedValue = 0;
         foreach (Stat stat in stats)
         {
             combinedValue += stat.value * stat.stacks;
-            combinedValue = stat.Clamp(combinedValue);
         }
 
-        combinedValue = baseValue * (1 + combinedValue);
+        if(first.ValueType == Stat.StatValueType.Rate)
+        {
+            if(combinedValue < 0f)
+            {
+                aggregate += baseValue * (1 + Mathf.Abs(combinedValue));
+            }
+            else
+            {
+                aggregate += baseValue / (1 + combinedValue);
+            }
+        }
+        else
+        {
+            aggregate += baseValue * (1 + combinedValue);
+        }
 
-        return combinedValue;
+        aggregate = first.Clamp(aggregate);
     }
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
@@ -116,9 +165,9 @@ public class Mult : StatCombineType
 public class Set : StatCombineType
 {
     public override int CombinePriority => 10000;
-    public override float Combine(float baseValue, IEnumerable<Stat> stats)
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
     {
-        combinedValue = float.MaxValue;
+        float combinedValue = float.MaxValue;
 
         foreach (Stat stat in stats)
         {
@@ -134,12 +183,10 @@ public class Set : StatCombineType
             combinedValue = stat.Clamp(combinedValue);
         }
 
-        if(combinedValue == float.MaxValue)
+        if(combinedValue != float.MaxValue)
         {
-            combinedValue = baseValue;
+            aggregate = combinedValue;
         }
-
-        return combinedValue;
     }
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
@@ -153,21 +200,6 @@ public class Set : StatCombineType
     }
 }
 
-public class BaseStat : Additive
-{
-    public override int CombinePriority => 0;
-
-    public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
-    {
-        return "";
-    }
-
-    public override string GetTooltipPostfix(string valueName)
-    {
-        return valueName.SplitCamelCaseLower();
-    }
-}
-
 public class Limit : StatCombineType
 {
     public enum LimitType
@@ -177,9 +209,9 @@ public class Limit : StatCombineType
     }
     public LimitType limitType;
     public override int CombinePriority => 9999;
-    public override float Combine(float baseValue, IEnumerable<Stat> stats)
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
     {
-        combinedValue = baseValue;
+        float combinedValue = aggregate;
 
         foreach (Stat stat in stats)
         {
@@ -199,7 +231,7 @@ public class Limit : StatCombineType
             combinedValue = stat.Clamp(combinedValue);
         }
 
-        return combinedValue;
+        aggregate = combinedValue;
     }
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)

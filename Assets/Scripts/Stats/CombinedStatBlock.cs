@@ -38,7 +38,8 @@ public class CombinedStatBlock
             statBucket.Add(stat);
         }
 
-        public void RemoveStat(Stat stat)
+        //returns bool indicating whether all stat buckets are empty, and residual stat should be cleaned up
+        public bool RemoveStat(Stat stat)
         {
             Type statType = stat.GetType();
             StatCombineType combineType = stat.combineType;
@@ -47,13 +48,25 @@ public class CombinedStatBlock
             {
                 HashSet<Stat> statBucket = orderedStats[statType][combineType];
                 statBucket.Remove(stat);
+
+                //check if all buckets for a stat are 0
+                foreach(var bucket in orderedStats[statType].Values)
+                {
+                    if(bucket.Count > 0)
+                    {
+                        return false;
+                    }
+                }
             }
+
+            return true;
         }
 
         public void CombineStats(StatBlock combinedStatBlock)
         {
             foreach(SortedList<StatCombineType, HashSet<Stat>> sortedStats in orderedStats.Values)
             {
+                float baseValue = 0;
                 float aggregate = 0;
                 Type statType = null;
 
@@ -62,15 +75,16 @@ public class CombinedStatBlock
                     if(statBucket.Count != 0)
                     {
                         Stat first = statBucket.First();
-                        if(statType == null)
+                        if (statType == null)
                         {
                             statType = first.GetType();
                         }
-                        aggregate = first.combineType.Combine(aggregate, statBucket);
+
+                        first.combineType.Combine(ref baseValue, ref aggregate, statBucket);
                     }
                 }
                 
-                if(statType != null && aggregate != 0)
+                if(statType != null && (aggregate != 0 || baseValue != 0))
                 {
                     Stat combinedStat = combinedStatBlock.GetStat(statType);
                     if (combinedStat == null)
@@ -79,7 +93,7 @@ public class CombinedStatBlock
                         combinedStatBlock.stats.Add(combinedStat);
                     }
 
-                    combinedStat.value = aggregate;
+                    combinedStat.value = aggregate != 0 ? aggregate : baseValue;
                     combinedStat.combineType = new BaseStat();
                 }
             }
@@ -115,7 +129,11 @@ public class CombinedStatBlock
     {
         foreach (Stat stat in block.stats)
         {
-            orderedStats.RemoveStat(stat);
+            if(orderedStats.RemoveStat(stat))
+            {
+                Stat removeStat = combinedStatBlock.GetStat(stat.GetType());
+                combinedStatBlock.stats.Remove(removeStat);
+            }
         }
     }
 
@@ -144,13 +162,21 @@ public class CombinedStatBlock
             block.active = true;
         }
 
+        bool dirty = false;
+
         //Cleanup any sources not provided this frame
         foreach (var source in sources)
         {
             if (!source.active)
             {
                 CleanupSource(source);
+                dirty = true;
             }
+        }
+
+        if(dirty)
+        {
+            //combinedStatBlock.stats.Clear();
         }
 
         sources.RemoveWhere(x => !x.active);

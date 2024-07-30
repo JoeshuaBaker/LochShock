@@ -1057,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1045770150725671777, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1292196274108730139, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: useUnscaledTime
       value: 1
@@ -1072,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 1879192211907270928, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_Name
       value: TestGuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270928, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270929, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_RootOrder
@@ -1281,180 +1289,8 @@ PrefabInstance:
       propertyPath: itemStash.Array.data[0]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: Scale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: trailTest
-      value: 
-      objectReference: {fileID: 1625658758}
-    - target: {fileID: 0}
-      propertyPath: SpokeCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
+    - target: {fileID: 8342140113515304604, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: inventoryUI
-      value: 
-      objectReference: {fileID: 1519550835}
-    - target: {fileID: 0}
-      propertyPath: GroupSpacing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: SpokeSpacing
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: ammoIndicator
-      value: 
-      objectReference: {fileID: 1380081661}
-    - target: {fileID: 0}
-      propertyPath: IsFixedTimestep
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: reloadIndicator
-      value: 
-      objectReference: {fileID: 808812506}
-    - target: {fileID: 0}
-      propertyPath: guns.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: ammoIndicatorShadow
-      value: 
-      objectReference: {fileID: 391392996}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.size
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.size
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.accuracy
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.lifetime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.velocity
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.fireSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.knockback
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.bounce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.pierce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.bulletStats.size
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.reloadSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.bulletStats.speed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.accuracy
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.lifetime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.magazineSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.bulletStats.bounce
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.fireSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.knockback
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: stats.gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.reloadSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.spreadAngle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.magazineSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.bulletStreams
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: statBlock.gunStats.bulletsPerShot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: CullProjectilesOutsideCameraBounds
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2752,17 +2588,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1745591ee8aa3d84491df00a65bec7c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1625658758 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 730593222157169164, guid: 48f8ab44848e9634d90e2af61b3a49ce, type: 3}
-  m_PrefabInstance: {fileID: 730593222679193482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0c06cb5ed18d64da0aa2fc5b7ed2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1878642374

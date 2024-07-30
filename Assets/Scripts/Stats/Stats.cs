@@ -28,27 +28,13 @@ public class MagazineSize : Stat
 public class ReloadSpeed : Stat 
 { 
     public override float Min => 1f / 60f;
-    public override StatValueType ValueType => StatValueType.RelativeToBase;
-
-    public override void UpdateStatBlockContext(ref StatBlockContext context)
-    {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: true, positiveIsGood: false, flipSign: true);
-    }
+    public override StatValueType ValueType => StatValueType.Rate;
 }
 
 public class FireSpeed : Stat 
 { 
     public override float Min => 1f / 60f;
-    public override StatValueType ValueType => StatValueType.RelativeToBase;
-    public override string Name()
-    {
-        return "Shots Per Second";
-    }
-
-    public override void UpdateStatBlockContext(ref StatBlockContext context)
-    {
-        context.AddContext(base.Name(), combineType, Name(), value * stacks, isPercentage: false, positiveIsGood: false, flipSign: true);
-    }
+    public override StatValueType ValueType => StatValueType.Rate;
 }
 
 public class BulletStreams : Stat 
@@ -74,13 +60,13 @@ public class BulletsPerShot : Stat
 
 public class SpreadAngle : Stat 
 { 
-    public override float Min => 0f;
-    public override float Max => 90f;
+    public override float Min => -90f;
+    public override float Max => 0f;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: false, positiveIsGood: false, flipSign: false);
+            context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks);
         }
     }
 }
@@ -105,7 +91,6 @@ public class Velocity : Stat
 { 
     public override float Min => 1f; 
     public override float Max => 300f;
-    public override StatValueType ValueType => StatValueType.RelativeToBase;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -118,10 +103,8 @@ public class Velocity : Stat
 
 public class Size : Stat 
 {
-    public const float MaxBulletSize = 5f;
     public override float Min => 0.01f; 
-    public override float Max => 1f;
-    public override StatValueType ValueType => StatValueType.Percentage;
+    public override float Max => 5f;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
@@ -135,7 +118,6 @@ public class Size : Stat
 public class Knockback : Stat 
 { 
     public override float Min => 0f;
-    public override StatValueType ValueType => StatValueType.RelativeToBase;
 }
 
 public class Bounce : Stat 

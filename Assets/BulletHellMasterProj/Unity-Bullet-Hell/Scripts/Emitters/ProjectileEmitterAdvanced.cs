@@ -23,7 +23,7 @@ namespace BulletHell
         protected int GroupCount {
             get
             {
-                return (int) stats.GetStatValue<BulletStreams>();
+                return Mathf.Max((int) stats.GetStatValue<BulletStreams>(), 1);
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
@@ -31,7 +31,7 @@ namespace BulletHell
         protected int SpokeCount {
             get
             {
-                return (int)stats.GetStatValue<BulletsPerShot>();
+                return Mathf.Max((int)stats.GetStatValue<BulletsPerShot>(), 1);
             }
         }
         protected float SpokeSpacing {
