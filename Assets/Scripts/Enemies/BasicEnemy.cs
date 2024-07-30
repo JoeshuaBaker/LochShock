@@ -15,8 +15,9 @@ public abstract class BasicEnemy : Enemy
     public float speed = 1f;
 
     //internal state vars
-    bool dying = false;
-    float deathTimer = 0f;
+    protected bool dying = false;
+    protected float deathTimer = 0f;
+    protected Vector3 directionToPlayer;
     public override void Start()
     {
         base.Start();
@@ -53,7 +54,7 @@ public abstract class BasicEnemy : Enemy
             return;
         }
 
-        Vector3 directionToPlayer = player.transform.position - this.transform.position;
+        directionToPlayer = player.transform.position - this.transform.position;
 
         if (directionToPlayer.magnitude > 30f)
         {

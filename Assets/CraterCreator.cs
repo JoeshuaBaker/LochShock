@@ -6,48 +6,75 @@ using Cinemachine;
 public class CraterCreator : MonoBehaviour
 {
     public GameObject crater;
+    public GameObject[] craterArray;
+    public int craterArraySize = 100;
     public Transform craterParent;
     public Sprite smallestCrater;
     public Sprite smallCrater;
     public Sprite mediumCrater;
     public Sprite largeCrater;
+    public int currentCrater;
     [Header("test fields")]
     public Player activePlayer;
     public float craterTime;
     public float craterInterval;
     public int randomCrater;
+    public bool testCraters;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         craterTime = 0f;
-        
+
+        currentCrater = 0;
+
+        craterArray = new GameObject[craterArraySize];
+
+        for (int i = 0; i < craterArray.Length; i++)
+        {
+            craterArray[i] = Instantiate(crater);
+            craterArray[i].transform.parent = craterParent;
+            craterArray[i].SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ////this is purely to test the crater creator
-        //craterTime = craterTime + Time.deltaTime;
-        //randomCrater = Random.Range(0, 4);
-        
+        //this is purely to test the crater creator
+        craterTime = craterTime + Time.deltaTime;
+        randomCrater = Random.Range(0, 4);
 
-        //if (craterTime > craterInterval)
-        //{
-        //    CreateCrater(activePlayer.transform.position , randomCrater);
-        //    craterTime = 0f;
-        //}
-        
+
+        if (craterTime > craterInterval && testCraters)
+        {
+            CreateCrater(activePlayer.transform.position, randomCrater);
+            craterTime = 0f;
+        }
+
     }
 
     public GameObject CreateCrater (Vector3 craterPos, int craterSize)
     {
-        GameObject spawnedCrater = Instantiate(crater);
-        spawnedCrater.transform.position = new Vector3(craterPos.x , craterPos.y , 0f);
-        spawnedCrater.transform.parent = craterParent;
+        GameObject spawnedCrater = craterArray[currentCrater];
+
+        if (currentCrater < craterArraySize - 1 )
+        {
+            currentCrater++;
+        }
+        else
+        {
+            currentCrater = 0;
+        }
+
+        spawnedCrater.SetActive(false);
+        spawnedCrater.SetActive(true);
+
+        spawnedCrater.transform.position = new Vector3(craterPos.x, craterPos.y, 0f);
         SpriteRenderer craterSprite = spawnedCrater.GetComponentInChildren<SpriteRenderer>();
-        craterSprite.sprite = smallestCrater;
         ParticleSystem craterPS = spawnedCrater.GetComponentInChildren<ParticleSystem>();
         CinemachineImpulseSource craterImp = spawnedCrater.GetComponent<CinemachineImpulseSource>();
         var em = craterPS.emission;
@@ -82,6 +109,8 @@ public class CraterCreator : MonoBehaviour
             em.SetBurst(0, new ParticleSystem.Burst(0 , 1 , 3));
 
         }
+
+        
 
         return spawnedCrater;
     }

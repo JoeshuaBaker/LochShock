@@ -65,7 +65,7 @@ public class DoodadManager : MonoBehaviour
 
         for (int i = 0; i < rootsLowArray.Length; i++)
         {
-            rootsLowArray[i] = Instantiate(rootsMid);
+            rootsLowArray[i] = Instantiate(rootsLow);
             rootsLowArray[i].transform.parent = this.transform;
             rootsLowArray[i].transform.position = new Vector3((initialPos.x + Random.Range( -rootHoriLimit , rootHoriLimit)), (initialPos.y + Random.Range( -rootVertLimit , rootVertLimit)), 0f);
 

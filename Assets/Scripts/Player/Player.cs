@@ -363,7 +363,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TakeDamageFromEnemy(int damage)
+    public void TakeDamageFromEnemy(int damage)
     {
         UpdateHp(damage);
 
@@ -603,7 +603,7 @@ public class Player : MonoBehaviour
 
     public void Execute()
     {
-        explosionSpawner.CreateExplosion(new Vector3(this.transform.position.x, (this.transform.position.y - 0.5f), this.transform.position.z), 3f);
+        explosionSpawner.CreateExplosionWithCrater(new Vector3(this.transform.position.x, (this.transform.position.y - 0.5f), this.transform.position.z), 3f);
         ring.transform.position = this.transform.position;
         ringAnimator.Play("RingExpandExtraLarge");
         mechDying.SetActive(false);

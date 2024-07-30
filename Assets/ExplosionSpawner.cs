@@ -6,15 +6,26 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class ExplosionSpawner : MonoBehaviour
 {
+    [Header("Explosion Fields")]
     public float maxSize;
     public float minSize;
     public float maxSlow;
     public float minFast;
     public GameObject explosionPrefab;
+    public GameObject[] explosionArray;
+    public int explosionArraySize = 50;
     public float noDebrisBelow;
     public CraterCreator craterCreator;
     public Transform effectParent;
+    private int currentExplosion;
+    private bool firstPass = true;
+    private ParticleSystem.MinMaxCurve ps2BaseValues;
 
+    [Header("Damage Zone Fields")]
+
+    public GameObject dangerZonePrefab;
+    public GameObject[] dangerZoneArray;
+    public int dangerZoneArraySize = 50;
 
     [Header("test fields")]
     public Player activePlayer;
@@ -22,11 +33,32 @@ public class ExplosionSpawner : MonoBehaviour
     public float explosionInterval;
     public float explosionSize;
     public float randomRange;
+    public bool testExplosions;
 
     // Start is called before the first frame update
     void Start()
     {
         explosionTime = 0f;
+
+        currentExplosion = 0;
+
+        explosionArray = new GameObject[explosionArraySize];
+        dangerZoneArray = new GameObject[dangerZoneArraySize];
+
+        for (int i = 0; i < explosionArray.Length; i++)
+        {
+            explosionArray[i] = Instantiate(explosionPrefab);
+            explosionArray[i].transform.parent = effectParent;
+            explosionArray[i].SetActive(false);
+        }
+
+        for (int i = 0; i < dangerZoneArray.Length; i++)
+        {
+            dangerZoneArray[i] = Instantiate(dangerZonePrefab);
+            dangerZoneArray[i].transform.parent = effectParent;
+            dangerZoneArray[i].SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -36,7 +68,7 @@ public class ExplosionSpawner : MonoBehaviour
         explosionSize = Random.Range(0.1f, 3f);
 
         explosionTime = explosionTime + Time.deltaTime;
-        if (explosionTime > explosionInterval)
+        if (explosionTime > explosionInterval && testExplosions)
         {
             if (randomRange >= 0.5f)
             {
@@ -44,24 +76,38 @@ public class ExplosionSpawner : MonoBehaviour
             }
             else
             {
-                CreateExplosion(activePlayer.transform.position, explosionSize);
+                CreateExplosionWithCrater(activePlayer.transform.position, explosionSize);
             }
             explosionTime = 0f;
         }
     }
 
-    public void CreateExplosion(Vector3 explosionPos , float size)
+    public GameObject CreateExplosionWithCrater(Vector3 explosionPos , float size)
     {
-        CreateExplosion (explosionPos , size , new Quaternion(0f,0f,0f,1f) );
+        GameObject spawnedExplosion = CreateExplosion (explosionPos , size , new Quaternion(0f,0f,0f,1f) );
         craterCreator.CreateCrater(explosionPos , Mathf.RoundToInt(size));
+
+        return spawnedExplosion;
+
     }
 
-    public GameObject CreateExplosion(Vector3 explosionPos, float size, Quaternion explosionRot )
+    public GameObject CreateExplosion(Vector3 explosionPos, float size, Quaternion explosionRot)
     {
         float explosionSize = Mathf.Clamp(size, minSize , maxSize);
 
-        GameObject spawnedExplosion = Instantiate(explosionPrefab);
-        spawnedExplosion.transform.parent = effectParent;
+        GameObject spawnedExplosion = explosionArray[currentExplosion];
+
+        if (currentExplosion < explosionArraySize - 1)
+        {
+            currentExplosion++;
+        }
+        else
+        {
+            currentExplosion = 0;
+        }
+
+        spawnedExplosion.SetActive(false);
+        spawnedExplosion.SetActive(true);
 
         spawnedExplosion.transform.position = new Vector3(explosionPos.x , explosionPos.y , 0f);
         spawnedExplosion.transform.rotation = explosionRot; //rotating explosion
@@ -93,6 +139,16 @@ public class ExplosionSpawner : MonoBehaviour
             }
             if (i == 2)
             {
+                if (firstPass)
+                {
+                    ps2BaseValues = expPSMain.startSpeed;
+                    firstPass = false;
+                }
+                else
+                {
+                    expPSMain.startSpeed = ps2BaseValues;
+                }
+
                 if (explosionRot != new Quaternion(0f, 0f, 0f, 1f))
                 {
                     expPSMain.startLifetime = new ParticleSystem.MinMaxCurve(0.36f, 0.54f); // setting debris duration for rotatable explosion
@@ -115,6 +171,7 @@ public class ExplosionSpawner : MonoBehaviour
         }
 
         return spawnedExplosion;
+
     }
     
 }

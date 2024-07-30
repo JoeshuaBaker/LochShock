@@ -10,6 +10,7 @@ public class World : MonoBehaviour
     public GameObject spawnContainer;
     public static World activeWorld;
     public bool paused = false;
+    public ExplosionSpawner explosionSpawner;
 
     //Map Variables
     public MapPool mapPool;
