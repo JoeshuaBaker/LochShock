@@ -23,9 +23,10 @@ public class ExplosionSpawner : MonoBehaviour
 
     [Header("Damage Zone Fields")]
 
-    public GameObject dangerZonePrefab;
-    public GameObject[] dangerZoneArray;
+    public DangerZone dangerZonePrefab;
+    public DangerZone[] dangerZoneArray;
     public int dangerZoneArraySize = 50;
+    private DangerZone spawnedDangerZone;
 
     [Header("test fields")]
     public Player activePlayer;
@@ -43,7 +44,7 @@ public class ExplosionSpawner : MonoBehaviour
         currentExplosion = 0;
 
         explosionArray = new GameObject[explosionArraySize];
-        dangerZoneArray = new GameObject[dangerZoneArraySize];
+        dangerZoneArray = new DangerZone[dangerZoneArraySize];
 
         for (int i = 0; i < explosionArray.Length; i++)
         {
@@ -56,7 +57,8 @@ public class ExplosionSpawner : MonoBehaviour
         {
             dangerZoneArray[i] = Instantiate(dangerZonePrefab);
             dangerZoneArray[i].transform.parent = effectParent;
-            dangerZoneArray[i].SetActive(false);
+            dangerZoneArray[i].gameObject.SetActive(false);
+
         }
 
     }
@@ -70,14 +72,16 @@ public class ExplosionSpawner : MonoBehaviour
         explosionTime = explosionTime + Time.deltaTime;
         if (explosionTime > explosionInterval && testExplosions)
         {
-            if (randomRange >= 0.5f)
-            {
-                CreateExplosion(activePlayer.transform.position, explosionSize, Random.rotation);
-            }
-            else
-            {
-                CreateExplosionWithCrater(activePlayer.transform.position, explosionSize);
-            }
+
+            CreateDangerZone(1000f, 1f, activePlayer.transform.position);
+            //if (randomRange >= 0.5f)
+            //{
+            //    CreateExplosion(activePlayer.transform.position, explosionSize, Random.rotation);
+            //}
+            //else
+            //{
+            //    CreateExplosionWithCrater(activePlayer.transform.position, explosionSize);
+            //}
             explosionTime = 0f;
         }
     }
@@ -172,6 +176,29 @@ public class ExplosionSpawner : MonoBehaviour
 
         return spawnedExplosion;
 
-    }
+      
     
+
+    }
+
+    public GameObject CreateDangerZone(float damage, float delay , Vector3 position)
+    {
+        int i;
+
+        for (i = 0; i < dangerZoneArray.Length; i++)
+        {
+            if(dangerZoneArray[i].gameObject.activeInHierarchy == false)
+            {
+
+                spawnedDangerZone = dangerZoneArray[i];
+                spawnedDangerZone.transform.parent = effectParent;
+
+            }
+        }
+
+        spawnedDangerZone.Setup(damage, delay, position);
+
+        return spawnedDangerZone.gameObject;
+    }
+
 }

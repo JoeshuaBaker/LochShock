@@ -12,24 +12,31 @@ public class DangerZone : MonoBehaviour
     public bool dangerZonePSUnactive;
     public bool safeOnPlayer;
     public float delay;
-    public float damage;
+    public float damageLocal;
     public float scale;
     public float particleDensity;
+    public bool damageDealt;
 
-   public void Setup( float damage , float delay )
+   public void Setup( float damage , float delay , Vector3 position )
     {
         animator.SetBool("skip", false);
+        animator.Play(0);
+
+        damageDealt = false;
+
+        this.gameObject.SetActive(true);
 
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
         {
             useTriggers = false,
-            layerMask = 1 << LayerMask.NameToLayer("Enemy") & 1 << LayerMask.NameToLayer("Player"),
+            layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player"),
             useLayerMask = true
         };
 
+        this.transform.position = position;
         this.delay = delay;
-        this.damage = damage;
+        this.damageLocal = damage;
         //this.scale = scale;
         //this.safeOnPlayer = safeOnPlayer;
         //this.dangerZonePSUnactive = dangerZonePSUnactive;
@@ -49,9 +56,12 @@ public class DangerZone : MonoBehaviour
     void Update()
     {
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
-        
-        if( animState.IsName("DangerZoneFinish"))
+
+        if (animState.IsName("DangerZoneFinish") && damageDealt == false)
         {
+
+            damageDealt = true;
+
             Physics2D.OverlapCollider(dangerZoneCollider, hitFilter, hitBuffer);
 
             foreach (Collider2D Collider in hitBuffer)
@@ -59,7 +69,7 @@ public class DangerZone : MonoBehaviour
                 Enemy enemy = Collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(damageLocal);
                     continue;
                 }
                 Player player = Collider.GetComponent<Player>();
@@ -70,5 +80,11 @@ public class DangerZone : MonoBehaviour
             }
 
         }
+
+        if (animState.IsName("DangerZoneFinish") && animState.normalizedTime >= 1)
+        {
+            this.gameObject.SetActive(false);
+        }
+
     }
 }

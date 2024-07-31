@@ -10,6 +10,7 @@ public class Mine : BasicEnemy
     public float explosionSize;
     private float explosionCountdown;
     private float moveSpeed;
+    public GameObject dangerZone;
 
 
     public override int EnemyId()
@@ -21,9 +22,11 @@ public class Mine : BasicEnemy
     {
         base.Update();
 
-        if(directionToPlayer.magnitude < 2f)
+        if(directionToPlayer.magnitude < 2f && playerClose == false)
         {
             animator.SetBool("playerNear", (true));
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp*500 , explosionDelay , this.transform.position);
+            dangerZone.transform.parent = this.transform;
             playerClose = true;
         }
 
@@ -40,15 +43,30 @@ public class Mine : BasicEnemy
 
         if (dying && deathTimer < 0f)
         {
-            World.activeWorld.explosionSpawner.CreateExplosionWithCrater(this.transform.position, explosionSize);
+            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp*500, 0f, this.transform.position);
+
+            if (dangerZone != null)
+            {
+                Debug.Log("in die and timer");
+                dangerZone.SetActive(false);
+            }
+
             this.gameObject.SetActive(false);
+            
         }
     }
 
     public override void Die()
     {
         base.Die();
-        World.activeWorld.explosionSpawner.CreateExplosionWithCrater(this.transform.position, explosionSize);
+        World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position);
+
+        if (dangerZone != null)
+        {
+            Debug.Log("in die");
+            dangerZone.SetActive(false);
+        }
+
         this.gameObject.SetActive(false);
     }
 
@@ -64,6 +82,13 @@ public class Mine : BasicEnemy
         playerClose = false;
         explosionCountdown = 0f;
         speed = moveSpeed;
+    }
+
+    public override void DisableGameObject()
+    {
+
+        base.DisableGameObject();
+
     }
 
 

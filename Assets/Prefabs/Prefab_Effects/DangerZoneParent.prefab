@@ -46,7 +46,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -1303,7 +1303,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.35217336, b: 0.32549024, a: 0.49019608}
+        key0: {r: 1, g: 0.72397435, b: 0.7122642, a: 0.49019608}
         key1: {r: 0.7058824, g: 0.02792419, b: 0, a: 0}
         key2: {r: 0.30980393, g: 0.005886508, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1312,7 +1312,7 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 13107
+        ctime1: 19661
         ctime2: 50693
         ctime3: 0
         ctime4: 0
@@ -1332,18 +1332,18 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.54451156, b: 0.5058824, a: 0.49019608}
+        key0: {r: 1, g: 0.7872117, b: 0.7688679, a: 0.49019608}
         key1: {r: 0.9254902, g: 0.028047664, b: 0, a: 0.29411766}
         key2: {r: 0.22745098, g: 0.0066131637, b: 0, a: 0}
-        key3: {r: 0, g: 0.2264151, b: 0.21844272, a: 0}
+        key3: {r: 0.22745098, g: 0.0066131637, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 13107
+        ctime1: 15420
         ctime2: 48496
-        ctime3: 55319
+        ctime3: 48496
         ctime4: 0
         ctime5: 0
         ctime6: 0
@@ -5162,10 +5162,11 @@ MonoBehaviour:
   hitBuffer: []
   dangerZonePSUnactive: 0
   safeOnPlayer: 0
-  delay: 0
-  damage: 0
+  delay: 1
+  damageLocal: 0
   scale: 0
   particleDensity: 0
+  damageDealt: 0
 --- !u!1 &9075313666275858392
 GameObject:
   m_ObjectHideFlags: 0
