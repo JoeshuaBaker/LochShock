@@ -5,12 +5,15 @@ using UnityEngine;
 public class Mine : BasicEnemy
 {
 
-    public bool playerClose;
+    public bool playerClose = false;
     public float explosionDelay;
     public float explosionSize;
     private float explosionCountdown;
     private float moveSpeed;
+    public float activationRange;
     public GameObject dangerZone;
+    private bool secondaryZoneSpawned = false;
+    public float explosionResetTime = 0.5f;
 
 
     public override int EnemyId()
@@ -22,19 +25,26 @@ public class Mine : BasicEnemy
     {
         base.Update();
 
-        if(directionToPlayer.magnitude < 2f && playerClose == false)
+        explosionResetTime = explosionResetTime - Time.deltaTime;
+
+        if(dangerZone != null)
         {
-            animator.SetBool("playerNear", (true));
-            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp*500 , explosionDelay , this.transform.position);
-            dangerZone.transform.parent = this.transform;
-            playerClose = true;
+            dangerZone.transform.position = this.transform.position;
         }
 
+        if (directionToPlayer.magnitude < activationRange && !playerClose && !dying && explosionResetTime < 0f)
+        {
+            animator.SetBool("playerNear", (true));
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true);
+            playerClose = true;
+        }
+   
         if (playerClose)
         {
-            speed = 0f;
-            explosionCountdown = (explosionCountdown + Time.deltaTime);
+                speed = 0f;
+                explosionCountdown = (explosionCountdown + Time.deltaTime);
         }
+        
 
         if (explosionCountdown >= explosionDelay)
         {
@@ -43,13 +53,20 @@ public class Mine : BasicEnemy
 
         if (dying && deathTimer < 0f)
         {
-            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp*500, 0f, this.transform.position);
+            if (!secondaryZoneSpawned)
+            {
+                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true);
+                secondaryZoneSpawned = true;
+            }
 
             if (dangerZone != null)
             {
                 Debug.Log("in die and timer");
                 dangerZone.SetActive(false);
+                dangerZone = null;
             }
+
+            playerClose = false;
 
             this.gameObject.SetActive(false);
             
@@ -59,15 +76,23 @@ public class Mine : BasicEnemy
     public override void Die()
     {
         base.Die();
-        World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position);
+
+        if (!secondaryZoneSpawned)
+        {
+            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true);
+            secondaryZoneSpawned = true;
+        }
 
         if (dangerZone != null)
         {
             Debug.Log("in die");
             dangerZone.SetActive(false);
+            dangerZone = null;
         }
 
-        this.gameObject.SetActive(false);
+        playerClose = false;
+
+       this.gameObject.SetActive(false);
     }
 
     public override void Reset()
@@ -79,17 +104,19 @@ public class Mine : BasicEnemy
             moveSpeed = speed;
         }
 
+        if(dangerZone != null)
+        {
+            dangerZone = null;
+        }
+
+        secondaryZoneSpawned = false;
+
+        explosionResetTime = 0.5f;
+
         playerClose = false;
+
         explosionCountdown = 0f;
         speed = moveSpeed;
     }
-
-    public override void DisableGameObject()
-    {
-
-        base.DisableGameObject();
-
-    }
-
 
 }

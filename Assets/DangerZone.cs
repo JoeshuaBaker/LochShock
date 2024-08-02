@@ -16,13 +16,16 @@ public class DangerZone : MonoBehaviour
     public float scale;
     public float particleDensity;
     public bool damageDealt;
+    public bool willDealDamage;
 
-   public void Setup( float damage , float delay , Vector3 position )
+   public void Setup( float damage , float delay , Vector3 position , bool dealsDamage )
     {
         animator.SetBool("skip", false);
         animator.Play(0);
 
         damageDealt = false;
+
+        willDealDamage = dealsDamage;
 
         this.gameObject.SetActive(true);
 
@@ -57,28 +60,32 @@ public class DangerZone : MonoBehaviour
     {
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (animState.IsName("DangerZoneFinish") && damageDealt == false)
+        if (willDealDamage)
         {
 
-            damageDealt = true;
-
-            Physics2D.OverlapCollider(dangerZoneCollider, hitFilter, hitBuffer);
-
-            foreach (Collider2D Collider in hitBuffer)
+            if (animState.IsName("DangerZoneFinish") && damageDealt == false)
             {
-                Enemy enemy = Collider.GetComponent<Enemy>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(damageLocal);
-                    continue;
-                }
-                Player player = Collider.GetComponent<Player>();
-                if(player != null)
-                {
-                    player.TakeDamageFromEnemy(-1);
-                }
-            }
 
+                damageDealt = true;
+
+                Physics2D.OverlapCollider(dangerZoneCollider, hitFilter, hitBuffer);
+
+                foreach (Collider2D Collider in hitBuffer)
+                {
+                    Enemy enemy = Collider.GetComponent<Enemy>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(damageLocal);
+                        continue;
+                    }
+                    Player player = Collider.GetComponent<Player>();
+                    if (player != null)
+                    {
+                        player.TakeDamageFromEnemy(-1);
+                    }
+                }
+
+            }
         }
 
         if (animState.IsName("DangerZoneFinish") && animState.normalizedTime >= 1)

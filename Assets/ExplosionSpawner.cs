@@ -20,21 +20,23 @@ public class ExplosionSpawner : MonoBehaviour
     private int currentExplosion;
     private bool firstPass = true;
     private ParticleSystem.MinMaxCurve ps2BaseValues;
+    private float explosionLightBaseRadius = 2.83f;
 
     [Header("Damage Zone Fields")]
 
     public DangerZone dangerZonePrefab;
     public DangerZone[] dangerZoneArray;
-    public int dangerZoneArraySize = 50;
+    public int dangerZoneArraySize = 100;
     private DangerZone spawnedDangerZone;
 
     [Header("test fields")]
     public Player activePlayer;
-    public float explosionTime;
+    private float explosionTime;
     public float explosionInterval;
     public float explosionSize;
     public float randomRange;
     public bool testExplosions;
+    public bool testDangerZones;
 
     // Start is called before the first frame update
     void Start()
@@ -72,16 +74,18 @@ public class ExplosionSpawner : MonoBehaviour
         explosionTime = explosionTime + Time.deltaTime;
         if (explosionTime > explosionInterval && testExplosions)
         {
+                 
+                Vector3 randomPlacement = new Vector3(Random.Range(activePlayer.transform.position.x + 10f,activePlayer.transform.position.x -10f), Random.Range(activePlayer.transform.position.y + 10f, activePlayer.transform.position.y - 10f), 0f);
+                CreateExplosionWithCrater(randomPlacement, explosionSize);
+      
+            explosionTime = 0f;
+        }
+        if (explosionTime > explosionInterval && testDangerZones)
+        {
 
-            CreateDangerZone(1000f, 1f, activePlayer.transform.position);
-            //if (randomRange >= 0.5f)
-            //{
-            //    CreateExplosion(activePlayer.transform.position, explosionSize, Random.rotation);
-            //}
-            //else
-            //{
-            //    CreateExplosionWithCrater(activePlayer.transform.position, explosionSize);
-            //}
+            Vector3 randomPlacement = new Vector3(Random.Range(activePlayer.transform.position.x + 10f, activePlayer.transform.position.x - 10f), Random.Range(activePlayer.transform.position.y + 10f, activePlayer.transform.position.y - 10f), 0f);
+            CreateDangerZone(1000f, 1f, randomPlacement , true);
+          
             explosionTime = 0f;
         }
     }
@@ -118,10 +122,10 @@ public class ExplosionSpawner : MonoBehaviour
         spawnedExplosion.transform.localScale = new Vector3( explosionSize , explosionSize , explosionSize );
 
         CinemachineImpulseSource explosionImp = spawnedExplosion.GetComponent<CinemachineImpulseSource>();
-        explosionImp.GenerateImpulse(explosionSize);
+        explosionImp.GenerateImpulse(explosionSize * 0.5f);
 
         Light2D explosionLight = spawnedExplosion.GetComponentInChildren<Light2D>();
-        explosionLight.pointLightOuterRadius = (explosionLight.pointLightOuterRadius * (explosionSize * 0.75f));
+        explosionLight.pointLightOuterRadius = (explosionLightBaseRadius * (explosionSize * 0.75f));
 
         ParticleSystem[] explosionPS = spawnedExplosion.GetComponentsInChildren<ParticleSystem>();
         
@@ -181,7 +185,7 @@ public class ExplosionSpawner : MonoBehaviour
 
     }
 
-    public GameObject CreateDangerZone(float damage, float delay , Vector3 position)
+    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage)
     {
         int i;
 
@@ -196,7 +200,7 @@ public class ExplosionSpawner : MonoBehaviour
             }
         }
 
-        spawnedDangerZone.Setup(damage, delay, position);
+        spawnedDangerZone.Setup(damage, delay, position , dealsDamage);
 
         return spawnedDangerZone.gameObject;
     }

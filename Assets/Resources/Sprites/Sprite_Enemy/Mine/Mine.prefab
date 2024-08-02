@@ -134,7 +134,10 @@ MonoBehaviour:
   speed: 1
   playerClose: 0
   explosionDelay: 1
-  explosionSize: 1.1
+  explosionSize: 1
+  activationRange: 2
+  dangerZone: {fileID: 0}
+  explosionResetTime: 0.1
 --- !u!50 &1352280239308332297
 Rigidbody2D:
   serializedVersion: 4
