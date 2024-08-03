@@ -14,6 +14,7 @@ public class Mine : BasicEnemy
     public GameObject dangerZone;
     private bool secondaryZoneSpawned = false;
     public float explosionResetTime = 0.5f;
+    public Vector3 explosionScale;
 
 
     public override int EnemyId()
@@ -35,7 +36,7 @@ public class Mine : BasicEnemy
         if (directionToPlayer.magnitude < activationRange && !playerClose && !dying && explosionResetTime < 0f)
         {
             animator.SetBool("playerNear", (true));
-            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true);
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale);
             playerClose = true;
         }
    
@@ -55,13 +56,13 @@ public class Mine : BasicEnemy
         {
             if (!secondaryZoneSpawned)
             {
-                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true);
+                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale);
                 secondaryZoneSpawned = true;
             }
 
             if (dangerZone != null)
             {
-                Debug.Log("in die and timer");
+                
                 dangerZone.SetActive(false);
                 dangerZone = null;
             }
@@ -79,13 +80,12 @@ public class Mine : BasicEnemy
 
         if (!secondaryZoneSpawned)
         {
-            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true);
+            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale);
             secondaryZoneSpawned = true;
         }
 
         if (dangerZone != null)
         {
-            Debug.Log("in die");
             dangerZone.SetActive(false);
             dangerZone = null;
         }

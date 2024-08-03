@@ -28,6 +28,7 @@ public class ExplosionSpawner : MonoBehaviour
     public DangerZone[] dangerZoneArray;
     public int dangerZoneArraySize = 100;
     private DangerZone spawnedDangerZone;
+   
 
     [Header("test fields")]
     public Player activePlayer;
@@ -37,6 +38,7 @@ public class ExplosionSpawner : MonoBehaviour
     public float randomRange;
     public bool testExplosions;
     public bool testDangerZones;
+    public Vector3 testScale;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +86,8 @@ public class ExplosionSpawner : MonoBehaviour
         {
 
             Vector3 randomPlacement = new Vector3(Random.Range(activePlayer.transform.position.x + 10f, activePlayer.transform.position.x - 10f), Random.Range(activePlayer.transform.position.y + 10f, activePlayer.transform.position.y - 10f), 0f);
-            CreateDangerZone(1000f, 1f, randomPlacement , true);
+            float randomSize = Random.Range(0.5f, 3f);
+            CreateDangerZone(1000f, 1f, randomPlacement , true , true , false, new Vector3(randomSize , randomSize , 0f));
           
             explosionTime = 0f;
         }
@@ -185,7 +188,7 @@ public class ExplosionSpawner : MonoBehaviour
 
     }
 
-    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage)
+    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale)
     {
         int i;
 
@@ -200,7 +203,7 @@ public class ExplosionSpawner : MonoBehaviour
             }
         }
 
-        spawnedDangerZone.Setup(damage, delay, position , dealsDamage);
+        spawnedDangerZone.Setup(damage, delay, position , dealsDamage , safeOnPlayer, noPS , scale);
 
         return spawnedDangerZone.gameObject;
     }
