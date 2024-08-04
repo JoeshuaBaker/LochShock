@@ -7,8 +7,17 @@ public class DangerZone : MonoBehaviour
     public Animator animator;
     public ParticleSystem dangerZonePS;
     public CircleCollider2D dangerZoneCollider;
+    public BoxCollider2D dangerZoneColliderBox;
+    public Collider2D activeCollider;
     public ContactFilter2D hitFilter;
     public List<Collider2D> hitBuffer;
+    public SpriteRenderer mainSprite;
+    public SpriteRenderer fillSprite;
+    public SpriteRenderer outlineSprite;
+    public Sprite bigCircle;
+    public Sprite bigRing;
+    public Sprite bigSquare;
+    public Sprite bigBox;
     public bool safeOnPlayer;
     public float delay;
     public float damageLocal;
@@ -32,16 +41,15 @@ public class DangerZone : MonoBehaviour
     private static GradientAlphaKey[] blueTwoAlphaArray;
 
 
-    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale)
+    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation)
     {
         animator.SetBool("skip", false);
+        this.gameObject.SetActive(true);
         animator.Play(0);
 
         damageDealt = false;
 
         willDealDamage = dealsDamage;
-
-        this.gameObject.SetActive(true);
 
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -50,10 +58,30 @@ public class DangerZone : MonoBehaviour
             layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player"),
             useLayerMask = true
         };
-
+        this.transform.rotation = rotation;
         this.transform.position = position;
         this.scale = scale;
         this.transform.localScale = scale;
+
+        if (squareShape)
+        {
+            mainSprite.sprite = bigSquare;
+            fillSprite.sprite = bigSquare;
+            outlineSprite.sprite = bigBox;
+            dangerZoneCollider.enabled = false;
+            dangerZoneColliderBox.enabled = true;
+            activeCollider = dangerZoneColliderBox;
+        }
+        else
+        {
+            mainSprite.sprite = bigCircle;
+            fillSprite.sprite = bigCircle;
+            outlineSprite.sprite = bigRing;
+            dangerZoneCollider.enabled = true;
+            dangerZoneColliderBox.enabled = false;
+            activeCollider = dangerZoneCollider;
+
+        }
 
         if (delay == 0f)
         {
@@ -112,12 +140,24 @@ public class DangerZone : MonoBehaviour
         var dzPS = dangerZonePS.main;
         var dzPSEmission = dangerZonePS.emission;
         var dzPSColor = dangerZonePS.colorOverLifetime;
+        var dzShape = dangerZonePS.shape;
 
         if (!noPS)
         {
             dangerZonePS.Play();
-            float area = Mathf.PI * scale.x * scale.x * .33f;
+            float area = scale.x * scale.y;
             dzPSEmission.SetBurst( 0 , new ParticleSystem.Burst(0f, (short) (pSLowerLim * area) , (short) (pSUpperLim * area) , 3 , 0.02f));
+
+            if (squareShape)
+            {
+                dzShape.shapeType = ParticleSystemShapeType.Rectangle;
+                dzShape.scale = new Vector3(3f, 3f, 1f);
+            }
+            else
+            {
+                dzShape.shapeType = ParticleSystemShapeType.Circle;
+                dzShape.scale = new Vector3(1f, 1f, 1f);
+            }
 
             if (!safeOnPlayer)
             {
@@ -157,25 +197,19 @@ public class DangerZone : MonoBehaviour
             dangerZonePS.Stop();
         }
 
-        
-
-    
-
     }
 
     void Update()
     {
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (willDealDamage)
+        
+        if (animState.IsName("DangerZoneFinish") && damageDealt == false && willDealDamage)
         {
-
-            if (animState.IsName("DangerZoneFinish") && damageDealt == false)
-            {
 
                 damageDealt = true;
 
-                Physics2D.OverlapCollider(dangerZoneCollider, hitFilter, hitBuffer);
+                Physics2D.OverlapCollider(activeCollider, hitFilter, hitBuffer);
 
                 foreach (Collider2D Collider in hitBuffer)
                 {
@@ -192,8 +226,8 @@ public class DangerZone : MonoBehaviour
                     }
                 }
 
-            }
         }
+        
 
         if (animState.IsName("DangerZoneFinish") && animState.normalizedTime >= 1)
         {

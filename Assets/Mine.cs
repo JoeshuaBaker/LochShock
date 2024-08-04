@@ -36,7 +36,7 @@ public class Mine : BasicEnemy
         if (directionToPlayer.magnitude < activationRange && !playerClose && !dying && explosionResetTime < 0f)
         {
             animator.SetBool("playerNear", (true));
-            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale);
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f));
             playerClose = true;
         }
    
@@ -56,7 +56,7 @@ public class Mine : BasicEnemy
         {
             if (!secondaryZoneSpawned)
             {
-                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale);
+                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f));
                 secondaryZoneSpawned = true;
             }
 
@@ -80,7 +80,7 @@ public class Mine : BasicEnemy
 
         if (!secondaryZoneSpawned)
         {
-            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale);
+            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f));
             secondaryZoneSpawned = true;
         }
 

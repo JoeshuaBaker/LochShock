@@ -86,8 +86,10 @@ public class ExplosionSpawner : MonoBehaviour
         {
 
             Vector3 randomPlacement = new Vector3(Random.Range(activePlayer.transform.position.x + 10f, activePlayer.transform.position.x - 10f), Random.Range(activePlayer.transform.position.y + 10f, activePlayer.transform.position.y - 10f), 0f);
-            float randomSize = Random.Range(0.5f, 3f);
-            CreateDangerZone(1000f, 1f, randomPlacement , true , true , false, new Vector3(randomSize , randomSize , 0f));
+            float randomSize = Random.Range(1f, 2f);
+            bool randomShape = (Random.Range (0f, 1f) < 0.5f);
+            Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f));
+            CreateDangerZone(1000f, 1f, randomPlacement , true , false , false, new Vector3(randomSize , randomSize*35f , 0f), true, randomRotation);
           
             explosionTime = 0f;
         }
@@ -188,7 +190,7 @@ public class ExplosionSpawner : MonoBehaviour
 
     }
 
-    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale)
+    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation)
     {
         int i;
 
@@ -203,7 +205,7 @@ public class ExplosionSpawner : MonoBehaviour
             }
         }
 
-        spawnedDangerZone.Setup(damage, delay, position , dealsDamage , safeOnPlayer, noPS , scale);
+        spawnedDangerZone.Setup(damage, delay, position , dealsDamage , safeOnPlayer, noPS , scale, squareShape, rotation);
 
         return spawnedDangerZone.gameObject;
     }
