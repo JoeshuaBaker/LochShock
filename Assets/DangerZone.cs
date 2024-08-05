@@ -21,7 +21,6 @@ public class DangerZone : MonoBehaviour
     public bool safeOnPlayer;
     public float delay;
     public float damageLocal;
-    public Vector3 scale;
     public bool damageDealt;
     public bool willDealDamage;
     public bool noPS;
@@ -48,8 +47,9 @@ public class DangerZone : MonoBehaviour
         animator.Play(0);
 
         damageDealt = false;
-
         willDealDamage = dealsDamage;
+        damageLocal = damage;
+        this.safeOnPlayer = safeOnPlayer;
 
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -58,10 +58,10 @@ public class DangerZone : MonoBehaviour
             layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player"),
             useLayerMask = true
         };
-        this.transform.rotation = rotation;
-        this.transform.position = position;
-        this.scale = scale;
-        this.transform.localScale = scale;
+
+        transform.rotation = rotation;
+        transform.position = position;
+        transform.localScale = scale;
 
         if (squareShape)
         {
@@ -98,10 +98,6 @@ public class DangerZone : MonoBehaviour
                 animator.SetBool("skipFirst", true);
             }
         }
-
-        this.damageLocal = damage;
-
-        this.safeOnPlayer = safeOnPlayer;
 
         if(redOneColorArray == null)
         {

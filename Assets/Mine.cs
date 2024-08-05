@@ -26,7 +26,10 @@ public class Mine : BasicEnemy
     {
         base.Update();
 
-        explosionResetTime = explosionResetTime - Time.deltaTime;
+        if(explosionResetTime >= 0f)
+        {
+            explosionResetTime = explosionResetTime - Time.deltaTime;
+        }
 
         if(dangerZone != null)
         {
