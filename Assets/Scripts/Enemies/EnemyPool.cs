@@ -54,7 +54,7 @@ public class EnemyPool : MonoBehaviour
                 if(!enemyArray[i].gameObject.activeSelf)
                 {
                     instance = enemyArray[i];
-                    continue;
+                    break;
                 }
             }
 

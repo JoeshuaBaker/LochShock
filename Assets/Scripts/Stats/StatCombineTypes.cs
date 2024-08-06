@@ -60,13 +60,19 @@ public class BaseStat : StatCombineType
 
     public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
     {
+        Stat first = stats.FirstOrDefault();
+        if (first == null)
+        {
+            return;
+        }
+
         float combinedValue = 0;
         foreach (Stat stat in stats)
         {
             combinedValue += stat.value * stat.stacks;
-            combinedValue = stat.Clamp(combinedValue);
         }
 
+        combinedValue = first.Clamp(combinedValue);
         baseValue = combinedValue;
     }
 
@@ -91,7 +97,7 @@ public class Additive : StatCombineType
         {
             return;
         }
-        
+
         float combinedValue = baseValue;
         foreach(Stat stat in stats)
         {
@@ -131,9 +137,9 @@ public class Mult : StatCombineType
             combinedValue += stat.value * stat.stacks;
         }
 
-        if(first.ValueType == Stat.StatValueType.Rate)
+        if (first.ValueType == Stat.StatValueType.Rate)
         {
-            if(combinedValue < 0f)
+            if (combinedValue < 0f)
             {
                 aggregate += baseValue * (1 + Mathf.Abs(combinedValue));
             }

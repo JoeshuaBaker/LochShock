@@ -20,6 +20,8 @@ MonoBehaviour:
   newStats:
     stats:
     - id: 0
+    events:
+      events: []
     stacks: 1
     active: 0
   references:
@@ -29,6 +31,6 @@ MonoBehaviour:
       data:
         combineType:
           id: 1
-        value: -0.035
+        value: 0.33
     00000001:
-      type: {class: XMult, ns: , asm: Assembly-CSharp}
+      type: {class: Mult, ns: , asm: Assembly-CSharp}

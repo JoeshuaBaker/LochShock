@@ -123,6 +123,8 @@ public class CombinedStatBlock
         {
             orderedStats.AddStat(stat);
         }
+
+        combinedStatBlock.events.Add(block.events);
     }
 
     private void CleanupSource(StatBlock block)
@@ -135,6 +137,8 @@ public class CombinedStatBlock
                 combinedStatBlock.stats.Remove(removeStat);
             }
         }
+
+        combinedStatBlock.events.Remove(block.events);
     }
 
     public void UpdateSources(IEnumerable<StatBlock> statBlocks)

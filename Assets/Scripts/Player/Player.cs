@@ -204,6 +204,7 @@ public class Player : MonoBehaviour
 
     public void AddBuff(Buff.Instance buffInstance)
     {
+        Debug.Log("AddBuff called. Adding: " + buffInstance.buff.buffName);
         IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName.Equals(buffInstance.buff.buffName, StringComparison.CurrentCultureIgnoreCase));
 
         if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
@@ -329,13 +330,13 @@ public class Player : MonoBehaviour
             leftRightDrift += holdDirection.x * Time.deltaTime;
         }
 
-        if(holdDirection.x == 0 && leftRightDrift != 0f)
+        if (holdDirection.x == 0 && leftRightDrift != 0f)
         {
-            if(Math.Abs(leftRightDrift) < Time.deltaTime)
+            if (Math.Abs(leftRightDrift) < Time.deltaTime)
             {
                 leftRightDrift = 0f;
             }
-            else if(leftRightDrift > 0f)
+            else if (leftRightDrift > 0f)
             {
                 leftRightDrift -= Time.deltaTime;
             }
@@ -355,7 +356,7 @@ public class Player : MonoBehaviour
     private void Physics()
     {
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
-        if(result > 0)
+        if (result > 0)
         {
             TakeDamageFromEnemy(-1);
         }
@@ -523,7 +524,7 @@ public class Player : MonoBehaviour
         if(secondTimer <= 0)
         {
             secondTimer = 1;
-            foreach(OnSecondAction onSecondAction in Stats.events.OnSecond)
+            foreach(OnSecondAction onSecondAction in combinedNewStats.combinedStatBlock.GetEvents<OnSecondAction>())
             {
                 onSecondAction.OnSecond(this);
             }

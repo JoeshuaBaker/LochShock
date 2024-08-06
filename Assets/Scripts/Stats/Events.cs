@@ -1,31 +1,46 @@
+using UnityEngine;
+using System;
+using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
+
 [System.Serializable]
 public class Events
 {
-    public List<OnFireAction> OnFire = new List<OnFireAction>();
-    public List<OnHitAction> OnHit = new List<OnHitAction>();
-    public List<OnKillAction> OnKill = new List<OnKillAction>();
-    public List<OnReloadAction> OnReload = new List<OnReloadAction>();
-    public List<OnSecondAction> OnSecond = new List<OnSecondAction>();
+    public List<ScriptableAction> events;
 
     public Events()
     {
-        OnFire = new List<OnFireAction>();
-        OnHit = new List<OnHitAction>();
-        OnKill = new List<OnKillAction>();
-        OnReload = new List<OnReloadAction>();
-        OnSecond = new List<OnSecondAction>();
+        if(events == null)
+        {
+            events = new List<ScriptableAction>();
+        }
     }
 
     public Events Copy()
     {
         Events copy = new Events();
-        copy.OnFire.AddRange(this.OnFire);
-        copy.OnHit.AddRange(this.OnHit);
-        copy.OnKill.AddRange(this.OnKill);
-        copy.OnReload.AddRange(this.OnReload);
-        copy.OnSecond.AddRange(this.OnSecond);
-
+        copy.events.AddRange(events);
         return copy;
+    }
+
+    public IEnumerable<T> GetEvents<T>() where T : ScriptableAction
+    {
+        return events.OfType<T>();
+    }
+
+    public List<T> GetEventsAsList<T>() where T : ScriptableAction
+    {
+        return GetEvents<T>().ToList();
+    }
+
+    public void Add(Events other)
+    {
+        events.AddRange(other.events);
+    }
+
+    public void Remove(Events other)
+    {
+        events.RemoveRange(other.events);
     }
 }

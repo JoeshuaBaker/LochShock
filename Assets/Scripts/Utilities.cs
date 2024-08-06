@@ -35,4 +35,12 @@ public static class Utilities
             "$1 $2"
         ).Replace("  ", " ");
     }
+
+    public static void RemoveRange<T>(this List<T> list, List<T> other)
+    {
+        foreach(T item in other)
+        {
+            list.Remove(item);
+        }
+    }
 }

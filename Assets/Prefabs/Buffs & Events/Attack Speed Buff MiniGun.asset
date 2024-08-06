@@ -21,11 +21,7 @@ MonoBehaviour:
     stats:
     - id: 0
     events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
+      events: []
     stacks: 1
     active: 0
   references:
@@ -35,6 +31,6 @@ MonoBehaviour:
       data:
         combineType:
           id: 1
-        value: -0.1
+        value: 0.1
     00000001:
       type: {class: Additive, ns: , asm: Assembly-CSharp}

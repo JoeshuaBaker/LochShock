@@ -1,5 +1,3 @@
-using UnityEngine.Scripting.APIUpdating;
-
 public class Health : Stat 
 { 
     public override float Min => 0f;

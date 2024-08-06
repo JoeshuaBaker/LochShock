@@ -48,7 +48,7 @@ public class Gun : Item
             //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
             gunAudioEvent.Post(this.gameObject);
 
-            foreach(OnFireAction onFire in newCombinedStats.events.OnFire)
+            foreach(OnFireAction onFire in newCombinedStats.events.GetEvents<OnFireAction>())
             {
                 onFire.OnFire(Player.activePlayer, this);
             }
@@ -129,7 +129,7 @@ public class Gun : Item
                 AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
             }
 
-            foreach (OnReloadAction onReload in newCombinedStats.events.OnReload)
+            foreach (OnReloadAction onReload in newCombinedStats.GetEvents<OnReloadAction>())
             {
                 onReload.OnReload(Player.activePlayer, this);
             }

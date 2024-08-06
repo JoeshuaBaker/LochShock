@@ -51,9 +51,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[0]
+      value: Assembly-CSharp Bounce
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[1]
+      value: Assembly-CSharp Bounce
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[2]
+      value: Assembly-CSharp Bounce
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[0].value
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[1].value
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[2].value
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[1].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[2].combineType
+      value: Assembly-CSharp Mult
+      objectReference: {fileID: 0}
     - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: m_Name
-      value: 02_attackspeed
+      value: Test Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
