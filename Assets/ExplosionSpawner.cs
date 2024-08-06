@@ -89,7 +89,7 @@ public class ExplosionSpawner : MonoBehaviour
             float randomSize = Random.Range(1f, 2f);
             bool randomShape = (Random.Range (0f, 1f) < 0.5f);
             Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f));
-            CreateDangerZone(1000f, 0f, randomPlacement , true , true , true, new Vector3(randomSize , randomSize*35f , 0f), true, randomRotation);
+            CreateDangerZone(1000f, 1f, randomPlacement , true , false , false, new Vector3(randomSize , randomSize*35f , 0f), true, randomRotation);
           
             explosionTime = 0f;
         }

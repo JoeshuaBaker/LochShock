@@ -132,7 +132,6 @@ public class DangerZone : MonoBehaviour
     
         this.noPS = noPS;
 
-        var dzPSPlayStop = dangerZonePS;
         var dzPS = dangerZonePS.main;
         var dzPSEmission = dangerZonePS.emission;
         var dzPSColor = dangerZonePS.colorOverLifetime;
