@@ -2,10 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "ItemResourcesAtlas", menuName = "NemesisShock/ItemResourcesAtlas")]
 public class ItemResourcesAtlas : ScriptableObject
 {
+    [InspectorButton("ReserializeAllAssets", ButtonWidth = 240f)]
+    public bool reserializeAllAssets = false;
+
     [SerializeField] private string baseGunsPath = "Prefabs/Guns";
     [SerializeField] private string baseItemsPath = "Prefabs/Items";
     [SerializeField] private string baseActiveItemsPath = "Prefabs/ActiveItems";
@@ -91,4 +97,27 @@ public class ItemResourcesAtlas : ScriptableObject
             }
         }
     }
+
+#if UNITY_EDITOR
+    public void ReserializeAllAssets()
+    {
+        List<string> assetPaths = new List<string>();
+
+        foreach (Item.ItemType itemType in Enum.GetValues(typeof(Item.ItemType)))
+        {
+            foreach (Item.Rarity itemRarity in Enum.GetValues(typeof(Item.Rarity)))
+            {
+                string path = GetItemFolderPath(itemType, itemRarity);
+                Item[] items = Resources.LoadAll<Item>(path);
+
+                foreach(Item item in items)
+                {
+                    assetPaths.Add("Assets/Resources/" + path + "/" + item.name + ".prefab");
+                }
+            }
+        }
+
+        AssetDatabase.ForceReserializeAssets(assetPaths);
+    }
+#endif
 }
