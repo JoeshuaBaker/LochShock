@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     public string[] limbSpriteUpName;
     public string[] limbSpriteDownName;
     public float limbTransitionTime = 0.5f;
-    public Transform hpBar;
     public World world;
     public GameplayUI gameplayUI;
     public int maxHp
@@ -196,7 +195,6 @@ public class Player : MonoBehaviour
         {
             currentHp = 0;
         }
-        hpBar.localScale = new Vector3((float)currentHp / (float)maxHp, 1f, 1f);
     }
 
     public void CollectOrb()
