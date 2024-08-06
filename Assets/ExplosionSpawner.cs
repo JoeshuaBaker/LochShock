@@ -200,6 +200,7 @@ public class ExplosionSpawner : MonoBehaviour
             {
 
                 spawnedDangerZone = dangerZoneArray[i];
+                break;
 
             }
         }
