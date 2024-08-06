@@ -43,9 +43,13 @@
 							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
 							<Value>332</Value>
 						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.09570716914538E-317</Value>
+						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

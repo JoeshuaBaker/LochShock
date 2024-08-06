@@ -19,7 +19,7 @@ public class Gun : Item
 
     private float reloadSpeed;
     private float reloadTimer;
-    private float fireSpeed;
+    public float fireSpeed;
     private float bulletCooldown;
     public int maxMagazine;
     public int magazine;

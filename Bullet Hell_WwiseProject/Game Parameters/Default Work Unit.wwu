@@ -15,6 +15,12 @@
 						<Property Name="Max" Type="Real64" Value="21"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="2"/>
+						<Property Name="Max" Type="Real64" Value="2"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

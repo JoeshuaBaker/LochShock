@@ -1514,49 +1514,6 @@
 																</Reference>
 															</ReferenceList>
 															<ChildrenList>
-																<Sound Name="Nailgun_A" ID="{593DC61C-4C69-4428-B17A-F9A4724AA36B}" ShortID="960802817">
-																	<PropertyList>
-																		<Property Name="Pitch" Type="int32">
-																			<ModifierList>
-																				<ModifierInfo>
-																					<Modifier Name="" ID="{2F2F3C0F-5211-4172-84C0-D9F4BC2C7A7F}">
-																						<PropertyList>
-																							<Property Name="Enabled" Type="bool" Value="True"/>
-																							<Property Name="Max" Type="Real64" Value="500"/>
-																							<Property Name="Min" Type="Real64" Value="-400"/>
-																						</PropertyList>
-																					</Modifier>
-																				</ModifierInfo>
-																			</ModifierList>
-																		</Property>
-																	</PropertyList>
-																	<ReferenceList>
-																		<Reference Name="Conversion">
-																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-																		</Reference>
-																		<Reference Name="OutputBus">
-																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-																		</Reference>
-																	</ReferenceList>
-																	<ChildrenList>
-																		<AudioFileSource Name="Nailgun_A" ID="{DA990629-7654-4F2B-B657-01D621368783}">
-																			<PropertyList>
-																				<Property Name="LoopBegin" Type="Real64" Value="0.162683580442469"/>
-																				<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																				<Property Name="TrimBegin" Type="Real64" Value="0.11644"/>
-																			</PropertyList>
-																			<Language>SFX</Language>
-																			<AudioFile>Nailgun_A.wav</AudioFile>
-																			<MediaIDList>
-																				<MediaID ID="589169295"/>
-																			</MediaIDList>
-																		</AudioFileSource>
-																	</ChildrenList>
-																	<ObjectLists/>
-																	<ActiveSourceList>
-																		<ActiveSource Name="Nailgun_A" ID="{DA990629-7654-4F2B-B657-01D621368783}" Platform="Linked"/>
-																	</ActiveSourceList>
-																</Sound>
 																<Sound Name="Nailgun_B" ID="{470FA8E8-94D4-43BC-B67F-537E0B5DD12B}" ShortID="60942597">
 																	<ReferenceList>
 																		<Reference Name="Conversion">
@@ -1585,6 +1542,97 @@
 																		<ActiveSource Name="Nailgun_B" ID="{E5B011BF-7E61-4FC4-8021-BB7B8C26DF25}" Platform="Linked"/>
 																	</ActiveSourceList>
 																</Sound>
+																<RandomSequenceContainer Name="NailgunWhirl" ID="{B2822E87-23C3-4B91-AF80-80AC8B83B6F6}" ShortID="1049121438">
+																	<ReferenceList>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<Sound Name="Nailgun_A" ID="{593DC61C-4C69-4428-B17A-F9A4724AA36B}" ShortID="960802817">
+																			<PropertyList>
+																				<Property Name="Pitch" Type="int32">
+																					<ModifierList>
+																						<ModifierInfo>
+																							<Modifier Name="" ID="{2F2F3C0F-5211-4172-84C0-D9F4BC2C7A7F}">
+																								<PropertyList>
+																									<Property Name="Enabled" Type="bool" Value="True"/>
+																									<Property Name="Max" Type="Real64" Value="500"/>
+																									<Property Name="Min" Type="Real64" Value="-400"/>
+																								</PropertyList>
+																							</Modifier>
+																						</ModifierInfo>
+																					</ModifierList>
+																				</Property>
+																				<Property Name="Weight" Type="Real64">
+																					<ValueList>
+																						<Value>5</Value>
+																					</ValueList>
+																				</Property>
+																			</PropertyList>
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Nailgun_A" ID="{DA990629-7654-4F2B-B657-01D621368783}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.162683580442469"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.11644"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Nailgun_A.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="589169295"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Nailgun_A" ID="{DA990629-7654-4F2B-B657-01D621368783}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Silence" ID="{952F0D20-E684-4AAF-B460-18D3E4511100}" ShortID="407433545">
+																			<PropertyList>
+																				<Property Name="IsVoice" Type="bool" Value="True"/>
+																				<Property Name="Weight" Type="Real64">
+																					<ValueList>
+																						<Value>95</Value>
+																					</ValueList>
+																				</Property>
+																			</PropertyList>
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<SourcePlugin Name="Wwise Silence" ID="{C7B9E2E0-D3C8-4DDA-8FF6-CC1BF9BCFB2B}" ShortID="774304852" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+																					<PropertyList>
+																						<Property Name="Length" Type="Real32" Value="1.3"/>
+																					</PropertyList>
+																					<Language>English(US)</Language>
+																				</SourcePlugin>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Wwise Silence" ID="{C7B9E2E0-D3C8-4DDA-8FF6-CC1BF9BCFB2B}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																	</ChildrenList>
+																	<ObjectLists/>
+																</RandomSequenceContainer>
 															</ChildrenList>
 															<ObjectLists/>
 														</BlendContainer>
@@ -2055,6 +2103,35 @@
 											<ChildrenList>
 												<Sound Name="Railgun" ID="{05DF409E-5A37-4DAE-A33C-676C13E5E7AF}" ShortID="450960209">
 													<PropertyList>
+														<Property Name="Highpass" Type="int16">
+															<RTPCList>
+																<RTPC Name="" ID="{AEBD0F0E-EAAA-431C-8516-092F3B4EFBC8}" ShortID="527532809">
+																	<ReferenceList>
+																		<Reference Name="ControlInput">
+																			<ObjectRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<Curve Name="" ID="{2EA0DFDA-D3E2-4EFE-976A-9852BFCCCF4A}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="65537"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>29</YPos>
+																				<Flags>5</Flags>
+																				<SegmentShape>SCurve</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>2</XPos>
+																				<YPos>-100</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</RTPC>
+															</RTPCList>
+														</Property>
 														<Property Name="Volume" Type="Real64">
 															<ValueList>
 																<Value>-9</Value>

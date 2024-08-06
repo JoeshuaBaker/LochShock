@@ -50,13 +50,14 @@ Custom State	ID	Name	State Group	Owner		Notes
 	681484125	OnPath	PathStatus	\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Lake\Amb_Pathway Waves_2024-05-13 20_55_17		
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
-	730513497	HPF			\Default Work Unit\HPF	
+	2647461264	HighPassFilter			\Default Work Unit\HighPassFilter	
 	3439749059	SplatAmount			\Default Work Unit\SplatAmount	
 	4231214299	RainAmount			\Default Work Unit\RainAmount	
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	523538079	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\NailGun\NailgunSeq\Silence\Wwise Silence	
 	556106805	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\Minigun\Minigun\Shell&Silence\Silence\Wwise Silence	
+	774304852	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\NailGun\NailgunSeq\Nailgun\NailgunWhirl\Silence\Wwise Silence	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	14718603	TestTone	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\TestTone_9E7EF7AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\TestTone		34256
@@ -90,7 +91,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	563026468	OrbWhoosh	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbWhoosh_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\OrbCollect\OrbWhoosh		65536
 	563564699	OrbSnap	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbSnap_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\OrbCollect\OrbSnap		48476
 	568103617	PistolRicotchet_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\PistolRicotchet_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\Pistol\Pistol\Ricoctchet\PistolRicotchet_2		350244
-	589169295	Nailgun_A	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Nailgun_A_17D75007.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\NailGun\NailgunSeq\Nailgun\Nailgun_A		321792
+	589169295	Nailgun_A	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Nailgun_A_17D75007.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\NailGun\NailgunSeq\Nailgun\NailgunWhirl\Nailgun_A		321792
 	598105689	Deanne B_-Intro	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Deanne B.-Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MusicManager\Deanne B_-Intro\Deanne B_-Intro		1843264
 	602627737	Explosion_4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_4_3AF9CDC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_4		346800
 	605852712	Item Get	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Item Get_33C4700E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Menu\Item Get		407988
@@ -117,7 +118,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	915397359	GunFire_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\GunFireBase_DF0567C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\DEMOSOUNDS\Shoot\GunFire_02		36224
 	940737890	Nailgun_B	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Nailgun_B_844F5EEC.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\NailGun\NailgunSeq\Nailgun\Nailgun_B		321792
 	945210713	Splats_05	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_4E63F28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_05		29848
-	953260848	Railgun	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Railgun_2719FA44.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\Railgun\Railgun		719452
+	953260848	Railgun	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Railgun_533C4965.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\Railgun\Railgun		719452
 	957858280	Fire_0	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Fire_0_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\DEMOSOUNDS\Fire\Fire_0		289256
 	1033818243	GunFire	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\GunFireBase_D2642ADC.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\DEMOSOUNDS\Shoot\GunFire		23928
 
