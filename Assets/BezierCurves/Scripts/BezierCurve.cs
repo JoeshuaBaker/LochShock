@@ -251,6 +251,51 @@ public class BezierCurve : MonoBehaviour {
 		
 		return GetPoint(p1, p2, t / curvePercent);
 	}
+
+    public Vector3 GetPointAtDistance(float tDist)
+    {
+        float[] splineDistances = new float[pointCount - 1];
+        float totalDistance = 0f;
+        BezierPoint[] points = GetAnchorPoints();
+        BezierPoint p0 = points[0];
+        BezierPoint p1 = points[1];
+        float dist = 0f;
+
+        for (int i = 1; i < pointCount; i++)
+        {
+            p0 = points[i - 1];
+            p1 = points[i];
+            dist = ApproximateLength(p0, p1);
+            splineDistances[i - 1] = dist;
+            totalDistance += dist;
+        }
+
+        float targetDist = tDist * totalDistance;
+        float distanceWalked = 0f;
+        dist = 0f;
+
+        for (int i = 0; i < splineDistances.Length; i++)
+        {
+            p0 = points[i];
+            p1 = points[i+1];
+            dist = splineDistances[i];
+            if(distanceWalked + dist > targetDist)
+            {
+                break;
+            }
+
+            
+
+            if(i < splineDistances.Length - 1)
+            {
+                distanceWalked += dist;
+            }
+        }
+
+        float remainder = targetDist - distanceWalked;
+        float t = remainder / dist;
+        return GetPointDistance(p0, p1, t);
+    }
 	
 	/// <summary>
 	/// 	- Get the index of the given point in this curve
@@ -345,6 +390,61 @@ public class BezierCurve : MonoBehaviour {
 			else return GetLinearPoint(p1.position, p2.position, t);
 		}	
 	}
+
+    public static Vector3 GetPointDistance(BezierPoint p1, BezierPoint p2, float t, int resolution = 16)
+    {
+        if(resolution < 2)
+        {
+            Debug.LogWarning("GetPointDistance resolution must be 2 or greater.");
+            return Vector3.zero;
+        }
+
+        if(t < 0.01f)
+        {
+            return p1.position;
+        }
+        else if(t > .99f)
+        {
+            return p2.position;
+        }
+
+        float length = ApproximateLength(p1, p2, resolution);
+        float targetDistance = length * t;
+        float walkedDistance = 0;
+        Vector3 pointBefore = Vector3.zero;
+        Vector3 pointAfter = Vector3.zero;
+        float distBetween = 0f;
+
+        for (int i = 0; i < resolution; i++)
+        {
+            Vector3 point = GetPoint(p1, p2, i / (float)resolution);
+
+            if(i > 0)
+            {
+                pointBefore = pointAfter;
+                pointAfter = point; ;
+                distBetween = (pointAfter - pointBefore).magnitude;
+                if (walkedDistance + distBetween > targetDistance)
+                {
+                    break;
+                }
+
+                if(i < resolution - 1)
+                {
+                    walkedDistance += distBetween;
+                }
+            }
+            else
+            {
+                pointBefore = point;
+                pointAfter = point;
+            }
+        }
+
+        float remainder = targetDistance - walkedDistance;
+        float fraction = remainder / distBetween;
+        return Vector3.Lerp(pointBefore, pointAfter, fraction);
+    }
 
 	/// <summary>
 	/// 	- Gets the point 't' percent along a third-order curve
