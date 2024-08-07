@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
+    public Grapple grapplingHook;
     
     public Light2D playerVisionProximity;
     public float orbsHeld;
@@ -330,6 +331,8 @@ public class Player : MonoBehaviour
             leftRightDrift += holdDirection.x * Time.deltaTime;
         }
 
+        currentVel = new Vector2(currentVel.x * grapplingHook.playerSpeedMult, currentVel.y * grapplingHook.playerSpeedMult);
+
         if (holdDirection.x == 0 && leftRightDrift != 0f)
         {
             if (Math.Abs(leftRightDrift) < Time.deltaTime)
@@ -355,11 +358,20 @@ public class Player : MonoBehaviour
 
     private void Physics()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+
+        }
+
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
         if (result > 0)
         {
             TakeDamageFromEnemy(-1);
         }
+
+
+
     }
 
     public void TakeDamageFromEnemy(int damage)
