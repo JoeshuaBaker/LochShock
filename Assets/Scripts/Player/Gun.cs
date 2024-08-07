@@ -17,6 +17,7 @@ public class Gun : Item
     public Animator lightAnimator;
     public AK.Wwise.Event gunAudioEvent;
 
+    public bool shooting = false;
     private float reloadSpeed;
     private float reloadTimer;
     public float fireSpeed;
@@ -27,7 +28,7 @@ public class Gun : Item
 
     public void Shoot()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && magazine > 0 && bulletCooldown == 0)
+        if (shooting && magazine > 0 && bulletCooldown == 0)
         {
             if(emitter == null)
             {

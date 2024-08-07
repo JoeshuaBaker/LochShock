@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class Player : MonoBehaviour
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
     private Vector2 mouseDirection;
+    private Vector2 moveDirection;
     public Grapple grapplingHook;
     
     public Light2D playerVisionProximity;
@@ -156,33 +158,85 @@ public class Player : MonoBehaviour
         Move();
         Physics();
         MouseAim();
+        DrawSprites();
         Shoot();
         SetVision();
         UpdateInventory();
         UpdateUI();
     }
 
-    public void UpdateInventory()
+    public void MoveEvent(InputAction.CallbackContext context)
     {
-        timeSinceOrbUsed += Time.deltaTime;
+        moveDirection = context.ReadValue<Vector2>();
+    }
 
-        if (!dying && Input.GetKeyDown(KeyCode.Q))
+    public void LookEvent(InputAction.CallbackContext context)
+    {
+        
+        if(context.action.activeControl.device is Mouse)
+        {
+            var value = context.ReadValue<Vector2>();
+            var mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
+            mouseDirection = (mousePos - this.transform.position).xy().normalized;
+        }
+        else if(context.action.activeControl.device is Gamepad)
+        {
+            var value = context.ReadValue<Vector2>();
+            if(value != Vector2.zero && value.magnitude > 0.25f)
+            {
+                mouseDirection = value.normalized;
+            }
+        }
+    }
+
+    public void FireEvent(InputAction.CallbackContext context)
+    {
+        inventory.activeGun.shooting = context.ReadValueAsButton();
+    }
+
+    public void BombEvent(InputAction.CallbackContext context)
+    {
+        bool pressed = context.ReadValueAsButton();
+        if (context.started && pressed && !dying)
         {
             if (inventory.Orb())
             {
                 timeSinceOrbUsed = 0f;
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    public void SwitchWeaponsEvent(InputAction.CallbackContext context)
+    {
+        bool pressed = context.ReadValueAsButton();
+        if (context.started && pressed)
         {
             inventory.SwitchWeapons();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
+    public void InventoryEvent(InputAction.CallbackContext context)
+    {
+        bool pressed = context.ReadValueAsButton();
+        if (context.started && pressed)
         {
             inventory.OpenCloseInventory();
         }
+    }
+
+    public void ItemEvent(InputAction.CallbackContext context)
+    {
+
+    }
+
+    public void GrappleEvent(InputAction.CallbackContext context)
+    {
+
+    }
+
+    public void UpdateInventory()
+    {
+        timeSinceOrbUsed += Time.deltaTime;
     }
 
     public void UpdateHp(int hpChange)
@@ -205,7 +259,6 @@ public class Player : MonoBehaviour
 
     public void AddBuff(Buff.Instance buffInstance)
     {
-        Debug.Log("AddBuff called. Adding: " + buffInstance.buff.buffName);
         IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName.Equals(buffInstance.buff.buffName, StringComparison.CurrentCultureIgnoreCase));
 
         if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
@@ -300,40 +353,10 @@ public class Player : MonoBehaviour
             fastVel *= 0.98f;
         }
 
-        Vector2 holdDirection = new Vector2(0,0);
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            holdDirection.y += 1;
-        }
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            holdDirection.y -= 1;
-        }
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            holdDirection.x -= 1;
-        }
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            holdDirection.x += 1;
-        }
+        currentVel = moveDirection * fastVel;
+        leftRightDrift += moveDirection.x * Time.deltaTime;
 
-        holdDirection = holdDirection.normalized;
-
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            currentVel = holdDirection * slowVel;
-            leftRightDrift += holdDirection.x * slowFastRatio * Time.deltaTime;
-        }
-        else
-        {
-            currentVel = holdDirection * fastVel;
-            leftRightDrift += holdDirection.x * Time.deltaTime;
-        }
-
-        currentVel = new Vector2(currentVel.x * grapplingHook.playerSpeedMult, currentVel.y * grapplingHook.playerSpeedMult);
-
-        if (holdDirection.x == 0 && leftRightDrift != 0f)
+        if (Mathf.Abs(moveDirection.x) < 0.1f && leftRightDrift != 0f)
         {
             if (Math.Abs(leftRightDrift) < Time.deltaTime)
             {
@@ -444,18 +467,8 @@ public class Player : MonoBehaviour
 
     private void MouseAim()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = -Camera.main.transform.position.z;
-        Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3 dirToMouse = worldMouse - this.transform.position;
-        Vector2 xy = new Vector2(dirToMouse.x, dirToMouse.y);
-        xy = xy.normalized;
-        mouseDirection = xy;
-
-        inventory.activeGun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
-        inventory.activeGun.emitter.Direction = xy;
-
-        DrawSprites();
+        inventory.activeGun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
+        inventory.activeGun.emitter.Direction = mouseDirection;
     }
 
     private void DrawSprites()
@@ -508,12 +521,12 @@ public class Player : MonoBehaviour
         Sprite[] limbDriftSprites = limbSprites[index];
         limbRenderer.sprite = limbDriftSprites[lowestIndex];
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (moveDirection.y > 0)
         {
             Sprite[] limbDriftSpritesUp = limbSpritesUp[index];
             limbRenderer.sprite = limbDriftSpritesUp[lowestIndex];
         }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        else if (moveDirection.y < 0)
         {
             Sprite[] limbDriftSpritesDown = limbSpritesDown[index];
             limbRenderer.sprite = limbDriftSpritesDown[lowestIndex];

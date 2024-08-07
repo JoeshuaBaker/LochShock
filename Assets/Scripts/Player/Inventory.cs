@@ -118,6 +118,9 @@ public class Inventory : MonoBehaviour
             activeGun = guns[0];
             inactiveGun = guns[1];
         }
+
+        activeGun.shooting = inactiveGun.shooting;
+        inactiveGun.shooting = false;
     }
 
     public List<StatBlock> GetNewItemStats()
