@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -41,6 +42,7 @@ public class InventoryUI : MonoBehaviour
     public TMP_Text scrapText;
 
     public Action OnClose;
+    public EventSystem eventSystem;
 
     // Start is called before the first frame update
     void Setup()
@@ -138,6 +140,7 @@ public class InventoryUI : MonoBehaviour
         bottomFrameParent.gameObject.SetActive(true);
         inventoryButton.interactable = true;
         inventoryButtonText.text = "Return";
+        eventSystem.SetSelectedGameObject(allFrames[0].topButton.gameObject);
 
         Gun[] weapons = inventory.guns;
         Item[] activeItem = inventory.activeItem;
@@ -285,6 +288,17 @@ public class InventoryUI : MonoBehaviour
         frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
         frame.ReflectInventoryState(state, frame.item);
         scrapText.text = inventory.scrap.ToString();
+        if(!frame.topButton.interactable)
+        {
+            if(frame.bottomButton.interactable)
+            {
+                eventSystem.SetSelectedGameObject(frame.bottomButton.gameObject);
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(continueButton.gameObject);
+            }
+        }
 
         //Audio Section
         AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
@@ -298,6 +312,14 @@ public class InventoryUI : MonoBehaviour
             {
                 frame.bottomButton.interactable = false;
                 frame.bottomButtonText.text = "Can't Disassemble.";
+                if (frame.topButton.interactable)
+                {
+                    eventSystem.SetSelectedGameObject(frame.topButton.gameObject);
+                }
+                else
+                {
+                    eventSystem.SetSelectedGameObject(continueButton.gameObject);
+                }
                 return;
             }
             else
@@ -315,15 +337,27 @@ public class InventoryUI : MonoBehaviour
 
         inventory.DisassembleItem(frame.item);
 
-        if(state == InventoryUIState.Inventory)
+        if (state == InventoryUIState.Inventory)
         {
             frame.ReflectInventoryState(state, null);
         }
-        else if(state == InventoryUIState.Orb)
+        else if (state == InventoryUIState.Orb)
         {
             TransitionState(InventoryUIState.Inventory);
             inventoryButtonText.text = "Inventory";
             inventoryButton.interactable = false;
+        }
+
+        if (!frame.bottomButton.interactable)
+        {
+            if (frame.topButton.interactable)
+            {
+                eventSystem.SetSelectedGameObject(frame.topButton.gameObject);
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(continueButton.gameObject);
+            }
         }
 
         //Audio Section
