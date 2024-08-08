@@ -22,7 +22,6 @@ public abstract class BasicEnemy : Enemy
     {
         base.Start();
         player = Player.activePlayer;
-        animator ??= GetComponent<Animator>();
     }
 
     public virtual void Update()

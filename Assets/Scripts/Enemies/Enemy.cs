@@ -22,8 +22,6 @@ public abstract class Enemy : BulletCollidable
 
     public virtual void Start()
     {
-        sprite ??= GetComponent<SpriteRenderer>();
-        rb ??= GetComponent<Rigidbody2D>();
     }
 
     public virtual bool HitFreeze()

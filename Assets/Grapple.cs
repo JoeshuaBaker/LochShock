@@ -9,21 +9,31 @@ public class Grapple : MonoBehaviour
     public Vector3 grappleTargetPoint;
     public float grappleSpeed = 10f;
     public float noGrappleBefore = 0.3f;
+    private float noGrappleBeforeBase;
     public float grappleDistance;
     public float grappleMaxDistance = 10f;
     public GameObject pointSetter;
+    public bool retracting;
 
     public CircleCollider2D grapplingCollider;
     public ContactFilter2D hitFilter;
     public List<Collider2D> hitBuffer;
 
     public bool fireGrappling;
-    public bool grapplingReturn;
     public bool grapplingPullPlayer;
     public bool grappleStartSet;
     public bool overTerrain;
-    public float playerSpeedMult = 1f;
+    public float playerSlowDecay = 1.1f;
+    public float playerSlowMult = 0.8f;
+    public float playerSlow = 1f;
+    public float playerSlowBase = 0.3f;
+    public float grappleSpeedBase = 5f;
     public float grappleSpeedToPlayer;
+    public float grappleSpeedMult = 1.05f;
+    public float grappleSpeedDecay = 0.8f;
+    public Vector3 grappleVectorToPlayer;
+    public float grappleSpeedBreak = 1f;
+    public Vector3 retractDistance;
 
     public BezierCurve curve;
     public BezierPoint p0;
@@ -33,6 +43,7 @@ public class Grapple : MonoBehaviour
     public BezierPoint p4;
     public BezierPoint p5;
     public BezierPoint p6;
+    public Vector3 holdPoint;
     public float totalLength;
     public float currentLength;
     public float divisionDistance = 0.5f;
@@ -41,7 +52,11 @@ public class Grapple : MonoBehaviour
     public float curvePercent;
     public float dis;
 
+    public Animator animator;
+    public bool animSet;
+    public float lengthForAnim = 6f;
 
+    public bool hideHook;
     public SpriteRenderer grappleSprite;
     public Sprite hookEnd;
     public Sprite hookEndGrab;
@@ -49,6 +64,7 @@ public class Grapple : MonoBehaviour
     public int grappleArraySize = 50;
     public SpriteRenderer[] grappleSegments;
     public int currentGrappleSegment;
+    public GameObject grappleSegementsParent;
 
 
     // Start is called before the first frame update
@@ -59,6 +75,8 @@ public class Grapple : MonoBehaviour
         grappleSegments = new SpriteRenderer[grappleArraySize];
 
         pointsPositions = new Vector3[pointArraySize];
+
+        noGrappleBeforeBase = noGrappleBefore;
 
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -71,7 +89,7 @@ public class Grapple : MonoBehaviour
         for (int i = 0; i < grappleSegments.Length; i++)
         {
             grappleSegments[i] = Instantiate(grappleSprite);
-            grappleSegments[i].transform.parent = this.transform.parent;
+            grappleSegments[i].transform.parent = grappleSegementsParent.transform;
             grappleSegments[i].gameObject.SetActive(false);
 
             if (i == 0)
@@ -99,11 +117,27 @@ public class Grapple : MonoBehaviour
         mousePos.z = -Camera.main.transform.position.z;
         Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
 
-        if (grappleTargetPoint == Vector3.zero)
+        Vector3 dirToTargetPoint = this.transform.position - activePlayer.transform.position;
+        Vector2 xy = new Vector2(dirToTargetPoint.x, dirToTargetPoint.y);
+        xy = xy.normalized;
+
+        this.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
+
+        if (grapplingPullPlayer)
         {
+            this.transform.position = holdPoint;
+        }
+
+        if (grappleTargetPoint == Vector3.zero && !grapplingPullPlayer)
+        {
+            hideHook = false;
+
+            animator.Play("BezierAnim");
+
+            this.transform.position = activePlayer.transform.position;
 
             Vector3 dirToMouse = worldMouse - activePlayer.transform.position;
-            Vector2 xy = new Vector2(dirToMouse.x, dirToMouse.y);
+            xy = new Vector2(dirToMouse.x, dirToMouse.y);
             xy = xy.normalized;
             mouseDirection = xy;
 
@@ -117,16 +151,10 @@ public class Grapple : MonoBehaviour
             noGrappleBefore = noGrappleBefore - Time.deltaTime;
          
         }
-        else
+        if(!grapplingPullPlayer)
         {
 
-            Vector3 dirToTargetPoint = grappleTargetPoint - activePlayer.transform.position;
-            Vector2 xy = new Vector2(dirToTargetPoint.x, dirToTargetPoint.y);
-            xy = xy.normalized;
-
-            this.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xy.x, xy.y, 0f)).eulerAngles;
-
-            if (grappleDistance <= grappleMaxDistance)
+            if (grappleDistance <= grappleMaxDistance && !retracting)
             {
                 this.transform.position = Vector3.MoveTowards(this.transform.position, grappleTargetPoint, (grappleSpeed * Time.deltaTime));
                 grappleDistance = grappleDistance + (grappleSpeed * Time.deltaTime);
@@ -149,15 +177,18 @@ public class Grapple : MonoBehaviour
                     }
                 }
 
-                if(noGrappleBefore <=0f && grappleStartSet)
+                if(noGrappleBefore <= 0f && grappleStartSet)
                 {
                     if (overTerrain)
                     {
+                       
                         Physics2D.OverlapCollider(grapplingCollider, hitFilter, hitBuffer);
 
                         if (hitBuffer.Count == 0)
                         {
                             grapplingPullPlayer = true;
+                            holdPoint = this.transform.position;
+                            overTerrain = false;
                         }
                      
                     }
@@ -169,6 +200,8 @@ public class Grapple : MonoBehaviour
                         if (hitBuffer.Count > 0)
                         {
                             grapplingPullPlayer = true;
+                            holdPoint = this.transform.position;
+                            overTerrain = true;
                         }
 
                     }
@@ -176,11 +209,75 @@ public class Grapple : MonoBehaviour
             }
             else
             {
+                retracting = true;
+            }
+            if (retracting)
+            {
+
                 this.transform.position = Vector3.MoveTowards(this.transform.position, activePlayer.transform.position, (grappleSpeed * Time.deltaTime));
                 grappleDistance = grappleDistance - (grappleSpeed * Time.deltaTime);
+
+                Vector3 retractDistance = this.transform.position - activePlayer.transform.position;
+
+                if (retractDistance.magnitude <= 0.1f)
+                {
+                    hideHook = true;
+                    ResetToBase();
+                }
             }
         }
-        
+
+        if (grapplingPullPlayer)
+        {
+            Vector3 playerToSetter = grappleTargetPoint - activePlayer.transform.position;
+            Vector3 pointToSetter = this.transform.position - grappleTargetPoint;
+            Vector3 playerToPoint = this.transform.position - activePlayer.transform.position;
+
+            if (!animSet)
+            {
+                if(playerToPoint.magnitude >= lengthForAnim)
+                {
+                    animator.Play("BezierGrapple");
+                }
+                animSet = true;
+            }
+
+            if (playerToSetter.sqrMagnitude > pointToSetter.sqrMagnitude)
+            {
+                if (grappleSpeedToPlayer < grappleSpeedBase)
+                {
+
+                    grappleSpeedToPlayer = grappleSpeedBase;
+                    playerSlow = playerSlowBase;
+
+                }
+                else
+                {
+
+                    grappleSpeedToPlayer = grappleSpeedToPlayer * grappleSpeedMult;
+                    playerSlow = playerSlow * playerSlowMult;
+                    
+                }
+                // could target p0 instead of setter  ie.  playerToPoint
+                grappleVectorToPlayer = playerToSetter.normalized * grappleSpeedToPlayer * Time.deltaTime;
+
+            }
+            else
+            {
+                hideHook = true;
+
+                grappleSpeedToPlayer = grappleSpeedToPlayer * grappleSpeedDecay;
+                grappleVectorToPlayer = playerToSetter.normalized * grappleSpeedToPlayer * Time.deltaTime;
+
+                playerSlow = Mathf.Min(playerSlow * playerSlowDecay, 1f);
+
+
+                if (grappleSpeedToPlayer <= grappleSpeedBreak)
+                {
+                    ResetToBase();
+                }
+            }
+        }
 
 
         var thePoints = curve.GetAnchorPoints();
@@ -201,7 +298,6 @@ public class Grapple : MonoBehaviour
 
         dis = 0f;
 
-
         for(int i = 0; i <grappleSegments.Length; i++)
         {
             grappleSegments[i].transform.position = p6.transform.position;
@@ -218,24 +314,44 @@ public class Grapple : MonoBehaviour
             dis = dis + curvePercent;
         }
 
-
-
         mousePos = new Vector3(worldMouse.x, worldMouse.y, 0f);
-        Vector3 mouseToPlayer = activePlayer.transform.position - mousePos;
+        Vector3 thisToPlayer = activePlayer.transform.position - this.transform.position;
 
         for (int i = 0; i < grappleSegments.Length; i++)
         {
-
-            Vector3 grappleToMouse = grappleSegments[i].transform.position - mousePos;
-            Vector3 grappleToPlayer = grappleSegments[i].transform.position - activePlayer.transform.position;
-
-            if (grappleToMouse.magnitude > mouseToPlayer.magnitude && grappleToMouse.magnitude > grappleToPlayer.magnitude)
+            if (hideHook)
             {
-                grappleSegments[i].gameObject.SetActive(false);
+                grappleSegments[i].gameObject.SetActive(false);               
             }
+            else
+            {
+                Vector3 segmentToThis = grappleSegments[i].transform.position - this.transform.position;
+                Vector3 segmentToPlayer = grappleSegments[i].transform.position - activePlayer.transform.position;
 
+                if (segmentToThis.sqrMagnitude > thisToPlayer.sqrMagnitude && segmentToThis.sqrMagnitude > segmentToPlayer.sqrMagnitude)
+                {
+                    grappleSegments[i].gameObject.SetActive(false);
+                }
+            }
+          
         }
 
     }
+
+    public void ResetToBase()
+    {
+        grapplingPullPlayer = false;
+        fireGrappling = false;
+        grappleVectorToPlayer = Vector3.zero;
+        noGrappleBefore = noGrappleBeforeBase;
+        grappleStartSet = false;
+        grappleTargetPoint = Vector3.zero;
+        animSet = false;
+        playerSlow = 1f;
+        retracting = false;
+        grappleDistance = 0f;
+        grappleSpeedToPlayer = 0f;
+    }
+
 
 }

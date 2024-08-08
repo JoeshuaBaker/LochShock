@@ -107,6 +107,7 @@ Transform:
   - {fileID: 4795892506743320082}
   - {fileID: 1325122017073244322}
   - {fileID: 4667736971366562518}
+  - {fileID: 4777528359826730274}
   m_Father: {fileID: 5823630524236911008}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,6 +133,7 @@ MonoBehaviour:
   - {fileID: 7315890068307752004}
   - {fileID: 7540264609234397437}
   - {fileID: 9116656727597127065}
+  - {fileID: 4716036773227556132}
 --- !u!95 &8847638070939220986
 Animator:
   serializedVersion: 3
@@ -233,6 +235,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &598963913013973429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506308151102433847}
+  m_Layer: 0
+  m_Name: GrappleSegmentsParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506308151102433847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598963913013973429}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5823630524236911008}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045770150725671777
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +591,8 @@ MonoBehaviour:
   leftRightDrift: 0
   bodySprites: []
   grapplingHook: {fileID: 7771730370071348321}
+  grapplingCoolDown: 0
+  grapplingCoolDownBase: 0.2
   playerVisionProximity: {fileID: 1448059005}
   orbsHeld: 1
   timeSinceOrbUsed: 0
@@ -881,7 +915,7 @@ GameObject:
   - component: {fileID: 4488684481850558551}
   - component: {fileID: 2113606878534070710}
   m_Layer: 0
-  m_Name: Point 3
+  m_Name: Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,7 +929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964399833230810432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8899980475456013003}
@@ -915,8 +949,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &1995112810130344159
 GameObject:
   m_ObjectHideFlags: 0
@@ -5792,7 +5826,7 @@ GameObject:
   - component: {fileID: 4170312453267444354}
   - component: {fileID: 2042177494822874541}
   m_Layer: 0
-  m_Name: Point 2
+  m_Name: Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5806,7 +5840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2213277764566496766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8899980475456013003}
@@ -5826,8 +5860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &2216458358209197915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5873,7 @@ GameObject:
   - component: {fileID: 4667736971366562518}
   - component: {fileID: 9116656727597127065}
   m_Layer: 0
-  m_Name: Point 6
+  m_Name: Point 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5853,7 +5887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2216458358209197915}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8899980475456013003}
@@ -5873,8 +5907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &2478576095495467429
 GameObject:
   m_ObjectHideFlags: 0
@@ -10911,7 +10945,7 @@ GameObject:
   - component: {fileID: 1325122017073244322}
   - component: {fileID: 7540264609234397437}
   m_Layer: 0
-  m_Name: Point 5
+  m_Name: Point 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10925,7 +10959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3733364175947611076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8899980475456013003}
@@ -10945,8 +10979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &3892738852937904403
 GameObject:
   m_ObjectHideFlags: 0
@@ -15866,6 +15900,7 @@ Transform:
   m_Children:
   - {fileID: 3330967994536297143}
   - {fileID: 8899980475456013003}
+  - {fileID: 1506308151102433847}
   m_Father: {fileID: 1879192211907270929}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15876,7 +15911,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4184327836704303656}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8d84e9825e327e4789493897ed7b89a, type: 3}
   m_Name: 
@@ -15884,11 +15919,12 @@ MonoBehaviour:
   activePlayer: {fileID: 0}
   mouseDirection: {x: 0, y: 0}
   grappleTargetPoint: {x: 0, y: 0, z: 0}
-  grappleSpeed: 0
-  noGrappleBefore: 0
+  grappleSpeed: 30
+  noGrappleBefore: 0.1
   grappleDistance: 0
-  grappleMaxDistance: 10
+  grappleMaxDistance: 15
   pointSetter: {fileID: 8113416599924620398}
+  retracting: 0
   grapplingCollider: {fileID: 4188476713222070956}
   hitFilter:
     useTriggers: 0
@@ -15906,20 +15942,29 @@ MonoBehaviour:
     maxNormalAngle: 0
   hitBuffer: []
   fireGrappling: 0
-  grapplingReturn: 0
   grapplingPullPlayer: 0
   grappleStartSet: 0
   overTerrain: 0
-  playerSpeedMult: 1
+  playerSlowDecay: 1.15
+  playerSlowMult: 0.95
+  playerSlow: 1
+  playerSlowBase: 0.99
+  grappleSpeedBase: 10
   grappleSpeedToPlayer: 0
+  grappleSpeedMult: 1.1
+  grappleSpeedDecay: 0.7
+  grappleVectorToPlayer: {x: 0, y: 0, z: 0}
+  grappleSpeedBreak: 1
+  retractDistance: {x: 0, y: 0, z: 0}
   curve: {fileID: 515322578320065137}
-  p0: {fileID: 0}
-  p1: {fileID: 3114992104953926355}
-  p2: {fileID: 2042177494822874541}
-  p3: {fileID: 2113606878534070710}
-  p4: {fileID: 7315890068307752004}
-  p5: {fileID: 7540264609234397437}
-  p6: {fileID: 9116656727597127065}
+  p0: {fileID: 3114992104953926355}
+  p1: {fileID: 2042177494822874541}
+  p2: {fileID: 2113606878534070710}
+  p3: {fileID: 7315890068307752004}
+  p4: {fileID: 7540264609234397437}
+  p5: {fileID: 9116656727597127065}
+  p6: {fileID: 4716036773227556132}
+  holdPoint: {x: 0, y: 0, z: 0}
   totalLength: 0
   currentLength: 0
   divisionDistance: 0.5
@@ -15927,6 +15972,10 @@ MonoBehaviour:
   pointArraySize: 7
   curvePercent: 0
   dis: 0
+  animator: {fileID: 8847638070939220986}
+  animSet: 0
+  lengthForAnim: 6
+  hideHook: 0
   grappleSprite: {fileID: 4909485240783056669, guid: e9c249c39aa8ead4bb9d7b2b08c130c7, type: 3}
   hookEnd: {fileID: -49532090776259237, guid: 41eaedf0bce7e51479f43624d0cf9c9a, type: 3}
   hookEndGrab: {fileID: 5401451903827969815, guid: 41eaedf0bce7e51479f43624d0cf9c9a, type: 3}
@@ -15934,6 +15983,7 @@ MonoBehaviour:
   grappleArraySize: 100
   grappleSegments: []
   currentGrappleSegment: 0
+  grappleSegementsParent: {fileID: 598963913013973429}
 --- !u!58 &4188476713222070956
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -26025,6 +26075,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6818760789904626572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4777528359826730274}
+  - component: {fileID: 4716036773227556132}
+  m_Layer: 0
+  m_Name: Point 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4777528359826730274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818760789904626572}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8899980475456013003}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4716036773227556132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818760789904626572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _curve: {fileID: 515322578320065137}
+  handleStyle: 0
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &6981817596736876334
 GameObject:
   m_ObjectHideFlags: 0
@@ -35951,7 +36048,7 @@ GameObject:
   - component: {fileID: 4795892506743320082}
   - component: {fileID: 7315890068307752004}
   m_Layer: 0
-  m_Name: Point 4
+  m_Name: Point 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35985,8 +36082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &8113416599924620398
 GameObject:
   m_ObjectHideFlags: 0
@@ -36110,7 +36207,7 @@ GameObject:
   - component: {fileID: 2518199556743026479}
   - component: {fileID: 3114992104953926355}
   m_Layer: 0
-  m_Name: Point 1
+  m_Name: Point 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36144,8 +36241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curve: {fileID: 515322578320065137}
   handleStyle: 0
-  _handle1: {x: 0.1, y: 0, z: 0}
-  _handle2: {x: -0.1, y: -0, z: -0}
+  _handle1: {x: 1, y: 0, z: 0}
+  _handle2: {x: -1, y: -0, z: -0}
 --- !u!1 &9012479980876194716
 GameObject:
   m_ObjectHideFlags: 0

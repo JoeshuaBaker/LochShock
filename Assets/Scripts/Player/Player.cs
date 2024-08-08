@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     private Vector2 mouseDirection;
     private Vector2 moveDirection;
     public Grapple grapplingHook;
+    public float grapplingCoolDown = 0f;
+    public float grapplingCoolDownBase = 3f;
     
     public Light2D playerVisionProximity;
     public float orbsHeld;
@@ -372,6 +374,8 @@ public class Player : MonoBehaviour
             }
         }
 
+        currentVel = currentVel * grapplingHook.playerSlow;
+
         this.transform.position = new Vector3(
             this.transform.position.x + currentVel.x * Time.deltaTime,
             this.transform.position.y + currentVel.y * Time.deltaTime,
@@ -381,11 +385,19 @@ public class Player : MonoBehaviour
 
     private void Physics()
     {
+        grapplingCoolDown = grapplingCoolDown - Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && grapplingCoolDown <= 0f)
         {
-
+            grapplingHook.fireGrappling = true;
+            grapplingCoolDown = grapplingCoolDownBase;
         }
+
+        this.transform.position = new Vector3(
+            this.transform.position.x + grapplingHook.grappleVectorToPlayer.x,
+            this.transform.position.y + grapplingHook.grappleVectorToPlayer.y,
+            this.transform.position.z
+        ); 
 
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
         if (result > 0)
