@@ -22,7 +22,7 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
         return "";
     }
 
-    public virtual string GetTooltipPostfix(string valueName)
+    public virtual string StatNameTooltip(string valueName)
     {
         return valueName.SplitCamelCaseLower();
     }
@@ -52,6 +52,13 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
     {
         return this.CombinePriority.CompareTo(other.CombinePriority);
     }
+
+    protected float GetStatValue(Stat stat)
+    {
+        float value = stat.value * (stat.stacks + stat.tempStacks);
+        stat.tempStacks = 0f;
+        return value;
+    }
 }
 
 public class BaseStat : StatCombineType
@@ -69,7 +76,8 @@ public class BaseStat : StatCombineType
         float combinedValue = 0;
         foreach (Stat stat in stats)
         {
-            combinedValue += stat.value * stat.stacks;
+            combinedValue += GetStatValue(stat);
+            stat.tempStacks = 0f;
         }
 
         combinedValue = first.Clamp(combinedValue);
@@ -81,7 +89,7 @@ public class BaseStat : StatCombineType
         return "";
     }
 
-    public override string GetTooltipPostfix(string valueName)
+    public override string StatNameTooltip(string valueName)
     {
         return valueName.SplitCamelCaseLower();
     }
@@ -101,7 +109,8 @@ public class Additive : StatCombineType
         float combinedValue = baseValue;
         foreach(Stat stat in stats)
         {
-            combinedValue += stat.value * stat.stacks;
+            combinedValue += GetStatValue(stat);
+            stat.tempStacks = 0f;
         }
 
         aggregate += first.ValueType == Stat.StatValueType.Rate ? -combinedValue : combinedValue;
@@ -134,7 +143,7 @@ public class Mult : StatCombineType
         float combinedValue = 0;
         foreach (Stat stat in stats)
         {
-            combinedValue += stat.value * stat.stacks;
+            combinedValue += GetStatValue(stat);
         }
 
         if (first.ValueType == Stat.StatValueType.Rate)
@@ -177,10 +186,10 @@ public class Set : StatCombineType
 
         foreach (Stat stat in stats)
         {
-            if (stat.stacks < 1)
+            float value = GetStatValue(stat);
+            if (value == 0)
                 continue;
 
-            float value = stat.value;
             if (value > 0 && value < combinedValue)
             {
                 combinedValue = value;
@@ -200,7 +209,7 @@ public class Set : StatCombineType
         return $"{valueName.SplitCamelCaseLower()} is always ";
     }
 
-    public override string GetTooltipPostfix(string valueName)
+    public override string StatNameTooltip(string valueName)
     {
         return "";
     }
@@ -221,10 +230,10 @@ public class Limit : StatCombineType
 
         foreach (Stat stat in stats)
         {
-            if (stat.stacks < 1)
+            float value = GetStatValue(stat);
+            if (value == 0)
                 continue;
 
-            float value = stat.value;
             if (limitType == LimitType.Upper && combinedValue > value)
             {
                 combinedValue = value;
@@ -242,10 +251,10 @@ public class Limit : StatCombineType
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
     {
-        return $"{valueName.SplitCamelCaseLower()} can't go {((limitType == LimitType.Upper) ? "above" : "below")} {value}.";
+        return $"{valueName.SplitCamelCaseLower()} can't go {((limitType == LimitType.Upper) ? "above" : "below")} ";
     }
 
-    public override string GetTooltipPostfix(string valueName)
+    public override string StatNameTooltip(string valueName)
     {
         return "";
     }

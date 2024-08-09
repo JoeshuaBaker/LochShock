@@ -17,11 +17,10 @@ public class Player : MonoBehaviour
     //public List<StatBlock> allStats;
 
     public StatBlock baseStats;
-    public StatBlock Stats {
-        get { return combinedNewStats.combinedStatBlock; }
+    public CombinedStatBlock Stats {
+        get { return combinedNewStats; }
     }
     public CombinedStatBlock combinedNewStats;
-
     public List<Buff.Instance> buffs;
     public bool onPath;
     public float offPathCounter;
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return (int)Stats.GetStatValue<Health>();
+            return (int)Stats.GetCombinedStatValue<Health>(World.activeWorld.worldStaticContext);
         }
     }
     public int currentHp = 100;
@@ -102,6 +101,10 @@ public class Player : MonoBehaviour
     }
     
     private void Start() {
+        inventory.Setup();
+        world.SetupContext();
+        UpdateStatBlocks();
+
         currentHp = (int) baseStats.GetStatValue<Health>();
         hitbox = GetComponent<Collider2D>();
         hitBuffer = new List<Collider2D>();
@@ -591,7 +594,7 @@ public class Player : MonoBehaviour
         allNewStats.Add(this.baseStats);
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
-        inventory.activeGun.ApplyNewStatBlock(combinedNewStats.combinedStatBlock);
+        inventory.activeGun.ApplyNewStatBlock(combinedNewStats);
     }
 
     public void UpdateUI()

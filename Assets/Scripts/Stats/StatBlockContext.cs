@@ -9,17 +9,12 @@ public class StatBlockContext
     public static string GoodColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.green)}>";
     public static string BadColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>";
     public static string HighlightColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.yellow)}>";
+    private const string VALUE = "%value";
 
     public struct StatContext
     {
         //Text for the main body which is being displayed. Instances of the value should be included as %value%
         public string text;
-
-        //Text which will be prefixed to the value whenever it's printed in the tooltip (e.g +, x)
-        public string valuePrefix;
-
-        //Text which will be postfixed to the value whenever it's printed in the tooltip (good for the name of the value)
-        public string valuePostfix;
 
         //Defines whether this is a base stat block or not (should ignore good/bad coloring)
         public bool isBaseStatBlock;
@@ -62,9 +57,9 @@ public class StatBlockContext
 
             float formattedValue = Mathf.Abs(value);
 
-            string formattedValueString = $"{valuePrefix}{(isPercentage ? formattedValue.ToString("P0").Replace(" ", "") : formattedValue.ToString("0.#"))} {valuePostfix}";
+            string formattedValueString = $"{(isPercentage ? formattedValue.ToString("P0").Replace(" ", "") : formattedValue.ToString("0.#"))}";
 
-            return $"{highlight}{text.Replace("%value%", formattedValueString)}</color>";
+            return $"{highlight}{text.Replace(VALUE, formattedValueString)}</color>";
         }
 
         public StatContext(
@@ -73,16 +68,15 @@ public class StatBlockContext
             float value,
             bool isPercentage = false,
             bool positiveIsGood = true,
-            bool flipSign = false, 
-            string text = "%value%")
+            bool flipSign = false,
+            List<StatCondition> conditions = null)
         {
             this.value = value;
-            this.text = text;
+            this.text = $"{blockType.GetTooltipPrefix(valueName, flipSign, value)} {VALUE} {blockType.StatNameTooltip(valueName)}";
+            this.text = StatCondition.FormatConditionTooltip(conditions, text);
             this.isBaseStatBlock = blockType is BaseStat;
             this.isPercentage = isPercentage || blockType is Mult;
             this.positiveIsGood = positiveIsGood;
-            this.valuePrefix = blockType.GetTooltipPrefix(valueName, flipSign, value);
-            this.valuePostfix = blockType.GetTooltipPostfix(valueName);
         }
     }
 
@@ -97,8 +91,8 @@ public class StatBlockContext
         bool isPercentage = false,
         bool positiveIsGood = true,
         bool flipSign = false,
-        string text = "%value%",
-        float baseValue = 0f)
+        float baseValue = 0f,
+        List<StatCondition> conditions = null)
     {
         if(value != 0 && !(blockType is BaseStat && value == baseValue))
         {
@@ -112,7 +106,7 @@ public class StatBlockContext
             }
             else
             {
-                statDictionary.Add(typeKey, new StatContext(blockType, valueName, value, isPercentage, positiveIsGood, flipSign, text));
+                statDictionary.Add(typeKey, new StatContext(blockType, valueName, value, isPercentage, positiveIsGood, flipSign, conditions));
             }
         }
     }

@@ -11,6 +11,7 @@ public class World : MonoBehaviour
     public static World activeWorld;
     public bool paused = false;
     public ExplosionSpawner explosionSpawner;
+    public GameContext worldStaticContext;
 
     //Map Variables
     public MapPool mapPool;
@@ -36,10 +37,12 @@ public class World : MonoBehaviour
     public float enemySpawnRateDecayTime = 10f;
     public float orbDecayMaxtime = 1.5f;
 
+    //internal state variables
+
+
     // Start is called before the first frame update
     void Start()
     {
-        activeWorld = this;
         Application.targetFrameRate = -1;
         SetupMaps();
         SetupEnemies();
@@ -86,6 +89,17 @@ public class World : MonoBehaviour
     {
         Time.timeScale = pause ? 0f : 1f;
         paused = pause;
+    }
+
+    public void SetupContext()
+    {
+        activeWorld = this;
+        worldStaticContext = new GameContext
+        {
+            player = Player.activePlayer,
+            activeEnemies = new HashSet<Enemy>(),
+            hitEnemies = new List<Enemy>()
+        };
     }
 
     void SetupMaps()
@@ -189,11 +203,31 @@ public class World : MonoBehaviour
             enemySpawn += adjustedSpawnRate;
             SpawnRandomEnemy();
         }
+
+        worldStaticContext.activeEnemies = enemyPool.activeEnemies;
+
+        Enemy closestEnemy = null;
+        float distanceSqr = float.MaxValue;
+        Vector3 playerPosition = player.transform.position;
+        foreach (Enemy enemy in worldStaticContext.activeEnemies)
+        {
+            float newDist = (enemy.transform.position - playerPosition).sqrMagnitude;
+            if (newDist < distanceSqr)
+            {
+                closestEnemy = enemy;
+                distanceSqr = newDist;
+            }
+        }
+        worldStaticContext.closestEnemy = closestEnemy;
     }
 
     void SpawnRandomEnemy()
     {
         List<Type> enemyTypes = enemyPool.GetAvailableEnemyTypes();
+        if(enemyTypes == null || enemyTypes.Count == 0)
+        {
+            return;
+        }
 
         Enemy enemy = enemyPool.GetEnemy(enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Count)]);
         SetupEnemy(enemy);

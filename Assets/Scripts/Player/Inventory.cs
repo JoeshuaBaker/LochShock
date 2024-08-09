@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
     public ItemResourcesAtlas itemResourcesAtlas;
     public InventoryUI inventoryUI;
 
-    private void Start()
+    public void Setup()
     {
         itemMap = new Dictionary<Item.ItemType, Item[]>();
         itemMap.Add(Item.ItemType.Item, items);

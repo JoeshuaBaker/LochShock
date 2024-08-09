@@ -23,7 +23,7 @@ namespace BulletHell
         protected int GroupCount {
             get
             {
-                return Mathf.Max((int) stats.GetStatValue<BulletStreams>(), 1);
+                return Mathf.Max((int) stats.GetCombinedStatValue<BulletStreams>(World.activeWorld.worldStaticContext), 1);
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
@@ -31,13 +31,13 @@ namespace BulletHell
         protected int SpokeCount {
             get
             {
-                return Mathf.Max((int)stats.GetStatValue<BulletsPerShot>(), 1);
+                return Mathf.Max((int)stats.GetCombinedStatValue<BulletsPerShot>(World.activeWorld.worldStaticContext), 1);
             }
         }
         protected float SpokeSpacing {
             get
             {
-                return stats.GetStatValue<SpreadAngle>();
+                return stats.GetCombinedStatValue<SpreadAngle>(World.activeWorld.worldStaticContext);
             }
         }
         [SerializeField] protected bool MirrorPairRotation;
@@ -82,26 +82,34 @@ namespace BulletHell
 
         protected void RefreshGroups()
         {
-            if (GroupCount > 10)
+            int tempGroups = 1;
+            int tempSpokes = 1;
+            float tempSpacing = 0f;
+
+            System.Func<int> groupLookup = () => { return World.activeWorld == null ? tempGroups : GroupCount; };
+            System.Func<int> spokesLookup = () => { return World.activeWorld == null ? tempSpokes : SpokeCount; };
+            System.Func<float> spacingLookup = () => { return World.activeWorld == null ? tempSpacing : SpokeSpacing; };
+
+            if (groupLookup.Invoke() > 10)
             {
                 Debug.Log("Max Group Count is set to 10.  You attempted to set it to " + GroupCount.ToString() + ".");
                 return;
             }
 
             bool mirror = false;
-            if (Groups == null || LastGroupCountPoll != GroupCount || PreviousMirrorPairRotation != MirrorPairRotation || PreviousPairGroupDirection != PairGroupDirection)
+            if (Groups == null || LastGroupCountPoll != groupLookup.Invoke() || PreviousMirrorPairRotation != MirrorPairRotation || PreviousPairGroupDirection != PairGroupDirection)
             {
                 // Refresh the groups, they were changed
                 float rotation = 0;
                 for (int n = 0; n < Groups.Length; n++)
                 {
-                    if (n < GroupCount && Groups[n] == null)
+                    if (n < groupLookup.Invoke() && Groups[n] == null)
                     {
-                        Groups[n] = new EmitterGroup(Rotate(Direction, rotation).normalized, SpokeCount, SpokeSpacing, mirror);
+                        Groups[n] = new EmitterGroup(Rotate(Direction, rotation).normalized, spokesLookup.Invoke(), spacingLookup.Invoke(), mirror);
                     }
-                    else if (n < GroupCount)
+                    else if (n < groupLookup.Invoke())
                     {
-                        Groups[n].Set(Rotate(Direction, rotation).normalized, SpokeCount, SpokeSpacing, mirror);
+                        Groups[n].Set(Rotate(Direction, rotation).normalized, spokesLookup.Invoke(), spacingLookup.Invoke(), mirror);
                     }
                     else
                     {
@@ -115,9 +123,9 @@ namespace BulletHell
 
                     // sets the starting direction of all the groups so we divide by 360 to evenly distribute their direction
                     // Could reduce the scope of the directions here
-                    rotation = CalculateGroupRotation(n, rotation);
+                    rotation = CalculateGroupRotation(n, rotation, spacingLookup.Invoke(), groupLookup.Invoke());
                 }
-                LastGroupCountPoll = GroupCount;
+                LastGroupCountPoll = groupLookup.Invoke();
                 PreviousMirrorPairRotation = MirrorPairRotation;
                 PreviousPairGroupDirection = PairGroupDirection;
             }
@@ -132,7 +140,7 @@ namespace BulletHell
                         Groups[n].Direction = Rotate(Direction, rotation).normalized;
                     }
 
-                    rotation = CalculateGroupRotation(n, rotation);
+                    rotation = CalculateGroupRotation(n, rotation, spacingLookup.Invoke(), groupLookup.Invoke());
                 }
             }
         }
@@ -179,7 +187,7 @@ namespace BulletHell
                             rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
                         }
 
-                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.GetStatValue<Accuracy>(), 0f, 1f);
+                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.GetCombinedStatValue<Accuracy>(World.activeWorld.worldStaticContext), 0f, 1f);
                         Vector2 accuracyDirection = Rotate(group.Direction, randomAccuracyAngle);
                         node.Item.Velocity = Speed * Rotate(accuracyDirection, rotation).normalized;
 
@@ -276,7 +284,7 @@ namespace BulletHell
                 Vector2 direction = Rotate(Direction, rotation).normalized * (Scale + 0.2f);
                 Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + direction);
 
-                rotation = CalculateGroupRotation(n, rotation);
+                rotation = CalculateGroupRotation(n, rotation, GroupSpacing, GroupCount);
             }
 
             Gizmos.color = UnityEngine.Color.red;
@@ -306,20 +314,20 @@ namespace BulletHell
                     left = !left;
                 }
 
-                rotation = CalculateGroupRotation(n, rotation);
+                rotation = CalculateGroupRotation(n, rotation, GroupSpacing, GroupCount);
             }
         }
 
-        private float CalculateGroupRotation(int index, float currentRotation)
+        private float CalculateGroupRotation(int index, float currentRotation, float groupSpacing, int groupCount)
         {
             if (PairGroupDirection)
             {
                 if (index % 2 == 1)
-                    currentRotation += 360 * GroupSpacing * 2f / GroupCount;
+                    currentRotation += 360 * groupSpacing * 2f / groupCount;
             }
             else
             {
-                currentRotation += 360 * GroupSpacing / GroupCount;
+                currentRotation += 360 * groupSpacing / groupCount;
             }
             return currentRotation;
         }

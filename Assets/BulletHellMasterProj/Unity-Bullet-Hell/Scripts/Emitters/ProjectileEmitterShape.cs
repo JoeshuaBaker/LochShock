@@ -38,7 +38,7 @@ namespace BulletHell
 
                     node.Item.Position = transform.position + TemplatePositions[n];
                     node.Item.ApplyStatBlock(stats);
-                    node.Item.lifetime = stats.GetStatValue<Lifetime>() - leakedTime;
+                    node.Item.lifetime -= leakedTime;
                     node.Item.Velocity = Speed * Direction.normalized;
                     node.Item.Position += node.Item.Velocity * leakedTime;
                     node.Item.Color = new Color(0.6f, 0.7f, 0.6f, 1);

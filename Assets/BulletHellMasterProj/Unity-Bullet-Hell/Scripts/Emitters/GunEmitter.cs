@@ -21,7 +21,7 @@ namespace BulletHell
             base.Start();
         }
 
-        public void ApplyStatBlock(StatBlock stats)
+        public void ApplyStatBlock(CombinedStatBlock stats)
         {
             this.stats = stats;
         }
@@ -45,14 +45,14 @@ namespace BulletHell
                 {
                     node.Item.IgnoreList.Add(hitName);
                     enemy.ProcessCollision(node.Item);
-                    foreach(OnHitAction onHit in stats.events.GetEvents<OnHitAction>())
+                    foreach(OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
                     {
                         onHit.OnHit(Player.activePlayer, gun, node.Item, enemy);
                     }
 
                     if(enemy.IsDead())
                     {
-                        foreach(OnKillAction onKill in stats.events.GetEvents<OnKillAction>())
+                        foreach(OnKillAction onKill in stats.combinedStatBlock.events.GetEvents<OnKillAction>())
                         {
                             onKill.OnKill(Player.activePlayer, gun, node.Item, enemy);
                         }

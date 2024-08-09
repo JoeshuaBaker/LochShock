@@ -7,7 +7,7 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
-    public StatBlock newCombinedStats;
+    public CombinedStatBlock newCombinedStats;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
@@ -18,6 +18,7 @@ public class Gun : Item
     public AK.Wwise.Event gunAudioEvent;
 
     public bool shooting = false;
+    private bool setup = false;
     private float reloadSpeed;
     private float reloadTimer;
     public float fireSpeed;
@@ -28,7 +29,7 @@ public class Gun : Item
 
     public void Shoot()
     {
-        if (shooting && magazine > 0 && bulletCooldown == 0)
+        if (setup && shooting && magazine > 0 && bulletCooldown == 0)
         {
             if(emitter == null)
             {
@@ -49,7 +50,7 @@ public class Gun : Item
             //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
             gunAudioEvent.Post(this.gameObject);
 
-            foreach(OnFireAction onFire in newCombinedStats.events.GetEvents<OnFireAction>())
+            foreach(OnFireAction onFire in newCombinedStats.combinedStatBlock.GetEvents<OnFireAction>())
             {
                 onFire.OnFire(Player.activePlayer, this);
             }
@@ -80,12 +81,7 @@ public class Gun : Item
     public override void Start()
     {
         base.Start();
-
-        if(stats.stats.Count > 0)
-        {
-            ApplyNewStatBlock(stats);
-        }
-        newCombinedStats = new StatBlock();
+        setup = false;
         magazine = maxMagazine;
 
         if(emitter == null)
@@ -96,12 +92,13 @@ public class Gun : Item
         emitter.gun = this;
     }
 
-    public void ApplyNewStatBlock(StatBlock stats)
+    public void ApplyNewStatBlock(CombinedStatBlock stats)
     {
+        setup = true;
         newCombinedStats = stats;
-        reloadSpeed = stats.GetStatValue<ReloadSpeed>();
-        fireSpeed = stats.GetStatValue<FireSpeed>();
-        maxMagazine = (int) stats.GetStatValue<MagazineSize>();
+        reloadSpeed = stats.GetCombinedStatValue<ReloadSpeed>(World.activeWorld.worldStaticContext);
+        fireSpeed = stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
+        maxMagazine = (int) stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
     }
 
     // Update is called once per frame
@@ -112,6 +109,9 @@ public class Gun : Item
 
     public void UpdateActiveGun()
     {
+        if (!setup)
+            return;
+
         emitter.ApplyStatBlock(newCombinedStats);
 
         if(magazine < maxMagazine)
@@ -130,7 +130,7 @@ public class Gun : Item
                 AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
             }
 
-            foreach (OnReloadAction onReload in newCombinedStats.GetEvents<OnReloadAction>())
+            foreach (OnReloadAction onReload in newCombinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
             {
                 onReload.OnReload(Player.activePlayer, this);
             }

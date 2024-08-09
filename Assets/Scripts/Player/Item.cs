@@ -66,7 +66,7 @@ public class Item : MonoBehaviour
 
     public StatBlock stats;
     public StatBlock levelUpStats;
-    private CombinedStatBlock combinedStats;
+    protected CombinedStatBlock combinedStats;
 
     public StatBlockContext GetStatBlockContext()
     {

@@ -34,8 +34,13 @@ public abstract class Enemy : BulletCollidable
 
     public override void ProcessCollision(ProjectileData projectile)
     {
-        TakeDamage(projectile.damage);
-        ApplyKnockback(projectile.Velocity.normalized * projectile.knockback);
+        GameContext enemyContext = World.activeWorld.worldStaticContext;
+        enemyContext.hitEnemies.Clear();
+        enemyContext.hitEnemies.Add(this);
+        float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
+        float knockback = projectile.stats.GetCombinedStatValue<Knockback>(enemyContext);
+        TakeDamage(damage);
+        ApplyKnockback(projectile.Velocity.normalized * knockback);
     }
 
     public virtual void ApplyKnockback(Vector2 force)

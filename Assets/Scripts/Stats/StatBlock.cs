@@ -40,6 +40,18 @@ public class StatBlock
         }
     }
 
+    public void Add(StatBlock other)
+    {
+        this.stats.AddRange(other.stats);
+        this.events.Add(other.events);
+    }
+
+    public void Remove(StatBlock other)
+    {
+        this.stats.AddRange(other.stats);
+        this.events.Remove(other.events);
+    }
+
     public IEnumerable<T> GetEvents<T>() where T : ScriptableAction
     {
         return events.GetEvents<T>();

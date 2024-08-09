@@ -10,7 +10,7 @@ public class CombinedStatBlock
     private class OrderedStats
     {
         private Dictionary<Type, SortedList<StatCombineType, HashSet<Stat>>> orderedStats;
-        
+
         public OrderedStats()
         {
             orderedStats = new Dictionary<Type, SortedList<StatCombineType, HashSet<Stat>>>();
@@ -50,9 +50,9 @@ public class CombinedStatBlock
                 statBucket.Remove(stat);
 
                 //check if all buckets for a stat are 0
-                foreach(var bucket in orderedStats[statType].Values)
+                foreach (var bucket in orderedStats[statType].Values)
                 {
-                    if(bucket.Count > 0)
+                    if (bucket.Count > 0)
                     {
                         return false;
                     }
@@ -62,41 +62,39 @@ public class CombinedStatBlock
             return true;
         }
 
-        public void CombineStats(StatBlock combinedStatBlock)
+        public float CalculateStat(Type statType, GameContext context)
         {
-            foreach(SortedList<StatCombineType, HashSet<Stat>> sortedStats in orderedStats.Values)
+            if (!statType.IsSubclassOf(typeof(Stat)) || orderedStats == null || !orderedStats.ContainsKey(statType))
+                return 0;
+
+            SortedList<StatCombineType, HashSet<Stat>> sortedStats = orderedStats[statType];
+            if (sortedStats == null)
+                return 0;
+
+            float baseValue = 0;
+            float aggregate = 0;
+
+            foreach (HashSet<Stat> statBucket in sortedStats.Values)
             {
-                float baseValue = 0;
-                float aggregate = 0;
-                Type statType = null;
-
-                foreach(HashSet<Stat> statBucket in sortedStats.Values)
+                if (statBucket.Count != 0)
                 {
-                    if(statBucket.Count != 0)
-                    {
-                        Stat first = statBucket.First();
-                        if (statType == null)
-                        {
-                            statType = first.GetType();
-                        }
+                    Stat first = statBucket.First();
 
-                        first.combineType.Combine(ref baseValue, ref aggregate, statBucket);
-                    }
-                }
-                
-                if(statType != null && (aggregate != 0 || baseValue != 0))
-                {
-                    Stat combinedStat = combinedStatBlock.GetStat(statType);
-                    if (combinedStat == null)
+                    foreach (Stat stat in statBucket)
                     {
-                        combinedStat = Activator.CreateInstance(statType) as Stat;
-                        combinedStatBlock.stats.Add(combinedStat);
+                        stat.CheckSetConditionStacks(context);
                     }
 
-                    combinedStat.value = aggregate != 0 ? aggregate : baseValue;
-                    combinedStat.combineType = new BaseStat();
+                    first.combineType.Combine(ref baseValue, ref aggregate, statBucket);
                 }
             }
+
+            return aggregate != 0 ? aggregate : baseValue;
+        }
+
+        public float CalculateStat<T>(GameContext context) where T : Stat
+        {
+            return CalculateStat(typeof(T), context);
         }
     }
 
@@ -124,7 +122,7 @@ public class CombinedStatBlock
             orderedStats.AddStat(stat);
         }
 
-        combinedStatBlock.events.Add(block.events);
+        combinedStatBlock.Add(block);
     }
 
     private void CleanupSource(StatBlock block)
@@ -138,13 +136,22 @@ public class CombinedStatBlock
             }
         }
 
-        combinedStatBlock.events.Remove(block.events);
+        combinedStatBlock.Remove(block);
     }
 
     public void UpdateSources(IEnumerable<StatBlock> statBlocks)
     {
         UpkeepSources(statBlocks);
-        CombineSources();
+    }
+
+    public float GetCombinedStatValue<T>(GameContext context) where T : Stat
+    {
+        return orderedStats.CalculateStat<T>(context);
+    }
+
+    public float GetCombinedStatValue(Type statType, GameContext context)
+    {
+        return orderedStats.CalculateStat(statType, context);
     }
 
     private void UpkeepSources(IEnumerable<StatBlock> statBlocks)
@@ -166,21 +173,13 @@ public class CombinedStatBlock
             block.active = true;
         }
 
-        bool dirty = false;
-
         //Cleanup any sources not provided this frame
         foreach (var source in sources)
         {
             if (!source.active)
             {
                 CleanupSource(source);
-                dirty = true;
             }
-        }
-
-        if(dirty)
-        {
-            //combinedStatBlock.stats.Clear();
         }
 
         sources.RemoveWhere(x => !x.active);
@@ -188,11 +187,6 @@ public class CombinedStatBlock
 #if UNITY_EDITOR
         sourcesList = sources.ToList();
 #endif
-    }
-
-    private void CombineSources()
-    {
-        orderedStats.CombineStats(combinedStatBlock);
     }
 
     public StatBlockContext GetCombinedContext()

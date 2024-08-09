@@ -99,5 +99,6 @@ public abstract class BasicEnemy : Enemy
     public virtual void DisableGameObject()
     {
         this.gameObject.SetActive(false);
+        World.activeWorld.enemyPool.activeEnemies.Remove(this);
     }
 }

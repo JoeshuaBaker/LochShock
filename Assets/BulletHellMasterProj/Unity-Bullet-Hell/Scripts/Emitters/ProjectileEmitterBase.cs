@@ -22,24 +22,24 @@ namespace BulletHell
         public float Scale {
             get
             {
-                return stats.GetStatValue<Size>();
+                return stats.GetCombinedStatValue<Size>(World.activeWorld.worldStaticContext);
             }
         }
         public Gradient Color;
 
         [Foldout("General", true)]
-        public StatBlock stats;
+        public CombinedStatBlock stats;
         public float TimeToLive { 
             get
             {
-                return stats.GetStatValue<Lifetime>();
+                return stats.GetCombinedStatValue<Lifetime>(World.activeWorld.worldStaticContext);
             }
         }
         public float CoolOffTime
         {
             get
             {
-                return stats.GetStatValue<FireSpeed>();
+                return stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
             }
         }
         public bool AutoFire = true;
@@ -48,7 +48,7 @@ namespace BulletHell
         {
             get
             {
-                return stats.GetStatValue<Velocity>();
+                return stats.GetCombinedStatValue<Velocity>(World.activeWorld.worldStaticContext);
             }
         }    
         public float RotationSpeed = 0;        
@@ -92,7 +92,7 @@ namespace BulletHell
 
         public void Awake()
         {
-            Interval = CoolOffTime + 0.25f;      // Start with a delay to allow time for scene to load
+            Interval = 0.25f;      // Start with a delay to allow time for scene to load
             Camera = Camera.main;
             
             ContactFilter = new ContactFilter2D

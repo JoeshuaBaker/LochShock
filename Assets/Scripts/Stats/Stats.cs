@@ -16,7 +16,7 @@ public class Vision : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: true);
+        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, isPercentage: true, conditions: conditions);
     }
 }
 
@@ -44,7 +44,7 @@ public class BulletStreams : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, baseValue: Min);
+        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, baseValue: Min, conditions: conditions);
     }
 }
 
@@ -54,7 +54,7 @@ public class BulletsPerShot : Stat
     public override float Max => 25f;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, baseValue: Min);
+        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, baseValue: Min, conditions: conditions);
     }
 }
 
@@ -66,7 +66,7 @@ public class SpreadAngle : Stat
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks);
+            context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, conditions: conditions);
         }
     }
 }
@@ -78,7 +78,7 @@ public class Accuracy : Stat
     public override StatValueType ValueType => StatValueType.Percentage;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * stacks, isPercentage: true, baseValue: Max);
+        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, isPercentage: true, baseValue: Max, conditions: conditions);
     }
 }
 
@@ -96,7 +96,7 @@ public class Velocity : Stat
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, "Bullet Velocity", value * stacks);
+            context.AddContext(Name(), combineType, "Bullet Velocity", value * TooltipStacks, conditions: conditions);
         }
     }
 }
@@ -110,7 +110,7 @@ public class Size : Stat
     {
         if(!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, "Bullet Size", value * stacks);
+            context.AddContext(Name(), combineType, "Bullet Size", value * TooltipStacks, conditions: conditions);
         }
     }
 }
