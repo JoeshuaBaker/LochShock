@@ -70,11 +70,33 @@ public class Grapple : MonoBehaviour
     public int currentGrappleSegment;
     public GameObject grappleSegementsParent;
 
+    public GameObject grapplingHand;
+    public Animator grappleHandAnimator;
+    public ParticleSystem grappleHandPS;
+
+    public ParticleSystem grappleStreakPS;
+    public ParticleSystem grappleBurstPS;
+    public float streakSpeed =20f;
+    public float burstSpeed = 20f;
+    public bool playBurst;
+    public float topSpeed;
+    public float topSpeedPercentToBurst = 0.1f;
+
+
+
+    public ExplosionSpawner explosionSpawner;
+
 
     // Start is called before the first frame update
     void Start()
     {
         activePlayer = Player.activePlayer;
+
+
+        if (explosionSpawner == null)
+        {
+            explosionSpawner = World.activeWorld.explosionSpawner;
+        }
 
         grappleSegments = new SpriteRenderer[grappleArraySize];
 
@@ -120,6 +142,7 @@ public class Grapple : MonoBehaviour
             return;
         }
 
+
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
         Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
@@ -163,6 +186,11 @@ public class Grapple : MonoBehaviour
                 //new implementation
                 if (hookDistance.magnitude > noGrappleBefore && !grappleStartSet)
                 {
+
+                    grappleHandAnimator.Play("GrappleIdle");
+                    grapplingHand.SetActive(true);
+                    grappleHandPS.Play();
+
                     Physics2D.OverlapCircle(updatedPos.xy(), 0.05f, hitFilter, hitBuffer);
 
                     grappleStartSet = true;
@@ -273,6 +301,8 @@ public class Grapple : MonoBehaviour
             else
             {
                 retracting = true;
+                grapplingHand.SetActive(false);
+                grappleHandPS.Stop();
             }
             if (retracting)
             {
@@ -293,6 +323,9 @@ public class Grapple : MonoBehaviour
 
         if (grapplingPullPlayer)
         {
+
+            
+
             Vector3 playerToSetter = grappleTargetPoint - activePlayer.transform.position;
             Vector3 pointToSetter = updatedPos - grappleTargetPoint;
             Vector3 playerToPoint = updatedPos - activePlayer.transform.position;
@@ -304,12 +337,12 @@ public class Grapple : MonoBehaviour
                     animator.Play("BezierGrapple");
                 }
                 animSet = true;
+
             }
             if(animSet)
             {
                 animator.Update(Time.deltaTime);
             }
-
 
             if (playerToSetter.sqrMagnitude > pointToSetter.sqrMagnitude)
             {
@@ -319,14 +352,27 @@ public class Grapple : MonoBehaviour
                     grappleSpeedToPlayer = grappleSpeedBase;
                     playerSlow = playerSlowBase;
 
+                    grappleHandAnimator.Play("GrappleHand");
+
                 }
                 else
                 {
+                    if (grappleSpeedToPlayer >= streakSpeed && !grappleStreakPS.isPlaying)
+                    {
+                        grappleStreakPS.Play();
+                    }
+                    if(grappleSpeedToPlayer >= burstSpeed)
+                    {
+                        playBurst = true;
+                        topSpeed = grappleSpeedToPlayer;
+
+                    }
 
                     grappleSpeedToPlayer = grappleSpeedToPlayer * grappleSpeedMult;
                     playerSlow = playerSlow * playerSlowMult;
-                    
+
                 }
+
                 // could target p0 instead of setter  ie.  playerToPoint
                 grappleVectorToPlayer = playerToSetter.normalized * grappleSpeedToPlayer * Time.deltaTime;
 
@@ -340,9 +386,19 @@ public class Grapple : MonoBehaviour
 
                 playerSlow = Mathf.Min(playerSlow * playerSlowDecay, 1f);
 
+                if(grappleSpeedToPlayer < topSpeed * topSpeedPercentToBurst && playBurst)
+                {
+                    Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                    grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                    grappleBurstPS.Play();
+                    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f));
+                    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f));
+                    playBurst = false;
+                }
 
                 if (grappleSpeedToPlayer <= grappleSpeedBreak)
                 {
+                    grappleStreakPS.Stop();
                     ResetToBase();
                 }
             }
@@ -406,7 +462,8 @@ public class Grapple : MonoBehaviour
         {
             if (hideHook)
             {
-                grappleSegments[i].gameObject.SetActive(false);               
+                grappleSegments[i].gameObject.SetActive(false);
+                grapplingHand.SetActive(false);
             }
             else
             {
@@ -436,6 +493,9 @@ public class Grapple : MonoBehaviour
         retracting = false;
         grappleDistance = 0f;
         grappleSpeedToPlayer = 0f;
+        topSpeed = 0f;
+        grappleHandPS.Stop();
+ 
     }
 
 
