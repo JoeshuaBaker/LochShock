@@ -625,18 +625,21 @@ MonoBehaviour:
         combineType:
           id: 3
         value: 10
+        conditions: []
     00000001:
       type: {class: MoveSpeed, ns: , asm: Assembly-CSharp}
       data:
         combineType:
           id: 4
         value: 3.5
+        conditions: []
     00000002:
       type: {class: Vision, ns: , asm: Assembly-CSharp}
       data:
         combineType:
           id: 5
         value: 1
+        conditions: []
     00000003:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000004:
@@ -20763,7 +20766,7 @@ MonoBehaviour:
   grappleSpeedBase: 10
   grappleSpeedToPlayer: 0
   grappleSpeedMult: 1.08
-  grappleSpeedDecay: 0.7
+  grappleSpeedDecay: 10
   grappleVectorToPlayer: {x: 0, y: 0, z: 0}
   grappleSpeedBreak: 3
   retractDistance: {x: 0, y: 0, z: 0}
@@ -20771,6 +20774,10 @@ MonoBehaviour:
   lastPos: {x: 0, y: 0, z: 0}
   detectSpot: {x: 0, y: 0, z: 0}
   pollingSpot: {x: 0, y: 0, z: 0}
+  playerToSetter: {x: 0, y: 0, z: 0}
+  playersLastPos: {x: 0, y: 0, z: 0}
+  playerTotalSpeed: {x: 0, y: 0, z: 0}
+  playerSpeedMag: 0
   curve: {fileID: 515322578320065137}
   p0: {fileID: 3114992104953926355}
   p1: {fileID: 2042177494822874541}
@@ -20804,11 +20811,11 @@ MonoBehaviour:
   grappleHandPS: {fileID: 7013838571791646651}
   grappleStreakPS: {fileID: 5676505454199214602}
   grappleBurstPS: {fileID: 600982965899967632}
-  streakSpeed: 13
-  burstSpeed: 20
+  streakSpeed: 0.5
+  burstSpeed: 1.5
   playBurst: 0
   topSpeed: 0
-  topSpeedPercentToBurst: 0.1
+  topSpeedPercentToBurst: 0.5
   explosionSpawner: {fileID: 0}
 --- !u!58 &4188476713222070956
 CircleCollider2D:
@@ -31043,13 +31050,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6546258806256801141}
   serializedVersion: 7
-  lengthInSec: 2.5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -37941,7 +37948,7 @@ ParticleSystem:
     m_Curve:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.2
+      scalar: 1.6
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -39244,7 +39251,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    range: {x: 0, y: 10}
+    range: {x: 0, y: 15}
     separateAxes: 0
   RotationBySpeedModule:
     enabled: 0
@@ -55509,7 +55516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8113416599924620398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5823630524236911008}

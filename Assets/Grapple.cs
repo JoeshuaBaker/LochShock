@@ -38,6 +38,10 @@ public class Grapple : MonoBehaviour
     public Vector3 lastPos;
     public Vector3 detectSpot;
     public Vector3 pollingSpot;
+    public Vector3 playerToSetter;
+    public Vector3 playersLastPos;
+    public Vector3 playerTotalSpeed;
+    public float playerSpeedMag;
 
     public BezierCurve curve;
     public BezierPoint p0;
@@ -142,6 +146,7 @@ public class Grapple : MonoBehaviour
             return;
         }
 
+        
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
@@ -169,7 +174,9 @@ public class Grapple : MonoBehaviour
             this.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xyToMouse.x, xyToMouse.y, 0f)).eulerAngles;
 
             grappleTargetPoint = pointSetter.transform.position;
-         
+
+            playerToSetter = grappleTargetPoint - activePlayer.transform.position;
+
         }
         if(!grapplingPullPlayer)
         {
@@ -183,7 +190,6 @@ public class Grapple : MonoBehaviour
 
                 Vector3 hookDistance = this.transform.position - activePlayer.transform.position;
 
-                //new implementation
                 if (hookDistance.magnitude > noGrappleBefore && !grappleStartSet)
                 {
 
@@ -249,53 +255,6 @@ public class Grapple : MonoBehaviour
                         }
                     }
                 }
-                //end new
-
-                ////Old implementation
-
-                //Physics2D.OverlapCircle(updatedPos.xy(), 0.05f, hitFilter, hitBuffer);
-
-                //if (noGrappleBefore <= 0f && !grappleStartSet)
-                //{
-                //    grappleStartSet = true;
-
-                //    if (hitBuffer.Count != 0)
-                //    {
-                //        overTerrain = true;
-                //    }
-                //    else
-                //    {
-                //        overTerrain = false;
-                //    }
-                //}
-
-                //if (noGrappleBefore <= 0f && grappleStartSet)
-                //{
-                //    if (overTerrain)
-                //    {
-
-                //        if (hitBuffer.Count == 0)
-                //        {
-
-                //            grapplingPullPlayer = true;
-                //            holdPoint = this.transform.position;
-                //            overTerrain = false;
-                //        }
-                //    }
-
-                //    else
-                //    {
-                //        if (hitBuffer.Count != 0)
-                //        {
-                //            grapplingPullPlayer = true;
-                //            holdPoint = this.transform.position;
-                //            overTerrain = true;
-                //        }
-
-                //    }
-
-                //}
-                ////end of old implementation
 
             }
             else
@@ -324,9 +283,9 @@ public class Grapple : MonoBehaviour
         if (grapplingPullPlayer)
         {
 
-            
 
-            Vector3 playerToSetter = grappleTargetPoint - activePlayer.transform.position;
+            Vector3 playerToSetPoint = grappleTargetPoint - activePlayer.transform.position;
+
             Vector3 pointToSetter = updatedPos - grappleTargetPoint;
             Vector3 playerToPoint = updatedPos - activePlayer.transform.position;
 
@@ -344,11 +303,11 @@ public class Grapple : MonoBehaviour
                 animator.Update(Time.deltaTime);
             }
 
-            if (playerToSetter.sqrMagnitude > pointToSetter.sqrMagnitude)
+            if (playerToSetPoint.sqrMagnitude > pointToSetter.sqrMagnitude)
             {
                 if (grappleSpeedToPlayer < grappleSpeedBase)
                 {
-
+                    playersLastPos = activePlayer.transform.position;
                     grappleSpeedToPlayer = grappleSpeedBase;
                     playerSlow = playerSlowBase;
 
@@ -357,23 +316,29 @@ public class Grapple : MonoBehaviour
                 }
                 else
                 {
-                    if (grappleSpeedToPlayer >= streakSpeed && !grappleStreakPS.isPlaying)
+
+                    playerTotalSpeed = playersLastPos - activePlayer.transform.position;
+
+                    playerSpeedMag = playerTotalSpeed.magnitude;
+
+                    if (playerSpeedMag >= streakSpeed && !grappleStreakPS.isPlaying)
                     {
                         grappleStreakPS.Play();
                     }
-                    if(grappleSpeedToPlayer >= burstSpeed)
+                    if(playerSpeedMag >= burstSpeed)
                     {
                         playBurst = true;
-                        topSpeed = grappleSpeedToPlayer;
+                        topSpeed = Mathf.Max(playerSpeedMag , topSpeed);
 
                     }
 
-                    grappleSpeedToPlayer = grappleSpeedToPlayer * grappleSpeedMult;
+                    playersLastPos = activePlayer.transform.position;
+
+                    grappleSpeedToPlayer = grappleSpeedToPlayer + (60f * (grappleSpeedMult * Time.deltaTime));
                     playerSlow = playerSlow * playerSlowMult;
 
                 }
 
-                // could target p0 instead of setter  ie.  playerToPoint
                 grappleVectorToPlayer = playerToSetter.normalized * grappleSpeedToPlayer * Time.deltaTime;
 
             }
@@ -381,23 +346,33 @@ public class Grapple : MonoBehaviour
             {
                 hideHook = true;
 
-                grappleSpeedToPlayer = grappleSpeedToPlayer * grappleSpeedDecay;
+                grappleSpeedToPlayer = grappleSpeedToPlayer * (1f - (grappleSpeedDecay * Time.deltaTime));
                 grappleVectorToPlayer = playerToSetter.normalized * grappleSpeedToPlayer * Time.deltaTime;
 
                 playerSlow = Mathf.Min(playerSlow * playerSlowDecay, 1f);
 
-                if(grappleSpeedToPlayer < topSpeed * topSpeedPercentToBurst && playBurst)
-                {
-                    Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
-                    grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
-                    grappleBurstPS.Play();
-                    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f));
-                    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f));
-                    playBurst = false;
-                }
+                //if(playerSpeedMag < burstSpeed * topSpeedPercentToBurst && playBurst)
+                //{
+                //    Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                //    grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                //    grappleBurstPS.Play();
+                //    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f));
+                //    explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f));
+                //    playBurst = false;
+                //}
 
-                if (grappleSpeedToPlayer <= grappleSpeedBreak)
+                if (grappleSpeedToPlayer <= grappleSpeedBreak * (Time.deltaTime * 60f))
                 {
+                    if (playBurst)
+                    {
+                        Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                        grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                        grappleBurstPS.Play();
+                        explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f));
+                        explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f));
+                        playBurst = false;
+                    }
+
                     grappleStreakPS.Stop();
                     ResetToBase();
                 }
