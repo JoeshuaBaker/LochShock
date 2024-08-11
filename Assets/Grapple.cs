@@ -146,8 +146,6 @@ public class Grapple : MonoBehaviour
             return;
         }
 
-        
-
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
         Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
@@ -313,19 +311,21 @@ public class Grapple : MonoBehaviour
 
                     grappleHandAnimator.Play("GrappleHand");
 
+                    topSpeed = 0f;
+
                 }
                 else
                 {
 
                     playerTotalSpeed = playersLastPos - activePlayer.transform.position;
 
-                    playerSpeedMag = playerTotalSpeed.magnitude;
+                    playerSpeedMag = playerTotalSpeed.magnitude * Time.deltaTime;
 
-                    if (playerSpeedMag >= streakSpeed && !grappleStreakPS.isPlaying)
+                    if (playerSpeedMag >= streakSpeed * Time.deltaTime && !grappleStreakPS.isPlaying)
                     {
                         grappleStreakPS.Play();
                     }
-                    if(playerSpeedMag >= burstSpeed)
+                    if(playerSpeedMag >= burstSpeed * Time.deltaTime)
                     {
                         playBurst = true;
                         topSpeed = Mathf.Max(playerSpeedMag , topSpeed);
@@ -365,8 +365,8 @@ public class Grapple : MonoBehaviour
                 {
                     if (playBurst)
                     {
-                        Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
-                        grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / burstSpeed);
+                        Vector3 grappleBurstSize = new Vector3(1f, 1f, 1f) * (topSpeed / (burstSpeed * Time.deltaTime));
+                        grappleBurstPS.transform.localScale = new Vector3(1f, 1f, 1f) * (topSpeed / (burstSpeed * Time.deltaTime));
                         grappleBurstPS.Play();
                         explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f));
                         explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f));
@@ -468,7 +468,7 @@ public class Grapple : MonoBehaviour
         retracting = false;
         grappleDistance = 0f;
         grappleSpeedToPlayer = 0f;
-        topSpeed = 0f;
+
         grappleHandPS.Stop();
  
     }
