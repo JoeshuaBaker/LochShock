@@ -7,7 +7,6 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
-    public CombinedStatBlock newCombinedStats;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
@@ -18,11 +17,11 @@ public class Gun : Item
     public AK.Wwise.Event gunAudioEvent;
 
     public bool shooting = false;
-    private bool setup = false;
+    public bool setup = false;
     private float reloadSpeed;
     private float reloadTimer;
     public float fireSpeed;
-    private float bulletCooldown;
+    public float bulletCooldown;
     public int maxMagazine;
     public int magazine;
     private bool reloadAudio = false;
@@ -50,7 +49,7 @@ public class Gun : Item
             //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
             gunAudioEvent.Post(this.gameObject);
 
-            foreach(OnFireAction onFire in newCombinedStats.combinedStatBlock.GetEvents<OnFireAction>())
+            foreach(OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
             {
                 onFire.OnFire(Player.activePlayer, this);
             }
@@ -95,7 +94,7 @@ public class Gun : Item
     public void ApplyNewStatBlock(CombinedStatBlock stats)
     {
         setup = true;
-        newCombinedStats = stats;
+        combinedStats = stats;
         reloadSpeed = stats.GetCombinedStatValue<ReloadSpeed>(World.activeWorld.worldStaticContext);
         fireSpeed = stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
         maxMagazine = (int) stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
@@ -112,7 +111,7 @@ public class Gun : Item
         if (!setup)
             return;
 
-        emitter.ApplyStatBlock(newCombinedStats);
+        emitter.ApplyStatBlock(combinedStats);
 
         if(magazine < maxMagazine)
         {
@@ -130,7 +129,7 @@ public class Gun : Item
                 AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
             }
 
-            foreach (OnReloadAction onReload in newCombinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
+            foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
             {
                 onReload.OnReload(Player.activePlayer, this);
             }

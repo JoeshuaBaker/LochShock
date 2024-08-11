@@ -195,6 +195,7 @@ namespace BulletHell
         // When adding emitter during play mode - you can register them with this function
         public int RegisterEmitter(ProjectileEmitterBase emitter)
         {
+            Debug.Log(emitter.gameObject.name);
             // Should probably use Emittercount here - find the next empty slot in the array
             int nextEmpty = -1;
             for (int n = 0; n < EmittersArray.Length; n++)

@@ -14,8 +14,9 @@ public class Inventory : MonoBehaviour
     //internal data structures
     public Gun activeGun = null;
     public Gun inactiveGun = null;
+    public ActiveItem activeItem = null;
     public Gun[] guns = new Gun[2];
-    public Item[] activeItem = new Item[1];
+    public Item[] activeItems = new Item[1];
     public Item[] itemStash = new Item[2];
     public Item[] items = new Item[5];
     private Dictionary<Item.ItemType, Item[]> itemMap;
@@ -25,7 +26,7 @@ public class Inventory : MonoBehaviour
     {
         get
         {
-            return new Item[] { guns[0], guns[1], activeItem[0], itemStash[0], itemStash[1], items[0], items[1], items[2], items[3], items[4] };
+            return new Item[] { guns[0], guns[1], activeItems[0], itemStash[0], itemStash[1], items[0], items[1], items[2], items[3], items[4] };
         }
     }
     public int scrap = 0;
@@ -41,11 +42,11 @@ public class Inventory : MonoBehaviour
         itemMap = new Dictionary<Item.ItemType, Item[]>();
         itemMap.Add(Item.ItemType.Item, items);
         itemMap.Add(Item.ItemType.Weapon, guns);
-        itemMap.Add(Item.ItemType.Active, activeItem);
+        itemMap.Add(Item.ItemType.Active, activeItems);
 
         collectionParentMap = new Dictionary<Item[], Transform>();
         collectionParentMap.Add(guns, gunParent);
-        collectionParentMap.Add(activeItem, activeItemParent);
+        collectionParentMap.Add(activeItems, activeItemParent);
         collectionParentMap.Add(items, itemParent);
         collectionParentMap.Add(itemStash, stashParent);
 
@@ -103,6 +104,14 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public void ActivateActiveItem()
+    {
+        if(activeItem != null)
+        {
+            activeItem.Activate();
+        }
+    }
+
     public void SwitchWeapons()
     {
         if (guns[0] == null || guns[1] == null)
@@ -155,6 +164,12 @@ public class Inventory : MonoBehaviour
             {
                 inactiveGun = collection[index] as Gun;
             }
+
+            if(activeItem == null && item is ActiveItem)
+            {
+                activeItem = collection[index] as ActiveItem;
+                activeItem.Setup();
+            }
         }
 
         return index > -1;
@@ -183,6 +198,12 @@ public class Inventory : MonoBehaviour
         {
             emptyCollection[spaceIndex] = collection[index];
             collection[index] = null;
+
+            if(emptyCollection[spaceIndex] is ActiveItem)
+            {
+                activeItem = emptyCollection[spaceIndex] as ActiveItem;
+                activeItem.Setup();
+            }
             return spaceIndex;
         }
 

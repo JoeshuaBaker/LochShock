@@ -143,7 +143,7 @@ public class InventoryUI : MonoBehaviour
         eventSystem.SetSelectedGameObject(allFrames[0].topButton.gameObject);
 
         Gun[] weapons = inventory.guns;
-        Item[] activeItem = inventory.activeItem;
+        Item[] activeItem = inventory.activeItems;
         Item[] itemStash = inventory.itemStash;
         Item[] heldItems = inventory.items;
         int offset = 0;

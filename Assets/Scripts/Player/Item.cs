@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
     public Rarity rarity;
     public ItemType itemType;
     public int level = 1;
-    public int baseLevelUpCost;
+    public int baseLevelUpCost = 100;
     public float levelUpCostScalar = 1.25f;
     public int baseDisassembleValue;
     public float disassembleRefundRatio = 0.7f;
@@ -66,9 +66,9 @@ public class Item : MonoBehaviour
 
     public StatBlock stats;
     public StatBlock levelUpStats;
-    protected CombinedStatBlock combinedStats;
+    public CombinedStatBlock combinedStats;
 
-    public StatBlockContext GetStatBlockContext()
+    public virtual StatBlockContext GetStatBlockContext()
     {
         combinedStats.UpdateSources(newStatsList);
         return combinedStats.GetCombinedContext();
@@ -79,7 +79,7 @@ public class Item : MonoBehaviour
         return stats.GetEventTooltips();
     }
 
-    public void LevelUp()
+    public virtual void LevelUp()
     {
         level++;
         levelUpStats.Stacks = level - 1;

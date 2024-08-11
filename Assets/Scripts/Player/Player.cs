@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSpritesUp;
     public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
-    private Vector2 mouseDirection;
+    public Vector2 mouseDirection;
     private Vector2 moveDirection;
     public Grapple grapplingHook;
     public float grapplingCoolDown = 0f;
@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
 
     public void ItemEvent(InputAction.CallbackContext context)
     {
-
+        inventory.ActivateActiveItem();
     }
 
     public void GrappleEvent(InputAction.CallbackContext context)

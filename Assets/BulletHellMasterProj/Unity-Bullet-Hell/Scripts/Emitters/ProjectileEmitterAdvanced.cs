@@ -75,7 +75,6 @@ namespace BulletHell
 
         public virtual void Start()
         {
-            Debug.Log(ProjectileManager == null);
             ProjectileManager.AddEmitter(this, ProjectilePrefab.GetProjectilesPerEmitterInstance());
             emitterId = ProjectileManager.RegisterEmitter(this);
         }
@@ -148,6 +147,7 @@ namespace BulletHell
         public override void FireProjectile(Vector2 direction, float leakedTime)
         {
             Pool<ProjectileData>.Node node;
+            Debug.Log(this.gameObject.name);
 
             Direction = direction;
             RefreshGroups();

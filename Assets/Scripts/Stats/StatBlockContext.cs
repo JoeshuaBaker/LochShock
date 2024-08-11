@@ -9,7 +9,7 @@ public class StatBlockContext
     public static string GoodColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.green)}>";
     public static string BadColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>";
     public static string HighlightColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.yellow)}>";
-    private const string VALUE = "%value";
+    private const string VALUE = "%value%";
 
     public struct StatContext
     {
@@ -82,6 +82,8 @@ public class StatBlockContext
 
 
     private Dictionary<string, StatContext> statDictionary = new Dictionary<string, StatContext>();
+    private List<string> genericTooltips = new List<string>();
+    private List<string> allTooltips = new List<string>();
 
     public void AddContext(
         string key,
@@ -111,8 +113,16 @@ public class StatBlockContext
         }
     }
 
+    public void AddGenericTooltip(string tooltip)
+    {
+        genericTooltips.Add(tooltip);
+    }
+
     public IEnumerable<string> GetStatContextStrings()
     {
-        return statDictionary.Values.Select(x => x.GetFormattedText());
+        allTooltips.Clear();
+        allTooltips.AddRange(genericTooltips);
+        allTooltips.AddRange(statDictionary.Values.Select(x => x.GetFormattedText()));
+        return allTooltips;
     }
 }
