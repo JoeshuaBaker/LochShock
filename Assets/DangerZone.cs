@@ -6,6 +6,7 @@ public class DangerZone : MonoBehaviour
 {
     public Animator animator;
     public ParticleSystem dangerZonePS;
+    public ParticleSystem redRingPS;
     public CircleCollider2D dangerZoneCollider;
     public BoxCollider2D dangerZoneColliderBox;
     public Collider2D activeCollider;
@@ -39,9 +40,20 @@ public class DangerZone : MonoBehaviour
     private static GradientColorKey[] blueTwoColorArray;
     private static GradientAlphaKey[] blueTwoAlphaArray;
 
+    public CraterCreator craterCreator;
+    public int craterSize;
 
-    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation)
+
+    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize)
     {
+
+        if(craterCreator == null)
+        {
+            craterCreator = World.activeWorld.craterCreator;
+        }
+
+        this.craterSize = craterSize;
+
         animator.SetBool("skip", false);
         this.gameObject.SetActive(true);
         animator.Play(0);
@@ -137,8 +149,12 @@ public class DangerZone : MonoBehaviour
         var dzPSColor = dangerZonePS.colorOverLifetime;
         var dzShape = dangerZonePS.shape;
 
+        var rrPS = redRingPS.main;
+
         if (!noPS)
         {
+            redRingPS.Play();
+
             dangerZonePS.Play();
             float area = scale.x * scale.y;
             dzPSEmission.SetBurst( 0 , new ParticleSystem.Burst(0f, (short) (pSLowerLim * area) , (short) (pSUpperLim * area) , 3 , 0.02f));
@@ -147,6 +163,9 @@ public class DangerZone : MonoBehaviour
             {
                 dzShape.shapeType = ParticleSystemShapeType.Rectangle;
                 dzShape.scale = new Vector3(3f, 3f, 1f);
+
+                redRingPS.Stop();
+
             }
             else
             {
@@ -171,25 +190,31 @@ public class DangerZone : MonoBehaviour
                 gradTwo.SetKeys(blueTwoColorArray, blueTwoAlphaArray);
 
                 dzPSColor.color = new ParticleSystem.MinMaxGradient(grad, gradTwo);
+
+                redRingPS.Stop();
             }
 
 
             if (delay > 0.5f)
             {
                 dzPS.startDelay = delay;
+                rrPS.startDelay = delay;
             }
             else if (delay == 0f)
             {
                 dzPS.startDelay = delay;
+                rrPS.startDelay = delay;
             }
             else
             {
                 dzPS.startDelay = 0.5f;
+                rrPS.startDelay = 0.5f;
             }
         }
         else
         {
             dangerZonePS.Stop();
+            redRingPS.Stop();
         }
 
     }
@@ -221,6 +246,14 @@ public class DangerZone : MonoBehaviour
                     }
                 }
 
+
+            if(craterSize > 0)
+            {
+                craterCreator.CreateCrater(this.transform.position, craterSize);
+            }
+                
+           
+      
         }
         
 

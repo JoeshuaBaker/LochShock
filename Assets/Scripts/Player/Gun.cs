@@ -13,6 +13,7 @@ public class Gun : Item
     public ParticleSystem muzzleFlashClose;
     public ParticleSystem ejectedCasing;
     public Light2D visionCone;
+    public Light2D beamLight;
     public Animator lightAnimator;
     public AK.Wwise.Event gunAudioEvent;
 

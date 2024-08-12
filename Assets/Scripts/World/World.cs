@@ -12,6 +12,7 @@ public class World : MonoBehaviour
     public bool paused = false;
     public ExplosionSpawner explosionSpawner;
     public GameContext worldStaticContext;
+    public CraterCreator craterCreator;
 
     //Map Variables
     public MapPool mapPool;

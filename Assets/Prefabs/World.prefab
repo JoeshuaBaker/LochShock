@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d642c432783d91f47b879d6559eaaf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allEnemies: []
   enemyBuffers:
   - enemyPrefab: {fileID: 806233481462864129, guid: 0a8b054467c03f749ad16abf2259ae98, type: 3}
     bufferSize: 350
@@ -400,6 +401,7 @@ MonoBehaviour:
   spawnContainer: {fileID: 3461520090563742208}
   paused: 0
   explosionSpawner: {fileID: 1598683932}
+  craterCreator: {fileID: 1598683931}
   mapPool: {fileID: 2986951450654661593}
   playerInBounds: {fileID: 0}
   startingMap: {fileID: 778304412622747737, guid: 2e6607af629cfb94387d106b6c1ee135, type: 3}

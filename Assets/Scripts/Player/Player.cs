@@ -61,6 +61,10 @@ public class Player : MonoBehaviour
     public Grapple grapplingHook;
     public float grapplingCoolDown = 0f;
     public float grapplingCoolDownBase = 3f;
+    public float invincibilityTime;
+    public float invincibilityOnHit;
+
+    public ParticleSystem trailPS;
     
     public Light2D playerVisionProximity;
     public float orbsHeld;
@@ -77,6 +81,8 @@ public class Player : MonoBehaviour
     public ParticleSystem diePS;
     public ParticleSystem dieWallPS;
     public ParticleSystem gunDropPS;
+    public ParticleSystem bombRingPS;
+    public ParticleSystem bombRingRedPS;
     public GameObject ring;
     public Animator ringAnimator;
     public GameObject slashParent;
@@ -158,6 +164,7 @@ public class Player : MonoBehaviour
         }
 
         CheckDeath();
+        DecayInvincible();
         UpdateStatBlocks();
         OnSecond();
         Move();
@@ -242,6 +249,10 @@ public class Player : MonoBehaviour
     public void UpdateInventory()
     {
         timeSinceOrbUsed += Time.deltaTime;
+
+        var psmain = trailPS.main;
+
+        psmain.startLifetime = 0.5f + Mathf.Min((timeSinceOrbUsed * 0.025f ) , 1.5f);
     }
 
     public void UpdateHp(int hpChange)
@@ -337,12 +348,14 @@ public class Player : MonoBehaviour
         if(inventory.activeGun != null)
         {
             inventory.activeGun.visionCone.gameObject.SetActive(true);
+            inventory.activeGun.beamLight.gameObject.SetActive(true);
             inventory.activeGun.UpdateVisionCone(totalVision, visionConeRadius, visionConeAngle);
         }
         
         if (inventory.inactiveGun != null)
         {
             inventory.inactiveGun.visionCone.gameObject.SetActive(false);
+            inventory.inactiveGun.beamLight.gameObject.SetActive(false);
         }
 
         playerVisionProximity.pointLightOuterRadius = Mathf.Max(totalVision * visionProximityRadius, 3.5f);
@@ -405,7 +418,23 @@ public class Player : MonoBehaviour
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
         if (result > 0)
         {
-            TakeDamageFromEnemy(-1);
+            if(invincibilityTime == 0f)
+            {
+                TakeDamageFromEnemy(-1);
+                
+            }
+            else
+            {
+                foreach (Collider2D enemyCollider in hitBuffer)
+                {
+                    Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                    if (enemy != null)
+                    {
+                        enemy.Die();
+                    }
+                }
+            }
+            
         }
 
 
@@ -414,6 +443,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamageFromEnemy(int damage)
     {
+        if(invincibilityTime > 0)
+        {
+            return;
+        }
+
         UpdateHp(damage);
 
         damagePS.Stop();
@@ -439,17 +473,44 @@ public class Player : MonoBehaviour
         }
 
         Bomb(true);
+
+
+    }
+
+    public void SetInvincible(float time)
+    {
+        if(time > invincibilityTime)
+        {
+            invincibilityTime = time;
+        }
+    }
+
+    public void DecayInvincible()
+    {
+        invincibilityTime = Mathf.Max(invincibilityTime - Time.deltaTime, 0f);
     }
 
     public void Bomb(bool isHit)
     {
-        if(isHit)
+
+        SetInvincible(invincibilityOnHit);
+
+        if (isHit)
         {
-            ringAnimator.Play("RingExpandExtraLargeRed");
+            bombRingRedPS.Stop();
+            bombRingRedPS.Play();
+
+            //old damage ring
+            //ringAnimator.Play("RingExpandExtraLargeRed");
         }
         else
         {
-            ringAnimator.Play("RingExpandExtraLarge");
+
+            bombRingPS.Stop();
+            bombRingPS.Play();
+            
+           //old damage ring
+           // ringAnimator.Play("RingExpandExtraLarge");
         }
 
         //Audio Section
@@ -630,12 +691,18 @@ public class Player : MonoBehaviour
         limbRenderer.enabled = false;
         mechShadow.enabled = false;
 
-        ring.transform.position = this.transform.position;
-        ringAnimator.Play("RingExpandExtraLargeRed");
+        // old damage ring
+        //ring.transform.position = this.transform.position;
+        //ringAnimator.Play("RingExpandExtraLargeRed");
+
+        bombRingRedPS.Stop();
+        bombRingRedPS.Play();
 
         playerShake.GenerateImpulse(3f);
 
         inventory.activeGun.visionCone.enabled = false;
+        inventory.activeGun.beamLight.enabled = false;
+
         dying = true;
         return;
     }
@@ -644,7 +711,13 @@ public class Player : MonoBehaviour
     {
         explosionSpawner.CreateExplosionWithCrater(new Vector3(this.transform.position.x, (this.transform.position.y - 0.5f), this.transform.position.z), 3f);
         ring.transform.position = this.transform.position;
-        ringAnimator.Play("RingExpandExtraLarge");
+
+        //old damage ring
+        //ringAnimator.Play("RingExpandExtraLarge");
+
+        bombRingPS.Stop();
+        bombRingPS.Play();
+
         mechDying.SetActive(false);
         hitboxSprite.enabled = false;
         isDead = true;
