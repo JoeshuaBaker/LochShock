@@ -9,7 +9,7 @@ public abstract class ActiveItem : Item
     public abstract void Activate();
     public abstract void Setup();
 
-    public void Update()
+    public virtual void Update()
     {
         cooldownTimer = Mathf.Max(cooldownTimer - Time.deltaTime, 0f);
     }
