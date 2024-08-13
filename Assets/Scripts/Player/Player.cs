@@ -403,7 +403,7 @@ public class Player : MonoBehaviour
     {
         grapplingCoolDown = grapplingCoolDown - Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && grapplingCoolDown <= 0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && grapplingCoolDown <= 0f && !dying)
         {
             grapplingHook.fireGrappling = true;
             grapplingCoolDown = grapplingCoolDownBase;

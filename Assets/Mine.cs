@@ -39,7 +39,7 @@ public class Mine : BasicEnemy
         if (directionToPlayer.magnitude < activationRange && !playerClose && !dying && explosionResetTime < 0f)
         {
             animator.SetBool("playerNear", (true));
-            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f), 3);
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f), 0);
             playerClose = true;
         }
    
