@@ -59,7 +59,7 @@ public class Mine : BasicEnemy
         {
             if (!secondaryZoneSpawned)
             {
-                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 3);
+                World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 4);
                 secondaryZoneSpawned = true;
             }
 
@@ -83,7 +83,7 @@ public class Mine : BasicEnemy
 
         if (!secondaryZoneSpawned)
         {
-            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 3);
+            World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 4);
             secondaryZoneSpawned = true;
         }
 

@@ -81,28 +81,28 @@ public class CraterCreator : MonoBehaviour
         var sp = craterPS.shape;
         
 
-        if (craterSize == 3)
+        if (craterSize == 4)
         {
             craterSprite.sprite = largeCrater;
             sp.radius = .5f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 4, 7));
            // craterImp.GenerateImpulse(3f);
         }
-        else if (craterSize == 2)
+        if (craterSize == 3)
         {
             craterSprite.sprite = mediumCrater;
             sp.radius = .45f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 3, 6));
             //craterImp.GenerateImpulse(2f);
         }
-        else if (craterSize == 1)
+        if (craterSize == 2)
         {
             craterSprite.sprite = smallCrater;
             sp.radius = .35f;
             em.SetBurst(0, new ParticleSystem.Burst(0, 2, 4));
            // craterImp.GenerateImpulse(1f);
         }
-        else
+        if (craterSize == 1)
         {
             craterSprite.sprite = smallestCrater;
             sp.radius = .2f;

@@ -41,6 +41,9 @@ public abstract class Enemy : BulletCollidable
         float knockback = projectile.stats.GetCombinedStatValue<Knockback>(enemyContext);
         TakeDamage(damage);
         ApplyKnockback(projectile.Velocity.normalized * knockback);
+
+        World.activeWorld.hitEffect.EmitBulletHit(projectile);
+
     }
 
     public virtual void ApplyKnockback(Vector2 force)

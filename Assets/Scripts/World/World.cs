@@ -13,6 +13,7 @@ public class World : MonoBehaviour
     public ExplosionSpawner explosionSpawner;
     public GameContext worldStaticContext;
     public CraterCreator craterCreator;
+    public BulletHitEffect hitEffect;
 
     //Map Variables
     public MapPool mapPool;
