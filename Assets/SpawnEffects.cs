@@ -9,6 +9,7 @@ public class SpawnEffects : MonoBehaviour
     public Animator pillarAnimator;
     public CraterCreator craterCreator;
     private bool hasCrater;
+    public LightningBolt lightningBolt;
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +17,15 @@ public class SpawnEffects : MonoBehaviour
         GameObject world = GameObject.FindWithTag ("World");
         craterCreator = world.GetComponent<CraterCreator>();
         AkSoundEngine.PostEvent("PlaySpawn", this.gameObject);
+
+       
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         AnimatorStateInfo spawnAnimState = pillarAnimator.GetCurrentAnimatorStateInfo(0);
 
         if (spawnAnimState.normalizedTime >= 0.005f && hasCrater == false)
@@ -28,9 +33,12 @@ public class SpawnEffects : MonoBehaviour
             if(craterCreator != null)
             {
                 craterCreator.CreateCrater(this.transform.position, 3);
+
             }
             spawnImp.GenerateImpulse(3f);
             hasCrater = true;
+
+            lightningBolt.CallLightning(this.transform.position);
 
         }
         if (spawnAnimState.normalizedTime >= 1f)

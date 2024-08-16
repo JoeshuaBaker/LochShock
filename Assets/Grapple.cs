@@ -53,6 +53,9 @@ public class Grapple : MonoBehaviour
     public float invincibilityTime;
     public bool speedIsDecaying;
 
+    public float grappleCD;
+    public bool onCD;
+
     public BezierCurve curve;
     public BezierPoint p0;
     public BezierPoint p1;
@@ -146,6 +149,17 @@ public class Grapple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (grappleCD > 0f)
+        {
+            grappleCD = grappleCD - Time.deltaTime;
+            onCD = true;
+        }
+        else
+        {
+            grappleCD = 0f;
+            onCD = false;
+        }
 
         if (!fireGrappling)
         {
@@ -294,6 +308,8 @@ public class Grapple : MonoBehaviour
                 if (retractDistance.magnitude <= 0.1f)
                 {
                     hideHook = true;
+                    grappleCD = 0f;
+                    onCD = false;
                     ResetToBase();
                 }
             }
@@ -489,7 +505,7 @@ public class Grapple : MonoBehaviour
 
             if (!grapplingPullPlayer)
             {
-                handScale = new Vector3(0.7f, 0.7f, 1f);
+                handScale = new Vector3(1f, 1f, 1f);
             }
             else
             {
@@ -499,7 +515,7 @@ public class Grapple : MonoBehaviour
                 }
                 else
                 {
-                    handScale = new Vector3(1f, 1f, 1f);
+                    handScale = new Vector3(1.2f, 1.2f, 1.2f);
                 }
 
 

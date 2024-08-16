@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     public Vector2 mouseDirection;
     private Vector2 moveDirection;
     public Grapple grapplingHook;
-    public float grapplingCoolDown = 0f;
+    public float grappleCoolDownCurrent;
     public float grapplingCoolDownBase = 3f;
     public float invincibilityTime;
     public float invincibilityOnHit;
@@ -401,12 +401,12 @@ public class Player : MonoBehaviour
 
     private void Physics()
     {
-        grapplingCoolDown = grapplingCoolDown - Time.deltaTime;
+        grappleCoolDownCurrent = grapplingHook.grappleCD;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && grapplingCoolDown <= 0f && !dying)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dying && !grapplingHook.onCD)
         {
             grapplingHook.fireGrappling = true;
-            grapplingCoolDown = grapplingCoolDownBase;
+            grapplingHook.grappleCD = grapplingCoolDownBase;
         }
 
         this.transform.position = new Vector3(

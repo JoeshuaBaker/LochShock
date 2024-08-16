@@ -18,8 +18,15 @@ public class GameplayUI : MonoBehaviour
     public Image orbPrefab;
     public GameObject bombReminder;
 
+    public float grappleCD;
+    public float grappleCDMax;
+
     public Animator signalLost;
 
+    public ItemMicroFrame[] microFrames;
+    public Item[] items;
+    public Gun activeGun;
+   
     //Animator State Names For Health
     private string fullHealthAnim = "UIHeartBeat";
     private string emptyHealthAnim = "UIHeartEmpty";
@@ -37,10 +44,31 @@ public class GameplayUI : MonoBehaviour
         SetTime();
         SetDistance();
 
+        if(items != null)
+        {
+            for (int i = 0; i < microFrames.Length - 1; i++)
+            {
+                
+                if(i < 3)
+                {
+                    microFrames[i + 1].item = items[i];
+                }
+                else
+                {
+                    microFrames[i + 1].item = items[i+2];
+                }
+            }
+        }
+    
+
         if(Input.GetKeyDown(KeyCode.Q) && bombReminder != null)
         {
             bombReminder.gameObject.SetActive(false);
         }
+
+        grappleCD = Player.activePlayer.grappleCoolDownCurrent;
+        grappleCDMax = Player.activePlayer.grapplingCoolDownBase;
+
     }
 
     private void SetAnimStateIfNotSet(Animator anim, AnimatorStateInfo info, string state, float normalizedTime)

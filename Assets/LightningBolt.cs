@@ -11,6 +11,7 @@ public class LightningBolt : MonoBehaviour
     public float xOffset = 3f;
     public bool zeusMode;
     public CraterCreator craterCreator;
+    public ExplosionSpawner explosionSpawner;
 
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class LightningBolt : MonoBehaviour
             Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
 
             CallLightning(worldMouse);
+            explosionSpawner.CreateDangerZone(1000f, 0f, worldMouse, true, true, true, (Vector3.one * 2f), false, Quaternion.identity, 0);
 
         }
 

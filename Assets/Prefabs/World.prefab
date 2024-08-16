@@ -10366,6 +10366,7 @@ MonoBehaviour:
   xOffset: 3
   zeusMode: 0
   craterCreator: {fileID: 1598683931}
+  explosionSpawner: {fileID: 1598683932}
 --- !u!1 &9116046784348450929
 GameObject:
   m_ObjectHideFlags: 0
@@ -10573,6 +10574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2986951450654661594}
     m_Modifications:
+    - target: {fileID: 6043499465684756500, guid: 6bb15581301eba84db37a8dbddf03988, type: 3}
+      propertyPath: lightningBolt
+      value: 
+      objectReference: {fileID: 6218924612443511780}
     - target: {fileID: 6043499465684756502, guid: 6bb15581301eba84db37a8dbddf03988, type: 3}
       propertyPath: m_RootOrder
       value: 6

@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
     //External References
     public ItemResourcesAtlas itemResourcesAtlas;
     public InventoryUI inventoryUI;
+    public GameplayUI gameplayUI;
 
     public void Setup()
     {
@@ -62,6 +63,18 @@ public class Inventory : MonoBehaviour
                 AddItem(item);
             }
         }
+
+    }
+
+    void Update()
+    {
+
+        if (gameplayUI == null)
+        {
+            Debug.Log("Inventory needs reference to GameplayUI");
+        }
+        gameplayUI.items = allItems;
+        gameplayUI.activeGun = activeGun;
     }
 
     public void OpenCloseInventory()
