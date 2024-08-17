@@ -92,29 +92,50 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool Orb()
+    public bool Orb(bool isSmall = false)
     {
         if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0 || World.activeWorld.paused)
             return false;
 
-        int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
-        Player.activePlayer.orbsHeld -= orbsSpent;
-
-        Item[] items = orbItemPools[orbsSpent - 1].GetItems(itemResourcesAtlas, allItems);
-
-        scrap += scrapPerOrb * orbsSpent;
-
-        if (inventoryUI != null)
+        if (!isSmall)
         {
-            inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-            inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
+            int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
+            Player.activePlayer.orbsHeld -= orbsSpent;
+
+            Item[] items = orbItemPools[orbsSpent - 1].GetItems(itemResourcesAtlas, allItems);
+
+            scrap += scrapPerOrb * orbsSpent;
+
+            if (inventoryUI != null)
+            {
+                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
+            }
+            else
+            {
+                Player.activePlayer.Bomb(false);
+            }
+
+            return true;
         }
         else
         {
-            Player.activePlayer.Bomb(false);
+            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas, allItems);
+
+            if (inventoryUI != null)
+            {
+                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false,true); };
+            }
+            else
+            {
+                Player.activePlayer.Bomb(false,true);
+            }
+
+            return true;
+
         }
 
-        return true;
     }
 
     public void ActivateActiveItem()

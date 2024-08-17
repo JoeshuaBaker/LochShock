@@ -5503,10 +5503,11 @@ MonoBehaviour:
   bodySprites: []
   mouseDirection: {x: 0, y: 0}
   grapplingHook: {fileID: 7771730370071348321}
-  grapplingCoolDown: 0
-  grapplingCoolDownBase: 0.2
+  grappleCoolDownCurrent: 0
+  grapplingCoolDownBase: 3
   invincibilityTime: 0
-  invincibilityOnHit: 0
+  invincibilityOnHit: 1
+  smallBombSize: 0.25
   trailPS: {fileID: 3549872110319011768}
   playerVisionProximity: {fileID: 1448059005}
   orbsHeld: 1
@@ -11008,6 +11009,7 @@ MonoBehaviour:
     uncommonChance: 0
   itemResourcesAtlas: {fileID: 11400000, guid: 6851d2033f03e1640a6c53eb629d8597, type: 2}
   inventoryUI: {fileID: 0}
+  gameplayUI: {fileID: 0}
 --- !u!1 &2564175672206511318
 GameObject:
   m_ObjectHideFlags: 0
@@ -25784,6 +25786,8 @@ MonoBehaviour:
   playerSpeedMag: 0
   invincibilityTime: 0.2
   speedIsDecaying: 0
+  grappleCD: 0
+  onCD: 0
   curve: {fileID: 515322578320065137}
   p0: {fileID: 3114992104953926355}
   p1: {fileID: 2042177494822874541}

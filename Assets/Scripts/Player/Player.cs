@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     public float grapplingCoolDownBase = 3f;
     public float invincibilityTime;
     public float invincibilityOnHit;
+    public float smallBombSize;
 
     public ParticleSystem trailPS;
     
@@ -243,7 +244,11 @@ public class Player : MonoBehaviour
 
     public void GrappleEvent(InputAction.CallbackContext context)
     {
-
+        if (!dying && !grapplingHook.onCD)
+        {
+            grapplingHook.fireGrappling = true;
+            grapplingHook.grappleCD = grapplingCoolDownBase;
+        }
     }
 
     public void UpdateInventory()
@@ -271,6 +276,7 @@ public class Player : MonoBehaviour
     public void CollectOrb()
     {
         orbsHeld += 1;
+        inventory.Orb(true);
     }
 
     public void AddBuff(Buff.Instance buffInstance)
@@ -403,12 +409,6 @@ public class Player : MonoBehaviour
     {
         grappleCoolDownCurrent = grapplingHook.grappleCD;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !dying && !grapplingHook.onCD)
-        {
-            grapplingHook.fireGrappling = true;
-            grapplingHook.grappleCD = grapplingCoolDownBase;
-        }
-
         this.transform.position = new Vector3(
             this.transform.position.x + grapplingHook.grappleVectorToPlayer.x,
             this.transform.position.y + grapplingHook.grappleVectorToPlayer.y,
@@ -490,13 +490,21 @@ public class Player : MonoBehaviour
         invincibilityTime = Mathf.Max(invincibilityTime - Time.deltaTime, 0f);
     }
 
-    public void Bomb(bool isHit)
+    public void Bomb(bool isHit, bool isSmall = false)
     {
+        float mult = 1f;
 
-        SetInvincible(invincibilityOnHit);
+        if (isSmall)
+        {
+            mult = smallBombSize;
+        }
+
+
+        SetInvincible(invincibilityOnHit * mult);
 
         if (isHit)
         {
+
             bombRingRedPS.Stop();
             bombRingRedPS.Play();
 
@@ -505,6 +513,19 @@ public class Player : MonoBehaviour
         }
         else
         {
+            var brPSm = bombRingPS.main;
+            var brrPSm = bombRingRedPS.main;
+
+            if (isSmall)
+            {
+                brPSm.startLifetime = new ParticleSystem.MinMaxCurve(0.4f, 0.6f);
+                brPSm.startSpeed = new ParticleSystem.MinMaxCurve(70f, 100f);
+            }
+            else
+            {
+                brPSm.startLifetime = brrPSm.startLifetime;
+                brPSm.startSpeed = brrPSm.startSpeed;
+            }
 
             bombRingPS.Stop();
             bombRingPS.Play();
@@ -518,16 +539,16 @@ public class Player : MonoBehaviour
 
         ring.transform.position = this.transform.position;
 
-        playerShake.GenerateImpulse(2f);
+        playerShake.GenerateImpulse(2f * mult);
 
-        Physics2D.OverlapCircle(this.transform.position.xy(), onHitKillRadius, hitFilter, hitBuffer);
+        Physics2D.OverlapCircle(this.transform.position.xy(), onHitKillRadius * mult, hitFilter, hitBuffer);
 
         foreach (Collider2D enemyCollider in hitBuffer)
         {
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.Die((enemy.transform.position - this.transform.position).magnitude * onHitKillDistanceDelay);
+                enemy.Die((enemy.transform.position - this.transform.position).magnitude * onHitKillDistanceDelay * mult);
             }
         }
     }

@@ -14,6 +14,7 @@ public class World : MonoBehaviour
     public GameContext worldStaticContext;
     public CraterCreator craterCreator;
     public BulletHitEffect hitEffect;
+    public LightningBolt lightningBolt;
 
     //Map Variables
     public MapPool mapPool;
