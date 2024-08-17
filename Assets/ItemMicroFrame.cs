@@ -30,6 +30,12 @@ public class ItemMicroFrame : MonoBehaviour
     public float animXDistance = -200f;
     public bool playAnim;
 
+    public Image grappleNub;
+    public Image activeNub;
+
+    public Sprite nubFull;
+    public Sprite nubFilling;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +71,11 @@ public class ItemMicroFrame : MonoBehaviour
                 topText.gameObject.SetActive(true);
                 topText.text = grappleCD.ToString("0.0");
                 var distancePercent = grappleCD / grappleCDMax;
+
+                grappleNub.fillAmount = 1f - distancePercent;
+                grappleNub.color = new Color(1f, 1f, 1f, 0.1f + (1f - distancePercent) * .2f);
+                grappleNub.sprite = nubFilling;
+
                 itemGlow.color = itemGlowRed;
                 itemGlow.rectTransform.localPosition = new Vector3(animXDistance * distancePercent, 0f, 0f);
                 playAnim = true;
@@ -76,6 +87,10 @@ public class ItemMicroFrame : MonoBehaviour
                 itemGlow.rectTransform.localPosition = Vector3.zero;
                 if (playAnim)
                 {
+                    grappleNub.fillAmount = 1f;
+                    grappleNub.color = new Color(1f, 1f, 1f, 1f);
+                    grappleNub.sprite = nubFull;
+
                     itemGlow.color = itemGlowBlue;
                     topText.gameObject.SetActive(false);
                     itemGlow.gameObject.SetActive(false);
@@ -94,7 +109,7 @@ public class ItemMicroFrame : MonoBehaviour
             if (item is Gun)
             {
                 Gun gun = item as Gun;
-                topText.text = $"{(gun.magazine)} / {(gun.maxMagazine)}";
+                topText.text = $"{(gun.magazine)}/{(gun.maxMagazine)}";
                 topText.gameObject.SetActive(true);
 
                 if(gun == gameplayUI.activeGun)
@@ -117,11 +132,20 @@ public class ItemMicroFrame : MonoBehaviour
                     itemGlow.color = itemGlowRed;
                     topText.gameObject.SetActive(true);
                     var distancePercent = activeItem.cooldownTimer / activeItem.cooldown;
+
+                    activeNub.fillAmount = 1f - distancePercent;
+                    activeNub.color = new Color(1f, 1f, 1f, 0.1f + (1f - distancePercent) * .2f);
+                    activeNub.sprite = nubFilling;
+
                     itemGlow.rectTransform.localPosition = new Vector3(animXDistance * distancePercent, 0f, 0f);
                     playAnim = true;
                 }
                 else
                 {
+                    activeNub.fillAmount = 1f;
+                    activeNub.color = new Color(1f, 1f, 1f, 1f);
+                    activeNub.sprite = nubFull;
+
                     itemGlow.gameObject.SetActive(true);
                     itemGlow.rectTransform.localPosition = Vector3.zero;
                     if (playAnim)
