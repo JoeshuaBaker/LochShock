@@ -8,4 +8,5 @@ public struct GameContext
     public IEnumerable<Enemy> activeEnemies;
     public Enemy closestEnemy;
     public List<Enemy> hitEnemies;
+    public List<BossSeed> hitBoss;
 }

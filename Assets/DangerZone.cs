@@ -25,6 +25,7 @@ public class DangerZone : MonoBehaviour
     public bool damageDealt;
     public bool willDealDamage;
     public bool noPS;
+    public bool damageBoss;
     public int pSLowerLim;
     public int pSUpperLim;
     public Gradient redOnePSColor;
@@ -44,7 +45,7 @@ public class DangerZone : MonoBehaviour
     public int craterSize;
 
 
-    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize)
+    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageBoss = true)
     {
 
         if(craterCreator == null)
@@ -58,6 +59,7 @@ public class DangerZone : MonoBehaviour
         this.gameObject.SetActive(true);
         animator.Play(0);
 
+        this.damageBoss = damageBoss;
         damageDealt = false;
         willDealDamage = dealsDamage;
         damageLocal = damage;
@@ -243,6 +245,11 @@ public class DangerZone : MonoBehaviour
                     if (player != null && !safeOnPlayer)
                     {
                         player.TakeDamageFromEnemy(-1);
+                    }
+                    BossSeed boss = Collider.GetComponent<BossSeed>();
+                    if (boss != null && damageBoss)
+                    {
+                        boss.TakeDamage(damageLocal);
                     }
                 }
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using BulletHell;
 using UnityEngine;
 
-public class BossSeed : MonoBehaviour
+public class BossSeed : BulletCollidable
 {
     public Animator animatorSeed;
     public Animator animatorWarning;
@@ -18,15 +19,42 @@ public class BossSeed : MonoBehaviour
     public Vector3 p1Pos;
     public float length;
     public float bossSpeed = 1f;
+    public float bossMaxDis;
     public float frameLengthOnCurve;
     public float bossLengthOnCurve;
     public float bossPercentDownCurve = 0f;
+    public float bossAccelerationTime;
+    public float bossCurrentAccelertationTime;
+    public float bossCurrentAccelertation;
 
     public float bossSpawnX = 0f;
     public float bossMaxHP;
+    public float bossCurrentHP;
+    public float bossHPPercent;
+    public float hpDecayPerSecond;
+    public float bossDRDecayPerSecond;
+    public float bossCurrentDR;
+    public float bossDRMax;
+    public float bossHpThresholdOne;
+    public bool thresholdOne;
+    public float bossHpThresholdTwo;
+    public bool thresholdTwo;
+
+    public float attackTimeTotal;
+    public float attackTime;
+    public float currentSecondsForAttack;
+    public float attacksPerSecondNoThreshold;
+    public float attacksPerSecondThresholdOne;
+    public float attacksPerSecondThresholdTwo;
+    public float secondMultNoThreshold;
+    public float secondMultThresholdOne;
+    public float secondMultThresholdTwo;
+    public float squareAtThresholdOne;
+    public float squareAtThresholdTwo;
 
     public Player player;
     public World world;
+    public ExplosionSpawner explosionSpawner;
 
     public bool setUp;
 
@@ -35,6 +63,7 @@ public class BossSeed : MonoBehaviour
     {
         player = Player.activePlayer;
         world = World.activeWorld;
+        explosionSpawner = world.explosionSpawner;
 
     }
 
@@ -48,23 +77,34 @@ public class BossSeed : MonoBehaviour
 
         if (player.transform.position.x >= bossSpawnX)
         {
+            if (!setUp)
+            {
+                bossCurrentHP = bossMaxHP;
+            }
             UpdateBossPos();
+            DecayStats();
+            Attack();
         }
+        
     }
 
     public void UpdateBossPos()
     {
         if (!setUp)
         {
-            Tile tile = world.RandomPathTileAtXPosition(2f);
+            //movement setup
+            Tile tile = world.RandomPathTileAtXPosition(bossSpawnX + 25f);
             p0Pos = tile.transform.position;
             this.transform.position = p0Pos;
             p0.transform.position = p0Pos;
 
 
-            Tile tile2 = world.RandomPathTileAtXPosition(27f);
+            Tile tile2 = world.RandomPathTileAtXPosition(bossSpawnX + 50f);
             p1Pos = tile2.transform.position;
             p1.transform.position = p1Pos;
+
+            //stat setup
+            bossCurrentDR = bossDRMax;
 
             setUp = true;
         }
@@ -87,16 +127,33 @@ public class BossSeed : MonoBehaviour
         if (bossPercentDownCurve < 1f && p0Pos != Vector3.zero)
         {
             Vector3 disToPlayer = this.transform.position - player.transform.position;
-        
-            if(disToPlayer.magnitude >= 25f)
+            float disToPlayerMag = disToPlayer.magnitude;
+
+            if(disToPlayerMag >= 25f)
             {
                 return;
             }
+
+            if(disToPlayerMag < 15f)
+            {
+                animatorWarning.SetBool("transition", true);
+            }
+
+            if(bossCurrentAccelertation < 10f)
+            {
+                bossCurrentAccelertationTime = bossCurrentAccelertationTime + Time.deltaTime;
+                bossCurrentAccelertation = Mathf.Min(bossCurrentAccelertationTime / bossAccelerationTime, 1f);
+            }
+
+            float xDif = this.transform.position.x - player.transform.position.x;
+            xDif = Mathf.Clamp(xDif, 5f, 15f);
+            float setSpeed = (bossSpeed*0.5f)+(bossSpeed * (5f / xDif) * 0.5f);
+
             p0.transform.position = p0Pos;
             p1.transform.position = p1Pos;
             length = BezierCurve.ApproximateLength(p1, p0, 100);
 
-            frameLengthOnCurve = (bossSpeed * Time.deltaTime *60f);
+            frameLengthOnCurve = (setSpeed * Time.deltaTime *60f)* bossCurrentAccelertation;
 
             bossLengthOnCurve = bossLengthOnCurve + frameLengthOnCurve;
 
@@ -104,5 +161,138 @@ public class BossSeed : MonoBehaviour
 
             this.transform.position = BezierCurve.GetPoint(p1, p0, 1f - bossPercentDownCurve);
         }
+    }
+
+    public override void ProcessCollision(ProjectileData projectile)
+    {
+        GameContext enemyContext = World.activeWorld.worldStaticContext;
+        enemyContext.hitBoss.Clear();
+        enemyContext.hitBoss.Add(this);
+        float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
+        TakeDamage(damage);
+
+        World.activeWorld.hitEffect.EmitBulletHit(projectile);
+
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+
+        bossCurrentHP = (int)Mathf.Max(bossCurrentHP - (damage*(1f- bossCurrentDR)), 0f);
+
+        //Debug.Log($"{damage} * {(1f - bossCurrentDR)} = {(damage * (1f - bossCurrentDR))}");
+
+        if (bossCurrentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void DecayStats()
+    {
+        bossHPPercent = bossCurrentHP / bossMaxHP;
+
+        if (bossHPPercent <= bossHpThresholdOne && !thresholdOne)
+        {
+            bossCurrentDR = bossDRMax;
+            thresholdOne = true;
+        }
+
+        if(bossHPPercent <= bossHpThresholdTwo && !thresholdTwo)
+        {
+            bossCurrentDR = bossDRMax;
+            thresholdTwo = true;
+        }
+
+
+
+        if (bossCurrentHP > 0f)
+        {
+            bossCurrentHP = bossCurrentHP - (hpDecayPerSecond * Time.deltaTime);
+        }
+
+        if (bossCurrentDR > 0f)
+        {
+            bossCurrentDR = bossCurrentDR - (bossDRDecayPerSecond * Time.deltaTime);
+        }
+        else
+        {
+            bossCurrentDR = 0f;
+        }
+
+        if (bossCurrentHP <= 0f)
+        {
+            Die();
+        }
+   
+    }
+
+    public void Attack()
+    {
+        attackTimeTotal = attackTimeTotal + Time.deltaTime;
+        attackTime = attackTime + Time.deltaTime;
+
+        Vector3 playerPos = player.transform.position;
+
+        Vector3 attackPos = new Vector3((playerPos.x + Random.Range(-6f, 6f)), (playerPos.y + Random.Range(-6f, 6f)), 0f);
+
+        float randomSize = Random.Range(1f, 2f);
+
+        float randomSquare = Random.Range(0f, 1f);
+
+        Vector3 scale = new Vector3(randomSize, randomSize, 1f);
+
+        Quaternion rotation = Quaternion.identity;
+
+        bool square = false;
+
+        //create flow of boss attack parameters based on boss currnt hp state
+
+        if (thresholdTwo)
+        {
+            var t = Mathf.Min(attackTimeTotal / secondMultThresholdTwo, 1f);
+
+            if (randomSquare < squareAtThresholdTwo)
+            {
+                square = true;
+                scale = new Vector3(scale.x, (scale.y * 30f), 1f);
+                rotation = Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f));
+            }
+
+            currentSecondsForAttack = attacksPerSecondThresholdTwo / (t + 1f);
+
+        }
+        else if (thresholdOne)
+        {
+            var t = Mathf.Min(attackTimeTotal / secondMultThresholdOne, 1f);
+
+            if (randomSquare < squareAtThresholdOne)
+            {
+                square = true;
+                scale = new Vector3(scale.x, (scale.y * 30f), 1f);
+                rotation = Quaternion.Euler(0f, 0f, Random.Range(-25f, 25f));
+            }
+
+            currentSecondsForAttack = attacksPerSecondThresholdOne / (t + 1f);
+
+        }
+        else
+        {
+            var t = Mathf.Min(attackTimeTotal / secondMultNoThreshold, 1f);
+
+            currentSecondsForAttack = attacksPerSecondNoThreshold / (t + 1f);
+
+        }
+
+        if (attackTime > currentSecondsForAttack)
+        {
+            explosionSpawner.CreateDangerZone(5000, 1f, attackPos, true, false, false, scale, square, rotation, 4, false);
+            attackTime = 0f;
+        }
+    }
+
+    public void Die()
+    {
+
     }
 }

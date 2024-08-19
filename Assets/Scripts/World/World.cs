@@ -101,7 +101,8 @@ public class World : MonoBehaviour
         {
             player = Player.activePlayer,
             activeEnemies = new HashSet<Enemy>(),
-            hitEnemies = new List<Enemy>()
+            hitEnemies = new List<Enemy>(),
+            hitBoss = new List<BossSeed>()
         };
     }
 
