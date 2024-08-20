@@ -51,6 +51,7 @@ namespace BulletHell
 
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
+        public DamageContext bulletContext;
 
         public void ApplyStatBlock(CombinedStatBlock stats)
         {
@@ -60,6 +61,17 @@ namespace BulletHell
             size = stats.GetCombinedStatValue<Size>(World.activeWorld.worldStaticContext);
             lifetime = stats.GetCombinedStatValue<Lifetime>(World.activeWorld.worldStaticContext);
             velocity = stats.GetCombinedStatValue<Velocity>(World.activeWorld.worldStaticContext);
+        }
+
+        public void SetupBulletContext(Gun source)
+        {
+            bulletContext = new DamageContext
+            {
+                damageType = source.damageType,
+                source = source,
+                hitEnemies = null,
+                hitBoss = null
+            };
         }
 
         public Vector2 DeltaPosition(float tick)

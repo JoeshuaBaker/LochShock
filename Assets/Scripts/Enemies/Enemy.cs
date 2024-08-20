@@ -35,8 +35,7 @@ public abstract class Enemy : BulletCollidable
     public override void ProcessCollision(ProjectileData projectile)
     {
         GameContext enemyContext = World.activeWorld.worldStaticContext;
-        enemyContext.hitEnemies.Clear();
-        enemyContext.hitEnemies.Add(this);
+        enemyContext.damageContext = projectile.bulletContext;
         float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
         float knockback = projectile.stats.GetCombinedStatValue<Knockback>(enemyContext);
         TakeDamage(damage);

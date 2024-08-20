@@ -8,6 +8,10 @@ public abstract class ActiveItem : Item
     public float cooldownTimer = 0f;
     public abstract void Activate();
     public abstract void Setup();
+    public virtual bool IsReady()
+    {
+        return cooldownTimer == 0f;
+    }
 
     public virtual void Update()
     {

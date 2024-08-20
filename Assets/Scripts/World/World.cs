@@ -100,9 +100,7 @@ public class World : MonoBehaviour
         worldStaticContext = new GameContext
         {
             player = Player.activePlayer,
-            activeEnemies = new HashSet<Enemy>(),
-            hitEnemies = new List<Enemy>(),
-            hitBoss = new List<BossSeed>()
+            activeEnemies = new HashSet<Enemy>()
         };
     }
 

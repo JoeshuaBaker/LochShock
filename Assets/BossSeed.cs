@@ -166,8 +166,8 @@ public class BossSeed : BulletCollidable
     public override void ProcessCollision(ProjectileData projectile)
     {
         GameContext enemyContext = World.activeWorld.worldStaticContext;
-        enemyContext.hitBoss.Clear();
-        enemyContext.hitBoss.Add(this);
+        enemyContext.damageContext = projectile.bulletContext;
+        enemyContext.damageContext.hitBoss = this;
         float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
         TakeDamage(damage);
 

@@ -10,9 +10,8 @@ public class GunActiveItem : ActiveItem
     private List<StatBlock> statBlocks = new List<StatBlock>();
     public override void Activate()
     {
-        if(cooldownTimer <= 0f)
+        if(IsReady())
         {
-            Debug.Log("Inside activate.");
             Vector2 mouseDirection = Player.activePlayer.mouseDirection;
             gun.shooting = true;
             gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
@@ -31,14 +30,7 @@ public class GunActiveItem : ActiveItem
 
             statBlocks.AddRange(gun.newStatsList);
             this.combinedStats.UpdateSources(statBlocks);
-            gun.ApplyNewStatBlock(combinedStats);
-            gun.emitter.ApplyStatBlock(combinedStats);
-            gun.emitter.Direction = mouseDirection;
-            gun.magazine = gun.maxMagazine;
-            gun.Shoot();
-            cooldownTimer = cooldown;
-            gun.magazine = gun.maxMagazine;
-            gun.shooting = false;
+            gun.ShootIgnoreState(this.combinedStats);
         }
     }
 

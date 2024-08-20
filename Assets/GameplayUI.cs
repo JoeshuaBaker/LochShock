@@ -44,7 +44,7 @@ public class GameplayUI : MonoBehaviour
         SetTime();
         SetDistance();
 
-        if(items != null)
+        if(items != null && items.Length > 0)
         {
             for (int i = 0; i < microFrames.Length - 1; i++)
             {

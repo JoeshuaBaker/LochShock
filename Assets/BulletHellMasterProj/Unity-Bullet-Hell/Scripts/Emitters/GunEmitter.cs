@@ -26,10 +26,26 @@ namespace BulletHell
             this.stats = stats;
         }
 
+        public override Pool<ProjectileData>.Node SetupBullet(EmitterGroup group)
+        {
+            var bullet = base.SetupBullet(group);
+            bullet.Item.SetupBulletContext(gun);
+            return bullet;
+        }
+
         protected override void ProcessHit(ref Pool<ProjectileData>.Node node, float tick)
         {
             ignoreList.Clear();
             bounceTarget.distance = int.MaxValue;
+
+            if(node.Item.bulletContext.hitEnemies == null)
+            {
+                node.Item.bulletContext.hitEnemies = new List<Enemy>();
+            }
+            else
+            {
+                node.Item.bulletContext.hitEnemies.Clear();
+            }
 
             for (int i = 0; i < RaycastHitBuffer.Count; i++)
             {
@@ -40,12 +56,15 @@ namespace BulletHell
                     continue;
                 }
 
-                Enemy enemy = RaycastHitBuffer[i].transform.GetComponent<Enemy>();
-                if (enemy != null)
+                BulletCollidable hitTarget = RaycastHitBuffer[i].transform.GetComponent<BulletCollidable>();
+                if (hitTarget is Enemy)
                 {
+                    Enemy enemy = hitTarget as Enemy;
                     node.Item.IgnoreList.Add(hitName);
+                    node.Item.bulletContext.hitEnemies.Add(enemy);
                     enemy.ProcessCollision(node.Item);
-                    foreach(OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
+
+                    foreach (OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
                     {
                         onHit.OnHit(Player.activePlayer, gun, node.Item, enemy);
                     }
@@ -60,10 +79,9 @@ namespace BulletHell
                 }
                 else
                 {
-                    BulletCollidable bulletCollidable = RaycastHitBuffer[i].transform.GetComponent<BulletCollidable>();
-                    if(bulletCollidable != null)
+                    if(hitTarget != null)
                     {
-                        bulletCollidable.ProcessCollision(node.Item);
+                        hitTarget.ProcessCollision(node.Item);
                     }
                 }
 

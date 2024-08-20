@@ -12,8 +12,7 @@ public class IsHitEnemyNearPlayer : HitEnemyCondition
             return 0f;
         }
 
-
-        foreach (Enemy enemy in context.hitEnemies)
+        foreach (Enemy enemy in context.damageContext.hitEnemies)
         {
             if ((enemy.transform.position - context.player.transform.position).magnitude <= distanceThreshold)
             {

@@ -7,6 +7,8 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
+    public DamageType damageType = DamageType.Kinetic;
+    public ReloadType reloadType = ReloadType.Magazine;
     public GunEmitter emitter;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
@@ -35,36 +37,74 @@ public class Gun : Item
             {
                 emitter = GetComponent<GunEmitter>();
             }
-            emitter.FireProjectile(emitter.Direction, 0f);
 
-            //Particle Systems
-            muzzleFlashMain.Emit(15);
-            muzzleFlashFar.Emit(5);
-            muzzleFlashClose.Emit(25);
-            ejectedCasing.Emit(1);
+            FireBullets(emitter.Direction);
 
-            //light
-            lightAnimator.Play("Base Layer.MuzzleFlashLight" , 0 , 0f);
-
-            //Audio Section
-            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
-            gunAudioEvent.Post(this.gameObject);
-
-            foreach(OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
-            {
-                onFire.OnFire(Player.activePlayer, this);
-            }
-
-            magazine -= 1;
             bulletCooldown = fireSpeed;
-            reloadTimer = 0;
+            if (reloadType != ReloadType.Charge)
+            {
+                reloadTimer = 0;
+                magazine -= 1;
+            }
+            else
+            {
+                float reloadFraction = reloadSpeed / maxMagazine;
+                reloadTimer -= reloadFraction;
+                magazine = (int)((reloadTimer / reloadSpeed) * maxMagazine);
+            }
             reloadAudio = true;
 
             //Audio Section
             if (magazine == 0)
             {                
                 AkSoundEngine.PostEvent("PlayOutOfAmmo", this.gameObject);
-            }            
+            }
+        }
+    }
+
+    public void ShootIgnoreState(CombinedStatBlock externalStatBlock = null)
+    {
+        if (!setup && externalStatBlock == null)
+        {
+            return;
+        }
+
+        if (emitter == null)
+        {
+            emitter = GetComponent<GunEmitter>();
+        }
+
+        if(externalStatBlock != null)
+        {
+            ApplyNewStatBlock(externalStatBlock);
+        }
+
+        Vector2 mouseDirection = Player.activePlayer.mouseDirection;
+        transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
+
+        FireBullets(mouseDirection);
+    }
+
+    private void FireBullets(Vector2 direction)
+    {
+        emitter.FireProjectile(direction, 0f);
+
+        //Particle Systems
+        muzzleFlashMain.Emit(15);
+        muzzleFlashFar.Emit(5);
+        muzzleFlashClose.Emit(25);
+        ejectedCasing.Emit(1);
+
+        //light
+        lightAnimator.Play("Base Layer.MuzzleFlashLight", 0, 0f);
+
+        //Audio Section
+        //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
+        gunAudioEvent.Post(this.gameObject);
+
+        foreach (OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
+        {
+            onFire.OnFire(Player.activePlayer, this);
         }
     }
 
@@ -92,13 +132,19 @@ public class Gun : Item
         emitter.gun = this;
     }
 
-    public void ApplyNewStatBlock(CombinedStatBlock stats)
+    public void ApplyNewStatBlock(CombinedStatBlock stats, bool resetAmmo = false)
     {
         setup = true;
         combinedStats = stats;
         reloadSpeed = stats.GetCombinedStatValue<ReloadSpeed>(World.activeWorld.worldStaticContext);
         fireSpeed = stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
-        maxMagazine = (int) stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
+        maxMagazine = (int)stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
+        if(resetAmmo)
+        {
+            magazine = maxMagazine;
+            reloadTimer = 0;
+        }
+        emitter.ApplyStatBlock(combinedStats);
     }
 
     // Update is called once per frame
@@ -114,28 +160,47 @@ public class Gun : Item
 
         emitter.ApplyStatBlock(combinedStats);
 
-        if(magazine < maxMagazine)
+        if (magazine < maxMagazine)
         {
             reloadTimer = Mathf.Min(reloadTimer + Time.deltaTime, reloadSpeed);
         }
 
-        if(reloadTimer >= reloadSpeed)
+        switch (reloadType)
         {
-            magazine = maxMagazine;
-            reloadTimer = 0;
+            case ReloadType.Magazine:
+                if (reloadTimer >= reloadSpeed)
+                {
+                    magazine = maxMagazine;
+                    reloadTimer = 0;
 
-            //Audio Section
-            if (reloadAudio)
-            {
-                AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
-            }
+                    //Audio Section
+                    if (reloadAudio)
+                    {
+                        AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
+                    }
 
-            foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
-            {
-                onReload.OnReload(Player.activePlayer, this);
-            }
+                    foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
+                    {
+                        onReload.OnReload(Player.activePlayer, this);
+                    }
+                }
+
+                Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                break;
+
+            case ReloadType.Charge:
+                magazine = (int)((reloadTimer / reloadSpeed) * maxMagazine);
+                Crosshair.activeCrosshair.UpdateCrosshair(true, reloadTimer / reloadSpeed, magazine.ToString());
+                break;
+
+            case ReloadType.Incremental:
+                if (reloadTimer >= reloadSpeed)
+                {
+                    reloadTimer -= reloadSpeed;
+                    magazine = Mathf.Min(magazine + 1, maxMagazine);
+                }
+                Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                break;
         }
-
-        Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
     }
 }
