@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BulletHell;
 using UnityEngine;
+using Cinemachine;
 
 public class BossSeed : BulletCollidable
 {
@@ -32,6 +33,7 @@ public class BossSeed : BulletCollidable
     public float bossCurrentHP;
     public float bossHPPercent;
     public float hpDecayPerSecond;
+    public float decayFloor;
     public float bossDRDecayPerSecond;
     public float bossCurrentDR;
     public float bossDRMax;
@@ -52,9 +54,29 @@ public class BossSeed : BulletCollidable
     public float squareAtThresholdOne;
     public float squareAtThresholdTwo;
 
+    bool dying;
+    public Animator deathAnimator;
+    public GameObject deathContainer;
+    public GameObject deathAnimRotator;
+    public bool deathSetup;
+    public ParticleSystem deathPS;
+    public bool triggerDeathPS;
+    public float deathPSRadius;
+    public float radiusPerSecond;
+    public GameObject bossBody;
+    public GameObject bossColorPSParent;
+    public ParticleSystem bloodPSOne;
+    public ParticleSystem bloodPSTwo;
+
+    public CinemachineImpulseSource shaker;
+    public float shakerLoopMultperSecond =5f;
+    public float shakeMult;
+    public float baseShake = 0.1f;
+
     public Player player;
     public World world;
     public ExplosionSpawner explosionSpawner;
+
 
     public bool setUp;
 
@@ -81,9 +103,17 @@ public class BossSeed : BulletCollidable
             {
                 bossCurrentHP = bossMaxHP;
             }
-            UpdateBossPos();
-            DecayStats();
-            Attack();
+            if (!dying)
+            { 
+                UpdateBossPos();
+                DecayStats();
+                Attack();
+            }
+            if (dying)
+            {
+                DieUpdate();
+            }
+   
         }
         
     }
@@ -206,9 +236,10 @@ public class BossSeed : BulletCollidable
 
 
 
-        if (bossCurrentHP > 0f)
+        if (bossCurrentHP > decayFloor)
         {
             bossCurrentHP = bossCurrentHP - (hpDecayPerSecond * Time.deltaTime);
+            
         }
 
         if (bossCurrentDR > 0f)
@@ -220,10 +251,6 @@ public class BossSeed : BulletCollidable
             bossCurrentDR = 0f;
         }
 
-        if (bossCurrentHP <= 0f)
-        {
-            Die();
-        }
    
     }
 
@@ -291,8 +318,79 @@ public class BossSeed : BulletCollidable
         }
     }
 
+
     public void Die()
     {
+        dying = true;
+
+        // stop the player from inputting anything
+        // invincible the player
+        // stop timer
+        // reverse enemies
+
+        if (!deathSetup)
+        {
+            Vector3 pos = this.transform.position - player.transform.position;
+
+            deathContainer.SetActive(true);
+
+            deathAnimRotator.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(pos.x, pos.y, 0f)).eulerAngles;
+
+            deathSetup = true;
+
+        }
+
+        // if sufficiently through death animation hide boss base
+        //         and deathwall
+
+
+       // mission success screen
+       // loop or return to menu
+
+    }
+
+    public void DieUpdate()
+    {
+        float angle = Random.Range(5f, 30f);
+
+        var bloodRad1 = bloodPSOne.shape;
+        var bloodRad2 = bloodPSTwo.shape;
+
+        bloodRad1.angle = angle;
+        bloodRad2.angle = angle;
+
+        AnimatorStateInfo animState = deathAnimator.GetCurrentAnimatorStateInfo(0);
+
+
+
+        if (animState.normalizedTime >= .1f)
+        {
+            bossColorPSParent.SetActive(false);
+        }
+
+        if (!triggerDeathPS)
+        {
+            shakeMult = shakeMult + (shakerLoopMultperSecond * Time.deltaTime);
+
+            shaker.GenerateImpulse(baseShake * shakeMult);
+   
+        }
+
+        if (animState.normalizedTime >= 0.95f && !triggerDeathPS)
+        {
+            deathPS.Play();
+            triggerDeathPS = true;
+            bossBody.SetActive(false);
+            shaker.GenerateImpulse(13f);
+        }
+       
+        if (triggerDeathPS)
+        {
+            deathPSRadius = deathPSRadius + (radiusPerSecond * Time.deltaTime);
+
+            var shape = deathPS.shape;
+            shape.radius = deathPSRadius;
+        }
 
     }
 }

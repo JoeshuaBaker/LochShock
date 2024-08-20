@@ -25768,8 +25768,8 @@ MonoBehaviour:
   grappleSpeedDecay: 8
   grappleVectorToPlayer: {x: 0, y: 0, z: 0}
   grappleSpeedBreak: 2
-  grappleSpeedBreakBase: 0
-  grappleSpeedBreakMult: 0
+  grappleSpeedBreakBase: 2
+  grappleSpeedBreakMult: 4
   retractDistance: {x: 0, y: 0, z: 0}
   updatedPos: {x: 0, y: 0, z: 0}
   lastPos: {x: 0, y: 0, z: 0}
@@ -25799,7 +25799,7 @@ MonoBehaviour:
   holdPoint: {x: 0, y: 0, z: 0}
   totalLength: 0
   currentLength: 0
-  divisionDistance: 0.5
+  divisionDistance: 0.6
   pointsPositions: []
   pointArraySize: 7
   curvePercent: 0
@@ -65505,7 +65505,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 553862989
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 7bb7e283db7af5745899be8c6ca81ead, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
