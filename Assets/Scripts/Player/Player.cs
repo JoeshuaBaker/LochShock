@@ -95,6 +95,9 @@ public class Player : MonoBehaviour
     public CinemachineImpulseSource playerShake;
     public ExplosionSpawner explosionSpawner;
 
+    [Header("Boss Info")]
+    public bool bossDead;
+
     //vision variables
     public float totalVision = 1f;
     private float visionConeAngle = 20f;
@@ -163,17 +166,24 @@ public class Player : MonoBehaviour
         {
             return;
         }
-
-        CheckDeath();
-        DecayInvincible();
-        UpdateStatBlocks();
-        OnSecond();
-        Move();
-        Physics();
-        MouseAim();
-        DrawSprites();
-        Shoot();
-        SetVision();
+        if (!bossDead)
+        {
+            CheckDeath();
+            DecayInvincible();
+            UpdateStatBlocks();
+            OnSecond();
+            Move();
+            Physics();
+            MouseAim();
+            DrawSprites();
+            Shoot();
+            SetVision();
+        }
+        else
+        {
+            SetInvincible(1f);
+        }
+ 
         UpdateInventory();
         UpdateUI();
     }
@@ -244,7 +254,7 @@ public class Player : MonoBehaviour
 
     public void GrappleEvent(InputAction.CallbackContext context)
     {
-        if (!dying && !grapplingHook.onCD)
+        if (!dying && !grapplingHook.onCD && !bossDead)
         {
             grapplingHook.fireGrappling = true;
             grapplingHook.grappleCD = grapplingCoolDownBase;

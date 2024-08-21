@@ -13,6 +13,8 @@ public class DeathWall : MonoBehaviour
     private float posX = 0;
     private bool wallDeath = false;
 
+    public bool bossDead;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,21 @@ public class DeathWall : MonoBehaviour
 
     private void MoveWall()
     {
-        //float posX = deathWall.transform.position.x;
-        posX = deathWall.transform.position.x;
+        if (!bossDead)
+        {
+            //float posX = deathWall.transform.position.x;
+            posX = deathWall.transform.position.x;
 
-        posX = Mathf.Max(posX + (speed * Time.deltaTime), player.transform.position.x - maxDistance);
+            posX = Mathf.Max(posX + (speed * Time.deltaTime), player.transform.position.x - maxDistance);
 
-        deathWall.transform.position = new Vector3(posX, player.transform.position.y, deathWall.transform.position.z);
+            deathWall.transform.position = new Vector3(posX, player.transform.position.y, deathWall.transform.position.z);
+        }
+        else
+        {
+            posX = player.transform.position.x - 50f;
+            deathWall.transform.position = new Vector3(posX, deathWall.transform.position.y, 0f);
+        }
+
     }
 
     void WallDamage()

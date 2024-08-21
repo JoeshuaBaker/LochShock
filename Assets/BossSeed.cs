@@ -28,10 +28,10 @@ public class BossSeed : BulletCollidable
     public float bossCurrentAccelertationTime;
     public float bossCurrentAccelertation;
 
-    public float bossSpawnX = 0f;
+    public int bossSpawnX = 0;
     public float bossMaxHP;
     public float bossCurrentHP;
-    public float bossHPPercent;
+    public float bossHPPercent = 1f;
     public float hpDecayPerSecond;
     public float decayFloor;
     public float bossDRDecayPerSecond;
@@ -54,7 +54,7 @@ public class BossSeed : BulletCollidable
     public float squareAtThresholdOne;
     public float squareAtThresholdTwo;
 
-    bool dying;
+    public bool dying;
     public Animator deathAnimator;
     public GameObject deathContainer;
     public GameObject deathAnimRotator;
@@ -67,6 +67,10 @@ public class BossSeed : BulletCollidable
     public GameObject bossColorPSParent;
     public ParticleSystem bloodPSOne;
     public ParticleSystem bloodPSTwo;
+    public bool deathFinished;
+    public float deathFinishedTime = 3f;
+    public float deathFinishedCurrent;
+
 
     public CinemachineImpulseSource shaker;
     public float shakerLoopMultperSecond =5f;
@@ -97,25 +101,24 @@ public class BossSeed : BulletCollidable
             return;
         }
 
-        if (player.transform.position.x >= bossSpawnX)
+        if (!setUp)
         {
-            if (!setUp)
-            {
-                bossCurrentHP = bossMaxHP;
-            }
-            if (!dying)
-            { 
-                UpdateBossPos();
-                DecayStats();
-                Attack();
-            }
-            if (dying)
-            {
-                DieUpdate();
-            }
-   
+            bossCurrentHP = bossMaxHP;
         }
-        
+        if (!dying)
+        {
+            UpdateBossPos();
+            DecayStats();
+            Attack();
+        }
+        if (dying)
+        {
+
+            bossHPPercent = 0f;
+            DieUpdate();
+
+        }
+
     }
 
     public void UpdateBossPos()
@@ -236,9 +239,9 @@ public class BossSeed : BulletCollidable
 
 
 
-        if (bossCurrentHP > decayFloor)
+        if (bossHPPercent > decayFloor)
         {
-            bossCurrentHP = bossCurrentHP - (hpDecayPerSecond * Time.deltaTime);
+            bossCurrentHP = bossCurrentHP - (hpDecayPerSecond * bossMaxHP * Time.deltaTime);
             
         }
 
@@ -326,6 +329,7 @@ public class BossSeed : BulletCollidable
         // stop the player from inputting anything
         // invincible the player
         // stop timer
+        // hide ui?
         // reverse enemies
 
         if (!deathSetup)
@@ -340,9 +344,7 @@ public class BossSeed : BulletCollidable
 
         }
 
-        // if sufficiently through death animation hide boss base
-        //         and deathwall
-
+        // if sufficiently through death animation hide deathwall
 
        // mission success screen
        // loop or return to menu
@@ -361,11 +363,10 @@ public class BossSeed : BulletCollidable
 
         AnimatorStateInfo animState = deathAnimator.GetCurrentAnimatorStateInfo(0);
 
-
-
         if (animState.normalizedTime >= .1f)
         {
             bossColorPSParent.SetActive(false);
+            bossBody.SetActive(false);
         }
 
         if (!triggerDeathPS)
@@ -379,18 +380,35 @@ public class BossSeed : BulletCollidable
         if (animState.normalizedTime >= 0.95f && !triggerDeathPS)
         {
             deathPS.Play();
+            deathPS.Emit(3);
             triggerDeathPS = true;
-            bossBody.SetActive(false);
             shaker.GenerateImpulse(13f);
         }
        
         if (triggerDeathPS)
         {
+            var shape = deathPS.shape;
+            
             deathPSRadius = deathPSRadius + (radiusPerSecond * Time.deltaTime);
 
-            var shape = deathPS.shape;
             shape.radius = deathPSRadius;
+
+            if(deathFinishedCurrent >= deathFinishedTime)
+            {
+
+                deathFinished = true;
+            }
+            else
+            {
+                deathFinishedCurrent = deathFinishedCurrent + Time.deltaTime;
+            }
+
         }
 
+    }
+
+    public void SetDistance(int spawnX)
+    {
+        bossSpawnX = spawnX;
     }
 }

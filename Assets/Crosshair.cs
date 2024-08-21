@@ -10,6 +10,7 @@ public class Crosshair : MonoBehaviour
     public Image reloadIndicator;
     public TextMeshProUGUI ammoIndicator;
     public TextMeshProUGUI ammoIndicatorShadow;
+    public GameObject crosshairVis;
 
     public static Crosshair activeCrosshair;
 

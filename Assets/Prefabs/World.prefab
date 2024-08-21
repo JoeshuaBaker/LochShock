@@ -406,6 +406,9 @@ MonoBehaviour:
   craterCreator: {fileID: 1598683931}
   hitEffect: {fileID: 4466764341723074483}
   lightningBolt: {fileID: 6218924612443511780}
+  gameplayUi: {fileID: 0}
+  crosshairVis: {fileID: 0}
+  deathWall: {fileID: 1598683936}
   mapPool: {fileID: 2986951450654661593}
   playerInBounds: {fileID: 0}
   startingMap: {fileID: 778304412622747737, guid: 2e6607af629cfb94387d106b6c1ee135, type: 3}
@@ -466,6 +469,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   enemySpawnRateDecayTime: 10
   orbDecayMaxtime: 1
+  boss: {fileID: 2328696272206670772, guid: 83d73001c2f9fa04396f598f462ca900, type: 3}
+  spawnedBoss: {fileID: 0}
+  bossSpawnDistance: 0
+  bossSpawned: 0
+  bossDead: 0
+  bossDeathFinished: 0
 --- !u!114 &1598683931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +569,7 @@ MonoBehaviour:
   speed: 2.75
   maxDistance: 25
   xDamageOffset: -1
+  bossDead: 0
 --- !u!1 &2986951450815733420
 GameObject:
   m_ObjectHideFlags: 0

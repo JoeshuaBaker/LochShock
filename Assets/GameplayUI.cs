@@ -18,10 +18,22 @@ public class GameplayUI : MonoBehaviour
     public Image orbPrefab;
     public GameObject bombReminder;
 
+    public GameObject middleContainer;
+    public GameObject timeContainer;
+    public GameObject leftContainer;
+    public GameObject bottomContainer;
+
+    public bool bossActive;
+    public Image bossHP;
+    public float bossHpPercent;
+    public bool bossDead;
+    public bool bossDeathFinished;
+
     public float grappleCD;
     public float grappleCDMax;
 
     public Animator signalLost;
+    public TMP_Text endText;
 
     public ItemMicroFrame[] microFrames;
     public Item[] items;
@@ -68,6 +80,11 @@ public class GameplayUI : MonoBehaviour
 
         grappleCD = Player.activePlayer.grappleCoolDownCurrent;
         grappleCDMax = Player.activePlayer.grapplingCoolDownBase;
+
+        if (bossActive)
+        {
+            UpdateBossBar();
+        }
 
     }
 
@@ -156,7 +173,7 @@ public class GameplayUI : MonoBehaviour
 
     public void SetTime()
     {
-        if(!Player.activePlayer.isDead)
+        if(!Player.activePlayer.isDead || !bossDead)
         {
             timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
         }
@@ -169,11 +186,42 @@ public class GameplayUI : MonoBehaviour
 
     public void ShowSignalLost()
     {
-        signalLost.gameObject.SetActive(true);
+        if (!bossDeathFinished)
+        {
+            signalLost.gameObject.SetActive(true);
+        }
+        else
+        {
+            endText.text = "MISSION CLEAR!";
+            signalLost.gameObject.SetActive(true);
+        }
     }
 
     public void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void UpdateBossBar()
+    {
+        if (!bossDead)
+        {
+            bottomContainer.SetActive(true);
+            bossHP.fillAmount = bossHpPercent;
+        }
+        if (bossDead && !bossDeathFinished)
+        {
+            bottomContainer.SetActive(false);
+            leftContainer.SetActive(false);
+            timeContainer.SetActive(false);
+        }
+        if (bossDeathFinished)
+        {
+            leftContainer.SetActive(true);
+            timeContainer.SetActive(true);
+
+            ShowSignalLost();
+
+        }
     }
 }

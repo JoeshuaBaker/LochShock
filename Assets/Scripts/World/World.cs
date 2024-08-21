@@ -15,6 +15,9 @@ public class World : MonoBehaviour
     public CraterCreator craterCreator;
     public BulletHitEffect hitEffect;
     public LightningBolt lightningBolt;
+    public GameplayUI gameplayUi;
+    public GameObject crosshairVis;
+    public DeathWall deathWall;
 
     //Map Variables
     public MapPool mapPool;
@@ -41,6 +44,14 @@ public class World : MonoBehaviour
     public float orbDecayMaxtime = 1.5f;
 
     //internal state variables
+
+    //boss variables
+    public BossSeed boss;
+    public BossSeed spawnedBoss;
+    public int bossSpawnDistance;
+    public bool bossSpawned;
+    public bool bossDead;
+    public bool bossDeathFinished;
 
 
     // Start is called before the first frame update
@@ -80,12 +91,23 @@ public class World : MonoBehaviour
                 spawnContainer.transform.position = player.transform.position;
             }
         }
+
+        if(gameplayUi == null)
+        {
+            Debug.Log("world needs gameplayUI reference");
+        }
+        if(crosshairVis == null)
+        {
+            Debug.Log("world needs CrosshairVisibility reference, Camera->worldspaceui->crosshaircontainer->crosshairVis");
+        }
+
     }
 
     void Update()
     {
         UpdateMaps();
         UpdateEnemies();
+        UpdateBoss();
     }
 
     public void Pause(bool pause)
@@ -335,5 +357,42 @@ public class World : MonoBehaviour
         }
 
         return mapIndex;
+    }
+
+    public void UpdateBoss()
+    {
+        if( player.transform.position.x >= bossSpawnDistance && !bossSpawned)
+        {
+            spawnedBoss = Instantiate(boss);
+            spawnedBoss.SetDistance(bossSpawnDistance);
+
+            spawnedBoss.bossCurrentHP = spawnedBoss.bossMaxHP;
+
+            bossSpawned = true;
+            gameplayUi.bossActive = true;
+        }
+        if(spawnedBoss != null)
+        {
+            if(spawnedBoss.bossHPPercent <= 0f)
+            {
+
+                bossDead = true;
+                gameplayUi.bossDead = true;
+                player.bossDead = true;
+                deathWall.bossDead = true;
+
+                crosshairVis.SetActive(false);
+
+                bossDeathFinished = spawnedBoss.deathFinished;
+                gameplayUi.bossDeathFinished = spawnedBoss.deathFinished;
+
+                if (bossDeathFinished)
+                {
+                    crosshairVis.SetActive(true);
+                }
+            }
+
+            gameplayUi.bossHpPercent = spawnedBoss.bossHPPercent;
+        }
     }
 }
