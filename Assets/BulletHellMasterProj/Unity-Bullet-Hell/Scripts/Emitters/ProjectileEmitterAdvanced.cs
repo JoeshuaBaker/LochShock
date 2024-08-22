@@ -154,7 +154,7 @@ namespace BulletHell
 
             //Since bullet 0 always goes directly in the direction of the stream, we can handle 
             int indexBullet = bullet;
-            int evenBullets = isEven ? bulletsPerShot : bulletsPerShot - 1;
+            int evenBullets = isEven || bulletsPerShot == 1 ? bulletsPerShot : bulletsPerShot - 1;
                 
             //skip over the middle angle once we're halfway through the bullets for even numbers of bullets
             if (isEven && indexBullet >= evenBullets / 2) 
