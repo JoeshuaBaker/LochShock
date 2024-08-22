@@ -196,16 +196,14 @@ public class BossSeed : BulletCollidable
         }
     }
 
-    public override void ProcessCollision(ProjectileData projectile)
+    public override void ProcessCollision(ProjectileData projectile, RaycastHit2D hitInfo)
     {
         GameContext enemyContext = World.activeWorld.worldStaticContext;
         enemyContext.damageContext = projectile.bulletContext;
         enemyContext.damageContext.hitBoss = this;
         float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
         TakeDamage(damage);
-
         World.activeWorld.hitEffect.EmitBulletHit(projectile);
-
     }
 
     public virtual void TakeDamage(float damage)

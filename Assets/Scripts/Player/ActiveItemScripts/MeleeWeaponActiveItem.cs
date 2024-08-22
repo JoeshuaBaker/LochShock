@@ -31,7 +31,7 @@ public class MeleeWeaponActiveItem : ActiveItem
             isActive = true;
             playTime = 0f;
             cooldownTimer = cooldown;
-            mouseDirection = Player.activePlayer.mouseDirection;
+            mouseDirection = Player.activePlayer.lookDirection;
             modifiedMouseDirection = mouseDirection;
             if (mouseDirection.x < 0)
             {

@@ -71,14 +71,17 @@ public class BulletHitEffect : MonoBehaviour
         
     }
 
-    public void EmitBulletHit(ProjectileData collision)
+    public void EmitBulletHit(ProjectileData projectile)
     {
+        if (!projectile.emitBulletHitParticle)
+            return;
+
         var shapeMod = hitPS.shape;
 
-        this.transform.position = collision.Position;
+        this.transform.position = projectile.Position;
+        var direction = projectile.Velocity.normalized;
 
-        Vector2 dir = collision.Velocity.normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         shapeMod.arc = 140;

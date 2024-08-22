@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using BulletHell;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -7,9 +8,17 @@ using TMPro;
 //Extend Item
 public class Gun : Item
 {
+    public enum GunType
+    {
+        Emitter,
+        GameObject
+    }
+
+    public GunType gunType = GunType.Emitter;
     public DamageType damageType = DamageType.Kinetic;
     public ReloadType reloadType = ReloadType.Magazine;
     public GunEmitter emitter;
+    public Projectile projectile;
     public ParticleSystem muzzleFlashMain;
     public ParticleSystem muzzleFlashFar;
     public ParticleSystem muzzleFlashClose;
@@ -19,26 +28,25 @@ public class Gun : Item
     public Animator lightAnimator;
     public AK.Wwise.Event gunAudioEvent;
 
+    private ProjectilePool projectilePool;
     public bool shooting = false;
     public bool setup = false;
     private float reloadSpeed;
     private float reloadTimer;
     public float fireSpeed;
     public float bulletCooldown;
+    public float firePositionOffset = 0.25f;
+    private Vector2 direction;
+    private Vector2 lookPosition;
     public int maxMagazine;
     public int magazine;
     private bool reloadAudio = false;
 
     public void Shoot()
     {
-        if (setup && shooting && magazine > 0 && bulletCooldown == 0)
+        if (IsReady())
         {
-            if(emitter == null)
-            {
-                emitter = GetComponent<GunEmitter>();
-            }
-
-            FireBullets(emitter.Direction);
+            FireBullets(direction, lookPosition);
 
             bulletCooldown = fireSpeed;
             if (reloadType != ReloadType.Charge)
@@ -69,25 +77,52 @@ public class Gun : Item
             return;
         }
 
-        if (emitter == null)
-        {
-            emitter = GetComponent<GunEmitter>();
-        }
-
         if(externalStatBlock != null)
         {
             ApplyNewStatBlock(externalStatBlock);
         }
 
-        Vector2 mouseDirection = Player.activePlayer.mouseDirection;
+        //get lookdirection here, since the gun wont be recieving updates as it's not the active weapon
+        Vector2 mouseDirection = Player.activePlayer.lookDirection;
+        Vector2 mousePosition = Player.activePlayer.lookPosition;
         transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
 
-        FireBullets(mouseDirection);
+        FireBullets(mouseDirection, mousePosition);
     }
 
-    private void FireBullets(Vector2 direction)
+    private void FireBullets(Vector2 direction, Vector2 mousePosition)
     {
-        emitter.FireProjectile(direction, 0f);
+        if(gunType == GunType.Emitter)
+        {
+            emitter.FireProjectile(direction, 0f);
+        }
+        else if(gunType == GunType.GameObject)
+        {
+            GameContext context = World.activeWorld.worldStaticContext;
+            int bulletStreams = (int) combinedStats.GetCombinedStatValue<BulletStreams>(context);
+            int bulletsPerShot = (int)combinedStats.GetCombinedStatValue<BulletsPerShot>(context);
+            float accuracy = combinedStats.GetCombinedStatValue<Accuracy>(context);
+            float spreadAngle = combinedStats.GetCombinedStatValue<SpreadAngle>(context);
+
+            if(bulletStreams == 1 && bulletsPerShot == 1)
+            {
+                Projectile projectile = projectilePool.GetProjectile();
+                projectile.SetupProjectile(this, combinedStats, transform.position + direction.xyz() * firePositionOffset, direction, mousePosition);
+            }
+            else
+            {
+                int i = 0;
+                Projectile[] projectiles = projectilePool.GetProjectiles(bulletStreams, bulletsPerShot);
+                for(int stream = 0; stream < bulletStreams; stream++)
+                {
+                    for(int bullet = 0; bullet < bulletsPerShot; bullet++)
+                    {
+                        Vector2 bulletDirection = ProjectileEmitterAdvanced.GetDirectionByStreamsAndShots(direction, stream, bulletStreams, bullet, bulletsPerShot, accuracy, spreadAngle);
+                        projectiles[i++].SetupProjectile(this, combinedStats, transform.position + bulletDirection.xyz() * firePositionOffset, bulletDirection, mousePosition, stream, bullet);
+                    }
+                }
+            }
+        }
 
         //Particle Systems
         muzzleFlashMain.Emit(15);
@@ -124,12 +159,28 @@ public class Gun : Item
         setup = false;
         magazine = maxMagazine;
 
-        if(emitter == null)
+        if(gunType == GunType.Emitter)
         {
-            emitter = GetComponent<GunEmitter>();
+            if(emitter == null)
+            {
+                Debug.LogWarning("Gun " + name + " is set to emitter type, but doesn't have an emitter reference. Please set it up in the inspector on the prefab. Trying GetComponent.");
+                emitter = GetComponent<GunEmitter>();
+                if(emitter == null)
+                {
+                    Debug.LogError("Gun " + name + " is set to emitter type, but doesn't have an emitter component attached. Game will probably crash when you try to fire :)");
+                    return;
+                }
+            }
+            emitter.gun = this;
         }
-
-        emitter.gun = this;
+        else if(gunType == GunType.GameObject)
+        {
+            if(projectile == null)
+            {
+                Debug.LogError("Gun " + name + " is set to GameObject type, but doesn't have a projectile prefab. Please set it up in the inspector on the prefab. Game will probably crash when you try to fire :)");
+                return;
+            }
+        }
     }
 
     public void ApplyNewStatBlock(CombinedStatBlock stats, bool resetAmmo = false)
@@ -139,12 +190,27 @@ public class Gun : Item
         reloadSpeed = stats.GetCombinedStatValue<ReloadSpeed>(World.activeWorld.worldStaticContext);
         fireSpeed = stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
         maxMagazine = (int)stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
-        if(resetAmmo)
+        if (resetAmmo)
         {
             magazine = maxMagazine;
             reloadTimer = 0;
         }
-        emitter.ApplyStatBlock(combinedStats);
+
+        if (gunType == GunType.Emitter)
+        {
+            emitter.ApplyStatBlock(combinedStats);
+        }
+        else if(gunType == GunType.GameObject)
+        {
+            if(projectilePool == null)
+            {
+                projectilePool = new ProjectilePool(projectile, stats);
+            }
+            else
+            {
+                projectilePool.UpdateProjectilePool(stats);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -153,12 +219,27 @@ public class Gun : Item
         bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
     }
 
-    public void UpdateActiveGun()
+    private bool IsReady()
+    {
+        if(gunType == GunType.Emitter && emitter == null)
+        {
+            return false;
+        }
+        else if(gunType == GunType.GameObject && (projectile == null || projectilePool == null) )
+        {
+            return false;
+        }
+        return setup && shooting && magazine > 0 && bulletCooldown == 0;
+    }
+
+    public void UpdateActiveGun(Vector2 lookDirection, Vector2 lookPosition)
     {
         if (!setup)
             return;
 
-        emitter.ApplyStatBlock(combinedStats);
+        direction = lookDirection;
+        this.lookPosition = lookPosition;
+        transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(lookDirection.x, lookDirection.y, 0f)).eulerAngles;
 
         if (magazine < maxMagazine)
         {
@@ -185,12 +266,12 @@ public class Gun : Item
                     }
                 }
 
-                Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
                 break;
 
             case ReloadType.Charge:
                 magazine = (int)((reloadTimer / reloadSpeed) * maxMagazine);
-                Crosshair.activeCrosshair.UpdateCrosshair(true, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, true, reloadTimer / reloadSpeed, magazine.ToString());
                 break;
 
             case ReloadType.Incremental:
@@ -199,8 +280,16 @@ public class Gun : Item
                     reloadTimer -= reloadSpeed;
                     magazine = Mathf.Min(magazine + 1, maxMagazine);
                 }
-                Crosshair.activeCrosshair.UpdateCrosshair(!Input.GetKey(KeyCode.Mouse0) || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
                 break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(gunType == GunType.GameObject)
+        {
+            projectilePool.Cleanup();
         }
     }
 }

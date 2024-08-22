@@ -16,7 +16,6 @@ public class GameplayUI : MonoBehaviour
     public List<Image> orbList;
     public Animator healthPrefab;
     public Image orbPrefab;
-    public GameObject bombReminder;
 
     public GameObject middleContainer;
     public GameObject timeContainer;
@@ -71,21 +70,18 @@ public class GameplayUI : MonoBehaviour
                 }
             }
         }
-    
-
-        if(Input.GetKeyDown(KeyCode.Q) && bombReminder != null)
-        {
-            bombReminder.gameObject.SetActive(false);
-        }
-
-        grappleCD = Player.activePlayer.grappleCoolDownCurrent;
-        grappleCDMax = Player.activePlayer.grapplingCoolDownBase;
 
         if (bossActive)
         {
             UpdateBossBar();
         }
 
+    }
+
+    public void SetGrapple(float grappleCDCurrent, float grappleCDBase)
+    {
+        grappleCD = grappleCDCurrent;
+        grappleCDMax = grappleCDBase;
     }
 
     private void SetAnimStateIfNotSet(Animator anim, AnimatorStateInfo info, string state, float normalizedTime)

@@ -26,10 +26,11 @@ namespace BulletHell
             this.stats = stats;
         }
 
-        public override Pool<ProjectileData>.Node SetupBullet(EmitterGroup group)
+        public override Pool<ProjectileData>.Node SetupBullet(EmitterGroup group, Vector2 direction)
         {
-            var bullet = base.SetupBullet(group);
+            var bullet = base.SetupBullet(group, direction);
             bullet.Item.SetupBulletContext(gun);
+            bullet.Item.Position += direction * gun.firePositionOffset;
             return bullet;
         }
 
@@ -40,7 +41,7 @@ namespace BulletHell
 
             if(node.Item.bulletContext.hitEnemies == null)
             {
-                node.Item.bulletContext.hitEnemies = new List<Enemy>();
+                node.Item.bulletContext.hitEnemies = new HashSet<Enemy>();
             }
             else
             {
@@ -62,7 +63,7 @@ namespace BulletHell
                     Enemy enemy = hitTarget as Enemy;
                     node.Item.IgnoreList.Add(hitName);
                     node.Item.bulletContext.hitEnemies.Add(enemy);
-                    enemy.ProcessCollision(node.Item);
+                    enemy.ProcessCollision(node.Item, RaycastHitBuffer[i]);
 
                     foreach (OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
                     {
@@ -81,7 +82,7 @@ namespace BulletHell
                 {
                     if(hitTarget != null)
                     {
-                        hitTarget.ProcessCollision(node.Item);
+                        hitTarget.ProcessCollision(node.Item, RaycastHitBuffer[i]);
                     }
                 }
 

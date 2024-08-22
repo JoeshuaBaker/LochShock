@@ -23,11 +23,11 @@ namespace BulletHell
         protected int GroupCount {
             get
             {
-                return Mathf.Max((int) stats.GetCombinedStatValue<BulletStreams>(World.activeWorld.worldStaticContext), 1);
+                return Mathf.Max((int)stats.GetCombinedStatValue<BulletStreams>(World.activeWorld.worldStaticContext), 1);
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
-        [Range(0, 90), SerializeField] protected float AccuracyAngle = 30;
+        [Range(0, 90), SerializeField] protected static float AccuracyAngle = 30;
         protected int SpokeCount {
             get
             {
@@ -71,7 +71,7 @@ namespace BulletHell
             RefreshGroups();
         }
 
-        
+
 
         public virtual void Start()
         {
@@ -144,6 +144,36 @@ namespace BulletHell
             }
         }
 
+        public static Vector2 GetDirectionByStreamsAndShots(Vector2 lookDirection, int stream, int bulletStreams, int bullet, int bulletsPerShot, float accuracy, float spreadAngle)
+        {
+            Vector2 streamDirection = Rotate(lookDirection, 360f * (stream / (float)bulletStreams));
+            streamDirection = Rotate(streamDirection, AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - accuracy, 0f, 1f));
+
+            Vector2 bulletDirection;
+            bool isEven = bulletsPerShot % 2 == 0;
+
+            //Since bullet 0 always goes directly in the direction of the stream, we can handle 
+            int indexBullet = bullet;
+            int evenBullets = isEven ? bulletsPerShot : bulletsPerShot - 1;
+                
+            //skip over the middle angle once we're halfway through the bullets for even numbers of bullets
+            if (isEven && indexBullet >= evenBullets / 2) 
+                indexBullet += 1;
+                
+            float spreadAngleFraction = (spreadAngle*2) / evenBullets;
+            float rotateDegrees = spreadAngle - spreadAngleFraction * indexBullet;
+            
+            //for even numbers of streams, bunch them a bit closer to 0 so not having a middle bullet stream isn't so annoying
+            if (isEven)
+            {
+                rotateDegrees = rotateDegrees > 0 ? rotateDegrees + (spreadAngleFraction / 2) : rotateDegrees - (spreadAngleFraction / 2);
+            }
+
+            bulletDirection = Rotate(streamDirection, rotateDegrees);
+
+            return bulletDirection;
+        }
+
         public override void FireProjectile(Vector2 direction, float leakedTime)
         {
             Pool<ProjectileData>.Node node;
@@ -151,44 +181,15 @@ namespace BulletHell
             Direction = direction;
             RefreshGroups();
 
-            for (int g = 0; g < GroupCount; g++)
+            for (int stream = 0; stream < GroupCount; stream++)
             {
                 if (Projectiles.AvailableCount >= SpokeCount)
                 {
-                    float rotation = 0;
-                    bool swap = false;
-
-                    for (int n = 0; n < SpokeCount; n++)
+                    for (int bullet = 0; bullet < SpokeCount; bullet++)
                     {
-                        var group = Groups[g];
-                        node = SetupBullet(Groups[g]);
-                        float spacing = SpokeSpacing;
-                        int f;
-
-                        if (SpokeCount % 2 == 0)
-                        {
-                            f = (n + 2) / 2;
-                        }
-                        else
-                        {
-                            f = (n+1) / 2;
-                        }
-
-                        if (swap)
-                        {
-                            f *= -1;
-                        }
-
-                        rotation = spacing * f;
-
-                        if (SpokeCount % 2 == 0)
-                        {
-                            rotation -= SpokeSpacing / 2f * ((swap) ? -1 : 1);
-                        }
-
-                        float randomAccuracyAngle = AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - stats.GetCombinedStatValue<Accuracy>(World.activeWorld.worldStaticContext), 0f, 1f);
-                        Vector2 accuracyDirection = Rotate(group.Direction, randomAccuracyAngle);
-                        node.Item.Velocity = Speed * Rotate(accuracyDirection, rotation).normalized;
+                        float accuracy = stats.GetCombinedStatValue<Accuracy>(World.activeWorld.worldStaticContext);
+                        Vector2 bulletDirection = GetDirectionByStreamsAndShots(Direction, stream, GroupCount, bullet, SpokeCount, accuracy, SpokeSpacing);
+                        node = SetupBullet(Groups[stream], bulletDirection);
 
                         // Keep track of active projectiles                       
                         PreviousActiveProjectileIndexes[ActiveProjectileIndexesPosition] = node.NodeIndex;
@@ -219,23 +220,21 @@ namespace BulletHell
                             renderer.Clear();
                             rendererDict.Add(node.NodeIndex, renderer);
                         }
-
-                        swap = !swap;
                     }
 
-                    if (Groups[g].InvertRotation)
-                        Groups[g].Direction = Rotate(Groups[g].Direction, -RotationSpeed);
+                    if (Groups[stream].InvertRotation)
+                        Groups[stream].Direction = Rotate(Groups[stream].Direction, -RotationSpeed);
                     else
-                        Groups[g].Direction = Rotate(Groups[g].Direction, RotationSpeed);
+                        Groups[stream].Direction = Rotate(Groups[stream].Direction, RotationSpeed);
                 }
             }
         }
 
-        public virtual Pool<ProjectileData>.Node SetupBullet(EmitterGroup group)
+        public virtual Pool<ProjectileData>.Node SetupBullet(EmitterGroup group, Vector2 direction)
         {
             Pool<ProjectileData>.Node node = Projectiles.Get();
-            node.Item.Position = transform.position;
-            node.Item.ApplyStatBlock(stats);
+            node.Item.SetupProjectileData(stats, transform.position, Speed * direction);
+
             node.Item.Gravity = Gravity;
             if (UseFollowTarget && FollowTargetType == FollowTargetType.LockOnShot && Target != null)
             {
@@ -246,14 +245,6 @@ namespace BulletHell
             node.Item.FollowTarget = UseFollowTarget;
             node.Item.FollowIntensity = FollowIntensity;
             node.Item.Target = Target;
-            if(node.Item.IgnoreList == null)
-            {
-                node.Item.IgnoreList = new HashSet<string>();
-            }
-            else
-            {
-                node.Item.IgnoreList.Clear();
-            }
 
             // Setup outline if we have one
             if (ProjectilePrefab.Outline != null && DrawOutlines)
@@ -466,6 +457,7 @@ namespace BulletHell
         protected virtual bool PhysicsMove(ref Pool<ProjectileData>.Node node, float tick)
         {
             bool bounceMove = false;
+
             // Collision was detected, should we bounce off or destroy the projectile?
             if (BounceOffSurfaces)
             {

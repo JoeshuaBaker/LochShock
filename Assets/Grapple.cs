@@ -146,6 +146,15 @@ public class Grapple : MonoBehaviour
 
     }
 
+    public void StartGrapple(float grappleCDBase)
+    {
+        if(!onCD)
+        {
+            fireGrappling = true;
+            grappleCD = grappleCDBase;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -171,10 +180,6 @@ public class Grapple : MonoBehaviour
             return;
         }
 
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = -Camera.main.transform.position.z;
-        Vector3 worldMouse = Camera.main.ScreenToWorldPoint(mousePos);
-
         if (grapplingPullPlayer)
         {
             this.transform.position = holdPoint;
@@ -190,9 +195,7 @@ public class Grapple : MonoBehaviour
             updatedPos = activePlayer.transform.position;
             this.transform.position = updatedPos;
 
-            Vector3 dirToMouse = worldMouse - activePlayer.transform.position;
-            Vector2 xyToMouse = new Vector2(dirToMouse.x, dirToMouse.y);
-            xyToMouse = xyToMouse.normalized;
+            Vector2 xyToMouse = Player.activePlayer.lookDirection;
 
             this.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(xyToMouse.x, xyToMouse.y, 0f)).eulerAngles;
 

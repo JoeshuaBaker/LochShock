@@ -28,18 +28,22 @@ public class Crosshair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var screenPoint = Input.mousePosition;
-        screenPoint.z = 19.5f;
+        //var screenPoint = Input.mousePosition;
+        //screenPoint.z = 19.5f;
 
-        crosshair.transform.position = new Vector3( screenPoint.x , screenPoint.y , 0f );
-        crosshair.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        
     }
 
-    public void UpdateCrosshair(bool reloading, float reloadFill, string currentAmmo)
+    public void UpdateCrosshair(Vector2 position, bool reloading, float reloadFill, string currentAmmo)
     {
         ammoIndicator.text = currentAmmo;
         ammoIndicatorShadow.text = currentAmmo;
         reloadIndicator.gameObject.SetActive(reloading);
+
+        Vector3 screenPoint = Camera.main.WorldToScreenPoint(new Vector3(position.x, position.y, 0f));
+
+        crosshair.transform.position = new Vector3(screenPoint.x, screenPoint.y, 0f);
+        crosshair.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
 
         if (reloading)
         {

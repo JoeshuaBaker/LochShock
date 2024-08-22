@@ -5,5 +5,5 @@ using BulletHell;
 
 public abstract class BulletCollidable : MonoBehaviour
 {
-    public abstract void ProcessCollision(ProjectileData projectile);
+    public abstract void ProcessCollision(ProjectileData projectile, RaycastHit2D hitInfo);
 }

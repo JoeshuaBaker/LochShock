@@ -167,7 +167,6 @@ public class DangerZone : MonoBehaviour
                 dzShape.scale = new Vector3(3f, 3f, 1f);
 
                 redRingPS.Stop();
-
             }
             else
             {
@@ -225,49 +224,45 @@ public class DangerZone : MonoBehaviour
     {
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
 
-        
         if (animState.IsName("DangerZoneFinish") && damageDealt == false && willDealDamage)
         {
 
-                damageDealt = true;
+            damageDealt = true;
 
-                Physics2D.OverlapCollider(activeCollider, hitFilter, hitBuffer);
+            Physics2D.OverlapCollider(activeCollider, hitFilter, hitBuffer);
 
-                foreach (Collider2D Collider in hitBuffer)
+            foreach (Collider2D Collider in hitBuffer)
+            {
+                Enemy enemy = Collider.GetComponent<Enemy>();
+                if (enemy != null)
                 {
-                    Enemy enemy = Collider.GetComponent<Enemy>();
-                    if (enemy != null)
-                    {
-                        enemy.TakeDamage(damageLocal);
-                        continue;
-                    }
-                    Player player = Collider.GetComponent<Player>();
-                    if (player != null && !safeOnPlayer)
-                    {
-                        player.TakeDamageFromEnemy(-1);
-                    }
-                    BossSeed boss = Collider.GetComponent<BossSeed>();
-                    if (boss != null && damageBoss)
-                    {
-                        boss.TakeDamage(damageLocal);
-                    }
+                    enemy.TakeDamage(damageLocal);
+                    continue;
                 }
 
+                Player player = Collider.GetComponent<Player>();
+                if (player != null && !safeOnPlayer)
+                {
+                    player.TakeDamageFromEnemy(-1);
+                    continue;
+                }
+
+                BossSeed boss = Collider.GetComponent<BossSeed>();
+                if (boss != null && damageBoss)
+                {
+                    boss.TakeDamage(damageLocal);
+                }
+            }
 
             if(craterSize > 0)
             {
                 craterCreator.CreateCrater(this.transform.position, craterSize);
             }
-                
-           
-      
         }
         
-
         if (animState.IsName("DangerZoneFinish") && animState.normalizedTime >= 1)
         {
             this.gameObject.SetActive(false);
         }
-
     }
 }

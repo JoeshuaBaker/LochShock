@@ -159,7 +159,7 @@ MonoBehaviour:
       events: []
     stacks: 1
     active: 0
-  newCombinedStats:
+  combinedStats:
     combinedStatBlock:
       stats: []
       events:
@@ -167,7 +167,11 @@ MonoBehaviour:
       stacks: 1
       active: 0
     sourcesList: []
+  gunType: 0
+  damageType: 1
+  reloadType: 0
   emitter: {fileID: 4877568093956301522}
+  projectile: {fileID: 0}
   muzzleFlashMain: {fileID: 2358985088711768590}
   muzzleFlashFar: {fileID: 2358985088730576086}
   muzzleFlashClose: {fileID: 2358985089367228530}
@@ -180,7 +184,10 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 0}
   shooting: 0
+  setup: 0
   fireSpeed: 0
+  bulletCooldown: 0
+  firePositionOffset: 0.5
   maxMagazine: 0
   magazine: 0
   references:
@@ -282,7 +289,6 @@ MonoBehaviour:
   PulseSpeed: 0
   UseStaticPulse: 0
   GroupSpacing: 1
-  AccuracyAngle: 30
   MirrorPairRotation: 0
   PairGroupDirection: 0
   UseFollowTarget: 0

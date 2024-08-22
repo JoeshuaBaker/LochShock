@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
@@ -39,7 +40,10 @@ public class MovieDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Video.frame == LogoSFXFrame)
+        var mouse = Mouse.current;
+        var gamepad = Gamepad.current;
+
+        if (Video.frame == LogoSFXFrame)
         {
             PlaySound(3);
         }
@@ -65,7 +69,7 @@ public class MovieDirector : MonoBehaviour
                 {
                     titleUiContainer.SetActive(true);
                 }
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (mouse.leftButton.isPressed || gamepad.aButton.isPressed)
                 {
                     ImageAnimation.frame += 1;
                     ImageAnimation.playing = true;
@@ -77,7 +81,7 @@ public class MovieDirector : MonoBehaviour
             {
                 titleUiContainer.SetActive(false);
                 tutorialWindow.SetActive(true);
-                if(Input.GetKeyDown(KeyCode.Mouse0))
+                if(mouse.leftButton.isPressed || gamepad.aButton.isPressed)
                 {
                     //Audio Section
                     AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);

@@ -26,6 +26,7 @@ namespace BulletHell
         }
         public float Rotation;
         public Color Color;
+        public bool emitBulletHitParticle;
         public CombinedStatBlock stats;
         public float pierces = 0f;
         public float bounces = 0f;
@@ -52,6 +53,23 @@ namespace BulletHell
         // Stores the pooled node that is used to draw the shadow for this projectile
         public Pool<ProjectileData>.Node Outline;
         public DamageContext bulletContext;
+
+        public void SetupProjectileData(CombinedStatBlock stats, Vector3 position, Vector2 velocity, bool emitBulletHitParticle = true)
+        {
+            ApplyStatBlock(stats);
+            Position = position;
+            Velocity = velocity;
+            this.emitBulletHitParticle = emitBulletHitParticle;
+
+            if (IgnoreList == null)
+            {
+                IgnoreList = new HashSet<string>();
+            }
+            else
+            {
+                IgnoreList.Clear();
+            }
+        }
 
         public void ApplyStatBlock(CombinedStatBlock stats)
         {

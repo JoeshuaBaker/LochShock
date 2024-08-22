@@ -315,6 +315,7 @@ Transform:
   - {fileID: 3461520090563742209}
   - {fileID: 3659499515422971769}
   - {fileID: 1585264479630324696}
+  - {fileID: 3012819815773620313}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -409,6 +410,7 @@ MonoBehaviour:
   gameplayUi: {fileID: 0}
   crosshairVis: {fileID: 0}
   deathWall: {fileID: 1598683936}
+  projectilePoolParent: {fileID: 3012819815773620313}
   mapPool: {fileID: 2986951450654661593}
   playerInBounds: {fileID: 0}
   startingMap: {fileID: 778304412622747737, guid: 2e6607af629cfb94387d106b6c1ee135, type: 3}
@@ -10326,6 +10328,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &5874646017403826514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3012819815773620313}
+  m_Layer: 0
+  m_Name: ProjectilePoolParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3012819815773620313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874646017403826514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2986951450654661594}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6189237160321322798
 GameObject:
   m_ObjectHideFlags: 0

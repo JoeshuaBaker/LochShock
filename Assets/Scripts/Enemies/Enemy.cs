@@ -32,7 +32,7 @@ public abstract class Enemy : BulletCollidable
         return freezeTime > 0;
     }
 
-    public override void ProcessCollision(ProjectileData projectile)
+    public override void ProcessCollision(ProjectileData projectile, RaycastHit2D hitInfo)
     {
         GameContext enemyContext = World.activeWorld.worldStaticContext;
         enemyContext.damageContext = projectile.bulletContext;
@@ -42,7 +42,6 @@ public abstract class Enemy : BulletCollidable
         ApplyKnockback(projectile.Velocity.normalized * knockback);
 
         World.activeWorld.hitEffect.EmitBulletHit(projectile);
-
     }
 
     public virtual void ApplyKnockback(Vector2 force)

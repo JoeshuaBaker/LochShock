@@ -12,7 +12,7 @@ public class GunActiveItem : ActiveItem
     {
         if(IsReady())
         {
-            Vector2 mouseDirection = Player.activePlayer.mouseDirection;
+            Vector2 mouseDirection = Player.activePlayer.lookDirection;
             gun.shooting = true;
             gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
 

@@ -18,6 +18,7 @@ public class World : MonoBehaviour
     public GameplayUI gameplayUi;
     public GameObject crosshairVis;
     public DeathWall deathWall;
+    public Transform projectilePoolParent;
 
     //Map Variables
     public MapPool mapPool;

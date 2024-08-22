@@ -56,7 +56,11 @@ public class Player : MonoBehaviour
     public Sprite[][] limbSpritesUp;
     public Sprite[][] limbSpritesDown;
     private Vector2[] vectors;
-    public Vector2 mouseDirection;
+    public Vector2 lookDirection;
+    public Vector2 lookPosition;
+    private float gamepadLookRingSize;
+    private Vector2 lookDiff;
+    private float lastLookTime;
     private Vector2 moveDirection;
     public Grapple grapplingHook;
     public float grappleCoolDownCurrent;
@@ -115,6 +119,8 @@ public class Player : MonoBehaviour
         world.SetupContext();
         UpdateStatBlocks();
 
+        gamepadLookRingSize = Camera.main.ScreenToWorldPoint(new Vector3(0f, 1f, -Camera.main.transform.position.z)).magnitude/2.25f;
+        Debug.Log(gamepadLookRingSize);
         currentHp = (int) baseStats.GetStatValue<Health>();
         hitbox = GetComponent<Collider2D>();
         hitBuffer = new List<Collider2D>();
@@ -174,9 +180,8 @@ public class Player : MonoBehaviour
             OnSecond();
             Move();
             Physics();
-            MouseAim();
             DrawSprites();
-            Shoot();
+            LookAndShoot();
             SetVision();
         }
         else
@@ -195,19 +200,31 @@ public class Player : MonoBehaviour
 
     public void LookEvent(InputAction.CallbackContext context)
     {
-        
         if(context.action.activeControl.device is Mouse)
         {
             var value = context.ReadValue<Vector2>();
             var mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
-            mouseDirection = (mousePos - this.transform.position).xy().normalized;
+            lookPosition = mousePos.xy();
+            lookDiff = (mousePos - this.transform.position).xy();
+            lookDirection = lookDiff.normalized;
+            lastLookTime = Time.realtimeSinceStartup;
+
+            if(world.paused)
+            {
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, false, 0, "");
+            }
         }
         else if(context.action.activeControl.device is Gamepad)
         {
             var value = context.ReadValue<Vector2>();
-            if(value != Vector2.zero && value.magnitude > 0.25f)
+            var magnitude = value.magnitude;
+            if(magnitude > 0.40f)
             {
-                mouseDirection = value.normalized;
+                lookDirection = value.normalized;
+
+                lookPosition = transform.position.xy() + lookDirection * gamepadLookRingSize;
+                lookDiff = lookPosition - this.transform.position.xy();
+                lastLookTime = Time.realtimeSinceStartup;
             }
         }
     }
@@ -249,15 +266,19 @@ public class Player : MonoBehaviour
 
     public void ItemEvent(InputAction.CallbackContext context)
     {
-        inventory.ActivateActiveItem();
+        bool pressed = context.ReadValueAsButton();
+        if (context.started && pressed)
+        {
+            inventory.ActivateActiveItem();
+        }
     }
 
     public void GrappleEvent(InputAction.CallbackContext context)
     {
-        if (!dying && !grapplingHook.onCD && !bossDead)
+        bool pressed = context.ReadValueAsButton();
+        if (context.started && pressed && !dying && !bossDead)
         {
-            grapplingHook.fireGrappling = true;
-            grapplingHook.grappleCD = grapplingCoolDownBase;
+            grapplingHook.StartGrapple(grapplingCoolDownBase);
         }
     }
 
@@ -446,9 +467,6 @@ public class Player : MonoBehaviour
             }
             
         }
-
-
-
     }
 
     public void TakeDamageFromEnemy(int damage)
@@ -483,8 +501,6 @@ public class Player : MonoBehaviour
         }
 
         Bomb(true);
-
-
     }
 
     public void SetInvincible(float time)
@@ -569,14 +585,7 @@ public class Player : MonoBehaviour
         {            
             Execute();
         }
-
-    }
-
-    private void MouseAim()
-    {
-        inventory.activeGun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
-        inventory.activeGun.emitter.Direction = mouseDirection;
-    }
+    } 
 
     private void DrawSprites()
     {
@@ -584,8 +593,8 @@ public class Player : MonoBehaviour
         int lowestIndex = -1;
         for (int i = 0; i < vectors.Length; i++)
         {
-            float dx = vectors[i].x - mouseDirection.x;
-            float dy = vectors[i].y - mouseDirection.y;
+            float dx = vectors[i].x - lookDirection.x;
+            float dy = vectors[i].y - lookDirection.y;
             float dist = Mathf.Abs(dx) + Mathf.Abs(dy);
             if (dist < lowestDist)
             {
@@ -640,12 +649,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void LookAndShoot()
     {
         if(!dying)
         {
+            if (Time.realtimeSinceStartup - lastLookTime > Time.deltaTime)
+            {
+                lookPosition = this.transform.position.xy() + lookDiff;
+            }
+            inventory.activeGun.UpdateActiveGun(lookDirection, lookPosition);
             inventory.activeGun.Shoot();
-            inventory.activeGun.UpdateActiveGun();
         }
     }
 
@@ -698,6 +711,7 @@ public class Player : MonoBehaviour
 
             gameplayUI.SetHp(currentHp, maxHp);
             gameplayUI.SetOrbs((int)orbsHeld);
+            gameplayUI.SetGrapple(grappleCoolDownCurrent, grapplingCoolDownBase);
 
             if(isDead)
             {
