@@ -104,16 +104,16 @@ public class Inventory : MonoBehaviour
 
             Item[] items = orbItemPools[orbsSpent - 1].GetItems(itemResourcesAtlas, allItems);
 
-            scrap += scrapPerOrb * orbsSpent;
+            scrap += scrapPerOrb;
 
             if (inventoryUI != null)
             {
                 inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
+                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
             }
             else
             {
-                Player.activePlayer.Bomb(false);
+                Player.activePlayer.Bomb(false,true);
             }
 
             return true;

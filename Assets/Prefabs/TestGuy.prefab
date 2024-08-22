@@ -5512,9 +5512,11 @@ MonoBehaviour:
   playerVisionProximity: {fileID: 1448059005}
   orbsHeld: 1
   timeSinceOrbUsed: 0
+  orbCharged: 0
   inventory: {fileID: 7190304627210002517}
   dying: 0
   isDead: 0
+  isDeadTimer: 0
   damagePS: {fileID: 364535932100318208}
   diePS: {fileID: 3710433306318285332}
   dieWallPS: {fileID: 9123324458591195197}
@@ -5531,6 +5533,7 @@ MonoBehaviour:
   hitboxSprite: {fileID: 3006511753813725052}
   playerShake: {fileID: 4982996356575460773}
   explosionSpawner: {fileID: 0}
+  bossDead: 0
   totalVision: 1
   references:
     version: 1
@@ -10981,7 +10984,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   scrap: 0
-  scrapPerOrb: 25
+  scrapPerOrb: 100
   orbItemPools:
   - numOrbsSpent: 1
     numDrops: 3

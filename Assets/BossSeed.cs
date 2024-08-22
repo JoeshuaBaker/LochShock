@@ -20,6 +20,7 @@ public class BossSeed : BulletCollidable
     public Vector3 p1Pos;
     public float length;
     public float bossSpeed = 1f;
+    public float catchUpSpeed;
     public float bossMaxDis;
     public float frameLengthOnCurve;
     public float bossLengthOnCurve;
@@ -71,6 +72,8 @@ public class BossSeed : BulletCollidable
     public float deathFinishedTime = 3f;
     public float deathFinishedCurrent;
 
+    public List<Collider2D> hitBuffer;
+    public ContactFilter2D hitFilter;
 
     public CinemachineImpulseSource shaker;
     public float shakerLoopMultperSecond =5f;
@@ -91,6 +94,14 @@ public class BossSeed : BulletCollidable
         world = World.activeWorld;
         explosionSpawner = world.explosionSpawner;
 
+        hitBuffer = new List<Collider2D>();
+        hitFilter = new ContactFilter2D
+        {
+            useTriggers = false,
+            layerMask = 1 << LayerMask.NameToLayer("Enemy"),
+            useLayerMask = true
+        };
+
     }
 
     // Update is called once per frame
@@ -110,6 +121,7 @@ public class BossSeed : BulletCollidable
             UpdateBossPos();
             DecayStats();
             Attack();
+            KillNearEnemies();
         }
         if (dying)
         {
@@ -162,9 +174,23 @@ public class BossSeed : BulletCollidable
             Vector3 disToPlayer = this.transform.position - player.transform.position;
             float disToPlayerMag = disToPlayer.magnitude;
 
-            if(disToPlayerMag >= 25f)
+            float xDif = this.transform.position.x - player.transform.position.x;
+
+            if (xDif >= 25f)
             {
                 return;
+            }
+
+            if (xDif < 0f)
+            {
+                catchUpSpeed = catchUpSpeed + (bossSpeed * 0.2f * Time.deltaTime);
+            }
+            else
+            { 
+                if(catchUpSpeed > 0f)
+                {
+                    catchUpSpeed = Mathf.Max(catchUpSpeed - (bossSpeed * 0.4f * Time.deltaTime), 0f);
+                }    
             }
 
             if(disToPlayerMag < 15f)
@@ -178,9 +204,9 @@ public class BossSeed : BulletCollidable
                 bossCurrentAccelertation = Mathf.Min(bossCurrentAccelertationTime / bossAccelerationTime, 1f);
             }
 
-            float xDif = this.transform.position.x - player.transform.position.x;
+            
             xDif = Mathf.Clamp(xDif, 5f, 15f);
-            float setSpeed = (bossSpeed*0.5f)+(bossSpeed * (5f / xDif) * 0.5f);
+            float setSpeed = (bossSpeed*0.5f)+(bossSpeed * (5f / xDif) * 0.5f)+ catchUpSpeed;
 
             p0.transform.position = p0Pos;
             p1.transform.position = p1Pos;
@@ -316,6 +342,20 @@ public class BossSeed : BulletCollidable
         {
             explosionSpawner.CreateDangerZone(5000, 1f, attackPos, true, false, false, scale, square, rotation, 4, false);
             attackTime = 0f;
+        }
+    }
+
+    public void KillNearEnemies()
+    {
+        Physics2D.OverlapCircle(this.transform.position, 1.8f, hitFilter, hitBuffer);
+
+        foreach (Collider2D enemyCollider in hitBuffer)
+        {
+            Enemy enemy = enemyCollider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Die();
+            }
         }
     }
 

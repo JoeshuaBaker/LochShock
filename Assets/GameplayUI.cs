@@ -10,6 +10,7 @@ public class GameplayUI : MonoBehaviour
     public TMP_Text distanceText;
     public TMP_Text activeAmmoText;
     public TMP_Text inactiveAmmoText;
+    public TMP_Text orbChargeText;
     public Transform healthParent;
     public List<Animator> healthList;
     public Transform orbParent;
@@ -137,7 +138,7 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    public void SetOrbs(int orbs)
+    public void SetOrbs(int orbs , bool orbsCharged = false, int orbsChargedNumber = 0)
     {
         if(orbs > orbList.Count)
         {
@@ -149,8 +150,28 @@ public class GameplayUI : MonoBehaviour
 
         for(int i = 0; i < orbList.Count; i++)
         {
-            orbList[i].gameObject.SetActive(i < orbs);
+            if (!orbsCharged)
+            {
+                orbList[i].gameObject.SetActive(i < orbs);
+            }
+            else
+            {
+                orbList[i].gameObject.SetActive(false);
+                
+            }
+            
         }
+        if (!orbsCharged)
+        {
+            orbChargeText.gameObject.SetActive(false);
+        }
+        else
+        {
+            orbChargeText.text = $"NEXT ORB CHARGED x{Mathf.Min(orbsChargedNumber, 4)}";
+            orbChargeText.gameObject.SetActive(true);
+        }
+        
+
     }
 
     public void SetAmmo(int activeCurrentAmmo, int activeMaxAmmo, int inactiveCurrentAmmo = -1, int inactiveMaxAmmo = -1)
@@ -169,7 +190,7 @@ public class GameplayUI : MonoBehaviour
 
     public void SetTime()
     {
-        if(!Player.activePlayer.isDead || !bossDead)
+        if(!Player.activePlayer.isDead && !bossDead)
         {
             timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
         }

@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     //public List<StatBlock> allStats;
 
     public StatBlock baseStats;
-    public CombinedStatBlock Stats {
+    public CombinedStatBlock Stats
+    {
         get { return combinedNewStats; }
     }
     public CombinedStatBlock combinedNewStats;
@@ -70,10 +71,12 @@ public class Player : MonoBehaviour
     public float smallBombSize;
 
     public ParticleSystem trailPS;
-    
+
     public Light2D playerVisionProximity;
     public float orbsHeld;
     public float timeSinceOrbUsed;
+    public bool orbCharged;
+    public int orbsChargedNumber;
     public Inventory inventory;
     ContactFilter2D hitFilter;
     List<Collider2D> hitBuffer;
@@ -82,6 +85,7 @@ public class Player : MonoBehaviour
     [Header("Death Animation Components")]
     public bool dying;
     public bool isDead;
+    public float isDeadTimer;
     public ParticleSystem damagePS;
     public ParticleSystem diePS;
     public ParticleSystem dieWallPS;
@@ -113,15 +117,16 @@ public class Player : MonoBehaviour
     {
         activePlayer = this;
     }
-    
-    private void Start() {
+
+    private void Start()
+    {
         inventory.Setup();
         world.SetupContext();
         UpdateStatBlocks();
 
-        gamepadLookRingSize = Camera.main.ScreenToWorldPoint(new Vector3(0f, 1f, -Camera.main.transform.position.z)).magnitude/2.25f;
+        gamepadLookRingSize = Camera.main.ScreenToWorldPoint(new Vector3(0f, 1f, -Camera.main.transform.position.z)).magnitude / 2.25f;
         Debug.Log(gamepadLookRingSize);
-        currentHp = (int) baseStats.GetStatValue<Health>();
+        currentHp = (int)baseStats.GetStatValue<Health>();
         hitbox = GetComponent<Collider2D>();
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -135,7 +140,7 @@ public class Player : MonoBehaviour
 
         slowFastRatio = slowVel / fastVel;
 
-        if(bodyRenderer == null || limbRenderer == null)
+        if (bodyRenderer == null || limbRenderer == null)
         {
             Debug.LogError("Setup spriterenderers on Player " + this.name);
         }
@@ -147,7 +152,7 @@ public class Player : MonoBehaviour
         limbSpritesUp = new Sprite[limbSpriteName.Length][];
         limbSpritesDown = new Sprite[limbSpriteName.Length][];
 
-        for(int i = 0; i < limbSprites.Length; i++)
+        for (int i = 0; i < limbSprites.Length; i++)
         {
             limbSprites[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteName[i]);
             limbSpritesUp[i] = Resources.LoadAll<Sprite>(spriteSheetDirectory + limbSpriteUpName[i]);
@@ -155,9 +160,9 @@ public class Player : MonoBehaviour
         }
 
         vectors = new Vector2[bodySprites.Length];
-        float degrees = 360.0f/(float)vectors.Length;
+        float degrees = 360.0f / (float)vectors.Length;
         float currentDegrees = 0;
-        for(int i = 0; i < vectors.Length; i++)
+        for (int i = 0; i < vectors.Length; i++)
         {
             Vector3 v3 = (Quaternion.Euler(0, 0, currentDegrees) * Vector3.right);
             vectors[i].x = v3.x;
@@ -170,6 +175,10 @@ public class Player : MonoBehaviour
     {
         if (World.activeWorld.paused || isDead)
         {
+            if (isDead)
+            {
+                UpdateUI();
+            }
             return;
         }
         if (!bossDead)
@@ -188,7 +197,7 @@ public class Player : MonoBehaviour
         {
             SetInvincible(1f);
         }
- 
+
         UpdateInventory();
         UpdateUI();
     }
@@ -200,7 +209,7 @@ public class Player : MonoBehaviour
 
     public void LookEvent(InputAction.CallbackContext context)
     {
-        if(context.action.activeControl.device is Mouse)
+        if (context.action.activeControl.device is Mouse)
         {
             var value = context.ReadValue<Vector2>();
             var mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
@@ -209,16 +218,16 @@ public class Player : MonoBehaviour
             lookDirection = lookDiff.normalized;
             lastLookTime = Time.realtimeSinceStartup;
 
-            if(world.paused)
+            if (world.paused)
             {
                 Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, false, 0, "");
             }
         }
-        else if(context.action.activeControl.device is Gamepad)
+        else if (context.action.activeControl.device is Gamepad)
         {
             var value = context.ReadValue<Vector2>();
             var magnitude = value.magnitude;
-            if(magnitude > 0.40f)
+            if (magnitude > 0.40f)
             {
                 lookDirection = value.normalized;
 
@@ -239,9 +248,12 @@ public class Player : MonoBehaviour
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying)
         {
-            if (inventory.Orb())
+            if (!orbCharged && orbsHeld > 0)
             {
+                orbCharged = true;
+                orbsChargedNumber = Mathf.Min((int)orbsHeld, 5);
                 timeSinceOrbUsed = 0f;
+                Bomb(false);
             }
         }
     }
@@ -288,7 +300,7 @@ public class Player : MonoBehaviour
 
         var psmain = trailPS.main;
 
-        psmain.startLifetime = 0.5f + Mathf.Min((timeSinceOrbUsed * 0.025f ) , 1.5f);
+        psmain.startLifetime = 0.5f + Mathf.Min((timeSinceOrbUsed * 0.025f), 1.5f);
     }
 
     public void UpdateHp(int hpChange)
@@ -306,8 +318,17 @@ public class Player : MonoBehaviour
 
     public void CollectOrb()
     {
+        if (orbCharged)
+        {
+            inventory.Orb();
+            orbCharged = false;
+        }
+        else
+        {
+            inventory.Orb(true);
+        }
         orbsHeld += 1;
-        inventory.Orb(true);
+
     }
 
     public void AddBuff(Buff.Instance buffInstance)
@@ -349,7 +370,7 @@ public class Player : MonoBehaviour
     {
         Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
 
-        if(tileUnderPlayer != null)
+        if (tileUnderPlayer != null)
         {
             onPath = tileUnderPlayer.collider2d.OverlapPoint(this.transform.position.xy());
         }
@@ -360,35 +381,35 @@ public class Player : MonoBehaviour
 
         if (onPath)
         {
-            totalVision = Mathf.Min (totalVision + 0.0005f, 1f);
-            
-            if ( offPathCounter > 0)
+            totalVision = Mathf.Min(totalVision + (0.1f * Time.deltaTime), 1f);
+
+            if (offPathCounter > 0)
             {
-                totalVision = Mathf.Min (totalVision + 0.04f, 1f);
-                offPathCounter = offPathCounter - 1f;
+                totalVision = Mathf.Min(totalVision + (1f * Time.deltaTime), 1f);
+                offPathCounter = offPathCounter - Time.deltaTime;
             }
-        } 
+        }
         else
         {
-            totalVision = Mathf.Max (totalVision - 0.0025f, 0f);
+            totalVision = Mathf.Max(totalVision - (0.2f * Time.deltaTime), 0f);
 
-            if (offPathCounter < 10)
+            if (offPathCounter < 0.2f)
             {
                 if (totalVision > .2f)
                 {
-                    totalVision = Math.Max(totalVision - 0.04f, 0f);
+                    totalVision = Math.Max(totalVision - (1f * Time.deltaTime), 0f);
                 }
-                offPathCounter = offPathCounter + 1f;
+                offPathCounter = offPathCounter + Time.deltaTime;
             }
         }
 
-        if(inventory.activeGun != null)
+        if (inventory.activeGun != null)
         {
             inventory.activeGun.visionCone.gameObject.SetActive(true);
             inventory.activeGun.beamLight.gameObject.SetActive(true);
             inventory.activeGun.UpdateVisionCone(totalVision, visionConeRadius, visionConeAngle);
         }
-        
+
         if (inventory.inactiveGun != null)
         {
             inventory.inactiveGun.visionCone.gameObject.SetActive(false);
@@ -400,7 +421,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void Move() 
+    private void Move()
     {
         if (dying)
         {
@@ -444,15 +465,15 @@ public class Player : MonoBehaviour
             this.transform.position.x + grapplingHook.grappleVectorToPlayer.x,
             this.transform.position.y + grapplingHook.grappleVectorToPlayer.y,
             this.transform.position.z
-        ); 
+        );
 
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
         if (result > 0)
         {
-            if(invincibilityTime == 0f)
+            if (invincibilityTime == 0f)
             {
                 TakeDamageFromEnemy(-1);
-                
+
             }
             else
             {
@@ -465,13 +486,13 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            
+
         }
     }
 
     public void TakeDamageFromEnemy(int damage)
     {
-        if(invincibilityTime > 0)
+        if (invincibilityTime > 0 || dying)
         {
             return;
         }
@@ -493,7 +514,7 @@ public class Player : MonoBehaviour
             AkSoundEngine.PostEvent("PlayDeathStart", this.gameObject);
 
         }
-        else 
+        else
         {
             slashParent.transform.localScale = new Vector3(0.2f, 0.2f, 1f);
             slashOne.SetActive(false);
@@ -505,7 +526,7 @@ public class Player : MonoBehaviour
 
     public void SetInvincible(float time)
     {
-        if(time > invincibilityTime)
+        if (time > invincibilityTime)
         {
             invincibilityTime = time;
         }
@@ -555,9 +576,9 @@ public class Player : MonoBehaviour
 
             bombRingPS.Stop();
             bombRingPS.Play();
-            
-           //old damage ring
-           // ringAnimator.Play("RingExpandExtraLarge");
+
+            //old damage ring
+            // ringAnimator.Play("RingExpandExtraLarge");
         }
 
         //Audio Section
@@ -582,10 +603,10 @@ public class Player : MonoBehaviour
     private void CheckDeath()
     {
         if (damagePS.isStopped == true && currentHp == 0 && isDead == false)
-        {            
+        {
             Execute();
         }
-    } 
+    }
 
     private void DrawSprites()
     {
@@ -612,14 +633,14 @@ public class Player : MonoBehaviour
         leftRightDrift = Mathf.Clamp(leftRightDrift, floor, ceil);
         int regionsSearched = 0;
         float region = limbTransitionTime;
-        while(Math.Abs(leftRightDrift) > Math.Abs(region))
+        while (Math.Abs(leftRightDrift) > Math.Abs(region))
         {
             region += limbTransitionTime;
             regionsSearched++;
         }
 
         int index = limbSprites.Length / 2;
-        if(leftRightDrift > 0)
+        if (leftRightDrift > 0)
         {
             index += regionsSearched;
         }
@@ -628,12 +649,12 @@ public class Player : MonoBehaviour
             index -= regionsSearched;
         }
 
-        if(index < 0 || index > limbSprites.Length)
+        if (index < 0 || index > limbSprites.Length)
         {
             Debug.LogError("Could not find limb lookup for leftRightDrift value of " + leftRightDrift);
             return;
         }
-      
+
         Sprite[] limbDriftSprites = limbSprites[index];
         limbRenderer.sprite = limbDriftSprites[lowestIndex];
 
@@ -651,7 +672,7 @@ public class Player : MonoBehaviour
 
     private void LookAndShoot()
     {
-        if(!dying)
+        if (!dying)
         {
             if (Time.realtimeSinceStartup - lastLookTime > Time.deltaTime)
             {
@@ -666,10 +687,10 @@ public class Player : MonoBehaviour
     {
         secondTimer -= Time.deltaTime;
 
-        if(secondTimer <= 0)
+        if (secondTimer <= 0)
         {
             secondTimer = 1;
-            foreach(OnSecondAction onSecondAction in combinedNewStats.combinedStatBlock.GetEvents<OnSecondAction>())
+            foreach (OnSecondAction onSecondAction in combinedNewStats.combinedStatBlock.GetEvents<OnSecondAction>())
             {
                 onSecondAction.OnSecond(this);
             }
@@ -704,18 +725,23 @@ public class Player : MonoBehaviour
 
     public void UpdateUI()
     {
-        if(gameplayUI != null)
+        if (gameplayUI != null)
         {
             gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine,
                 inventory.inactiveGun == null ? -1 : inventory.inactiveGun.magazine, inventory.inactiveGun == null ? -1 : inventory.inactiveGun.maxMagazine);
 
             gameplayUI.SetHp(currentHp, maxHp);
-            gameplayUI.SetOrbs((int)orbsHeld);
+            gameplayUI.SetOrbs((int)orbsHeld, orbCharged, orbsChargedNumber);
             gameplayUI.SetGrapple(grappleCoolDownCurrent, grapplingCoolDownBase);
 
-            if(isDead)
+            if (isDead)
             {
-                gameplayUI.ShowSignalLost();
+                isDeadTimer = isDeadTimer + Time.deltaTime;
+                if (isDeadTimer >= 2.33f)
+                {
+                    gameplayUI.ShowSignalLost();
+                }
+
             }
         }
     }
@@ -730,7 +756,7 @@ public class Player : MonoBehaviour
 
         gunDropPS.Play();
 
-        
+
 
         bodyRenderer.enabled = false;
         limbRenderer.enabled = false;
