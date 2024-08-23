@@ -16,7 +16,7 @@ public class OnKillApplyBuff : OnKillAction
         if (IsValidTrigger())
         {
             base.OnKill(player, gun, projectile, enemy);
-            player.AddBuff(buff.GetInstance());
+            player.AddBuff(buff.GetInstance(source));
         }
     }
 }

@@ -20,6 +20,9 @@ public abstract class Stat
     public float stacks = 1f;
     [NonSerialized]
     public float tempStacks = 0f;
+    [NonSerialized]
+    public Item source;
+
     public Stat()
     {
         stacks = 1f;

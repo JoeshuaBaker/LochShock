@@ -16,7 +16,7 @@ public class OnReloadApplyBuff : OnReloadAction
         if (IsValidTrigger())
         {
             base.OnReload(player, gun);
-            player.AddBuff(buff.GetInstance());
+            player.AddBuff(buff.GetInstance(source));
         }
     }
 }

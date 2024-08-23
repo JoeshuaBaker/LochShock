@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: activatable
+      value: 
+      objectReference: {fileID: 8575419905417772588}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2]
+      value: Assembly-CSharp ActiveItemDuration
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].conditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2871529745237851683, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -74,26 +98,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d72b461a0541e240aab8cfeb7236ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: BuffActiveItem
-  icon: {fileID: 0}
-  rarity: 1
-  itemType: 2
-  level: 1
-  baseLevelUpCost: 0
-  levelUpCostScalar: 1.25
-  baseDisassembleValue: 0
-  disassembleRefundRatio: 0.7
-  stats:
-    stats: []
-    events:
-      events: []
-    stacks: 1
-    active: 0
-  levelUpStats:
-    stats: []
-    events:
-      events: []
-    stacks: 1
-    active: 0
-  references:
-    version: 1
+  buff: {fileID: 0}

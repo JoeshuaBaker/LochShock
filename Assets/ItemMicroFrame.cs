@@ -125,13 +125,13 @@ public class ItemMicroFrame : MonoBehaviour
             if(item is ActiveItem)
             {
                 ActiveItem activeItem = item as ActiveItem;
-                topText.text = activeItem.cooldownTimer.ToString("0.0");
+                topText.text = activeItem.CooldownTimer.ToString("0.0") + (activeItem.maxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
 
-                if (activeItem.cooldownTimer > 0f)
+                if (activeItem.CooldownTimer > 0f)
                 {
                     itemGlow.color = itemGlowRed;
                     topText.gameObject.SetActive(true);
-                    var distancePercent = activeItem.cooldownTimer / activeItem.cooldown;
+                    var distancePercent = (1f - activeItem.percentCooldownComplete);
 
                     activeNub.fillAmount = 1f - distancePercent;
                     activeNub.color = new Color(1f, 1f, 1f, 0.1f + (1f - distancePercent) * .2f);

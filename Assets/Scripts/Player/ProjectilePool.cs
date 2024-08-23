@@ -55,7 +55,7 @@ public class ProjectilePool
     private int CalculatePoolSize(CombinedStatBlock stats, GameContext worldContext)
     {
         return (int) Mathf.Clamp(
-            (1f / stats.GetCombinedStatValue<FireSpeed>(worldContext) *
+            (stats.GetCombinedStatValue<FireSpeed>(worldContext) *
             stats.GetCombinedStatValue<Lifetime>(worldContext) *
             stats.GetCombinedStatValue<BulletsPerShot>(worldContext) * 
             stats.GetCombinedStatValue<BulletStreams>(worldContext)) * 2,

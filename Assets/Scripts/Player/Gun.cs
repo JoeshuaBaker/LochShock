@@ -15,7 +15,6 @@ public class Gun : Item
     }
 
     public GunType gunType = GunType.Emitter;
-    public DamageType damageType = DamageType.Kinetic;
     public ReloadType reloadType = ReloadType.Magazine;
     public GunEmitter emitter;
     public Projectile projectile;
@@ -32,7 +31,7 @@ public class Gun : Item
     public bool shooting = false;
     public bool setup = false;
     private float reloadSpeed;
-    private float reloadTimer;
+    private float percentReloaded;
     public float fireSpeed;
     public float bulletCooldown;
     public float firePositionOffset = 0.25f;
@@ -40,6 +39,7 @@ public class Gun : Item
     private Vector2 lookPosition;
     public int maxMagazine;
     public int magazine;
+    public float percentMagFilled;
     private bool reloadAudio = false;
 
     public void Shoot()
@@ -51,19 +51,21 @@ public class Gun : Item
             bulletCooldown = fireSpeed;
             if (reloadType != ReloadType.Charge)
             {
-                reloadTimer = 0;
+                CancelReload();
                 magazine -= 1;
+                percentMagFilled = magazine / (float)maxMagazine;
             }
             else
             {
-                float reloadFraction = reloadSpeed / maxMagazine;
-                reloadTimer -= reloadFraction;
-                magazine = (int)((reloadTimer / reloadSpeed) * maxMagazine);
+                float reloadFraction = 1f / maxMagazine;
+                percentReloaded -= reloadFraction;
+                magazine = (int)(percentReloaded * maxMagazine);
+                percentMagFilled = magazine / (float)maxMagazine;
             }
             reloadAudio = true;
 
             //Audio Section
-            if (magazine == 0)
+            if (magazine == 0 && reloadType == ReloadType.Magazine)
             {                
                 AkSoundEngine.PostEvent("PlayOutOfAmmo", this.gameObject);
             }
@@ -157,7 +159,10 @@ public class Gun : Item
     {
         base.Start();
         setup = false;
+        maxMagazine = (int) baseItemCombinedStats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
         magazine = maxMagazine;
+        percentMagFilled = 1f;
+        percentReloaded = reloadType == ReloadType.Charge ? 1f : 0f;
 
         if(gunType == GunType.Emitter)
         {
@@ -183,18 +188,26 @@ public class Gun : Item
         }
     }
 
-    public void ApplyNewStatBlock(CombinedStatBlock stats, bool resetAmmo = false)
+    public void ApplyNewStatBlock(CombinedStatBlock stats)
     {
-        setup = true;
+        if (!setup)
+        {
+            setup = true;
+            magazine = maxMagazine;
+            percentReloaded = reloadType == ReloadType.Charge ? 1f : 0f;
+            percentMagFilled = 1f;
+        }
+
         combinedStats = stats;
         reloadSpeed = stats.GetCombinedStatValue<ReloadSpeed>(World.activeWorld.worldStaticContext);
-        fireSpeed = stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
-        maxMagazine = (int)stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
-        if (resetAmmo)
+        fireSpeed = 1f / stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
+        int newMagSize = (int)stats.GetCombinedStatValue<MagazineSize>(World.activeWorld.worldStaticContext);
+        if(newMagSize != maxMagazine)
         {
-            magazine = maxMagazine;
-            reloadTimer = 0;
+            maxMagazine = newMagSize;
+            magazine = (int)(percentMagFilled * maxMagazine);
         }
+
 
         if (gunType == GunType.Emitter)
         {
@@ -213,10 +226,15 @@ public class Gun : Item
         }
     }
 
-    // Update is called once per frame
     private void Update()
     {
         bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
+        if(reloadType == ReloadType.Charge)
+        {
+            IncrementReloadPercentage();
+            magazine = (int)(percentReloaded * maxMagazine);
+            percentMagFilled = magazine / (float)maxMagazine;
+        }
     }
 
     private bool IsReady()
@@ -241,18 +259,19 @@ public class Gun : Item
         this.lookPosition = lookPosition;
         transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(lookDirection.x, lookDirection.y, 0f)).eulerAngles;
 
-        if (magazine < maxMagazine)
+        if (reloadType != ReloadType.Charge && magazine < maxMagazine)
         {
-            reloadTimer = Mathf.Min(reloadTimer + Time.deltaTime, reloadSpeed);
+            IncrementReloadPercentage();
         }
 
         switch (reloadType)
         {
             case ReloadType.Magazine:
-                if (reloadTimer >= reloadSpeed)
+                if (percentReloaded >= 1f)
                 {
                     magazine = maxMagazine;
-                    reloadTimer = 0;
+                    percentReloaded = 0;
+                    percentMagFilled = magazine / (float)maxMagazine;
 
                     //Audio Section
                     if (reloadAudio)
@@ -266,22 +285,40 @@ public class Gun : Item
                     }
                 }
 
-                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, percentReloaded, magazine.ToString());
                 break;
 
             case ReloadType.Charge:
-                magazine = (int)((reloadTimer / reloadSpeed) * maxMagazine);
-                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, true, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, true, percentReloaded, magazine.ToString());
                 break;
 
             case ReloadType.Incremental:
-                if (reloadTimer >= reloadSpeed)
+                if (percentReloaded >= 1f)
                 {
-                    reloadTimer -= reloadSpeed;
+                    percentReloaded = percentReloaded % 1f;
                     magazine = Mathf.Min(magazine + 1, maxMagazine);
+                    percentMagFilled = magazine / (float)maxMagazine;
                 }
-                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, reloadTimer / reloadSpeed, magazine.ToString());
+                Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, percentReloaded, magazine.ToString());
                 break;
+        }
+    }
+
+    public void CancelReload()
+    {
+        if(reloadType != ReloadType.Charge)
+        {
+            percentReloaded = 0;
+        }
+    }
+
+    private void IncrementReloadPercentage()
+    {
+        percentReloaded += Time.deltaTime / reloadSpeed;
+
+        if(reloadType != ReloadType.Incremental)
+        {
+            percentReloaded = Mathf.Min(percentReloaded, 1f);
         }
     }
 

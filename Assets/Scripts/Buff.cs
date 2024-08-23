@@ -13,7 +13,7 @@ public class Buff : ScriptableObject
     }
     public Sprite icon;
     public string buffName;
-    public float duration;
+    public float baseDuration;
     public StackType stackType;
     public int stackLimit = 1;
     public StatBlock newStats;
@@ -23,10 +23,11 @@ public class Buff : ScriptableObject
     {
         public Buff buff;
         public StatBlock newStats;
+        public Item source;
         public float currentDuration;
     }
 
-    public Instance GetInstance()
+    public Instance GetInstance(Item source = null, float overwriteDuration = 0f)
     {
         if (string.IsNullOrEmpty(buffName))
         {
@@ -34,11 +35,15 @@ public class Buff : ScriptableObject
             Debug.LogWarning($"Warning: Set buff name on buff {name}");
         }
 
+        StatBlock buffStatsCopy = this.newStats.DeepCopy();
+        buffStatsCopy.AddSource(source);
+
         return new Instance
         {
             buff = this,
-            newStats = this.newStats.DeepCopy(),
-            currentDuration = duration
+            newStats = buffStatsCopy,
+            source = source,
+            currentDuration = overwriteDuration == 0 ? baseDuration : overwriteDuration
         };
     }
 }

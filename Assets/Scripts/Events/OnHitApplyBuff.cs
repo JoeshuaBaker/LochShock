@@ -16,7 +16,7 @@ public class OnHitApplyBuff : OnHitAction
         if(IsValidTrigger())
         {
             base.OnHit(player, gun, projectile, enemy);
-            player.AddBuff(buff.GetInstance());
+            player.AddBuff(buff.GetInstance(source));
         }
     }
 }

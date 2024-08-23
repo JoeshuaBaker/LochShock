@@ -24,6 +24,7 @@ public class Item : MonoBehaviour
     public Sprite icon;
     public Rarity rarity;
     public ItemType itemType;
+    public DamageType damageType = DamageType.None;
     public int level = 1;
     public int baseLevelUpCost = 100;
     public float levelUpCostScalar = 1.25f;
@@ -33,7 +34,9 @@ public class Item : MonoBehaviour
     {
         get
         {
-            return (baseDisassembleValue == 0 ? 50 + (int)rarity * 50 : baseDisassembleValue) + (int)(baseLevelUpCost * (level - 1) * disassembleRefundRatio);
+            float disassembleMult = Player.activePlayer.combinedNewStats.GetCombinedStatValue<DisassembleMult>();
+            return (int)(((baseDisassembleValue == 0 ? 50 + (int)rarity * 50 : baseDisassembleValue) + (int)(levelUpCost * (level - 1) * disassembleRefundRatio))
+                * (disassembleMult == 0 ? 1f : disassembleMult));
         }
     }
 
@@ -41,7 +44,7 @@ public class Item : MonoBehaviour
     {
         get
         {
-            return (int)(baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1));
+            return (int)(baseLevelUpCost + (baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1)));
         }
     }
 
@@ -67,11 +70,12 @@ public class Item : MonoBehaviour
     public StatBlock stats;
     public StatBlock levelUpStats;
     public CombinedStatBlock combinedStats;
+    public CombinedStatBlock baseItemCombinedStats;
 
     public virtual StatBlockContext GetStatBlockContext()
     {
-        combinedStats.UpdateSources(newStatsList);
-        return combinedStats.GetCombinedContext();
+        baseItemCombinedStats.UpdateSources(newStatsList);
+        return baseItemCombinedStats.GetCombinedContext();
     }
 
     public IEnumerable<string> GetEventTooltips()
@@ -83,7 +87,7 @@ public class Item : MonoBehaviour
     {
         level++;
         levelUpStats.Stacks = level - 1;
-        combinedStats.UpdateSources(newStatsList);
+        baseItemCombinedStats.UpdateSources(newStatsList);
     }
 
     public virtual void Start()
@@ -93,7 +97,9 @@ public class Item : MonoBehaviour
             displayName = name;
         }
 
-        combinedStats = new CombinedStatBlock();
-        combinedStats.UpdateSources(newStatsList);
+        baseItemCombinedStats = new CombinedStatBlock();
+        baseItemCombinedStats.UpdateSources(newStatsList);
+        stats.AddSource(this);
+        levelUpStats.AddSource(this);
     }
 }

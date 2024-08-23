@@ -5452,9 +5452,11 @@ MonoBehaviour:
     - id: 0
     - id: 1
     - id: 2
+    - id: 3
     events:
       events: []
     stacks: 1
+    source: {fileID: 0}
     active: 0
   combinedNewStats:
     combinedStatBlock:
@@ -5462,6 +5464,7 @@ MonoBehaviour:
       events:
         events: []
       stacks: 1
+      source: {fileID: 0}
       active: 0
     sourcesList: []
   buffs: []
@@ -5493,6 +5496,7 @@ MonoBehaviour:
   limbTransitionTime: 0.05
   world: {fileID: 0}
   gameplayUI: {fileID: 0}
+  maxHp: 5
   currentHp: 5
   fastVel: 7.28
   slowVel: 5.6
@@ -5501,7 +5505,8 @@ MonoBehaviour:
   distSinceLastProjectileTick: {x: 0, y: 0, z: 0}
   leftRightDrift: 0
   bodySprites: []
-  mouseDirection: {x: 0, y: 0}
+  lookDirection: {x: 0, y: 0}
+  lookPosition: {x: 0, y: 0}
   grapplingHook: {fileID: 7771730370071348321}
   grappleCoolDownCurrent: 0
   grapplingCoolDownBase: 3
@@ -5513,6 +5518,7 @@ MonoBehaviour:
   orbsHeld: 1
   timeSinceOrbUsed: 0
   orbCharged: 0
+  orbsChargedNumber: 0
   inventory: {fileID: 7190304627210002517}
   dying: 0
   isDead: 0
@@ -5541,28 +5547,37 @@ MonoBehaviour:
       type: {class: Health, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 3
+          id: 4
         value: 10
         conditions: []
     00000001:
       type: {class: MoveSpeed, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 4
+          id: 5
         value: 3.5
         conditions: []
     00000002:
       type: {class: Vision, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 5
+          id: 6
         value: 1
         conditions: []
     00000003:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+      type: {class: DisassembleMult, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 7
+        value: 1
+        conditions: []
     00000004:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000005:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000006:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000007:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
 --- !u!114 &1669104698779981372
 MonoBehaviour:

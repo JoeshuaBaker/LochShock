@@ -14,7 +14,7 @@ public class OnSecondApplyBuff : OnSecondAction
         if (IsValidTrigger())
         {
             base.OnSecond(player);
-            player.AddBuff(buff.GetInstance());
+            player.AddBuff(buff.GetInstance(source));
         }
     }
 }

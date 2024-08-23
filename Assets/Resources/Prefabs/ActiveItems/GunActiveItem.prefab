@@ -7,6 +7,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: activatable
+      value: 
+      objectReference: {fileID: -8867849996136579000}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2]
+      value: Assembly-CSharp ActiveItemDuration
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[3]
+      value: Assembly-CSharp ActiveItemDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[3].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[2].conditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
+      propertyPath: stats.stats.Array.data[3].conditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2871529745237851683, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -74,29 +114,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1580f5983ae6b24a8e5cb7db8771232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  icon: {fileID: 0}
-  rarity: 1
-  itemType: 2
-  level: 1
-  baseLevelUpCost: 0
-  levelUpCostScalar: 1.25
-  baseDisassembleValue: 0
-  disassembleRefundRatio: 0.7
-  stats:
-    stats: []
-    events:
-      events: []
-    stacks: 1
-    active: 0
-  levelUpStats:
-    stats: []
-    events:
-      events: []
-    stacks: 1
-    active: 0
-  cooldown: 1
-  cooldownTimer: 1
   gun: {fileID: 0}
-  references:
-    version: 1
+  useItemStats: 1

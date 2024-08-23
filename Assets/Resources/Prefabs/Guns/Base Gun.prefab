@@ -142,22 +142,38 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7bd8940c023065f42bad0a8874fecbdb, type: 3}
   rarity: 1
   itemType: 1
+  damageType: 1
   level: 1
   baseLevelUpCost: 0
   levelUpCostScalar: 1.25
   baseDisassembleValue: 0
   disassembleRefundRatio: 0.7
   stats:
-    stats: []
+    stats:
+    - id: 0
+    - id: 1
+    - id: 2
+    - id: 3
+    - id: 4
+    - id: 5
+    - id: 6
+    - id: 7
+    - id: 8
+    - id: 9
+    - id: 10
+    - id: 11
+    - id: 12
     events:
       events: []
     stacks: 1
+    source: {fileID: 1144824061936674021}
     active: 0
   levelUpStats:
     stats: []
     events:
       events: []
     stacks: 1
+    source: {fileID: 1144824061936674021}
     active: 0
   combinedStats:
     combinedStatBlock:
@@ -165,10 +181,10 @@ MonoBehaviour:
       events:
         events: []
       stacks: 1
+      source: {fileID: 0}
       active: 0
     sourcesList: []
   gunType: 0
-  damageType: 1
   reloadType: 0
   emitter: {fileID: 4877568093956301522}
   projectile: {fileID: 0}
@@ -190,8 +206,127 @@ MonoBehaviour:
   firePositionOffset: 0.5
   maxMagazine: 0
   magazine: 0
+  percentMagFilled: 0
   references:
     version: 1
+    00000000:
+      type: {class: Damage, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 13
+        value: 1
+        conditions: []
+    00000001:
+      type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 14
+        value: 1
+        conditions: []
+    00000002:
+      type: {class: BulletsPerShot, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 15
+        value: 1
+        conditions: []
+    00000003:
+      type: {class: BulletStreams, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 16
+        value: 1
+        conditions: []
+    00000004:
+      type: {class: MagazineSize, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 17
+        value: 1
+        conditions: []
+    00000005:
+      type: {class: ReloadSpeed, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 18
+        value: 1
+        conditions: []
+    00000006:
+      type: {class: Accuracy, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 19
+        value: 1
+        conditions: []
+    00000007:
+      type: {class: Knockback, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 20
+        value: 1
+        conditions: []
+    00000008:
+      type: {class: SpreadAngle, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 21
+        value: -5
+        conditions: []
+    00000009:
+      type: {class: Velocity, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 22
+        value: 1
+        conditions: []
+    0000000A:
+      type: {class: Lifetime, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 23
+        value: 1
+        conditions: []
+    0000000B:
+      type: {class: Size, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 24
+        value: 1
+        conditions: []
+    0000000C:
+      type: {class: SecondaryHitDamage, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 25
+        value: 0.75
+        conditions: []
+        BaseValue: 0.75
+    0000000D:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    0000000E:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    0000000F:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000010:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000011:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000012:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000013:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000014:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000015:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000016:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000017:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000018:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000019:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
 --- !u!114 &4877568093956301522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +375,7 @@ MonoBehaviour:
       events:
         events: []
       stacks: 1
+      source: {fileID: 0}
       active: 0
     sourcesList: []
   AutoFire: 0

@@ -17,6 +17,14 @@ public class Events
         }
     }
 
+    public void AddSource(Item item)
+    {
+        foreach(ScriptableAction e in events)
+        {
+            e.source = item;
+        }
+    }
+
     public Events Copy()
     {
         Events copy = new Events();

@@ -2,19 +2,86 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActiveItem : Item
+public class ActiveItem : Item
 {
+    public Activatable activatable;
+    public int currentCharges = 1;
+    public int maxCharges = 1;
     public float cooldown = 1f;
-    public float cooldownTimer = 0f;
-    public abstract void Activate();
-    public abstract void Setup();
-    public virtual bool IsReady()
+    public float percentCooldownComplete = 0f;
+    public float CooldownTimer => percentCooldownComplete * cooldown;
+
+    private bool setup = false;
+
+    public void Activate()
     {
-        return cooldownTimer == 0f;
+        if(IsReady())
+        {
+            activatable.Activate();
+            currentCharges -= 1;
+        }
     }
 
-    public virtual void Update()
+    public void Setup()
     {
-        cooldownTimer = Mathf.Max(cooldownTimer - Time.deltaTime, 0f);
+        if(activatable == null)
+        {
+            activatable = GetComponent<Activatable>();
+        }
+
+        activatable.Setup(this);
+    }
+
+    public void ApplyStatBlock(CombinedStatBlock stats)
+    {
+        combinedStats = stats;
+        int newCharges = (int)stats.GetCombinedStatValue<ActiveItemCharges>();
+        cooldown = stats.GetCombinedStatValue<ActiveItemCooldown>();
+
+        if (!setup)
+        {
+            setup = true;
+            maxCharges = newCharges;
+            currentCharges = maxCharges;
+            percentCooldownComplete = 0f;
+            return;
+        }
+
+        if (newCharges > maxCharges)
+        {
+            currentCharges += newCharges - maxCharges;
+        }
+
+        maxCharges = newCharges;
+        currentCharges = Mathf.Min(currentCharges, maxCharges);
+        activatable.ApplyStatBlock(stats);
+    }
+
+    public override StatBlockContext GetStatBlockContext()
+    {
+        return activatable.GetStatBlockContext(base.GetStatBlockContext());
+    }
+
+    public bool IsReady()
+    {
+        return currentCharges >= 1;
+    }
+
+    public void Update()
+    {
+        if(currentCharges < maxCharges)
+        {
+            percentCooldownComplete = Mathf.Min(percentCooldownComplete + (Time.deltaTime / cooldown), 1f);
+        }
+        else
+        {
+            percentCooldownComplete = 0f;
+        }
+
+        if(percentCooldownComplete >= 1f)
+        {
+            currentCharges += 1;
+            percentCooldownComplete = percentCooldownComplete % 1f;
+        }
     }
 }

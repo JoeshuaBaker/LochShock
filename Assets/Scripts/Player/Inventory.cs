@@ -164,12 +164,17 @@ public class Inventory : MonoBehaviour
 
         activeGun.shooting = inactiveGun.shooting;
         inactiveGun.shooting = false;
+        inactiveGun.CancelReload();
     }
 
     public List<StatBlock> GetNewItemStats()
     {
         List<StatBlock> newStatBlocks = new List<StatBlock>();
         newStatBlocks.AddRange(activeGun.newStatsList);
+        if(activeItem != null)
+        {
+            newStatBlocks.AddRange(activeItem.newStatsList);
+        }
         foreach (Item item in items)
         {
             if(item != null)

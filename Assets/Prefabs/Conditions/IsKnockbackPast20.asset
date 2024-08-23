@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f3081f4e38d704d8349573b5c5a408, type: 3}
+  m_Name: IsKnockbackPast20
+  m_EditorClassIdentifier: 
+  booleanCombineType: 0
+  referenceStatType:
+    id: 0
+  statThreshold: 20
+  overOrUnder: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: Knockback, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 1
+        value: 0
+        exhausted: 0
+        conditions: []
+    00000001:
+      type: {class: , ns: , asm: }

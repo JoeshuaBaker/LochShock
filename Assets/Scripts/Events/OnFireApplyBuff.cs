@@ -14,7 +14,7 @@ public class OnFireApplyBuff : OnFireAction
         if (IsValidTrigger())
         {
             base.OnFire(player, gun);
-            player.AddBuff(buff.GetInstance());
+            player.AddBuff(buff.GetInstance(source));
         }
     }
 }

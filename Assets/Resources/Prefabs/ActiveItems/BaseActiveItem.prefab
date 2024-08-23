@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2871529745237851683}
+  - component: {fileID: -6329225714488330220}
   m_Layer: 0
   m_Name: BaseActiveItem
   m_TagString: Untagged
@@ -30,3 +31,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6329225714488330220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760251180872853688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e496f6a625b8b47859ba33fd255677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  icon: {fileID: 0}
+  rarity: 1
+  itemType: 2
+  damageType: 0
+  level: 1
+  baseLevelUpCost: 100
+  levelUpCostScalar: 1.25
+  baseDisassembleValue: 0
+  disassembleRefundRatio: 0.7
+  stats:
+    stats:
+    - id: 0
+    - id: 1
+    events:
+      events: []
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
+  levelUpStats:
+    stats: []
+    events:
+      events: []
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
+  combinedStats:
+    combinedStatBlock:
+      stats: []
+      events:
+        events: []
+      stacks: 1
+      source: {fileID: 0}
+      active: 0
+    sourcesList: []
+  activatable: {fileID: 0}
+  currentCharges: 1
+  maxCharges: 1
+  cooldown: 1
+  percentCooldownComplete: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: ActiveItemCharges, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 2
+        value: 1
+        conditions: []
+    00000001:
+      type: {class: ActiveItemCooldown, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 3
+        value: 1
+        conditions: []
+    00000002:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000003:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}

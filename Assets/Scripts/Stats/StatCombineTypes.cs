@@ -88,10 +88,15 @@ public class BaseStat : StatCombineType
     {
         return "";
     }
+}
+
+public class BasePower : Additive
+{
+    public override int CombinePriority => 1;
 
     public override string StatNameTooltip(string valueName)
     {
-        return valueName.SplitCamelCaseLower();
+        return "Base " + valueName.SplitCamelCaseLower();
     }
 }
 
@@ -107,7 +112,7 @@ public class Additive : StatCombineType
         }
 
         float combinedValue = baseValue;
-        foreach(Stat stat in stats)
+        foreach (Stat stat in stats)
         {
             combinedValue += GetStatValue(stat);
             stat.tempStacks = 0f;
@@ -126,6 +131,11 @@ public class Additive : StatCombineType
         }
 
         return plusMinus ? "+" : "-";
+    }
+
+    public override string StatNameTooltip(string valueName)
+    {
+        return "Bonus " + valueName.SplitCamelCaseLower();
     }
 }
 
@@ -251,7 +261,7 @@ public class Limit : StatCombineType
 
     public override string GetTooltipPrefix(string valueName, bool flipSign, float value)
     {
-        return $"{valueName.SplitCamelCaseLower()} can't go {((limitType == LimitType.Upper) ? "above" : "below")} ";
+        return $"{valueName.SplitCamelCaseLower()} can't be {((limitType == LimitType.Upper) ? "above" : "below")} ";
     }
 
     public override string StatNameTooltip(string valueName)

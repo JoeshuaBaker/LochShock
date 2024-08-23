@@ -12,6 +12,7 @@ public class StatBlock
     [FormerlySerializedAs("events")] [SerializeField] public Events events;
     [SerializeField]
     private float stacks = 1f;
+    public Item source;
 
     public float Stacks
     {
@@ -40,6 +41,16 @@ public class StatBlock
         }
     }
 
+    public void AddSource(Item item)
+    {
+        source = item;
+        events.AddSource(item);
+        foreach(Stat stat in stats)
+        {
+            stat.source = item;
+        }
+    }
+
     public void Add(StatBlock other)
     {
         this.stats.AddRange(other.stats);
@@ -48,7 +59,7 @@ public class StatBlock
 
     public void Remove(StatBlock other)
     {
-        this.stats.AddRange(other.stats);
+        this.stats.RemoveRange(other.stats);
         this.events.Remove(other.events);
     }
 
@@ -112,6 +123,8 @@ public class StatBlock
 
         newStatBlock.Stacks = this.Stacks;
         newStatBlock.events = this.events.Copy();
+
+        newStatBlock.AddSource(source);
 
         return newStatBlock;
     }

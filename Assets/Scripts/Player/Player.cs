@@ -36,14 +36,8 @@ public class Player : MonoBehaviour
     public float limbTransitionTime = 0.5f;
     public World world;
     public GameplayUI gameplayUI;
-    public int maxHp
-    {
-        get
-        {
-            return (int)Stats.GetCombinedStatValue<Health>(World.activeWorld.worldStaticContext);
-        }
-    }
-    public int currentHp = 100;
+    public int maxHp = 5;
+    public int currentHp = 5;
     public float fastVel = 1.5f;
     public float slowVel = 0.5f;
     public float onHitKillRadius = 6f;
@@ -126,7 +120,8 @@ public class Player : MonoBehaviour
 
         gamepadLookRingSize = Camera.main.ScreenToWorldPoint(new Vector3(0f, 1f, -Camera.main.transform.position.z)).magnitude / 2.25f;
         Debug.Log(gamepadLookRingSize);
-        currentHp = (int)baseStats.GetStatValue<Health>();
+        maxHp = (int)baseStats.GetStatValue<Health>();
+        currentHp = maxHp;
         hitbox = GetComponent<Collider2D>();
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
@@ -338,7 +333,7 @@ public class Player : MonoBehaviour
         if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
         {
             Buff.Instance matchingBuff = matchingBuffs.First();
-            matchingBuff.currentDuration = matchingBuff.buff.duration;
+            matchingBuff.currentDuration = matchingBuff.buff.baseDuration;
             if (matchingBuff.newStats.Stacks < matchingBuff.buff.stackLimit)
             {
                 matchingBuff.newStats.Stacks += 1;
@@ -706,21 +701,28 @@ public class Player : MonoBehaviour
 
         buffs.RemoveAll(buff => buff.currentDuration <= 0f);
 
-        //var allStats = inventory.GetItemStats();
-        //allStats.Add(this.stats);
-        //allStats.AddRange(inventory.activeGun.stats);
-        //allStats.AddRange(buffs.Select(x => x.stats));
-
-        //this.allStats = allStats;
-        //var combinedStats = StatBlock.Combine(allStats);
-        //this.combinedStats = combinedStats;
-        //inventory.activeGun.ApplyStatBlock(combinedStats);
-
         var allNewStats = inventory.GetNewItemStats();
         allNewStats.Add(this.baseStats);
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
         inventory.activeGun.ApplyNewStatBlock(combinedNewStats);
+        inventory.activeItem.ApplyStatBlock(combinedNewStats);
+
+        int newHp = (int) combinedNewStats.GetCombinedStatValue<Health>();
+        if(newHp != maxHp)
+        {
+            if(newHp > maxHp)
+            {
+                int diff = newHp - maxHp;
+                currentHp += diff;
+                maxHp = newHp;
+            }
+            else
+            {
+                maxHp = newHp;
+                currentHp = Mathf.Min(currentHp, maxHp);
+            }
+        }
     }
 
     public void UpdateUI()

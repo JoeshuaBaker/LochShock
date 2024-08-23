@@ -154,6 +154,16 @@ public class CombinedStatBlock
         return orderedStats.CalculateStat(statType, context);
     }
 
+    public float GetCombinedStatValue<T>() where T : Stat
+    {
+        return orderedStats.CalculateStat<T>(World.activeWorld.worldStaticContext);
+    }
+
+    public float GetCombinedStatValue(Type statType)
+    {
+        return orderedStats.CalculateStat(statType, World.activeWorld.worldStaticContext);
+    }
+
     private void UpkeepSources(IEnumerable<StatBlock> statBlocks)
     {
         //Mark all sources potentially inactive this frame
