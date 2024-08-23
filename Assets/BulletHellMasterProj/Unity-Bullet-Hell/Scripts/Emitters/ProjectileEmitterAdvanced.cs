@@ -149,7 +149,12 @@ namespace BulletHell
             Vector2 streamDirection = Rotate(lookDirection, 360f * (stream / (float)bulletStreams));
             streamDirection = Rotate(streamDirection, AccuracyAngle * Random.Range(-1f, 1f) * Mathf.Clamp(1f - accuracy, 0f, 1f));
 
-            Vector2 bulletDirection;
+            if (bulletsPerShot == 1)
+            {
+                return streamDirection;
+            }
+
+            Vector2 bulletDirection = streamDirection;
             bool isEven = bulletsPerShot % 2 == 0;
 
             //Since bullet 0 always goes directly in the direction of the stream, we can handle 
