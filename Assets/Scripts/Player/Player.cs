@@ -706,7 +706,10 @@ public class Player : MonoBehaviour
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
         inventory.activeGun.ApplyNewStatBlock(combinedNewStats);
-        inventory.activeItem.ApplyStatBlock(combinedNewStats);
+        if(inventory.activeItem != null)
+        {
+            inventory.activeItem.ApplyStatBlock(combinedNewStats);
+        }
 
         int newHp = (int) combinedNewStats.GetCombinedStatValue<Health>();
         if(newHp != maxHp)
