@@ -15,6 +15,7 @@ public class MeleeActivatable : Activatable
     public HitboxType hitboxType = HitboxType.Circle;
     public bool isActive = false;
     public bool repeatable = false;
+    public bool aimable = true;
     public float bonusRepeatsDurationThreshold = 5f;
     public int numRepeats = 1;
     private int modifiedRepeats
@@ -49,19 +50,7 @@ public class MeleeActivatable : Activatable
         meleeWeaponParent.gameObject.SetActive(true);
         isActive = true;
         playTime = 0f;
-        mouseDirection = Player.activePlayer.lookDirection;
-        modifiedMouseDirection = mouseDirection;
-        if (mouseDirection.x < 0)
-        {
-            modifiedMouseDirection.x = Mathf.Abs(mouseDirection.x);
-            modifiedMouseDirection.y = mouseDirection.y * -1;
-            meleeWeaponParent.transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        else
-        {
-            meleeWeaponParent.transform.localScale = Vector3.one;
-        }
-        meleeWeaponParent.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(modifiedMouseDirection.x, modifiedMouseDirection.y, 0f)).eulerAngles;
+        AimWeaponAtMouse();
     }
 
     public override void Setup(ActiveItem source)
@@ -111,6 +100,11 @@ public class MeleeActivatable : Activatable
     {
         if (isActive)
         {
+            if (aimable)
+            {
+                AimWeaponAtMouse();
+            }
+
             playTime += Time.deltaTime;
             float normalizedTime = meleeWeaponVisual.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
@@ -186,6 +180,23 @@ public class MeleeActivatable : Activatable
         playTime = 0f;
         currentPulse = 0;
         baseAnimTimer = 0f;
+    }
+
+    private void AimWeaponAtMouse()
+    {
+        mouseDirection = Player.activePlayer.lookDirection;
+        modifiedMouseDirection = mouseDirection;
+        if (mouseDirection.x < 0)
+        {
+            modifiedMouseDirection.x = Mathf.Abs(mouseDirection.x);
+            modifiedMouseDirection.y = mouseDirection.y * -1;
+            meleeWeaponParent.transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else
+        {
+            meleeWeaponParent.transform.localScale = Vector3.one;
+        }
+        meleeWeaponParent.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(modifiedMouseDirection.x, modifiedMouseDirection.y, 0f)).eulerAngles;
     }
 
     public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
