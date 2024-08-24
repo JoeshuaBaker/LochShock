@@ -123,16 +123,18 @@ public class Projectile : MonoBehaviour
             projectileData.bulletContext.hitEnemies.Add(enemy);
             hitTarget.ProcessCollision(projectileData, hitInfo);
 
-            foreach (OnHitAction onHit in projectileData.stats.combinedStatBlock.events.GetEvents<OnHitAction>())
+            foreach (OnHitAction onHit in projectileData.stats.combinedStatBlock.GetEvents<OnHitAction>())
             {
-                onHit.OnHit(source, Player.activePlayer, source, projectileData, enemy);
+                Item eventSource = Player.activePlayer.inventory.FindEventSource(onHit);
+                onHit.OnHit(eventSource, Player.activePlayer, source, projectileData, enemy);
             }
 
             if (enemy.IsDead())
             {
-                foreach (OnKillAction onKill in projectileData.stats.combinedStatBlock.events.GetEvents<OnKillAction>())
+                foreach (OnKillAction onKill in projectileData.stats.combinedStatBlock.GetEvents<OnKillAction>())
                 {
-                    onKill.OnKill(source, Player.activePlayer, source, projectileData, enemy);
+                    Item eventSource = Player.activePlayer.inventory.FindEventSource(onKill);
+                    onKill.OnKill(eventSource, Player.activePlayer, source, projectileData, enemy);
                 }
             }
         }

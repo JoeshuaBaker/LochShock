@@ -141,7 +141,8 @@ public class Gun : Item
 
         foreach (OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
         {
-            onFire.OnFire(this, Player.activePlayer, this);
+            Item source = Player.activePlayer.inventory.FindEventSource(onFire);
+            onFire.OnFire(source, Player.activePlayer, this);
         }
     }
 
@@ -282,7 +283,8 @@ public class Gun : Item
 
                     foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
                     {
-                        onReload.OnReload(this, Player.activePlayer, this);
+                        Item source = Player.activePlayer.inventory.FindEventSource(onReload);
+                        onReload.OnReload(source, Player.activePlayer, this);
                     }
                 }
 

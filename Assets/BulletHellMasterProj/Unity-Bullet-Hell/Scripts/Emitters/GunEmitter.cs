@@ -65,16 +65,18 @@ namespace BulletHell
                     node.Item.bulletContext.hitEnemies.Add(enemy);
                     enemy.ProcessCollision(node.Item, RaycastHitBuffer[i]);
 
-                    foreach (OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
+                    foreach (OnHitAction onHit in stats.combinedStatBlock.GetEvents<OnHitAction>())
                     {
+                        Item source = Player.activePlayer.inventory.FindEventSource(onHit);
                         onHit.OnHit(gun, Player.activePlayer, gun, node.Item, enemy);
                     }
 
                     if(enemy.IsDead())
                     {
-                        foreach(OnKillAction onKill in stats.combinedStatBlock.events.GetEvents<OnKillAction>())
+                        foreach(OnKillAction onKill in stats.combinedStatBlock.GetEvents<OnKillAction>())
                         {
-                            onKill.OnKill(gun, Player.activePlayer, gun, node.Item, enemy);
+                            Item source = Player.activePlayer.inventory.FindEventSource(onKill);
+                            onKill.OnKill(source, Player.activePlayer, gun, node.Item, enemy);
                         }
                     }
                 }

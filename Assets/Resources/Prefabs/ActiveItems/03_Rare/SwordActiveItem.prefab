@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8543079346312215942, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 5781069035723336068}
+    - target: {fileID: -8543079346312215942, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
       propertyPath: cooldown
       value: 6
       objectReference: {fileID: 0}
@@ -131,11 +135,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordActiveItem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3403470553289114804, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
 --- !u!4 &4284813723490161091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6841901491563330665, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
+  m_PrefabInstance: {fileID: 7315506371837914538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5781069035723336068 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3872987797171061806, guid: a74858022aef75e4f847ca1fc2c28be2, type: 3}
   m_PrefabInstance: {fileID: 7315506371837914538}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7646510571927985325
