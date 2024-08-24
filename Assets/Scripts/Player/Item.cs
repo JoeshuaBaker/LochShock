@@ -117,9 +117,7 @@ public class Item : MonoBehaviour
     {
         foreach (var buff in buffs)
         {
-            Debug.Log("Before: " + buff.currentDuration);
             buff.currentDuration -= Time.deltaTime;
-            Debug.Log("After: " + buff.currentDuration);
         }
 
         buffs.RemoveAll(buff => buff.currentDuration <= 0f);
