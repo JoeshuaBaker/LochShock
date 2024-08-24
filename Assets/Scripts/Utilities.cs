@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System;
+using System.Linq;
 
 public static class Utilities
 {
@@ -43,9 +45,27 @@ public static class Utilities
 
     public static void RemoveRange<T>(this List<T> list, List<T> other)
     {
-        foreach(T item in other)
+        foreach (T item in other)
         {
             list.Remove(item);
+        }
+    }
+
+    public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+    {
+        return source.ShuffleIterator(new System.Random(Time.frameCount));
+    }
+
+    private static IEnumerable<T> ShuffleIterator<T>(
+        this IEnumerable<T> source, System.Random rng)
+    {
+        var buffer = source.ToList();
+        for (int i = 0; i < buffer.Count; i++)
+        {
+            int j = rng.Next(i, buffer.Count);
+            yield return buffer[j];
+
+            buffer[j] = buffer[i];
         }
     }
 }

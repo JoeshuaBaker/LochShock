@@ -179,12 +179,12 @@ public class MeleeActivatable : Activatable
         baseAnimTimer = 0f;
     }
 
-    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext)
+    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
     {
-        StatBlockContext statBlockContext = new StatBlockContext();
+        StatBlockContext statBlockContext = baseContext;
         var attackString = (hitboxPulses.Length > 1) ? $"{StatBlockContext.GoodColor}{hitboxPulses.Length}</color> times " : "";
-        statBlockContext.AddGenericTooltip($"Attacks {attackString}with a {StatBlockContext.GoodColor}{name}</color>. Cooldown: {StatBlockContext.HighlightColor}{source.cooldown}</color>s." + 
-            ((source.maxCharges > 1) ? $" Charges: {source.maxCharges}." : ""));
+        statBlockContext.AddGenericTooltip($"Attacks {attackString}with a {StatBlockContext.GoodColor}{source.DisplayName}</color>." + 
+            ((source.MaxCharges > 1) ? $" Charges: {source.MaxCharges}." : ""));
         return statBlockContext;
     }
 }

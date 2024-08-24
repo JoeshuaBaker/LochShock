@@ -226,7 +226,7 @@ public class World : MonoBehaviour
         while (enemySpawn < adjustedSpawnRate)
         {
             enemySpawn += adjustedSpawnRate;
-            SpawnRandomEnemy();
+            SpawnRandomBlockEnemy();
         }
 
         worldStaticContext.activeEnemies = enemyPool.activeEnemies;
@@ -255,6 +255,12 @@ public class World : MonoBehaviour
         }
 
         Enemy enemy = enemyPool.GetEnemy(enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Count)]);
+        SetupEnemy(enemy);
+    }
+
+    void SpawnRandomBlockEnemy()
+    {
+        Enemy enemy = enemyPool.GetCurrentBlockEnemy();
         SetupEnemy(enemy);
     }
 

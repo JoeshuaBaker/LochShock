@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BulletHell;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Enemy : BulletCollidable
 {
     //References

@@ -18,12 +18,22 @@ public class BuffActivatable : Activatable
         duration = stats.GetCombinedStatValue<ActiveItemDuration>();
     }
 
-    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext)
+    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
     {
+        float duration;
+        if (source.setup)
+        {
+            duration = source.combinedStats.GetCombinedStatValue<ActiveItemDuration>();
+        }
+        else
+        {
+            duration = source.baseItemCombinedStats.GetCombinedStatValue<ActiveItemDuration>();
+        }
+
         StatBlockContext statBlockContext = buff.newStats.GetStatBlockContext();
-        statBlockContext.AddGenericTooltip($"Applies {StatBlockContext.GoodColor}{buff.name}</color> for " +
+        statBlockContext.AddGenericTooltip($"Applies {StatBlockContext.GoodColor}{buff.buffName}</color> for " +
             $"{StatBlockContext.HighlightColor}{duration}</color>s. " +
-            $"Cooldown: {StatBlockContext.HighlightColor}{source.cooldown}</color>s.");
+            $"Cooldown: {StatBlockContext.HighlightColor}{source.Cooldown}</color>s.");
         return statBlockContext;
     }
 }

@@ -193,7 +193,7 @@ public class Inventory : MonoBehaviour
         {
             collectionParentMap.TryGetValue(collection, out Transform parent);
             collection[index] = Instantiate(item, parent);
-            collection[index].name = item.name;
+            collection[index].name = item.DisplayName;
 
             if(activeGun == null && item is Gun)
             {

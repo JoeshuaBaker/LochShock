@@ -13,6 +13,14 @@ public class EnemyPool : MonoBehaviour
     private List<Type> activeEnemyTypes;
     public Transform enemyParent;
 
+    public List<EnemyBlock> presetBlocks;
+    public List<EnemyBlock> randomBlocks;
+    private Queue<int> randomIndexGrabBag;
+    [SerializeField] private EnemyBlock currentBlock;
+    private int presetIndex;
+    private int randomIndex;
+    [SerializeField] private float blockTimer;
+
     [Serializable]
     public class EnemyBuffer
     {
@@ -27,6 +35,9 @@ public class EnemyPool : MonoBehaviour
         int allEnemiesBufferSize = enemyBuffers.Select(x => x.bufferSize).Sum();
         allEnemies = new Enemy[allEnemiesBufferSize];
         activeEnemies = new HashSet<Enemy>();
+        presetIndex = 0;
+        randomIndex = 0;
+        blockTimer = 0f;
 
         foreach (EnemyBuffer buffer in enemyBuffers)
         {
@@ -49,6 +60,8 @@ public class EnemyPool : MonoBehaviour
                 allEnemies[acc++] = enemyArray[i];
             }
         }
+
+        SetNewEnemyBlock();
     }
 
     public Enemy GetEnemy(Type enemyType)
@@ -78,8 +91,64 @@ public class EnemyPool : MonoBehaviour
         return instance;
     }
 
+    public Enemy GetCurrentBlockEnemy()
+    {
+        Type enemyType = null;
+
+        float totalRatio = currentBlock.enemyBlocks.Select(x => x.spawnRate).Sum();
+        float randWithinRatio = UnityEngine.Random.Range(0, totalRatio);
+        float ratioSelector = 0f;
+
+        foreach (var entry in currentBlock.enemyBlocks)
+        {
+            ratioSelector += entry.spawnRate;
+            if (randWithinRatio < ratioSelector)
+            {
+                enemyType = entry.GetEnemyType();
+                break;
+            }
+        }
+
+        if(enemyType != null)
+        {
+            return GetEnemy(enemyType);
+        }
+
+        return null;
+    }
+
     public List<Type> GetAvailableEnemyTypes()
     {
         return activeEnemyTypes;
+    }
+
+    private void Update()
+    {
+        blockTimer = Mathf.Max(blockTimer - Time.deltaTime, 0f);
+        if(blockTimer <= 0f)
+        {
+            SetNewEnemyBlock();
+        }
+    }
+
+    private void SetNewEnemyBlock()
+    {
+        if(presetIndex < presetBlocks.Count)
+        {
+            currentBlock = presetBlocks[presetIndex];
+            presetIndex++;
+            blockTimer = currentBlock.duration;
+        }
+        else
+        {
+            if(randomIndexGrabBag == null || randomIndexGrabBag.Count() == 0)
+            {
+                randomIndexGrabBag = new Queue<int>(Enumerable.Range(0, randomBlocks.Count()).Shuffle());
+            }
+
+            randomIndex = randomIndexGrabBag.Dequeue();
+            currentBlock = randomBlocks[randomIndex];
+            blockTimer = currentBlock.duration;
+        }
     }
 }

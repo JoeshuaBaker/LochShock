@@ -12,10 +12,12 @@ public class GunActivatable : Activatable
 
     private List<StatBlock> statBlocks = new List<StatBlock>();
     private ActiveItem source;
-    private CombinedStatBlock stats;
+    private CombinedStatBlock gunCombinedStats;
     private float duration;
     private float repeats;
     private float delayTimer;
+
+    private bool setup = false;
 
     public override void Activate()
     {
@@ -23,16 +25,37 @@ public class GunActivatable : Activatable
         gun.shooting = true;
         gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
 
+        repeats = (int)(duration/durationToRepeatFireRatio);
+        gun.ShootIgnoreState(gun.combinedStats);
+
+        if(repeats > 0)
+        {
+            delayTimer = repeatDelay;
+        }
+    }
+
+    public override void ApplyStatBlock(CombinedStatBlock stats)
+    {
+        duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+
+        if (!setup)
+        {
+            setup = true;
+            gunCombinedStats = new CombinedStatBlock();
+        }
         statBlocks.Clear();
 
-        //get item stats, excluding the weapons so we don't get a bunch of gun base stats we don't want
         if (useItemStats)
         {
-            foreach (Item item in Player.activePlayer.inventory.items)
+            //get item stats, excluding the weapons so we don't get a bunch of gun base stats we don't want
+            if (useItemStats)
             {
-                if (item != null)
+                foreach (Item item in Player.activePlayer.inventory.items)
                 {
-                    statBlocks.AddRange(item.newStatsList);
+                    if (item != null)
+                    {
+                        statBlocks.AddRange(item.newStatsList);
+                    }
                 }
             }
         }
@@ -58,21 +81,8 @@ public class GunActivatable : Activatable
         }
 
         statBlocks.AddRange(gun.newStatsList);
-        gun.combinedStats.UpdateSources(statBlocks);
-
-        repeats = (int)(duration/durationToRepeatFireRatio);
-        gun.ShootIgnoreState(gun.combinedStats);
-
-        if(repeats > 0)
-        {
-            delayTimer = repeatDelay;
-        }
-    }
-
-    public override void ApplyStatBlock(CombinedStatBlock stats)
-    {
-        this.stats = stats;
-        duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+        gunCombinedStats.UpdateSources(statBlocks);
+        gun.ApplyNewStatBlock(gunCombinedStats);
     }
 
     public override void Setup(ActiveItem source)
@@ -88,11 +98,11 @@ public class GunActivatable : Activatable
         gun.LevelUp();
     }
 
-    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext)
+    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
     {
-        StatBlockContext statBlockContext = new StatBlockContext();
-        statBlockContext.AddGenericTooltip($"Fires a {StatBlockContext.GoodColor}{gun.name}</color>. Cooldown: {StatBlockContext.HighlightColor}{source.cooldown}</color>s.");
-        return statBlockContext;
+        StatBlockContext context = gun.GetStatBlockContext();
+        context.AddGenericTooltip($"Fires a {StatBlockContext.GoodColor}{gun.DisplayName}</color>. Cooldown: {StatBlockContext.HighlightColor}{source.Cooldown}</color>s.");
+        return context;
     }
 
     private void Update()

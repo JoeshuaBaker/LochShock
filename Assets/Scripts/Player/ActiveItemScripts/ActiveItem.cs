@@ -6,12 +6,44 @@ public class ActiveItem : Item
 {
     public Activatable activatable;
     public int currentCharges = 1;
-    public int maxCharges = 1;
-    public float cooldown = 1f;
+    [SerializeField] private int maxCharges = 1;
+
+    public int MaxCharges
+    {
+        get
+        {
+            if(setup)
+            {
+                return (int)combinedStats.GetCombinedStatValue<ActiveItemCharges>();
+            }
+            else
+            {
+                return (int)baseItemCombinedStats.GetCombinedStatValue<ActiveItemCharges>();
+            }
+        }
+    }
+
+    [SerializeField] private float cooldown = 1f;
+
+    public float Cooldown
+    {
+        get
+        {
+            if (setup)
+            {
+                return (int)combinedStats.GetCombinedStatValue<ActiveItemCooldown>();
+            }
+            else
+            {
+                return (int)baseItemCombinedStats.GetCombinedStatValue<ActiveItemCooldown>();
+            }
+        }
+    }
+
     public float percentCooldownComplete = 0f;
     public float CooldownTimer => percentCooldownComplete * cooldown;
 
-    private bool setup = false;
+    public bool setup = false;
 
     public void Activate()
     {
@@ -59,7 +91,7 @@ public class ActiveItem : Item
 
     public override StatBlockContext GetStatBlockContext()
     {
-        return activatable.GetStatBlockContext(base.GetStatBlockContext());
+        return activatable.GetStatBlockContext(base.GetStatBlockContext(), this);
     }
 
     public bool IsReady()

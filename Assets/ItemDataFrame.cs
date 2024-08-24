@@ -56,7 +56,7 @@ public class ItemDataFrame : MonoBehaviour
         {
             itemFrame.sprite = frameRarities[(int)item.rarity];
         }
-        itemName.text = item.name;
+        itemName.text = item.DisplayName;
         itemLevel.text = "Lv " + item.level.ToString();
         itemRarity.text = item.rarity.ToString();
         itemStatusSlot.text = item.itemType.ToString();

@@ -12,5 +12,5 @@ public abstract class Activatable : MonoBehaviour
     {
 
     }
-    public abstract StatBlockContext GetStatBlockContext(StatBlockContext baseStatBlockContext);
+    public abstract StatBlockContext GetStatBlockContext(StatBlockContext baseStatBlockContext, ActiveItem source);
 }

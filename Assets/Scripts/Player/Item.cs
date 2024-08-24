@@ -20,7 +20,18 @@ public class Item : MonoBehaviour
         Active
     }
 
-    public string displayName;
+    [SerializeField] private string displayName;
+    public string DisplayName
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(displayName))
+            {
+                displayName = name;
+            }
+            return displayName;
+        }
+    }
     public Sprite icon;
     public Rarity rarity;
     public ItemType itemType;
@@ -92,11 +103,6 @@ public class Item : MonoBehaviour
 
     public virtual void Start()
     {
-        if(string.IsNullOrEmpty(displayName))
-        {
-            displayName = name;
-        }
-
         baseItemCombinedStats = new CombinedStatBlock();
         baseItemCombinedStats.UpdateSources(newStatsList);
         stats.AddSource(this);

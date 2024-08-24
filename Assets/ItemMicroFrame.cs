@@ -125,7 +125,7 @@ public class ItemMicroFrame : MonoBehaviour
             if(item is ActiveItem)
             {
                 ActiveItem activeItem = item as ActiveItem;
-                topText.text = activeItem.CooldownTimer.ToString("0.0") + (activeItem.maxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
+                topText.text = activeItem.CooldownTimer.ToString("0.0") + (activeItem.MaxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
 
                 if (activeItem.CooldownTimer > 0f)
                 {
