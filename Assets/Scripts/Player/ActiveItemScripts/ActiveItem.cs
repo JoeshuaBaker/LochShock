@@ -42,6 +42,7 @@ public class ActiveItem : Item
 
     public float percentCooldownComplete = 0f;
     public float CooldownTimer => percentCooldownComplete * cooldown;
+    public float CooldownCountdown => (1f - percentCooldownComplete) * cooldown;
 
     public bool setup = false;
 
