@@ -2,7 +2,7 @@ using BulletHell;
 
 public abstract class OnKillAction : ScriptableAction
 {
-    public virtual void OnKill(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    public virtual void OnKill(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         PlayTriggerSfx(player.gameObject);
     }

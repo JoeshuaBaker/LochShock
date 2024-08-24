@@ -141,7 +141,7 @@ public class Gun : Item
 
         foreach (OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
         {
-            onFire.OnFire(Player.activePlayer, this);
+            onFire.OnFire(this, Player.activePlayer, this);
         }
     }
 
@@ -226,8 +226,9 @@ public class Gun : Item
         }
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         bulletCooldown = Mathf.Max(bulletCooldown - Time.deltaTime, 0);
         if(reloadType == ReloadType.Charge)
         {
@@ -281,7 +282,7 @@ public class Gun : Item
 
                     foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
                     {
-                        onReload.OnReload(Player.activePlayer, this);
+                        onReload.OnReload(this, Player.activePlayer, this);
                     }
                 }
 

@@ -100,8 +100,9 @@ public class ActiveItem : Item
         return currentCharges >= 1;
     }
 
-    public void Update()
+    public override void Update()
     {
+        base.Update();
         if(currentCharges < maxCharges)
         {
             percentCooldownComplete = Mathf.Min(percentCooldownComplete + (Time.deltaTime / cooldown), 1f);

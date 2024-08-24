@@ -67,14 +67,14 @@ namespace BulletHell
 
                     foreach (OnHitAction onHit in stats.combinedStatBlock.events.GetEvents<OnHitAction>())
                     {
-                        onHit.OnHit(Player.activePlayer, gun, node.Item, enemy);
+                        onHit.OnHit(gun, Player.activePlayer, gun, node.Item, enemy);
                     }
 
                     if(enemy.IsDead())
                     {
                         foreach(OnKillAction onKill in stats.combinedStatBlock.events.GetEvents<OnKillAction>())
                         {
-                            onKill.OnKill(Player.activePlayer, gun, node.Item, enemy);
+                            onKill.OnKill(gun, Player.activePlayer, gun, node.Item, enemy);
                         }
                     }
                 }

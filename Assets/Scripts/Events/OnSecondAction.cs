@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class OnSecondAction : ScriptableAction
 {
-    public virtual void OnSecond(Player player)
+    public virtual void OnSecond(Item source, Player player)
     {
         PlayTriggerSfx(player.gameObject);
     }

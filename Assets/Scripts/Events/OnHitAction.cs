@@ -5,7 +5,7 @@ using BulletHell;
 
 public abstract class OnHitAction : ScriptableAction
 {
-    public virtual void OnHit(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    public virtual void OnHit(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         PlayTriggerSfx(player.gameObject);
     }

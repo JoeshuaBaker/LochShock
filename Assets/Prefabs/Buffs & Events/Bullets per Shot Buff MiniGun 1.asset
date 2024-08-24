@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   buffName: Bullets Per Shot
-  duration: 2
+  baseDuration: 2
   stackType: 0
   stackLimit: 10
   newStats:
@@ -23,12 +23,10 @@ MonoBehaviour:
     - id: 1
     - id: 2
     events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
+      events: []
+      source: {fileID: 0}
     stacks: 1
+    source: {fileID: 0}
     active: 0
   references:
     version: 1
@@ -38,18 +36,21 @@ MonoBehaviour:
         combineType:
           id: 3
         value: 1
+        conditions: []
     00000001:
       type: {class: BulletStreams, ns: , asm: Assembly-CSharp}
       data:
         combineType:
           id: 4
         value: 0.1
+        conditions: []
     00000002:
       type: {class: BulletsPerShot, ns: , asm: Assembly-CSharp}
       data:
         combineType:
           id: 5
         value: 0.1
+        conditions: []
     00000003:
       type: {class: Additive, ns: , asm: Assembly-CSharp}
     00000004:

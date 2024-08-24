@@ -9,12 +9,12 @@ public class OnFireApplyBuff : OnFireAction
         return GetBuffTooltip(this, buff);
     }
 
-    public override void OnFire(Player player, Gun gun)
+    public override void OnFire(Item source, Player player, Gun gun)
     {
         if (IsValidTrigger())
         {
-            base.OnFire(player, gun);
-            player.AddBuff(buff.GetInstance(source));
+            base.OnFire(source, player, gun);
+            source.AddBuff(buff.GetInstance(source));
         }
     }
 }

@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   buffName: Accuracy Loss
-  duration: 2
+  baseDuration: 2
   stackType: 0
   stackLimit: 20
   newStats:
     stats:
     - id: 0
     - id: 1
+    events:
+      events: []
+      source: {fileID: 0}
     stacks: 1
+    source: {fileID: 0}
     active: 0
   references:
     version: 1
@@ -31,12 +35,14 @@ MonoBehaviour:
         combineType:
           id: 2
         value: 0.05
+        conditions: []
     00000001:
       type: {class: Accuracy, ns: , asm: Assembly-CSharp}
       data:
         combineType:
           id: 3
         value: -0.01
+        conditions: []
     00000002:
       type: {class: Additive, ns: , asm: Assembly-CSharp}
     00000003:

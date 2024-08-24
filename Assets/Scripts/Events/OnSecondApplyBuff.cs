@@ -9,12 +9,12 @@ public class OnSecondApplyBuff : OnSecondAction
         return GetBuffTooltip(this, buff);
     }
 
-    public override void OnSecond(Player player)
+    public override void OnSecond(Item source, Player player)
     {
         if (IsValidTrigger())
         {
-            base.OnSecond(player);
-            player.AddBuff(buff.GetInstance(source));
+            base.OnSecond(source, player);
+            source.AddBuff(buff.GetInstance(source));
         }
     }
 }

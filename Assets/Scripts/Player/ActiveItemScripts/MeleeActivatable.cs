@@ -35,6 +35,15 @@ public class MeleeActivatable : Activatable
     private ContactFilter2D hitFilter;
     private List<Collider2D> hitBuffer;
 
+    private void Start()
+    {
+        if (meleeWeaponParent == null && this.transform.childCount > 0)
+        {
+            meleeWeaponParent = this.transform.GetChild(0).gameObject;
+        }
+        meleeWeaponParent.SetActive(false);
+    }
+
     public override void Activate()
     {
         meleeWeaponParent.gameObject.SetActive(true);

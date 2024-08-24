@@ -13,7 +13,7 @@ public class Buff : ScriptableObject
     }
     public Sprite icon;
     public string buffName;
-    public float baseDuration;
+    public float baseDuration = 1f;
     public StackType stackType;
     public int stackLimit = 1;
     public StatBlock newStats;
@@ -43,7 +43,7 @@ public class Buff : ScriptableObject
             buff = this,
             newStats = buffStatsCopy,
             source = source,
-            currentDuration = overwriteDuration == 0 ? baseDuration : overwriteDuration
+            currentDuration = overwriteDuration == 0f ? baseDuration : overwriteDuration
         };
     }
 }

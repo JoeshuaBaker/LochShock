@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Item : MonoBehaviour
 {
@@ -82,6 +84,7 @@ public class Item : MonoBehaviour
     public StatBlock levelUpStats;
     public CombinedStatBlock combinedStats;
     public CombinedStatBlock baseItemCombinedStats;
+    public List<Buff.Instance> buffs;
 
     public virtual StatBlockContext GetStatBlockContext()
     {
@@ -103,9 +106,57 @@ public class Item : MonoBehaviour
 
     public virtual void Start()
     {
+        buffs = new List<Buff.Instance>();
         baseItemCombinedStats = new CombinedStatBlock();
         baseItemCombinedStats.UpdateSources(newStatsList);
         stats.AddSource(this);
         levelUpStats.AddSource(this);
+    }
+
+    public virtual void Update()
+    {
+        foreach (var buff in buffs)
+        {
+            Debug.Log("Before: " + buff.currentDuration);
+            buff.currentDuration -= Time.deltaTime;
+            Debug.Log("After: " + buff.currentDuration);
+        }
+
+        buffs.RemoveAll(buff => buff.currentDuration <= 0f);
+    }
+
+    public virtual void AddBuff(Buff.Instance buffInstance)
+    {
+        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName.Equals(buffInstance.buff.buffName, StringComparison.CurrentCultureIgnoreCase));
+
+        if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
+        {
+            Buff.Instance matchingBuff = matchingBuffs.First();
+            matchingBuff.currentDuration = matchingBuff.buff.baseDuration;
+            if (matchingBuff.newStats.Stacks < matchingBuff.buff.stackLimit)
+            {
+                matchingBuff.newStats.Stacks += 1;
+            }
+
+            return;
+        }
+
+        //replace lowest duration buff if the buff is copyable and we are at stack limit
+        else if (buffInstance.buff.stackType == Buff.StackType.Copyable && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
+        {
+            Buff.Instance lowestDuration = matchingBuffs.First();
+
+            foreach (var matchingBuff in matchingBuffs)
+            {
+                if (matchingBuff.currentDuration <= lowestDuration.currentDuration)
+                {
+                    lowestDuration = matchingBuff;
+                }
+            }
+
+            buffs.Remove(lowestDuration);
+        }
+
+        buffs.Add(buffInstance);
     }
 }

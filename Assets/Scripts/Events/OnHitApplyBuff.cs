@@ -11,12 +11,12 @@ public class OnHitApplyBuff : OnHitAction
         return GetBuffTooltip(this, buff);
     }
 
-    public override void OnHit(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    public override void OnHit(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         if(IsValidTrigger())
         {
-            base.OnHit(player, gun, projectile, enemy);
-            player.AddBuff(buff.GetInstance(source));
+            base.OnHit(source, player, gun, projectile, enemy);
+            source.AddBuff(buff.GetInstance(source));
         }
     }
 }

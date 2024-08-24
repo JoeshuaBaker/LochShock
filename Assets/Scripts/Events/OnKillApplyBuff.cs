@@ -11,12 +11,12 @@ public class OnKillApplyBuff : OnKillAction
         return GetBuffTooltip(this, buff);
     }
 
-    public override void OnKill(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    public override void OnKill(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         if (IsValidTrigger())
         {
-            base.OnKill(player, gun, projectile, enemy);
-            player.AddBuff(buff.GetInstance(source));
+            base.OnKill(source, player, gun, projectile, enemy);
+            source.AddBuff(buff.GetInstance(source));
         }
     }
 }

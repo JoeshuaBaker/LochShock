@@ -5,7 +5,7 @@ public class BuffActivatable : Activatable
     private float duration = 0f;
     public override void Activate()
     {
-        Player.activePlayer.AddBuff(buff.GetInstance(source, duration));
+        source.AddBuff(buff.GetInstance(source, duration));
     }
 
     public override void Setup(ActiveItem source)

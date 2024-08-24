@@ -11,7 +11,7 @@ public class OnHitSpawnExplosion : OnHitAction
         return $"15% chance to spawn an explosion which deals {stats.GetCombinedStatValue<Damage>(World.activeWorld.worldStaticContext)} damage.";
     }
 
-    public override void OnHit(Player player, Gun gun, ProjectileData projectile, Enemy enemy)
+    public override void OnHit(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         throw new System.NotImplementedException();
     }

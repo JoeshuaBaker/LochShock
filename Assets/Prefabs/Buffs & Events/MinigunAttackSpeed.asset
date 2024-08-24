@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   buffName: Attack Speed
-  duration: 2
+  baseDuration: 2
   stackType: 0
   stackLimit: 20
   newStats:
@@ -22,7 +22,9 @@ MonoBehaviour:
     - id: 0
     events:
       events: []
+      source: {fileID: 0}
     stacks: 1
+    source: {fileID: 0}
     active: 0
   references:
     version: 1
@@ -32,5 +34,6 @@ MonoBehaviour:
         combineType:
           id: 1
         value: 0.33
+        conditions: []
     00000001:
       type: {class: Mult, ns: , asm: Assembly-CSharp}

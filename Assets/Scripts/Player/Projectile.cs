@@ -125,14 +125,14 @@ public class Projectile : MonoBehaviour
 
             foreach (OnHitAction onHit in projectileData.stats.combinedStatBlock.events.GetEvents<OnHitAction>())
             {
-                onHit.OnHit(Player.activePlayer, source, projectileData, enemy);
+                onHit.OnHit(source, Player.activePlayer, source, projectileData, enemy);
             }
 
             if (enemy.IsDead())
             {
                 foreach (OnKillAction onKill in projectileData.stats.combinedStatBlock.events.GetEvents<OnKillAction>())
                 {
-                    onKill.OnKill(Player.activePlayer, source, projectileData, enemy);
+                    onKill.OnKill(source, Player.activePlayer, source, projectileData, enemy);
                 }
             }
         }

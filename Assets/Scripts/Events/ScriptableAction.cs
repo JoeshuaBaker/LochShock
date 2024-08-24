@@ -9,7 +9,6 @@ public abstract class ScriptableAction : ScriptableObject
     public float chanceToTrigger = 1.0f;
     public float cooldown = 0f;
     private double lastTriggerTime = -1;
-    public Item source;
     public abstract string GetLabel();
     public abstract string GetTooltip(CombinedStatBlock stats);
 

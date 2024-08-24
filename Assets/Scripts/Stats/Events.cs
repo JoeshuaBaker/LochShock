@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class Events
 {
     public List<ScriptableAction> events;
+    public Item source;
 
     public Events()
     {
@@ -19,10 +20,7 @@ public class Events
 
     public void AddSource(Item item)
     {
-        foreach(ScriptableAction e in events)
-        {
-            e.source = item;
-        }
+        source = item;
     }
 
     public Events Copy()

@@ -167,6 +167,23 @@ public class Inventory : MonoBehaviour
         inactiveGun.CancelReload();
     }
 
+    public void AggregateBuffs(List<Buff.Instance> buffList)
+    {
+        buffList.AddRange(activeGun.buffs);
+        if(activeItem != null)
+        {
+            buffList.AddRange(activeItem.buffs);
+        }
+
+        foreach(Item item in items)
+        {
+            if(item != null)
+            {
+                buffList.AddRange(item.buffs);
+            }
+        }
+    }
+
     public List<StatBlock> GetNewItemStats()
     {
         List<StatBlock> newStatBlocks = new List<StatBlock>();
@@ -349,5 +366,25 @@ public class Inventory : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public Item FindEventSource(ScriptableAction scriptEvent)
+    {
+        foreach(Item item in allItems)
+        {
+            if(item.stats.events.events.Contains(scriptEvent))
+            {
+                return item;
+            }
+        }
+        foreach(Item item in allItems)
+        {
+            if(item.levelUpStats.events.events.Contains(scriptEvent))
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 }

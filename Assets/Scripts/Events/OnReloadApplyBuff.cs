@@ -11,12 +11,12 @@ public class OnReloadApplyBuff : OnReloadAction
         return GetBuffTooltip(this, buff);
     }
 
-    public override void OnReload(Player player, Gun gun)
+    public override void OnReload(Item source, Player player, Gun gun)
     {
         if (IsValidTrigger())
         {
-            base.OnReload(player, gun);
-            player.AddBuff(buff.GetInstance(source));
+            base.OnReload(source, player, gun);
+            source.AddBuff(buff.GetInstance(source));
         }
     }
 }

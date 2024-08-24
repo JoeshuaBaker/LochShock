@@ -326,41 +326,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void AddBuff(Buff.Instance buffInstance)
-    {
-        IEnumerable<Buff.Instance> matchingBuffs = buffs.Where(x => x.buff.buffName.Equals(buffInstance.buff.buffName, StringComparison.CurrentCultureIgnoreCase));
-
-        if (buffInstance.buff.stackType == Buff.StackType.Stackable && matchingBuffs.Count() > 0)
-        {
-            Buff.Instance matchingBuff = matchingBuffs.First();
-            matchingBuff.currentDuration = matchingBuff.buff.baseDuration;
-            if (matchingBuff.newStats.Stacks < matchingBuff.buff.stackLimit)
-            {
-                matchingBuff.newStats.Stacks += 1;
-            }
-
-            return;
-        }
-
-        //replace lowest duration buff if the buff is copyable and we are at stack limit
-        else if (buffInstance.buff.stackType == Buff.StackType.Copyable && matchingBuffs.Count() >= buffInstance.buff.stackLimit)
-        {
-            Buff.Instance lowestDuration = matchingBuffs.First();
-
-            foreach (var matchingBuff in matchingBuffs)
-            {
-                if (matchingBuff.currentDuration <= lowestDuration.currentDuration)
-                {
-                    lowestDuration = matchingBuff;
-                }
-            }
-
-            buffs.Remove(lowestDuration);
-        }
-
-        buffs.Add(buffInstance);
-    }
-
     public void SetVision()
     {
         Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
@@ -687,19 +652,16 @@ public class Player : MonoBehaviour
             secondTimer = 1;
             foreach (OnSecondAction onSecondAction in combinedNewStats.combinedStatBlock.GetEvents<OnSecondAction>())
             {
-                onSecondAction.OnSecond(this);
+                Item source = inventory.FindEventSource(onSecondAction);
+                onSecondAction.OnSecond(source, this);
             }
         }
     }
 
     private void UpdateStatBlocks()
     {
-        foreach (var buff in buffs)
-        {
-            buff.currentDuration -= Time.deltaTime;
-        }
-
-        buffs.RemoveAll(buff => buff.currentDuration <= 0f);
+        buffs.Clear();
+        inventory.AggregateBuffs(buffs);
 
         var allNewStats = inventory.GetNewItemStats();
         allNewStats.Add(this.baseStats);
