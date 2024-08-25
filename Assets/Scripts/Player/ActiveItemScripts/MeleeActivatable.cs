@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class MeleeActivatable : Activatable
 {
-    public enum HitboxType
-    {
-        Circle,
-        Box
-    }
     public GameObject meleeWeaponParent;
     public Animator meleeWeaponVisual;
     public Collider2D hitbox;
-    public HitboxType hitboxType = HitboxType.Circle;
     public bool isActive = false;
     public bool repeatable = false;
     public bool aimable = true;
     public float bonusRepeatsDurationThreshold = 5f;
-    public int numRepeats = 1;
     private int modifiedRepeats
     {
-        get { return numRepeats + (int)(duration / bonusRepeatsDurationThreshold); }
+        get {return (int)(duration / bonusRepeatsDurationThreshold); }
     }
     public float[] hitboxPulses = new float[] { 0.5f };
     private float playTime = 0f;
@@ -28,9 +21,7 @@ public class MeleeActivatable : Activatable
     private float baseAnimTimer = 0f;
     private Vector2 mouseDirection = Vector2.right;
     private Vector2 modifiedMouseDirection = Vector2.right;
-    private Vector3 nonRotatedExtents = Vector3.one;
     private ActiveItem source;
-    private float damage;
     private float duration;
     private CombinedStatBlock stats;
     private ContactFilter2D hitFilter;
@@ -67,16 +58,6 @@ public class MeleeActivatable : Activatable
         if (hitbox == null)
         {
             hitbox = GetComponentInChildren<Collider2D>();
-        }
-
-        if (hitbox is CircleCollider2D)
-        {
-            hitboxType = HitboxType.Circle;
-        }
-        else if (hitbox is BoxCollider2D)
-        {
-            hitboxType = HitboxType.Box;
-            nonRotatedExtents = (hitbox as BoxCollider2D).bounds.extents;
         }
 
         hitFilter = new ContactFilter2D
@@ -202,7 +183,8 @@ public class MeleeActivatable : Activatable
     public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
     {
         StatBlockContext statBlockContext = baseContext;
-        var attackString = (hitboxPulses.Length > 1) ? $"{StatBlockContext.GoodColor}{hitboxPulses.Length}</color> times " : "";
+        var numAttacks = hitboxPulses.Length * modifiedRepeats;
+        var attackString = (numAttacks > 1) ? $"{StatBlockContext.GoodColor}{numAttacks}</color> times " : "";
         statBlockContext.AddGenericTooltip($"Attacks {attackString}with a {StatBlockContext.GoodColor}{source.DisplayName}</color>." + 
             ((source.MaxCharges > 1) ? $" Charges: {source.MaxCharges}." : ""));
         return statBlockContext;
