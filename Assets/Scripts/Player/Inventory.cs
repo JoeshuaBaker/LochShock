@@ -21,12 +21,27 @@ public class Inventory : MonoBehaviour
     public Item[] items = new Item[5];
     private Dictionary<Item.ItemType, Item[]> itemMap;
     private Dictionary<Item[], Transform> collectionParentMap;
+    private Item[] allItemsInternal;
 
     public Item[] allItems
     {
         get
         {
-            return new Item[] { guns[0], guns[1], activeItems[0], itemStash[0], itemStash[1], items[0], items[1], items[2], items[3], items[4] };
+            if(allItemsInternal == null)
+            {
+                allItemsInternal = new Item[10];
+            }
+            allItemsInternal[0] = guns[0];
+            allItemsInternal[1] = guns[1];
+            allItemsInternal[2] = activeItems[0];
+            allItemsInternal[3] = itemStash[0];
+            allItemsInternal[4] = itemStash[1];
+            allItemsInternal[5] = items[0];
+            allItemsInternal[6] = items[1];
+            allItemsInternal[7] = items[2];
+            allItemsInternal[8] = items[3];
+            allItemsInternal[9] = items[4];
+            return allItemsInternal;
         }
     }
     public int scrap = 0;
@@ -372,6 +387,9 @@ public class Inventory : MonoBehaviour
     {
         foreach(Item item in allItems)
         {
+            if(item == null)
+                continue;
+
             if(item.stats.events.events.Contains(scriptEvent))
             {
                 return item;
@@ -379,6 +397,9 @@ public class Inventory : MonoBehaviour
         }
         foreach(Item item in allItems)
         {
+            if(item == null)
+                continue;
+
             if(item.levelUpStats.events.events.Contains(scriptEvent))
             {
                 return item;
