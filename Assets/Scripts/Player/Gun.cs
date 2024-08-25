@@ -16,6 +16,7 @@ public class Gun : Item
 
     public GunType gunType = GunType.Emitter;
     public ReloadType reloadType = ReloadType.Magazine;
+    public bool waitForFireSpeedBeforeReload = false;
     public GunEmitter emitter;
     public Projectile projectile;
     public ParticleSystem muzzleFlashMain;
@@ -318,6 +319,10 @@ public class Gun : Item
 
     private void IncrementReloadPercentage()
     {
+        if(waitForFireSpeedBeforeReload && bulletCooldown > 0)
+        {
+            return;
+        }
         percentReloaded += Time.deltaTime / reloadSpeed;
 
         if(reloadType != ReloadType.Incremental)
