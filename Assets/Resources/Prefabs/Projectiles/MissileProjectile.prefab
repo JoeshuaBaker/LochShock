@@ -187,7 +187,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -223,6 +223,6 @@ MonoBehaviour:
   - {fileID: 8527776041110782097}
   - {fileID: 8527776041426712221}
   - {fileID: 8490132442667928419}
-  trailDisableDelay: 0.2
-  damageRadiusScale: 2
+  trailDisableDelay: 0.4
+  damageRadiusScale: 1
   explosionRadiusScale: 0.6

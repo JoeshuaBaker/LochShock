@@ -159,6 +159,11 @@ public class Grapple : MonoBehaviour
     void Update()
     {
 
+        if (World.activeWorld.paused)
+        {
+            return;
+        }
+
         if (grappleCD > 0f)
         {
             grappleCD = grappleCD - Time.deltaTime;
@@ -171,11 +176,6 @@ public class Grapple : MonoBehaviour
         }
 
         if (!fireGrappling)
-        {
-            return;
-        }
-
-        if (World.activeWorld.paused)
         {
             return;
         }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &636420858152792928
+--- !u!1001 &6678499327065760841
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,8 +8,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 44d40d5da274d964b8d4680401bda94b, type: 3}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: rarity
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: displayName
+      value: Heavy Machine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.active
@@ -28,21 +36,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.size
-      value: 14
+      propertyPath: itemStats.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.data[13]
-      value: Assembly-CSharp Pierce
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: gunSFX.WwiseObjectReference
       value: 
-      objectReference: {fileID: 11400000, guid: c7f1ed99c16854b749cd5ffddf15b924, type: 2}
+      objectReference: {fileID: 11400000, guid: 97e9f3e4251f142549c62ddbde7ff1b2, type: 2}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[5]
       value: Assembly-CSharp SpreadAngle
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[10]
@@ -73,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[11]
-      value: Assembly-CSharp Pierce
+      value: Assembly-CSharp Lifetime
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: newStats.stats.Array.data[12]
-      value: Assembly-CSharp Lifetime
+      propertyPath: itemStats.Array.data[1].stacks
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[0].value
@@ -85,27 +89,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[1].value
-      value: 5
+      value: 6.6666665
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[4].value
-      value: 24
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: stats.stats.Array.data[5].value
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[6].value
-      value: 0.95
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[7].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.data[8].value
-      value: -8
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[9].value
-      value: 35
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0]
@@ -113,15 +117,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[1]
-      value: Assembly-CSharp Damage
+      value: Assembly-CSharp ReloadSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[2]
-      value: Assembly-CSharp Velocity
+      value: Assembly-CSharp FireSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[3]
-      value: Assembly-CSharp Velocity
+      value: Assembly-CSharp Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[4]
+      value: Assembly-CSharp Damage
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.size
@@ -129,35 +137,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[10].value
-      value: 0.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: stats.stats.Array.data[11].value
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.data[13].value
-      value: 2
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: gunAudioEvent.WwiseObjectReference
       value: 
-      objectReference: {fileID: 11400000, guid: c7f1ed99c16854b749cd5ffddf15b924, type: 2}
+      objectReference: {fileID: 11400000, guid: 97e9f3e4251f142549c62ddbde7ff1b2, type: 2}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[0].value
-      value: 36
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[1].value
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[2].value
-      value: 0.05
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[5].value
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[6].value
@@ -169,11 +173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[8].value
-      value: 35
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[9].value
-      value: 0.05
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[0]
@@ -185,31 +189,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[2]
-      value: Assembly-CSharp Damage
+      value: Assembly-CSharp FireSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[3]
-      value: Assembly-CSharp Velocity
+      value: Assembly-CSharp Damage
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[10].value
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[11].value
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: newStats.stats.Array.data[12].value
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.size
-      value: 0.05
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[5].statType
@@ -233,19 +225,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0].value
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[1].value
-      value: 2
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[2].value
-      value: 5
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[3].value
-      value: 5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[4].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[10].statType
@@ -256,20 +252,8 @@ PrefabInstance:
       value: Assembly-CSharp Base
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: newStats.stats.Array.data[12].statType
-      value: Assembly-CSharp Base
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.data[13].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.damage
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.pierce
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[5].combineType
@@ -297,15 +281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.lifetime
-      value: 0.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.velocity
-      value: 35
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[0].value
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[1].value
@@ -313,11 +297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[2].value
-      value: 0.5
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[3].value
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[10].combineType
@@ -328,31 +312,23 @@ PrefabInstance:
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: newStats.stats.Array.data[12].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.fireSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: itemStats.Array.data[0].gunStats.knockback
-      value: 0.5
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.Array.data[0].gunStats.damage
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.reloadSpeed
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.spreadAngle
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: levelUpStats.Array.data[0].gunStats.velocity
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
@@ -372,6 +348,10 @@ PrefabInstance:
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[4].combineType
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[0].statType
       value: Assembly-CSharp Base
       objectReference: {fileID: 0}
@@ -389,19 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: itemStats.Array.data[0].gunStats.magazineSize
-      value: 36
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].active
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stacks
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].active
-      value: 1
+      propertyPath: levelUpStats.Array.data[0].gunStats.fireSpeed
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.Array.data[0].gunStats.reloadSpeed
@@ -424,56 +396,8 @@ PrefabInstance:
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.size
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.Array.data[0].gunStats.magazineSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: stats.stats.Array.data[13].conditions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[0]
-      value: Assembly-CSharp SpreadAngle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[1]
-      value: Assembly-CSharp Accuracy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[2]
-      value: Assembly-CSharp Damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[3]
-      value: Assembly-CSharp Velocity
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[4]
-      value: Assembly-CSharp Size
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[5]
-      value: Assembly-CSharp Pierce
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[6]
-      value: Assembly-CSharp Lifetime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[7]
-      value: Assembly-CSharp MagazineSize
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[8]
-      value: Assembly-CSharp ReloadSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[9]
-      value: Assembly-CSharp FireSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[5].statType.combinedValue
@@ -496,62 +420,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[10]
-      value: Assembly-CSharp ReloadSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[11]
-      value: Assembly-CSharp MagazineSize
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[12]
-      value: Assembly-CSharp SpreadAngle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[13]
-      value: Assembly-CSharp Accuracy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[14]
-      value: Assembly-CSharp Damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[15]
-      value: Assembly-CSharp Velocity
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[16]
-      value: Assembly-CSharp Size
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[17]
-      value: Assembly-CSharp Knockback
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[18]
-      value: Assembly-CSharp Pierce
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[19]
-      value: Assembly-CSharp Lifetime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[20]
-      value: Assembly-CSharp MagazineSize
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[21]
-      value: Assembly-CSharp ReloadSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[22]
-      value: Assembly-CSharp Damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[23]
-      value: Assembly-CSharp Velocity
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newStats.stats.Array.data[10].statType.combinedValue
       value: 0
       objectReference: {fileID: 0}
@@ -560,9 +428,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: newStats.stats.Array.data[12].statType.combinedValue
-      value: 0
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].active
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].source
+      value: 
+      objectReference: {fileID: 6002718498814329004}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].source
+      value: 
+      objectReference: {fileID: 6002718498814329004}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0].conditions.Array.size
       value: 0
@@ -580,108 +464,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[0].value
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[1].value
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[2].value
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[3].value
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[4].value
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[5].value
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[6].value
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[7].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[8].value
-      value: 0.016666668
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[9].value
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[10].value
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[11].value
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[12].value
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[13].value
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[14].value
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[15].value
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[16].value
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[17].value
+      propertyPath: levelUpStats.stats.Array.data[4].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[18].value
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[19].value
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[20].value
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[21].value
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[22].value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[23].value
-      value: 5
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.size
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: newLevelUpStats.stats.Array.data[0].statType.combinedValue
@@ -700,392 +488,568 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[0]
-      value: Assembly-CSharp SpreadAngle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[1]
-      value: Assembly-CSharp Accuracy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[2]
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[0]
       value: Assembly-CSharp Damage
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[3]
-      value: Assembly-CSharp Velocity
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[1]
+      value: Assembly-CSharp FireSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[4]
-      value: Assembly-CSharp Size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[2]
+      value: Assembly-CSharp BulletsPerShot
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[5]
-      value: Assembly-CSharp Knockback
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[3]
+      value: Assembly-CSharp BulletStreams
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[6]
-      value: Assembly-CSharp Pierce
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[7]
-      value: Assembly-CSharp Lifetime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[0]
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[4]
       value: Assembly-CSharp MagazineSize
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[1]
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[5]
       value: Assembly-CSharp ReloadSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[2]
-      value: Assembly-CSharp Damage
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[6]
+      value: Assembly-CSharp Accuracy
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[3]
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[7]
+      value: Assembly-CSharp Knockback
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[8]
+      value: Assembly-CSharp SpreadAngle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[9]
       value: Assembly-CSharp Velocity
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[0].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[10]
+      value: Assembly-CSharp Lifetime
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[1].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[11]
+      value: Assembly-CSharp Size
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[2].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[12]
+      value: Assembly-CSharp SecondaryHitDamage
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[3].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[13]
+      value: Assembly-CSharp MagazineSize
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[4].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[14]
+      value: Assembly-CSharp ReloadSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[5].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[15]
+      value: Assembly-CSharp FireSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[6].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[16]
+      value: Assembly-CSharp Damage
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[7].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.size
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[8].combineType
-      value: Assembly-CSharp BaseStat
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[9].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[10].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[11].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[12].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[13].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[14].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[15].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[16].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[17].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[18].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[19].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[20].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[21].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[22].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[23].combineType
-      value: Assembly-CSharp BaseStat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[0].value
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[1].value
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[2].value
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[0].value
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[3].value
-      value: 35
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[1].value
+      value: 6.6666665
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[4].value
-      value: 0.05
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[2].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[5].value
-      value: 0
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[3].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[6].value
-      value: 2
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[4].value
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[7].value
-      value: 0.2
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[5].value
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[0].value
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[1].value
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[2].value
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[6].value
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[3].value
-      value: 5
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[7].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[0].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[8].value
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[9].value
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[10].value
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[11].value
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[12].value
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[13].value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[14].value
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[15].value
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[16].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[0]
+      value: Assembly-CSharp Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[1]
+      value: Assembly-CSharp FireSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[2]
+      value: Assembly-CSharp BulletsPerShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[3]
+      value: Assembly-CSharp BulletStreams
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[4]
+      value: Assembly-CSharp MagazineSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[5]
+      value: Assembly-CSharp ReloadSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[6]
+      value: Assembly-CSharp Accuracy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[7]
+      value: Assembly-CSharp Knockback
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[8]
+      value: Assembly-CSharp SpreadAngle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[9]
+      value: Assembly-CSharp Velocity
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[0]
+      value: Assembly-CSharp MagazineSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[1]
+      value: Assembly-CSharp ReloadSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[2]
+      value: Assembly-CSharp FireSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[3]
+      value: Assembly-CSharp Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[10]
+      value: Assembly-CSharp Lifetime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[11]
+      value: Assembly-CSharp Size
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[12]
+      value: Assembly-CSharp SecondaryHitDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[12].BaseValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[0].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[1].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[1].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[2].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[2].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[3].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[3].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[4].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[4].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[5].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[5].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[6].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[6].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[7].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[7].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[0].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[8].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[1].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[9].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[2].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[10].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[3].combineType
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[11].combineType
       value: Assembly-CSharp BaseStat
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[0].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[12].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[13].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[14].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[15].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[16].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[0].value
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[1].value
+      value: 6.6666665
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[4].value
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[5].value
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[6].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[7].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[1].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[8].value
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[9].value
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[0].value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[1].value
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[2].value
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[3].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[10].value
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[11].value
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[12].value
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[12].BaseValue
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[1].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[3].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[4].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[5].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[6].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[7].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[8].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[9].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[1].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[2].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[3].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[10].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[11].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[12].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[0].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[2].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[1].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[3].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[2].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[4].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[3].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[5].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[4].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[6].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[5].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[7].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[6].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[8].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[7].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[9].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[8].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[10].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[9].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[11].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[10].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[12].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[11].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[13].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[12].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[14].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[13].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[15].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[14].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[16].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[15].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[17].conditions.Array.size
+      propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.data[16].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[18].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[0].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[19].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[1].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[20].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[2].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[21].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[3].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[22].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[4].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.combinedStatBlock.stats.Array.data[23].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[5].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[0].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[6].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[1].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[7].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[2].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[8].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[3].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[9].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[4].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[0].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[5].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[1].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[6].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[2].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[0].stats.Array.data[7].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].stats.Array.data[3].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[0].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[10].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[1].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[11].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[2].conditions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
-      propertyPath: combinedStats.sourcesList.Array.data[1].stats.Array.data[3].conditions.Array.size
+      propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].stats.Array.data[12].conditions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453500415576585352, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: m_Name
-      value: Nailgun
+      value: Heavy MAchine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 3453500415576585398, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
       propertyPath: m_RootOrder
@@ -1133,3 +1097,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+--- !u!114 &6002718498814329004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1144824061936674021, guid: 54bb092e0dbbd3545bc0eb4e8d3a9318, type: 3}
+  m_PrefabInstance: {fileID: 6678499327065760841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63b535984dc30489c5af146e51f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

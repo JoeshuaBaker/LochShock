@@ -146,7 +146,9 @@ public class ExplosionSpawner : MonoBehaviour
                 
                 short burstMax = em.GetBurst(0).maxCount;
                 short burstMin = em.GetBurst(0).minCount;
-                float burstTime = em.GetBurst(0).time;
+                //float burstTime = em.GetBurst(0).time;
+                //  getting the time from the current time results in the time scaling as the explosion is reused, for now its a magic number
+                float burstTime = 0.066f;
 
                 em.SetBurst(0, new ParticleSystem.Burst((burstTime * timeMod) , burstMin , burstMax ));
             }
