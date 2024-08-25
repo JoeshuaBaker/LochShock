@@ -13,7 +13,7 @@ public class MeleeActivatable : Activatable
     public float bonusRepeatsDurationThreshold = 5f;
     private int modifiedRepeats
     {
-        get {return (int)(duration / bonusRepeatsDurationThreshold); }
+        get {return (int)((repeatable) ? (duration / bonusRepeatsDurationThreshold) : 1); }
     }
     public float[] hitboxPulses = new float[] { 0.5f };
     private float playTime = 0f;

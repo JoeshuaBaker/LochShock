@@ -109,7 +109,8 @@ public class Gun : Item
             if(bulletStreams == 1 && bulletsPerShot == 1)
             {
                 Projectile projectile = projectilePool.GetProjectile();
-                projectile.SetupProjectile(this, combinedStats, transform.position + direction.xyz() * firePositionOffset, direction, mousePosition);
+                Vector2 bulletDirection = ProjectileEmitterAdvanced.GetDirectionByStreamsAndShots(direction, 0, bulletStreams, 0, bulletsPerShot, accuracy, spreadAngle);
+                projectile.SetupProjectile(this, combinedStats, transform.position + direction.xyz() * firePositionOffset, bulletDirection, mousePosition);
             }
             else
             {

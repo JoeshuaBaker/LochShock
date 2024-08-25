@@ -85,6 +85,8 @@ namespace BulletHell
         {
             bulletContext = new DamageContext
             {
+                bulletInMag = source.magazine,
+                maxBulletsInMag = source.maxMagazine,
                 damageType = source.damageType,
                 source = source,
                 hitEnemies = null,

@@ -4,13 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "IsDamageType", menuName = "NemesisShock/Conditions/ItemPropertiesConditions/IsDamageType")]
 public class IsDamageType : ItemPropertiesCondition
 {
-    public enum GunOrActiveItem
-    {
-        Gun,
-        ActiveItem,
-        Either
-    }
-
     public enum DamageTypeMatch
     {
         Partial,
@@ -18,7 +11,6 @@ public class IsDamageType : ItemPropertiesCondition
     }
     public DamageType damageType;
     public DamageTypeMatch matchType = DamageTypeMatch.Partial;
-    public GunOrActiveItem mode = GunOrActiveItem.Gun;
 
     public override float CheckCondition(GameContext context)
     {
@@ -28,20 +20,20 @@ public class IsDamageType : ItemPropertiesCondition
         }
 
         DamageType contextDamageType = DamageType.None;
+        DamageType gunDamageType = DamageType.None;
+        DamageType activeItemDamageType = DamageType.None;
+
         if (context.damageContext.damageType != DamageType.None)
         {
             contextDamageType = context.damageContext.damageType;
         }
-        else if (mode == GunOrActiveItem.Gun || mode == GunOrActiveItem.Either)
+        if (mode == GunOrActiveItem.Gun || mode == GunOrActiveItem.Either)
         {
-            contextDamageType = context.player.inventory.activeGun.damageType;
+            gunDamageType |= context.player.inventory.activeGun.damageType;
         }
-        else if(mode == GunOrActiveItem.ActiveItem || mode == GunOrActiveItem.Either)
+        if(mode == GunOrActiveItem.ActiveItem || mode == GunOrActiveItem.Either)
         {
-            if(context.player.inventory.activeItem != null)
-            {
-                contextDamageType = context.player.inventory.activeItem.damageType;
-            }
+            activeItemDamageType |= context.player.inventory.activeItem.damageType;
         }
 
         float stacks = 0f;
@@ -50,7 +42,17 @@ public class IsDamageType : ItemPropertiesCondition
         {
             foreach(DamageType oneType in Enum.GetValues(typeof(DamageType)))
             {
-                if(oneType != DamageType.None && damageType.HasFlag(oneType) && contextDamageType.HasFlag(oneType))
+                if (oneType != DamageType.None && damageType.HasFlag(oneType) && contextDamageType.HasFlag(oneType))
+                {
+                    stacks = 1;
+                    break;
+                }
+                if ((mode == GunOrActiveItem.Gun || mode == GunOrActiveItem.Either) && oneType != DamageType.None && damageType.HasFlag(oneType) && gunDamageType.HasFlag(oneType))
+                {
+                    stacks = 1;
+                    break;
+                }
+                if ((mode == GunOrActiveItem.ActiveItem || mode == GunOrActiveItem.Either) && oneType != DamageType.None && damageType.HasFlag(oneType) && activeItemDamageType.HasFlag(oneType))
                 {
                     stacks = 1;
                     break;
@@ -60,6 +62,14 @@ public class IsDamageType : ItemPropertiesCondition
         else if(matchType == DamageTypeMatch.Exact)
         {
             if(damageType.HasFlag(contextDamageType))
+            {
+                stacks = 1;
+            }
+            if((mode == GunOrActiveItem.Gun || mode == GunOrActiveItem.Either) && damageType.HasFlag(gunDamageType))
+            {
+                stacks = 1;
+            }
+            if((mode == GunOrActiveItem.Gun || mode == GunOrActiveItem.Either) && damageType.HasFlag(activeItemDamageType))
             {
                 stacks = 1;
             }
