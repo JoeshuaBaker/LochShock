@@ -11,7 +11,7 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
         Empty
     }
     [Range(0,1)] public float currentMagazineThresholdPercent = 1f;
-    private string currentMagazineString => (threshold)
+    private string currentMagazineString => (threshold == MagazineThreshold.Empty || threshold == MagazineThreshold.Full) ? "" : currentMagazineThresholdPercent.ToString() + " percent full"; 
     public MagazineThreshold threshold = MagazineThreshold.Empty;
 
     public override float CheckCondition(GameContext context)
@@ -26,21 +26,35 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
 
         if(currentMagazine == 0)
         {
-            currentMagazine = Player.activePlayer.inventory.activeGun;
+            currentMagazine = Player.activePlayer.inventory.activeGun.magazine;
+        }
+        if(maxMagazine == 0)
+        {
+            maxMagazine = Player.activePlayer.inventory.activeGun.maxMagazine;
         }
 
-        float magazinePercent = context.player.inventory.activeGun.percentMagFilled;
+        float magazinePercent = currentMagazine / (float)maxMagazine;
 
         if (threshold == MagazineThreshold.Greater_Than)
         {
-            return currentMagazine > currentMagazineThreshold ? 1f : 0f;
+            return magazinePercent > currentMagazineThresholdPercent ? 1f : 0f;
         }
-        else
+        else if(threshold == MagazineThreshold.Less_Than)
         {
-            return currentMagazine < currentMagazineThreshold ? 1f : 0f;
+            return magazinePercent < currentMagazineThresholdPercent ? 1f : 0f;
         }
+        else if(threshold == MagazineThreshold.Full)
+        {
+            return maxMagazine == currentMagazine ? 1f : 0f;
+        }
+        else if(threshold == MagazineThreshold.Empty)
+        {
+            return currentMagazine == 0 ? 1f : 0f;
+        }
+
+        return 0f;
     }
 
     public override string ConditionTooltipLabel => "when";
-    public override string ConditionTooltipPostfix => ConditionTooltipLabel + $"Magazine is {threshold.ToString().Replace("_", " ")} {currentMagazineThreshold}";
+    public override string ConditionTooltipPostfix => ConditionTooltipLabel + $"magazine is {threshold.ToString().Replace("_", " ")} {currentMagazineString}";
 }
