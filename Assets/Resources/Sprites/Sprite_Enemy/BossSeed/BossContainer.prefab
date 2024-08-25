@@ -49336,6 +49336,7 @@ MonoBehaviour:
   p1Pos: {x: 0, y: 0, z: 0}
   length: 0
   bossSpeed: 0.1
+  catchUpSpeed: 0
   bossMaxDis: 0
   frameLengthOnCurve: 0
   bossLengthOnCurve: 0
@@ -49344,7 +49345,7 @@ MonoBehaviour:
   bossCurrentAccelertationTime: 0
   bossCurrentAccelertation: 0
   bossSpawnX: 0
-  bossMaxHP: 10000
+  bossMaxHP: 100000
   bossCurrentHP: 0
   bossHPPercent: 1
   hpDecayPerSecond: 0.005
@@ -49383,6 +49384,21 @@ MonoBehaviour:
   deathFinished: 0
   deathFinishedTime: 1.5
   deathFinishedCurrent: 0
+  hitBuffer: []
+  hitFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   shaker: {fileID: 2328696271373022111}
   shakerLoopMultperSecond: 5
   shakeMult: 0
