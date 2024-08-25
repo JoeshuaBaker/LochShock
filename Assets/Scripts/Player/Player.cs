@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
     public float grapplingCoolDownBase = 3f;
     public float invincibilityTime;
     public float invincibilityOnHit;
+    public GameObject invincibleShield;
+    public Animator invincibleShieldAnimator;
     public float smallBombSize;
 
     public ParticleSystem trailPS;
@@ -195,6 +197,8 @@ public class Player : MonoBehaviour
 
         UpdateInventory();
         UpdateUI();
+
+        //Debug.Log(this.Stats.GetCombinedStatValue<Pierce>(World.activeWorld.worldStaticContext));
     }
 
     public void MoveEvent(InputAction.CallbackContext context)
@@ -489,12 +493,23 @@ public class Player : MonoBehaviour
         if (time > invincibilityTime)
         {
             invincibilityTime = time;
+            invincibleShield.SetActive(true);
+            invincibleShieldAnimator.speed = 1f;
         }
     }
 
     public void DecayInvincible()
     {
         invincibilityTime = Mathf.Max(invincibilityTime - Time.deltaTime, 0f);
+        if (invincibilityTime <= .5f)
+        {
+            invincibleShieldAnimator.speed = 2f;
+            if( invincibilityTime <= 0f)
+            {
+                invincibleShield.SetActive(false);
+            }
+        }
+        
     }
 
     public void Bomb(bool isHit, bool isSmall = false)

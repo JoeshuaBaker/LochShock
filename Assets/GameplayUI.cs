@@ -17,6 +17,7 @@ public class GameplayUI : MonoBehaviour
     public List<Image> orbList;
     public Animator healthPrefab;
     public Image orbPrefab;
+    public GameObject orbLockBrace;
 
     public GameObject middleContainer;
     public GameObject timeContainer;
@@ -154,21 +155,24 @@ public class GameplayUI : MonoBehaviour
             {
                 orbList[i].gameObject.SetActive(i < orbs);
             }
-            else
-            {
-                orbList[i].gameObject.SetActive(false);
+            //else
+            //{
+            //    orbList[i].gameObject.SetActive(false);
                 
-            }
+            //}
             
         }
         if (!orbsCharged)
         {
-            orbChargeText.gameObject.SetActive(false);
+            orbChargeText.text = $"BOMB ARMED";
+            //orbChargeText.gameObject.SetActive(false);
+            orbLockBrace.SetActive(false);
         }
         else
         {
-            orbChargeText.text = $"NEXT ORB CHARGED x{Mathf.Min(orbsChargedNumber, 4)}";
-            orbChargeText.gameObject.SetActive(true);
+            orbChargeText.text = $"RARITY INCREASED";
+            //orbChargeText.gameObject.SetActive(true);
+            orbLockBrace.SetActive(true);
         }
         
 

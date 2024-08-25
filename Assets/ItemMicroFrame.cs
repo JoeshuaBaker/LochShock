@@ -21,6 +21,9 @@ public class ItemMicroFrame : MonoBehaviour
     public TMP_Text topText;
     public TMP_Text bottomText;
 
+    public TMP_Text activeItemChargeText;
+    public TMP_Text activeItemChargeTextShadow;
+
     public Sprite[] frameRarities;
 
     public GameplayUI gameplayUI;
@@ -39,13 +42,13 @@ public class ItemMicroFrame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(item == null && !isGrapple)
+        if (item == null && !isGrapple)
         {
 
             itemRarityFrame.sprite = frameRarities[0];
@@ -66,7 +69,7 @@ public class ItemMicroFrame : MonoBehaviour
             grappleCD = gameplayUI.grappleCD;
             grappleCDMax = gameplayUI.grappleCDMax;
 
-            if(grappleCD > 0f)
+            if (grappleCD > 0f)
             {
                 topText.gameObject.SetActive(true);
                 topText.text = grappleCD.ToString("0.0");
@@ -79,7 +82,7 @@ public class ItemMicroFrame : MonoBehaviour
                 itemGlow.color = itemGlowRed;
                 itemGlow.rectTransform.localPosition = new Vector3(animXDistance * distancePercent, 0f, 0f);
                 playAnim = true;
-                
+
             }
             else
             {
@@ -92,7 +95,8 @@ public class ItemMicroFrame : MonoBehaviour
                     grappleNub.sprite = nubFull;
 
                     itemGlow.color = itemGlowBlue;
-                    topText.gameObject.SetActive(false);
+                    topText.text = "READY";
+                    topText.gameObject.SetActive(true);
                     itemGlow.gameObject.SetActive(false);
                     itemGlow.gameObject.SetActive(true);
                     playAnim = false;
@@ -112,7 +116,7 @@ public class ItemMicroFrame : MonoBehaviour
                 topText.text = $"{(gun.magazine)}/{(gun.maxMagazine)}";
                 topText.gameObject.SetActive(true);
 
-                if(gun == gameplayUI.activeGun)
+                if (gun == gameplayUI.activeGun)
                 {
                     itemGlow.gameObject.SetActive(true);
                 }
@@ -122,16 +126,18 @@ public class ItemMicroFrame : MonoBehaviour
                 }
 
             }
-            if(item is ActiveItem)
+            if (item is ActiveItem)
             {
                 ActiveItem activeItem = item as ActiveItem;
-                topText.text = activeItem.CooldownTimer.ToString("0.0") + (activeItem.MaxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
+                
 
                 if (activeItem.CooldownTimer > 0f)
                 {
                     itemGlow.color = itemGlowRed;
                     topText.gameObject.SetActive(true);
                     var distancePercent = (1f - activeItem.percentCooldownComplete);
+
+                    topText.text = activeItem.CooldownCountdown.ToString("0.0") + (activeItem.MaxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
 
                     activeNub.fillAmount = 1f - distancePercent;
                     activeNub.color = new Color(1f, 1f, 1f, 0.1f + (1f - distancePercent) * .2f);
@@ -146,29 +152,78 @@ public class ItemMicroFrame : MonoBehaviour
                     activeNub.color = new Color(1f, 1f, 1f, 1f);
                     activeNub.sprite = nubFull;
 
+                    if(activeItem.MaxCharges <= 1)
+                    {
+                        topText.text = $"READY";
+                    }
+                    else
+                    {
+                        topText.text = $"READY" + $"({ activeItem.currentCharges})";
+                    }
+
                     itemGlow.gameObject.SetActive(true);
                     itemGlow.rectTransform.localPosition = Vector3.zero;
                     if (playAnim)
                     {
                         itemGlow.color = itemGlowBlue;
-                        topText.gameObject.SetActive(false);
                         itemGlow.gameObject.SetActive(false);
                         itemGlow.gameObject.SetActive(true);
                         playAnim = false;
                     }
-                    
+
                 }
+                if(activeItem.MaxCharges > 1)
+                {
+                    activeItemChargeText.text = $"{activeItem.currentCharges}";
+                    activeItemChargeTextShadow.text = $"{activeItem.currentCharges}";
+                    activeItemChargeText.gameObject.SetActive(true);
+                    activeItemChargeTextShadow.gameObject.SetActive(true);
+                }
+                else
+                {
+                    activeItemChargeText.gameObject.SetActive(false);
+                    activeItemChargeTextShadow.gameObject.SetActive(false);
+                }
+           
+
+             
+
             }
             if (!(item is Gun) && !(item is ActiveItem))
             {
                 itemIcon.sprite = item.icon;
                 itemRarityFrame.sprite = frameRarities[(int)item.rarity];
                 itemIcon.gameObject.SetActive(true);
+
+                if (item.buffs != null && item.buffs.Count > 0)
+                {
+                    if (item.buffs[0].currentDuration > 0f)
+                    {
+                        itemGlow.color = itemGlowBlue;
+                        itemGlow.gameObject.SetActive(true);
+                        topText.gameObject.SetActive(true);
+                        topText.text = item.buffs[0].currentDuration.ToString("0.0");
+                    }
+                    else
+                    {
+                        itemGlow.gameObject.SetActive(false);
+                        topText.gameObject.SetActive(false);
+                    }
+
+
+                }
             }
         }
 
 
     }
 
+
+
+
+
+
+
+    //lol
 
 }
