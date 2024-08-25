@@ -19,7 +19,7 @@ public abstract class Stat
     [NonSerialized]
     public float stacks = 1f;
     [NonSerialized]
-    public float tempStacks = 0f;
+    public float conditionStacks = 0f;
     [NonSerialized]
     public Item source;
 
@@ -47,7 +47,7 @@ public abstract class Stat
     public virtual float Min => -1f;
     public virtual float Max => -1f;
     public virtual StatValueType ValueType => StatValueType.Value;
-    public float TooltipStacks => (conditions == null || conditions.Count == 0) ? stacks : 1f;
+    public float TooltipStacks => stacks;
 
     public float Clamp(float value)
     {
@@ -70,8 +70,7 @@ public abstract class Stat
         if (conditions == null || conditions.Count == 0)
             return;
 
-        stacks = 0f;
-        tempStacks = 0f;
+        conditionStacks = 0f;
         foreach (StatCondition condition in conditions)
         {
             float newStacks = condition.CheckCondition(context);
@@ -79,12 +78,12 @@ public abstract class Stat
             {
                 if (newStacks == 0f)
                 {
-                    tempStacks = 0f;
+                    conditionStacks = 0f;
                     return;
                 }
             }
 
-            tempStacks = Mathf.Max(tempStacks, newStacks);
+            conditionStacks = Mathf.Max(conditionStacks, newStacks);
         }
     }
 }

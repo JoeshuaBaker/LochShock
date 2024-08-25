@@ -94,7 +94,7 @@ public class Item : MonoBehaviour
 
     public IEnumerable<string> GetEventTooltips()
     {
-        return stats.GetEventTooltips();
+        return stats.GetEventTooltips(level);
     }
 
     public virtual void LevelUp()

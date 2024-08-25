@@ -6,9 +6,9 @@ public class OnKillApplyBuff : OnKillAction
 {
     public Buff buff;
 
-    public override string GetTooltip(CombinedStatBlock stats)
+    public override string GetTooltip(CombinedStatBlock stats, int level = 1)
     {
-        return GetBuffTooltip(this, buff);
+        return GetBuffTooltip(this, buff, level);
     }
 
     public override void OnKill(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)

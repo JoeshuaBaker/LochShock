@@ -52,6 +52,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: displayName
+      value: 03_ActiveCDEmptyMag
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: stats.stats.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -60,12 +64,28 @@ PrefabInstance:
       value: Assembly-CSharp ActiveItemCooldown
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
-      propertyPath: stats.stats.Array.data[0].value
+      propertyPath: levelUpStats.stats.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: stats.stats.Array.data[0].value
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0]
+      value: Assembly-CSharp ActiveItemCooldown
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: stats.stats.Array.data[0].combineType
-      value: Assembly-CSharp Set
+      value: Assembly-CSharp Mult
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].value
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp Mult
       objectReference: {fileID: 0}
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: stats.stats.Array.data[0].conditions.Array.size
@@ -74,7 +94,15 @@ PrefabInstance:
     - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: stats.stats.Array.data[0].conditions.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 6fcfd1197cdbd75499b48cbd0d71d212, type: 2}
+      objectReference: {fileID: 11400000, guid: 6139199d152dba24ab4cb2626706a261, type: 2}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].conditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213716719533742209, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].conditions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6139199d152dba24ab4cb2626706a261, type: 2}
     - target: {fileID: 7911594372532325667, guid: ab35d283ad0247e4ca72c804f316850d, type: 3}
       propertyPath: m_Name
       value: 03_ActiveCDEmptyMag

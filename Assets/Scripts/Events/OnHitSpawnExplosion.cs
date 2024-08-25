@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "OnHitSpawnExplosion", menuName = "NemesisShock/Events/OnHit/SpawnExplosion")]
 public class OnHitSpawnExplosion : OnHitAction
 {
-    public override string GetTooltip(CombinedStatBlock stats)
+    public override string GetTooltip(CombinedStatBlock stats, int level = 1)
     {
         return $"15% chance to spawn an explosion which deals {stats.GetCombinedStatValue<Damage>(World.activeWorld.worldStaticContext)} damage.";
     }

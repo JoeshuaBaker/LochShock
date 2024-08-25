@@ -50,8 +50,10 @@ public class ActiveItem : Item
     {
         if(IsReady())
         {
-            activatable.Activate();
-            currentCharges -= 1;
+            if(activatable.Activate())
+            {
+                currentCharges -= 1;
+            }
         }
     }
 
@@ -92,7 +94,8 @@ public class ActiveItem : Item
 
     public override StatBlockContext GetStatBlockContext()
     {
-        return activatable.GetStatBlockContext(base.GetStatBlockContext(), this);
+        baseItemCombinedStats.UpdateSources(newStatsList);
+        return activatable.GetStatBlockContext(baseItemCombinedStats, this);
     }
 
     public bool IsReady()

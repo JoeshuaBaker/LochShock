@@ -129,14 +129,14 @@ public class StatBlock
         return newStatBlock;
     }
 
-    public IEnumerable<string> GetEventTooltips()
+    public IEnumerable<string> GetEventTooltips(int level = 1)
     {
         List<string> eventTooltips = new List<string>();
-        eventTooltips.AddRange(GetEvents<OnFireAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
-        eventTooltips.AddRange(GetEvents<OnHitAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
-        eventTooltips.AddRange(GetEvents<OnKillAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
-        eventTooltips.AddRange(GetEvents<OnReloadAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
-        eventTooltips.AddRange(GetEvents<OnSecondAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats)));
+        eventTooltips.AddRange(GetEvents<OnFireAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnHitAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnKillAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnReloadAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnSecondAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
 
         return eventTooltips;
     }

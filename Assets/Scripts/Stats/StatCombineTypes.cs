@@ -55,9 +55,19 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
 
     protected float GetStatValue(Stat stat)
     {
-        float value = stat.value * (stat.stacks + stat.tempStacks);
-        stat.tempStacks = 0f;
-        return value;
+        if (stat.conditions != null && stat.conditions.Count > 0)
+        {
+            float value = stat.value * (stat.stacks * stat.conditionStacks);
+            stat.conditionStacks = 0f;
+            return value;
+        }
+        else
+        {
+            float value = stat.value * stat.stacks;
+            return value;
+        }
+
+
     }
 }
 
@@ -77,7 +87,7 @@ public class BaseStat : StatCombineType
         foreach (Stat stat in stats)
         {
             combinedValue += GetStatValue(stat);
-            stat.tempStacks = 0f;
+            stat.conditionStacks = 0f;
         }
 
         combinedValue = first.Clamp(combinedValue);
@@ -115,7 +125,7 @@ public class Additive : StatCombineType
         foreach (Stat stat in stats)
         {
             combinedValue += GetStatValue(stat);
-            stat.tempStacks = 0f;
+            stat.conditionStacks = 0f;
         }
 
         aggregate += first.ValueType == Stat.StatValueType.Rate ? -combinedValue : combinedValue;
@@ -135,7 +145,7 @@ public class Additive : StatCombineType
 
     public override string StatNameTooltip(string valueName)
     {
-        return "Bonus " + valueName.SplitCamelCaseLower();
+        return valueName.SplitCamelCaseLower();
     }
 }
 

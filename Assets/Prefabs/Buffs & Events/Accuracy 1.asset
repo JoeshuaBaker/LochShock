@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   buffName: Accuracy 1
-  duration: 2
+  baseDuration: 1
   stackType: 0
   stackLimit: 1
   newStats:
@@ -22,12 +22,19 @@ MonoBehaviour:
     - id: 0
     - id: 1
     events:
-      OnFire: []
-      OnHit: []
-      OnKill: []
-      OnReload: []
-      OnSecond: []
+      events: []
+      source: {fileID: 0}
     stacks: 1
+    source: {fileID: 0}
+    active: 0
+  levelUpStats:
+    stats:
+    - id: 2
+    events:
+      events: []
+      source: {fileID: 0}
+    stacks: 1
+    source: {fileID: 0}
     active: 0
   references:
     version: 1
@@ -35,15 +42,26 @@ MonoBehaviour:
       type: {class: SpreadAngle, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 2
-        value: -15
+          id: 3
+        value: 5
+        conditions: []
     00000001:
       type: {class: Accuracy, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 3
+          id: 4
         value: 1
+        conditions: []
     00000002:
-      type: {class: Additive, ns: , asm: Assembly-CSharp}
+      type: {class: SpreadAngle, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 5
+        value: 3
+        conditions: []
     00000003:
+      type: {class: Additive, ns: , asm: Assembly-CSharp}
+    00000004:
+      type: {class: Additive, ns: , asm: Assembly-CSharp}
+    00000005:
       type: {class: Additive, ns: , asm: Assembly-CSharp}

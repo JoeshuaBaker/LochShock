@@ -19,7 +19,7 @@ public class GunActivatable : Activatable
 
     private bool setup = false;
 
-    public override void Activate()
+    public override bool Activate()
     {
         Vector2 mouseDirection = Player.activePlayer.lookDirection;
         gun.shooting = true;
@@ -32,6 +32,7 @@ public class GunActivatable : Activatable
         {
             delayTimer = repeatDelay;
         }
+        return true;
     }
 
     public override void ApplyStatBlock(CombinedStatBlock stats)
@@ -98,9 +99,22 @@ public class GunActivatable : Activatable
         gun.LevelUp();
     }
 
-    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
+    public override StatBlockContext GetStatBlockContext(CombinedStatBlock baseContext, ActiveItem source)
     {
-        StatBlockContext context = gun.GetStatBlockContext();
+        if(statBlocks == null)
+        {
+            statBlocks = new List<StatBlock>();
+        }
+        else
+        {
+            statBlocks.Clear();
+        }
+
+        CombinedStatBlock csb = new CombinedStatBlock();
+        statBlocks.AddRange(baseContext.sourcesList);
+        statBlocks.AddRange(gun.newStatsList);
+        csb.UpdateSources(statBlocks);
+        StatBlockContext context = csb.GetCombinedContext();
         context.AddGenericTooltip($"Fires a {StatBlockContext.GoodColor}{gun.DisplayName}</color>. Cooldown: {StatBlockContext.HighlightColor}{source.Cooldown}</color>s.");
         return context;
     }

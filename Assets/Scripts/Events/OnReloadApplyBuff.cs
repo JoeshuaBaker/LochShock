@@ -6,9 +6,9 @@ using UnityEngine;
 public class OnReloadApplyBuff : OnReloadAction
 {
     public Buff buff;
-    public override string GetTooltip(CombinedStatBlock stats)
+    public override string GetTooltip(CombinedStatBlock stats, int level = 1)
     {
-        return GetBuffTooltip(this, buff);
+        return GetBuffTooltip(this, buff, level);
     }
 
     public override void OnReload(Item source, Player player, Gun gun)

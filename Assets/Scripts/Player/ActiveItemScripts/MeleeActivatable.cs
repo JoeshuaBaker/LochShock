@@ -36,12 +36,18 @@ public class MeleeActivatable : Activatable
         meleeWeaponParent.SetActive(false);
     }
 
-    public override void Activate()
+    public override bool Activate()
     {
-        meleeWeaponParent.gameObject.SetActive(true);
-        isActive = true;
-        playTime = 0f;
-        AimWeaponAtMouse();
+        if(!meleeWeaponParent.gameObject.activeSelf)
+        {
+            meleeWeaponParent.gameObject.SetActive(true);
+            isActive = true;
+            playTime = 0f;
+            AimWeaponAtMouse();
+            return true;
+        }
+
+        return false;
     }
 
     public override void Setup(ActiveItem source)
@@ -180,9 +186,9 @@ public class MeleeActivatable : Activatable
         meleeWeaponParent.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(modifiedMouseDirection.x, modifiedMouseDirection.y, 0f)).eulerAngles;
     }
 
-    public override StatBlockContext GetStatBlockContext(StatBlockContext baseContext, ActiveItem source)
+    public override StatBlockContext GetStatBlockContext(CombinedStatBlock baseContext, ActiveItem source)
     {
-        StatBlockContext statBlockContext = baseContext;
+        StatBlockContext statBlockContext = baseContext.GetCombinedContext();
         var numAttacks = hitboxPulses.Length * modifiedRepeats;
         var attackString = (numAttacks > 1) ? $"{StatBlockContext.GoodColor}{numAttacks}</color> times " : "";
         statBlockContext.AddGenericTooltip($"Attacks {attackString}with a {StatBlockContext.GoodColor}{source.DisplayName}</color>." + 

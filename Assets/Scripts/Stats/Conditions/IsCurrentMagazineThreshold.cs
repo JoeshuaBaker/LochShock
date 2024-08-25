@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IsCurrentMagazineThreshold", menuName = "NemesisShock/Conditions/ItemPropertiesConditions/IsMagazineEmpty")]
+[CreateAssetMenu(fileName = "IsCurrentMagazineThreshold", menuName = "NemesisShock/Conditions/ItemPropertiesConditions/Magazine")]
 public class IsCurrentMagazineThreshold : ItemPropertiesCondition
 {
     public enum MagazineThreshold
@@ -16,6 +16,7 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
 
     public override float CheckCondition(GameContext context)
     {
+        mode = GunOrActiveItem.Gun;
         if (base.CheckCondition(context) == 0f)
         {
             return 0f;
@@ -56,5 +57,5 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
     }
 
     public override string ConditionTooltipLabel => "when";
-    public override string ConditionTooltipPostfix => ConditionTooltipLabel + $"magazine is {threshold.ToString().Replace("_", " ")} {currentMagazineString}";
+    public override string ConditionTooltipPostfix => ConditionTooltipLabel + $" magazine is {threshold.ToString().Replace("_", " ")} {currentMagazineString}";
 }
