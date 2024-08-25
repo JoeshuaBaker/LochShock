@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
       propertyPath: stats.stats.Array.data[2].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6329225714488330220, guid: 8fbfbfd8957df744fbe93013d9644e48, type: 3}
       propertyPath: stats.stats.Array.data[3].value
@@ -227,10 +227,9 @@ MonoBehaviour:
   meleeWeaponParent: {fileID: 1840562105375798858}
   meleeWeaponVisual: {fileID: 0}
   hitbox: {fileID: 3403470553289114804}
-  hitboxType: 0
   isActive: 0
   repeatable: 0
-  bonusRepeatsDurationThreshold: 5
-  numRepeats: 1
+  aimable: 1
+  bonusRepeatsDurationThreshold: 1
   hitboxPulses:
   - 0.5
