@@ -66,8 +66,6 @@ public abstract class StatCombineType : IComparer<StatCombineType>, IComparable<
             float value = stat.value * stat.stacks;
             return value;
         }
-
-
     }
 }
 

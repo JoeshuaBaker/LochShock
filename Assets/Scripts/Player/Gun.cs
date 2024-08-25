@@ -263,6 +263,8 @@ public class Gun : Item
         this.lookPosition = lookPosition;
         transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(lookDirection.x, lookDirection.y, 0f)).eulerAngles;
 
+        float lastReloadPercentage = percentReloaded;
+
         if (reloadType != ReloadType.Charge && magazine < maxMagazine)
         {
             IncrementReloadPercentage();
@@ -282,12 +284,6 @@ public class Gun : Item
                     {
                         AkSoundEngine.PostEvent("PlayReload", this.gameObject); reloadAudio = false;
                     }
-
-                    foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
-                    {
-                        Item source = Player.activePlayer.inventory.FindEventSource(onReload);
-                        onReload.OnReload(source, Player.activePlayer, this);
-                    }
                 }
 
                 Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, percentReloaded, magazine.ToString());
@@ -306,6 +302,15 @@ public class Gun : Item
                 }
                 Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, !shooting || magazine == 0, percentReloaded, magazine.ToString());
                 break;
+        }
+
+        if(lastReloadPercentage < 1f && percentReloaded >= 1f)
+        {
+            foreach (OnReloadAction onReload in combinedStats.combinedStatBlock.GetEvents<OnReloadAction>())
+            {
+                Item source = Player.activePlayer.inventory.FindEventSource(onReload);
+                onReload.OnReload(source, Player.activePlayer, this);
+            }
         }
     }
 

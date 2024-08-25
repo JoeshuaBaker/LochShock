@@ -7,6 +7,6 @@ public abstract class OnReloadAction : ScriptableAction
 
     public override string GetLabel()
     {
-        return "On Reload";
+        return "On Full Reload";
     }
 }

@@ -7,6 +7,7 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
     {
         Greater_Than,
         Less_Than,
+        LastBullet,
         Full,
         Empty
     }
@@ -43,6 +44,10 @@ public class IsCurrentMagazineThreshold : ItemPropertiesCondition
         else if(threshold == MagazineThreshold.Less_Than)
         {
             return magazinePercent < currentMagazineThresholdPercent ? 1f : 0f;
+        }
+        else if(threshold == MagazineThreshold.LastBullet)
+        {
+            return currentMagazine == 1 ? 1f : 0f;
         }
         else if(threshold == MagazineThreshold.Full)
         {

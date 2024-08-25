@@ -157,4 +157,14 @@ public class Item : MonoBehaviour
 
         buffs.Add(buffInstance);
     }
+
+    public void RemoveBuff(Buff buff)
+    {
+        buffs.RemoveAll(x => x.buff.buffName.Equals(buff.buffName, StringComparison.CurrentCultureIgnoreCase));
+    }
+
+    public void ClearBuffs()
+    {
+        buffs.Clear();
+    }
 }
