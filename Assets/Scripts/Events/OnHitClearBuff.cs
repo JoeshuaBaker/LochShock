@@ -6,6 +6,7 @@ public class OnHitClearBuff : OnHitAction
 {
     public bool clearAllBuffs = false;
     public Buff buffToClear;
+    public int stacks;
 
     public override string GetTooltip(CombinedStatBlock stats, int level = 1)
     {
@@ -15,9 +16,18 @@ public class OnHitClearBuff : OnHitAction
     public override void OnHit(Item source, Player player, Gun gun, ProjectileData projectile, Enemy enemy)
     {
         base.OnHit(source, player, gun, projectile, enemy);
-        if (clearAllBuffs)
-            source.ClearBuffs();
+        
+        if(stacks == 0)
+        {
+            if (clearAllBuffs)
+                source.ClearBuffs();
+            else
+                source.RemoveBuff(buffToClear);
+        }
         else
-            source.RemoveBuff(buffToClear);
+        {
+            source.RemoveStacksFromBuff(stacks);
+        }
+
     }
 }

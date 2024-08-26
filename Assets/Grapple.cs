@@ -48,6 +48,7 @@ public class Grapple : MonoBehaviour
     public Vector3 playerOnConnect;
     public Vector3 hookOnConnect;
     public float pullLength;
+    public float grappleIFrameGraceDis = 2f;
     public float pullLengthForBurst = 10f;
     public float playerSpeedMag;
     public float invincibilityTime;
@@ -320,7 +321,12 @@ public class Grapple : MonoBehaviour
 
         if (grapplingPullPlayer)
         {
+            Vector3 playerToHook = hookOnConnect - activePlayer.transform.position;
 
+            if (playerToHook.magnitude <= grappleIFrameGraceDis && playBurst)
+            {
+                activePlayer.SetInvincible(invincibilityTime);
+            }
 
             Vector3 playerToSetPoint = grappleTargetPoint - activePlayer.transform.position;
 

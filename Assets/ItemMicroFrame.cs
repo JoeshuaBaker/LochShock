@@ -80,7 +80,7 @@ public class ItemMicroFrame : MonoBehaviour
                 grappleNub.sprite = nubFilling;
 
                 itemGlow.color = itemGlowRed;
-                itemGlow.rectTransform.localPosition = new Vector3(animXDistance * distancePercent, 0f, 0f);
+                itemGlow.rectTransform.localPosition = new Vector3(animXDistance * (1f - distancePercent), 0f, 0f);
                 playAnim = true;
 
             }
@@ -130,7 +130,6 @@ public class ItemMicroFrame : MonoBehaviour
             {
                 ActiveItem activeItem = item as ActiveItem;
                 
-
                 if (activeItem.CooldownTimer > 0f)
                 {
                     itemGlow.color = itemGlowRed;
@@ -143,7 +142,7 @@ public class ItemMicroFrame : MonoBehaviour
                     activeNub.color = new Color(1f, 1f, 1f, 0.1f + (1f - distancePercent) * .2f);
                     activeNub.sprite = nubFilling;
 
-                    itemGlow.rectTransform.localPosition = new Vector3(animXDistance * distancePercent, 0f, 0f);
+                    itemGlow.rectTransform.localPosition = new Vector3(animXDistance * (1f - distancePercent), 0f, 0f);
                     playAnim = true;
                 }
                 else
@@ -210,17 +209,12 @@ public class ItemMicroFrame : MonoBehaviour
                         topText.gameObject.SetActive(false);
                     }
 
-
                 }
             }
         }
 
 
     }
-
-
-
-
 
 
 

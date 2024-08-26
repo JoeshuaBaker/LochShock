@@ -163,6 +163,16 @@ public class Item : MonoBehaviour
         buffs.RemoveAll(x => x.buff.buffName.Equals(buff.buffName, StringComparison.CurrentCultureIgnoreCase));
     }
 
+    public void RemoveStacksFromBuff(int stacks)
+    {
+        foreach(var buff in buffs)
+        {
+            buff.newStats.Stacks -= stacks;
+        }
+
+        buffs.RemoveAll(x => x.buff.newStats.Stacks <= 0);
+    }
+
     public void ClearBuffs()
     {
         buffs.Clear();

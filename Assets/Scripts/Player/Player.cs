@@ -244,6 +244,11 @@ public class Player : MonoBehaviour
 
     public void BombEvent(InputAction.CallbackContext context)
     {
+        if (world.paused)
+        {
+            return;
+        }
+
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying)
         {
@@ -286,6 +291,11 @@ public class Player : MonoBehaviour
 
     public void GrappleEvent(InputAction.CallbackContext context)
     {
+        if (world.paused)
+        {
+            return;
+        }
+
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying && !bossDead)
         {

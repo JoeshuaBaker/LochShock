@@ -96,6 +96,11 @@ public class CombinedStatBlock
         {
             return CalculateStat(typeof(T), context);
         }
+
+        public HashSet<Stat> GetStatBucketByTypeAndCombineType(Stat stat)
+        {
+            return orderedStats[stat.GetType()][stat.combineType];
+        }
     }
 
     public StatBlock combinedStatBlock;
@@ -162,6 +167,11 @@ public class CombinedStatBlock
     public float GetCombinedStatValue(Type statType)
     {
         return orderedStats.CalculateStat(statType, World.activeWorld.worldStaticContext);
+    }
+
+    public HashSet<Stat> GetStatBucketByTypeAndCombineType(Stat stat)
+    {
+        return orderedStats.GetStatBucketByTypeAndCombineType(stat);
     }
 
     private void UpkeepSources(IEnumerable<StatBlock> statBlocks)

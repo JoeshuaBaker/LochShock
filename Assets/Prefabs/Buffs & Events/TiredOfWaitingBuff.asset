@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3bc0bc183d4da429ada36366afeed6, type: 3}
+  m_Name: TiredOfWaitingBuff
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  buffName: Tired of Waiting
+  baseDuration: 1
+  stackType: 1
+  stackLimit: 10
+  newStats:
+    stats:
+    - id: 0
+    - id: 1
+    events:
+      events:
+      - {fileID: 11400000, guid: 45ab1eb23e85fa04189ba73a60ce8250, type: 2}
+      source: {fileID: 0}
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
+  levelUpStats:
+    stats:
+    - id: 2
+    events:
+      events: []
+      source: {fileID: 0}
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: Damage, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 3
+        value: 0.1
+        conditions:
+        - {fileID: 11400000, guid: 6fcfd1197cdbd75499b48cbd0d71d212, type: 2}
+    00000001:
+      type: {class: Size, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 4
+        value: 0.1
+        conditions:
+        - {fileID: 11400000, guid: 6fcfd1197cdbd75499b48cbd0d71d212, type: 2}
+    00000002:
+      type: {class: Damage, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 5
+        value: 0.1
+        conditions:
+        - {fileID: 11400000, guid: 6fcfd1197cdbd75499b48cbd0d71d212, type: 2}
+    00000003:
+      type: {class: Mult, ns: , asm: Assembly-CSharp}
+    00000004:
+      type: {class: Mult, ns: , asm: Assembly-CSharp}
+    00000005:
+      type: {class: Mult, ns: , asm: Assembly-CSharp}

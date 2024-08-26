@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MinigunStatOnFire
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  buffName: Accuracy Loss
+  buffName: Revved Up
   baseDuration: 2
   stackType: 0
   stackLimit: 20
@@ -21,6 +21,15 @@ MonoBehaviour:
     stats:
     - id: 0
     - id: 1
+    - id: 2
+    events:
+      events: []
+      source: {fileID: 0}
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
+  levelUpStats:
+    stats: []
     events:
       events: []
       source: {fileID: 0}
@@ -33,17 +42,26 @@ MonoBehaviour:
       type: {class: BulletsPerShot, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 2
+          id: 3
         value: 0.05
         conditions: []
     00000001:
       type: {class: Accuracy, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 3
+          id: 4
         value: -0.01
         conditions: []
     00000002:
-      type: {class: Additive, ns: , asm: Assembly-CSharp}
+      type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 5
+        value: 0.33
+        conditions: []
     00000003:
       type: {class: Additive, ns: , asm: Assembly-CSharp}
+    00000004:
+      type: {class: Additive, ns: , asm: Assembly-CSharp}
+    00000005:
+      type: {class: Mult, ns: , asm: Assembly-CSharp}
