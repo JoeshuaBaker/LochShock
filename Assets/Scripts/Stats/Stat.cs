@@ -39,9 +39,14 @@ public abstract class Stat
         return GetType().Name;
     }
 
+    public virtual string DisplayName()
+    {
+        return Name().SplitCamelCaseLower();
+    }
+
     public virtual void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, Name().SplitCamelCaseLower(), value * TooltipStacks, conditions: conditions);
+        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
     }
 
     public virtual float Min => -1f;

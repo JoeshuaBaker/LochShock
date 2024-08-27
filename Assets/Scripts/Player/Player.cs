@@ -8,7 +8,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-public class Player : MonoBehaviour
+public class Player : BulletCollidable
 {
     public static Player activePlayer;
 
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
     private float visionConeAngle = 20f;
     private float visionConeRadius = 7f;
     private float visionProximityRadius = 10f;
+    private InputDevice lastUsedInputDevice;
 
 
     private void Awake()
@@ -204,12 +205,14 @@ public class Player : MonoBehaviour
     public void MoveEvent(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+        lastUsedInputDevice = context.action.activeControl.device;
     }
 
     public void LookEvent(InputAction.CallbackContext context)
     {
         if (context.action.activeControl.device is Mouse)
         {
+            lastUsedInputDevice = Mouse.current;
             var value = context.ReadValue<Vector2>();
             var mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
             lookPosition = mousePos.xy();
@@ -217,21 +220,21 @@ public class Player : MonoBehaviour
             lookDirection = lookDiff.normalized;
             lastLookTime = Time.realtimeSinceStartup;
 
-            if (world.paused)
+            if (world.paused || isDead)
             {
                 Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, false, 0, "");
             }
         }
         else if (context.action.activeControl.device is Gamepad)
         {
+            lastUsedInputDevice = Gamepad.current;
             var value = context.ReadValue<Vector2>();
             var magnitude = value.magnitude;
             if (magnitude > 0.40f)
             {
                 lookDirection = value.normalized;
-
                 lookPosition = transform.position.xy() + lookDirection * gamepadLookRingSize;
-                lookDiff = lookPosition - this.transform.position.xy();
+                lookDiff = (lookPosition.xyz() - this.transform.position).xy();
                 lastLookTime = Time.realtimeSinceStartup;
             }
         }
@@ -239,7 +242,13 @@ public class Player : MonoBehaviour
 
     public void FireEvent(InputAction.CallbackContext context)
     {
+        if (world.paused)
+        {
+            return;
+        }
+
         inventory.activeGun.shooting = context.ReadValueAsButton();
+        lastUsedInputDevice = context.action.activeControl.device;
     }
 
     public void BombEvent(InputAction.CallbackContext context)
@@ -249,6 +258,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying)
         {
@@ -264,6 +274,12 @@ public class Player : MonoBehaviour
 
     public void SwitchWeaponsEvent(InputAction.CallbackContext context)
     {
+        if (world.paused)
+        {
+            return;
+        }
+
+        lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed)
         {
@@ -273,6 +289,7 @@ public class Player : MonoBehaviour
 
     public void InventoryEvent(InputAction.CallbackContext context)
     {
+        lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed)
         {
@@ -282,6 +299,12 @@ public class Player : MonoBehaviour
 
     public void ItemEvent(InputAction.CallbackContext context)
     {
+        if (world.paused)
+        {
+            return;
+        }
+
+        lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed)
         {
@@ -296,6 +319,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying && !bossDead)
         {
@@ -659,10 +683,23 @@ public class Player : MonoBehaviour
     {
         if (!dying)
         {
-            if (Time.realtimeSinceStartup - lastLookTime > Time.deltaTime)
+            if (lastUsedInputDevice is Mouse || lastUsedInputDevice is Keyboard)
             {
-                lookPosition = this.transform.position.xy() + lookDiff;
+                Vector2 value = Mouse.current.position.ReadValue();
+                Vector3 worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
+                lookPosition = worldPoint;
+                lookDiff = (worldPoint - this.transform.position).xy();
+                lookDirection = lookDiff.normalized;
             }
+            else
+            {
+                if (Time.realtimeSinceStartup - lastLookTime > Time.deltaTime)
+                {
+                    lookPosition = transform.position.xy() + lookDirection * gamepadLookRingSize;
+                    lookDiff = (lookPosition.xyz() - this.transform.position).xy();
+                }
+            }
+
             inventory.activeGun.UpdateActiveGun(lookDirection, lookPosition);
             inventory.activeGun.Shoot();
         }
@@ -787,5 +824,10 @@ public class Player : MonoBehaviour
 
         UpdateUI();
         return;
+    }
+
+    public override void ProcessCollision(ProjectileData projectile, RaycastHit2D hitInfo)
+    {
+        TakeDamageFromEnemy(-1);
     }
 }

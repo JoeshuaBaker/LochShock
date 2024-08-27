@@ -57,7 +57,7 @@ public class Item : MonoBehaviour
     {
         get
         {
-            return (int)(baseLevelUpCost + (baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1)));
+            return (int)(baseLevelUpCost + ((level > 1) ? (baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1)) : 0f));
         }
     }
 

@@ -123,7 +123,6 @@ public class Additive : StatCombineType
         foreach (Stat stat in stats)
         {
             combinedValue += GetStatValue(stat);
-            stat.conditionStacks = 0f;
         }
 
         aggregate += first.ValueType == Stat.StatValueType.Rate ? -combinedValue : combinedValue;

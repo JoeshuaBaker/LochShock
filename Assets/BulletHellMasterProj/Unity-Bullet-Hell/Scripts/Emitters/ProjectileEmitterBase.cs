@@ -22,7 +22,7 @@ namespace BulletHell
         public float Scale {
             get
             {
-                return stats.GetCombinedStatValue<Size>(World.activeWorld.worldStaticContext);
+                return stats == null ? 1f : stats.GetCombinedStatValue<Size>(World.activeWorld.worldStaticContext);
             }
         }
         public Gradient Color;
@@ -32,14 +32,14 @@ namespace BulletHell
         public float TimeToLive { 
             get
             {
-                return stats.GetCombinedStatValue<Lifetime>(World.activeWorld.worldStaticContext);
+                return stats == null ? 1f : stats.GetCombinedStatValue<Lifetime>(World.activeWorld.worldStaticContext);
             }
         }
         public float CoolOffTime
         {
             get
             {
-                return stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
+                return stats == null ? 1f : stats.GetCombinedStatValue<FireSpeed>(World.activeWorld.worldStaticContext);
             }
         }
         public bool AutoFire = true;
@@ -48,7 +48,7 @@ namespace BulletHell
         {
             get
             {
-                return stats.GetCombinedStatValue<Velocity>(World.activeWorld.worldStaticContext);
+                return stats == null ? 1f : stats.GetCombinedStatValue<Velocity>(World.activeWorld.worldStaticContext);
             }
         }    
         public float RotationSpeed = 0;        

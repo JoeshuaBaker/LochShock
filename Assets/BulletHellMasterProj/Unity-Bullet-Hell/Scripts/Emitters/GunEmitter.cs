@@ -109,6 +109,7 @@ namespace BulletHell
 
                     var hit = RaycastHitBuffer[i];
                     node.Item.pierces--;
+                    node.Item.bulletContext.numPierces += 1;
 
                     //clear ignorelist of pierce targets, except for this one.
                     if (node.Item.pierces <= 0)
@@ -122,6 +123,8 @@ namespace BulletHell
             else if (node.Item.bounces > 0 && bounceTarget.distance != int.MaxValue)
             {
                 node.Item.bounces--;
+                node.Item.bulletContext.numBounces += 1;
+
                 // Calculate the position the projectile is bouncing off the wall at
                 Vector2 projectedNewPosition = node.Item.Position + (node.Item.DeltaPosition(tick) * bounceTarget.fraction);
                 Vector2 directionOfHitFromCenter = bounceTarget.point - projectedNewPosition;

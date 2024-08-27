@@ -102,7 +102,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Close, this);
+                inventoryUI.TransitionToLastState();
             }
         }
     }

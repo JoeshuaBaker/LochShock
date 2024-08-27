@@ -16,6 +16,7 @@ public class World : MonoBehaviour
     public BulletHitEffect hitEffect;
     public LightningBolt lightningBolt;
     public GameplayUI gameplayUi;
+    public EnemyEmitterSpawner enemyEmitterSpawner;
     public GameObject crosshairVis;
     public DeathWall deathWall;
     public Transform projectilePoolParent;
@@ -244,6 +245,8 @@ public class World : MonoBehaviour
             }
         }
         worldStaticContext.closestEnemy = closestEnemy;
+
+        enemyEmitterSpawner.UpdateEmitterSpawner(enemySpawnRateDecay.Evaluate(levelLoadTimeRatio), orbDecay.Evaluate(orbTimeRatio));
     }
 
     void SpawnRandomEnemy()

@@ -39,4 +39,16 @@ public class TrailTest : MonoBehaviour
         nextTrailIndex %= bufferSize;
         return next;
     }
+
+    public TrailRenderer GetEnemyRenderer()
+    {
+        TrailRenderer renderer = GetRenderer();
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.red, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
+        );
+        renderer.colorGradient = gradient;
+        return renderer;
+    }
 }

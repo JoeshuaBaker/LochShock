@@ -132,6 +132,11 @@ public class InventoryUI : MonoBehaviour
         state = newState;
     }
 
+    public void TransitionToLastState()
+    {
+        TransitionState(lastState, inventory, lastItems);
+    }
+
     private void Inventory(InventoryUIState newState, Item[] items)
     {
         //Audio Section
@@ -225,7 +230,7 @@ public class InventoryUI : MonoBehaviour
     {
         if(state == InventoryUIState.Inventory)
         {
-            TransitionState(lastState, inventory, lastItems);
+            TransitionToLastState();
         }
         else
         {
@@ -346,6 +351,7 @@ public class InventoryUI : MonoBehaviour
             TransitionState(InventoryUIState.Inventory);
             inventoryButtonText.text = "Inventory";
             inventoryButton.interactable = false;
+            lastState = InventoryUIState.Close;
         }
 
         if (!frame.bottomButton.interactable)

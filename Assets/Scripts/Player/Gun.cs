@@ -36,8 +36,8 @@ public class Gun : Item
     public float fireSpeed;
     public float bulletCooldown;
     public float firePositionOffset = 0.25f;
-    private Vector2 direction;
-    private Vector2 lookPosition;
+    protected Vector2 direction;
+    protected Vector2 lookPosition;
     public int maxMagazine;
     public int magazine;
     public float percentMagFilled;
@@ -93,7 +93,7 @@ public class Gun : Item
         FireBullets(mouseDirection, mousePosition);
     }
 
-    private void FireBullets(Vector2 direction, Vector2 mousePosition)
+    protected void FireBullets(Vector2 direction, Vector2 mousePosition)
     {
         if(gunType == GunType.Emitter)
         {
@@ -129,17 +129,36 @@ public class Gun : Item
         }
 
         //Particle Systems
-        muzzleFlashMain.Emit(15);
-        muzzleFlashFar.Emit(5);
-        muzzleFlashClose.Emit(25);
-        ejectedCasing.Emit(1);
+        if(muzzleFlashMain != null)
+        {
+            muzzleFlashMain.Emit(15);
+        }
+        if(muzzleFlashFar != null)
+        {
+            muzzleFlashFar.Emit(5);
+        }
+        if(muzzleFlashClose != null)
+        {
+            muzzleFlashClose.Emit(25);
+        }
+        if(ejectedCasing != null)
+        {
+            ejectedCasing.Emit(1);
+        }
 
         //light
-        lightAnimator.Play("Base Layer.MuzzleFlashLight", 0, 0f);
+        if(lightAnimator != null)
+        {
+            lightAnimator.Play("Base Layer.MuzzleFlashLight", 0, 0f);
+        }
 
-        //Audio Section
-        //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
-        gunAudioEvent.Post(this.gameObject);
+        if(gunAudioEvent != null)
+        {
+            //Audio Section
+            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
+            gunAudioEvent.Post(this.gameObject);
+        }
+        
 
         foreach (OnFireAction onFire in combinedStats.combinedStatBlock.GetEvents<OnFireAction>())
         {
@@ -150,11 +169,14 @@ public class Gun : Item
 
     public void UpdateVisionCone(float totalVis, float coneRadius, float coneAngle)
     {
-        visionCone.pointLightInnerRadius = Mathf.Max(totalVis * coneRadius, 4f);
-        visionCone.pointLightOuterRadius = visionCone.pointLightInnerRadius * 4.3f;
-        visionCone.pointLightInnerAngle = Mathf.Max(totalVis * coneAngle, 10f);
-        visionCone.pointLightOuterAngle = visionCone.pointLightInnerAngle * 4.3f;
-        visionCone.intensity = Mathf.Min(totalVis * 3.3f, 1f);
+        if(visionCone != null)
+        {
+            visionCone.pointLightInnerRadius = Mathf.Max(totalVis * coneRadius, 4f);
+            visionCone.pointLightOuterRadius = visionCone.pointLightInnerRadius * 4.3f;
+            visionCone.pointLightInnerAngle = Mathf.Max(totalVis * coneAngle, 10f);
+            visionCone.pointLightOuterAngle = visionCone.pointLightInnerAngle * 4.3f;
+            visionCone.intensity = Mathf.Min(totalVis * 3.3f, 1f);
+        }
     }
 
     // Start is called before the first frame update
@@ -241,7 +263,7 @@ public class Gun : Item
         }
     }
 
-    private bool IsReady()
+    protected bool IsReady()
     {
         if(gunType == GunType.Emitter && emitter == null)
         {
@@ -254,7 +276,7 @@ public class Gun : Item
         return setup && shooting && magazine > 0 && bulletCooldown == 0;
     }
 
-    public void UpdateActiveGun(Vector2 lookDirection, Vector2 lookPosition)
+    public virtual void UpdateActiveGun(Vector2 lookDirection, Vector2 lookPosition)
     {
         if (!setup)
             return;
@@ -336,7 +358,7 @@ public class Gun : Item
         }
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         if(gunType == GunType.GameObject)
         {

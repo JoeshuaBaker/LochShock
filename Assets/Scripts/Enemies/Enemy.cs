@@ -37,9 +37,16 @@ public abstract class Enemy : BulletCollidable
     {
         GameContext enemyContext = World.activeWorld.worldStaticContext;
         enemyContext.damageContext = projectile.bulletContext;
+        float secondaryDamageRatio = projectile.stats.GetCombinedStatValue<SecondaryHitDamage>();
         float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
         float knockback = projectile.stats.GetCombinedStatValue<Knockback>(enemyContext);
-        TakeDamage(damage);
+        float secondaryDamageMultiplier = 1f;
+        if (enemyContext.damageContext.numBounces > 0 || enemyContext.damageContext.numPierces > 0)
+        {
+            secondaryDamageMultiplier = Mathf.Pow(secondaryDamageRatio, enemyContext.damageContext.numBounces + enemyContext.damageContext.numPierces);
+        }
+        float finalDamage = damage * secondaryDamageMultiplier;
+        TakeDamage(finalDamage);
         ApplyKnockback(projectile.Velocity.normalized * knockback);
 
         World.activeWorld.hitEffect.EmitBulletHit(projectile);

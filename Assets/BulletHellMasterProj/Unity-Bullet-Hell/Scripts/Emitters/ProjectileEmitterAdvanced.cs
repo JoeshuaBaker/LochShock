@@ -18,12 +18,13 @@ namespace BulletHell
         [SerializeField] public bool UseColorPulse;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected float PulseSpeed;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
+        public bool isEnemyEmitter = false;
 
         //[Foldout("Spokes", true)]
         protected int GroupCount {
             get
             {
-                return Mathf.Max((int)stats.GetCombinedStatValue<BulletStreams>(World.activeWorld.worldStaticContext), 1);
+                return stats == null ? 1 : Mathf.Max((int)stats.GetCombinedStatValue<BulletStreams>(World.activeWorld.worldStaticContext), 1);
             }
         }
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
@@ -31,13 +32,13 @@ namespace BulletHell
         protected int SpokeCount {
             get
             {
-                return Mathf.Max((int)stats.GetCombinedStatValue<BulletsPerShot>(World.activeWorld.worldStaticContext), 1);
+                return stats == null ? 1 : Mathf.Max((int)stats.GetCombinedStatValue<BulletsPerShot>(World.activeWorld.worldStaticContext), 1);
             }
         }
         protected float SpokeSpacing {
             get
             {
-                return stats.GetCombinedStatValue<SpreadAngle>(World.activeWorld.worldStaticContext);
+                return stats == null ? 10 : stats.GetCombinedStatValue<SpreadAngle>(World.activeWorld.worldStaticContext);
             }
         }
         [SerializeField] protected bool MirrorPairRotation;
@@ -210,7 +211,7 @@ namespace BulletHell
 
                         UpdateProjectile(ref node, leakedTime);
 
-                        if (TrailTest.activeTrails != null && !rendererDict.ContainsKey(node.NodeIndex))
+                        if (!isEnemyEmitter && TrailTest.activeTrails != null && !rendererDict.ContainsKey(node.NodeIndex))
                         {
                             TrailTest trailTest = TrailTest.activeTrails;
                             TrailRenderer renderer = trailTest.GetRenderer();
@@ -264,53 +265,6 @@ namespace BulletHell
             }
 
             return node;
-        }
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(transform.position, Scale);
-
-            Gizmos.color = UnityEngine.Color.yellow;
-
-            float rotation = 0;
-
-            for (int n = 0; n < GroupCount; n++)
-            {
-                Vector2 direction = Rotate(Direction, rotation).normalized * (Scale + 0.2f);
-                Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + direction);
-
-                rotation = CalculateGroupRotation(n, rotation, GroupSpacing, GroupCount);
-            }
-
-            Gizmos.color = UnityEngine.Color.red;
-            rotation = 0;
-            float spokeRotation = 0;
-            bool left = true;
-            for (int n = 0; n < GroupCount; n++)
-            {
-                Vector2 groupDirection = Rotate(Direction, rotation).normalized;
-                spokeRotation = 0;
-                left = true;
-
-                for (int m = 0; m < SpokeCount; m++)
-                {
-                    Vector2 direction = Vector2.zero;
-                    if (left)
-                    {
-                        direction = Rotate(groupDirection, spokeRotation).normalized * (Scale + 0.15f);
-                        spokeRotation += SpokeSpacing;
-                    }
-                    else
-                    {
-                        direction = Rotate(groupDirection, -spokeRotation).normalized * (Scale + 0.15f);
-                    }
-                    Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + direction);
-
-                    left = !left;
-                }
-
-                rotation = CalculateGroupRotation(n, rotation, GroupSpacing, GroupCount);
-            }
         }
 
         private float CalculateGroupRotation(int index, float currentRotation, float groupSpacing, int groupCount)

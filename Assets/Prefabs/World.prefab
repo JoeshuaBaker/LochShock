@@ -272,6 +272,36 @@ MonoBehaviour:
   rootCurrentNumber: 0
   rootHoldTime: 0
   rootTransitionTime: 0
+--- !u!1 &2212812188211364804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892741656263977525}
+  m_Layer: 0
+  m_Name: EnemyEmitterParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &892741656263977525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212812188211364804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2986951450654661594}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2986951450654661592
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +318,7 @@ GameObject:
   - component: {fileID: 1598683932}
   - component: {fileID: 1598683933}
   - component: {fileID: 1598683936}
+  - component: {fileID: 228451999370221635}
   m_Layer: 0
   m_Name: World
   m_TagString: World
@@ -316,6 +347,7 @@ Transform:
   - {fileID: 3659499515422971769}
   - {fileID: 1585264479630324696}
   - {fileID: 3012819815773620313}
+  - {fileID: 892741656263977525}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -392,6 +424,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e09192256e1d9854ea4e81e731a74158, type: 2}
   randomBlocks:
   - {fileID: 11400000, guid: 2d8e609b54bfccd4081ce716d9f082c9, type: 2}
+  currentBlock: {fileID: 0}
+  blockTimer: 0
 --- !u!114 &2986951450654661595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +446,7 @@ MonoBehaviour:
   hitEffect: {fileID: 4466764341723074483}
   lightningBolt: {fileID: 6218924612443511780}
   gameplayUi: {fileID: 0}
+  enemyEmitterSpawner: {fileID: 228451999370221635}
   crosshairVis: {fileID: 0}
   deathWall: {fileID: 1598683936}
   projectilePoolParent: {fileID: 3012819815773620313}
@@ -576,6 +611,85 @@ MonoBehaviour:
   maxDistance: 25
   xDamageOffset: -1
   bossDead: 0
+--- !u!114 &228451999370221635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986951450654661592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3ccdd0efdd49a4fb755232549ce95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyEmitterParent: {fileID: 892741656263977525}
+  enemyEmitters:
+  - {fileID: 1925318805583198977, guid: f74238149d9b4a94db9fa1ec3f3182e6, type: 3}
+  - {fileID: 313591325878783371, guid: 25f72b853300356429eecf626973aa06, type: 3}
+  - {fileID: 1036108636299689413, guid: f44e04c83813b1646816a96bb09365d4, type: 3}
+  emitterSpawnFrequencyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  emitterPowerBudgetCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemyDifficultyFactor: 0.25
+  orbDifficultyFactor: 0.75
+  emitterSpawnCooldownMax: 60
+  emitterSpawnCooldownMin: 3
+  powerBudgetFloor: 0
+  powerBudgetCeil: 1000
+  onlySpawnIfThereAreNChoices: 1
+  difficultySelector: 0
+  percentReadyToSpawn: 0
+  budgetUsed: 0
+  currentBudget: 0
+  activeEmitters: []
+  currentSpawnCooldown: 0
+  lowestPower: 0
 --- !u!1 &2986951450815733420
 GameObject:
   m_ObjectHideFlags: 0
