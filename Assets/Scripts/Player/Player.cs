@@ -563,6 +563,7 @@ public class Player : BulletCollidable
 
             bombRingRedPS.Stop();
             bombRingRedPS.Play();
+            world.ClearAllEnemyBullets();
 
             //old damage ring
             //ringAnimator.Play("RingExpandExtraLargeRed");
@@ -581,6 +582,7 @@ public class Player : BulletCollidable
             {
                 brPSm.startLifetime = brrPSm.startLifetime;
                 brPSm.startSpeed = brrPSm.startSpeed;
+                world.ClearAllEnemyBullets();
             }
 
             bombRingPS.Stop();

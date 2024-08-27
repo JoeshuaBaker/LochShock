@@ -123,4 +123,18 @@ public class EnemyEmitterSpawner : MonoBehaviour
             percentReadyToSpawn = 0f;
         }
     }
+
+    public void ClearAllBullets()
+    {
+        foreach(EnemyGun enemyGun in activeEmitters)
+        {
+            enemyGun.gameObject.SetActive(false);
+            enemyGun.gameObject.SetActive(true);
+            enemyGun.shooting = false;
+            enemyGun.ready = true;
+
+        }
+
+        activeEmitters.Clear();
+    }
 }

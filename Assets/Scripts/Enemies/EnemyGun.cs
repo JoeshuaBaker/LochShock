@@ -37,8 +37,6 @@ public class EnemyGun : Gun
         }
 
         base.Update(); 
-        lookPosition = Player.activePlayer.transform.position.xy();
-        direction = (lookPosition - this.transform.position.xy()).normalized;
         ApplyNewStatBlock(baseItemCombinedStats);
         UpdateActiveGun(direction, lookPosition);
         Shoot();
@@ -71,6 +69,8 @@ public class EnemyGun : Gun
     {
         transform.position = position;
         screenPositionOffset = transform.position - Player.activePlayer.transform.position;
+        lookPosition = Player.activePlayer.transform.position.xy();
+        direction = (lookPosition - this.transform.position.xy()).normalized;
         magazine = maxMagazine;
         doneFiringTimer = 0f;
         shooting = true;

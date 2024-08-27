@@ -249,6 +249,11 @@ public class World : MonoBehaviour
         enemyEmitterSpawner.UpdateEmitterSpawner(enemySpawnRateDecay.Evaluate(levelLoadTimeRatio), orbDecay.Evaluate(orbTimeRatio));
     }
 
+    public void ClearAllEnemyBullets()
+    {
+        enemyEmitterSpawner.ClearAllBullets();
+    }
+
     void SpawnRandomEnemy()
     {
         List<Type> enemyTypes = enemyPool.GetAvailableEnemyTypes();
