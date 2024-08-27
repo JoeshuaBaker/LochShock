@@ -46,6 +46,7 @@ public class Inventory : MonoBehaviour
     }
     public int scrap = 0;
     public int scrapPerOrb = 25;
+    public int scrapBonusMaxOrb = 100;
     public OrbItemPool[] orbItemPools;
 
     //External References
@@ -107,7 +108,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool Orb(bool isSmall = false)
+    public bool Orb(bool isSmall = false, bool maxOrbs = false)
     {
         if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0 || World.activeWorld.paused)
             return false;
@@ -123,8 +124,20 @@ public class Inventory : MonoBehaviour
 
             if (inventoryUI != null)
             {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                if (!maxOrbs)
+                {
+                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                }
+                else
+                {
+                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
+
+                    scrap += scrapBonusMaxOrb;
+
+                }
+              
             }
             else
             {

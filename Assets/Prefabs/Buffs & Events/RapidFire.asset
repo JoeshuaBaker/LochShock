@@ -26,14 +26,32 @@ MonoBehaviour:
     stacks: 1
     source: {fileID: 0}
     active: 0
+  levelUpStats:
+    stats:
+    - id: 1
+    events:
+      events: []
+      source: {fileID: 0}
+    stacks: 1
+    source: {fileID: 0}
+    active: 0
   references:
     version: 1
     00000000:
       type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 1
+          id: 2
         value: 0.8
         conditions: []
     00000001:
+      type: {class: FireSpeed, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 3
+        value: 0.25
+        conditions: []
+    00000002:
+      type: {class: Mult, ns: , asm: Assembly-CSharp}
+    00000003:
       type: {class: Mult, ns: , asm: Assembly-CSharp}

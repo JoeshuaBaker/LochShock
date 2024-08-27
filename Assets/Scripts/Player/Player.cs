@@ -266,7 +266,7 @@ public class Player : BulletCollidable
             {
                 orbCharged = true;
                 orbsChargedNumber = Mathf.Min((int)orbsHeld, 5);
-                timeSinceOrbUsed = 0f;
+
                 Bomb(false);
             }
         }
@@ -351,7 +351,11 @@ public class Player : BulletCollidable
 
     public void CollectOrb()
     {
-        if (orbCharged)
+        if(orbsHeld >= 4 && !orbCharged)
+        {
+            inventory.Orb(false,true);
+        }
+        else if (orbCharged)
         {
             inventory.Orb();
             orbCharged = false;
@@ -553,6 +557,10 @@ public class Player : BulletCollidable
         if (isSmall)
         {
             mult = smallBombSize;
+        }
+        if(!isSmall)
+        {
+            timeSinceOrbUsed = 0f;
         }
 
 
