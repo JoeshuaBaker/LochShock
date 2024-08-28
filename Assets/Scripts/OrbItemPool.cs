@@ -26,7 +26,7 @@ public class OrbItemPool
         {
             if(item != null)
             {
-                ignoreListNames.Add(item.name);
+                ignoreListNames.Add(item.DisplayName);
             }
         }
         
@@ -65,7 +65,7 @@ public class OrbItemPool
                 type = Item.ItemType.Active;
             }
 
-            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x) && !ignoreListNames.Contains(x.name)).ToArray();
+            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x) && !ignoreListNames.Contains(x.DisplayName)).ToArray();
             if (list == null || list.Length == 0)
             {
                 i--;

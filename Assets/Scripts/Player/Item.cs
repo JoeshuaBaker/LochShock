@@ -48,7 +48,8 @@ public class Item : MonoBehaviour
         get
         {
             float disassembleMult = Player.activePlayer.combinedNewStats.GetCombinedStatValue<DisassembleMult>();
-            return (int)(((baseDisassembleValue == 0 ? 50 + (int)rarity * 50 : baseDisassembleValue) + (int)(levelUpCost * (level - 1) * disassembleRefundRatio))
+            var actualDisassembleValue = (baseDisassembleValue == 0 ? 50 + (int)rarity * 50 : baseDisassembleValue);
+            return (int)((actualDisassembleValue + (int)(actualDisassembleValue * (level - 1) * disassembleRefundRatio))
                 * (disassembleMult == 0 ? 1f : disassembleMult));
         }
     }

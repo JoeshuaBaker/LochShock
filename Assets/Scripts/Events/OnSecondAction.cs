@@ -9,6 +9,11 @@ public abstract class OnSecondAction : ScriptableAction
 
     public override string GetLabel()
     {
-        return "Periodically";
+        float actualCooldown = 1f;
+        if(cooldown > 0)
+        {
+            actualCooldown = cooldown;
+        }
+        return $"Every {actualCooldown} second{((actualCooldown > 1) ? "s":"")}:";
     }
 }
