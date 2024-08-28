@@ -39,6 +39,9 @@ public class GameplayUI : MonoBehaviour
     public ItemMicroFrame[] microFrames;
     public Item[] items;
     public Gun activeGun;
+
+    //Audio Variables
+    private bool missionEndSound = true;
    
     //Animator State Names For Health
     private string fullHealthAnim = "UIHeartBeat";
@@ -50,6 +53,7 @@ public class GameplayUI : MonoBehaviour
     {
         SetHp(Player.activePlayer.currentHp, Player.activePlayer.maxHp);
         SetOrbs(0);
+        missionEndSound = true;
     }
 
     private void Update()
@@ -215,6 +219,12 @@ public class GameplayUI : MonoBehaviour
         {
             endText.text = "MISSION CLEAR!";
             signalLost.gameObject.SetActive(true);
+            //Audio Section
+            if (missionEndSound)
+            {
+                AkSoundEngine.PostEvent("PlayBossSeedMissionClear", this.gameObject);
+                missionEndSound = false;
+            }
         }
     }
 

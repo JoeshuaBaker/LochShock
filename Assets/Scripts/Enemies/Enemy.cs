@@ -50,6 +50,20 @@ public abstract class Enemy : BulletCollidable
         ApplyKnockback(projectile.Velocity.normalized * knockback);
 
         World.activeWorld.hitEffect.EmitBulletHit(projectile);
+
+        //Audio Section
+        //Sound is coming from Left of player
+        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Sound is coming from right of player
+        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Play enemy hit sound after panning has been set
+        AkSoundEngine.PostEvent("PlayEnemyHit", this.gameObject);
     }
 
     public virtual void ApplyKnockback(Vector2 force)

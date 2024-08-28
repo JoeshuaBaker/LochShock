@@ -1,16 +1,34 @@
 State Group	ID	Name			Wwise Object Path	Notes
 	1049845630	PathStatus			\Default Work Unit\PathStatus	
+	1159204518	MenuStatus			\Default Work Unit\MenuStatus	
+	3049870162	SeedBossPhase			\Default Work Unit\SeedBossPhase	
 
 State	ID	Name	State Group			Notes
 	748895195	None	PathStatus			
 	1897154419	OnPath	PathStatus			
 	2351524905	OffPath	PathStatus			
+	48824776	MenuOpen	MenuStatus			
+	748895195	None	MenuStatus			
+	3979055068	MenuClose	MenuStatus			
+	748895195	None	SeedBossPhase			
+	2580339382	PhaseOne	SeedBossPhase			
+	2965091720	PhaseTwo	SeedBossPhase			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	736391531	MenuOpen	MenuStatus	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\AmbianceBus		
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	1478241522	StageEndBus			\Default Work Unit\Master Audio Bus\StageEndBus	
 	2332707381	AmbianceBus			\Default Work Unit\Master Audio Bus\AmbianceBus	
 	2886307548	MusicBus			\Default Work Unit\Master Audio Bus\MusicBus	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 	3803850708	SFXBus			\Default Work Unit\Master Audio Bus\SFXBus	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	688956056	Guns			\Default Work Unit\Master Audio Bus\SFXBus\Guns	
+
+Effect plug-ins	ID	Name	Type				Notes
+	188357824	Hall_Small (Custom)	Wwise RoomVerb			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			

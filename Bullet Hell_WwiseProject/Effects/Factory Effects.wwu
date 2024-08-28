@@ -2,13 +2,6 @@
 <WwiseDocument Type="WorkUnit" ID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}" SchemaVersion="103">
 	<Effects>
 		<WorkUnit Name="Factory Effects" ID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}" PersistMode="Standalone">
-			<PropertyList>
-				<Property Name="Inclusion" Type="bool">
-					<ValueList>
-						<Value>False</Value>
-					</ValueList>
-				</Property>
-			</PropertyList>
 			<ChildrenList>
 				<Folder Name="Wwise Compressor" ID="{6D4F6371-ED53-4C90-98DA-0AEB0484548B}" ShortID="64022668">
 					<ChildrenList>
@@ -1517,8 +1510,8 @@
 									<PropertyList>
 										<Property Name="DecayTime" Type="Real32" Value="1"/>
 										<Property Name="Density" Type="Real32" Value="50"/>
-										<Property Name="ERLevel" Type="Real32" Value="-18"/>
-										<Property Name="ERPattern" Type="int32" Value="29"/>
+										<Property Name="ERLevel" Type="Real32" Value="-2"/>
+										<Property Name="ERPattern" Type="int32" Value="1"/>
 										<Property Name="Filter1Freq" Type="Real32" Value="210"/>
 										<Property Name="Filter1Gain" Type="Real32" Value="1.5"/>
 										<Property Name="Filter2Freq" Type="Real32" Value="6830"/>
@@ -1529,7 +1522,7 @@
 										<Property Name="HFDamping" Type="Real32" Value="5.05"/>
 										<Property Name="PreDelay" Type="Real32" Value="145"/>
 										<Property Name="Quality" Type="int32" Value="12"/>
-										<Property Name="ReverbLevel" Type="Real32" Value="-37"/>
+										<Property Name="ReverbLevel" Type="Real32" Value="-5"/>
 										<Property Name="RoomSize" Type="Real32" Value="73"/>
 										<Property Name="StereoWidth" Type="Real32" Value="28"/>
 									</PropertyList>

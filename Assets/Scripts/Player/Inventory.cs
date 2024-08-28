@@ -171,6 +171,18 @@ public class Inventory : MonoBehaviour
         if(activeItem != null)
         {
             activeItem.Activate();
+
+            //Audio Section
+            //if(activeItem.cooldownTimer >= activeItem.cooldown)
+            //{
+            //    AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
+
+            //}
+            //else if(activeItem.cooldownTimer < activeItem.cooldown)
+            //{
+            //    AkSoundEngine.PostEvent("PlayTestToneHigh", this.gameObject);
+            //}
+            //AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
         }
     }
 

@@ -107,10 +107,16 @@ public class InventoryUI : MonoBehaviour
         {
             case InventoryUIState.Inventory:
                 Inventory(newState, items);
+
+                //AudioSection
+                AkSoundEngine.SetState("MenuStatus", "MenuOpen");
                 break;
 
             case InventoryUIState.Orb:
                 Orb(newState, items);
+
+                //AudioSection
+                AkSoundEngine.SetState("MenuStatus", "MenuOpen");
                 break;
 
             case InventoryUIState.Stats:
@@ -120,6 +126,7 @@ public class InventoryUI : MonoBehaviour
             case InventoryUIState.Close:
                 //Audio Section
                 AkSoundEngine.PostEvent("PlayMenuClose", this.gameObject);
+                AkSoundEngine.SetState("MenuStatus", "MenuClose");
 
                 gameObject.SetActive(false);
                 OnClose?.Invoke();

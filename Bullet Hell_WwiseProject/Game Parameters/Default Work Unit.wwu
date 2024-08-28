@@ -21,6 +21,27 @@
 						<Property Name="Max" Type="Real64" Value="2"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="25"/>
+						<Property Name="Min" Type="Real64" Value="-25"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="25"/>
+						<Property Name="Min" Type="Real64" Value="-25"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="25"/>
+						<Property Name="Min" Type="Real64" Value="-25"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

@@ -309,6 +309,17 @@ public class Player : BulletCollidable
         if (context.started && pressed)
         {
             inventory.ActivateActiveItem();
+
+            //Audio Section
+            if (inventory.activeItem.CooldownTimer >= inventory.activeItem.Cooldown)
+            {
+                AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
+
+            }
+            else if (inventory.activeItem.CooldownTimer < inventory.activeItem.Cooldown)
+            {
+                AkSoundEngine.PostEvent("PlayTestToneHigh", this.gameObject);
+            }
         }
     }
 
@@ -504,6 +515,9 @@ public class Player : BulletCollidable
         damagePS.Stop();
         damagePS.Play();
 
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayBombHit", this.gameObject);
+
         if (currentHp == 0)
         {
             KillSelf();
@@ -595,6 +609,9 @@ public class Player : BulletCollidable
 
             bombRingPS.Stop();
             bombRingPS.Play();
+
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayBombAttack", this.gameObject);
 
             //old damage ring
             // ringAnimator.Play("RingExpandExtraLarge");

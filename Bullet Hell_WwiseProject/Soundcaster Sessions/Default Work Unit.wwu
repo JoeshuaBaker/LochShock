@@ -44,11 +44,156 @@
 							<Value>332</Value>
 						</RTPCValue>
 						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
 							<Value>1.09570716914538E-317</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Guns" ID="{08B830E1-30F7-4D08-A91D-1110EEF9C293}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="PlayAssaultRifle" ID="{4AB39799-0DA3-4633-8EFE-E447F34386DA}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayLightningRifle" ID="{BADC17E6-B3FB-4C33-A650-2D6726A9329A}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayRevolver" ID="{A72DABBE-592B-45D9-B7CA-B55D9709EBCF}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Guns" ID="{905D5CA4-EE8D-4361-8965-E490292C47A6}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="AssaultRifle_Firing" ID="{5419C1F7-DA17-4FEA-AF34-D005C0E48E08}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Pistol_comp" ID="{F372C605-9DDB-4FCA-9C40-23D3C044FBD4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayAutoShotgun" ID="{431AE6CC-505B-4B4F-86E8-DF8B60D0855A}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayMinigun" ID="{F2AD47A6-1C4F-4EDF-8666-2B9DCE7504EE}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlaySniper" ID="{83C84BCF-8A2A-47FC-93FE-2B3D1C4BDF2E}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Big" ID="{16360306-F732-4A8E-AA45-ADBD2ACF287C}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Hum" ID="{D826198B-FF92-4A72-BA5F-153299466095}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayDoubleBarrelShotgun" ID="{9472F835-2842-428D-8BE7-74456955A5D4}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayNailgun" ID="{24168B03-82BB-4A0A-855E-98EF97E7E7B8}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayTakehowbigyourthinkthebulletisandlikedoubleit" ID="{B31F868C-A690-42B6-80F8-8D562B53E3BC}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Zap" ID="{45A70AD2-F369-46F6-AB9E-FA00E82C128B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Railgun" ID="{05DF409E-5A37-4DAE-A33C-676C13E5E7AF}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayDualPistol" ID="{64C366AA-3D3B-4CE4-AB49-ED8AE2A2E3C8}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayPlasmaCutter" ID="{B8ED6626-8E10-4772-8BFD-BDB64C7FD7EA}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayTorch" ID="{17156289-5A50-4951-AE8F-8B9FB228DAEE}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Minigun" ID="{51E9B1E9-67F2-484A-A98B-41835EB9AA2E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ShotgunShot" ID="{32F74405-CEEC-4D91-A8AF-B363100CAD14}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayGoldenGun" ID="{DCB7A5BC-30D0-4724-B5B5-A41294D3902C}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="4" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayRailgun" ID="{C09AB6A0-C6DE-42F8-9DFE-21DD0E468AA9}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="4" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayTrenchgun" ID="{0BA956E5-18F1-46DE-8692-1F7451B514AB}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="4" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Nailgun" ID="{FB09140C-D1EB-428A-8885-A1013FD2BBF7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="4" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SniperRifle" ID="{5B4A3FB8-A6C7-4553-837E-DC4C1A9F862A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="4" Y="5"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
 						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>

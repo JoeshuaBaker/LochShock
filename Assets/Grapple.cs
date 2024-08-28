@@ -101,7 +101,9 @@ public class Grapple : MonoBehaviour
     public float topSpeed;
     public float topSpeedPercentToBurst = 0.1f;
 
-
+    //Audio Variables
+    private bool canPlayFire = true;
+    private bool canPlayLatch = true;
 
     public ExplosionSpawner explosionSpawner;
 
@@ -188,6 +190,9 @@ public class Grapple : MonoBehaviour
 
         if (grappleTargetPoint == Vector3.zero && !grapplingPullPlayer)
         {
+            //Audio Section
+            PlayFireAudio();
+
             hideHook = false;
 
             animator.Play("BezierAnim");
@@ -262,6 +267,9 @@ public class Grapple : MonoBehaviour
 
                                 if (hitBuffer.Count == 0)
                                 {
+                                    //Audio Section
+                                    PlayLatchAndPullAudio();
+
                                     grapplingPullPlayer = true;
                                     holdPoint = pollingSpot;
                                     this.transform.position = pollingSpot;
@@ -278,6 +286,9 @@ public class Grapple : MonoBehaviour
                             {
                                 if (hitBuffer.Count != 0)
                                 {
+                                    //Audio Section
+                                    PlayLatchAndPullAudio();
+
                                     grapplingPullPlayer = true;
                                     holdPoint = pollingSpot;
                                     this.transform.position = pollingSpot;
@@ -551,9 +562,40 @@ public class Grapple : MonoBehaviour
         grappleSpeedToPlayer = 0f;
         speedIsDecaying = false;
 
-        grappleHandPS.Stop();
+        //Audio Section
+        canPlayFire = true;
+        canPlayLatch = true;
+
+    grappleHandPS.Stop();
  
     }
 
+    public void PlayFireAudio()
+    {
+        if (canPlayFire)
+        {
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayGrappleFire", this.gameObject);
 
+            canPlayFire = false;
+
+            return;
+        }
+        else { return; }
+    }
+
+    public void PlayLatchAndPullAudio()
+    {
+        if (canPlayLatch)
+        {
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayGrappleLatch", this.gameObject);
+            AkSoundEngine.PostEvent("PlayGrapplePull", this.gameObject);
+
+            canPlayLatch = false;
+
+            return;
+        }
+        else { return; }
+    }
 }

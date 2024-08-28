@@ -102,6 +102,10 @@ public class BossSeed : BulletCollidable
             useLayerMask = true
         };
 
+        //AudioSection
+        AkSoundEngine.SetState("SeedBossPhase", "PhaseOne");
+        AkSoundEngine.PostEvent("PlayBossSeedMusic", this.gameObject);
+
     }
 
     // Update is called once per frame
@@ -259,6 +263,7 @@ public class BossSeed : BulletCollidable
         {
             bossCurrentDR = bossDRMax;
             thresholdTwo = true;
+            AkSoundEngine.SetState("SeedBossPhase", "PhaseTwo");
         }
 
 
@@ -342,7 +347,12 @@ public class BossSeed : BulletCollidable
         {
             explosionSpawner.CreateDangerZone(5000, 1f, attackPos, true, false, false, scale, square, rotation, 4, false);
             attackTime = 0f;
+
+            //Audio Section
+            //UpdateExplosionVoicePosition();
+            AkSoundEngine.PostEvent("PlayBossSeedAttack", explosionSpawner.gameObject);
         }
+               
     }
 
     public void KillNearEnemies()
@@ -448,5 +458,24 @@ public class BossSeed : BulletCollidable
     public void SetDistance(int spawnX)
     {
         bossSpawnX = spawnX;
+    }
+
+    private void UpdateExplosionVoicePosition()
+    {
+        //Audio Section
+        if (explosionSpawner != null)
+        {
+            //Sound is coming from Left of player
+            if (explosionSpawner.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+            {
+                AkSoundEngine.SetRTPCValue("ExplosionSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, explosionSpawner.gameObject.transform.position));
+            }
+            //Sound is coming from right of player
+            else if (explosionSpawner.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+            {
+                AkSoundEngine.SetRTPCValue("ExplosionSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, explosionSpawner.gameObject.transform.position));
+            }
+        }
+        return;
     }
 }

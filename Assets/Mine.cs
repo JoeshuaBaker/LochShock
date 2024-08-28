@@ -26,7 +26,9 @@ public class Mine : BasicEnemy
     {
         base.Update();
 
-        if(explosionResetTime >= 0f)
+        UpdateVoicePosition();
+
+        if (explosionResetTime >= 0f)
         {
             explosionResetTime = explosionResetTime - Time.deltaTime;
         }
@@ -38,6 +40,10 @@ public class Mine : BasicEnemy
 
         if (directionToPlayer.magnitude < activationRange && !playerClose && !dying && explosionResetTime < 0f)
         {
+            
+            //AudioSection
+            AkSoundEngine.PostEvent("PlayMineBuildUp", this.gameObject);
+
             animator.SetBool("playerNear", (true));
             dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f), 0, false);
             playerClose = true;
@@ -61,6 +67,7 @@ public class Mine : BasicEnemy
             {
                 World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 4,false);
                 secondaryZoneSpawned = true;
+
             }
 
             if (dangerZone != null)
@@ -85,6 +92,9 @@ public class Mine : BasicEnemy
         {
             World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, 0f, this.transform.position, true , false , false , explosionScale, false, new Quaternion(0f, 0f, 0f, 1f), 4, false);
             secondaryZoneSpawned = true;
+
+            //AudioSection
+            AkSoundEngine.PostEvent("PlayMineDie", this.gameObject);
         }
 
         if (dangerZone != null)
@@ -120,6 +130,25 @@ public class Mine : BasicEnemy
 
         explosionCountdown = 0f;
         speed = moveSpeed;
+    }
+
+    private void UpdateVoicePosition()
+    {
+        //Audio Section
+        if(dangerZone != null)
+        {
+            //Sound is coming from Left of player
+            if (dangerZone.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+            {
+                AkSoundEngine.SetRTPCValue("MineVoiceSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, dangerZone.gameObject.transform.position));
+            }
+            //Sound is coming from right of player
+            else if (dangerZone.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+            {
+                AkSoundEngine.SetRTPCValue("MineVoiceSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, dangerZone.gameObject.transform.position));
+            }
+        }
+        return;
     }
 
 }

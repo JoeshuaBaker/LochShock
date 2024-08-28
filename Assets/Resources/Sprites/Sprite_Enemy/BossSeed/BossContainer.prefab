@@ -19853,6 +19853,7 @@ GameObject:
   - component: {fileID: 2328696271373022109}
   - component: {fileID: 2328696271373022110}
   - component: {fileID: 2328696271373022111}
+  - component: {fileID: 1395012199287188897}
   m_Layer: 0
   m_Name: BossDeathContainer
   m_TagString: Untagged
@@ -19939,6 +19940,18 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 1000
     m_PropagationSpeed: 343
+--- !u!114 &1395012199287188897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328696271373022108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06d12f0a4d5043d1af7438b494b3dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2328696271484481215
 GameObject:
   m_ObjectHideFlags: 0
@@ -49345,7 +49358,7 @@ MonoBehaviour:
   bossCurrentAccelertationTime: 0
   bossCurrentAccelertation: 0
   bossSpawnX: 0
-  bossMaxHP: 100000
+  bossMaxHP: 100
   bossCurrentHP: 0
   bossHPPercent: 1
   hpDecayPerSecond: 0.005
@@ -54432,13 +54445,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04100801a589549499bc0535991508ab, type: 3}
---- !u!4 &5726831658947661825 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8009928906662406864, guid: 04100801a589549499bc0535991508ab, type: 3}
-  m_PrefabInstance: {fileID: 2328696271251421905}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5726831658947661827 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8009928906662406866, guid: 04100801a589549499bc0535991508ab, type: 3}
+  m_PrefabInstance: {fileID: 2328696271251421905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5726831658947661825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8009928906662406864, guid: 04100801a589549499bc0535991508ab, type: 3}
   m_PrefabInstance: {fileID: 2328696271251421905}
   m_PrefabAsset: {fileID: 0}
