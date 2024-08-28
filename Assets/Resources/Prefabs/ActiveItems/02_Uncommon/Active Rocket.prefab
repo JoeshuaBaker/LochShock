@@ -80,12 +80,36 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: damageType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: displayName
       value: Emergency Munition
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: levelUpStats.stats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: stats.stats.Array.data[1].value
-      value: 16
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0]
+      value: Assembly-CSharp ActiveItemDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].conditions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}

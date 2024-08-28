@@ -386,7 +386,7 @@ public class Gun : Item
 
     protected void OnDestroy()
     {
-        if(gunType == GunType.GameObject)
+        if(gunType == GunType.GameObject && projectilePool != null)
         {
             projectilePool.Cleanup();
         }

@@ -30,7 +30,10 @@ public class SetStacksByRatio : TransformativeCondition
                 return 0;
             }
             HashSet<Stat> statBucket = context.player.Stats.GetStatBucketByTypeAndCombineType(referenceStatType);
-
+            if (statBucket == null)
+            {
+                return 0;
+            }
             float total = 0f;
             foreach (Stat stat in statBucket)
             {

@@ -99,7 +99,17 @@ public class CombinedStatBlock
 
         public HashSet<Stat> GetStatBucketByTypeAndCombineType(Stat stat)
         {
-            return orderedStats[stat.GetType()][stat.combineType];
+            HashSet<Stat> bucket = null;
+            if(orderedStats.ContainsKey(stat.GetType()))
+            {
+                var bucketGroup = orderedStats[stat.GetType()];
+                if(bucketGroup.ContainsKey(stat.combineType))
+                {
+                    bucket = bucketGroup[stat.combineType];
+                }
+            }
+
+            return bucket;
         }
     }
 
