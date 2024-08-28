@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1125500713" Language="SFX" Hash="2326141752">
+		<SoundBank Id="1125500713" Language="SFX" Hash="3689407626">
 			<ObjectPath>\SoundBanks\Default Work Unit\Intro</ObjectPath>
 			<ShortName>Intro</ShortName>
 			<Path>Intro.bnk</Path>
@@ -104,7 +104,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="4126258447">
+		<SoundBank Id="1355168291" Language="SFX" Hash="848847746">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="1914520709">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="3720909495">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -188,7 +188,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1272740371" Name="PlayBossSeedAttack" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedAttack" DurationType="OneShot" DurationMin="3.735521" DurationMax="3.735521">
+				<Event Id="1272740371" Name="PlayBossSeedAttack" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedAttack" DurationType="OneShot" DurationMin="3.735521" DurationMax="4.637623">
 					<IncludedMemoryFiles>
 						<File Id="81940499" Language="SFX">
 							<ShortName>SeedAttackBlast2.wav</ShortName>
@@ -425,6 +425,14 @@
 						<File Id="824954779" Language="SFX">
 							<ShortName>Pull.wav</ShortName>
 							<Path>SFX/Pull_A43E3F36.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1823176904" Name="PlayItemOnCD" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\PlayItemOnCD" DurationType="OneShot" DurationMin="0.652506" DurationMax="0.652506">
+					<IncludedMemoryFiles>
+						<File Id="963471314" Language="SFX">
+							<ShortName>ItemOnCD.wav</ShortName>
+							<Path>SFX/ItemOnCD_B4BE9FA6.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

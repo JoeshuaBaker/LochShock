@@ -644,13 +644,6 @@
 										</Event>
 										<Event Name="PlayBossSeedAttack" ID="{5785B464-4093-42F8-AF27-E8268F86727B}">
 											<ChildrenList>
-												<Action Name="" ID="{F765E34F-1E18-489B-B3F2-800717E76CED}" ShortID="662808394">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="SeedAttackBuild" ID="{305EA594-D223-4BC4-A75E-3E9FDA4FB067}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
 												<Action Name="" ID="{F574B080-D439-4043-9CDD-911230E8A9A9}" ShortID="626341618">
 													<PropertyList>
 														<Property Name="Inclusion" Type="bool">
@@ -697,6 +690,13 @@
 													<ReferenceList>
 														<Reference Name="Target">
 															<ObjectRef Name="SeedAttackBoom" ID="{1F117368-4809-41A0-B25E-BE161C447D0A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{28523E59-1211-47DC-9E54-24F164C4F760}" ShortID="242092647">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SeedAttackBuild" ID="{305EA594-D223-4BC4-A75E-3E9FDA4FB067}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -846,10 +846,44 @@
 								</Folder>
 								<Event Name="PlayItemUse" ID="{10797863-CA02-4261-8E29-5D02CD8CECDF}">
 									<ChildrenList>
+										<Action Name="" ID="{2FBD1A31-15EF-488C-BDE5-C1BB37412657}" ShortID="809502495">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="4"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ItemOnCD" ID="{D246A7AE-A9C3-4904-9B03-C4FD3238CDD7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
 										<Action Name="" ID="{88196610-F376-48DD-A519-88A21C8C5D44}" ShortID="75791551">
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="MeleeBlip" ID="{699A5B0F-121B-43B7-B1AA-A5767371BCE4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{E691B38C-2ECC-493E-8EE4-B61ACF1638A6}" ShortID="950102453">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="5"/>
+												<Property Name="Delay" Type="Real64" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ItemOnCD" ID="{D246A7AE-A9C3-4904-9B03-C4FD3238CDD7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayItemOnCD" ID="{8AF87744-4C99-4B83-B65D-337124073D96}">
+									<ChildrenList>
+										<Action Name="" ID="{B5011580-C95B-4A03-9710-A44D29928F32}" ShortID="370788528">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ItemOnCD" ID="{B92F92D9-4E5E-4CF4-B033-AC82F3B76936}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

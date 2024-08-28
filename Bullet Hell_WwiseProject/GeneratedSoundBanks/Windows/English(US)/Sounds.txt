@@ -31,6 +31,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1703458158	PlayAssaultRifle			\Default Work Unit\GameplayCombat\Player\Guns\PlayAssaultRifle	
 	1760503306	PlayWipe			\Default Work Unit\GameplayCombat\Player\Bomb\PlayWipe	
 	1780443284	PlayOrbCollect			\Default Work Unit\GameplayCombat\Items\PlayOrbCollect	
+	1823176904	PlayItemOnCD			\Default Work Unit\GameplayCombat\Items\PlayItemOnCD	
 	2131811770	PlayGrappleLatch			\Default Work Unit\GameplayCombat\Items\Grappling Hook\PlayGrappleLatch	
 	2156085297	PlayAxe			\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayAxe	
 	2367080787	RainAmbiance			\Default Work Unit\Ambiance\RainAmbiance	
@@ -80,6 +81,7 @@ Custom State	ID	Name	State Group	Owner		Notes
 	73055628	OnPath	PathStatus	\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Lake\Amb_Lake Waves_2024-05-13 20_55_17		
 	263445328	OffPath	PathStatus	\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Lake\Amb_Pathway Waves_2024-05-13 20_55_17		
 	309244742	MenuOpen	MenuStatus	\Interactive Music Hierarchy\Default Work Unit\Music\MainTheme		
+	344009606	MenuOpen	MenuStatus	\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic		
 	676365464	PhaseTwo	SeedBossPhase	\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseOneLoop		
 	681484125	OnPath	PathStatus	\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Lake\Amb_Pathway Waves_2024-05-13 20_55_17		
 	713369005	PhaseOne	SeedBossPhase	\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseTwoLoop		
@@ -189,6 +191,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	953260848	Railgun	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Railgun_533C4965.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Guns\Guns\Railgun\Railgun		719452
 	963072889	MeleeBlip	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Melee Use Blip_92152895.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\Melee Weapons\Melee Blip\Melee Blip\MeleeBlip		28920
 	963317276	SeedBossPhaseOneLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedBossPhaseOneLoop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseOneLoop		15516740
+	963471314	ItemOnCD	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ItemOnCD_B4BE9FA6.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\Melee Weapons\ItemOnCD\ItemOnCD		125344
 	1015425311	Enemy HIt_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_E6618987.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_03		162852
 	1031937630	BossKill_Mission Clear	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Mission Clear_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Mission Clear		1524308
 	1040601827	BossKill_Spray	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Spray_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Spray		2431524
