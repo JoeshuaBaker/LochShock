@@ -3280,7 +3280,7 @@
 														<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 														<Property Name="MaxSoundPerInstance" Type="int16">
 															<ValueList>
-																<Value>1</Value>
+																<Value>5</Value>
 															</ValueList>
 														</Property>
 														<Property Name="OverridePositioning" Type="bool" Value="True"/>
@@ -3305,7 +3305,7 @@
 																<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 																<Property Name="MaxSoundPerInstance" Type="int16">
 																	<ValueList>
-																		<Value>1</Value>
+																		<Value>5</Value>
 																	</ValueList>
 																</Property>
 																<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -3344,7 +3344,7 @@
 																<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 																<Property Name="MaxSoundPerInstance" Type="int16">
 																	<ValueList>
-																		<Value>1</Value>
+																		<Value>5</Value>
 																	</ValueList>
 																</Property>
 																<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -3423,7 +3423,7 @@
 																<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 																<Property Name="MaxSoundPerInstance" Type="int16">
 																	<ValueList>
-																		<Value>1</Value>
+																		<Value>5</Value>
 																	</ValueList>
 																</Property>
 																<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -4838,188 +4838,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Sound Name="Intro_Laugh" ID="{A9726CA2-6DEF-4519-8D7C-7EF8009D287E}" ShortID="995143718">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>6</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="Effect0" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
-									<ObjectRef Name="LaughTimeStretch" ID="{BD7BE036-0919-47B3-83D6-1F74138DDE5C}" WorkUnitID="{1415F920-B41E-4BF5-99F5-8294C95E075C}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_Laugh" ID="{68A3D23A-504E-44CA-8DFB-FC1F2AE4D6CE}">
-									<PropertyList>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="5.2661497232037"/>
-										<Property Name="TrimEnd" Type="Real64" Value="8.05755528143274"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_Laugh.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="244289141"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_Laugh" ID="{68A3D23A-504E-44CA-8DFB-FC1F2AE4D6CE}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Intro_NEMESIS" ID="{B6E08245-5AC4-4411-94F6-C16E6DDBB181}" ShortID="503407109">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_NEMESIS" ID="{4FE87E7A-A25E-4E37-9BE8-C0B12893B81E}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="4.67104653996102"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_NEMESIS.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="39921148"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_NEMESIS" ID="{4FE87E7A-A25E-4E37-9BE8-C0B12893B81E}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Intro_PP Drone C" ID="{3EC39D19-ACF5-484F-8025-72C86A167F6E}" ShortID="178206893">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_PP Drone C" ID="{6C1CF0C2-11D3-4519-B6B3-FA8181D05545}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="6.77301748294348"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_PP Drone C.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="525311383"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_PP Drone C" ID="{6C1CF0C2-11D3-4519-B6B3-FA8181D05545}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Intro_PP Drone F" ID="{3BC0355C-066D-42A5-8DE8-A323E83EA919}" ShortID="393351286">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_PP Drone F" ID="{8B45F7CB-8BD4-443E-89FC-98ED1845974C}">
-									<PropertyList>
-										<Property Name="CrossfadeDuration" Type="Real64" Value="29007.199"/>
-										<Property Name="LoopBegin" Type="Real64" Value="27.3256222587719"/>
-										<Property Name="LoopEnd" Type="Real64" Value="56.6364392970273"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_PP Drone F.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="105630765"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_PP Drone F" ID="{8B45F7CB-8BD4-443E-89FC-98ED1845974C}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Intro_Shock" ID="{FE993E68-3AA1-4E8F-A41F-EA53AA33E9DB}" ShortID="483961408">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_Shock" ID="{BB605277-C92B-40D9-BBD5-EEF338A178CA}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="6.53946515594542"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_Shock.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="651015063"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_Shock" ID="{BB605277-C92B-40D9-BBD5-EEF338A178CA}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Intro_SLIDE" ID="{6135EBBF-6AA1-44F2-AD2D-B8BA96E73217}" ShortID="283881887">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Intro_SLIDE" ID="{CFBE3BBB-8B8C-499E-AB42-4093AF503BA4}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="0"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="2.80262792397661"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Intro_SLIDE.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="339030648"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Intro_SLIDE" ID="{CFBE3BBB-8B8C-499E-AB42-4093AF503BA4}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Logo" ID="{9D7B5E7D-E853-4788-8ABC-EF2D60E99F16}" ShortID="836143123">
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
@@ -5050,6 +4868,208 @@
 								<ActiveSource Name="Logo" ID="{44B3F3E2-614D-4AA3-9596-2663C16AF729}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<ActorMixer Name="Intro Title" ID="{80354304-02F1-4ACC-85AC-669783AC4CA9}" ShortID="363858124">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Intro_Laugh" ID="{A9726CA2-6DEF-4519-8D7C-7EF8009D287E}" ShortID="995143718">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="Effect0" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
+											<ObjectRef Name="LaughTimeStretch" ID="{BD7BE036-0919-47B3-83D6-1F74138DDE5C}" WorkUnitID="{1415F920-B41E-4BF5-99F5-8294C95E075C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_Laugh" ID="{68A3D23A-504E-44CA-8DFB-FC1F2AE4D6CE}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="5.2661497232037"/>
+												<Property Name="TrimEnd" Type="Real64" Value="8.05755528143274"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_Laugh.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="244289141"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_Laugh" ID="{68A3D23A-504E-44CA-8DFB-FC1F2AE4D6CE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Intro_NEMESIS" ID="{B6E08245-5AC4-4411-94F6-C16E6DDBB181}" ShortID="503407109">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_NEMESIS" ID="{4FE87E7A-A25E-4E37-9BE8-C0B12893B81E}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="4.67104653996102"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_NEMESIS.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="39921148"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_NEMESIS" ID="{4FE87E7A-A25E-4E37-9BE8-C0B12893B81E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Intro_PP Drone C" ID="{3EC39D19-ACF5-484F-8025-72C86A167F6E}" ShortID="178206893">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_PP Drone C" ID="{6C1CF0C2-11D3-4519-B6B3-FA8181D05545}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.77301748294348"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_PP Drone C.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="525311383"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_PP Drone C" ID="{6C1CF0C2-11D3-4519-B6B3-FA8181D05545}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Intro_PP Drone F" ID="{3BC0355C-066D-42A5-8DE8-A323E83EA919}" ShortID="393351286">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_PP Drone F" ID="{8B45F7CB-8BD4-443E-89FC-98ED1845974C}">
+											<PropertyList>
+												<Property Name="CrossfadeDuration" Type="Real64" Value="29007.199"/>
+												<Property Name="LoopBegin" Type="Real64" Value="27.3256222587719"/>
+												<Property Name="LoopEnd" Type="Real64" Value="56.6364392970273"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_PP Drone F.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="105630765"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_PP Drone F" ID="{8B45F7CB-8BD4-443E-89FC-98ED1845974C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Intro_Shock" ID="{FE993E68-3AA1-4E8F-A41F-EA53AA33E9DB}" ShortID="483961408">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_Shock" ID="{BB605277-C92B-40D9-BBD5-EEF338A178CA}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.53946515594542"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_Shock.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="651015063"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_Shock" ID="{BB605277-C92B-40D9-BBD5-EEF338A178CA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Intro_SLIDE" ID="{6135EBBF-6AA1-44F2-AD2D-B8BA96E73217}" ShortID="283881887">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Intro_SLIDE" ID="{CFBE3BBB-8B8C-499E-AB42-4093AF503BA4}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.80262792397661"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Intro_SLIDE.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="339030648"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Intro_SLIDE" ID="{CFBE3BBB-8B8C-499E-AB42-4093AF503BA4}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</ActorMixer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Menu" ID="{45FEF9F0-F293-4D80-A38B-1ED8136EFE5A}" ShortID="394576411">
