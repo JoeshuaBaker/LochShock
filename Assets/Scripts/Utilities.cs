@@ -56,6 +56,14 @@ public static class Utilities
         return source.ShuffleIterator(new System.Random(Time.frameCount));
     }
 
+    public static string AddColorToString(this string baseString, Color color)
+    {
+        string colorPrefix = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>";
+        string colorPostfix = "</color>";
+
+        return colorPrefix + baseString + colorPostfix;
+    }
+
     private static IEnumerable<T> ShuffleIterator<T>(
         this IEnumerable<T> source, System.Random rng)
     {
@@ -67,5 +75,11 @@ public static class Utilities
 
             buffer[j] = buffer[i];
         }
+    }
+
+    public static string[] SplitAfterFirstNumber(this string originalString)
+    {
+        var regex = new Regex(@"(?<=\d)(?=\D)");
+        return regex.Split(originalString, 2);
     }
 }

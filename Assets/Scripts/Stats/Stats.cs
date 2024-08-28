@@ -24,7 +24,7 @@ public class Vision : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, isPercentage: true, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), isPercentage: true, conditions: conditions);
     }
 }
 
@@ -40,7 +40,7 @@ public class DisassembleMult : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, isPercentage: true, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), isPercentage: true, conditions: conditions);
     }
 }
 #endregion
@@ -58,18 +58,27 @@ public class ReloadSpeed : Stat
 
     public override string DisplayName()
     {
-        return combineType is BaseStat ? "reload time" : "reload speed";
+        string reloadString = "";
+        if(source != null && source is Gun)
+        {
+            ReloadType reloadType = (source as Gun).reloadType;
+            if(reloadType != ReloadType.Magazine)
+            {
+                reloadString = reloadType.ToString().ToLower() + " ";
+            }
+        }
+        return combineType is BaseStat ? reloadString+"reload time" : "reload speed";
     }
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
         if(combineType is BaseStat)
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), baseValue: Min, conditions: conditions);
         }
         else
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), baseValue: Min, conditions: conditions);
         }
     }
 }
@@ -84,7 +93,7 @@ public class FireSpeed : Stat
     }
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), baseValue: Min, conditions: conditions);
     }
 }
 
@@ -95,7 +104,7 @@ public class BulletStreams : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), baseValue: Min, conditions: conditions);
     }
 }
 
@@ -105,7 +114,7 @@ public class BulletsPerShot : Stat
     public override float Max => 25f;
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), baseValue: Min, conditions: conditions);
     }
 }
 
@@ -117,15 +126,15 @@ public class SpreadAngle : Stat
     {
         if(combineType is Additive)
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions, flipSign:true);
+            context.AddStatContext(this, DisplayName(), conditions: conditions, flipSign:true);
         }
         else if(combineType is Mult)
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions, flipSign: true, positiveIsGood:false);
+            context.AddStatContext(this, DisplayName(), conditions: conditions, flipSign: true, positiveIsGood:false);
         }
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
         
     }
@@ -140,14 +149,14 @@ public class Accuracy : Stat
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, isPercentage: true, baseValue: Max, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), isPercentage: true, baseValue: Max, conditions: conditions);
         }
     }
 }
 
 public class Damage : Stat
 {
-    public override float Min => 0f;
+    public override float Min => 1f;
     public override string DisplayName()
     {
         return "gun damage";
@@ -170,18 +179,18 @@ public class Damage : Stat
 
             damageType.Trim();
 
-            context.AddContext(Name(), combineType, damageType.ToLower() + DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, damageType.ToLower() + DisplayName(), conditions: conditions);
         }
         else
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
     }
 }
 
 public class Velocity : Stat 
 { 
-    public override float Min => 0.00001f; 
+    public override float Min => 1f; 
     public override float Max => 300f;
 
     public override string DisplayName()
@@ -193,7 +202,7 @@ public class Velocity : Stat
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
     }
 }
@@ -211,7 +220,7 @@ public class Size : Stat
     {
         if(!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
     }
 }
@@ -223,7 +232,7 @@ public class Knockback : Stat
     {
         if (!(combineType is BaseStat))
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
     }
 }
@@ -261,7 +270,7 @@ public class SecondaryHitDamage : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, isPercentage: true, baseValue: BaseValue, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), isPercentage: true, baseValue: BaseValue, conditions: conditions);
     }
 }
 #endregion
@@ -289,11 +298,11 @@ public class ActiveItemDamage : Stat
 
             damageType.Trim();
 
-            context.AddContext(Name(), combineType, damageType.ToLower() + DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, damageType.ToLower() + DisplayName(), conditions: conditions);
         }
         else
         {
-            context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+            context.AddStatContext(this, DisplayName(), conditions: conditions);
         }
     }
 }
@@ -302,6 +311,17 @@ public class ActiveItemCooldown : Stat
 {
     public override float Min => .1f;
     public override StatValueType ValueType => StatValueType.Rate;
+    public override void UpdateStatBlockContext(ref StatBlockContext context)
+    {
+        if(combineType is BaseStat)
+        {
+            context.AddStatContext(this, DisplayName().Replace("active item ", ""), baseValue: Min, conditions: conditions);
+        }
+        else
+        {
+            base.UpdateStatBlockContext(ref context);
+        }
+    }
 }
 
 public class ActiveItemCharges : Stat
@@ -310,7 +330,14 @@ public class ActiveItemCharges : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue:Min, conditions: conditions);
+        if (combineType is BaseStat)
+        {
+            context.AddStatContext(this, DisplayName().Replace("active item ", ""), baseValue: Min, conditions: conditions);
+        }
+        else
+        {
+            base.UpdateStatBlockContext(ref context);
+        }
     }
 }
 
@@ -320,7 +347,14 @@ public class ActiveItemDuration : Stat
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, baseValue: Min, conditions: conditions);
+        if (combineType is BaseStat)
+        {
+            context.AddStatContext(this, DisplayName().Replace("active item ", ""), baseValue: Min, conditions: conditions);
+        }
+        else
+        {
+            base.UpdateStatBlockContext(ref context);
+        }
     }
 }
 #endregion

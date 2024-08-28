@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,8 @@ public class GunActivatable : Activatable
     private float duration;
     private float repeats;
     private float delayTimer;
-
     private bool setup = false;
+    private HashSet<Type> excludeStatsFromTooltip = new HashSet<Type> { typeof(MagazineSize), typeof(ReloadSpeed), typeof(FireSpeed), typeof(Size), typeof(Velocity), typeof(Accuracy), typeof(ActiveItemDamage)};
 
     public override bool Activate()
     {
@@ -115,7 +116,18 @@ public class GunActivatable : Activatable
         statBlocks.AddRange(gun.newStatsList);
         csb.UpdateSources(statBlocks);
         StatBlockContext context = csb.GetCombinedContext();
-        context.AddGenericTooltip($"Fires a {StatBlockContext.GoodColor}{gun.DisplayName}</color>. Cooldown: {StatBlockContext.HighlightColor}{source.Cooldown}</color>s.");
+        foreach(StatBlock statBlock in statBlocks)
+        {
+            foreach(Stat stat in statBlock.stats)
+            {
+                if (excludeStatsFromTooltip.Contains(stat.GetType()))
+                {
+                    context.RemoveAllMatchingStatContext(stat);
+                }
+            }
+        }
+        context.AddGenericPrefixTooltip($"Fires a {gun.DisplayName.AddColorToString(StatBlockContext.GoodColor)}.");
+        context.AddGenericPostfixTooltip($"Repeats attack for every {durationToRepeatFireRatio * 100f}% active item duration.");
         return context;
     }
 

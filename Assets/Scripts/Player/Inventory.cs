@@ -204,6 +204,7 @@ public class Inventory : MonoBehaviour
 
         activeGun.shooting = inactiveGun.shooting;
         inactiveGun.shooting = false;
+        activeGun.transform.SetAsFirstSibling();
         inactiveGun.CancelReload();
     }
 
@@ -290,10 +291,15 @@ public class Inventory : MonoBehaviour
         int index = Contains(item, out Item[] collection);
         int spaceIndex = FirstEmptySpace(item.itemType, out Item[] emptyCollection);
 
-        if (collection == itemStash && collection != emptyCollection)
+        if (spaceIndex != -1 && collection == itemStash && collection != emptyCollection)
         {
             emptyCollection[spaceIndex] = collection[index];
             collection[index] = null;
+            collectionParentMap.TryGetValue(emptyCollection, out Transform parent);
+            if(parent != null)
+            {
+                emptyCollection[spaceIndex].transform.parent = parent;
+            }
 
             if(emptyCollection[spaceIndex] is ActiveItem)
             {

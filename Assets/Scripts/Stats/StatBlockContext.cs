@@ -5,10 +5,10 @@ using System.Linq;
 
 public class StatBlockContext
 {
-    public static string NeutralColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.white)}>";
-    public static string GoodColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.green)}>";
-    public static string BadColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>";
-    public static string HighlightColor = $"<color=#{ColorUtility.ToHtmlStringRGB(Color.yellow)}>";
+    public static Color NeutralColor = Color.white;
+    public static Color GoodColor = Color.green;
+    public static Color BadColor = Color.red;
+    public static Color HighlightColor = Color.yellow;
     private const string VALUE = "%value%";
 
     public struct StatContext
@@ -30,7 +30,7 @@ public class StatBlockContext
 
         public string GetFormattedText()
         {
-            string highlight;
+            Color highlight;
 
             bool isGood = value >= 0;
 
@@ -59,7 +59,7 @@ public class StatBlockContext
 
             string formattedValueString = $"{(isPercentage ? formattedValue.ToString("P0").Replace(" ", "") : formattedValue.ToString("0.#"))}";
 
-            return $"{highlight}{text.Replace(VALUE, formattedValueString)}</color>";
+            return $"{text.Replace(VALUE, formattedValueString)}".AddColorToString(highlight);
         }
 
         public StatContext(
@@ -82,23 +82,24 @@ public class StatBlockContext
 
 
     private Dictionary<string, StatContext> statDictionary = new Dictionary<string, StatContext>();
-    private List<string> genericTooltips = new List<string>();
+    private List<string> genericPrefixTooltips = new List<string>();
+    private List<string> genericBaseStatSeperatorTooltips = new List<string>();
+    private List<string> genericPostfixTooltips = new List<string>();
     private List<string> allTooltips = new List<string>();
 
-    public void AddContext(
-        string key,
-        StatCombineType blockType,
+    public void AddStatContext(
+        Stat stat,
         string valueName,
-        float value,
         bool isPercentage = false,
         bool positiveIsGood = true,
         bool flipSign = false,
         float baseValue = 0f,
         List<StatCondition> conditions = null)
     {
-        if(value != 0 && !(blockType is BaseStat && value == baseValue))
+        float value = stat.value * stat.TooltipStacks;
+        if(value != 0 && !(stat.combineType is BaseStat && value == baseValue))
         {
-            string typeKey = key + blockType.CombinePriority;
+            string typeKey = stat.Name() + stat.combineType.CombinePriority;
             bool contextExists = statDictionary.TryGetValue(typeKey, out StatContext existingContext);
 
             if (contextExists)
@@ -108,21 +109,40 @@ public class StatBlockContext
             }
             else
             {
-                statDictionary.Add(typeKey, new StatContext(blockType, valueName, value, isPercentage, positiveIsGood, flipSign, conditions));
+                statDictionary.Add(typeKey, new StatContext(stat.combineType, valueName, value, isPercentage, positiveIsGood, flipSign, conditions));
             }
         }
     }
 
-    public void AddGenericTooltip(string tooltip)
+    public void RemoveAllMatchingStatContext(Stat stat)
     {
-        genericTooltips.Add(tooltip);
+        string typeKey = stat.Name() + stat.combineType.CombinePriority;
+        statDictionary.Remove(typeKey);
+    }
+
+    public void AddGenericPrefixTooltip(string tooltip)
+    {
+        genericPrefixTooltips.Add(tooltip);
+    }
+
+    public void AddGenericPostfixTooltip(string tooltip)
+    {
+        genericPostfixTooltips.Add(tooltip);
+    }
+
+    public void AddGenericBaseStatSeperatorTooltip(string tooltip)
+    {
+        genericBaseStatSeperatorTooltips.Add(tooltip);
     }
 
     public IEnumerable<string> GetStatContextStrings()
     {
         allTooltips.Clear();
-        allTooltips.AddRange(genericTooltips);
-        allTooltips.AddRange(statDictionary.Values.Select(x => x.GetFormattedText()));
+        allTooltips.AddRange(genericPrefixTooltips);
+        allTooltips.AddRange(statDictionary.Values.Where(x => x.isBaseStatBlock).Select(x => x.GetFormattedText()));
+        allTooltips.AddRange(genericBaseStatSeperatorTooltips);
+        allTooltips.AddRange(statDictionary.Values.Where(x => !x.isBaseStatBlock).Select(x => x.GetFormattedText()));
+        allTooltips.AddRange(genericPostfixTooltips);
         return allTooltips;
     }
 }

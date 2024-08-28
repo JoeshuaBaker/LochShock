@@ -11,9 +11,10 @@ public class MeleeActivatable : Activatable
     public bool repeatable = false;
     public bool aimable = true;
     public float bonusRepeatsDurationThreshold = 5f;
+    public int baseExtraRepeats = 0;
     private int modifiedRepeats
     {
-        get {return (int)((repeatable) ? (duration / bonusRepeatsDurationThreshold) : 1); }
+        get {return baseExtraRepeats + (int)(repeatable ? Mathf.Min(duration / bonusRepeatsDurationThreshold, 1f) : 1); }
     }
     public float[] hitboxPulses = new float[] { 0.5f };
     private float playTime = 0f;
@@ -189,10 +190,29 @@ public class MeleeActivatable : Activatable
     public override StatBlockContext GetStatBlockContext(CombinedStatBlock baseContext, ActiveItem source)
     {
         StatBlockContext statBlockContext = baseContext.GetCombinedContext();
+
+        if(duration == 0)
+        {
+            if(stats != null)
+            {
+                duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+            }
+            else
+            {
+                duration = 1;
+            }
+        }
+
         var numAttacks = hitboxPulses.Length * modifiedRepeats;
-        var attackString = (numAttacks > 1) ? $"{StatBlockContext.GoodColor}{numAttacks}</color> times " : "";
-        statBlockContext.AddGenericTooltip($"Attacks {attackString}with a {StatBlockContext.GoodColor}{source.DisplayName}</color>." + 
-            ((source.MaxCharges > 1) ? $" Charges: {source.MaxCharges}." : ""));
+        var attackString = (numAttacks > 1) ? $"{numAttacks.ToString().AddColorToString(StatBlockContext.GoodColor)} times " : "";
+        statBlockContext.AddGenericPrefixTooltip($"Attacks {attackString}with a {source.DisplayName.AddColorToString(StatBlockContext.GoodColor)}.");
+
+        if (repeatable)
+        {
+            string extraAttackString = (hitboxPulses.Length > 1) ? $"{hitboxPulses.Length} attacks" : "attack";
+            statBlockContext.AddGenericPostfixTooltip($"{System.Environment.NewLine}Gains an extra {extraAttackString.AddColorToString(StatBlockContext.GoodColor)} for every {(bonusRepeatsDurationThreshold * 100f).ToString().AddColorToString(StatBlockContext.HighlightColor)}% active item duration.");
+        }
+
         return statBlockContext;
     }
 }

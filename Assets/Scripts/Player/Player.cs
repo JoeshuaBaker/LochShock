@@ -294,6 +294,7 @@ public class Player : BulletCollidable
         if (context.started && pressed)
         {
             inventory.OpenCloseInventory();
+            inventory.activeGun.shooting = false;
         }
     }
 

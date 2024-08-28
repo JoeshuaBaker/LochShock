@@ -39,6 +39,10 @@ PrefabInstance:
       propertyPath: baseLevelUpCost
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -8867849996136579000, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
+      propertyPath: durationToRepeatFireRatio
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3115791947385332203, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: m_Name
       value: LightningRifleActiveItem
@@ -121,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: stats.stats.Array.data[2].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: stats.stats.Array.data[3].value

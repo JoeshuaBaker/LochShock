@@ -17,4 +17,7 @@ public class IsReloadType : ItemPropertiesCondition
 
         return contextReloadType == reloadType ? 1f : 0f;
     }
+
+    public override string ConditionTooltipLabel => "if";
+    public override string ConditionTooltipPostfix => ConditionTooltipLabel + $" reload type is {reloadType.ToString().ToLower()}";
 }

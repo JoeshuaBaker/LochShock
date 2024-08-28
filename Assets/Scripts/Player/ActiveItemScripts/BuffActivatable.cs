@@ -37,11 +37,8 @@ public class BuffActivatable : Activatable
         List<StatBlock> statBlocks = buff.GetStatBlocks(source.level);
         statBlocks.AddRange(baseContext.sourcesList);
         csb.UpdateSources(statBlocks);
-
         StatBlockContext statBlockContext = csb.GetCombinedContext();
-        statBlockContext.AddGenericTooltip($"Applies {StatBlockContext.GoodColor}{buff.buffName}</color> for " +
-            $"{StatBlockContext.HighlightColor}{duration}</color>s. " +
-            $"Cooldown: {StatBlockContext.HighlightColor}{source.Cooldown}</color>s.");
+        statBlockContext.AddGenericPrefixTooltip($"Applies {buff.buffName.AddColorToString(StatBlockContext.GoodColor)}.");
         return statBlockContext;
     }
 }

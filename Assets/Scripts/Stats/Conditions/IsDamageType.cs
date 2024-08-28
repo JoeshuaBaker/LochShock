@@ -77,4 +77,5 @@ public class IsDamageType : ItemPropertiesCondition
 
         return stacks;
     }
+    public override string ConditionTooltipValueLabelInsert => damageType.ToString().Replace(",", (matchType == DamageTypeMatch.Exact) ? "" : " and").ToLower();
 }

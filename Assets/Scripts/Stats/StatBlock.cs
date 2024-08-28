@@ -132,11 +132,11 @@ public class StatBlock
     public IEnumerable<string> GetEventTooltips(int level = 1)
     {
         List<string> eventTooltips = new List<string>();
-        eventTooltips.AddRange(GetEvents<OnFireAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
-        eventTooltips.AddRange(GetEvents<OnHitAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
-        eventTooltips.AddRange(GetEvents<OnKillAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
-        eventTooltips.AddRange(GetEvents<OnReloadAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
-        eventTooltips.AddRange(GetEvents<OnSecondAction>().Select(x => StatBlockContext.HighlightColor + x.GetLabel() + ": </color>" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnFireAction>().Select(x => x.GetLabel().AddColorToString(StatBlockContext.HighlightColor) + ":" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnHitAction>().Select(x => x.GetLabel().AddColorToString(StatBlockContext.HighlightColor) + ":" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnKillAction>().Select(x => x.GetLabel().AddColorToString(StatBlockContext.HighlightColor) + ":" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnReloadAction>().Select(x => x.GetLabel().AddColorToString(StatBlockContext.HighlightColor) + ":" + x.GetTooltip(Player.activePlayer.Stats, level)));
+        eventTooltips.AddRange(GetEvents<OnSecondAction>().Select(x => x.GetLabel().AddColorToString(StatBlockContext.HighlightColor) + ":" + x.GetTooltip(Player.activePlayer.Stats, level)));
 
         return eventTooltips;
     }

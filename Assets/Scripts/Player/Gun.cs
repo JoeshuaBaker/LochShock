@@ -358,6 +358,32 @@ public class Gun : Item
         }
     }
 
+    public override StatBlockContext GetStatBlockContext()
+    {
+        StatBlockContext baseContext = base.GetStatBlockContext();
+        bool hasNonBaseStats = false;
+        foreach(StatBlock statBlock in newStatsList)
+        {
+            foreach(Stat stat in statBlock.stats)
+            {
+                if(!(stat.combineType is BaseStat))
+                {
+                    hasNonBaseStats = true;
+                    break;
+                }
+            }
+
+            if (hasNonBaseStats)
+                break;
+        }
+        
+        if(hasNonBaseStats)
+        {
+            baseContext.AddGenericBaseStatSeperatorTooltip("While Equipped:".AddColorToString(StatBlockContext.HighlightColor));
+        }
+        return baseContext;
+    }
+
     protected void OnDestroy()
     {
         if(gunType == GunType.GameObject)

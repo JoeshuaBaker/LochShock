@@ -46,7 +46,7 @@ public abstract class Stat
 
     public virtual void UpdateStatBlockContext(ref StatBlockContext context)
     {
-        context.AddContext(Name(), combineType, DisplayName(), value * TooltipStacks, conditions: conditions);
+        context.AddStatContext(this, DisplayName(), conditions: conditions);
     }
 
     public virtual float Min => -1f;
