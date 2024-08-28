@@ -129,7 +129,8 @@ public class ItemMicroFrame : MonoBehaviour
             if (item is ActiveItem)
             {
                 ActiveItem activeItem = item as ActiveItem;
-                
+               
+
                 if (activeItem.CooldownTimer > 0f)
                 {
                     itemGlow.color = itemGlowRed;

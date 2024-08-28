@@ -69,7 +69,7 @@ public class MovieDirector : MonoBehaviour
                 {
                     titleUiContainer.SetActive(true);
                 }
-                if (mouse.leftButton.isPressed || gamepad.aButton.isPressed)
+                if ((mouse != null && mouse.leftButton.isPressed) || (gamepad != null && gamepad.aButton.isPressed))
                 {
                     ImageAnimation.frame += 1;
                     ImageAnimation.playing = true;
@@ -81,7 +81,7 @@ public class MovieDirector : MonoBehaviour
             {
                 titleUiContainer.SetActive(false);
                 tutorialWindow.SetActive(true);
-                if(mouse.leftButton.isPressed || gamepad.aButton.isPressed)
+                if ((mouse != null && mouse.leftButton.isPressed) || (gamepad != null && gamepad.aButton.isPressed))
                 {
                     //Audio Section
                     AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
