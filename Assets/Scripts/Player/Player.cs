@@ -254,7 +254,16 @@ public class Player : BulletCollidable
             return;
         }
 
-        inventory.activeGun.shooting = context.ReadValueAsButton();
+        bool buttonValue = context.ReadValueAsButton();
+        if(inventory.activeGun.shooting && context.canceled)
+        {
+            inventory.activeGun.shooting = false;
+        }
+        else if(!inventory.activeGun.shooting && context.started)
+        {
+            inventory.activeGun.shooting = true;
+        }
+
         lastUsedInputDevice = context.action.activeControl.device;
     }
 
