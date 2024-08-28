@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour
     {
         if(inventoryUI != null)
         {
-            if (inventoryUI.state == InventoryUI.InventoryUIState.Close)
+            if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
             {
                 inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
             }
@@ -331,6 +331,11 @@ public class Inventory : MonoBehaviour
             scrap -= item.levelUpCost;
             item.LevelUp();
         }
+    }
+
+    public bool IsItemInStash(Item item)
+    {
+        return IndexOf(itemStash, item) > -1;
     }
 
     public bool HasNonStashSpaceFor(Item item)

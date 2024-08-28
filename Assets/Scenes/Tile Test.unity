@@ -2131,7 +2131,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[0]
       value: 
-      objectReference: {fileID: 5707910426210467201, guid: aa870b0ce18f3ed45a38681853ac7673, type: 3}
+      objectReference: {fileID: 6543857390681261526, guid: a89dd239c19cdcb4b914b6b1031048fa, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[1]
       value: 
@@ -2139,7 +2139,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[0]
       value: 
-      objectReference: {fileID: 1559639236201738527, guid: 4a67a6ca6c445e443bf64b68dc020d57, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[1]
       value: 
@@ -2155,15 +2155,15 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: itemStash.Array.data[0]
       value: 
-      objectReference: {fileID: 3824755091199620385, guid: 71beedf496b499b40bcc0c7f849d060c, type: 3}
+      objectReference: {fileID: 1383142768133147064, guid: 1b2e7832a9e65954f86a8ca0d0daf281, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: itemStash.Array.data[1]
       value: 
-      objectReference: {fileID: 6059113069899234641, guid: a645c9158645dfd4d9b84b0e0e6bb378, type: 3}
+      objectReference: {fileID: 6792145854728611527, guid: 9644873550df4a54a991b6feebf0089d, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: activeItems.Array.data[0]
       value: 
-      objectReference: {fileID: 6792145854728611527, guid: 9644873550df4a54a991b6feebf0089d, type: 3}
+      objectReference: {fileID: 4712329613509776575, guid: 57d857608241dda4c83dd73405f60453, type: 3}
     - target: {fileID: 7771730370071348321, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: burstSpeed
       value: 120
@@ -2599,6 +2599,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 127478167}
+    - target: {fileID: 228451999370221635, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 228451999370221635, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: emitterSpawnCooldownMax
       value: 6

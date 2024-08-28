@@ -60,9 +60,9 @@ public class ItemDataFrame : MonoBehaviour
         itemLevel.text = "Lv " + item.level.ToString();
         itemRarity.text = item.rarity.ToString();
         itemStatusSlot.text = item.itemType.ToString();
-        if(topButtonText.text.Contains("%value%"))
+        if(!topButtonText.text.Contains("Take") && !topButtonText.text.Contains("Unstash"))
         {
-            topButton.interactable = Player.activePlayer.inventory.scrap >= item.levelUpCost;
+            topButton.interactable = item.levelUpCost > 0 && Player.activePlayer.inventory.scrap >= item.levelUpCost;
         }
         topButtonText.text = topButtonText.text.Replace("%value%", item.levelUpCost.ToString());
         bottomButtonText.text = bottomButtonText.text.Replace("%value%", item.disassembleValue.ToString());
@@ -87,7 +87,7 @@ public class ItemDataFrame : MonoBehaviour
         itemData.text = itemDataString.TrimEnd();
     }
 
-    public void ReflectInventoryState(InventoryUI.InventoryUIState state, Item item, int offset = 0)
+    public void ReflectInventoryState(InventoryUI.InventoryUIState state, Item item)
     {
         inventoryUIState = state;
 

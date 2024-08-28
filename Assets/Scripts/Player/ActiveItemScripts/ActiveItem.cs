@@ -46,15 +46,18 @@ public class ActiveItem : Item
 
     public bool setup = false;
 
-    public void Activate()
+    public bool Activate()
     {
         if(IsReady())
         {
             if(activatable.Activate())
             {
                 currentCharges -= 1;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void Setup()

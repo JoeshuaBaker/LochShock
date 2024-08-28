@@ -366,7 +366,7 @@ public class Gun : Item
         {
             foreach(Stat stat in statBlock.stats)
             {
-                if(!(stat.combineType is BaseStat))
+                if(!(stat.combineType is BaseStat) && stat.stacks > 0)
                 {
                     hasNonBaseStats = true;
                     break;

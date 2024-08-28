@@ -57,6 +57,12 @@ public class Item : MonoBehaviour
     {
         get
         {
+            bool hasLevelUpStats = levelUpStats.stats.Count > 0;
+            if(!hasLevelUpStats)
+            {
+                return 0;
+            }
+
             return (int)(baseLevelUpCost + ((level > 1) ? (baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1)) : 0f));
         }
     }

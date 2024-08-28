@@ -246,12 +246,18 @@ public class World : MonoBehaviour
         }
         worldStaticContext.closestEnemy = closestEnemy;
 
-        enemyEmitterSpawner.UpdateEmitterSpawner(enemySpawnRateDecay.Evaluate(levelLoadTimeRatio), orbDecay.Evaluate(orbTimeRatio));
+        if (enemyEmitterSpawner != null && enemyEmitterSpawner.isActiveAndEnabled)
+        {
+            enemyEmitterSpawner.UpdateEmitterSpawner(enemySpawnRateDecay.Evaluate(levelLoadTimeRatio), orbDecay.Evaluate(orbTimeRatio));
+        }
     }
 
     public void ClearAllEnemyBullets()
     {
-        enemyEmitterSpawner.ClearAllBullets();
+        if(enemyEmitterSpawner != null && enemyEmitterSpawner.isActiveAndEnabled)
+        {
+            enemyEmitterSpawner.ClearAllBullets();
+        }
     }
 
     void SpawnRandomEnemy()

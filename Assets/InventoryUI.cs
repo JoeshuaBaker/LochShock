@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
     public Inventory inventory;
     private InventoryUIState lastState = InventoryUIState.Close;
     private Item[] lastItems = null;
+    private Item[] items = null;
 
     //Item Frames
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
@@ -87,12 +88,12 @@ public class InventoryUI : MonoBehaviour
 
     public void TransitionState(InventoryUIState newState, Inventory inventory = null, Item[] items = null)
     {
-        if(inventory != null)
+        if (inventory != null)
         {
             this.inventory = inventory;
         }
-        
-        if(!isSetup)
+
+        if (!isSetup)
         {
             Setup();
         }
@@ -135,8 +136,9 @@ public class InventoryUI : MonoBehaviour
         }
 
         lastState = state;
-        lastItems = items;
+        lastItems = this.items;
         state = newState;
+        this.items = items;
     }
 
     public void TransitionToLastState()
@@ -158,12 +160,11 @@ public class InventoryUI : MonoBehaviour
         Item[] activeItem = inventory.activeItems;
         Item[] itemStash = inventory.itemStash;
         Item[] heldItems = inventory.items;
-        int offset = 0;
 
         //Set buttons to level up and disassemble
         foreach (ItemDataFrame frame in allFrames)
         {
-            if(frame.isStash)
+            if (frame.isStash)
             {
                 frame.SetupButton(frame.topButton, frame.topButtonText, Unstash, nameof(Unstash).SplitCamelCase(), false);
             }
@@ -176,19 +177,19 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < weaponItemFrames.Length; i++)
         {
-            weaponItemFrames[i].ReflectInventoryState(newState, weapons[i], offset++);
+            weaponItemFrames[i].ReflectInventoryState(newState, weapons[i]);
         }
         for (int i = 0; i < activeItemFrames.Length; i++)
         {
-            activeItemFrames[i].ReflectInventoryState(newState, activeItem[i], offset++);
+            activeItemFrames[i].ReflectInventoryState(newState, activeItem[i]);
         }
         for (int i = 0; i < stashItemFrames.Length; i++)
         {
-            stashItemFrames[i].ReflectInventoryState(newState, itemStash[i], offset++);
+            stashItemFrames[i].ReflectInventoryState(newState, itemStash[i]);
         }
         for (int i = 0; i < bottomItemFrames.Length; i++)
         {
-            bottomItemFrames[i].ReflectInventoryState(newState, heldItems[i], offset++);
+            bottomItemFrames[i].ReflectInventoryState(newState, heldItems[i]);
         }
     }
 
@@ -216,7 +217,7 @@ public class InventoryUI : MonoBehaviour
             frame.SetupButton(frame.topButton, frame.topButtonText, Take, nameof(Take).SplitCamelCase(), false);
             frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
 
-            if(item != null && inventory.HasSpaceFor(item) && !inventory.HasNonStashSpaceFor(item))
+            if (item != null && inventory.HasSpaceFor(item) && !inventory.HasNonStashSpaceFor(item))
             {
                 frame.topButtonText.text = "Take (Stash)";
             }
@@ -235,7 +236,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OnInventoryButtonPressed()
     {
-        if(state == InventoryUIState.Inventory)
+        if (state == InventoryUIState.Inventory)
         {
             TransitionToLastState();
         }
@@ -255,11 +256,27 @@ public class InventoryUI : MonoBehaviour
 
     public void Take(ItemDataFrame frame)
     {
-        inventory.AddItem(frame.item);
-        TransitionState(InventoryUIState.Close);
-
-        //Audio Section
-        AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+        bool addedItem = inventory.AddItem(frame.item);
+        if (addedItem)
+        {
+            if(inventory.IsItemInStash(frame.item))
+            {
+                TransitionState(InventoryUIState.Inventory);
+            }
+            else
+            {
+                TransitionState(InventoryUIState.Close);
+            }
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+        }
+        else
+        {
+            if (!frame.topButtonText.text.Contains("(Make Room)"))
+            {
+                frame.topButtonText.text += "(Make Room)";
+            }
+        }
     }
 
     public void Unstash(ItemDataFrame frame)
@@ -294,6 +311,14 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void UpdateAllItemFrames(InventoryUIState state)
+    {
+        foreach(ItemDataFrame frame in allFrames)
+        {
+            frame.ReflectInventoryState(state, frame.item);
+        }
+    }
+
     public void LevelUp(ItemDataFrame frame)
     {
         inventory.LevelUp(frame.item);
@@ -302,18 +327,12 @@ public class InventoryUI : MonoBehaviour
         scrapText.text = inventory.scrap.ToString();
         if(!frame.topButton.interactable)
         {
-            if(frame.bottomButton.interactable)
-            {
-                eventSystem.SetSelectedGameObject(frame.bottomButton.gameObject);
-            }
-            else
-            {
-                eventSystem.SetSelectedGameObject(continueButton.gameObject);
-            }
+            eventSystem.SetSelectedGameObject(continueButton.gameObject);
         }
 
         //Audio Section
         AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+        UpdateAllItemFrames(state);
     }
 
     public void Disassemble(ItemDataFrame frame)
@@ -352,6 +371,7 @@ public class InventoryUI : MonoBehaviour
         if (state == InventoryUIState.Inventory)
         {
             frame.ReflectInventoryState(state, null);
+            UpdateAllItemFrames(state);
         }
         else if (state == InventoryUIState.Orb)
         {
