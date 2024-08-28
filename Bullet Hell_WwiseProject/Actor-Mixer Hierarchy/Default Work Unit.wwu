@@ -3091,6 +3091,17 @@
 													<ChildrenList>
 														<RandomSequenceContainer Name="EnemyHit" ID="{4CFD6FB4-7820-4411-BBFA-CE4D85CCB64F}" ShortID="1062570274">
 															<PropertyList>
+																<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+																<Property Name="MaxSoundPerInstance" Type="int16">
+																	<ValueList>
+																		<Value>1</Value>
+																	</ValueList>
+																</Property>
+																<Property Name="UseMaxSoundPerInstance" Type="bool">
+																	<ValueList>
+																		<Value>True</Value>
+																	</ValueList>
+																</Property>
 																<Property Name="Volume" Type="Real64">
 																	<ValueList>
 																		<Value>-9</Value>
