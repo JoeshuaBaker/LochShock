@@ -230,6 +230,7 @@ public class GameplayUI : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("Game Restarted");
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 

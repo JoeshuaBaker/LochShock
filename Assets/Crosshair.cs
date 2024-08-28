@@ -43,15 +43,18 @@ public class Crosshair : MonoBehaviour
 
     public void UpdateCrosshair(Vector2 position, bool reloading, float reloadFill, string currentAmmo)
     {
-        ammoIndicator.text = currentAmmo;
-        ammoIndicatorShadow.text = currentAmmo;
-        reloadIndicator.gameObject.SetActive(reloading);
-
-        UpdateCrosshairPosition(position);
-
-        if (reloading)
+        if(ammoIndicator != null && reloadIndicator != null)
         {
-            reloadIndicator.fillAmount = reloadFill;
+            ammoIndicator.text = currentAmmo;
+            ammoIndicatorShadow.text = currentAmmo;
+            reloadIndicator.gameObject.SetActive(reloading);
+
+            UpdateCrosshairPosition(position);
+
+            if (reloading)
+            {
+                reloadIndicator.fillAmount = reloadFill;
+            }
         }
     }
 }

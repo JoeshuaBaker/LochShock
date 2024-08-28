@@ -214,7 +214,11 @@ public class Player : BulletCollidable
         {
             lastUsedInputDevice = Mouse.current;
             var value = context.ReadValue<Vector2>();
-            var mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
+            Vector3 mousePos = Vector3.zero;
+            if (Camera.main != null)
+            {
+               mousePos = Camera.main.ScreenToWorldPoint(new Vector3(value.x, value.y, -Camera.main.transform.position.z));
+            }
             lookPosition = mousePos.xy();
             lookDiff = (mousePos - this.transform.position).xy();
             lookDirection = lookDiff.normalized;
@@ -242,7 +246,7 @@ public class Player : BulletCollidable
 
     public void FireEvent(InputAction.CallbackContext context)
     {
-        if (world.paused)
+        if (world.paused || isDead)
         {
             return;
         }
@@ -253,7 +257,7 @@ public class Player : BulletCollidable
 
     public void BombEvent(InputAction.CallbackContext context)
     {
-        if (world.paused)
+        if (world.paused || isDead)
         {
             return;
         }
@@ -274,7 +278,7 @@ public class Player : BulletCollidable
 
     public void SwitchWeaponsEvent(InputAction.CallbackContext context)
     {
-        if (world.paused)
+        if (world.paused || isDead)
         {
             return;
         }
@@ -289,6 +293,11 @@ public class Player : BulletCollidable
 
     public void InventoryEvent(InputAction.CallbackContext context)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         lastUsedInputDevice = context.action.activeControl.device;
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed)
@@ -300,7 +309,7 @@ public class Player : BulletCollidable
 
     public void ItemEvent(InputAction.CallbackContext context)
     {
-        if (world.paused)
+        if (world.paused || isDead)
         {
             return;
         }
@@ -326,7 +335,7 @@ public class Player : BulletCollidable
 
     public void GrappleEvent(InputAction.CallbackContext context)
     {
-        if (world.paused)
+        if (world.paused || isDead)
         {
             return;
         }

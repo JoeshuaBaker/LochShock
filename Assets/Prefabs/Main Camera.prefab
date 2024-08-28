@@ -13314,6 +13314,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4208803980974658854}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameplayUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680675174370705880, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6680675174470451329, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -13841,6 +13869,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6680675173969161934, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
   m_PrefabInstance: {fileID: 837266779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4208803980974658854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4208803980699580541, guid: 12c6137069dcb4a408770500cd88eafb, type: 3}
+  m_PrefabInstance: {fileID: 837266779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f2d73e789f8304488b67c820caec9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &925751587
 PrefabInstance:
   m_ObjectHideFlags: 0
