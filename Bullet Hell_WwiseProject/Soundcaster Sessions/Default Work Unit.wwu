@@ -198,6 +198,492 @@
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>
+				<SoundcasterSession Name="Basic" ID="{FA67F179-26DF-4575-BAFE-143A2BFB03EF}">
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{712CDCAE-E771-48AB-B6B2-CBF711F72EDA}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Boss" ID="{BC363B0B-334E-4ED7-B1AD-310EBA01C083}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Boss Seed Attacks" ID="{9B2EE9EF-ECF5-496E-90E4-9067F3C33DC2}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SeedAttackBuild" ID="{305EA594-D223-4BC4-A75E-3E9FDA4FB067}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Boss Seed Kill Screen" ID="{226281F6-60C0-497C-BA0F-20AE2258E47D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossKill_Explode" ID="{ED59219B-C83E-49A9-A4B7-669EE1011774}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayBossSeedAttack" ID="{5785B464-4093-42F8-AF27-E8268F86727B}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SeedAttackChime" ID="{DED6D3A9-52D5-4953-ACCF-9C3D1F839F06}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossKill_Mission Clear" ID="{4C9D0DB8-95C2-4F39-9999-AF1A97091565}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SeedAttackScwhing" ID="{93DD1CEB-B181-45EA-9027-EBB2922B4A0E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossKill_Slam" ID="{6387956F-EAFD-4B77-A970-9FA5C2D81127}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SeedAttackSlam" ID="{6627F63D-785C-4DE1-9723-299E620E6D69}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SeedAttackBoom" ID="{1F117368-4809-41A0-B25E-BE161C447D0A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossKill_Spray" ID="{6AD3383C-F549-4BE0-83C0-52CF6B240244}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Seed AttackBlast" ID="{0D35B85A-E38F-41B3-AD71-7880D960D35A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="4" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossKill_WhooshCut" ID="{053DFD0D-F885-41F5-B970-130DD00EB120}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="4" Y="4"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Enemies" ID="{3FA02A5D-0ECB-45C5-9BF2-3EF588C7653E}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="EnemyHit" ID="{4CFD6FB4-7820-4411-BBFA-CE4D85CCB64F}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MineDie" ID="{9140A812-1CB4-4861-A968-4830E348A9C9}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Mines" ID="{FD44E3D8-C3D9-46C5-A10C-720C063843E7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MineLaugh" ID="{C9016BD1-630F-42A9-A91E-90613E861220}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Mine _Build Up" ID="{8D799315-2ED1-4828-9A00-F7F5E4FB0E11}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{712CDCAE-E771-48AB-B6B2-CBF711F72EDA}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Music and Amb" ID="{71656D9F-6C76-4837-97C6-B008B5718FFE}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="WorldAmbiance" ID="{CCFE53D6-FF84-4793-AC6C-B47B5C2667D5}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Rain" ID="{955645EB-4F21-4B77-A9C7-D7961AFECAF9}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="AmbianceBus" ID="{C435BA51-F958-48FF-B141-5D53AF45A6DC}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MainTheme" ID="{D4EAE3D2-5488-4F8B-8B77-EEB201692168}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossSeedMusic" ID="{17016244-ECAC-424B-BC75-9416902439CF}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="PhaseTwo" ID="{75019FB5-44A5-4290-B19F-E28771F6C03F}"/>
+						<CurrentStateRef Name="MenuClose" ID="{DDFEAEBD-4353-496A-BAE5-77AB7068312F}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="PlayerOther" ID="{8994B68E-DE99-4B51-88B2-EC6FE91BB2C6}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="OutOfAmmo" ID="{755D5E8F-6910-49C3-B902-B55F857C76FE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Bomb_Attack" ID="{A88C059B-8FD2-4E53-B8F3-3477F493DE23}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Grappling Hook" ID="{22337A36-4354-464C-A244-B3B1E66AEE73}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Reload" ID="{1CCFE56C-F282-4ACE-957C-A64EA0CE819B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Bomb_Hit" ID="{9BF0EB0B-D8FB-46F6-B584-6FC79CD6D165}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Explosion" ID="{E849F0D8-759D-42A5-A598-873402801852}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Fire" ID="{FBBD8241-37FA-40D4-9F8B-0C4889FA7039}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Latch" ID="{D70D609B-8A50-4B20-BD3F-22CACBF8AA51}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Pull" ID="{15CA05E8-35B1-414B-BB07-02909EB05BDE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="4" Y="2"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Menus" ID="{C84D15E2-FD63-420A-B379-054BA0198D15}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="OrbCollect" ID="{71BA56DE-4176-43FC-AA64-CA16D14865AE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Close Menu" ID="{F44BE716-883C-456B-A2D6-DEF01C27C9AD}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Item Get" ID="{6D599817-4C35-4AD0-B2B9-CD9E92E5ED76}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Items" ID="{7BB74FF7-2A31-44A3-BB3F-3C622D53FD13}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="MeleeBlip" ID="{699A5B0F-121B-43B7-B1AA-A5767371BCE4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Sword" ID="{BFA16B1F-0F15-4D52-8EC1-0AD324300324}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Spear" ID="{37E99BA3-16DC-4CB7-89CA-450D0529755C}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="OrbCollect" ID="{71BA56DE-4176-43FC-AA64-CA16D14865AE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Axe" ID="{3485D95F-0CA2-4B04-B927-4C2E54F1F289}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Dagger" ID="{43DFF035-BBCC-4FD5-A298-F57DCB8B91CE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Mace" ID="{1F1FAC46-73E6-462B-B66F-A64D0A2C1F32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Grapple Hook" ID="{B801DAAF-CCC5-4205-9695-D6C2888A7B9A}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Grappling Hook" ID="{22337A36-4354-464C-A244-B3B1E66AEE73}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Pull" ID="{15CA05E8-35B1-414B-BB07-02909EB05BDE}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Explosion" ID="{E849F0D8-759D-42A5-A598-873402801852}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Fire" ID="{FBBD8241-37FA-40D4-9F8B-0C4889FA7039}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Latch" ID="{D70D609B-8A50-4B20-BD3F-22CACBF8AA51}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>332</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>1.94327731092437</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="PhaseTwo" ID="{75019FB5-44A5-4290-B19F-E28771F6C03F}"/>
+						<CurrentStateRef Name="MenuClose" ID="{DDFEAEBD-4353-496A-BAE5-77AB7068312F}"/>
+						<CurrentStateRef Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundcasterSessions>

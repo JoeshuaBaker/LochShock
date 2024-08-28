@@ -109,6 +109,9 @@ public class Player : BulletCollidable
     private float visionProximityRadius = 10f;
     private InputDevice lastUsedInputDevice;
 
+    //Audio Variables
+    private bool canPlay = true;
+
 
     private void Awake()
     {
@@ -321,15 +324,16 @@ public class Player : BulletCollidable
             inventory.ActivateActiveItem();
 
             //Audio Section
-            if (inventory.activeItem.CooldownTimer >= inventory.activeItem.Cooldown)
+            if (inventory.activeItem.CooldownTimer >= inventory.activeItem.Cooldown )
             {
                 AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
+                return; 
 
             }
-            else if (inventory.activeItem.CooldownTimer < inventory.activeItem.Cooldown)
-            {
-                AkSoundEngine.PostEvent("PlayTestToneHigh", this.gameObject);
-            }
+            //else if (inventory.activeItem.CooldownTimer < inventory.activeItem.Cooldown)
+            //{
+            //    AkSoundEngine.PostEvent("PlayItemOnCD", this.gameObject);
+            //}
         }
     }
 
@@ -626,9 +630,6 @@ public class Player : BulletCollidable
             //old damage ring
             // ringAnimator.Play("RingExpandExtraLarge");
         }
-
-        //Audio Section
-        AkSoundEngine.PostEvent("PlayWipe", this.gameObject);
 
         ring.transform.position = this.transform.position;
 
