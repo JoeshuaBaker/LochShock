@@ -287,19 +287,33 @@ public class InventoryUI : MonoBehaviour
         if(unstashIndex > -1)
         {
             frame.ReflectInventoryState(state, null);
+            ItemDataFrame unstashedFrame = null;
             switch(item.itemType)
             {
                 case Item.ItemType.Item:
-                    bottomItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    unstashedFrame = bottomItemFrames[unstashIndex];
                     break;
 
                 case Item.ItemType.Weapon:
-                    weaponItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    unstashedFrame = weaponItemFrames[unstashIndex];
                     break;
 
                 case Item.ItemType.Active:
-                    activeItemFrames[unstashIndex].ReflectInventoryState(state, item);
+                    unstashedFrame = activeItemFrames[unstashIndex];
                     break;
+            }
+
+            if(unstashedFrame != null)
+            {
+                unstashedFrame.ReflectInventoryState(state, item);
+                if (frame.topButton.interactable)
+                {
+                    eventSystem.SetSelectedGameObject(unstashedFrame.topButton.gameObject);
+                }
+                else
+                {
+                    eventSystem.SetSelectedGameObject(continueButton.gameObject);
+                }
             }
         }
         else

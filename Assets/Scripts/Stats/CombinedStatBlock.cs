@@ -114,10 +114,8 @@ public class CombinedStatBlock
     }
 
     public StatBlock combinedStatBlock;
-#if UNITY_EDITOR
     //Debug serializable list of sources to cross-check the combined stat block
     public List<StatBlock> sourcesList;
-#endif
     private HashSet<StatBlock> sources;
     private OrderedStats orderedStats;
 
@@ -214,9 +212,7 @@ public class CombinedStatBlock
 
         sources.RemoveWhere(x => !x.active);
 
-#if UNITY_EDITOR
         sourcesList = sources.ToList();
-#endif
     }
 
     public StatBlockContext GetCombinedContext()
