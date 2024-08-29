@@ -174,7 +174,7 @@ public class GameplayUI : MonoBehaviour
         }
         else
         {
-            orbChargeText.text = $"RARITY INCREASED";
+            orbChargeText.text = $"NEXT UPGRADE IMPROVED";
             //orbChargeText.gameObject.SetActive(true);
             orbLockBrace.SetActive(true);
         }
