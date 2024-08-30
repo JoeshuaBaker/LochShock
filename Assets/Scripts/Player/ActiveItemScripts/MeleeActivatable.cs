@@ -82,12 +82,10 @@ public class MeleeActivatable : Activatable
     {
         this.stats = stats;
         duration = stats.GetCombinedStatValue<ActiveItemDuration>();
-        Debug.Log(duration);
     }
 
     public void Update()
     {
-        Debug.Log((duration - 1f + bonusRepeatsDurationThreshold));
         if (isActive)
         {
             if (aimable)
