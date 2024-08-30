@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: levelUpStats.stats.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: stats.stats.Array.data[0].value
@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0]
-      value: Assembly-CSharp ActiveItemCharges
+      value: Assembly-CSharp ActiveItemCooldown
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0].value
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: baseItemCombinedStats.sourcesList.Array.size
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: levelUpStats.stats.Array.data[0].combineType
-      value: Assembly-CSharp BaseStat
+      value: Assembly-CSharp Mult
       objectReference: {fileID: 0}
     - target: {fileID: 8828529656930251079, guid: b67a3c24f99d4074d91832cc4d388c33, type: 3}
       propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].active

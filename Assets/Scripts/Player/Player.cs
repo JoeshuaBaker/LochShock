@@ -227,7 +227,7 @@ public class Player : BulletCollidable
             lookDirection = lookDiff.normalized;
             lastLookTime = Time.realtimeSinceStartup;
 
-            if (world.paused || isDead)
+            if (world.paused || isDead || bossDead)
             {
                 Crosshair.activeCrosshair.UpdateCrosshair(lookPosition, false, 0, "");
             }

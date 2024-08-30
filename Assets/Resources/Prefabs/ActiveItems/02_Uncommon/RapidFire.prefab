@@ -32,6 +32,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
+      propertyPath: levelUpStats.stats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
       propertyPath: stats.stats.Array.data[1].value
       value: 20
       objectReference: {fileID: 0}
@@ -40,8 +44,20 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0]
+      value: Assembly-CSharp ActiveItemDuration
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].value
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
       propertyPath: baseItemCombinedStats.sourcesList.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp Mult
       objectReference: {fileID: 0}
     - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
       propertyPath: baseItemCombinedStats.sourcesList.Array.data[0].active
@@ -54,6 +70,10 @@ PrefabInstance:
     - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
       propertyPath: baseItemCombinedStats.sourcesList.Array.data[1].active
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
+      propertyPath: levelUpStats.stats.Array.data[0].conditions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1174816395302396553, guid: e587d6c4a0e89694c9c1dc436ea599a1, type: 3}
       propertyPath: baseItemCombinedStats.combinedStatBlock.stats.Array.size

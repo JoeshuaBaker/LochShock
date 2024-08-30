@@ -95,6 +95,10 @@ public class Item : MonoBehaviour
 
     public virtual StatBlockContext GetStatBlockContext()
     {
+        foreach(StatBlock statblock in newStatsList)
+        {
+            statblock.AddSource(this);
+        }
         baseItemCombinedStats.UpdateSources(newStatsList);
         return baseItemCombinedStats.GetCombinedContext();
     }

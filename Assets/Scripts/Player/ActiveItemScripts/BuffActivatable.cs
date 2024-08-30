@@ -23,16 +23,6 @@ public class BuffActivatable : Activatable
 
     public override StatBlockContext GetStatBlockContext(CombinedStatBlock baseContext, ActiveItem source)
     {
-        float duration;
-        if (source.setup)
-        {
-            duration = source.combinedStats.GetCombinedStatValue<ActiveItemDuration>();
-        }
-        else
-        {
-            duration = source.baseItemCombinedStats.GetCombinedStatValue<ActiveItemDuration>();
-        }
-
         CombinedStatBlock csb = new CombinedStatBlock();
         List<StatBlock> statBlocks = buff.GetStatBlocks(source.level);
         statBlocks.AddRange(baseContext.sourcesList);

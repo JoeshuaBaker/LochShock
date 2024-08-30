@@ -97,8 +97,14 @@ public class ActiveItem : Item
 
     public override StatBlockContext GetStatBlockContext()
     {
-        baseItemCombinedStats.UpdateSources(newStatsList);
+        base.GetStatBlockContext();
         return activatable.GetStatBlockContext(baseItemCombinedStats, this);
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        activatable.OnLevelUp();
     }
 
     public bool IsReady()

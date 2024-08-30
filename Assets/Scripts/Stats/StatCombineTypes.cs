@@ -85,7 +85,6 @@ public class BaseStat : StatCombineType
         foreach (Stat stat in stats)
         {
             combinedValue += GetStatValue(stat);
-            stat.conditionStacks = 0f;
         }
 
         combinedValue = first.Clamp(combinedValue);
@@ -101,6 +100,23 @@ public class BaseStat : StatCombineType
 public class BasePower : Additive
 {
     public override int CombinePriority => 1;
+    public override void Combine(ref float baseValue, ref float aggregate, IEnumerable<Stat> stats)
+    {
+        Stat first = stats.FirstOrDefault();
+        if (first == null)
+        {
+            return;
+        }
+
+        float combinedValue = 0;
+        foreach (Stat stat in stats)
+        {
+            combinedValue += GetStatValue(stat);
+        }
+
+        combinedValue = first.Clamp(combinedValue);
+        baseValue += combinedValue;
+    }
 
     public override string StatNameTooltip(string valueName)
     {
@@ -119,13 +135,15 @@ public class Additive : StatCombineType
             return;
         }
 
-        float combinedValue = baseValue;
+        float combinedValue = 0;
         foreach (Stat stat in stats)
         {
-            combinedValue += GetStatValue(stat);
+            var statValue = GetStatValue(stat);
+            combinedValue += statValue;
         }
 
-        aggregate += first.ValueType == Stat.StatValueType.Rate ? -combinedValue : combinedValue;
+        //Rate stats should never have additive blocks
+        aggregate += first.ValueType == Stat.StatValueType.Rate ? 0 : combinedValue;
         aggregate = first.Clamp(aggregate);
     }
 
@@ -160,7 +178,8 @@ public class Mult : StatCombineType
         float combinedValue = 0;
         foreach (Stat stat in stats)
         {
-            combinedValue += GetStatValue(stat);
+            var statValue = GetStatValue(stat);
+            combinedValue += statValue;
         }
 
         if (first.ValueType == Stat.StatValueType.Rate)
