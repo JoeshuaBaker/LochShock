@@ -378,7 +378,7 @@ public class Grapple : MonoBehaviour
                 }
                 else
                 {
-
+                    // i think the problem is here. grapple explosion not scaling when game is built
                     playerTotalSpeed = playersLastPos - activePlayer.transform.position;
 
                     playerSpeedMag = playerTotalSpeed.magnitude * Time.deltaTime;
