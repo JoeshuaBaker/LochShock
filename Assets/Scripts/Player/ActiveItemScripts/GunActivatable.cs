@@ -10,6 +10,7 @@ public class GunActivatable : Activatable
     public bool convertActiveDamageToGunDamage = true;
     public float durationToRepeatFireRatio = 5.0f;
     public float repeatDelay = 0.4f;
+    public int baseRepeats = 0;
 
     private List<StatBlock> statBlocks = new List<StatBlock>();
     private ActiveItem source;
@@ -22,11 +23,16 @@ public class GunActivatable : Activatable
 
     public override bool Activate()
     {
+        if(delayTimer > 0f)
+        {
+            return false;
+        }
+
         Vector2 mouseDirection = Player.activePlayer.lookDirection;
         gun.shooting = true;
         gun.transform.localEulerAngles = Quaternion.FromToRotation(Vector3.right, new Vector3(mouseDirection.x, mouseDirection.y, 0f)).eulerAngles;
 
-        repeats = (int)(duration/durationToRepeatFireRatio);
+        repeats = baseRepeats + (int)(duration/durationToRepeatFireRatio);
         gun.ShootIgnoreState(gun.combinedStats);
 
         if(repeats > 0)
@@ -38,7 +44,7 @@ public class GunActivatable : Activatable
 
     public override void ApplyStatBlock(CombinedStatBlock stats)
     {
-        duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+        duration = stats.GetCombinedStatValue<ActiveItemDuration>() - 1f;
 
         if (!setup)
         {
@@ -133,13 +139,13 @@ public class GunActivatable : Activatable
 
     private void Update()
     {
-        if(repeats > 0)
+        if (delayTimer > 0f)
         {
-            if(delayTimer > 0f)
-            {
-                delayTimer -= Time.deltaTime;
-            }
+            delayTimer = Mathf.Max(delayTimer - Time.deltaTime, 0);
+        }
 
+        if (repeats > 0)
+        {
             if (delayTimer <= 0)
             {
                 gun.ShootIgnoreState(gun.combinedStats);

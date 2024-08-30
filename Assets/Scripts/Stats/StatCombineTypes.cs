@@ -135,15 +135,18 @@ public class Additive : StatCombineType
             return;
         }
 
-        float combinedValue = 0;
+        float combinedValue = (aggregate == 0) ? baseValue : aggregate;
         foreach (Stat stat in stats)
         {
-            var statValue = GetStatValue(stat);
-            combinedValue += statValue;
+            //Rate stats should never have additive blocks, so we exclude them from the calculation here
+            if (stat.ValueType != Stat.StatValueType.Rate)
+            {
+                var statValue = GetStatValue(stat);
+                combinedValue += statValue;
+            }
         }
 
-        //Rate stats should never have additive blocks
-        aggregate += first.ValueType == Stat.StatValueType.Rate ? 0 : combinedValue;
+        aggregate = combinedValue;
         aggregate = first.Clamp(aggregate);
     }
 

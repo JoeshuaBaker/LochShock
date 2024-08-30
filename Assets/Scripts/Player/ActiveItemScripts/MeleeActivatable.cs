@@ -14,7 +14,7 @@ public class MeleeActivatable : Activatable
     public int baseExtraRepeats = 0;
     private int modifiedRepeats
     {
-        get {return baseExtraRepeats + (int)(repeatable ? Mathf.Min(duration / bonusRepeatsDurationThreshold, 1f) : 1); }
+        get {return baseExtraRepeats + (int)(repeatable ? Mathf.Max((duration - 1f + bonusRepeatsDurationThreshold + 0.01f) / bonusRepeatsDurationThreshold, 1f) : 1); }
     }
     public float[] hitboxPulses = new float[] { 0.5f };
     private float playTime = 0f;
@@ -82,10 +82,12 @@ public class MeleeActivatable : Activatable
     {
         this.stats = stats;
         duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+        Debug.Log(duration);
     }
 
     public void Update()
     {
+        Debug.Log((duration - 1f + bonusRepeatsDurationThreshold));
         if (isActive)
         {
             if (aimable)
@@ -191,16 +193,13 @@ public class MeleeActivatable : Activatable
     {
         StatBlockContext statBlockContext = baseContext.GetCombinedContext();
 
-        if(duration == 0)
+        if(stats != null)
         {
-            if(stats != null)
-            {
-                duration = stats.GetCombinedStatValue<ActiveItemDuration>();
-            }
-            else
-            {
-                duration = 1;
-            }
+            duration = stats.GetCombinedStatValue<ActiveItemDuration>();
+        }
+        else
+        {
+            duration = 0;
         }
 
         var numAttacks = hitboxPulses.Length * modifiedRepeats;

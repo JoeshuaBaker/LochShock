@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BuffActivatable : Activatable
 {
@@ -23,12 +24,11 @@ public class BuffActivatable : Activatable
 
     public override StatBlockContext GetStatBlockContext(CombinedStatBlock baseContext, ActiveItem source)
     {
-        CombinedStatBlock csb = new CombinedStatBlock();
-        List<StatBlock> statBlocks = buff.GetStatBlocks(source.level);
-        statBlocks.AddRange(baseContext.sourcesList);
-        csb.UpdateSources(statBlocks);
+        CombinedStatBlock csb = buff.GetCombinedStatBlock(source.level);
         StatBlockContext statBlockContext = csb.GetCombinedContext();
-        statBlockContext.AddGenericPrefixTooltip($"Applies {buff.buffName.AddColorToString(StatBlockContext.GoodColor)}.");
+        statBlockContext.AddGenericPrefixTooltip($"Applies {buff.buffName.AddColorToString(StatBlockContext.GoodColor)} for " +
+            $"{baseContext.GetCombinedStatValue<ActiveItemDuration>().ToString().AddColorToString(StatBlockContext.HighlightColor)}s. Cooldown: " +
+            $"{baseContext.GetCombinedStatValue<ActiveItemCooldown>().ToString().AddColorToString(StatBlockContext.HighlightColor)}s.");
         return statBlockContext;
     }
 }
