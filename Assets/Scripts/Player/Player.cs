@@ -857,6 +857,10 @@ public class Player : BulletCollidable
     public void Execute()
     {
         explosionSpawner.CreateExplosionWithCrater(new Vector3(this.transform.position.x, (this.transform.position.y - 0.5f), this.transform.position.z), 3f);
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayPlayerDeathExplosion", this.gameObject);
+
         ring.transform.position = this.transform.position;
 
         //old damage ring
