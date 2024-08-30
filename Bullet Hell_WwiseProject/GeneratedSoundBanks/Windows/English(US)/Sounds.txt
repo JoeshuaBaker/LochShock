@@ -3,9 +3,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	127291008	PlaySplats			\Default Work Unit\Ambiance\PlaySplats	
 	148397444	PlayOutOfAmmo			\Default Work Unit\GameplayCombat\Player\Reload\PlayOutOfAmmo	
 	180348757	PlayDeathStart			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayDeathStart	
-	182906760	PlayExplosion			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion	
+	182906760	PlayExplosion			\Default Work Unit\GameplayCombat\Player\Guns\PlayExplosion	
 	287590497	PlayGrapplePull			\Default Work Unit\GameplayCombat\Items\Grappling Hook\PlayGrapplePull	
-	417627684	PlayMusic			\Default Work Unit\Music\PlayMusic	
 	464009908	PlayGrappleBomb			\Default Work Unit\GameplayCombat\Items\Grappling Hook\PlayGrappleBomb	
 	533922744	PlayPlasmaCutter			\Default Work Unit\GameplayCombat\Player\Guns\PlayPlasmaCutter	
 	552006160	PlayMineDie			\Default Work Unit\GameplayCombat\Enemies\Mines\PlayMineDie	
@@ -15,6 +14,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	785535932	PlayReload			\Default Work Unit\GameplayCombat\Player\Reload\PlayReload	
 	794424115	EnemyDie			\Default Work Unit\GameplayCombat\Enemies\EnemyDie	
 	1053502162	PlayGoldenGun			\Default Work Unit\GameplayCombat\Player\Guns\PlayGoldenGun	
+	1072538575	PlayPlayerDeathExplosion			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayPlayerDeathExplosion	
 	1123853166	PlayMenuOpen			\Default Work Unit\Menu\PlayMenuOpen	
 	1243877330	PlayOrbGet			\Default Work Unit\Menu\PlayOrbGet	
 	1261806239	PlayNailgun			\Default Work Unit\GameplayCombat\Player\Guns\PlayNailgun	
@@ -60,6 +60,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	4181394983	PlayTestToneLow			\Default Work Unit\Utilities\PlayTestToneLow	
 	4187848682	PlaySniper			\Default Work Unit\GameplayCombat\Player\Guns\PlaySniper	
 	4225256129	PlaySeedStopAllAudio			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlaySeedStopAllAudio	
+	4233978862	PlayStartMusic			\Default Work Unit\Music\PlayStartMusic	
 
 State Group	ID	Name			Wwise Object Path	Notes
 	1049845630	PathStatus			\Default Work Unit\PathStatus	

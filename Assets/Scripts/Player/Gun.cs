@@ -152,10 +152,9 @@ public class Gun : Item
             lightAnimator.Play("Base Layer.MuzzleFlashLight", 0, 0f);
         }
 
-        if(gunAudioEvent != null)
+        //Audio Section
+        if (gunAudioEvent != null)
         {
-            //Audio Section
-            //AkSoundEngine.PostEvent("Play" + this.name.Replace(" ", string.Empty), this.gameObject);
             gunAudioEvent.Post(this.gameObject);
         }
         

@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="3249411478">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="1211116562">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -353,7 +353,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="182906760" Name="PlayExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayExplosion" DurationType="OneShot" DurationMin="1.717235" DurationMax="2.84007">
+				<Event Id="182906760" Name="PlayExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayExplosion" DurationType="OneShot" DurationMin="1.717235" DurationMax="2.04007">
 					<IncludedMemoryFiles>
 						<File Id="22615286" Language="SFX">
 							<ShortName>Explosion_5.wav</ShortName>
@@ -558,22 +558,6 @@
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
 					</AuxBusSends>
 				</Event>
-				<Event Id="417627684" Name="PlayMusic" ObjectPath="\Events\Default Work Unit\Music\PlayMusic" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="416321817" Language="SFX">
-							<ShortName>Bass Only.wav</ShortName>
-							<Path>SFX/Bass Only_D79FB2B7.wem</Path>
-						</File>
-						<File Id="598105689" Language="SFX">
-							<ShortName>Deanne B.-Intro.wav</ShortName>
-							<Path>SFX/Deanne B.-Intro_D79FB2B7.wem</Path>
-						</File>
-						<File Id="860048034" Language="SFX">
-							<ShortName>Deanne B.-Main Loop.wav</ShortName>
-							<Path>SFX/Deanne B.-Main Loop_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="1261806239" Name="PlayNailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayNailgun" DurationType="OneShot" DurationMin="1.255329" DurationMax="2.236743">
 					<IncludedMemoryFiles>
 						<File Id="940737890" Language="SFX">
@@ -631,6 +615,42 @@
 					<AuxBusSends>
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
 					</AuxBusSends>
+				</Event>
+				<Event Id="1072538575" Name="PlayPlayerDeathExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayPlayerDeathExplosion" DurationType="OneShot" DurationMin="6.194671" DurationMax="6.194671">
+					<IncludedMemoryFiles>
+						<File Id="22615286" Language="SFX">
+							<ShortName>Explosion_5.wav</ShortName>
+							<Path>SFX/Explosion_5_B1CBE153.wem</Path>
+						</File>
+						<File Id="101129085" Language="SFX">
+							<ShortName>Wipe_Full.wav</ShortName>
+							<Path>SFX/Wipe_Full_10C4C929.wem</Path>
+						</File>
+						<File Id="246812119" Language="SFX">
+							<ShortName>Explosion_2.wav</ShortName>
+							<Path>SFX/Explosion_2_AEE514D4.wem</Path>
+						</File>
+						<File Id="602627737" Language="SFX">
+							<ShortName>Explosion_4.wav</ShortName>
+							<Path>SFX/Explosion_4_3AF9CDC9.wem</Path>
+						</File>
+						<File Id="792472396" Language="SFX">
+							<ShortName>Explosion_0.wav</ShortName>
+							<Path>SFX/Explosion_0_C1D362B9.wem</Path>
+						</File>
+						<File Id="839005815" Language="SFX">
+							<ShortName>Explosion_1.wav</ShortName>
+							<Path>SFX/Explosion_1_2EB609F9.wem</Path>
+						</File>
+						<File Id="839353267" Language="SFX">
+							<ShortName>Explosion_3.wav</ShortName>
+							<Path>SFX/Explosion_3_B28FE775.wem</Path>
+						</File>
+						<File Id="895364418" Language="SFX">
+							<ShortName>Explosion_6.wav</ShortName>
+							<Path>SFX/Explosion_6_F6A9A3BE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2843279659" Name="PlayRailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayRailgun" DurationType="OneShot" DurationMin="3.746807" DurationMax="3.746807">
 					<IncludedMemoryFiles>
@@ -715,6 +735,22 @@
 						<File Id="945210713" Language="SFX">
 							<ShortName>Splats.wav</ShortName>
 							<Path>SFX/Splats_4E63F28C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4233978862" Name="PlayStartMusic" ObjectPath="\Events\Default Work Unit\Music\PlayStartMusic" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="416321817" Language="SFX">
+							<ShortName>Bass Only.wav</ShortName>
+							<Path>SFX/Bass Only_D79FB2B7.wem</Path>
+						</File>
+						<File Id="598105689" Language="SFX">
+							<ShortName>Deanne B.-Intro.wav</ShortName>
+							<Path>SFX/Deanne B.-Intro_D79FB2B7.wem</Path>
+						</File>
+						<File Id="860048034" Language="SFX">
+							<ShortName>Deanne B.-Main Loop.wav</ShortName>
+							<Path>SFX/Deanne B.-Main Loop_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

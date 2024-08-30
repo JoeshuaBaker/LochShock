@@ -45,7 +45,7 @@ public class AudioController : MonoBehaviour
         PathChecker();
         RainMaker();
         SplatManJones();
-        PlumeRide();
+        //PlumeRide();
     }
 
     //Checks path and adjust sound of on/off path volume accordingly

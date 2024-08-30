@@ -75,8 +75,30 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="PlayMusic" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
+						<Event Name="PlayStartMusic" ID="{FF74713A-7CE1-489B-8ED8-57C210FB9013}">
 							<ChildrenList>
+								<Action Name="" ID="{E65AC380-BF8E-472B-8F2B-F9E6B773053E}" ShortID="652996049">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFXBus" ID="{70F014A1-7EF0-43F9-95B3-CFB69A9AF38D}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{2818D917-C17A-4181-870F-674A5FF03B04}" ShortID="435689997">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{BF7FD76E-3A92-44B4-8647-94C54D0A68D6}" ShortID="720294651">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="2"/>
@@ -85,6 +107,17 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="MainTheme" ID="{D4EAE3D2-5488-4F8B-8B77-EEB201692168}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A7C1936D-C9C3-427C-8819-132F2357ACB0}" ShortID="273835059">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BossSeedMusic" ID="{17016244-ECAC-424B-BC75-9416902439CF}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -139,17 +172,6 @@
 							<ChildrenList>
 								<Folder Name="PlayerDie" ID="{C4618826-859A-497F-8719-6421CFC6CCF1}" ShortID="930821937">
 									<ChildrenList>
-										<Event Name="PlayExplosion" ID="{DCC34B0D-FCEB-4338-A3A3-114036F6BF32}">
-											<ChildrenList>
-												<Action Name="" ID="{E6CB04F8-E9B3-4E30-BA09-0D7F60C21CD4}" ShortID="706445521">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="PlayDeathStart" ID="{7C0692DD-5C38-4CBC-A99A-7DE58D6B1644}">
 											<ChildrenList>
 												<Action Name="" ID="{F558E911-8A9B-419F-863B-35B271FCA413}" ShortID="112963210">
@@ -184,6 +206,101 @@
 													<ReferenceList>
 														<Reference Name="Target">
 															<ObjectRef Name="PlayWipe" ID="{2D524403-5EF4-4343-9FA2-2347B4771030}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayPlayerDeathExplosion" ID="{EA1CA3DB-434F-4D18-9551-46F5EE13E4A2}">
+											<ChildrenList>
+												<Action Name="" ID="{CE855182-244C-45A7-81E3-A87F60A87114}" ShortID="278401973">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{382D6700-2EE4-4D03-9742-B837C5461D7F}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="0.2"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{30EDF2D9-0FAF-46AD-976B-EFA119D46084}" ShortID="629067294">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.2">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{74177B2F-E871-42AE-99B5-ADDC03EA8C53}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="0.2"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{0C3679D9-FBBE-4391-A9C5-12C39352C762}" ShortID="557478615">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.4">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{B8A40B34-1A52-4244-954D-22B096522A11}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="0.2"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{BC041E41-4666-43FD-B921-3FC08ACDBB23}" ShortID="583189600">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.6">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{074271E0-3E3A-4364-9295-0D7FADC94711}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="0.2"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{C2EEBD09-EA3B-4780-9DAD-C299B4C581D6}" ShortID="565979207">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Wipe" ID="{24BC74BA-96C1-4B0F-8D56-62A86FD2B065}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -353,6 +470,17 @@
 													<ReferenceList>
 														<Reference Name="Target">
 															<ObjectRef Name="Big" ID="{16360306-F732-4A8E-AA45-ADBD2ACF287C}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayExplosion" ID="{DCC34B0D-FCEB-4338-A3A3-114036F6BF32}">
+											<ChildrenList>
+												<Action Name="" ID="{E6CB04F8-E9B3-4E30-BA09-0D7F60C21CD4}" ShortID="706445521">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -846,33 +974,10 @@
 								</Folder>
 								<Event Name="PlayItemUse" ID="{10797863-CA02-4261-8E29-5D02CD8CECDF}">
 									<ChildrenList>
-										<Action Name="" ID="{2FBD1A31-15EF-488C-BDE5-C1BB37412657}" ShortID="809502495">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="4"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ItemOnCD" ID="{D246A7AE-A9C3-4904-9B03-C4FD3238CDD7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
 										<Action Name="" ID="{88196610-F376-48DD-A519-88A21C8C5D44}" ShortID="75791551">
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="MeleeBlip" ID="{699A5B0F-121B-43B7-B1AA-A5767371BCE4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{E691B38C-2ECC-493E-8EE4-B61ACF1638A6}" ShortID="950102453">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="5"/>
-												<Property Name="Delay" Type="Real64" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ItemOnCD" ID="{D246A7AE-A9C3-4904-9B03-C4FD3238CDD7}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
