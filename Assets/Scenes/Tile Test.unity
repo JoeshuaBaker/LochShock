@@ -2017,6 +2017,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470e29d197b58f84987c6dc11b5a6097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &774187244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3597648695588217704, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+  m_PrefabInstance: {fileID: 388269598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &776874480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2127,7 +2132,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[0]
       value: 
-      objectReference: {fileID: 1521616761018334591, guid: df816958e4546c54c8edf474f718a8c0, type: 3}
+      objectReference: {fileID: 4716018959682926730, guid: 3fb79e320c730644daa22d86a18fb018, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[1]
       value: 
@@ -2147,11 +2152,11 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: itemStash.Array.data[0]
       value: 
-      objectReference: {fileID: 6059113069899234641, guid: a645c9158645dfd4d9b84b0e0e6bb378, type: 3}
+      objectReference: {fileID: 6644133598367853223, guid: 4a416eeb56dffb142aee98cd3f75a676, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: itemStash.Array.data[1]
       value: 
-      objectReference: {fileID: 3824755091199620385, guid: 71beedf496b499b40bcc0c7f849d060c, type: 3}
+      objectReference: {fileID: 6644133598367853223, guid: 4a416eeb56dffb142aee98cd3f75a676, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: activeItems.Array.data[0]
       value: 
@@ -2852,8 +2857,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1231813916}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: crosshairVis
+      value: 
+      objectReference: {fileID: 774187244}
+    - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: bossSpawnDistance
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02509473ea917004d939933de5989004, type: 3}

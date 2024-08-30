@@ -330,19 +330,19 @@ public class Player : BulletCollidable
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed)
         {
-            inventory.ActivateActiveItem();
+            bool wasActivated = inventory.ActivateActiveItem();
 
             //Audio Section
-            if (inventory.activeItem.CooldownTimer >= inventory.activeItem.Cooldown )
+            if (wasActivated)
             {
                 AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
                 return; 
 
             }
-            //else if (inventory.activeItem.CooldownTimer < inventory.activeItem.Cooldown)
-            //{
-            //    AkSoundEngine.PostEvent("PlayItemOnCD", this.gameObject);
-            //}
+            else if(inventory.activeItem != null)
+            {
+                AkSoundEngine.PostEvent("PlayItemOnCD", this.gameObject);
+            }
         }
     }
 
