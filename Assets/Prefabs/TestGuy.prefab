@@ -5606,7 +5606,7 @@ MonoBehaviour:
   fastVel: 7.28
   slowVel: 5.6
   onHitKillRadius: 30
-  onHitKillDistanceDelay: 0.035
+  bombKillDistanceDelay: 0.035
   distSinceLastProjectileTick: {x: 0, y: 0, z: 0}
   leftRightDrift: 0
   bodySprites: []
@@ -11107,6 +11107,7 @@ MonoBehaviour:
   - {fileID: 0}
   scrap: 0
   scrapPerOrb: 100
+  scrapBonusMaxOrb: 100
   orbItemPools:
   - numOrbsSpent: 1
     numDrops: 3

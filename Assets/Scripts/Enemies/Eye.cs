@@ -7,11 +7,6 @@ public class Eye : BasicEnemy
         base.Update();
         animator.SetFloat("RandomTransition", Random.Range(0f, 1f));
     }
-    public override int EnemyId()
-    {
-        return 1;
-    }
-
 
     public override void DeathAnimationBegin()
     {

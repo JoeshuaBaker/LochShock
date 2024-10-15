@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class Ring : BasicEnemy
 {
-    public override int EnemyId()
-    {
-        return 3;
-    }
 
     public override void DeathAnimationBegin()
     {

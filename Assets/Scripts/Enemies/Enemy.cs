@@ -92,6 +92,16 @@ public abstract class Enemy : BulletCollidable
         }
     }
 
+    public virtual void BombHit(float bombKillDistanceDelay)
+    {
+        Die(Utilities.GetDistanceToPlayer(this.transform.position) * bombKillDistanceDelay);
+    }
+
+    public virtual void TouchPlayer()
+    {
+        Die();
+    }
+
     public virtual void Die()
     {
         Die(0f);
@@ -111,6 +121,4 @@ public abstract class Enemy : BulletCollidable
         this.gameObject.SetActive(true);
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
-
-    public abstract int EnemyId();
 }

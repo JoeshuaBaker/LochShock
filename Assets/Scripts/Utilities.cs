@@ -43,7 +43,7 @@ public static class Utilities
         ).Replace("  ", " ");
     }
 
-    public static void RemoveRange<T>(this List<T> list, List<T> other)
+    public static void RemoveRange<T>(this List<T> list, IEnumerable<T> other)
     {
         foreach (T item in other)
         {
@@ -81,5 +81,55 @@ public static class Utilities
     {
         var regex = new Regex(@"(?<=\d)(?=\D)");
         return regex.Split(originalString, 2);
+    }
+
+    public static Vector2 GetDirectionToPlayer(Vector3 position)
+    {
+        if(Player.activePlayer != null)
+        {
+            return GetDistanceVecToPlayer(position).normalized;
+        }
+
+        return Vector2.zero;
+    }
+
+    public static Vector2 GetDistanceVecToPlayer(Vector3 position)
+    {
+        if (Player.activePlayer != null)
+        {
+            return (Player.activePlayer.transform.position - position).xy();
+        }
+
+        return Vector2.zero;
+    }
+
+    public static float GetDistanceToPlayer(Vector3 position)
+    {
+        if (Player.activePlayer != null)
+        {
+            return (Player.activePlayer.transform.position - position).magnitude;
+        }
+
+        return 0f;
+    }
+
+    public static Vector2 RotateTowards(Vector2 current, Vector2 target, float maxRadiansDelta, float maxMagnitudeDelta = 0f)
+    {
+        if (current.x + current.y == 0)
+            return target.normalized * maxMagnitudeDelta;
+
+        float signedAngle = Vector2.SignedAngle(current, target);
+        float stepAngle = Mathf.MoveTowardsAngle(0, signedAngle, maxRadiansDelta * Mathf.Rad2Deg) * Mathf.Deg2Rad;
+        Vector2 rotated = new Vector2(
+            current.x * Mathf.Cos(stepAngle) - current.y * Mathf.Sin(stepAngle),
+            current.x * Mathf.Sin(stepAngle) + current.y * Mathf.Cos(stepAngle)
+        );
+        if (maxMagnitudeDelta == 0)
+            return rotated;
+
+        float magnitude = current.magnitude;
+        float targetMagnitude = target.magnitude;
+        targetMagnitude = Mathf.MoveTowards(magnitude, targetMagnitude, maxMagnitudeDelta);
+        return rotated.normalized * targetMagnitude;
     }
 }

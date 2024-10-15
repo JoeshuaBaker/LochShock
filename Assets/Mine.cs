@@ -16,12 +16,6 @@ public class Mine : BasicEnemy
     public float explosionResetTime = 0.5f;
     public Vector3 explosionScale;
 
-
-    public override int EnemyId()
-    {
-        return 10;
-    }
-
     public override void Update()
     {
         base.Update();
@@ -45,7 +39,7 @@ public class Mine : BasicEnemy
             AkSoundEngine.PostEvent("PlayMineBuildUp", this.gameObject);
 
             animator.SetBool("playerNear", (true));
-            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f), 0, false);
+            dangerZone = World.activeWorld.explosionSpawner.CreateDangerZone(maxHp * 500, explosionDelay, this.transform.position, true , false , false, explosionScale, false, new Quaternion( 0f,0f,0f,1f), 0, false, false);
             playerClose = true;
         }
    

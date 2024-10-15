@@ -192,7 +192,7 @@ public class ExplosionSpawner : MonoBehaviour
 
     }
 
-    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageBoss = true)
+    public GameObject CreateDangerZone(float damage, float delay , Vector3 position, bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageBoss = true, bool damageElites = true)
     {
         int i;
 
@@ -207,7 +207,7 @@ public class ExplosionSpawner : MonoBehaviour
             }
         }
 
-        spawnedDangerZone.Setup(damage, delay, position , dealsDamage , safeOnPlayer, noPS , scale, squareShape, rotation, craterSize, damageBoss);
+        spawnedDangerZone.Setup(damage, delay, position , dealsDamage , safeOnPlayer, noPS , scale, squareShape, rotation, craterSize, damageBoss, damageElites);
 
         return spawnedDangerZone.gameObject;
     }

@@ -41,7 +41,7 @@ public class Player : BulletCollidable
     public float fastVel = 1.5f;
     public float slowVel = 0.5f;
     public float onHitKillRadius = 6f;
-    public float onHitKillDistanceDelay = 0.1f;
+    public float bombKillDistanceDelay = 0.035f;
     public Vector3 distSinceLastProjectileTick = Vector3.zero;
     private float slowFastRatio = 0.5f / 1.5f;
     public float leftRightDrift = 0f;
@@ -336,8 +336,6 @@ public class Player : BulletCollidable
             if (wasActivated)
             {
                 AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
-                return; 
-
             }
             else if(inventory.activeItem != null)
             {
@@ -509,7 +507,6 @@ public class Player : BulletCollidable
             if (invincibilityTime == 0f)
             {
                 TakeDamageFromEnemy(-1);
-
             }
             else
             {
@@ -518,7 +515,7 @@ public class Player : BulletCollidable
                     Enemy enemy = enemyCollider.GetComponent<Enemy>();
                     if (enemy != null)
                     {
-                        enemy.Die();
+                        enemy.TouchPlayer();
                     }
                 }
             }
@@ -651,7 +648,7 @@ public class Player : BulletCollidable
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.Die((enemy.transform.position - this.transform.position).magnitude * onHitKillDistanceDelay * mult);
+                enemy.BombHit(bombKillDistanceDelay * mult);
             }
         }
     }

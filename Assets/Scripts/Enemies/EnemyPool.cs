@@ -9,6 +9,7 @@ public class EnemyPool : MonoBehaviour
     public Enemy[] allEnemies;
     public HashSet<Enemy> activeEnemies;
     public List<EnemyBuffer> enemyBuffers;
+    public List<EliteCoordinator> eliteBuffers;
     public Dictionary<Type, Enemy[]> enemies;
     private List<Type> activeEnemyTypes;
     public Transform enemyParent;
@@ -62,13 +63,32 @@ public class EnemyPool : MonoBehaviour
         }
 
         SetNewEnemyBlock();
+
+        List<EliteCoordinator> eliteCoordinatorPrefabs = eliteBuffers;
+        eliteBuffers = new List<EliteCoordinator>();
+        foreach(EliteCoordinator buffer in eliteCoordinatorPrefabs)
+        {
+            eliteBuffers.Add(Instantiate(buffer, enemyParent));
+        }
     }
 
     public Enemy GetEnemy(Type enemyType)
     {
         Enemy instance = null;
 
-        if (enemies.ContainsKey(enemyType))
+        if(enemyType.IsSubclassOf(typeof(EliteEnemy)))
+        {
+            foreach(EliteCoordinator coordinator in eliteBuffers)
+            {
+                if(enemyType == coordinator.EliteType())
+                {
+                    instance = coordinator.SpawnElite();
+                    break;
+                }
+            }
+        }
+
+        else if (enemies.ContainsKey(enemyType))
         {
             Enemy[] enemyArray = enemies[enemyType];
             int i;
@@ -128,6 +148,14 @@ public class EnemyPool : MonoBehaviour
         if(blockTimer <= 0f)
         {
             SetNewEnemyBlock();
+        }
+
+        if(!World.activeWorld.paused)
+        {
+            foreach (EliteCoordinator eliteCoordinator in eliteBuffers)
+            {
+                eliteCoordinator.UpdateActiveEnemies();
+            }
         }
     }
 
