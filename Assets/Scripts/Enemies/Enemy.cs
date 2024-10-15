@@ -49,7 +49,16 @@ public abstract class Enemy : BulletCollidable
         TakeDamage(finalDamage);
         ApplyKnockback(projectile.Velocity.normalized * knockback);
 
-        World.activeWorld.hitEffect.EmitBulletHit(projectile);
+
+        if(currentHp <= 0)
+        {
+            World.activeWorld.hitEffect.EmitBulletHit(projectile , true);
+        }
+        else
+        {
+            World.activeWorld.hitEffect.EmitBulletHit(projectile , false);
+        }
+        
 
         //Audio Section
         //Sound is coming from Left of player

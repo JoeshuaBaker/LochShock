@@ -233,7 +233,9 @@ public class BossSeed : BulletCollidable
         enemyContext.damageContext.hitBoss = this;
         float damage = projectile.stats.GetCombinedStatValue<Damage>(enemyContext);
         TakeDamage(damage);
-        World.activeWorld.hitEffect.EmitBulletHit(projectile);
+
+
+        World.activeWorld.hitEffect.EmitBulletHit(projectile , false);
     }
 
     public virtual void TakeDamage(float damage)

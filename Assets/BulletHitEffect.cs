@@ -6,6 +6,12 @@ using BulletHell;
 public class BulletHitEffect : MonoBehaviour
 {
     public ParticleSystem hitPS;
+    public ParticleSystem bloodPS;
+    public ParticleSystem.MinMaxCurve bloodMin;
+    public ParticleSystem.MinMaxCurve bloodMax;
+
+    public float bloodAngle;
+
     public float timer=0.2f;
 
     // Start is called before the first frame update
@@ -71,7 +77,7 @@ public class BulletHitEffect : MonoBehaviour
         
     }
 
-    public void EmitBulletHit(ProjectileData projectile)
+    public void EmitBulletHit(ProjectileData projectile, bool isKilled)
     {
         if (!projectile.emitBulletHitParticle)
             return;
@@ -88,6 +94,24 @@ public class BulletHitEffect : MonoBehaviour
         hitPS.Emit(Random.Range(15, 35));
         shapeMod.arc = 360;
         hitPS.Emit(Random.Range(3, 8));
+
+        var bloodMain = bloodPS.main;
+        var bloodSize = bloodPS.main.startSize;
+
+        bloodAngle = this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+
+        bloodMain.startRotation = bloodAngle;
+
+        if (isKilled)
+        {
+            bloodMain.startSize = bloodMax;
+        }
+        else
+        {
+            bloodMain.startSize = bloodMin;
+        }
+
+        bloodPS.Emit(1);
 
     }
 }
