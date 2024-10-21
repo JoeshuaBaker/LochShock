@@ -99,6 +99,27 @@ public class Player : BulletCollidable
     public CinemachineImpulseSource playerShake;
     public ExplosionSpawner explosionSpawner;
 
+    [Header("Lost Arrow")]
+    public GameObject arrowParent;
+    public Animator arrowAnimator;
+    public SpriteRenderer arrowPart1;
+    public SpriteRenderer arrowPart2;
+    public float arrowVisTimer;
+    public float arrowVisTimerPrevFrame;
+    public float arrowVisTimerMax;
+    public float arrowPulseTimer;
+    public float arrowAlpha;
+    public float arrowAlphaMax;
+    public float arrowAlphaPulse;
+    public float arrowAlphaPulseMax;
+    public float pulseSpeedBonus;
+    public float arrowSecondsToDisplay;
+    public bool pulseUp = true;
+    public bool pathAbove;
+    public Tile tiletest;
+    public bool posForArrowChecked;
+    public bool decayVisTimerToZero;
+
     [Header("Boss Info")]
     public bool bossDead;
 
@@ -422,6 +443,8 @@ public class Player : BulletCollidable
                 totalVision = Mathf.Min(totalVision + (1f * Time.deltaTime), 1f);
                 offPathCounter = offPathCounter - Time.deltaTime;
             }
+
+            arrowVisTimer = Mathf.Max(arrowVisTimer -= Time.deltaTime * 15f, 0f);
         }
         else
         {
@@ -435,7 +458,98 @@ public class Player : BulletCollidable
                 }
                 offPathCounter = offPathCounter + Time.deltaTime;
             }
+
+            if (decayVisTimerToZero)
+            {
+                arrowVisTimer = Mathf.Max(arrowVisTimer -= Time.deltaTime * 15f, 0f);
+                if(arrowVisTimer <= 0f)
+                {
+                    decayVisTimerToZero = false;
+                }
+            }
+            else
+            {
+                arrowVisTimer = Mathf.Min(arrowVisTimer += Time.deltaTime, arrowVisTimerMax);
+            }
         }
+
+        //lost arrow section
+
+        float arrowTimeScale = Mathf.Max((arrowVisTimer - arrowSecondsToDisplay) / (arrowVisTimerMax - arrowSecondsToDisplay) , 0f );
+
+        if(pulseUp)
+        {
+            arrowPulseTimer += Time.deltaTime * (pulseSpeedBonus * arrowTimeScale);
+
+            if(arrowPulseTimer >= 1f)
+            {
+                arrowPulseTimer = 1f - (arrowPulseTimer - 1f);
+                pulseUp = false;
+            }
+
+        }
+        else
+        {
+            arrowPulseTimer -= Time.deltaTime * (pulseSpeedBonus * arrowTimeScale);
+
+            if(arrowPulseTimer <= 0f)
+            {
+                arrowPulseTimer = 0f - arrowPulseTimer;
+                pulseUp = true;
+            }
+
+        }
+
+        arrowAlphaPulse = 1f + ((arrowAlphaPulseMax - 1f) * arrowPulseTimer);
+
+        arrowAlpha = arrowTimeScale * arrowAlphaMax * arrowAlphaPulse;
+
+        var aP1c = arrowPart1.color;
+        var aP2c = arrowPart2.color;
+
+        aP1c.a = arrowAlpha;
+        aP2c.a = arrowAlpha;
+
+        arrowPart1.color = aP1c;
+        arrowPart2.color = aP2c;
+
+        arrowAnimator.speed = Mathf.Max(arrowTimeScale * 2f, 1f);
+
+        if(arrowTimeScale > 0f && arrowVisTimer > arrowVisTimerPrevFrame)
+        {
+            
+            int playerX = (int)this.transform.position.x;
+
+            Tile tileOnPlayerX = world.RandomPathTileAtXPosition(playerX);
+
+            tiletest = tileOnPlayerX;
+
+            if (tileOnPlayerX != null && !posForArrowChecked)
+            {
+                if (this.transform.position.y > tileOnPlayerX.transform.position.y)
+                {
+                    arrowParent.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                else
+                {
+                    arrowParent.transform.localScale = new Vector3(1f, -1f, 1f);
+                }
+            }
+
+            posForArrowChecked = true;
+
+        }
+        if( arrowVisTimer < arrowVisTimerPrevFrame)
+        {
+            posForArrowChecked = false;
+            decayVisTimerToZero = true;
+        }
+
+        arrowVisTimerPrevFrame = arrowVisTimer;
+      
+      
+
+        //arrow section end
 
         if (inventory.activeGun != null)
         {
