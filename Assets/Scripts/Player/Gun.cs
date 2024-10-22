@@ -262,7 +262,7 @@ public class Gun : Item
         }
     }
 
-    protected bool IsReady()
+    public bool IsReady()
     {
         if(gunType == GunType.Emitter && emitter == null)
         {

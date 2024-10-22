@@ -11,6 +11,7 @@ public class Crosshair : MonoBehaviour
     public TextMeshProUGUI ammoIndicator;
     public TextMeshProUGUI ammoIndicatorShadow;
     public GameObject crosshairVis;
+    public GameObject menuCursor;
 
     public static Crosshair activeCrosshair;
 
@@ -31,6 +32,16 @@ public class Crosshair : MonoBehaviour
         //var screenPoint = Input.mousePosition;
         //screenPoint.z = 19.5f;
 
+        if (World.activeWorld.paused)
+        {
+            menuCursor.SetActive(true);
+            crosshairVis.SetActive(false);
+        }
+        else
+        {
+            menuCursor.SetActive(false);
+            crosshairVis.SetActive(true);
+        }
         
     }
 

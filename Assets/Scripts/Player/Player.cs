@@ -30,6 +30,7 @@ public class Player : BulletCollidable
     public SpriteRenderer limbRenderer;
     public string spriteSheetDirectory;
     public string bodySpriteName;
+    public string bodySpriteRecoilName;
     public string[] limbSpriteName;
     public string[] limbSpriteUpName;
     public string[] limbSpriteDownName;
@@ -47,6 +48,8 @@ public class Player : BulletCollidable
     public float leftRightDrift = 0f;
     private Vector2 currentVel = new Vector2(0f, 0f);
     public Sprite[] bodySprites;
+    public Sprite[] bodyRecoilSprites;
+    public bool recoilCoolDown;
     public Sprite[][] limbSprites;
     public Sprite[][] limbSpritesUp;
     public Sprite[][] limbSpritesDown;
@@ -169,6 +172,9 @@ public class Player : BulletCollidable
 
         string bodyPath = spriteSheetDirectory + bodySpriteName;
         bodySprites = Resources.LoadAll<Sprite>(bodyPath);
+
+        string bodyRecoilPath = spriteSheetDirectory + bodySpriteRecoilName;
+        bodyRecoilSprites = Resources.LoadAll<Sprite>(bodyRecoilPath);
 
         limbSprites = new Sprite[limbSpriteName.Length][];
         limbSpritesUp = new Sprite[limbSpriteName.Length][];
@@ -792,7 +798,16 @@ public class Player : BulletCollidable
         }
 
         //body sprite selection
-        bodyRenderer.sprite = bodySprites[lowestIndex];
+        if(inventory.activeGun.IsReady() && inventory.activeGun.shooting && !recoilCoolDown)
+        {
+            bodyRenderer.sprite = bodyRecoilSprites[lowestIndex];
+            recoilCoolDown = true;
+        }
+        else
+        {
+            bodyRenderer.sprite = bodySprites[lowestIndex];
+            recoilCoolDown = false;
+        }
 
         //limb sprite direction
         float ceil = limbTransitionTime * (limbSprites.Length / 2) + 0.01f;
