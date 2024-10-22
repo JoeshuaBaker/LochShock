@@ -244,7 +244,7 @@ public class World : MonoBehaviour
             }
         }
 
-        return tilesWithinBounds
+        return tilesWithinBounds;
     }
 
     public Tile ClosestTile(Vector3 pos)
