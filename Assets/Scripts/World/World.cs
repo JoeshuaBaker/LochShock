@@ -177,6 +177,111 @@ public class World : MonoBehaviour
         return null;
     }
 
+    public bool IsBoundsOnPath(Bounds bounds, bool solidTilesOnly = true)
+    {
+        bool withinPath = true;
+        int leftEdge = Mathf.FloorToInt(bounds.center.x - bounds.extents.x);
+        int rightEdge = Mathf.FloorToInt(bounds.center.x + bounds.extents.x);
+        int upEdge = Mathf.FloorToInt(bounds.center.y - bounds.extents.y);
+        int downEdge = Mathf.FloorToInt(bounds.center.y + bounds.extents.y);
+
+        foreach (Map map in activeMaps)
+        {
+            if(map.IsWithinBounds(bounds.center) || map.IsWithinBounds(bounds.center - bounds.extents) || map.IsWithinBounds(bounds.center + bounds.extents))
+            {
+                for(int x = leftEdge; x <= rightEdge; x++)
+                {
+                    for(int y = upEdge; y <= downEdge; y++)
+                    {
+                        Tile tileUnderBounds = map.TileAt(new Vector3(x, y));
+
+                        if(tileUnderBounds == null || (solidTilesOnly && !tileUnderBounds.isSolid))
+                        {
+                            withinPath = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return withinPath;
+    }
+
+    public List<Tile> TilesWithinBounds(Bounds bounds, bool solidTilesOnly = false)
+    {
+        List<Tile> tilesWithinBounds = new List<Tile>();
+        int leftEdge = Mathf.FloorToInt(bounds.center.x - bounds.extents.x);
+        int rightEdge = Mathf.FloorToInt(bounds.center.x + bounds.extents.x);
+        int upEdge = Mathf.FloorToInt(bounds.center.y - bounds.extents.y);
+        int downEdge = Mathf.FloorToInt(bounds.center.y + bounds.extents.y);
+
+        foreach (Map map in activeMaps)
+        {
+            if (map.IsWithinBounds(bounds.center) || map.IsWithinBounds(bounds.center - bounds.extents) || map.IsWithinBounds(bounds.center + bounds.extents))
+            {
+                for (int x = leftEdge; x <= rightEdge; x++)
+                {
+                    for (int y = upEdge; y <= downEdge; y++)
+                    {
+                        Tile tileUnderBounds = map.TileAt(new Vector3(x, y));
+
+                        if (tileUnderBounds != null)
+                        {
+                            if(solidTilesOnly)
+                            {
+                                if(tileUnderBounds.isSolid)
+                                {
+                                    tilesWithinBounds.Add(tileUnderBounds);
+                                }
+                            }
+                            else
+                            {
+                                tilesWithinBounds.Add(tileUnderBounds);
+                            } 
+                        }
+                    }
+                }
+            }
+        }
+
+        return tilesWithinBounds
+    }
+
+    public Tile ClosestTile(Vector3 pos)
+    {
+        float distanceSqr = float.MaxValue;
+        Tile closest = null;
+        foreach(Map map in activeMaps)
+        {
+            if(map.IsWithinBounds(pos) && (closest = map.TileAt(pos)) != null)
+            {
+                return closest;
+            }
+        }
+
+
+        foreach(Map map in activeMaps)
+        {
+            foreach(Tile tile in map.childTiles)
+            {
+                float sqrMag = (tile.transform.position - pos).sqrMagnitude;
+                if (sqrMag < distanceSqr)
+                {
+                    distanceSqr = sqrMag;
+                    closest = tile;
+                }
+            }
+        }
+
+        return closest;
+    }
+
+    public float ClosestTileDistance(Vector3 pos)
+    {
+        Tile closestTile = ClosestTile(pos);
+        return closestTile == null ? float.MaxValue : (closestTile.transform.position - pos).magnitude;
+    }
+
     public Tile TileUnderPlayer(Vector3 position)
     {
         return playerInBounds == null ? null : playerInBounds.TileAt(position);

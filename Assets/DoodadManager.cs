@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class DoodadManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class Doodad
+    {
+        public class lmao
+        {
+
+        }
+        public SpriteRenderer sprite;
+        public Animator animator;
+        public UnityEngine.UI.Text text;
+
+        public void Mutate()
+        {
+
+        }
+    }
+
     public Player player;
     public int rootsArraySize;
     public GameObject[] rootsHighArray;
@@ -12,12 +29,14 @@ public class DoodadManager : MonoBehaviour
     public GameObject rootsMid;
     public GameObject[] rootsLowArray;
     public GameObject rootsLow;
+    public Doodad[] myDoodads;
     public float rootHoriLimit = 22;
     public float rootVertLimit = 12;
     public float rootTargetNumber;
     public float rootCurrentNumber;
     public float rootHoldTime;
     public float rootTransitionTime;
+    public Doodad doodad;
 
     // Start is called before the first frame update
     void Start()

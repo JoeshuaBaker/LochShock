@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public bool isSolid;
     public bool startTile;
     public bool endTile;
     public bool emitterSpawnLocation;
@@ -16,6 +17,9 @@ public class Tile : MonoBehaviour
 
     public void Start()
     {
-        collider2d = GetComponent<Collider2D>();
+        if(collider2d == null)
+        {
+            collider2d = GetComponent<Collider2D>();
+        }
     }
 }
