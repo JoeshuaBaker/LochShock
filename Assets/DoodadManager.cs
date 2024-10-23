@@ -15,6 +15,10 @@ public class DoodadManager : MonoBehaviour
     public GameObject[] onPathBasicDoodadArray;
     public List<GameObject> onPathBasicDoodads;
 
+    public int advancedDoodadArraySize;
+    public AdvancedDoodad advancedDoodad;
+    public AdvancedDoodad[] advancedDoodadArray;
+
 
     void Start()
     {
@@ -24,6 +28,7 @@ public class DoodadManager : MonoBehaviour
 
         offPathBasicDoodadArray = new GameObject[offPathBasicDoodadArraySize];
         onPathBasicDoodadArray = new GameObject[onPathBasicDoodadArraySize];
+        advancedDoodadArray = new AdvancedDoodad[advancedDoodadArraySize];
 
         for ( int i = 0 ; i < offPathBasicDoodadArray.Length ; i++)
         {
@@ -34,9 +39,21 @@ public class DoodadManager : MonoBehaviour
 
         for (int i = 0; i < onPathBasicDoodadArray.Length; i++)
         {
+            int rotationMult = Random.Range(0, 4);
             onPathBasicDoodadArray[i] = Instantiate(onPathBasicDoodads[Random.Range(0, onPathBasicDoodads.Count)]);
             onPathBasicDoodadArray[i].transform.parent = this.transform;
             onPathBasicDoodadArray[i].transform.position = new Vector3((initialPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (initialPos.y + Random.Range(-doodadVertLimit, doodadVertLimit)), 0f);
+            onPathBasicDoodadArray[i].transform.Rotate(0f, 0f,(rotationMult * 90f));
+        }
+
+        for (int i = 0; i < advancedDoodadArray.Length; i++)
+        {
+            advancedDoodadArray[i] = Instantiate(advancedDoodad);
+            advancedDoodadArray[i].transform.parent = this.transform;
+            advancedDoodadArray[i].transform.position = new Vector3((initialPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (initialPos.y + Random.Range(-doodadVertLimit, doodadVertLimit)), 0f);
+
+            advancedDoodadArray[i].UpdateIdentity();
+
         }
     }
 
@@ -78,6 +95,33 @@ public class DoodadManager : MonoBehaviour
             else if (onPathBasicDoodadArray[i].transform.position.y > (playerPos.y + doodadVertLimit))
             {
                 onPathBasicDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (playerPos.y - doodadVertLimit), 0f);
+            }
+        }
+
+        for (int i = 0; i < advancedDoodadArray.Length; i++)
+        {
+            if (advancedDoodadArray[i].transform.position.x < (playerPos.x - doodadHoriLimit))
+            {
+                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + doodadHoriLimit), (playerPos.y + Random.Range(-doodadVertLimit, doodadVertLimit)), 0f);
+
+                advancedDoodadArray[i].UpdateIdentity();
+
+            }
+
+            else if (advancedDoodadArray[i].transform.position.y < (playerPos.y - doodadVertLimit))
+            {
+                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (playerPos.y + doodadVertLimit), 0f);
+
+                advancedDoodadArray[i].UpdateIdentity();
+
+            }
+
+            else if (advancedDoodadArray[i].transform.position.y > (playerPos.y + doodadVertLimit))
+            {
+                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (playerPos.y - doodadVertLimit), 0f);
+
+                advancedDoodadArray[i].UpdateIdentity();
+
             }
         }
     }
