@@ -46,7 +46,7 @@ public class DangerZone : MonoBehaviour
     public int craterSize;
 
 
-    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageElites = true, bool damageBoss = true)
+    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageElites = true, bool damageBoss = true, Vector3 effectOrigin = default, float effectRotationOverride = 0f)
     {
 
         if(craterCreator == null)
@@ -71,7 +71,7 @@ public class DangerZone : MonoBehaviour
         hitFilter = new ContactFilter2D
         {
             useTriggers = false,
-            layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player"),
+            layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Doodads"),
             useLayerMask = true
         };
 
@@ -243,11 +243,13 @@ public class DangerZone : MonoBehaviour
                         if(damageElites)
                         {
                             enemy.TakeDamage(damageLocal);
+                            
                         }
                     }
                     else
                     {
                         enemy.TakeDamage(damageLocal);
+                        World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position));
                     }
                     continue;
                 }
