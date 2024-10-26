@@ -70,7 +70,7 @@ public class DangerZone : MonoBehaviour
         hitBuffer = new List<Collider2D>();
         hitFilter = new ContactFilter2D
         {
-            useTriggers = false,
+            useTriggers = true,
             layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Doodads"),
             useLayerMask = true
         };
@@ -258,6 +258,14 @@ public class DangerZone : MonoBehaviour
                 if (player != null && !safeOnPlayer)
                 {
                     player.TakeDamageFromEnemy(-1);
+                    continue;
+                }
+
+                AdvancedDoodad doodad = Collider.GetComponentInParent<AdvancedDoodad>();
+                if (doodad!= null)
+                {
+                    doodad.Destruct();
+                    World.activeWorld.hitEffect.EmitTreeHit(doodad.transform.position, (doodad.transform.position - this.transform.position));
                     continue;
                 }
 

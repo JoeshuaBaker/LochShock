@@ -7,6 +7,7 @@ public class BulletHitEffect : MonoBehaviour
 {
     public ParticleSystem hitPS;
     public ParticleSystem bloodPS;
+    public ParticleSystem treeDestroyPS;
     public ParticleSystem.MinMaxCurve bloodMin;
     public ParticleSystem.MinMaxCurve bloodMax;
 
@@ -49,9 +50,8 @@ public class BulletHitEffect : MonoBehaviour
         bloodPS.Emit(1);
     }
 
-    public void EmitZoneHit(Vector3 pos, Vector3 rot, bool addHitEffect = false)
+    public void EmitZoneHit(Vector3 pos, Vector3 rot, bool addHitEffect = false, float offsetAngle = 0f)
     {
-
         var shapeMod = hitPS.shape;
 
         this.transform.position = pos;
@@ -59,6 +59,8 @@ public class BulletHitEffect : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        this.transform.Rotate(0f, 0f, offsetAngle);
 
         if (addHitEffect)
         {
@@ -79,4 +81,20 @@ public class BulletHitEffect : MonoBehaviour
         
         bloodPS.Emit(1);
     }
+
+    public void EmitTreeHit(Vector3 pos, Vector3 rot, float offsetAngle = 0f)
+    {
+        this.transform.position = pos;
+        var direction = new Vector2(rot.x, rot.y);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        treeDestroyPS.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        this.transform.Rotate(0f, 0f, offsetAngle);
+
+        var shapeMod = treeDestroyPS.shape;
+
+        treeDestroyPS.Emit(8);
+    }
+
 }

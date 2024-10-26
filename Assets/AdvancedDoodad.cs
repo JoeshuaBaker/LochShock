@@ -11,7 +11,10 @@ public class AdvancedDoodad : MonoBehaviour
         tree,
         spire,
         debris,
-        off
+        off,
+        onPath,
+        onPathBasic,
+        onPathRare
     }
 
     public float animationDuration;
@@ -26,6 +29,8 @@ public class AdvancedDoodad : MonoBehaviour
 
     public List<OffpathSprites> possibleSpritesOffPath;
     public Sprite[] possibleSpritesOnPath;
+    public Sprite[] possibleSpritesOnPathBasic;
+    public Sprite[] possibleSpritesOnPathRare;
     public float timePerFrame;
     public SpriteRenderer currentSprite;
     public bool animatedDoodad = true;
@@ -50,11 +55,14 @@ public class AdvancedDoodad : MonoBehaviour
     public float bonusSwaySpeedDecay;
     public float bonusSwayStrengthDecay;
 
+    public GameObject colliderParent;
     public BoxCollider2D boxCollider;
     public float closestTile;
     public float doodadGradientMax = 15f;
     public float minRangeOffPath = 1.42f;
     public float doodadAppearanceBase;
+
+    public bool destroyed;
     
     void Start()
     {
@@ -107,16 +115,21 @@ public class AdvancedDoodad : MonoBehaviour
 
     public void UpdateIdentity()
     {
+        colliderParent.SetActive(false);
         this.gameObject.SetActive(true);
+        usesBonusDoodad = false;
+        bonusDoodadSprite.enabled = false;
+        Color spColor = currentSprite.color;
+        spColor.a = 1f;
+        currentSprite.color = spColor;
 
         closestTile = World.activeWorld.ClosestTileDistance(this.transform.position);
 
-        currentSprite.sortingLayerName = "Characters and Collidables";
-
-        if(closestTile < minRangeOffPath)
+        //choosing identity
+        if (closestTile < minRangeOffPath)
         {
-            bonusDoodadSprite.enabled = false;
-            currentSprite.enabled = false;
+            animatedDoodad = false;
+            currentSprite.sortingLayerName = "Doodads";
 
             Bounds bounds = boxCollider.bounds;
             bounds.center = this.transform.position;
@@ -125,27 +138,34 @@ public class AdvancedDoodad : MonoBehaviour
 
             if (onPath)
             {
-                if(possibleSpritesOnPath == null || possibleSpritesOnPath.Length == 0)
-                {
-                    return;
-                }
+                float random = Random.Range(0f, 1f);
 
-                currentSprite.sprite = possibleSpritesOnPath[Random.Range(0, possibleSpritesOnPath.Length)];
-                currentSprite.sortingLayerName = "Doodads";
-                currentSprite.enabled = true;
+                if(random < 0.5f)
+                {
+                    currentIdentity = Identity.onPathBasic;
+                }
+                else
+                {
+                    if (random < 0.99f)
+                    {
+                        currentIdentity = Identity.onPath;
+                    }
+                    else
+                    {
+                        currentIdentity = Identity.onPathRare;
+                    }
+                }
             }
             else
             {
-                this.gameObject.SetActive(false);
-                currentSprite.enabled = false;
+                currentIdentity = Identity.onPathBasic;
             }
-
-            animatedDoodad = false;
-
         }
         else 
         {
-            //choosing identity
+            animatedDoodad = true;
+            currentSprite.sortingLayerName = "Characters and Collidables";
+
             int randomNumber = Random.Range(1, 11);
 
             if(randomNumber == 1)
@@ -175,41 +195,64 @@ public class AdvancedDoodad : MonoBehaviour
                 {
                     currentIdentity = Identity.off;
                 }
-            }
+            }  
+        }
 
-            //setting values based on identity
+        //setting values based on identity
 
-            if(currentIdentity == Identity.spire)
+        if (currentIdentity == Identity.spire)
+        {
+            assignedSprites = possibleSpritesOffPath[2].sprites;
+        }
+        else if (currentIdentity == Identity.debris)
+        {
+            assignedSprites = possibleSpritesOffPath[Random.Range(0, possibleSpritesOffPath.Count)].sprites;
+        }
+        else if (currentIdentity == Identity.tree)
+        {
+
+            colliderParent.SetActive(true);
+
+            usesBonusDoodad = true;
+            bonusDoodadSprite.enabled = true;
+            int randomSprite = Random.Range(0, bonusDoodadPossibleSprites.Length);
+            bonusDoodadSprite.sprite = bonusDoodadPossibleSprites[randomSprite];
+
+            assignedSprites = possibleSpritesOffPath[0].sprites;
+        }
+        else if (currentIdentity == Identity.off)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else if (currentIdentity == Identity.onPathBasic)
+        {
+            if (possibleSpritesOnPathBasic == null || possibleSpritesOnPathBasic.Length == 0)
             {
-                usesBonusDoodad = false;
-                bonusDoodadSprite.enabled = false;
-
-                assignedSprites = possibleSpritesOffPath[2].sprites;
+                return;
             }
-            else if (currentIdentity == Identity.debris)
+
+            currentSprite.sprite = possibleSpritesOnPathBasic[Random.Range(0, possibleSpritesOnPathBasic.Length)];
+            Color spriteColor = currentSprite.color;
+            spriteColor.a = 0.6f;
+            currentSprite.color = spriteColor;
+        }
+        else if (currentIdentity == Identity.onPath)
+        {
+            if (possibleSpritesOnPath == null || possibleSpritesOnPath.Length == 0)
             {
-                usesBonusDoodad = false;
-                bonusDoodadSprite.enabled = false;
-
-                assignedSprites = possibleSpritesOffPath[Random.Range(0, possibleSpritesOffPath.Count)].sprites;
+                return;
             }
-            else if (currentIdentity == Identity.tree)
+
+            currentSprite.sprite = possibleSpritesOnPath[Random.Range(0, possibleSpritesOnPath.Length)];
+        }
+        else if (currentIdentity == Identity.onPathRare)
+        {
+            if (possibleSpritesOnPathRare == null || possibleSpritesOnPathRare.Length == 0)
             {
-                usesBonusDoodad = true;
-                bonusDoodadSprite.enabled = true;
-                int randomSprite = Random.Range(0, bonusDoodadPossibleSprites.Length);
-                bonusDoodadSprite.sprite = bonusDoodadPossibleSprites[randomSprite];
-
-                assignedSprites = possibleSpritesOffPath[0].sprites;
-            }
-            else if (currentIdentity == Identity.off)
-            {
-                this.gameObject.SetActive(false);
+                return;
             }
 
-            currentSprite.enabled = true;
-            animatedDoodad = true;
-           
+            currentSprite.sprite = possibleSpritesOnPathRare[Random.Range(0, possibleSpritesOnPathRare.Length)];
         }
     }
 
@@ -221,10 +264,13 @@ public class AdvancedDoodad : MonoBehaviour
 
     public void Destruct()
     {
-        bonusDoodad.SetActive(false);
-        assignedSprites = possibleSpritesOffPath[Random.Range(0, 2)].sprites;
+        if (!destroyed)
+        {
+            bonusDoodad.SetActive(false);
+            assignedSprites = possibleSpritesOffPath[Random.Range(0, 2)].sprites;
+            colliderParent.SetActive(false);
 
-        //some particle system function call, like bullet particle hit
+        }
 
     }
 }

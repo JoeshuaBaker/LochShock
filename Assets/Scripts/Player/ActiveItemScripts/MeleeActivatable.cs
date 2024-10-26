@@ -12,6 +12,7 @@ public class MeleeActivatable : Activatable
     public bool aimable = true;
     public float bonusRepeatsDurationThreshold = 5f;
     public int baseExtraRepeats = 0;
+    public float hitEffectAngleOffset;
     private int modifiedRepeats
     {
         get {return baseExtraRepeats + (int)(repeatable ? Mathf.Max((duration - 1f + bonusRepeatsDurationThreshold + 0.01f) / bonusRepeatsDurationThreshold, 1f) : 1); }
@@ -69,8 +70,8 @@ public class MeleeActivatable : Activatable
 
         hitFilter = new ContactFilter2D
         {
-            layerMask = 1 << LayerMask.NameToLayer("Enemy"),
-            useTriggers = false,
+            layerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Doodads"),
+            useTriggers = true,
             useLayerMask = true
         };
         hitBuffer = new List<Collider2D>();
@@ -137,6 +138,15 @@ public class MeleeActivatable : Activatable
                 if (enemy != null)
                 {
                     gameContext.damageContext.hitEnemies.Add(enemy);
+                    World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position), true, hitEffectAngleOffset);
+                    continue;
+                }
+
+                AdvancedDoodad doodad = hit.GetComponentInParent<AdvancedDoodad>();
+                if (doodad != null)
+                {
+                    doodad.Destruct();
+                    World.activeWorld.hitEffect.EmitTreeHit(doodad.transform.position, (doodad.transform.position - this.transform.position), hitEffectAngleOffset);
                     continue;
                 }
 
@@ -144,7 +154,10 @@ public class MeleeActivatable : Activatable
                 if (boss != null)
                 {
                     gameContext.damageContext.hitBoss = boss;
+                    World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position), true, hitEffectAngleOffset);
                 }
+
+        
             }
 
             float damage = stats.GetCombinedStatValue<ActiveItemDamage>(gameContext);
