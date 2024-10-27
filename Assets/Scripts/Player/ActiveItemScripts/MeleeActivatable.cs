@@ -138,7 +138,7 @@ public class MeleeActivatable : Activatable
                 if (enemy != null)
                 {
                     gameContext.damageContext.hitEnemies.Add(enemy);
-                    World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position), true, hitEffectAngleOffset);
+                    World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position), true, (hitEffectAngleOffset * meleeWeaponParent.transform.localScale.x));
                     continue;
                 }
 
@@ -146,7 +146,7 @@ public class MeleeActivatable : Activatable
                 if (doodad != null)
                 {
                     doodad.Destruct();
-                    World.activeWorld.hitEffect.EmitTreeHit(doodad.transform.position, (doodad.transform.position - this.transform.position), hitEffectAngleOffset);
+                    World.activeWorld.hitEffect.EmitTreeHit(doodad.transform.position, (doodad.transform.position - this.transform.position), (hitEffectAngleOffset * meleeWeaponParent.transform.localScale.x));
                     continue;
                 }
 
@@ -154,7 +154,7 @@ public class MeleeActivatable : Activatable
                 if (boss != null)
                 {
                     gameContext.damageContext.hitBoss = boss;
-                    World.activeWorld.hitEffect.EmitZoneHit(enemy.transform.position, (enemy.transform.position - this.transform.position), true, hitEffectAngleOffset);
+                    World.activeWorld.hitEffect.EmitZoneHit(boss.transform.position, (boss.transform.position - this.transform.position), true, (hitEffectAngleOffset * meleeWeaponParent.transform.localScale.x));
                 }
 
         

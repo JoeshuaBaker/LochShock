@@ -250,7 +250,7 @@ public class Pierce : Stat
 public class Lifetime : Stat 
 { 
     public override float Min => 0.05f; 
-    public override float Max => 5f;
+    public override float Max => 30f;
 
     public override void UpdateStatBlockContext(ref StatBlockContext context)
     {

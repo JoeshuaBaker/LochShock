@@ -7,6 +7,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: PulseSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: OutlineSize
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: Acceleration
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: RotationSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: UseColorPulse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: UseStaticPulse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: isEnemyEmitter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1582822266387770685, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
+      propertyPath: UseOutlineColorPulse
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1137384322517788955, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
       propertyPath: stats.stats.Array.data[1].value
       value: 0.5
@@ -29,11 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1137384322517788955, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
       propertyPath: stats.stats.Array.data[9].value
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -1137384322517788955, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
       propertyPath: stats.stats.Array.data[10].value
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3453500415576585352, guid: 19b69b8a516f6904fabdd780cb08db55, type: 3}
       propertyPath: m_Name

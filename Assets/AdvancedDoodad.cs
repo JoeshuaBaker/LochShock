@@ -58,9 +58,13 @@ public class AdvancedDoodad : MonoBehaviour
     public GameObject colliderParent;
     public BoxCollider2D boxCollider;
     public float closestTile;
-    public float doodadGradientMax = 15f;
+    public float distanceToTreeline = 15f;
     public float minRangeOffPath = 1.42f;
-    public float doodadAppearanceBase;
+    public float doodadGradientProbability;
+    public float offpathDoodadProbability;
+    public float onpathDoodadProbability;
+    public float spireAmount;
+    public float debrisAmount;
 
     public bool destroyed;
     
@@ -119,6 +123,7 @@ public class AdvancedDoodad : MonoBehaviour
         this.gameObject.SetActive(true);
         usesBonusDoodad = false;
         bonusDoodadSprite.enabled = false;
+
         Color spColor = currentSprite.color;
         spColor.a = 1f;
         currentSprite.color = spColor;
@@ -129,7 +134,6 @@ public class AdvancedDoodad : MonoBehaviour
         if (closestTile < minRangeOffPath)
         {
             animatedDoodad = false;
-            currentSprite.sortingLayerName = "Doodads";
 
             Bounds bounds = boxCollider.bounds;
             bounds.center = this.transform.position;
@@ -164,21 +168,20 @@ public class AdvancedDoodad : MonoBehaviour
         else 
         {
             animatedDoodad = true;
-            currentSprite.sortingLayerName = "Characters and Collidables";
 
-            int randomNumber = Random.Range(1, 11);
+            float randomNumber = Random.Range(0f, 1f);
 
-            if(randomNumber == 1)
+            if(randomNumber <= spireAmount)
             {
                 currentIdentity = Identity.spire;
             }
-            else if (randomNumber == 2)
+            else if (randomNumber <= debrisAmount + spireAmount)
             {
                 currentIdentity = Identity.debris;
             }
             else
             {
-                float gradient = closestTile / (doodadGradientMax + minRangeOffPath);
+                float gradient = closestTile / (distanceToTreeline + minRangeOffPath);
                 float grade = Random.Range(0f, 1f);
                 float distribution = Random.Range(0f, 1f);
 
@@ -191,11 +194,17 @@ public class AdvancedDoodad : MonoBehaviour
                     currentIdentity = Identity.tree;
                 }
 
-                if (distribution > (gradient * (1f - doodadAppearanceBase) + doodadAppearanceBase))
+                if (distribution > (gradient * (1f - doodadGradientProbability) + doodadGradientProbability))
                 {
                     currentIdentity = Identity.off;
                 }
             }  
+
+            if(randomNumber > offpathDoodadProbability)
+            {
+                currentIdentity = Identity.off;
+            }
+
         }
 
         //setting values based on identity
@@ -210,7 +219,6 @@ public class AdvancedDoodad : MonoBehaviour
         }
         else if (currentIdentity == Identity.tree)
         {
-
             colliderParent.SetActive(true);
 
             usesBonusDoodad = true;

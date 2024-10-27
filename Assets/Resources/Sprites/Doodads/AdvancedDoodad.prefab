@@ -258,9 +258,14 @@ MonoBehaviour:
   colliderParent: {fileID: 6653757105612137211}
   boxCollider: {fileID: 4535632649128021563}
   closestTile: 0
-  doodadGradientMax: 6
+  distanceToTreeline: 5
   minRangeOffPath: 1.42
-  doodadAppearanceBase: 0.5
+  doodadGradientProbability: 0.5
+  offpathDoodadProbability: 1
+  onpathDoodadProbability: 1
+  spireAmount: 0.1
+  debrisAmount: 0.1
+  destroyed: 0
 --- !u!1 &7605541871448180204
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,8 +416,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -650498447
-  m_SortingLayer: 2
+  m_SortingLayerID: -1066638767
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 1100210934885011102, guid: 536a14b8d8fea2447b5e5866a2774993, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
