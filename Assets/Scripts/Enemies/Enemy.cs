@@ -49,14 +49,13 @@ public abstract class Enemy : BulletCollidable
         TakeDamage(finalDamage);
         ApplyKnockback(projectile.Velocity.normalized * knockback);
 
-
         if(currentHp <= 0)
         {
-            World.activeWorld.hitEffect.EmitBulletHit(projectile , true);
+            World.activeWorld.hitEffect.EmitBulletHit(projectile , hitInfo , this.transform.position , true);
         }
         else
         {
-            World.activeWorld.hitEffect.EmitBulletHit(projectile , false);
+            World.activeWorld.hitEffect.EmitBulletHit(projectile , hitInfo , this.transform.position ,false);
         }
         
 

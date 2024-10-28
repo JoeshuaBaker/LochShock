@@ -7,21 +7,34 @@ public class BulletHitEffect : MonoBehaviour
 {
     public ParticleSystem hitPS;
     public ParticleSystem bloodPS;
+    public ParticleSystem bloodPSZone;
     public ParticleSystem treeDestroyPS;
     public ParticleSystem.MinMaxCurve bloodMin;
     public ParticleSystem.MinMaxCurve bloodMax;
 
     public float bloodAngle;
 
-    public void EmitBulletHit(ProjectileData projectile, bool isKilled)
+
+    public void EmitBulletHit(ProjectileData projectile, RaycastHit2D hitInfo , Vector3 enemyPos ,bool isKilled)
     {
-        if (!projectile.emitBulletHitParticle)
-            return;
+        //if (!projectile.emitBulletHitParticle)
+        //    return;
 
         var shapeMod = hitPS.shape;
 
-        this.transform.position = projectile.Position;
+        if (!isKilled)
+        {
+            this.transform.position = projectile.Position;
+        }
+        else
+        {
+            this.transform.position = enemyPos;
+        }
+
         var direction = projectile.Velocity.normalized;
+
+        //this.transform.position = hitInfo.transform.position;
+        //var direction = new Vector2 (hitInfo.collider.gameObject.transform.position.x , hitInfo.collider.gameObject.transform.position.y) - hitInfo.point;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -33,21 +46,26 @@ public class BulletHitEffect : MonoBehaviour
 
         var bloodMain = bloodPS.main;
         var bloodSize = bloodPS.main.startSize;
+        var bloodZMain = bloodPSZone.main;
+        var bloodZSize = bloodPSZone.main.startSize;
 
         bloodAngle = this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
 
         bloodMain.startRotation = bloodAngle;
+        bloodZMain.startRotation = bloodAngle;
 
         if (isKilled)
         {
-            bloodMain.startSize = bloodMax;
+            bloodZMain.startSize = bloodMax;
+            bloodPSZone.Emit(1);
         }
         else
         {
             bloodMain.startSize = bloodMin;
+            bloodPS.Emit(1);
         }
 
-        bloodPS.Emit(1);
+
     }
 
     public void EmitZoneHit(Vector3 pos, Vector3 rot, bool addHitEffect = false, float offsetAngle = 0f)
@@ -70,16 +88,16 @@ public class BulletHitEffect : MonoBehaviour
             hitPS.Emit(Random.Range(3, 8));
         }
     
-        var bloodMain = bloodPS.main;
-        var bloodSize = bloodPS.main.startSize;
+        var bloodMain = bloodPSZone.main;
+        var bloodSize = bloodPSZone.main.startSize;
 
         bloodAngle = this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
 
         bloodMain.startRotation = bloodAngle;
 
         bloodMain.startSize = bloodMax;
-        
-        bloodPS.Emit(1);
+
+        bloodPSZone.Emit(1);
     }
 
     public void EmitTreeHit(Vector3 pos, Vector3 rot, float offsetAngle = 0f)

@@ -235,7 +235,7 @@ public class BossSeed : BulletCollidable
         TakeDamage(damage);
 
 
-        World.activeWorld.hitEffect.EmitBulletHit(projectile , false);
+        World.activeWorld.hitEffect.EmitBulletHit(projectile , hitInfo , this.transform.position ,false);
     }
 
     public virtual void TakeDamage(float damage)

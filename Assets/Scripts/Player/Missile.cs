@@ -11,6 +11,8 @@ public class Missile : Projectile
     private bool dead = false;
     private bool hasExploded = false;
 
+    public ContactFilter2D explosionHitFilter;
+
     public override void SetupProjectile(Gun source, CombinedStatBlock stats, Vector3 position, Vector2 direction, Vector2 target, int numStream = 0, int numBullet = 0, bool isPlayerProjectile = true)
     {
         base.SetupProjectile(source, stats, position, direction, target, numStream, numBullet, isPlayerProjectile);
@@ -27,20 +29,33 @@ public class Missile : Projectile
         hitContext.damageContext = projectileData.bulletContext;
         float size = projectileData.stats.GetCombinedStatValue<Size>(hitContext);
         List<Collider2D> explosionTargets = new List<Collider2D>();
-        Physics2D.OverlapCircle(hitInfo.point, size * damageRadiusScale, hitFilter, explosionTargets);
+        Physics2D.OverlapCircle(hitInfo.point, size * damageRadiusScale, explosionHitFilter, explosionTargets);
 
-        foreach(Collider2D enemy in explosionTargets)
+        foreach(Collider2D hit in explosionTargets)
         {
-            BulletCollidable collidable = enemy.GetComponent<BulletCollidable>();
+            BulletCollidable collidable = hit.GetComponent<BulletCollidable>();
 
             if(collidable is Enemy)
             {
                 projectileData.bulletContext.hitEnemies.Add(collidable as Enemy);
+
+                World.activeWorld.hitEffect.EmitZoneHit(collidable.gameObject.transform.position, (collidable.gameObject.transform.position - this.transform.position));
             }
             else if(collidable is BossSeed)
             {
                 projectileData.bulletContext.hitBoss = collidable as BossSeed;
+
+                World.activeWorld.hitEffect.EmitZoneHit(collidable.gameObject.transform.position, (collidable.gameObject.transform.position - this.transform.position));
             }
+
+            AdvancedDoodad doodad = hit.GetComponentInParent<AdvancedDoodad>();
+            if (doodad != null)
+            {
+                doodad.Destruct();
+                World.activeWorld.hitEffect.EmitTreeHit(doodad.transform.position, (doodad.transform.position - this.transform.position));
+                continue;
+            }
+
         }
 
         foreach(Enemy enemy in projectileData.bulletContext.hitEnemies)

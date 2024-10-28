@@ -131,7 +131,7 @@ public class ItemMicroFrame : MonoBehaviour
                 ActiveItem activeItem = item as ActiveItem;
                
 
-                if (activeItem.CooldownTimer > 0f)
+                if (activeItem.CooldownTimer > 0f && activeItem.currentCharges == 0)
                 {
                     itemGlow.color = itemGlowRed;
                     topText.gameObject.SetActive(true);
@@ -148,17 +148,27 @@ public class ItemMicroFrame : MonoBehaviour
                 }
                 else
                 {
+                    topText.gameObject.SetActive(true);
+
                     activeNub.fillAmount = 1f;
                     activeNub.color = new Color(1f, 1f, 1f, 1f);
                     activeNub.sprite = nubFull;
 
-                    if(activeItem.MaxCharges <= 1)
+                    if (activeItem.MaxCharges <= 1 | activeItem.currentCharges == activeItem.MaxCharges)
                     {
-                        topText.text = $"READY";
+                        if(activeItem.MaxCharges == 1)
+                        {
+                            topText.text = $"READY";
+                        }
+                        else
+                        {
+                            topText.text = $"READY" + $"({ activeItem.currentCharges})";
+                        }
+
                     }
                     else
                     {
-                        topText.text = $"READY" + $"({ activeItem.currentCharges})";
+                        topText.text = activeItem.CooldownCountdown.ToString("0.0") + (activeItem.MaxCharges > 1 && activeItem.currentCharges > 0 ? $" ({activeItem.currentCharges})" : "");
                     }
 
                     itemGlow.gameObject.SetActive(true);

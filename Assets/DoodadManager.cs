@@ -102,7 +102,7 @@ public class DoodadManager : MonoBehaviour
         {
             if (advancedDoodadArray[i].transform.position.x < (playerPos.x - doodadHoriLimit))
             {
-                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + doodadHoriLimit), (playerPos.y + Random.Range(-doodadVertLimit, doodadVertLimit)), 0f);
+                advancedDoodadArray[i].transform.position = new Vector3(Random.Range(playerPos.x + doodadHoriLimit, playerPos.x + doodadHoriLimit - 1f), (playerPos.y + Random.Range(-doodadVertLimit, doodadVertLimit)), 0f);
 
                 advancedDoodadArray[i].UpdateIdentity();
 
@@ -110,7 +110,7 @@ public class DoodadManager : MonoBehaviour
 
             else if (advancedDoodadArray[i].transform.position.y < (playerPos.y - doodadVertLimit))
             {
-                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (playerPos.y + doodadVertLimit), 0f);
+                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (Random.Range(playerPos.y + doodadVertLimit, playerPos.y + doodadVertLimit - 1f)), 0f);
 
                 advancedDoodadArray[i].UpdateIdentity();
 
@@ -118,7 +118,7 @@ public class DoodadManager : MonoBehaviour
 
             else if (advancedDoodadArray[i].transform.position.y > (playerPos.y + doodadVertLimit))
             {
-                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (playerPos.y - doodadVertLimit), 0f);
+                advancedDoodadArray[i].transform.position = new Vector3((playerPos.x + Random.Range(-doodadHoriLimit, doodadHoriLimit)), (Random.Range(playerPos.y - doodadVertLimit, playerPos.y - doodadVertLimit + 1f)), 0f);
 
                 advancedDoodadArray[i].UpdateIdentity();
 
