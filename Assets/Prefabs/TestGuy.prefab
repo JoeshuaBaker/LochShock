@@ -5613,6 +5613,7 @@ MonoBehaviour:
   limbRenderer: {fileID: 3939555228529853539}
   spriteSheetDirectory: Sprites/Sprite_Player/Allies/
   bodySpriteName: MechBodyUpdate
+  bodySpriteRecoilName: 
   limbSpriteName:
   - MechGeneralArmLegLeft2
   - MechGeneralArmLegLeft1
@@ -5643,6 +5644,8 @@ MonoBehaviour:
   distSinceLastProjectileTick: {x: 0, y: 0, z: 0}
   leftRightDrift: 0
   bodySprites: []
+  bodyRecoilSprites: []
+  recoilCoolDown: 0
   lookDirection: {x: 0, y: 0}
   lookPosition: {x: 0, y: 0}
   grapplingHook: {fileID: 7771730370071348321}
@@ -5794,6 +5797,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e9f816def58c045f78ef7cfc85ca6c2c, type: 2}
+  distanceFromPathRTPC:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   dripSystem: {fileID: 364535932100318208}
   splatSystem: {fileID: 429678841527049525}
   splatAmountRTPC:
@@ -5804,6 +5811,8 @@ MonoBehaviour:
   debugRain: 0
   debugSplats: 0
   debugBooms: 0
+  debugDarkness: 0
+  pathDistanceCheck: 0
 --- !u!114 &2418245601586927698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26136,6 +26145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8742572022795695550}
   - component: {fileID: 3793886672420465454}
+  - component: {fileID: 3101769470594281935}
   m_Layer: 0
   m_Name: LostArrowParent
   m_TagString: Untagged
@@ -26177,6 +26187,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3101769470594281935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218055453821765335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7666dd9c42f4e7d8e140fa7d04615e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4296525725413955864
 GameObject:
   m_ObjectHideFlags: 0

@@ -296,7 +296,7 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
-							<Value>332</Value>
+							<Value>292.196388261851</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
@@ -317,7 +317,7 @@
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
-						<CurrentStateRef Name="MenuOpen" ID="{53E6424C-2457-46D1-8C8A-A555304A9B72}"/>
+						<CurrentStateRef Name="MenuClose" ID="{DDFEAEBD-4353-496A-BAE5-77AB7068312F}"/>
 						<CurrentStateRef Name="OnPath" ID="{2A258267-A385-4706-A1F3-9E369F4F99C1}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
@@ -378,10 +378,6 @@
 				</SoundcasterSession>
 				<SoundcasterSession Name="Music and Amb" ID="{71656D9F-6C76-4837-97C6-B008B5718FFE}">
 					<ModuleList>
-						<Module>
-							<ObjectRef Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-							<Position X="0" Y="0"/>
-						</Module>
 						<Module>
 							<ObjectRef Name="WorldAmbiance" ID="{CCFE53D6-FF84-4793-AC6C-B47B5C2667D5}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 							<Position X="0" Y="1"/>
@@ -681,6 +677,102 @@
 						<CurrentStateRef Name="PhaseTwo" ID="{75019FB5-44A5-4290-B19F-E28771F6C03F}"/>
 						<CurrentStateRef Name="MenuClose" ID="{DDFEAEBD-4353-496A-BAE5-77AB7068312F}"/>
 						<CurrentStateRef Name="OffPath" ID="{C4CC123A-5BC2-43D3-8384-48A26E98B673}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+				<SoundcasterSession Name="Ambiance" ID="{09CAB12C-C7AB-44D9-9527-01887CB006D8}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Rain" ID="{955645EB-4F21-4B77-A9C7-D7961AFECAF9}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Water" ID="{E685E214-82FD-4151-BAF7-4B1CA8275343}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayWorldAmbiance" ID="{C422DE49-C0A8-44ED-A9EB-A740D485CAAF}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BossSeedMusic" ID="{17016244-ECAC-424B-BC75-9416902439CF}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+							<Position X="0" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Little Rain" ID="{DBD47253-F66F-45F8-A9AA-0CA721EED4CA}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ocean" ID="{6EFB0D39-4E8E-4779-B05E-AFC1CC481838}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayDarkness" ID="{82F06327-F220-45F7-ABA8-9F6795EBFE68}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MainTheme" ID="{D4EAE3D2-5488-4F8B-8B77-EEB201692168}" WorkUnitID="{BD578EC7-6601-487D-BF65-33C9F1055ADD}"/>
+							<Position X="1" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Medium Rain" ID="{8B8C9C5A-D61A-487D-B3C9-D7A25806BFDF}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Shore" ID="{F60DDCBF-1ED8-4262-BFDE-95DAEA11149F}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StopDarkness" ID="{B1998E7B-FE40-490C-A9E6-A91A5DEE6F17}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+							<Position X="2" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Heavy Rain" ID="{9A913DC6-21FF-4E8B-97BF-9A73816047E5}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stream" ID="{D89B3B79-8FE2-4AEB-BEB3-339ACB8D4836}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Waves" ID="{B01FE88A-D124-442D-8ADA-99029040EB8D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+							<Position X="3" Y="3"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}"/>
+							<Value>1</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
+							<Value>2</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="DistanceFromPath" ID="{94D158B4-8102-4AF0-8D72-377DC479DB97}"/>
+							<Value>13.9</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
+						<CurrentStateRef Name="None" ID="{712CDCAE-E771-48AB-B6B2-CBF711F72EDA}"/>
+						<CurrentStateRef Name="None" ID="{89C50FDB-A53E-423D-A13C-F7D29B074A99}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

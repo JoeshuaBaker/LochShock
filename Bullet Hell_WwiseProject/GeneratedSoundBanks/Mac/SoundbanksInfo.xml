@@ -16,7 +16,7 @@
 			<ShortName>Intro</ShortName>
 			<Path>Intro.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
+				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
 					<IncludedMemoryFiles>
 						<File Id="641663119" Language="SFX">
 							<ShortName>Click.wav</ShortName>
@@ -74,7 +74,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
+				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
 					<IncludedMemoryFiles>
 						<File Id="444313976" Language="SFX">
 							<ShortName>Close Menu.wav</ShortName>
@@ -82,7 +82,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
+				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
 					<IncludedMemoryFiles>
 						<File Id="812118756" Language="SFX">
 							<ShortName>Open Menu.wav</ShortName>
@@ -90,7 +90,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1243877330" Name="PlayOrbGet" ObjectPath="\Events\Default Work Unit\Menu\PlayOrbGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
+				<Event Id="1243877330" Name="PlayOrbGet" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayOrbGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
 					<IncludedMemoryFiles>
 						<File Id="605852712" Language="SFX">
 							<ShortName>Item Get.wav</ShortName>
@@ -104,7 +104,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3756140775">
+		<SoundBank Id="1355168291" Language="SFX" Hash="997451369">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="1211116562">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="1886370019">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -165,10 +165,6 @@
 						<File Id="675874596" Language="SFX">
 							<ShortName>Axe.wav</ShortName>
 							<Path>SFX/Axe_6650A6FE.wem</Path>
-						</File>
-						<File Id="963072889" Language="SFX">
-							<ShortName>Melee Use Blip.wav</ShortName>
-							<Path>SFX/Melee Use Blip_92152895.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -272,7 +268,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
+				<Event Id="3306053400" Name="PlayButtonPress" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayButtonPress" DurationType="OneShot" DurationMin="0.277562" DurationMax="0.277562">
 					<IncludedMemoryFiles>
 						<File Id="641663119" Language="SFX">
 							<ShortName>Click.wav</ShortName>
@@ -280,11 +276,19 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4156851441" Name="PlayDagger" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayDagger" DurationType="OneShot" DurationMin="4.355714" DurationMax="4.355714">
+				<Event Id="4156851441" Name="PlayDagger" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayDagger" DurationType="OneShot" DurationMin="2.267009" DurationMax="2.267009">
 					<IncludedMemoryFiles>
 						<File Id="696096884" Language="SFX">
 							<ShortName>Dagger.wav</ShortName>
-							<Path>SFX/Dagger_10C4C929.wem</Path>
+							<Path>SFX/Dagger_1A881A6B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1957636454" Name="PlayDarkness" ObjectPath="\Events\Default Work Unit\Ambiance\PlayDarkness" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="353246839" Language="SFX">
+							<ShortName>DarknessLoop.wav</ShortName>
+							<Path>SFX/DarknessLoop_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -465,13 +469,9 @@
 							<ShortName>Mace.wav</ShortName>
 							<Path>SFX/Mace_39110B4B.wem</Path>
 						</File>
-						<File Id="963072889" Language="SFX">
-							<ShortName>Melee Use Blip.wav</ShortName>
-							<Path>SFX/Melee Use Blip_92152895.wem</Path>
-						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
+				<Event Id="3837843530" Name="PlayMenuClose" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayMenuClose" DurationType="OneShot" DurationMin="0.809957" DurationMax="0.809957">
 					<IncludedMemoryFiles>
 						<File Id="444313976" Language="SFX">
 							<ShortName>Close Menu.wav</ShortName>
@@ -479,7 +479,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
+				<Event Id="1123853166" Name="PlayMenuOpen" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayMenuOpen" DurationType="OneShot" DurationMin="0.830677" DurationMax="0.830677">
 					<IncludedMemoryFiles>
 						<File Id="812118756" Language="SFX">
 							<ShortName>Open Menu.wav</ShortName>
@@ -585,7 +585,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1243877330" Name="PlayOrbGet" ObjectPath="\Events\Default Work Unit\Menu\PlayOrbGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
+				<Event Id="1243877330" Name="PlayOrbGet" ObjectPath="\Events\Default Work Unit\UserInterface\Menu\PlayOrbGet" DurationType="OneShot" DurationMin="2.124601" DurationMax="2.124601">
 					<IncludedMemoryFiles>
 						<File Id="605852712" Language="SFX">
 							<ShortName>Item Get.wav</ShortName>
@@ -602,6 +602,14 @@
 						<File Id="400411533" Language="SFX">
 							<ShortName>OutOfAmmo.wav</ShortName>
 							<Path>SFX/OutOfAmmo_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3287446337" Name="PlayPathArrow" ObjectPath="\Events\Default Work Unit\UserInterface\GameplayUI\PlayPathArrow" DurationType="OneShot" DurationMin="4.795208" DurationMax="4.795208">
+					<IncludedMemoryFiles>
+						<File Id="536700672" Language="SFX">
+							<ShortName>PathArrow.wav</ShortName>
+							<Path>SFX/PathArrow_BD6D2763.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -663,6 +671,22 @@
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
 					</AuxBusSends>
 				</Event>
+				<Event Id="1023787777" Name="PlayRainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayRainAmbiance" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="77701406" Language="SFX">
+							<ShortName>Heavy Rain.wav</ShortName>
+							<Path>SFX/Heavy Rain_8737A2B0.wem</Path>
+						</File>
+						<File Id="715414752" Language="SFX">
+							<ShortName>Medium Rain.wav</ShortName>
+							<Path>SFX/Medium Rain_4F4664A0.wem</Path>
+						</File>
+						<File Id="999344880" Language="SFX">
+							<ShortName>Little Rain.wav</ShortName>
+							<Path>SFX/Little Rain_4F4664A0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="785535932" Name="PlayReload" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Reload\PlayReload" DurationType="OneShot" DurationMin="1.069184" DurationMax="1.069184">
 					<IncludedMemoryFiles>
 						<File Id="105067499" Language="SFX">
@@ -702,11 +726,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3290683922" Name="PlaySpear" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlaySpear" DurationType="OneShot" DurationMin="2.818815" DurationMax="2.818815">
+				<Event Id="3290683922" Name="PlaySpear" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlaySpear" DurationType="OneShot" DurationMin="1.638648" DurationMax="1.638648">
 					<IncludedMemoryFiles>
 						<File Id="123478981" Language="SFX">
 							<ShortName>Spear.wav</ShortName>
-							<Path>SFX/Spear_1054A6E9.wem</Path>
+							<Path>SFX/Spear_EA96F732.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -817,7 +841,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3903208307" Name="PlayThunder" ObjectPath="\Events\Default Work Unit\Ambiance\PlayThunder" DurationType="OneShot" DurationMin="7.661191" DurationMax="7.661191">
+				<Event Id="3903208307" Name="PlayThunder" ObjectPath="\Events\Default Work Unit\Ambiance\PlayThunder" DurationType="OneShot" DurationMin="6.080691" DurationMax="9.652495">
 					<IncludedMemoryFiles>
 						<File Id="662568726" Language="SFX">
 							<ShortName>Thunder.wav</ShortName>
@@ -864,6 +888,14 @@
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
 					</AuxBusSends>
 				</Event>
+				<Event Id="1389396919" Name="PlayTreeAmvbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeAmvbiance" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="107985428" Language="SFX">
+							<ShortName>Tree Rustle.wav</ShortName>
+							<Path>SFX/Tree Rustle_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3634591065" Name="PlayTrenchgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayTrenchgun" DurationType="OneShot" DurationMin="1.862792" DurationMax="1.862792">
 					<IncludedMemoryFiles>
 						<File Id="89751610" Language="SFX">
@@ -875,6 +907,22 @@
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
 					</AuxBusSends>
 				</Event>
+				<Event Id="2474574012" Name="PlayWaterAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayWaterAmbiance" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="202478109" Language="SFX">
+							<ShortName>Ambiance\Shore.wav</ShortName>
+							<Path>SFX/Ambiance/Shore_3E9E1615.wem</Path>
+						</File>
+						<File Id="331910188" Language="SFX">
+							<ShortName>Ambiance\Waves.wav</ShortName>
+							<Path>SFX/Ambiance/Waves_D5562084.wem</Path>
+						</File>
+						<File Id="484346724" Language="SFX">
+							<ShortName>Ambiance\Ocean.wav</ShortName>
+							<Path>SFX/Ambiance/Ocean_3E9E1615.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1760503306" Name="PlayWipe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Bomb\PlayWipe" DurationType="OneShot" DurationMin="6.194671" DurationMax="6.194671">
 					<IncludedMemoryFiles>
 						<File Id="101129085" Language="SFX">
@@ -883,43 +931,24 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2367080787" Name="RainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\RainAmbiance" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="328935521" Language="SFX">
-							<ShortName>Amb_Mid Rain tbh_2024-05-13 21_51_30.wav</ShortName>
-							<Path>SFX/Amb_Mid Rain tbh_2024-05-13 21_51_30_EB10802F.wem</Path>
-						</File>
-						<File Id="403072202" Language="SFX">
-							<ShortName>Amb_Lot of Rain_2024-05-13 21_51_30.wav</ShortName>
-							<Path>SFX/Amb_Lot of Rain_2024-05-13 21_51_30_EDB1F658.wem</Path>
-						</File>
-						<File Id="538056478" Language="SFX">
-							<ShortName>Amb_Little Rain_2024-05-13 21_51_30.wav</ShortName>
-							<Path>SFX/Amb_Little Rain_2024-05-13 21_51_30_35FEEAF2.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
+				<Event Id="616239409" Name="PlayWorldAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayWorldAmbiance" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionPostEvent>
+						<ActionPostEventEntry Id="1023787777" Name="PlayRainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayRainAmbiance"/>
+						<ActionPostEventEntry Id="1389396919" Name="PlayTreeAmvbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeAmvbiance"/>
+						<ActionPostEventEntry Id="2474574012" Name="PlayWaterAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayWaterAmbiance"/>
+					</ActionPostEvent>
 				</Event>
 				<Event Id="3086540886" Name="StopAll" ObjectPath="\Events\Default Work Unit\Utilities\StopAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1495182018" Name="WaterAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\WaterAmbiance" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="181209012" Language="SFX">
-							<ShortName>Amb_Lake Waves_2024-05-13 20_55_17.wav</ShortName>
-							<Path>SFX/Amb_Lake Waves_2024-05-13 20_55_17_D79FB2B7.wem</Path>
-						</File>
-						<File Id="897932015" Language="SFX">
-							<ShortName>Amb_Pathway Waves_2024-05-13 20_55_17.wav</ShortName>
-							<Path>SFX/Amb_Pathway Waves_2024-05-13 20_55_17_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
+				<Event Id="928341504" Name="StopDarkness" ObjectPath="\Events\Default Work Unit\Ambiance\StopDarkness" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 			<GameParameters>
+				<GameParameter Id="2465407525" Name="DistanceFromPath" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromPath"/>
 				<GameParameter Id="2647461264" Name="HighPassFilter" ObjectPath="\Game Parameters\Default Work Unit\HighPassFilter"/>
-				<GameParameter Id="3439749059" Name="SplatAmount" ObjectPath="\Game Parameters\Default Work Unit\SplatAmount"/>
-				<GameParameter Id="3913053919" Name="MineVoiceSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\MineVoiceSpeakerPan_LR"/>
-				<GameParameter Id="4072824823" Name="ExplosionSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\ExplosionSpeakerPan_LR"/>
-				<GameParameter Id="4231214299" Name="RainAmount" ObjectPath="\Game Parameters\Default Work Unit\RainAmount"/>
-				<GameParameter Id="4273123112" Name="BulletImpactSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\BulletImpactSpeakerPan_LR"/>
+				<GameParameter Id="3439749059" Name="SplatAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\SplatAmount"/>
+				<GameParameter Id="3913053919" Name="MineVoiceSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\MineVoiceSpeakerPan_LR"/>
+				<GameParameter Id="4072824823" Name="ExplosionSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\ExplosionSpeakerPan_LR"/>
+				<GameParameter Id="4231214299" Name="RainAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\RainAmount"/>
+				<GameParameter Id="4273123112" Name="BulletImpactSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\BulletImpactSpeakerPan_LR"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>

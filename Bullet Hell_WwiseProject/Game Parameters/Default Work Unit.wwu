@@ -3,45 +3,59 @@
 	<GameParameters>
 		<WorkUnit Name="Default Work Unit" ID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}" PersistMode="Standalone">
 			<ChildrenList>
-				<GameParameter Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="1"/>
-						<Property Name="Max" Type="Real64" Value="1000"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-						<Property Name="Max" Type="Real64" Value="21"/>
-					</PropertyList>
-				</GameParameter>
 				<GameParameter Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}">
 					<PropertyList>
 						<Property Name="InitialValue" Type="Real64" Value="2"/>
 						<Property Name="Max" Type="Real64" Value="2"/>
 					</PropertyList>
 				</GameParameter>
-				<GameParameter Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-						<Property Name="Max" Type="Real64" Value="25"/>
-						<Property Name="Min" Type="Real64" Value="-25"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-						<Property Name="Max" Type="Real64" Value="25"/>
-						<Property Name="Min" Type="Real64" Value="-25"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-						<Property Name="Max" Type="Real64" Value="25"/>
-						<Property Name="Min" Type="Real64" Value="-25"/>
-					</PropertyList>
-				</GameParameter>
+				<Folder Name="SpeakerPans" ID="{C02DC6FA-D4BB-41C1-922A-CD745F04AE82}" ShortID="444502095">
+					<ChildrenList>
+						<GameParameter Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="MineVoiceSpeakerPan_LR" ID="{F0D97154-6C48-4310-BFFD-9D9BB249FA93}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="ExplosionSpeakerPan_LR" ID="{316E4828-ECEA-4586-B277-86124473AE84}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="AmbianceRTPCS" ID="{D6E99EA4-9CF0-4FA5-B87C-1928F377A2A7}" ShortID="145393600">
+					<ChildrenList>
+						<GameParameter Name="RainAmount" ID="{5D37EA6A-080F-4296-A940-898DF0761B5C}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="1"/>
+								<Property Name="Max" Type="Real64" Value="400"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="21"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="DistanceFromPath" ID="{94D158B4-8102-4AF0-8D72-377DC479DB97}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="30"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

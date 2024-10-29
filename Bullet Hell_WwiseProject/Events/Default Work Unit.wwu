@@ -12,7 +12,7 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="WaterAmbiance" ID="{0DD26B5C-F837-437A-B56C-2B1FCCDAE94C}">
+						<Event Name="PlayWaterAmbiance" ID="{0DD26B5C-F837-437A-B56C-2B1FCCDAE94C}">
 							<ChildrenList>
 								<Action Name="" ID="{4BEF7E83-D825-4BAD-B6C4-DB289852EC97}" ShortID="449077091">
 									<PropertyList>
@@ -21,21 +21,31 @@
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+											<ObjectRef Name="Water" ID="{E685E214-82FD-4151-BAF7-4B1CA8275343}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 								<Action Name="" ID="{E3CC9A3C-C3C6-4432-B68C-A4F34E5A923B}" ShortID="572628914">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Lake" ID="{6961BD91-C3CE-4767-A5E4-EE9147F61139}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+											<ObjectRef Name="Water" ID="{E685E214-82FD-4151-BAF7-4B1CA8275343}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="RainAmbiance" ID="{138A607E-72BE-4CC9-8AAE-AE0654146864}">
+						<Event Name="PlayRainAmbiance" ID="{138A607E-72BE-4CC9-8AAE-AE0654146864}">
 							<ChildrenList>
+								<Action Name="" ID="{0188E67B-267C-4A7F-927F-E7EC3EC179E8}" ShortID="341964525">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rain" ID="{955645EB-4F21-4B77-A9C7-D7961AFECAF9}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{D7345974-62FB-4EA2-8F47-9021931834C4}" ShortID="482426145">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -62,6 +72,177 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Splats" ID="{FC0E2D61-B29F-4A94-8583-373EA3DDA5BB}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayWorldAmbiance" ID="{C422DE49-C0A8-44ED-A9EB-A740D485CAAF}">
+							<ChildrenList>
+								<Action Name="" ID="{D7CDDAE8-DEF5-40BD-A6E0-946BD51DC60F}" ShortID="964019200">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayWaterAmbiance" ID="{0DD26B5C-F837-437A-B56C-2B1FCCDAE94C}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{DA195A3E-832D-4B10-970B-D41072D0618A}" ShortID="335464678">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayRainAmbiance" ID="{138A607E-72BE-4CC9-8AAE-AE0654146864}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{715DFB43-AF16-4CBE-B49E-A088CC193587}" ShortID="939523390">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="41"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayTreeAmvbiance" ID="{DC25BE06-F872-477C-AE8C-40DC298BBEB4}" WorkUnitID="{CF6FA8C6-1B9E-4F83-B226-23621508C181}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayTreeAmvbiance" ID="{DC25BE06-F872-477C-AE8C-40DC298BBEB4}">
+							<ChildrenList>
+								<Action Name="" ID="{1D780838-674E-4280-93AE-96268733F856}" ShortID="307882363">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TreeRustling" ID="{10D1796B-C23A-4330-8D2A-87F5A726DF2D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{CE709B9A-D0C1-4481-81A8-43A2979D3E67}" ShortID="738820761">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TreeRustling" ID="{10D1796B-C23A-4330-8D2A-87F5A726DF2D}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayDarkness" ID="{82F06327-F220-45F7-ABA8-9F6795EBFE68}">
+							<ChildrenList>
+								<Action Name="" ID="{85655BAC-9A1B-4573-81A5-5AF57B6449D6}" ShortID="675205994">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DarknessSoloLoop" ID="{9EDBF1DC-84DA-4A15-B658-36C15EDAB268}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{6685B579-A605-4C63-978D-2B904C831440}" ShortID="903976097">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="3"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DarknessSoloLoop" ID="{9EDBF1DC-84DA-4A15-B658-36C15EDAB268}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{80DAEBC0-F84A-4152-935B-2BDA0A77FC4D}" ShortID="388559853">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="26"/>
+										<Property Name="FadeTime" Type="Real64" Value="3"/>
+										<Property Name="Lowpass" Type="int16" Value="30"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AmbianceBus" ID="{C435BA51-F958-48FF-B141-5D53AF45A6DC}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{624631F7-2CF1-4F24-ADBD-CDD94874CDA9}" ShortID="139989555">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="26"/>
+										<Property Name="FadeTime" Type="Real64" Value="3"/>
+										<Property Name="Lowpass" Type="int16" Value="30"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{BFEA313F-907B-4271-8669-C9419ADDD5DF}" ShortID="867819067">
+									<PropertyList>
+										<Property Name="AbsoluteOrRelative" Type="int16" Value="1"/>
+										<Property Name="ActionType" Type="int16" Value="12"/>
+										<Property Name="FadeTime" Type="Real64" Value="3"/>
+										<Property Name="Lowpass" Type="int16" Value="30"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64" Value="-6"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="StopDarkness" ID="{B1998E7B-FE40-490C-A9E6-A91A5DEE6F17}">
+							<ChildrenList>
+								<Action Name="" ID="{2F92735C-06C7-4E6D-8D19-F7026EE924E6}" ShortID="599538062">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DarknessSoloLoop" ID="{9EDBF1DC-84DA-4A15-B658-36C15EDAB268}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{186A4A85-87EB-4CBA-9057-532982350504}" ShortID="506045055">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="27"/>
+										<Property Name="FadeTime" Type="Real64" Value="2.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AmbianceBus" ID="{C435BA51-F958-48FF-B141-5D53AF45A6DC}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{07865794-57A7-41B9-B11F-CDF4CC205C5E}" ShortID="889365169">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="27"/>
+										<Property Name="FadeTime" Type="Real64" Value="2.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{F28EF77B-ADCF-4777-B849-A5A86F3743BB}" ShortID="526253908">
+									<PropertyList>
+										<Property Name="AbsoluteOrRelative" Type="int16" Value="1"/>
+										<Property Name="ActionType" Type="int16" Value="12"/>
+										<Property Name="FadeTime" Type="Real64" Value="2.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicBus" ID="{F2C45ED0-64C1-48FB-9FD4-21F033C1904F}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -855,13 +1036,6 @@
 									<ChildrenList>
 										<Event Name="PlayAxe" ID="{B35B06D7-1DB3-483C-9A68-CB91206FFE46}">
 											<ChildrenList>
-												<Action Name="" ID="{63926374-7630-465D-A8A2-69BCC1ABDA43}" ShortID="69647186">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="MeleeBlip" ID="{699A5B0F-121B-43B7-B1AA-A5767371BCE4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
 												<Action Name="" ID="{7A9E5F4C-A979-4ABB-BBB2-1BAEAA8EF46F}" ShortID="615910638">
 													<ReferenceList>
 														<Reference Name="Target">
@@ -873,13 +1047,6 @@
 										</Event>
 										<Event Name="PlayMace" ID="{A50E4805-9145-4559-87CF-F44C88CCE42F}">
 											<ChildrenList>
-												<Action Name="" ID="{23B09037-14DA-4568-81E9-62539C8A4CB6}" ShortID="980775930">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="MeleeBlip" ID="{699A5B0F-121B-43B7-B1AA-A5767371BCE4}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
 												<Action Name="" ID="{BC9890DD-FE47-4F5F-9BAB-0F6EA3E069D2}" ShortID="765718551">
 													<ReferenceList>
 														<Reference Name="Target">
@@ -1155,63 +1322,86 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Menu" ID="{1D774B86-8247-4062-B3C8-33BBA9A52C7E}" ShortID="796528734">
+				<Folder Name="UserInterface" ID="{B46FD036-762A-4AD1-8402-E3E02507EB40}" ShortID="747939518">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="8"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="PlayMenuOpen" ID="{840B0845-E983-4943-9C89-7EBC7895C657}">
+						<Folder Name="Menu" ID="{1D774B86-8247-4062-B3C8-33BBA9A52C7E}" ShortID="796528734">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="8"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
-								<Action Name="" ID="{F1B34A2F-7C03-4ED9-ADA4-BD66D84F3736}" ShortID="133267475">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="PlayMenuOpen" ID="{840B0845-E983-4943-9C89-7EBC7895C657}">
+									<ChildrenList>
+										<Action Name="" ID="{F1B34A2F-7C03-4ED9-ADA4-BD66D84F3736}" ShortID="133267475">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayMenuClose" ID="{64958D55-6071-4B98-A00C-DF5013D0D8B2}">
+									<ChildrenList>
+										<Action Name="" ID="{2283AEE8-AB79-47FA-8EF1-AA1369D69DC9}" ShortID="351074298">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Close Menu" ID="{F44BE716-883C-456B-A2D6-DEF01C27C9AD}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayOrbGet" ID="{ED57CB6E-3FAC-4CED-9EF3-949381F19C66}">
+									<ChildrenList>
+										<Action Name="" ID="{83533D9D-9AB9-4499-8ADC-02FFC7AA3C5B}" ShortID="790567206">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Item Get" ID="{6D599817-4C35-4AD0-B2B9-CD9E92E5ED76}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{1C9B1F27-24CB-4DC6-AF7E-63536B8EFDBC}" ShortID="141426793">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayButtonPress" ID="{216517C7-CB3C-4C39-A360-FBFA3EDC8962}">
+									<ChildrenList>
+										<Action Name="" ID="{C158D6E7-00C4-4BA2-870D-76FAE56D2504}" ShortID="415926432">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Click" ID="{0B7479E7-64EA-4F4C-88B7-E2DFF88429A3}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="PlayMenuClose" ID="{64958D55-6071-4B98-A00C-DF5013D0D8B2}">
+						</Folder>
+						<Folder Name="GameplayUI" ID="{A12E058F-13ED-4125-808F-3FB26766E3CE}" ShortID="956093524">
 							<ChildrenList>
-								<Action Name="" ID="{2283AEE8-AB79-47FA-8EF1-AA1369D69DC9}" ShortID="351074298">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Close Menu" ID="{F44BE716-883C-456B-A2D6-DEF01C27C9AD}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="PlayPathArrow" ID="{88591B90-ADC8-4946-825E-81E05A5624F7}">
+									<ChildrenList>
+										<Action Name="" ID="{57B23528-19A0-4E71-9B86-63E5C3B3D8E3}" ShortID="573231436">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="PathArrow" ID="{E82DD3F8-189B-446A-BE05-0CC73F235D31}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="PlayOrbGet" ID="{ED57CB6E-3FAC-4CED-9EF3-949381F19C66}">
-							<ChildrenList>
-								<Action Name="" ID="{83533D9D-9AB9-4499-8ADC-02FFC7AA3C5B}" ShortID="790567206">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Item Get" ID="{6D599817-4C35-4AD0-B2B9-CD9E92E5ED76}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{1C9B1F27-24CB-4DC6-AF7E-63536B8EFDBC}" ShortID="141426793">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Open Menu" ID="{F5ECA871-22BB-4021-8223-2235AC8C162B}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="PlayButtonPress" ID="{216517C7-CB3C-4C39-A360-FBFA3EDC8962}">
-							<ChildrenList>
-								<Action Name="" ID="{C158D6E7-00C4-4BA2-870D-76FAE56D2504}" ShortID="415926432">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Click" ID="{0B7479E7-64EA-4F4C-88B7-E2DFF88429A3}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

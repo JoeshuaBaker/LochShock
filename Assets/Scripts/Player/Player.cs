@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -197,6 +197,9 @@ public class Player : BulletCollidable
             vectors[i].y = v3.y;
             currentDegrees += degrees;
         }
+
+        //Audio Section
+        AkSoundEngine.SetState("ArrowVisibility", "ArrowInvisible");
     }
 
     private void Update()
@@ -523,6 +526,8 @@ public class Player : BulletCollidable
 
         if(arrowTimeScale > 0f && arrowVisTimer > arrowVisTimerPrevFrame)
         {
+            //Audio Section
+            AkSoundEngine.SetState("ArrowVisibility", "ArrowVisible");
             
             int playerX = (int)this.transform.position.x;
 
@@ -549,6 +554,8 @@ public class Player : BulletCollidable
         {
             posForArrowChecked = false;
             decayVisTimerToZero = true;
+            //Audio Section
+            AkSoundEngine.SetState("ArrowVisibility", "ArrowInvisible");
         }
 
         arrowVisTimerPrevFrame = arrowVisTimer;

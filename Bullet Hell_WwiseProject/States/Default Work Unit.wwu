@@ -40,6 +40,13 @@
 						<State Name="PhaseTwo" ID="{75019FB5-44A5-4290-B19F-E28771F6C03F}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="ArrowVisibility" ID="{B48D60E4-9D30-405F-BDF3-F9C27A025138}">
+					<ChildrenList>
+						<State Name="None" ID="{950410E2-54C7-4F5A-A3FF-46D1DA2C7F96}"/>
+						<State Name="ArrowVisible" ID="{8763B955-97F5-4C8F-80E6-7F1F17C26F57}"/>
+						<State Name="ArrowInvisible" ID="{A81FAEBC-C4AF-41AA-9FCD-18543364473A}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

@@ -163,6 +163,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1598683936, guid: 02509473ea917004d939933de5989004, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598683936, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: maxDistance
       value: 35
       objectReference: {fileID: 0}
@@ -340,11 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 782085466}
     - target: {fileID: 2986951450654661595, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: bossSpawnDistance
-      value: 100
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 2986951450815733420, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6218924612443511780, guid: 02509473ea917004d939933de5989004, type: 3}
       propertyPath: zeusMode
@@ -2157,6 +2161,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8876462838428959243, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8900114992628651378, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2600,9 +2608,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1120234442}
     - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: debugRain
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: rainSystem
       value: 
       objectReference: {fileID: 1073597402}
+    - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: debugDarkness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: pathDistanceCheck
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: maxPathDistanceRTPC
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: distanceFromPathRTPC.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: ac8d9bee1c1eb412f98b9d6bbe9d1459, type: 2}
     - target: {fileID: 428562314173900158, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2909,7 +2937,7 @@ PrefabInstance:
       objectReference: {fileID: 1598683932}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: baseStats.stats.Array.data[0].value
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2129040935118636585, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_SortingLayer
@@ -2966,11 +2994,11 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[0]
       value: 
-      objectReference: {fileID: 1612931165585827626, guid: 70e3b7269d019564db357391f22ade2d, type: 3}
+      objectReference: {fileID: 1612931165585827626, guid: 2e035c3f5281a6c4f8ccbde87c186162, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[1]
       value: 
-      objectReference: {fileID: 1612931165585827626, guid: 2c1707bb21298b54bb706da740d0b2df, type: 3}
+      objectReference: {fileID: 678569258416977484, guid: 8dd36aa27f488194c91670ca89b50112, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[0]
       value: 
@@ -3002,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: activeItems.Array.data[0]
       value: 
-      objectReference: {fileID: 4464332422310887389, guid: 5b41ccd5cf5f97d40956e469e3ea90bf, type: 3}
+      objectReference: {fileID: 3630840172056582108, guid: 739c5cd434e6ebd48a3e32ce70307d0d, type: 3}
     - target: {fileID: 7208940700977406395, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.key0.b
       value: 0.1462264

@@ -10,6 +10,9 @@ public class AudioController : MonoBehaviour
     [Header("Ambiance Controllers")]
     public ParticleSystem rainSystem;
     public AK.Wwise.RTPC rainAmountRTPC;
+    public AK.Wwise.RTPC distanceFromPathRTPC;
+    private float maxPathDistanceRTPC = 30;
+
 
     [Header("Damage Splats")]
     public ParticleSystem dripSystem;
@@ -25,68 +28,101 @@ public class AudioController : MonoBehaviour
     public bool debugRain = false;
     public bool debugSplats = false;
     public bool debugBooms = false;
+    public bool debugDarkness = false;
+    public bool pathDistanceCheck = false;
 
-
+    private float offPathTimer = 0;
     private bool onPath = true;
-    private bool reChecker = true;
+    private float currentDistanceFromPath = 0.0f;
     private int splatCount = 0;
     private int plumeCount = 0;
     private bool plumeCheck = false;
+    private bool darkCheck1 = true;
+    private bool darkCheck2 = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        AkSoundEngine.SetState("PathStatus", "OnPath");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        PathChecker();
+        WaterCompany();
         RainMaker();
         SplatManJones();
-        //PlumeRide();
+        DarknessControl();
     }
 
-    //Checks path and adjust sound of on/off path volume accordingly
-    public void PathChecker()
+    //Checks whether the player is off path and if so, adjust the RTPC for the Water blend container
+    public void WaterCompany()
     {
-        Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
+       currentDistanceFromPath = world.ClosestTileDistance(this.gameObject.transform.position);
 
-        if (tileUnderPlayer != null)
+        if (!CheckPath())
         {
-            onPath = tileUnderPlayer.collider2d.OverlapPoint(this.transform.position.xy());
-        }
-        else
-        {
-            onPath = false;
-        }
-
-        if(onPath && !reChecker)
-        {
-            AkSoundEngine.SetState("PathStatus", "OnPath");
-            reChecker = true;
+            if (currentDistanceFromPath >= maxPathDistanceRTPC)
+            {
+                distanceFromPathRTPC.SetGlobalValue(maxPathDistanceRTPC);
+            }
+            else
+            {
+                distanceFromPathRTPC.SetGlobalValue(currentDistanceFromPath);
+            }
 
             //Debug
-            if (debugPath) { Debug.Log("On Path"); }
-            ///////
-
-            return;
+            if (pathDistanceCheck) { Debug.Log("Setting RTPC to Distance" + " | Current Distance From Path: " + currentDistanceFromPath); }
+            ////////
         }
-        else if(!onPath && reChecker)
+        else if (CheckPath())
         {
-            AkSoundEngine.SetState("PathStatus", "OffPath");
-            reChecker = false;
+            distanceFromPathRTPC.SetGlobalValue(0.0f);
 
             //Debug
-            if (debugPath) { Debug.Log("Off Path"); }
+            if (pathDistanceCheck) { Debug.Log("Setting RTPC to 0" + " | Current Distance From Path: " + currentDistanceFromPath); }
             ///////
-
-            return;
         }
+
+        return;
     }
 
-    //Controls rain ambiance by number of rain particles on screen
+    //Starts Darkness sound if you are off path more than 5 seconds and stops Darkness sound if yoou return to path
+    public void DarknessControl()
+    {
+        if (!CheckPath())
+        {
+            offPathTimer += Time.deltaTime;
+            if(offPathTimer > 5.0)
+            {
+                if (darkCheck1)
+                {
+                    AkSoundEngine.PostEvent("PlayDarkness", this.gameObject);
+                    darkCheck1 = false;
+                    darkCheck2 = true;
+                }
+            }
+        }
+        else if (CheckPath())
+        {
+            if (darkCheck2)
+            {
+                AkSoundEngine.PostEvent("StopDarkness", this.gameObject);
+                darkCheck1 = true;
+                darkCheck2 = false;                
+            }
+            offPathTimer = 0;
+        }
+
+        //Debug
+        if (debugDarkness) { Debug.Log("Time off Path: " + offPathTimer); }
+        ///////
+
+        return;
+    }
+    
+
+    //Controls rain ambiance by setting number of rain particles on screen to the RainAmmount RTPC
     public void RainMaker()
     {        
         rainAmountRTPC.SetGlobalValue((float)rainSystem.particleCount);
@@ -145,7 +181,24 @@ public class AudioController : MonoBehaviour
         }
 
         return;
+    }
 
+    //Returns bool of whether you are currently above a path tile
+    public bool CheckPath()
+    {
+        Tile tileUnderPlayer = world.TileUnderPlayer(this.transform.position);
+
+        if (tileUnderPlayer != null)
+        {
+            onPath = tileUnderPlayer.collider2d.OverlapPoint(this.transform.position.xy());
+        }
+        else
+        {
+            onPath = false;
+        }
+
+        if (debugPath) { Debug.Log("On Path = " + onPath); }
+        return (onPath);
     }
 
 }

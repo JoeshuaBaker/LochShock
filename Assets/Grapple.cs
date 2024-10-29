@@ -428,6 +428,9 @@ public class Grapple : MonoBehaviour
                     explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, true, true, true, grappleBurstSize * 3f, false, new Quaternion(0f, 0f, 0f, 1f),3);
                     explosionSpawner.CreateDangerZone(1000f, 0f, activePlayer.transform.position, false, true, false, grappleBurstSize * 1f, false, new Quaternion(0f, 0f, 0f, 1f) , 0);
                     playBurst = false;
+
+                    //Audio Section
+                    AkSoundEngine.PostEvent("PlayGrappleBomb", this.gameObject);
                 }
 
                 if (grappleSpeedToPlayer <= grappleSpeedBreak * (Time.deltaTime * 60f))
