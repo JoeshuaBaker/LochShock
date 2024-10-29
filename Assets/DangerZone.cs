@@ -46,7 +46,7 @@ public class DangerZone : MonoBehaviour
     public int craterSize;
 
 
-    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageElites = true, bool damageBoss = true, Vector3 effectOrigin = default, float effectRotationOverride = 0f)
+    public void Setup( float damage , float delay , Vector3 position , bool dealsDamage , bool safeOnPlayer , bool noPS , Vector3 scale, bool squareShape, Quaternion rotation, int craterSize, bool damageElites = true, bool damageBoss = true)
     {
 
         if(craterCreator == null)

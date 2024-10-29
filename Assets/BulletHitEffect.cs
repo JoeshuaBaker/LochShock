@@ -73,7 +73,7 @@ public class BulletHitEffect : MonoBehaviour
         var shapeMod = hitPS.shape;
 
         this.transform.position = pos;
-        var direction = new Vector2(rot.x, rot.y);
+        var direction = new Vector2(rot.x, rot.y).normalized;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -103,7 +103,7 @@ public class BulletHitEffect : MonoBehaviour
     public void EmitTreeHit(Vector3 pos, Vector3 rot, float offsetAngle = 0f)
     {
         this.transform.position = pos;
-        var direction = new Vector2(rot.x, rot.y);
+        var direction = new Vector2(rot.x, rot.y).normalized;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         treeDestroyPS.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

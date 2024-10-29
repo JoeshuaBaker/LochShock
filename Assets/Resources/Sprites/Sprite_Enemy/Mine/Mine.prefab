@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1352280239308332299}
   - component: {fileID: 1352280239308332303}
   - component: {fileID: 1352280239308332302}
-  - component: {fileID: 1352280239308332300}
   - component: {fileID: 1352280239308332297}
   - component: {fileID: 1352280239308332296}
   - component: {fileID: 4152493741196292082}
+  - component: {fileID: 4638425354815435663}
   m_Layer: 9
   m_Name: Mine
   m_TagString: Untagged
@@ -106,40 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1352280239308332300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352280239308332298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da887c8da81f7a34d969783c304ee238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 1352280239308332303}
-  rb: {fileID: 1352280239308332297}
-  maxHp: 5
-  currentHp: 0
-  bonusHpPerMinute: 1
-  bonusHpPerOrbUsedMinute: 2
-  instanceId: 0
-  hitFreezeColor: {r: 220, g: 243, b: 255, a: 1}
-  freezeTime: 0
-  freezeTimePerHit: 0.4
-  player: {fileID: 0}
-  animator: {fileID: 1352280239308332302}
-  deathAnimationState: 
-  deathBool: Die
-  speed: 1
-  playerClose: 0
-  explosionDelay: 1
-  explosionSize: 1
-  activationRange: 2
-  dangerZone: {fileID: 0}
-  explosionResetTime: 0.1
-  explosionScale: {x: 1, y: 1, z: 1}
 --- !u!50 &1352280239308332297
 Rigidbody2D:
   serializedVersion: 4
@@ -199,3 +165,37 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &4638425354815435663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352280239308332298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797d2286a2fdb4117894df510926db3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1352280239308332303}
+  rb: {fileID: 1352280239308332297}
+  maxHp: 5
+  currentHp: 0
+  bonusHpPerMinute: 1
+  bonusHpPerOrbUsedMinute: 2
+  instanceId: 0
+  hitFreezeColor: {r: 220, g: 243, b: 255, a: 1}
+  freezeTime: 0
+  freezeTimePerHit: 0.4
+  player: {fileID: 0}
+  animator: {fileID: 1352280239308332302}
+  deathAnimationState: 
+  deathBool: Die
+  speed: 1
+  playerClose: 0
+  explosionDelay: 1
+  explosionSize: 1
+  activationRange: 2
+  dangerZone: {fileID: 0}
+  explosionResetTime: 0.1
+  explosionScale: {x: 1, y: 1, z: 1}
