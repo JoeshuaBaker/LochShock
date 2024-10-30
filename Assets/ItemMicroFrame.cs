@@ -39,10 +39,12 @@ public class ItemMicroFrame : MonoBehaviour
     public Sprite nubFull;
     public Sprite nubFilling;
 
+    public DroneController droneController;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        droneController = World.activeWorld.GetComponentInChildren<DroneController>();
     }
 
     // Update is called once per frame
@@ -83,6 +85,7 @@ public class ItemMicroFrame : MonoBehaviour
                 itemGlow.rectTransform.localPosition = new Vector3(animXDistance * (1f - distancePercent), 0f, 0f);
                 playAnim = true;
 
+                droneController.DeactiveDroneOne();
             }
             else
             {
@@ -100,6 +103,8 @@ public class ItemMicroFrame : MonoBehaviour
                     itemGlow.gameObject.SetActive(false);
                     itemGlow.gameObject.SetActive(true);
                     playAnim = false;
+
+                    droneController.ActivateDroneOne();
                 }
             }
 
@@ -145,9 +150,14 @@ public class ItemMicroFrame : MonoBehaviour
 
                     itemGlow.rectTransform.localPosition = new Vector3(animXDistance * (1f - distancePercent), 0f, 0f);
                     playAnim = true;
+
+                    droneController.DeactiveDroneTwo();
                 }
                 else
                 {
+
+                    droneController.ActivateDroneTwo();
+
                     topText.gameObject.SetActive(true);
 
                     activeNub.fillAmount = 1f;
