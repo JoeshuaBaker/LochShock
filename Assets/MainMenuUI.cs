@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class MainMenuUI : MonoBehaviour
     public GameObject[] icons;
     public GameObject[] iconsText;
     public GameObject[] uiArms;
+    public Image steamGlow;
+
+    public float glowAlphaMax = 0.75f;
+    public float glowAlphaMin = 0.25f;
 
     public float bounceIcon;
     public float bounceText;
@@ -28,6 +33,8 @@ public class MainMenuUI : MonoBehaviour
     public float bounceSpeedArms = .5f;
     public float bounceDistanceArms = 3f;
     public float bounceOffsetArms;
+
+    public float glowFloat;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +50,18 @@ public class MainMenuUI : MonoBehaviour
             Vector3 bounceAmount = new Vector3(0f, -bounceDistance * Mathf.Sin((Time.time * bounceSpeed) + (bounceOffset * (i +1))), 0f);
 
             icons[i].transform.localPosition = bounceAmount;
+
+            if( steamGlow != null)
+            {
+                Color glowColor = steamGlow.color;
+
+                glowFloat = glowAlphaMax * 0.5f * (1f + Mathf.Sin((Time.time * bounceSpeed) + (bounceOffset * (i + 1))));
+
+                glowColor.a = (1f - glowFloat) + glowAlphaMin;
+
+                steamGlow.color = glowColor;
+            }
+
         }
 
         for (int i = 0; i < iconsText.Length; i++)
