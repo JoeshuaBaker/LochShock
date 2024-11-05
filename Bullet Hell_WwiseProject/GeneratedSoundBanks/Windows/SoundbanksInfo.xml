@@ -104,13 +104,16 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2693926263">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1673978883">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<IncludedAuxBusses>
-				<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+				<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 			</IncludedAuxBusses>
+			<GameParameters>
+				<GameParameter Id="3601520982" Name="DistanceFromDeathWall" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromDeathWall"/>
+			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="1159204518" Name="MenuStatus" ObjectPath="\States\Default Work Unit\MenuStatus" GUID="{A459C286-B4A2-491F-B021-CEC0BF9B104A}">
 					<States>
@@ -121,7 +124,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="2551796799">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="1339134273">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -146,7 +149,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="3449696796" Name="PlayAutoShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayAutoShotgun" DurationType="OneShot" DurationMin="1.862792" DurationMax="1.862792">
@@ -157,7 +160,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="2156085297" Name="PlayAxe" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayAxe" DurationType="OneShot" DurationMin="1.809388" DurationMax="1.809388">
@@ -315,6 +318,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2731152201" Name="PlayDeathWallLoop" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\PlayDeathWallLoop" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="864474302" Language="SFX">
+							<ShortName>DeathWall.wav</ShortName>
+							<Path>SFX/DeathWall_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="4178281434" Name="PlayDoubleBarrelShotgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayDoubleBarrelShotgun" DurationType="OneShot" DurationMin="1.862792" DurationMax="1.862792">
 					<IncludedMemoryFiles>
 						<File Id="89751610" Language="SFX">
@@ -323,7 +334,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1602582936" Name="PlayDualPistol" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayDualPistol" DurationType="OneShot" DurationMin="2.941333" DurationMax="2.941333">
@@ -334,7 +345,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1521525452" Name="PlayEnemyHit" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\PlayEnemyHit" DurationType="OneShot" DurationMin="0.847862" DurationMax="1.280429">
@@ -397,7 +408,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="464009908" Name="PlayGrappleBomb" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Grappling Hook\PlayGrappleBomb" DurationType="OneShot" DurationMin="2.370281" DurationMax="2.370281">
@@ -460,7 +471,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1643489109" Name="PlayMace" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayMace" DurationType="OneShot" DurationMin="1.240726" DurationMax="1.240726">
@@ -555,7 +566,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1261806239" Name="PlayNailgun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayNailgun" DurationType="OneShot" DurationMin="1.255329" DurationMax="2.236743">
@@ -566,7 +577,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1780443284" Name="PlayOrbCollect" ObjectPath="\Events\Default Work Unit\GameplayCombat\Items\PlayOrbCollect" DurationType="OneShot" DurationMin="0.274444" DurationMax="0.571156">
@@ -621,7 +632,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1072538575" Name="PlayPlayerDeathExplosion" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayPlayerDeathExplosion" DurationType="OneShot" DurationMin="6.194671" DurationMax="6.194671">
@@ -668,7 +679,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1023787777" Name="PlayRainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayRainAmbiance" DurationType="Infinite">
@@ -703,7 +714,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="4225256129" Name="PlaySeedStopAllAudio" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlaySeedStopAllAudio" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -715,7 +726,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="3928925152" Name="PlaySpawn" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Spawn\PlaySpawn" DurationType="OneShot" DurationMin="6.1385" DurationMax="6.1385">
@@ -814,7 +825,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="3393796451" Name="PlayTestToneHigh" ObjectPath="\Events\Default Work Unit\Utilities\PlayTestToneHigh" DurationType="OneShot" DurationMin="0.052233" DurationMax="0.052233">
@@ -885,7 +896,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="1389396919" Name="PlayTreeAmvbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeAmvbiance" DurationType="Infinite">
@@ -893,6 +904,82 @@
 						<File Id="107985428" Language="SFX">
 							<ShortName>Tree Rustle.wav</ShortName>
 							<Path>SFX/Tree Rustle_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="414174827" Name="PlayTreeChop" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeChop" DurationType="OneShot" DurationMin="1.659312" DurationMax="2.557917">
+					<IncludedMemoryFiles>
+						<File Id="119699442" Language="SFX">
+							<ShortName>Tree_Leaves1.wav</ShortName>
+							<Path>SFX/Tree_Leaves1_10C4C929.wem</Path>
+						</File>
+						<File Id="174047525" Language="SFX">
+							<ShortName>Tree_Trunk3.wav</ShortName>
+							<Path>SFX/Tree_Trunk3_10C4C929.wem</Path>
+						</File>
+						<File Id="183134589" Language="SFX">
+							<ShortName>Tree_Chop4.wav</ShortName>
+							<Path>SFX/Tree_Chop4_10C4C929.wem</Path>
+						</File>
+						<File Id="282769187" Language="SFX">
+							<ShortName>Tree_Chop5.wav</ShortName>
+							<Path>SFX/Tree_Chop5_10C4C929.wem</Path>
+						</File>
+						<File Id="368816489" Language="SFX">
+							<ShortName>Tree_Leaves3.wav</ShortName>
+							<Path>SFX/Tree_Leaves3_10C4C929.wem</Path>
+						</File>
+						<File Id="395173167" Language="SFX">
+							<ShortName>Tree_Chop2.wav</ShortName>
+							<Path>SFX/Tree_Chop2_10C4C929.wem</Path>
+						</File>
+						<File Id="454351257" Language="SFX">
+							<ShortName>Tree_Trunk2.wav</ShortName>
+							<Path>SFX/Tree_Trunk2_10C4C929.wem</Path>
+						</File>
+						<File Id="627368805" Language="SFX">
+							<ShortName>Tree_Leaves5.wav</ShortName>
+							<Path>SFX/Tree_Leaves5_10C4C929.wem</Path>
+						</File>
+						<File Id="664925435" Language="SFX">
+							<ShortName>Tree_Trunk5.wav</ShortName>
+							<Path>SFX/Tree_Trunk5_10C4C929.wem</Path>
+						</File>
+						<File Id="707434606" Language="SFX">
+							<ShortName>Tree_Leaves6.wav</ShortName>
+							<Path>SFX/Tree_Leaves6_10C4C929.wem</Path>
+						</File>
+						<File Id="815882912" Language="SFX">
+							<ShortName>Tree_Trunk6.wav</ShortName>
+							<Path>SFX/Tree_Trunk6_10C4C929.wem</Path>
+						</File>
+						<File Id="821600629" Language="SFX">
+							<ShortName>Tree_Trunk4.wav</ShortName>
+							<Path>SFX/Tree_Trunk4_10C4C929.wem</Path>
+						</File>
+						<File Id="904354969" Language="SFX">
+							<ShortName>Tree_Leaves2.wav</ShortName>
+							<Path>SFX/Tree_Leaves2_10C4C929.wem</Path>
+						</File>
+						<File Id="922675428" Language="SFX">
+							<ShortName>Tree_Trunk1.wav</ShortName>
+							<Path>SFX/Tree_Trunk1_10C4C929.wem</Path>
+						</File>
+						<File Id="932252241" Language="SFX">
+							<ShortName>Tree_Leaves4.wav</ShortName>
+							<Path>SFX/Tree_Leaves4_10C4C929.wem</Path>
+						</File>
+						<File Id="957281549" Language="SFX">
+							<ShortName>Tree_Chop3.wav</ShortName>
+							<Path>SFX/Tree_Chop3_10C4C929.wem</Path>
+						</File>
+						<File Id="1024403126" Language="SFX">
+							<ShortName>Tree_Chop6.wav</ShortName>
+							<Path>SFX/Tree_Chop6_10C4C929.wem</Path>
+						</File>
+						<File Id="1030353455" Language="SFX">
+							<ShortName>Tree_Chop1.wav</ShortName>
+							<Path>SFX/Tree_Chop1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -904,7 +991,7 @@
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
-						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Guns"/>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
 				<Event Id="2474574012" Name="PlayWaterAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayWaterAmbiance" DurationType="Infinite">
@@ -942,9 +1029,12 @@
 				<Event Id="928341504" Name="StopDarkness" ObjectPath="\Events\Default Work Unit\Ambiance\StopDarkness" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 			<GameParameters>
+				<GameParameter Id="340800882" Name="TreeChopSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\TreeChops\TreeChopSpeakerPan_LR"/>
+				<GameParameter Id="1713156707" Name="TreeDistanceFromPlayer" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\TreeChops\TreeDistanceFromPlayer"/>
 				<GameParameter Id="2465407525" Name="DistanceFromPath" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromPath"/>
 				<GameParameter Id="2647461264" Name="HighPassFilter" ObjectPath="\Game Parameters\Default Work Unit\HighPassFilter"/>
 				<GameParameter Id="3439749059" Name="SplatAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\SplatAmount"/>
+				<GameParameter Id="3601520982" Name="DistanceFromDeathWall" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromDeathWall"/>
 				<GameParameter Id="3913053919" Name="MineVoiceSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\MineVoiceSpeakerPan_LR"/>
 				<GameParameter Id="4072824823" Name="ExplosionSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\ExplosionSpeakerPan_LR"/>
 				<GameParameter Id="4231214299" Name="RainAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\RainAmount"/>

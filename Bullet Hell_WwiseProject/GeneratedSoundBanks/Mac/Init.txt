@@ -21,15 +21,21 @@ State	ID	Name	State Group			Notes
 Custom State	ID	Name	State Group	Owner		Notes
 	736391531	MenuOpen	MenuStatus	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\AmbianceBus		
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3601520982	DistanceFromDeathWall			\Default Work Unit\AmbianceRTPCS\DistanceFromDeathWall	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	1069431850	Player			\Default Work Unit\Master Audio Bus\SFXBus\Player	
 	1478241522	StageEndBus			\Default Work Unit\Master Audio Bus\StageEndBus	
+	2242381963	Enemies			\Default Work Unit\Master Audio Bus\SFXBus\Enemies	
 	2332707381	AmbianceBus			\Default Work Unit\Master Audio Bus\AmbianceBus	
 	2886307548	MusicBus			\Default Work Unit\Master Audio Bus\MusicBus	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 	3803850708	SFXBus			\Default Work Unit\Master Audio Bus\SFXBus	
+	4244093671	GameplayItems			\Default Work Unit\Master Audio Bus\SFXBus\GameplayItems	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
-	688956056	Guns			\Default Work Unit\Master Audio Bus\SFXBus\Guns	
+	688956056	Guns			\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns	
 
 Effect plug-ins	ID	Name	Type				Notes
 	188357824	Hall_Small (Custom)	Wwise RoomVerb			

@@ -12,6 +12,7 @@ public class DeathWall : MonoBehaviour
 
     private float posX = 0;
     private bool wallDeath = false;
+    private float playerDistance = 10.0f;
 
     public bool bossDead;
 
@@ -26,6 +27,7 @@ public class DeathWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetDistanceFromPlayer();
         MoveWall();
         WallDamage();
     }
@@ -56,5 +58,16 @@ public class DeathWall : MonoBehaviour
             if (!wallDeath && !player.isDead) { player.dieWallPS.Play(); player.KillSelf(); player.UpdateHp(-100); player.Execute();  }
             wallDeath = true;
         }
+    }
+
+    //Sets deathwall audio based on distance from player
+    public void SetDistanceFromPlayer()
+    {
+        playerDistance = Vector3.Distance(deathWall.gameObject.transform.position, Player.activePlayer.gameObject.transform.position);
+        AkSoundEngine.SetRTPCValue("DistanceFromDeathWall", playerDistance);
+
+        Debug.Log("Deathwall Distance From Player = " + playerDistance);
+
+        return;
     }
 }

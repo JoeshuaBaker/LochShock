@@ -252,6 +252,31 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="PlayTreeChop" ID="{A83B5521-DB71-4881-B42A-F30F141C52D6}">
+							<ChildrenList>
+								<Action Name="" ID="{E819F164-F9FA-4A7F-A1F2-ED9930545DC2}" ShortID="529571228">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{124A785F-E1F6-46D4-9752-46164A09E03D}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="0.25"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TreeChop" ID="{9D199640-8ABC-4255-BE7E-33FC2818F0F0}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Music" ID="{A2A256B0-3C23-4991-B8ED-527F511294EC}" ShortID="224857255">
@@ -1017,6 +1042,17 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
+								<Event Name="PlayDeathWallLoop" ID="{62215258-5991-4933-B04A-AA3C132F1301}">
+									<ChildrenList>
+										<Action Name="" ID="{D37CAD52-5CCF-48CB-B7EF-E2F45306F9E7}" ShortID="723352005">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="DeathWallLoop" ID="{479F54C3-6F4F-4049-AF72-CC652C76AA8A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Items" ID="{C56B4B09-5FC5-43FB-BD64-D424FA141ABB}" ShortID="840472236">

@@ -274,11 +274,32 @@ public class AdvancedDoodad : MonoBehaviour
     {
         if (!destroyed)
         {
+            UpdateVoiceAndPosition();
+            AkSoundEngine.PostEvent("PlayTreeChop", this.gameObject);
+
             bonusDoodad.SetActive(false);
             assignedSprites = possibleSpritesOffPath[Random.Range(0, 2)].sprites;
-            colliderParent.SetActive(false);
-
+            colliderParent.SetActive(false);            
         }
 
+    }
+
+    public void UpdateVoiceAndPosition()
+    {
+        //Set distance from player
+        AkSoundEngine.SetRTPCValue("TreeDistanceFromPlayer", Vector3.Distance(this.gameObject.transform.position, Player.activePlayer.gameObject.transform.position));
+
+        //Sound is coming from Left of player
+        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue("TreeChopSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Sound is coming from right of player
+        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue("TreeChopSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+
+        return;
     }
 }

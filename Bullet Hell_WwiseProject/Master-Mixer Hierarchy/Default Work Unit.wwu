@@ -25,6 +25,32 @@
 									<ValueList>
 										<Value>-6</Value>
 									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{E7ED69E8-692B-4FA7-BA87-B85D8E740E6E}" ShortID="434065627">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{78BFF45E-C4B5-4DA9-85F9-C8AB31C9F4DF}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>10</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
 								</Property>
 							</PropertyList>
 							<StateInfo>
@@ -58,41 +84,170 @@
 										<Value>-6</Value>
 									</ValueList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{6DCE3120-C58A-428E-B032-163DB301E3EE}" ShortID="589069125">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{4ED10E66-2CE8-473E-B480-B280484F6331}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>10</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 							</PropertyList>
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="SFXBus" ID="{70F014A1-7EF0-43F9-95B3-CFB69A9AF38D}">
 							<ChildrenList>
-								<AuxBus Name="Guns" ID="{561CDD39-F5CE-4D92-93F9-E5FCE8690336}">
-									<ReferenceList>
-										<Reference Name="Effect0">
-											<Custom CreatedFrom="{D65B5F04-B83B-412C-9434-34A13A477E24}">
-												<Effect Name="Hall_Small (Custom)" ID="{7E9DA453-91C8-42D3-862E-765FA247B3E6}" ShortID="188357824" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-													<PropertyList>
-														<Property Name="DecayTime" Type="Real32" Value="1.9"/>
-														<Property Name="Density" Type="Real32" Value="44"/>
-														<Property Name="DryLevel" Type="Real32" Value="-12.3"/>
-														<Property Name="ERLevel" Type="Real32" Value="-38"/>
-														<Property Name="ERPattern" Type="int32" Value="13"/>
-														<Property Name="Filter1Freq" Type="Real32" Value="590"/>
-														<Property Name="Filter1Gain" Type="Real32" Value="2"/>
-														<Property Name="Filter1InsertPos" Type="int32" Value="2"/>
-														<Property Name="Filter2Freq" Type="Real32" Value="780"/>
-														<Property Name="Filter3Gain" Type="Real32" Value="-0.5"/>
-														<Property Name="HFDamping" Type="Real32" Value="2.8"/>
-														<Property Name="PreDelay" Type="Real32" Value="32"/>
-														<Property Name="Quality" Type="int32" Value="16"/>
-														<Property Name="ReverbLevel" Type="Real32" Value="-39"/>
-														<Property Name="RoomShape" Type="Real32" Value="55"/>
-														<Property Name="RoomSize" Type="Real32" Value="22"/>
-														<Property Name="StereoWidth" Type="Real32" Value="155"/>
-													</PropertyList>
-												</Effect>
-											</Custom>
-										</Reference>
-									</ReferenceList>
+								<Bus Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{36526A0D-9A6D-40F3-9692-C56A3021AB9E}" ShortID="530984107">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{3677D3C9-C522-474B-88DB-D39E7913E553}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>10</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
 									<ObjectLists/>
-								</AuxBus>
+								</Bus>
+								<Bus Name="GameplayItems" ID="{C327CD0A-18E7-422F-BACA-D96BDA4A7D04}">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{7BD8F790-A090-49AF-90DF-939F656D6415}" ShortID="29210426">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{1512B0E2-8D82-46D8-9DBB-18E0C716FCED}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>10</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ObjectLists/>
+								</Bus>
+								<Bus Name="Player" ID="{3205983B-1353-4529-B388-9C7A73AEE931}">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{B1B78906-1160-4F1A-B1E8-895582246433}" ShortID="58985739">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{8C85BADD-9026-4768-B53C-13E21AFE91EC}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>10</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ChildrenList>
+										<AuxBus Name="Guns" ID="{561CDD39-F5CE-4D92-93F9-E5FCE8690336}">
+											<ReferenceList>
+												<Reference Name="Effect0">
+													<Custom CreatedFrom="{D65B5F04-B83B-412C-9434-34A13A477E24}">
+														<Effect Name="Hall_Small (Custom)" ID="{7E9DA453-91C8-42D3-862E-765FA247B3E6}" ShortID="188357824" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+															<PropertyList>
+																<Property Name="DecayTime" Type="Real32" Value="1.9"/>
+																<Property Name="Density" Type="Real32" Value="44"/>
+																<Property Name="DryLevel" Type="Real32" Value="-12.3"/>
+																<Property Name="ERLevel" Type="Real32" Value="-38"/>
+																<Property Name="ERPattern" Type="int32" Value="13"/>
+																<Property Name="Filter1Freq" Type="Real32" Value="590"/>
+																<Property Name="Filter1Gain" Type="Real32" Value="2"/>
+																<Property Name="Filter1InsertPos" Type="int32" Value="2"/>
+																<Property Name="Filter2Freq" Type="Real32" Value="780"/>
+																<Property Name="Filter3Gain" Type="Real32" Value="-0.5"/>
+																<Property Name="HFDamping" Type="Real32" Value="2.8"/>
+																<Property Name="PreDelay" Type="Real32" Value="32"/>
+																<Property Name="Quality" Type="int32" Value="16"/>
+																<Property Name="ReverbLevel" Type="Real32" Value="-39"/>
+																<Property Name="RoomShape" Type="Real32" Value="55"/>
+																<Property Name="RoomSize" Type="Real32" Value="22"/>
+																<Property Name="StereoWidth" Type="Real32" Value="155"/>
+															</PropertyList>
+														</Effect>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ObjectLists/>
+										</AuxBus>
+									</ChildrenList>
+									<ObjectLists/>
+								</Bus>
 							</ChildrenList>
 							<ObjectLists/>
 						</Bus>
