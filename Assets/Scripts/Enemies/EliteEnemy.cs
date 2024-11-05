@@ -7,11 +7,13 @@ public abstract class EliteEnemy : Enemy
     {
         this.coordinator = coordinator;
         this.gameObject.SetActive(true);
+        alive = true;
     }
 
     public virtual void Cleanup()
     {
         this.gameObject.SetActive(false);
+        alive = false;
     }
 
     public override void BombHit(float bombKillDistanceDelay)

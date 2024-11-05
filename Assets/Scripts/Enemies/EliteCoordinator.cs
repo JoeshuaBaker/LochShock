@@ -12,7 +12,7 @@ public class EliteCoordinator : MonoBehaviour
     protected List<EliteEnemy> cleanupList;
     public int activeLimit = 25;
 
-    private void Start()
+    protected virtual void Start()
     {
         activeEnemies = new List<EliteEnemy>();
         deactivatedEnemies = new List<EliteEnemy>();

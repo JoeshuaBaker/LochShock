@@ -252,6 +252,27 @@ public class BezierCurve : MonoBehaviour {
 		return GetPoint(p1, p2, t / curvePercent);
 	}
 
+	public float GetCurveLength(int resolution = 10)
+    {
+		float[] splineDistances = new float[pointCount - 1];
+		float totalDistance = 0f;
+		BezierPoint[] points = GetAnchorPoints();
+		BezierPoint p0 = points[0];
+		BezierPoint p1 = points[1];
+		float dist = 0f;
+
+		for (int i = 1; i < pointCount; i++)
+		{
+			p0 = points[i - 1];
+			p1 = points[i];
+			dist = ApproximateLength(p0, p1, resolution);
+			splineDistances[i - 1] = dist;
+			totalDistance += dist;
+		}
+
+		return totalDistance;
+	}
+
     public Vector3 GetPointAtDistance(float tDist)
     {
         float[] splineDistances = new float[pointCount - 1];
