@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-
-    public GameObject iconContainer;
-    public GameObject discordIcon;
-    public GameObject discordText;
-    public GameObject twitterIcon;
-    public GameObject twitterText;
-    public GameObject steamIcon;
+    public Animator animator;
+    public Animator animatorOverlay;
     public GameObject steamText;
 
+    public CenterEyeController centerEye;
+
+    public Image visionBlocker;
+    public bool blockerAlphaUp;
+    public bool fadeBlocker;
+
     public GameObject[] icons;
+    public GameObject[] iconsGlow;
     public GameObject[] iconsText;
     public GameObject[] uiArms;
     public Image steamGlow;
@@ -45,13 +47,25 @@ public class MainMenuUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < icons.Length; i++)
+        if (fadeBlocker)
         {
-            Vector3 bounceAmount = new Vector3(0f, -bounceDistance * Mathf.Sin((Time.time * bounceSpeed) + (bounceOffset * (i +1))), 0f);
+            UpdateBlocker();
+        }
+
+        AnimateMainMenu();
+
+    }
+
+    public void AnimateMainMenu()
+    {
+        for (int i = 0; i < icons.Length; i++)
+        {
+            Vector3 bounceAmount = new Vector3(0f, -bounceDistance * Mathf.Sin((Time.time * bounceSpeed) + (bounceOffset * (i + 1))), 0f);
 
             icons[i].transform.localPosition = bounceAmount;
+            iconsGlow[i].transform.localPosition = bounceAmount;
 
-            if( steamGlow != null)
+            if (steamGlow != null)
             {
                 Color glowColor = steamGlow.color;
 
@@ -86,9 +100,98 @@ public class MainMenuUI : MonoBehaviour
             uiArms[i].transform.localRotation = rot;
         }
 
-        Vector3 bounce = new Vector3(0f, (-bounceDistance *2f) * Mathf.Sin((Time.time * (bounceSpeed) + (bounceOffset * (3) + bounceOffsetText))), 0f);
+        Vector3 bounce = new Vector3(0f, (-bounceDistance * 2f) * Mathf.Sin((Time.time * (bounceSpeed) + (bounceOffset * (3) + bounceOffsetText))), 0f);
 
         steamText.transform.localPosition = bounce;
+    }
 
+    public void OnPlayButtonPressed()
+    {
+
+    }
+
+    public void OnSettingsButtonPressed()
+    {
+
+    }
+
+    public void OnCreditsButtonPressed()
+    {
+
+    }
+
+    public void OnExitButtonPressed()
+    {
+
+    }
+
+    public void UpdateBlocker()
+    {
+
+        if (blockerAlphaUp)
+        {
+            var visColor = visionBlocker.color;
+
+            if (visColor.a >= 1f)
+            {
+                visColor.a = 1f;
+
+                fadeBlocker = false;
+            }
+
+            visColor.a += Time.deltaTime * 5f;
+
+            visionBlocker.color = visColor;
+        }
+        else
+        {
+            var visColor = visionBlocker.color;
+
+            if (visColor.a <= 0f)
+            {
+                visColor.a = 0f;
+
+                fadeBlocker = false;
+
+                visionBlocker.gameObject.SetActive(false);
+
+            }
+
+            visColor.a -= Time.deltaTime * 5f;
+
+            visionBlocker.color = visColor;
+        }
+    }
+
+    public void BlockerFadeIn()
+    {
+        blockerAlphaUp = true;
+        fadeBlocker = true;
+
+        visionBlocker.gameObject.SetActive(true);
+
+        animator.Play("MainMenuOutro");
+        animatorOverlay.Play("MainMenuOutro");
+
+    }
+
+    public void BlockerFadeOut()
+    {
+        blockerAlphaUp = false;
+        fadeBlocker = true;
+
+        animator.Play("MainMenuIntro");
+        animatorOverlay.Play("MainMenuIntro");
+
+    }
+
+    public void CenterEyeIn()
+    {
+        centerEye.CenterEyeEnter();
+    }
+
+    public void CenterEyeOut()
+    {
+        centerEye.CenterEyeExit();
     }
 }
