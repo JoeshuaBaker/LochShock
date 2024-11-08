@@ -10,6 +10,9 @@ public class MainMenuUI : MonoBehaviour
     public GameObject steamText;
 
     public CenterEyeController centerEye;
+    public SelectMenu selectMenu;
+    public SettingMenu settingsMenu;
+    public CreditsMenu creditsMenu;
 
     public Image visionBlocker;
     public bool blockerAlphaUp;
@@ -107,17 +110,25 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
+        BlockerFadeIn();
 
+        selectMenu.OnPlayButtonPressed();
     }
 
     public void OnSettingsButtonPressed()
     {
+        BlockerFadeIn();
+        CenterEyeOut();
 
+        settingsMenu.OnSettingsButtonPressed();
     }
 
     public void OnCreditsButtonPressed()
     {
+        BlockerFadeIn();
+        CenterEyeOut();
 
+        creditsMenu.OnCreditsButtonPressed();
     }
 
     public void OnExitButtonPressed()
