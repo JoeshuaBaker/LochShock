@@ -21,6 +21,10 @@ public class ItemDataFrame : MonoBehaviour
     public TMP_Text itemRarity;
     public Image itemFrame;
     public Sprite[] frameRarities;
+    public Color32[] rarityShineColors;
+    public Color32[] rarityTextColors;
+    public Color32[] raritySmearColors;
+    public Color32[] rarityTintColors;
     public TMP_Text itemStatusSlot;
     public TMP_Text itemData;
     public Button topButton;
