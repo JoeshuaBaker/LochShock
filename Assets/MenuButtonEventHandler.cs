@@ -15,6 +15,7 @@ public class MenuButtonEventHandler : MonoBehaviour, ISelectHandler, IPointerEnt
 
     public TMP_FontAsset unlitFont;
     public TMP_FontAsset litFont;
+    public TMP_FontAsset disabledFont;
 
     public void Reset()
     {
@@ -24,7 +25,10 @@ public class MenuButtonEventHandler : MonoBehaviour, ISelectHandler, IPointerEnt
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        button.Select();
+        if(button.interactable == true)
+        {
+            button.Select();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,6 +49,24 @@ public class MenuButtonEventHandler : MonoBehaviour, ISelectHandler, IPointerEnt
 
     public void OnDeselect(BaseEventData eventData)
     {
+        if(text != null)
+        {
+            text.font = unlitFont;
+        }
+    }
+
+    public void DisableButton()
+    {
+        button.interactable = false;
+        if (text != null)
+        {
+            text.font = disabledFont;
+        }
+    }
+
+    public void EnableButton()
+    {
+        button.interactable = true;
         if(text != null)
         {
             text.font = unlitFont;
