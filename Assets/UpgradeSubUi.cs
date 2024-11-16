@@ -21,6 +21,8 @@ public class UpgradeSubUi : MonoBehaviour
     public GameObject[] finsClose;
     public GameObject[] finsFar;
 
+    public GameObject[] orbs;
+
     public float panelBob = 8f;
     public float panelBobOffset = -.3f;
 
@@ -70,7 +72,7 @@ public class UpgradeSubUi : MonoBehaviour
 
         for(int i = 0; i < panelComponents.Length; i++)
         {
-            panelComponents[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + (panelBobOffset * i)) * panelBob, 0f);
+            panelComponents[i].transform.localPosition = new Vector3(0f,(int)(Mathf.Sin(Time.time + (panelBobOffset * i)) * panelBob), 0f);
         }
 
         var quat = new Quaternion(0f, 0f, 0f, 0f);
