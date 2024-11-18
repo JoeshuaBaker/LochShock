@@ -160,6 +160,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7685555015182561232}
+  - component: {fileID: 8697257013975350385}
+  - component: {fileID: 1792452975225374144}
   m_Layer: 0
   m_Name: BottomButtonsContainer
   m_TagString: Untagged
@@ -187,6 +189,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &8697257013975350385
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685555015182561239}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
+--- !u!114 &1792452975225374144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685555015182561239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 8183
 --- !u!1 &7685555015237989638
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +423,7 @@ MonoBehaviour:
   invUi: {fileID: 7091598534059548851}
   menuUi: {fileID: 4090890896295551541}
   statsUi: {fileID: 7072030630199881937}
+  inventory: {fileID: 0}
   hasActiveUpgrade: 0
   focusInv: 0
   switchButtonText: {fileID: 7685555016966272746}
@@ -2469,6 +2510,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySubUi
       objectReference: {fileID: 0}
+    - target: {fileID: 6745547503463460258, guid: ac1743197c378d0418434d73828d4d71, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745547503463460260, guid: ac1743197c378d0418434d73828d4d71, type: 3}
+      propertyPath: invUpgradeUi
+      value: 
+      objectReference: {fileID: 7685555015256330466}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac1743197c378d0418434d73828d4d71, type: 3}
 --- !u!224 &7091598534059548855 stripped
@@ -2494,6 +2543,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7685555015256330465}
     m_Modifications:
+    - target: {fileID: 8841713881108758256, guid: 6de3e2df689c194489d247573d793855, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8841713881108758258, guid: 6de3e2df689c194489d247573d793855, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2735,6 +2788,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7112609133640916935, guid: f021e52d06177c54287b5cae1ec8eed7, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7112609134002535294, guid: f021e52d06177c54287b5cae1ec8eed7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2870,11 +2927,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c0fe2e1671c1664bb88bebebd7f7fc8, type: 3}
---- !u!224 &7072030630199881936 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2945501687097585380, guid: 0c0fe2e1671c1664bb88bebebd7f7fc8, type: 3}
-  m_PrefabInstance: {fileID: 5387536942927519284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7072030630199881937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2945501687097585381, guid: 0c0fe2e1671c1664bb88bebebd7f7fc8, type: 3}
@@ -2886,3 +2938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a128e07dfa02944ab33d60a020ef87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7072030630199881936 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2945501687097585380, guid: 0c0fe2e1671c1664bb88bebebd7f7fc8, type: 3}
+  m_PrefabInstance: {fileID: 5387536942927519284}
+  m_PrefabAsset: {fileID: 0}

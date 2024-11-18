@@ -11,6 +11,8 @@ public class InventoryUpgradeUi : MonoBehaviour
     public MenuSubUi menuUi;
     public StatsSubUi statsUi;
 
+    public Inventory inventory;
+
     public bool hasActiveUpgrade;
 
     public bool focusInv;
@@ -78,8 +80,7 @@ public class InventoryUpgradeUi : MonoBehaviour
                 statsActive = false;
             }
             focusInv = false;
-            //upgradeUi.FocusUpgradeUi();
-           // invUi.DismissInventory();
+            SwitchToUpgrade();
             switchButtonText.text = "UPGRADE";
         }
         else
@@ -90,8 +91,7 @@ public class InventoryUpgradeUi : MonoBehaviour
                 statsActive = false;
             }
             focusInv = true;
-            //invUi.FocusInventory();
-            //upgradeUi.DismissUpgradeUi();
+            SwitchToInventory();
             switchButtonText.text = "INVENTORY";
         }
     }
@@ -155,13 +155,18 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     }
 
-    public void UpdateScrapAmount(float amount)
-    {
-        heldScrap.text = $"x{amount}";
-    }
-
     public void UiClose()
     {
         // continue the game
     }
+
+    public void UpdateScrapAmount()
+    {
+        if(inventory != null)
+        {
+            heldScrap.text = $"x{inventory.scrap.ToString()}";
+        }
+
+    }
+
 }

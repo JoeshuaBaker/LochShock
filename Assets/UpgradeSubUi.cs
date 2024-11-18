@@ -45,6 +45,8 @@ public class UpgradeSubUi : MonoBehaviour
     public float maxTimeToMove = 5f;
     public float eyeTransitionTime = 0.5f;
 
+    public ItemDataFrame[] items;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,12 +61,22 @@ public class UpgradeSubUi : MonoBehaviour
 
     public void DismissUpgradeUi()
     {
+        animator.Play("UpgradeSubUiOutro");
 
+        for(int i = 0; i < items.Length; i++)
+        {
+            items[i].PlayCardOutro(-.2f);
+        }
     }
 
     public void FocusUpgradeUi()
     {
+        animator.Play("UpgradeSubUiIntro");
 
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].PlayCardIntro(-.2f, true);
+        }
     }
 
     public void AnimateDetails()
@@ -165,16 +177,6 @@ public class UpgradeSubUi : MonoBehaviour
                 }
             }
         }
-
-
-
-        //face
-        //arms and wings
-        //shoudlers and bars
-        //eyes, reverse bottom eyes
-        //flaps
-        //eyebars
-        //feathers
     }
 
     public void OnCardTake()
