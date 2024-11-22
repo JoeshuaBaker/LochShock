@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UpgradeSubUi : MonoBehaviour
 {
 
     public Animator animator;
-
+    public InventoryUpgradeUi invUpgradeUi;
+    public Inventory inventory;
     public GameObject[] panelComponents;
 
     public GameObject[] wingRoots;
@@ -45,7 +47,12 @@ public class UpgradeSubUi : MonoBehaviour
     public float maxTimeToMove = 5f;
     public float eyeTransitionTime = 0.5f;
 
-    public ItemDataFrame[] items;
+    public ItemDataFrame[] itemFrames;
+    public TMP_Text[] itemAdditionalScrap;
+    public TMP_Text skipScrap;
+    public int currentValue;
+
+    public bool isSetup;
 
     // Start is called before the first frame update
     void Start()
@@ -59,13 +66,57 @@ public class UpgradeSubUi : MonoBehaviour
         AnimateDetails();
     }
 
-    public void DismissUpgradeUi()
+    public void SetUp()
+    {
+        inventory = invUpgradeUi.inventory;
+    }
+
+    public void DisplayItems(Item[] items, int upgradeValue = 0)
+    {
+
+        this.gameObject.SetActive(true);
+
+        if (!isSetup)
+        {
+            SetUp();
+        }
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayOrbGet", this.gameObject);
+
+        for (int i = 0; i < itemFrames.Length; i++)
+        {
+            bool inRange = i < items.Length;
+            ItemDataFrame frame = itemFrames[i];
+            Item item = i < items.Length ? items[i] : null;
+
+            frame.SetItem(item);
+        }
+
+        ////scrap pick options
+        for(int i = 0; i < itemFrames.Length; i++)
+        {
+            itemAdditionalScrap[i].text = $"{upgradeValue - items[i].disassembleValue}";
+        }
+        skipScrap.text = $"{upgradeValue}";
+
+        currentValue = upgradeValue;
+
+        FocusUpgradeUi();
+    }
+
+    public void DismissUpgradeUi(bool closeMenus = false)
     {
         animator.Play("UpgradeSubUiOutro");
 
-        for(int i = 0; i < items.Length; i++)
+        for(int i = 0; i < itemFrames.Length; i++)
         {
-            items[i].PlayCardOutro(-.2f);
+            itemFrames[i].PlayCardOutro(-.2f);
+        }
+
+        if (closeMenus)
+        {
+            invUpgradeUi.UiClose();
         }
     }
 
@@ -73,9 +124,9 @@ public class UpgradeSubUi : MonoBehaviour
     {
         animator.Play("UpgradeSubUiIntro");
 
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < itemFrames.Length; i++)
         {
-            items[i].PlayCardIntro(-.2f, true);
+            itemFrames[i].PlayCardIntro(-.2f, true);
         }
     }
 
@@ -179,14 +230,54 @@ public class UpgradeSubUi : MonoBehaviour
         }
     }
 
-    public void OnCardTake()
+    public void Take(ItemDataFrame frame)
     {
+        if (inventory.HasNonStashSpaceFor(frame.item))
+        {
+            inventory.AddItem(frame.item);
 
+            frame.PlayUpgradeEffect();
+            
+            DismissUpgradeUi(true);
+
+            //this value still needs to be given back to the inventory
+            int gainScrap = currentValue - frame.item.disassembleValue;
+
+            //TransitionState(InventoryUIState.Close);
+
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+        }
+        else
+        {
+            bool addedItem = inventory.AddItem(frame.item);
+            if (addedItem)
+            {
+
+                frame.PlayUpgradeEffect();
+                frame.PlayContextMessage("STASHED");
+
+                DismissUpgradeUi(true);
+
+                //this value still needs to be given back to the inventory
+                int gainScrap = currentValue - frame.item.disassembleValue;
+
+                //TransitionState(InventoryUIState.Close);
+
+                //Audio Section
+                AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+            }
+            else
+            {
+                frame.PlayContextMessage("FULL");
+            }
+        }
     }
 
     public void OnSkipButtonPressed()
     {
-
+        int gainScrap = currentValue;
+        DismissUpgradeUi(true);
     }
 
 }

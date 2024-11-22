@@ -1398,19 +1398,21 @@ MonoBehaviour:
   - {fileID: 3387289522799463268, guid: e7d4ce9fe2146224e9d9fd136d8ee5a0, type: 3}
   - {fileID: 3162473302359139220, guid: e7d4ce9fe2146224e9d9fd136d8ee5a0, type: 3}
   assignedSpritesTint:
-  - {fileID: 4288055183592181763, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: 2503302087513689030, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -4275060579388435031, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6651960869689299394, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6841733951425065067, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6232234123362668754, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -4480068231424591205, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6232234123362668754, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6841733951425065067, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -6651960869689299394, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: -4275060579388435031, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: 2503302087513689030, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
-  - {fileID: 4288055183592181763, guid: dfb2bc0d4d900a142b8e6779bfcbfd1a, type: 3}
+  - {fileID: -2466607752807839116, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: -279531086723494527, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 4410526890671206169, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 3029868169964434077, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: -1287568076513351549, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 3863474014783767634, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 6505529533609303933, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 7102893458870763674, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 6505529533609303933, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 3863474014783767634, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: -1287568076513351549, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 3029868169964434077, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: 4410526890671206169, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: -279531086723494527, guid: f206701bbae52424489409f826ceac2e, type: 3}
+  - {fileID: -2466607752807839116, guid: f206701bbae52424489409f826ceac2e, type: 3}
   upgradeEffect: {fileID: 5977326187631942413}
   decayUpgradeColor: 0
   timeToDecayUpgrade: 1
@@ -1419,9 +1421,11 @@ MonoBehaviour:
   cardBackButton: {fileID: 1566829759155951893}
   invUi: {fileID: 0}
   upgradeUi: {fileID: 0}
+  contextMessageParent: {fileID: 5977326189046389484}
   contextMessageText: {fileID: 5977326187549663484}
   playContextMessage: 1
   contextMessageDuration: 0
+  contextMessageDurationCurrent: 0
   contextMessageColors:
   - serializedVersion: 2
     rgba: 4278190335
@@ -1430,6 +1434,7 @@ MonoBehaviour:
   colorPulseDuration: 0.3
   colorPulseDurationCurrent: 0
   pulseUp: 0
+  newFrame: 1
 --- !u!1 &1566829759485425451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,7 +3715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5977326189046389475
 RectTransform:
   m_ObjectHideFlags: 0

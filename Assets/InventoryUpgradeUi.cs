@@ -15,14 +15,11 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public bool hasActiveUpgrade;
 
+    public bool interactInventory;
     public bool focusInv;
     public TMP_Text switchButtonText;
 
     public bool levelPreview;
-    public Image levelPreviewDiamond;
-    public bool levelPreviewAll;
-    public Image levelPreviewAllDiamond;
-    public Sprite[] previewDiamondSprites;
 
     public TMP_Text heldScrap;
 
@@ -49,19 +46,10 @@ public class InventoryUpgradeUi : MonoBehaviour
         if (!levelPreview)
         {
             levelPreview = true;
-            levelPreviewDiamond.sprite = previewDiamondSprites[1];
-        }
-        else if (levelPreview && !levelPreviewAll)
-        {
-            levelPreviewAll = true;
-            levelPreviewAllDiamond.sprite = previewDiamondSprites[1];
         }
         else
         {
             levelPreview = false;
-            levelPreviewAll = false;
-            levelPreviewDiamond.sprite = previewDiamondSprites[0];
-            levelPreviewAllDiamond.sprite = previewDiamondSprites[0];
         }
     }
 
@@ -81,7 +69,7 @@ public class InventoryUpgradeUi : MonoBehaviour
             }
             focusInv = false;
             SwitchToUpgrade();
-            switchButtonText.text = "UPGRADE";
+            switchButtonText.text = "INVENTORY";
         }
         else
         {
@@ -92,7 +80,7 @@ public class InventoryUpgradeUi : MonoBehaviour
             }
             focusInv = true;
             SwitchToInventory();
-            switchButtonText.text = "INVENTORY";
+            switchButtonText.text = "UPGRADE";
         }
     }
 
@@ -118,7 +106,7 @@ public class InventoryUpgradeUi : MonoBehaviour
     public void SwitchToInventory()
     {
         //switching from upgrade to inv
-        invUi.FocusInventory();
+        invUi.DisplayInventory();
         upgradeUi.DismissUpgradeUi();
     }
 
@@ -132,7 +120,7 @@ public class InventoryUpgradeUi : MonoBehaviour
     public void EnterInventory()
     {
         // entering inv from gameplay
-        invUi.FocusInventory();
+        invUi.DisplayInventory();
         hasActiveUpgrade = false;
         focusInv = true;
         switchButtonText.text = "UPGRADE";
@@ -140,12 +128,14 @@ public class InventoryUpgradeUi : MonoBehaviour
         switchButton.DisableButton();
         continueButton.EnableButton();
 
+        FocusBottomButtons();
+
     }
 
-    public void EnterUpgrade()
+    public void EnterUpgrade(Item[] items)
     {
         // entering upgrade from gameplay
-        upgradeUi.FocusUpgradeUi();
+        upgradeUi.DisplayItems(items);
         hasActiveUpgrade = true;
         focusInv = false;
         switchButtonText.text = "INVENTORY";
@@ -153,11 +143,31 @@ public class InventoryUpgradeUi : MonoBehaviour
         continueButton.DisableButton();
         switchButton.EnableButton();
 
+        FocusBottomButtons();
+    }
+
+    public void InteractInventory()
+    {
+        if (hasActiveUpgrade)
+        {
+            return;
+        }
+        if (!interactInventory)
+        {
+            EnterInventory();
+            interactInventory = true;
+        }
+        else
+        {
+            invUi.DismissInventory();
+            UiClose();
+        }
     }
 
     public void UiClose()
     {
         // continue the game
+        DismissBottomButtons();
     }
 
     public void UpdateScrapAmount()
@@ -166,7 +176,15 @@ public class InventoryUpgradeUi : MonoBehaviour
         {
             heldScrap.text = $"x{inventory.scrap.ToString()}";
         }
-
     }
 
+    public void FocusBottomButtons()
+    {
+        // mov ethe bottom buttons in
+    }
+
+    public void DismissBottomButtons()
+    {
+        //move them away
+    }
 }

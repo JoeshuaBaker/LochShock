@@ -57,9 +57,11 @@ public class ItemDataFrame : MonoBehaviour
     public InventorySubUi invUi;
     public UpgradeSubUi upgradeUi;
 
+    public GameObject contextMessageParent;
     public TMP_Text contextMessageText;
     public bool playContextMessage;
     public float contextMessageDuration;
+    public float contextMessageDurationCurrent;
     public Color32[] contextMessageColors;
     public float colorPulseDuration;
     public float colorPulseDurationCurrent;
@@ -92,6 +94,7 @@ public class ItemDataFrame : MonoBehaviour
             {
                 decayUpgradeColor = false;
                 upgradeDecayCurrent = 0f;
+                upgradeEffect.gameObject.SetActive(false);
             }
 
             upgradeEffect.color = upgradeColor;
@@ -124,7 +127,8 @@ public class ItemDataFrame : MonoBehaviour
 
         if (playContextMessage)
         {
-            //changing the color of the text
+            contextMessageDurationCurrent += Time.deltaTime;
+
             if (pulseUp)
             {
                 colorPulseDurationCurrent += Time.deltaTime;
@@ -146,10 +150,16 @@ public class ItemDataFrame : MonoBehaviour
             {
                 pulseUp = true;
             }
+
+            if (contextMessageDurationCurrent >= contextMessageDuration)
+            {
+                contextMessageParent.SetActive(false);
+                playContextMessage = false;
+            }
         }
     }
 
-    private void SetItem(Item item)
+    public void SetItem(Item item)
     {
         this.item = item;
         topButton.interactable = item != null;
@@ -172,31 +182,37 @@ public class ItemDataFrame : MonoBehaviour
 
         itemRarity.text = item.rarity.ToString();
         itemRarity.text = "<alpha=#88>" + itemRarity.text.ToUpper();
-        if(newFrame)
+
+        if (newFrame)
         {
             itemRarity.color = rarityTextColors[(int)item.rarity - 1];
             raritySmear.color = raritySmearColors[(int)item.rarity - 1];
             rarityShine.color = rarityShineColors[(int)item.rarity - 1];
             rarityTint.color = rarityTintColors[(int)item.rarity - 1];
-        }
 
-        itemStatusSlot.text = item.itemType.ToString();
-        itemStatusSlot.text = itemStatusSlot.text.ToUpper();
-
-        if (newFrame)
-        {
             if (isStash)
             {
                 itemRarity.gameObject.SetActive(false);
                 stashText.gameObject.SetActive(true);
+
+                emptyFrameSlotText.text = $"STASH SLOT";
+
+                invDataFrameImage.color = Color.grey;
             }
             else
             {
                 itemRarity.gameObject.SetActive(true);
                 stashText.gameObject.SetActive(false);
+
+                emptyFrameSlotText.text = slotType.ToString() + "\nSLOT";
+                emptyFrameSlotText.text = emptyFrameSlotText.text.ToUpper();
+
+                invDataFrameImage.color = Color.white;
             }
         }
 
+        itemStatusSlot.text = item.itemType.ToString();
+        itemStatusSlot.text = itemStatusSlot.text.ToUpper();
 
         if(!topButtonText.text.Contains("Take") && !topButtonText.text.Contains("Unstash"))
         {
@@ -249,11 +265,12 @@ public class ItemDataFrame : MonoBehaviour
 
                 if (isStash)
                 {
-                    emptyFrameSlotText.text = $"STASH";
+                    emptyFrameSlotText.text = $"STASH SLOT";
                 }
                 else
                 {
-                    emptyFrameSlotText.text = slotType.ToString();
+                    emptyFrameSlotText.text = slotType.ToString() + "\nSLOT";
+                    emptyFrameSlotText.text = emptyFrameSlotText.text.ToUpper();
                 }
 
                 invDataFrameImage.color = isStash ? Color.grey : Color.white;
@@ -282,13 +299,6 @@ public class ItemDataFrame : MonoBehaviour
         buttonText.text = $"{functionName}{(hasValue ? " (%value%)" : "")}";
     }
 
-    public void OnLevelUpButtonPressed()
-    {
-        if(invUi != null)
-        {
-            invUi.AttemptUpgradeItem(this);
-        }
-    }
 
     public void PlayContextMessage(String message, float duration = 1f)
     {
@@ -296,17 +306,9 @@ public class ItemDataFrame : MonoBehaviour
         playContextMessage = true;
 
         contextMessageDuration = duration;
-    }
+        contextMessageDurationCurrent = 0f;
 
-    public void PlayUpgradeEffect()
-    {
-        var upgradeColor = upgradeEffect.color;
-
-        upgradeColor.a = 1f;
-        upgradeEffect.color = upgradeColor;
-        decayUpgradeColor = true;
-
-        upgradeDecayCurrent = 0f;
+        contextMessageParent.SetActive(true);
     }
 
     public void PlayCardShake()
@@ -322,6 +324,16 @@ public class ItemDataFrame : MonoBehaviour
         {
             PlayShineEffect();
         }
+    }
+
+    public void PlayCardOutro(float maxDelay = 0f)
+    {
+        flyinAnimator.Play("UiItemOutro", 0, UnityEngine.Random.Range(maxDelay, 0f));
+    }
+
+    public void PlayCardDrop()
+    {
+        flyinAnimator.Play("UiItemDrop");
     }
 
     public void PlayShineEffect()
@@ -343,14 +355,30 @@ public class ItemDataFrame : MonoBehaviour
         rarityShine.gameObject.SetActive(true);
     }
 
-    public void PlayCardOutro(float maxDelay = 0f)
+    public void PlayUpgradeEffect()
     {
-        flyinAnimator.Play("UiItemOutro",0, UnityEngine.Random.Range(maxDelay, 0f));
+        upgradeEffect.gameObject.SetActive(true);
+
+        var upgradeColor = upgradeEffect.color;
+
+        upgradeColor.a = 1f;
+        upgradeEffect.color = upgradeColor;
+        decayUpgradeColor = true;
+
+        upgradeDecayCurrent = 0f;
     }
 
-    public void PlayCardDrop()
+    public void PlayRecycleEffect()
     {
-        flyinAnimator.Play("UiItemDrop");
+
+    }
+
+    public void OnLevelUpButtonPressed()
+    {
+        if (invUi != null)
+        {
+            invUi.AttemptUpgradeItem(this);
+        }
     }
 
     public void OnRecycleButtonPressed()
@@ -365,7 +393,7 @@ public class ItemDataFrame : MonoBehaviour
     {
         if(upgradeUi != null)
         {
-            invUi.Take(this);
+            upgradeUi.Take(this);
         }
     }
 }

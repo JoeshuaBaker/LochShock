@@ -19,7 +19,7 @@ public class InventorySubUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Setup();
+
     }
 
     // Update is called once per frame
@@ -30,6 +30,9 @@ public class InventorySubUi : MonoBehaviour
 
     void Setup()
     {
+
+        inventory = invUpgradeUi.inventory;
+
         for (int i = 0; i < topItemFrames.Length; i++)
         {
             allFrames[i] = topItemFrames[i];
@@ -68,6 +71,41 @@ public class InventorySubUi : MonoBehaviour
         isSetup = true;
     }
 
+    public void DisplayInventory()
+    {
+        if (!isSetup)
+        {
+            Setup();
+        }
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayMenuOpen", this.gameObject);
+
+        Gun[] weapons = inventory.guns;
+        Item[] activeItem = inventory.activeItems;
+        Item[] itemStash = inventory.itemStash;
+        Item[] heldItems = inventory.items;
+
+        for (int i = 0; i < weaponItemFrames.Length; i++)
+        {
+            weaponItemFrames[i].SetItem(weapons[i]);
+        }
+        for (int i = 0; i < activeItemFrames.Length; i++)
+        {
+            activeItemFrames[i].SetItem(activeItem[i]);
+        }
+        for (int i = 0; i < stashItemFrames.Length; i++)
+        {
+            stashItemFrames[i].SetItem(itemStash[i]);
+        }
+        for (int i = 0; i < bottomItemFrames.Length; i++)
+        {
+            bottomItemFrames[i].SetItem(heldItems[i]);
+        }
+
+        FocusInventory();
+    }
+
     public void DismissInventory()
     {
         for (int i = 0; i < allFrames.Length; i++)
@@ -86,6 +124,8 @@ public class InventorySubUi : MonoBehaviour
 
     public void AttemptUpgradeItem(ItemDataFrame itemFrame)
     {
+
+        //// the actual shit i want to work
         //if(itemFrame.item.levelUpCost > inventory.scrap)
         //{
         //    itemFrame.PlayContextMessage("NOT ENOUGH SCRAP");
@@ -98,8 +138,11 @@ public class InventorySubUi : MonoBehaviour
         //    itemFrame.PlayCardShake();
         //}
 
+
+        // garbage test shit
         itemFrame.PlayCardShake();
         itemFrame.PlayUpgradeEffect();
+        itemFrame.PlayContextMessage("fuck you");
 
     }
 
@@ -121,21 +164,5 @@ public class InventorySubUi : MonoBehaviour
 
         inventory.DisassembleItem(frame.item);
         invUpgradeUi.UpdateScrapAmount();
-    }
-
-    public void Take(ItemDataFrame frame)
-    {
-        bool addedItem = inventory.AddItem(frame.item);
-        if (addedItem)
-        {
-            //TransitionState(InventoryUIState.Close);
-
-            //Audio Section
-            AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
-        }
-        else
-        {
-            frame.PlayContextMessage("FULL");
-        }
     }
 }
