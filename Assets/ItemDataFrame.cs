@@ -69,6 +69,12 @@ public class ItemDataFrame : MonoBehaviour
 
     public bool newFrame;
 
+    public bool decayRecycleColor;
+    public Image recycleEffect;
+    public float recycleDecayCurrent;
+    public float timeToDecayRecycle = 1f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +88,24 @@ public class ItemDataFrame : MonoBehaviour
 
     void Update()
     {
+        if (decayRecycleColor)
+        {
+            var recycleColor = recycleEffect.color;
+
+            recycleColor.a = Mathf.Lerp(recycleColor.a, 0f, recycleDecayCurrent);
+
+            recycleDecayCurrent += (Time.unscaledDeltaTime *2f);
+
+            if (recycleDecayCurrent >= timeToDecayRecycle)
+            {
+                decayRecycleColor = false;
+                recycleDecayCurrent = 0f;
+                recycleEffect.gameObject.SetActive(false);
+            }
+
+            recycleEffect.color = recycleColor;
+        }
+
         if (decayUpgradeColor)
         {
             var upgradeColor = upgradeEffect.color;
@@ -396,7 +420,15 @@ public class ItemDataFrame : MonoBehaviour
 
     public void PlayRecycleEffect()
     {
+        recycleEffect.gameObject.SetActive(true);
 
+        var recycleColor = recycleEffect.color;
+
+        recycleColor.a = 1f;
+        recycleEffect.color = recycleColor;
+        decayRecycleColor = true;
+
+        recycleDecayCurrent = 0f;
     }
 
     public void OnLevelUpButtonPressed()

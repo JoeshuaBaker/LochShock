@@ -165,6 +165,8 @@ public class InventorySubUi : MonoBehaviour
 
         inventory.DisassembleItem(frame.item);
         invUpgradeUi.UpdateScrapAmount();
+        frame.PlayRecycleEffect();
+        frame.PlayCardShake();
         frame.SetItem(null);
     }
 }
