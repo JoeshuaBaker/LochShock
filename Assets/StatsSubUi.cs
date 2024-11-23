@@ -22,6 +22,8 @@ public class StatsSubUi : MonoBehaviour
 
     public StatBeingDisplayed currentDisplayedStat;
 
+    public bool checkOutro;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,21 @@ public class StatsSubUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (checkOutro)
+        {
+            AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (animState.IsName("StatsSubUiOutroInv") && animState.normalizedTime >= 1f)
+            {
+                this.gameObject.SetActive(false);
+                checkOutro = false;
+            }
+            if (animState.IsName("StatsSubUiOutroUpgrade") && animState.normalizedTime >= 1f)
+            {
+                this.gameObject.SetActive(false);
+                checkOutro = false;
+            }
+        }
     }
 
     public void DismissStats(bool focusInv)
@@ -44,6 +60,8 @@ public class StatsSubUi : MonoBehaviour
         {
             animator.Play("StatsSubUiOutroUpgrade");
         }
+
+        checkOutro = true;
     }
 
     public void FocusStats(bool focusInv)

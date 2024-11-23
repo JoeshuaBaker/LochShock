@@ -78,15 +78,6 @@ AnimationClip:
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1
-        value: {x: 0, y: 0, z: -90}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1532,7 +1523,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -1635,15 +1626,6 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1656,15 +1638,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1702,15 +1675,6 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: -90
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
         value: -90
         inSlope: 0
         outSlope: 0
@@ -3941,7 +3905,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
+    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
+      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
+      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
+      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -3951,7 +3918,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
+    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
+      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
+      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
+      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -3961,7 +3931,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
+    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
+      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
+      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
+      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -4520,10 +4493,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
-      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
-      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
-      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
+    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -4533,10 +4503,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
-      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
-      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
-      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
+    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -4546,10 +4513,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: UpgradeUiTopContainer/UpgradeUiTopControllerAnimationLayer/TopContainerOffset/CenterPanelParent/CenterPanelWingsAnimationLayer/CenterPanelWingsContainer/WingsRight/WingsOffset/WingRootAnimControl/WingRoot/WingFeatherAnimControl
-      (6)/WingFeather (6)/WingFeatherAnimControl (5)/WingFeather (5)/WingFeatherAnimControl
-      (4)/WingFeather (4)/WingFeatherAnimControl (3)/WingFeather (3)/WingFeatherAnimControl
-      (2)/WingFeather (2)/WingFeatherAnimControl (1)/WingFeather (1)/WingFeatherAnimControl
+    path: UpgradeUiBottomContainer/UpgradeUiBottomControllerAnimationLayer/UpgradeUiBottomContainerOffset/EyeParent/BottomRightEyeParentOffset/BottomRightParent/BottomRightEyeAnimationLayer
     classID: 224
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

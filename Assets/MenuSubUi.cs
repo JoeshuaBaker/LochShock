@@ -6,6 +6,9 @@ public class MenuSubUi : MonoBehaviour
 {
 
     public Animator animator;
+    public bool menuActive;
+
+    public bool checkOutro;
 
     // Start is called before the first frame update
     void Start()
@@ -16,23 +19,30 @@ public class MenuSubUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
-        
-        if(animState.IsName("MenuSubUiOutro") && animState.normalizedTime >= 1f)
+        if (checkOutro)
         {
-            this.gameObject.SetActive(false);
+            AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (animState.IsName("MenuSubUiOutro") && animState.normalizedTime >= 1f)
+            {
+                this.gameObject.SetActive(false);
+                checkOutro = false;
+            }
         }
     }
 
     public void DismissMenuSubUi()
     {
         animator.Play("MenuSubUiOutro");
+        menuActive = false;
+        checkOutro = true;
     }
 
     public void FocusMenuSubUi()
     {
         this.gameObject.SetActive(true);
         animator.Play("MenuSubUiIntro");
+        menuActive = true;
     }
 
 

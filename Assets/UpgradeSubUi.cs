@@ -53,6 +53,12 @@ public class UpgradeSubUi : MonoBehaviour
     public int currentValue;
 
     public bool isSetup;
+    public bool animate;
+    public bool checkOutro;
+    public bool skipping;
+    public bool taking;
+
+    public Item[] showItems;
 
     // Start is called before the first frame update
     void Start()
@@ -63,19 +69,31 @@ public class UpgradeSubUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AnimateDetails();
+        if (animate)
+        {
+            AnimateDetails();
+        }
+
+        if (checkOutro)
+        {
+            AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (animState.IsName("UpgradeSubUiOutro") && animState.normalizedTime >= 1f)
+            {
+                this.gameObject.SetActive(false);
+                checkOutro = false;
+                animate = false;
+            }
+        }
     }
 
     public void SetUp()
     {
-        inventory = invUpgradeUi.inventory;
+        inventory = Player.activePlayer.inventory;
     }
 
-    public void DisplayItems(Item[] items, int upgradeValue = 0)
+    public void SetUpgradeItems(Item[] items, int upgradeValue = 0)
     {
-
-        this.gameObject.SetActive(true);
-
         if (!isSetup)
         {
             SetUp();
@@ -86,21 +104,23 @@ public class UpgradeSubUi : MonoBehaviour
 
         for (int i = 0; i < itemFrames.Length; i++)
         {
-            bool inRange = i < items.Length;
-            ItemDataFrame frame = itemFrames[i];
             Item item = i < items.Length ? items[i] : null;
 
-            frame.SetItem(item);
+            itemFrames[i].SetItem(item);
         }
 
-        ////scrap pick options
-        for(int i = 0; i < itemFrames.Length; i++)
-        {
-            itemAdditionalScrap[i].text = $"{upgradeValue - items[i].disassembleValue}";
-        }
-        skipScrap.text = $"{upgradeValue}";
-
+        //scrap pick options
         currentValue = upgradeValue;
+
+        for (int i = 0; i < itemFrames.Length; i++)
+        {
+            itemAdditionalScrap[i].text = $"+{currentValue - items[i].disassembleValue}";
+        }
+
+        skipScrap.text = $"+{currentValue}";
+
+        skipping = false;
+        taking = false;
 
         FocusUpgradeUi();
     }
@@ -116,13 +136,19 @@ public class UpgradeSubUi : MonoBehaviour
 
         if (closeMenus)
         {
-            invUpgradeUi.UiClose();
+            invUpgradeUi.UiClose(true);
         }
+
+        checkOutro = true;
     }
 
     public void FocusUpgradeUi()
     {
+        this.gameObject.SetActive(true);
+
         animator.Play("UpgradeSubUiIntro");
+
+        animate = true;
 
         for (int i = 0; i < itemFrames.Length; i++)
         {
@@ -135,12 +161,12 @@ public class UpgradeSubUi : MonoBehaviour
 
         for(int i = 0; i < panelComponents.Length; i++)
         {
-            panelComponents[i].transform.localPosition = new Vector3(0f,(int)(Mathf.Sin(Time.time + (panelBobOffset * i)) * panelBob), 0f);
+            panelComponents[i].transform.localPosition = new Vector3(0f,(int)(Mathf.Sin(Time.unscaledTime + (panelBobOffset * i)) * panelBob), 0f);
         }
 
         var quat = new Quaternion(0f, 0f, 0f, 0f);
 
-        Vector3 rot = new Vector3(0f, 0f, Mathf.Sin(Time.time + wingRotOffset) * wingRot);
+        Vector3 rot = new Vector3(0f, 0f, Mathf.Sin(Time.unscaledTime + wingRotOffset) * wingRot);
 
         quat.eulerAngles = rot;
 
@@ -152,20 +178,20 @@ public class UpgradeSubUi : MonoBehaviour
 
         for(int i = 0; i < eyes.Length; i++)
         {
-            eyes[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + ( -0.8f)) * panelBob * 1.5f, 0f);
+            eyes[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.unscaledTime + ( -0.8f)) * panelBob * 1.5f, 0f);
             if(i < 2)
             {
-                flaps[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + (-0.85f)) * panelBob, 0f);
-                bars[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + (-.9f)) * panelBob, 0f);
+                flaps[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.unscaledTime + (-0.85f)) * panelBob, 0f);
+                bars[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.unscaledTime + (-.9f)) * panelBob, 0f);
             }
             else
             {
-                flaps[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + (-0.7f)) * -panelBob, 0f);
-                bars[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.time + (-.6f)) * -panelBob, 0f);
+                flaps[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.unscaledTime + (-0.7f)) * -panelBob, 0f);
+                bars[i].transform.localPosition = new Vector3(0f, Mathf.Sin(Time.unscaledTime + (-.6f)) * -panelBob, 0f);
             }
           }
 
-        rot = new Vector3(0f, 0f, Mathf.Sin(Time.time - 0.1f) * eyeRot);
+        rot = new Vector3(0f, 0f, Mathf.Sin(Time.unscaledTime - 0.1f) * eyeRot);
 
         quat.eulerAngles = rot;
 
@@ -174,7 +200,7 @@ public class UpgradeSubUi : MonoBehaviour
             eyesRot[i].transform.localRotation = quat;
         }
 
-        rot = new Vector3(0f, 0f, Mathf.Sin(Time.time - 0.15f) * eyeRot);
+        rot = new Vector3(0f, 0f, Mathf.Sin(Time.unscaledTime - 0.15f) * eyeRot);
 
         quat.eulerAngles = rot;
 
@@ -183,7 +209,7 @@ public class UpgradeSubUi : MonoBehaviour
             finsClose[i].transform.localRotation = quat;
         }
 
-        rot = new Vector3(0f, 0f, Mathf.Sin(Time.time - 0.3f) * eyeRot);
+        rot = new Vector3(0f, 0f, Mathf.Sin(Time.unscaledTime - 0.3f) * eyeRot);
 
         quat.eulerAngles = rot;
 
@@ -200,7 +226,7 @@ public class UpgradeSubUi : MonoBehaviour
                 iris[i].transform.localPosition = new Vector2(Mathf.Lerp(eyeStartPos[i].x, eyeTargetPos[i].x, eyeMoveTransition[i]), Mathf.Lerp(eyeStartPos[i].y, eyeTargetPos[i].y, eyeMoveTransition[i]));
                 pupil[i].transform.localPosition = new Vector2(Mathf.Lerp(eyeStartPos[i].x, eyeTargetPos[i].x, eyeMoveTransition[i]), Mathf.Lerp(eyeStartPos[i].y, eyeTargetPos[i].y, eyeMoveTransition[i]));
 
-                eyeMoveTransition[i] += (Time.deltaTime / eyeTransitionTime);
+                eyeMoveTransition[i] += (Time.unscaledDeltaTime / eyeTransitionTime);
 
                 if (eyeMoveTransition[i] > 1f)
                 {
@@ -213,7 +239,7 @@ public class UpgradeSubUi : MonoBehaviour
             else
             {
 
-                eyeMoveTimeCurrent[i] += Time.deltaTime;
+                eyeMoveTimeCurrent[i] += Time.unscaledDeltaTime;
                 if (eyeMoveTimeCurrent[i] > eyeMoveTime[i])
                 {
                     moveEye[i] = true;
@@ -232,21 +258,30 @@ public class UpgradeSubUi : MonoBehaviour
 
     public void Take(ItemDataFrame frame)
     {
+        if (taking)
+        {
+            return;
+        }
+
         if (inventory.HasNonStashSpaceFor(frame.item))
         {
             inventory.AddItem(frame.item);
 
             frame.PlayUpgradeEffect();
-            
-            DismissUpgradeUi(true);
 
-            //this value still needs to be given back to the inventory
-            int gainScrap = currentValue - frame.item.disassembleValue;
-
-            //TransitionState(InventoryUIState.Close);
+            if (currentValue != 0)
+            {
+                int gainScrap = currentValue - frame.item.disassembleValue;
+                inventory.AddScrap(gainScrap);
+                invUpgradeUi.UpdateScrapAmount();
+            }
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+
+            taking = true;
+
+            DismissUpgradeUi(true);
         }
         else
         {
@@ -256,28 +291,45 @@ public class UpgradeSubUi : MonoBehaviour
 
                 frame.PlayUpgradeEffect();
                 frame.PlayContextMessage("STASHED");
-
-                DismissUpgradeUi(true);
-
-                //this value still needs to be given back to the inventory
-                int gainScrap = currentValue - frame.item.disassembleValue;
-
-                //TransitionState(InventoryUIState.Close);
+                
+                if(currentValue != 0)
+                {
+                    int gainScrap = currentValue - frame.item.disassembleValue;
+                    inventory.AddScrap(gainScrap);
+                    invUpgradeUi.UpdateScrapAmount();
+                }
 
                 //Audio Section
                 AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
+
+                taking = true;
+
+                DismissUpgradeUi(true);
             }
             else
             {
                 frame.PlayContextMessage("FULL");
+                frame.PlayCardShake();
             }
         }
     }
 
     public void OnSkipButtonPressed()
     {
-        int gainScrap = currentValue;
+        if (skipping)
+        {
+            return;
+        }
+
+        if(currentValue != 0)
+        {
+            int gainScrap = currentValue;
+            inventory.AddScrap(gainScrap);
+            invUpgradeUi.UpdateScrapAmount();
+        }
+
+        skipping = true;
+
         DismissUpgradeUi(true);
     }
-
 }

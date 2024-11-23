@@ -16,6 +16,7 @@ public class InventorySubUi : MonoBehaviour
     public ItemDataFrame[] activeItemFrames = new ItemDataFrame[1];
     public ItemDataFrame[] stashItemFrames = new ItemDataFrame[2];
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class InventorySubUi : MonoBehaviour
     void Setup()
     {
 
-        inventory = invUpgradeUi.inventory;
+        inventory = Player.activePlayer.inventory;
 
         for (int i = 0; i < topItemFrames.Length; i++)
         {
@@ -71,15 +72,15 @@ public class InventorySubUi : MonoBehaviour
         isSetup = true;
     }
 
-    public void DisplayInventory()
+    public void DisplayInventory(bool basicSet = false)
     {
+
         if (!isSetup)
         {
             Setup();
         }
 
-        //Audio Section
-        AkSoundEngine.PostEvent("PlayMenuOpen", this.gameObject);
+        this.gameObject.SetActive(true);
 
         Gun[] weapons = inventory.guns;
         Item[] activeItem = inventory.activeItems;
@@ -103,7 +104,13 @@ public class InventorySubUi : MonoBehaviour
             bottomItemFrames[i].SetItem(heldItems[i]);
         }
 
-        FocusInventory();
+        if (!basicSet)
+        {
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayMenuOpen", this.gameObject);
+
+            FocusInventory();
+        }
     }
 
     public void DismissInventory()
@@ -124,26 +131,20 @@ public class InventorySubUi : MonoBehaviour
 
     public void AttemptUpgradeItem(ItemDataFrame itemFrame)
     {
-
-        //// the actual shit i want to work
-        //if(itemFrame.item.levelUpCost > inventory.scrap)
-        //{
-        //    itemFrame.PlayContextMessage("NOT ENOUGH SCRAP");
-        //}
-        //else
-        //{
-        //    inventory.LevelUp(itemFrame.item);
-        //    invUpgradeUi.UpdateScrapAmount();
-        //    itemFrame.PlayUpgradeEffect();
-        //    itemFrame.PlayCardShake();
-        //}
-
-
-        // garbage test shit
-        itemFrame.PlayCardShake();
-        itemFrame.PlayUpgradeEffect();
-        itemFrame.PlayContextMessage("fuck you");
-
+        // the actual shit i want to work
+        if (itemFrame.item.levelUpCost > inventory.scrap)
+        {
+            itemFrame.PlayContextMessage("NOT ENOUGH SCRAP");
+            itemFrame.PlayCardShake();
+        }
+        else
+        {
+            inventory.LevelUp(itemFrame.item);
+            invUpgradeUi.UpdateScrapAmount();
+            itemFrame.PlayUpgradeEffect();
+            itemFrame.PlayCardShake();
+            DisplayInventory(true);
+        }
     }
 
     public void AttemptRecycleItem(ItemDataFrame frame)
@@ -164,5 +165,6 @@ public class InventorySubUi : MonoBehaviour
 
         inventory.DisassembleItem(frame.item);
         invUpgradeUi.UpdateScrapAmount();
+        frame.SetItem(null);
     }
 }

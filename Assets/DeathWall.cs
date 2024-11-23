@@ -66,7 +66,7 @@ public class DeathWall : MonoBehaviour
         playerDistance = Vector3.Distance(deathWall.gameObject.transform.position, Player.activePlayer.gameObject.transform.position);
         AkSoundEngine.SetRTPCValue("DistanceFromDeathWall", playerDistance);
 
-        Debug.Log("Deathwall Distance From Player = " + playerDistance);
+        //Debug.Log("Deathwall Distance From Player = " + playerDistance);
 
         return;
     }

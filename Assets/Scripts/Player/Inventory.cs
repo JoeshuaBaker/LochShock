@@ -53,6 +53,7 @@ public class Inventory : MonoBehaviour
     public ItemResourcesAtlas itemResourcesAtlas;
     public InventoryUI inventoryUI;
     public GameplayUI gameplayUI;
+    public InventoryUpgradeUi invUpgradeUi;
 
     public void Setup()
     {
@@ -97,13 +98,21 @@ public class Inventory : MonoBehaviour
     {
         if(inventoryUI != null)
         {
-            if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
+
+            if(invUpgradeUi != null)
             {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
+                invUpgradeUi.InteractInventory();
             }
             else
             {
-                inventoryUI.TransitionToLastState();
+                if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
+                {
+                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
+                }
+                else
+                {
+                    inventoryUI.TransitionToLastState();
+                }
             }
         }
     }
@@ -126,16 +135,33 @@ public class Inventory : MonoBehaviour
             {
                 if (!maxOrbs)
                 {
-                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                    if(invUpgradeUi != null)
+                    {
+                        invUpgradeUi.EnterUpgrade(items);
+                        invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                    }
+                    else
+                    {
+                        inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                        inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                    }
                 }
                 else
                 {
-                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
+                    if(invUpgradeUi != null)
+                    {
+                        scrap += scrapBonusMaxOrb;
 
-                    scrap += scrapBonusMaxOrb;
+                        invUpgradeUi.EnterUpgrade(items);
+                        invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false); };
+                    }
+                    else
+                    {
+                        inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                        inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
 
+                        scrap += scrapBonusMaxOrb;
+                    }
                 }
               
             }
@@ -152,8 +178,17 @@ public class Inventory : MonoBehaviour
 
             if (inventoryUI != null)
             {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false,true); };
+                if(invUpgradeUi != null)
+                {
+                    invUpgradeUi.EnterUpgrade(items);
+                    invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                }
+                else
+                {
+
+                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
+                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
+                }
             }
             else
             {
@@ -433,5 +468,10 @@ public class Inventory : MonoBehaviour
         }
 
         return null;
+    }
+    
+    public void AddScrap(int amount)
+    {
+        scrap += amount;
     }
 }

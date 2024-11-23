@@ -88,7 +88,7 @@ public class ItemDataFrame : MonoBehaviour
 
             upgradeColor.a = Mathf.Lerp(upgradeColor.a, 0f, upgradeDecayCurrent);
 
-            upgradeDecayCurrent += Time.deltaTime;
+            upgradeDecayCurrent += Time.unscaledDeltaTime;
 
             if(upgradeDecayCurrent >= timeToDecayUpgrade)
             {
@@ -115,7 +115,7 @@ public class ItemDataFrame : MonoBehaviour
             rarityShine.sprite = assignedSprites[(int)(shineDurationCurrent / timePerFrame)];
             rarityTint.sprite = assignedSpritesTint[(int)(shineDurationCurrent / timePerFrameTint)];
 
-            shineDurationCurrent += Time.deltaTime;
+            shineDurationCurrent += Time.unscaledDeltaTime;
 
             if(shineDurationCurrent > shineDuration)
             {
@@ -127,15 +127,15 @@ public class ItemDataFrame : MonoBehaviour
 
         if (playContextMessage)
         {
-            contextMessageDurationCurrent += Time.deltaTime;
+            contextMessageDurationCurrent += Time.unscaledDeltaTime;
 
             if (pulseUp)
             {
-                colorPulseDurationCurrent += Time.deltaTime;
+                colorPulseDurationCurrent += Time.unscaledDeltaTime;
             }
             else
             {
-                colorPulseDurationCurrent -= Time.deltaTime;
+                colorPulseDurationCurrent -= Time.unscaledDeltaTime;
             }
 
             Color32 currentColor = Color.Lerp(contextMessageColors[0], contextMessageColors[1], colorPulseDurationCurrent);
@@ -162,12 +162,32 @@ public class ItemDataFrame : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
-        topButton.interactable = item != null;
-        bottomButton.interactable = item != null;
+
+        if (!newFrame)
+        {
+            topButton.interactable = item != null;
+            bottomButton.interactable = item != null;
+        }
 
         if (item == null)
         {
+            fullFrameParent.gameObject.SetActive(false);
+
+            if (isStash)
+            {
+                emptyFrameSlotText.text = $"STASH SLOT";
+            }
+            else
+            {
+                emptyFrameSlotText.text = slotType.ToString() + "\nSLOT";
+                emptyFrameSlotText.text = emptyFrameSlotText.text.ToUpper();
+            }
+
             return;
+        }
+        else
+        {
+            fullFrameParent.gameObject.SetActive(true);
         }
 
         icon.sprite = item.icon;
@@ -183,19 +203,21 @@ public class ItemDataFrame : MonoBehaviour
         itemRarity.text = item.rarity.ToString();
         itemRarity.text = "<alpha=#88>" + itemRarity.text.ToUpper();
 
+        Debug.Log("setitem");
+
         if (newFrame)
         {
-            itemRarity.color = rarityTextColors[(int)item.rarity - 1];
-            raritySmear.color = raritySmearColors[(int)item.rarity - 1];
-            rarityShine.color = rarityShineColors[(int)item.rarity - 1];
-            rarityTint.color = rarityTintColors[(int)item.rarity - 1];
+            itemRarity.color = rarityTextColors[(int)item.rarity];
+            raritySmear.color = raritySmearColors[(int)item.rarity];
+            rarityShine.color = rarityShineColors[(int)item.rarity];
+            rarityTint.color = rarityTintColors[(int)item.rarity];
+
+            Debug.Log(item.rarity);
 
             if (isStash)
             {
                 itemRarity.gameObject.SetActive(false);
                 stashText.gameObject.SetActive(true);
-
-                emptyFrameSlotText.text = $"STASH SLOT";
 
                 invDataFrameImage.color = Color.grey;
             }
@@ -204,9 +226,6 @@ public class ItemDataFrame : MonoBehaviour
                 itemRarity.gameObject.SetActive(true);
                 stashText.gameObject.SetActive(false);
 
-                emptyFrameSlotText.text = slotType.ToString() + "\nSLOT";
-                emptyFrameSlotText.text = emptyFrameSlotText.text.ToUpper();
-
                 invDataFrameImage.color = Color.white;
             }
         }
@@ -214,7 +233,7 @@ public class ItemDataFrame : MonoBehaviour
         itemStatusSlot.text = item.itemType.ToString();
         itemStatusSlot.text = itemStatusSlot.text.ToUpper();
 
-        if(!topButtonText.text.Contains("Take") && !topButtonText.text.Contains("Unstash"))
+        if(!topButtonText.text.Contains("Take") && !topButtonText.text.Contains("Unstash") && !newFrame)
         {
             topButton.interactable = item.levelUpCost > 0 && Player.activePlayer.inventory.scrap >= item.levelUpCost;
         }
@@ -240,6 +259,13 @@ public class ItemDataFrame : MonoBehaviour
         }
 
         itemData.text = itemDataString.TrimEnd();
+
+        if (playContextMessage)
+        {
+            playContextMessage = false;
+            contextMessageDurationCurrent = 0f;
+            contextMessageParent.SetActive(false);
+        }
     }
 
     public void ReflectInventoryState(InventoryUI.InventoryUIState state, Item item)
