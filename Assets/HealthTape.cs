@@ -16,8 +16,33 @@ public class HealthTape : MonoBehaviour
     public int holdFrame;
 
     public Material mat;
-    public Renderer rend;
+    public Material lightningMat;
+    public SpriteRenderer borderSprite;
+    public SpriteRenderer heartSprite;
+    public ParticleSystem crossPS;
+    public ParticleSystem crossPS2;
 
+
+    public GameObject scaleParent;
+    public float scaleMin = 1f;
+    public float scaleMax = 1.4f;
+    public float fadeScale;
+    public float fadeTime;
+    public float fadeTimeCurrent;
+    public bool fadeEnd;
+    public float scaleMaxRange = 3f;
+    public GameObject lightningParent;
+    public float lightningMaxRange = 10f;
+    public float lightningMinRange = 1f;
+    public float lightningMaxSize = 0.6f;
+    public float lightningMinSize = 0.1f;
+    public float bobAmount;
+
+    public float distToPlayer;
+    public float collectRange;
+    public bool collected;
+
+    public Vector3 scaleTotal;
 
     // Start is called before the first frame update
     void Start()
@@ -35,16 +60,49 @@ public class HealthTape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distToPlayer = this.transform.position.x - Player.activePlayer.transform.position.x;
+
+        Position();
+
+        if (collected)
+        {
+            if (!fadeEnd)
+            {
+                Fade();
+            }
+
+        }
+        else
+        {
+            if (distToPlayer < collectRange)
+            {
+                Collect();
+            }
+
+            if (distToPlayer <= lightningMaxRange)
+            {
+                Scale();
+            }
+        }
+
+        Animate();
+
+
+        mat.SetFloat("PlayerPos", (Player.activePlayer.transform.position.y *.25f));
+    }
+
+    public void Animate()
+    {
         if (assignedSprites == null || assignedSprites.Length == 0)
         {
             return;
         }
 
-        if(useHoldFrame && sprite.sprite == assignedSprites[holdFrame])
+        if (useHoldFrame && sprite.sprite == assignedSprites[holdFrame])
         {
             currentHoldTime += Time.deltaTime;
-            
-            if(currentHoldTime >= holdTime)
+
+            if (currentHoldTime >= holdTime)
             {
                 sprite.sprite = assignedSprites[holdFrame + 1];
 
@@ -64,21 +122,77 @@ public class HealthTape : MonoBehaviour
             sprite.sprite = assignedSprites[(int)(currentAnimTime / timePerFrame)];
         }
 
-        //Vector2 pos = new Vector2(0f, Player.activePlayer.transform.position.y);
-
-        //Vector2 test = new Vector2(Time.time, Time.time);
-
-        //var offset = rend.material.mainTextureOffset;
-
-        //offset.y = Time.time;
-
-        //rend.material.mainTextureOffset = new Vector2( 0f , (Player.activePlayer.transform.position.y *.2f));
-
-        //rend.material.SetTextureOffset("_MainTex", new Vector2(0f, Time.time));
-
-
-        mat.SetFloat("PlayerPos", (Player.activePlayer.transform.position.y *.25f));
     }
 
+    public void Scale()
+    {
+        var scale = lightningParent.transform.localScale;
 
+        scale.x = Mathf.Lerp(lightningMaxSize, lightningMinSize, ( Mathf.Max(distToPlayer, lightningMinRange) / lightningMaxRange));
+
+        lightningParent.transform.localScale = scale;
+
+        if(distToPlayer < scaleMaxRange)
+        {
+            scaleTotal = scaleParent.transform.localScale;
+
+            scaleTotal.x = Mathf.Lerp(scaleMax, scaleMin, (Mathf.Max(distToPlayer, collectRange) / scaleMaxRange));
+
+            scaleParent.transform.localScale = scaleTotal;
+
+            var em = crossPS.emission;
+            var em2 = crossPS2.emission;
+
+            em.rateOverTime = 20;
+            em2.rateOverTime = 20;
+        }
+
+    }
+
+    public void Position()
+    {
+        var pos = transform.position;
+        var scalePos = scaleParent.transform.localPosition;
+
+        pos.y = Player.activePlayer.transform.position.y;
+        scalePos.y = Mathf.Abs(Mathf.Sin(Time.time * 2f) * bobAmount);
+
+        transform.position = pos;
+        scaleParent.transform.localPosition = scalePos;
+    }
+
+    public void Collect()
+    {
+        collected = true;
+        crossPS.Emit(40);
+        crossPS.Stop();
+        crossPS2.Emit(40);
+        crossPS2.Stop();
+        Player.activePlayer.UpdateHp(1);
+        World.activeWorld.lightningBolt.CallLightning(Player.activePlayer.transform.position);
+        lightningParent.SetActive(false);
+    }
+
+    public void Fade()
+    {
+        fadeTimeCurrent += Time.deltaTime *3f;
+
+        Color color = borderSprite.color;
+
+        color.a = Mathf.Lerp(1f, 0f, fadeTimeCurrent);
+
+        borderSprite.color = color;
+        heartSprite.color = color;
+
+        var scale = scaleParent.transform.localScale;
+
+        scale.x = scale.x * (1f - (6f * Time.deltaTime));
+
+        scaleParent.transform.localScale = scale;
+
+        if(color.a <= 0f)
+        {
+            fadeEnd = true;
+        }
+    }
 }

@@ -184,10 +184,8 @@ public class InventoryUpgradeUi : MonoBehaviour
     {
         if (hasActiveUpgrade)
         {
-            if (focusInv)
-            {
-                OnSwitchButtonPressed();
-            }
+
+            OnSwitchButtonPressed();
         }
         else
         {

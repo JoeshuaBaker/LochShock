@@ -26,6 +26,11 @@ public class OrbScript : MonoBehaviour
     {
         Vector3 directionToPlayer = player.transform.position - this.transform.position;
 
+        if(World.activeWorld.paused == true)
+        {
+            return;
+        }
+
         if(directionToPlayer.magnitude < collectionRange)
         {
             isCollected = true;

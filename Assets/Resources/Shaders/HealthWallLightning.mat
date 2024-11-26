@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HealthMat
-  m_Shader: {fileID: -6465566751694194690, guid: 2722d58dbb0fb744d95b44f14a747562, type: 3}
+  m_Name: HealthWallLightning
+  m_Shader: {fileID: -6465566751694194690, guid: e24b9a057b00e674e97338db51dab80a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _EmissionMask:
+        m_Texture: {fileID: 2800000, guid: d8cc85b14484c004d8746672e1ba7df8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d8cc85b14484c004d8746672e1ba7df8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -36,7 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - PlayerPos: -3.1849556
-    - Vector1_bbfa825c4f334e10afa466dcf810d136: 0
-    m_Colors: []
+    - Fade: 0
+    m_Colors:
+    - Color_d2bf86744c494c68ae450867097a0adc: {r: 0, g: 8.312, b: 8.675366, a: 0}
+    - Vector2_82a6146fda23446699989737b259c84f: {r: 0, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []
