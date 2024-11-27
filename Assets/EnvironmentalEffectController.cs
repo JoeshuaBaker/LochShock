@@ -36,6 +36,15 @@ public class EnvironmentalEffectController : MonoBehaviour
     public float maxTimeScaling;
     public float timeSinceOrbUsed;
     public float orbResetTime;
+    [Header("Test Lightning")]
+    public bool testLightning;
+    public bool testSmall;
+    public bool testMedium;
+    public bool testLarge;
+    public bool testLightningStrike;
+    public float timePerTest = 3f;
+    public float timePerTestCurrent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -78,75 +87,113 @@ public class EnvironmentalEffectController : MonoBehaviour
     }
     private void UpdateLightningLight()
     {
-        float lightningChance = Random.Range(0f, 1f);
-
-
-        //lightningAnimator.SetBool("LightningStrike", false);
-        //lightningAnimator.SetBool("LightningLarge", false);
-        //lightningAnimator.SetBool("LightningMedium", false);
-        //lightningAnimator.SetBool("LightningSmall", false);
-
-        isBaseLightningChanceScaling = baseLightningChance * Mathf.Min((gameTime * (baseLightningMax / 2f) / maxTimeScaling) + (timeSinceOrbUsed * (baseLightningMax / 2f) / orbResetTime) + 1f, baseLightningMax);
-
-        if (lightningChance < baseLightningChance *  Mathf.Min((gameTime * (baseLightningMax /2f) / maxTimeScaling) + (timeSinceOrbUsed * (baseLightningMax / 2f) / orbResetTime) , baseLightningMax) || !spawnBoltPlayed)
+        if (!testLightning)
         {
-            float lightningPick = Random.Range(0f, 1f);
+            float lightningChance = Random.Range(0f, 1f);
 
-            // the math bit post lightingStrikeChance should be its own function with arguments for the max and the ratio between the two?
-            isLightningStrikeScaling = lightningStrikeChance * Mathf.Min((gameTime * ((lightningStrikeMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningStrikeMax / 2f) / orbResetTime)) + 1f, lightningStrikeMax);
-            isLightningLargeScaling = lightningStrikeChance * lightningLargeChance * Mathf.Min((gameTime * ((lightningLargeMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningLargeMax / 2f) / orbResetTime)) + 1f, lightningLargeMax);
-            isLightningMediumScaling = lightningStrikeChance * lightningMediumChance * Mathf.Min((gameTime * ((lightningMediumMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningMediumMax / 2f) / orbResetTime)) + 1f, lightningMediumMax);
 
-            if (lightningPick < isLightningStrikeScaling || !spawnBoltPlayed)
+            //lightningAnimator.SetBool("LightningStrike", false);
+            //lightningAnimator.SetBool("LightningLarge", false);
+            //lightningAnimator.SetBool("LightningMedium", false);
+            //lightningAnimator.SetBool("LightningSmall", false);
+
+            isBaseLightningChanceScaling = baseLightningChance * Mathf.Min((gameTime * (baseLightningMax / 2f) / maxTimeScaling) + (timeSinceOrbUsed * (baseLightningMax / 2f) / orbResetTime) + 1f, baseLightningMax);
+
+            if (lightningChance < baseLightningChance * Mathf.Min((gameTime * (baseLightningMax / 2f) / maxTimeScaling) + (timeSinceOrbUsed * (baseLightningMax / 2f) / orbResetTime), baseLightningMax) || !spawnBoltPlayed)
             {
-                //Debug.Log("LightningSTRIKE" + lightningPick);
-               
-                lightningAnimator.Play("LightningStrike", -1, 0f);
+                float lightningPick = Random.Range(0f, 1f);
 
-                //lightningAnimator.SetBool("LightningStrike", true);
-                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+                // the math bit post lightingStrikeChance should be its own function with arguments for the max and the ratio between the two?
+                isLightningStrikeScaling = lightningStrikeChance * Mathf.Min((gameTime * ((lightningStrikeMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningStrikeMax / 2f) / orbResetTime)) + 1f, lightningStrikeMax);
+                isLightningLargeScaling = lightningStrikeChance * lightningLargeChance * Mathf.Min((gameTime * ((lightningLargeMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningLargeMax / 2f) / orbResetTime)) + 1f, lightningLargeMax);
+                isLightningMediumScaling = lightningStrikeChance * lightningMediumChance * Mathf.Min((gameTime * ((lightningMediumMax / 2f) / maxTimeScaling)) + (timeSinceOrbUsed * ((lightningMediumMax / 2f) / orbResetTime)) + 1f, lightningMediumMax);
 
-                if (spawnBoltPlayed)
+                if (lightningPick < isLightningStrikeScaling || !spawnBoltPlayed)
                 {
+                    //Debug.Log("LightningSTRIKE" + lightningPick);
+
+                    lightningAnimator.Play("LightningStrike", -1, 0f);
+
+                    //lightningAnimator.SetBool("LightningStrike", true);
+                    AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+
+                    if (spawnBoltPlayed)
+                    {
+                        Vector3 pos = Player.activePlayer.transform.position;
+                        Vector3 randomPos = new Vector3(pos.x + Random.Range(-10f, 10f), pos.y + Random.Range(-10f, 10f), 0f);
+
+                        World.activeWorld.lightningBolt.CallLightning(randomPos);
+                        World.activeWorld.explosionSpawner.CreateDangerZone(5000f, 0f, randomPos, true, true, false, Vector3.one, false, Quaternion.identity, 0);
+
+                    }
+
+                    spawnBoltPlayed = true;
+
+                }
+                else if (lightningPick < isLightningLargeScaling)
+                {
+                    //Debug.Log("lightningLarge" + lightningPick);
+
+                    lightningAnimator.Play("LightningLarge", -1, 0f);
+
+                    //lightningAnimator.SetBool("LightningLarge", true);
+                    AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+                }
+                else if (lightningPick < isLightningMediumScaling)
+                {
+                    //Debug.Log("lightningMedium" + lightningPick);
+
+                    lightningAnimator.Play("LightningMedium", -1, 0f);
+
+                    //lightningAnimator.SetBool("LightningMedium", true);
+                    AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+                }
+                else
+                {
+                    //Debug.Log("lightning small" + lightningPick);
+
+                    lightningAnimator.Play("LightningSmall", -1, 0f);
+
+                    //lightningAnimator.SetBool("LightningSmall", true);
+                    AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+                }
+            }
+        }
+        else
+        {
+
+            timePerTestCurrent += Time.deltaTime;
+
+            if(timePerTestCurrent >= timePerTest)
+            {
+                if (testSmall)
+                {
+                    lightningAnimator.Play("LightningSmall", -1, 0f);
+                }
+                else if (testMedium)
+                {
+                    lightningAnimator.Play("LightningMedium", -1, 0f);
+                }
+                else if (testLarge)
+                {
+                    lightningAnimator.Play("LightningLarge", -1, 0f);
+                }
+                else if (testLightningStrike)
+                {
+                    lightningAnimator.Play("LightningStrike", -1, 0f);
+
                     Vector3 pos = Player.activePlayer.transform.position;
                     Vector3 randomPos = new Vector3(pos.x + Random.Range(-10f, 10f), pos.y + Random.Range(-10f, 10f), 0f);
 
                     World.activeWorld.lightningBolt.CallLightning(randomPos);
                     World.activeWorld.explosionSpawner.CreateDangerZone(5000f, 0f, randomPos, true, true, false, Vector3.one, false, Quaternion.identity, 0);
-                    
                 }
 
-                spawnBoltPlayed = true;
-
-            }
-            else if (lightningPick < isLightningLargeScaling)
-            {
-                //Debug.Log("lightningLarge" + lightningPick);
-
-                lightningAnimator.Play("LightningLarge", -1, 0f);
-
-                //lightningAnimator.SetBool("LightningLarge", true);
-                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
-            }
-            else if (lightningPick < isLightningMediumScaling)
-            {
-                //Debug.Log("lightningMedium" + lightningPick);
-
-                lightningAnimator.Play("LightningMedium", -1, 0f);
-
-                //lightningAnimator.SetBool("LightningMedium", true);
-                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
-            }
-            else
-            {
-                //Debug.Log("lightning small" + lightningPick);
-
-                lightningAnimator.Play("LightningSmall", -1, 0f);
-
-                //lightningAnimator.SetBool("LightningSmall", true);
-                AkSoundEngine.PostEvent("PlayThunder", this.gameObject);
+                timePerTestCurrent = 0f;
             }
         }
+
+    
     }
     private void UpdateRain()
     {

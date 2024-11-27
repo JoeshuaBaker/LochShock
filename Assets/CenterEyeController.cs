@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CenterEyeController : MonoBehaviour
 {
     public Animator animator;
+    public Image blocker;
+    public bool blockerFadeIn;
+    public bool blockerFadeOut;
+    public float blockerFadeTime;
 
     public GameObject centerEyeMain;
     public GameObject centerEyeFlap;
@@ -55,6 +60,53 @@ public class CenterEyeController : MonoBehaviour
         if (eyeActive)
         { 
             AnimateCenterEye();
+
+            if (blockerFadeIn)
+            {
+                blockerFadeTime += Time.deltaTime * 2f;
+
+                var color = blocker.color;
+
+                color.a = Mathf.Lerp(0f, 1f, blockerFadeTime);
+
+                blocker.color = color;
+
+                if(color.a >= 1f)
+                {
+                    blockerFadeTime = 0f;
+                    blockerFadeIn = false;
+                    FadeInComplete();
+                }
+            }
+
+            if (blockerFadeOut)
+            {
+                blockerFadeTime += Time.deltaTime * 2f;
+
+                var color = blocker.color;
+
+                color.a = Mathf.Lerp(1f, 0f, blockerFadeTime);
+
+                blocker.color = color;
+
+                if (color.a >= 1f)
+                {
+                    blockerFadeTime = 0f;
+                    blockerFadeOut = false;
+                    FadeOutComplete();
+                }
+            }
+
+            AnimatorStateInfo animState = animator.GetNextAnimatorStateInfo(0);
+
+            if(animState.normalizedTime >= 1f && blocker.color.a == 0f)
+            {
+                eyeActive = false;
+            }
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -143,13 +195,32 @@ public class CenterEyeController : MonoBehaviour
         eyeActive = true;
         //eyeParent.SetActive(true);
         animator.Play("MiddleEyeIntro");
+        this.gameObject.SetActive(true);
 
     }
 
     public void CenterEyeExit()
     {
-        eyeActive = false;
         animator.Play("MiddleEyeOutro");
     }
 
+    public void FadeBlockerIn()
+    {
+        blockerFadeIn = true;
+    }
+
+    public void FadeInComplete()
+    {
+
+    }
+
+    public void FadeBlockerOut()
+    {
+        blockerFadeIn = false;
+    }
+
+    public void FadeOutComplete()
+    {
+
+    }
 }

@@ -7,42 +7,48 @@ public class SpawnEffects : MonoBehaviour
 {
     public CinemachineImpulseSource spawnImp;
     public Animator pillarAnimator;
-    public CraterCreator craterCreator;
+    public GameObject spawnPillar;
     private bool hasCrater;
     public LightningBolt lightningBolt;
+    public bool spawnedBolt;
+    public bool decay = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject world = GameObject.FindWithTag ("World");
-        craterCreator = world.GetComponent<CraterCreator>();
         AkSoundEngine.PostEvent("PlaySpawn", this.gameObject); 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        AnimatorStateInfo spawnAnimState = pillarAnimator.GetCurrentAnimatorStateInfo(0);
-
-        if (spawnAnimState.normalizedTime >= 0.005f && hasCrater == false)
+        if (decay)
         {
-            if(craterCreator != null)
+            AnimatorStateInfo spawnAnimState = pillarAnimator.GetCurrentAnimatorStateInfo(0);
+
+            if (!spawnedBolt)
             {
-                craterCreator.CreateCrater(this.transform.position, 3);
-
+                lightningBolt.CallLightning(this.transform.position);
+                spawnedBolt = true;
             }
-            spawnImp.GenerateImpulse(3f);
-            hasCrater = true;
 
-            lightningBolt.CallLightning(this.transform.position);
+            if (spawnAnimState.normalizedTime >= 0.005f && hasCrater == false)
+            {
+                World.activeWorld.craterCreator.CreateCrater(this.transform.position, 3);
+                spawnImp.GenerateImpulse(3f);
+                hasCrater = true;
+            }
+            if (spawnAnimState.normalizedTime >= 1f)
+            {
+                Destroy(this.gameObject);
+            }
+        }  
+    }
 
-        }
-        if (spawnAnimState.normalizedTime >= 1f)
-        {
-            Destroy(this.gameObject);
-        }
-        
+    public void PlayerSpawned()
+    {
+        spawnPillar.SetActive(true);
+        lightningBolt.CallLightning(this.transform.position);
+        decay = true;
     }
 }
