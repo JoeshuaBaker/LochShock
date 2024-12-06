@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
     public ActiveItem activeItem = null;
     public Gun[] guns = new Gun[2];
     public Item[] activeItems = new Item[1];
-    public Item[] itemStash = new Item[2];
+    public Item[] itemStash = new Item[8];
     public Item[] items = new Item[5];
     private Dictionary<Item.ItemType, Item[]> itemMap;
     private Dictionary<Item[], Transform> collectionParentMap;
@@ -29,18 +29,24 @@ public class Inventory : MonoBehaviour
         {
             if(allItemsInternal == null)
             {
-                allItemsInternal = new Item[10];
+                allItemsInternal = new Item[16];
             }
             allItemsInternal[0] = guns[0];
             allItemsInternal[1] = guns[1];
             allItemsInternal[2] = activeItems[0];
             allItemsInternal[3] = itemStash[0];
             allItemsInternal[4] = itemStash[1];
-            allItemsInternal[5] = items[0];
-            allItemsInternal[6] = items[1];
-            allItemsInternal[7] = items[2];
-            allItemsInternal[8] = items[3];
-            allItemsInternal[9] = items[4];
+            allItemsInternal[5] = itemStash[2];
+            allItemsInternal[6] = itemStash[3];
+            allItemsInternal[7] = itemStash[4];
+            allItemsInternal[8] = itemStash[5];
+            allItemsInternal[9] = itemStash[6];
+            allItemsInternal[10] = itemStash[7];
+            allItemsInternal[11] = items[0];
+            allItemsInternal[12] = items[1];
+            allItemsInternal[13] = items[2];
+            allItemsInternal[14] = items[3];
+            allItemsInternal[15] = items[4];
             return allItemsInternal;
         }
     }

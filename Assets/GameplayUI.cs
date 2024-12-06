@@ -72,7 +72,7 @@ public class GameplayUI : MonoBehaviour
                 }
                 else
                 {
-                    microFrames[i + 1].item = items[i+2];
+                    microFrames[i + 1].item = items[i+8];
                 }
             }
         }

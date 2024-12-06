@@ -13,6 +13,7 @@ public class InventoryUpgradeUi : MonoBehaviour
     public StatsSubUi statsUi;
 
     public Inventory inventory;
+    public Crosshair cursor;
 
     public bool hasActiveUpgrade;
 
@@ -35,6 +36,9 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public Action OnClose;
 
+    public float shimmerScrollTime;
+    public Material shimmerMat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +57,7 @@ public class InventoryUpgradeUi : MonoBehaviour
 
             if (animState.IsName("BottomButtonsOutro") && animState.normalizedTime >= 1f)
             {
-                if(!upgradeUi.checkOutro && !menuUi.checkOutro && !statsUi.checkOutro)
+                if(!upgradeUi.checkOutro && !menuUi.checkOutro && !statsUi.checkOutro && !invUi.checkOutro)
                 {
                     checkOutro = false;
                     World.activeWorld.Pause(false);
@@ -66,6 +70,21 @@ public class InventoryUpgradeUi : MonoBehaviour
                 }
             }
         }
+
+        shimmerScrollTime += Time.unscaledDeltaTime;
+        shimmerMat.SetFloat("_UnscaledTime", shimmerScrollTime);
+    }
+
+    public void OnLevelUpButtonPressed()
+    {
+        invUi.ToggleLevelUpMode();
+        cursor.ToggleLevelUp();
+    }
+
+    public void OnRecycleButtonPressed()
+    {
+        invUi.ToggleRecycleMode();
+        cursor.ToggleRecycle();
     }
 
     public void OnPreviewButtonPressed()
@@ -135,7 +154,7 @@ public class InventoryUpgradeUi : MonoBehaviour
         upgradeUi.DismissUpgradeUi();
 
         focusInv = true;
-        switchButtonText.text = "UPGRADE";
+        switchButtonText.text = "SHOP";
     }
 
     public void SwitchToUpgrade()
@@ -156,7 +175,7 @@ public class InventoryUpgradeUi : MonoBehaviour
         invUi.DisplayInventory();
         hasActiveUpgrade = false;
         focusInv = true;
-        switchButtonText.text = "UPGRADE";
+        switchButtonText.text = "SHOP";
 
         switchButton.DisableButton();
         continueButton.EnableButton();
@@ -182,9 +201,13 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public void InteractInventory()
     {
+        if (checkOutro)
+        {
+            return;
+        }
+
         if (hasActiveUpgrade)
         {
-
             OnSwitchButtonPressed();
         }
         else
@@ -226,6 +249,8 @@ public class InventoryUpgradeUi : MonoBehaviour
             invUi.DismissInventory();
         }
 
+        invUi.AllModesOff();
+        cursor.AllTogglesOff();
         DismissBottomButtons();
     }
 

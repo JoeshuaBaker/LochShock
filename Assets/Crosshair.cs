@@ -12,6 +12,12 @@ public class Crosshair : MonoBehaviour
     public TextMeshProUGUI ammoIndicatorShadow;
     public GameObject crosshairVis;
     public GameObject menuCursor;
+    public Image menuContextImage;
+    public Sprite recycleSprite;
+    public Sprite levelUpSprite;
+
+    public bool showRecycle;
+    public bool showLevelUp;
 
     public static Crosshair activeCrosshair;
 
@@ -43,6 +49,8 @@ public class Crosshair : MonoBehaviour
             crosshairVis.SetActive(true);
         }
         
+
+
     }
 
     public void UpdateCrosshairPosition(Vector2 position)
@@ -67,5 +75,44 @@ public class Crosshair : MonoBehaviour
                 reloadIndicator.fillAmount = reloadFill;
             }
         }
+    }
+
+    public void ToggleRecycle()
+    {
+        if (!showRecycle || showLevelUp)
+        {
+            menuContextImage.sprite = recycleSprite;
+            menuContextImage.gameObject.SetActive(true);
+            showLevelUp = false;
+            showRecycle = true;
+        }
+        else
+        {
+            menuContextImage.gameObject.SetActive(false);
+            showRecycle = false;
+        }
+    }
+
+    public void ToggleLevelUp()
+    {
+        if (!showLevelUp || showRecycle)
+        {
+            menuContextImage.sprite = levelUpSprite;
+            menuContextImage.gameObject.SetActive(true);
+            showRecycle = false;
+            showLevelUp = true;
+        }
+        else
+        {
+            menuContextImage.gameObject.SetActive(false);
+            showLevelUp = false;
+        }
+    }
+
+    public void AllTogglesOff()
+    {
+        showRecycle = false;
+        showLevelUp = false;
+        menuContextImage.gameObject.SetActive(false);
     }
 }

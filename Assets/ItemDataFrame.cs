@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 
-public class ItemDataFrame : MonoBehaviour
+public class ItemDataFrame : MonoBehaviour, IDataFrame
 {
     public Item item;
     public bool isStash = false;
@@ -28,10 +29,11 @@ public class ItemDataFrame : MonoBehaviour
     public TMP_Text itemStatusSlot;
     public TMP_Text itemData;
     public Button topButton;
-    public TMP_Text topButtonText;
+    public TMP_Text leftTabText;
     public Button bottomButton;
-    public TMP_Text bottomButtonText;
+    public TMP_Text rightTabText;
     public TMP_Text emptyFrameSlotText;
+    public GameObject tabParent;
 
     public Image raritySmear;
     public Image rarityShine;
@@ -227,16 +229,12 @@ public class ItemDataFrame : MonoBehaviour
         itemRarity.text = item.rarity.ToString();
         itemRarity.text = "<alpha=#88>" + itemRarity.text.ToUpper();
 
-        Debug.Log("setitem");
-
         if (newFrame)
         {
             itemRarity.color = rarityTextColors[(int)item.rarity];
             raritySmear.color = raritySmearColors[(int)item.rarity];
             rarityShine.color = rarityShineColors[(int)item.rarity];
             rarityTint.color = rarityTintColors[(int)item.rarity];
-
-            Debug.Log(item.rarity);
 
             if (isStash)
             {
@@ -256,14 +254,6 @@ public class ItemDataFrame : MonoBehaviour
 
         itemStatusSlot.text = item.itemType.ToString();
         itemStatusSlot.text = itemStatusSlot.text.ToUpper();
-
-        if(!topButtonText.text.Contains("Take") && !topButtonText.text.Contains("Unstash") && !newFrame)
-        {
-            topButton.interactable = item.levelUpCost > 0 && Player.activePlayer.inventory.scrap >= item.levelUpCost;
-        }
-
-        topButtonText.text = item.levelUpCost.ToString();
-        bottomButtonText.text = item.disassembleValue.ToString();
 
         StatBlockContext context = item.GetStatBlockContext();
         IEnumerable<string> itemDataStrings = context.GetStatContextStrings();
@@ -306,9 +296,9 @@ public class ItemDataFrame : MonoBehaviour
                 }
 
                 //disable disassemble button
-                if(item == Player.activePlayer.inventory.activeGun && !bottomButtonText.text.Contains("(E)"))
+                if(item == Player.activePlayer.inventory.activeGun && !rightTabText.text.Contains("(E)"))
                 {
-                    bottomButtonText.text += "(E)";
+                    rightTabText.text += "(E)";
                 }
 
                 fullFrameParent.gameObject.SetActive(item != null);
@@ -334,8 +324,8 @@ public class ItemDataFrame : MonoBehaviour
                 break;
 
             default:
-                topButtonText.text = "";
-                bottomButtonText.text = "";
+                leftTabText.text = "";
+                rightTabText.text = "";
                 break;
         }
 
@@ -416,6 +406,8 @@ public class ItemDataFrame : MonoBehaviour
         decayUpgradeColor = true;
 
         upgradeDecayCurrent = 0f;
+
+        UpdateTabText();
     }
 
     public void PlayRecycleEffect()
@@ -453,5 +445,84 @@ public class ItemDataFrame : MonoBehaviour
         {
             upgradeUi.Take(this);
         }
+        else if(invUi != null)
+        {
+            invUi.CardClicked(this);
+        }
     }
+
+    public void OnSelect()
+    {
+        if (invUi != null)
+        {
+            UpdateTabText();
+
+            if (invUi.recycleMode || invUi.levelUpMode)
+            {
+                tabParent.SetActive(true);
+            }
+        }
+    }
+
+    public void OnPointerEnter()
+    {
+        if(cardBackButton.interactable == true)
+        {
+            cardBackButton.Select();
+        }
+    }
+
+    public void OnPointerExit()
+    {
+        if (EventSystem.current.currentSelectedGameObject == cardBackButton.gameObject)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    public void OnDeselect()
+    {
+        if(invUi != null)
+        {
+            tabParent.SetActive(false);
+        }
+    }
+
+    public void UpdateTabText()
+    {
+        if(invUi == null)
+        {
+            return;
+        }
+
+        if (invUi.recycleMode)
+        {
+            //TODO items giving/taking upgrade kits
+            //rightTabText.text = "+" + item.upgradeKitsOnRecycle.ToString();
+
+            leftTabText.text = "+" + item.disassembleValue.ToString();
+            rightTabText.text = "0";
+
+            leftTabText.color = Color.white;
+            rightTabText.color = Color.white;
+        }
+        else if (invUi.levelUpMode)
+        {
+            //TODO items giving/taking upgrade kits
+            //leftTabText.text = "-" + item.disassembleValue.ToString();
+            //rightTabText.text = "-" + item.upgradeKitsToLevel.ToString();
+
+            leftTabText.text = "-" + item.levelUpCost.ToString();
+            rightTabText.text = "0";
+
+            leftTabText.color = Color.red;
+            rightTabText.color = Color.red;
+        }
+    }
+
+    public Item GetItem()
+    {
+        return item;
+    }
+
 }

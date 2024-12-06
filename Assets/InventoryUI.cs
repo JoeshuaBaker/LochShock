@@ -166,13 +166,13 @@ public class InventoryUI : MonoBehaviour
         {
             if (frame.isStash)
             {
-                frame.SetupButton(frame.topButton, frame.topButtonText, Unstash, nameof(Unstash).SplitCamelCase(), false);
+                frame.SetupButton(frame.topButton, frame.leftTabText, Unstash, nameof(Unstash).SplitCamelCase(), false);
             }
             else
             {
-                frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+                frame.SetupButton(frame.topButton, frame.leftTabText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
             }
-            frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
+            frame.SetupButton(frame.bottomButton, frame.rightTabText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
         }
 
         for (int i = 0; i < weaponItemFrames.Length; i++)
@@ -214,12 +214,12 @@ public class InventoryUI : MonoBehaviour
             Item item = i < items.Length ? items[i] : null;
 
             //Set buttons to Take and Disassemble
-            frame.SetupButton(frame.topButton, frame.topButtonText, Take, nameof(Take).SplitCamelCase(), false);
-            frame.SetupButton(frame.bottomButton, frame.bottomButtonText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
+            frame.SetupButton(frame.topButton, frame.leftTabText, Take, nameof(Take).SplitCamelCase(), false);
+            frame.SetupButton(frame.bottomButton, frame.rightTabText, Disassemble, nameof(Disassemble).SplitCamelCase(), true);
 
             if (item != null && inventory.HasSpaceFor(item) && !inventory.HasNonStashSpaceFor(item))
             {
-                frame.topButtonText.text = "Take (Stash)";
+                frame.leftTabText.text = "Take (Stash)";
             }
 
             frame.ReflectInventoryState(newState, inRange ? item : null);
@@ -272,9 +272,9 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            if (!frame.topButtonText.text.Contains("(Make Room)"))
+            if (!frame.leftTabText.text.Contains("(Make Room)"))
             {
-                frame.topButtonText.text += "(Make Room)";
+                frame.leftTabText.text += "(Make Room)";
             }
         }
     }
@@ -318,9 +318,9 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            if(!frame.topButtonText.text.Contains("(Make Room)"))
+            if(!frame.leftTabText.text.Contains("(Make Room)"))
             {
-                frame.topButtonText.text += "(Make Room)";
+                frame.leftTabText.text += "(Make Room)";
             }
         }
     }
@@ -336,7 +336,7 @@ public class InventoryUI : MonoBehaviour
     public void LevelUp(ItemDataFrame frame)
     {
         inventory.LevelUp(frame.item);
-        frame.SetupButton(frame.topButton, frame.topButtonText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
+        frame.SetupButton(frame.topButton, frame.leftTabText, LevelUp, nameof(LevelUp).SplitCamelCase(), true);
         frame.ReflectInventoryState(state, frame.item);
         scrapText.text = inventory.scrap.ToString();
         if(!frame.topButton.interactable)
@@ -356,7 +356,7 @@ public class InventoryUI : MonoBehaviour
             if(inventory.inactiveGun == null)
             {
                 frame.bottomButton.interactable = false;
-                frame.bottomButtonText.text = "Can't Disassemble.";
+                frame.rightTabText.text = "Can't Disassemble.";
                 if (frame.topButton.interactable)
                 {
                     eventSystem.SetSelectedGameObject(frame.topButton.gameObject);
@@ -372,9 +372,9 @@ public class InventoryUI : MonoBehaviour
                 inventory.SwitchWeapons();
                 foreach(var weaponFrame in weaponItemFrames)
                 {
-                    if(weaponFrame.item == inventory.activeGun && !weaponFrame.bottomButtonText.text.Contains("(E)"))
+                    if(weaponFrame.item == inventory.activeGun && !weaponFrame.rightTabText.text.Contains("(E)"))
                     {
-                        weaponFrame.bottomButtonText.text += "(E)";
+                        weaponFrame.rightTabText.text += "(E)";
                     }
                 }
             }

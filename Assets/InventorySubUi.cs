@@ -7,14 +7,19 @@ public class InventorySubUi : MonoBehaviour
     public Inventory inventory;
     public InventoryUpgradeUi invUpgradeUi;
 
+    public Animator stashOutlineAnimator;
+
     public bool isSetup;
+    public bool levelUpMode;
+    public bool recycleMode;
+    public bool checkOutro;
 
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
     public ItemDataFrame[] topItemFrames = new ItemDataFrame[5];
     public ItemDataFrame[] bottomItemFrames = new ItemDataFrame[5];
     public ItemDataFrame[] weaponItemFrames = new ItemDataFrame[2];
     public ItemDataFrame[] activeItemFrames = new ItemDataFrame[1];
-    public ItemDataFrame[] stashItemFrames = new ItemDataFrame[2];
+    public StashDataFrame[] stashItemFrames = new StashDataFrame[2];
 
 
     // Start is called before the first frame update
@@ -26,7 +31,16 @@ public class InventorySubUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (checkOutro)
+        {
+            AnimatorStateInfo animState = stashOutlineAnimator.GetCurrentAnimatorStateInfo(0);
 
+            if (animState.IsName("StashOutlineOutro") && animState.normalizedTime >= 1f)
+            {
+                this.gameObject.SetActive(false);
+                checkOutro = false;
+            }
+        }
     }
 
     void Setup()
@@ -34,18 +48,6 @@ public class InventorySubUi : MonoBehaviour
 
         inventory = Player.activePlayer.inventory;
 
-        for (int i = 0; i < topItemFrames.Length; i++)
-        {
-            allFrames[i] = topItemFrames[i];
-            allFrames[i + topItemFrames.Length] = bottomItemFrames[i];
-        }
-        weaponItemFrames[0] = topItemFrames[0];
-        weaponItemFrames[1] = topItemFrames[1];
-        activeItemFrames[0] = topItemFrames[2];
-        stashItemFrames[0] = topItemFrames[3];
-        stashItemFrames[1] = topItemFrames[4];
-
-        //Set item data frame slot types
         foreach (ItemDataFrame itemFrame in weaponItemFrames)
         {
             itemFrame.slotType = Item.ItemType.Weapon;
@@ -54,12 +56,6 @@ public class InventorySubUi : MonoBehaviour
         foreach (ItemDataFrame itemFrame in activeItemFrames)
         {
             itemFrame.slotType = Item.ItemType.Active;
-        }
-
-        foreach (ItemDataFrame itemFrame in stashItemFrames)
-        {
-            itemFrame.isStash = true;
-            itemFrame.slotType = Item.ItemType.Item;
         }
 
         foreach (ItemDataFrame itemFrame in bottomItemFrames)
@@ -113,12 +109,52 @@ public class InventorySubUi : MonoBehaviour
         }
     }
 
+    public void ToggleLevelUpMode()
+    {
+        if (levelUpMode)
+        {
+            levelUpMode = false;
+        }
+        else
+        {
+            levelUpMode = true;
+            recycleMode = false;
+        }
+    }
+
+    public void ToggleRecycleMode()
+    {
+        if (recycleMode)
+        {
+            recycleMode = false;
+        }
+        else
+        {
+            recycleMode = true;
+            levelUpMode = false;
+        }
+    }
+
+    public void AllModesOff()
+    {
+        recycleMode = false;
+        levelUpMode = false;
+    }
+
     public void DismissInventory()
     {
         for (int i = 0; i < allFrames.Length; i++)
         {
             allFrames[i].PlayCardOutro(-.2f);
         }
+        for(int i =0; i < stashItemFrames.Length; i++)
+        {
+            stashItemFrames[i].PlayCardOutro(-0.03f * i);
+        }
+
+        //stashOutlineAnimator.SetBool("Outro", true);
+        stashOutlineAnimator.Play("StashOutlineOutro");
+        checkOutro = true;
     }
 
     public void FocusInventory()
@@ -127,19 +163,37 @@ public class InventorySubUi : MonoBehaviour
         {
             allFrames[i].PlayCardIntro(-.2f, true);
         }
+        for (int i = 0; i < stashItemFrames.Length; i++)
+        {
+            stashItemFrames[i].PlayCardIntro(-.2f);
+        }
+
+        //stashOutlineAnimator.SetBool("Outro", false);
+        stashOutlineAnimator.Play("StashOutlineIntro");
     }
 
-    public void AttemptUpgradeItem(ItemDataFrame itemFrame)
+    public void CardClicked(IDataFrame itemFrame)
     {
-        // the actual shit i want to work
-        if (itemFrame.item.levelUpCost > inventory.scrap)
+        if (levelUpMode)
+        {
+            AttemptUpgradeItem(itemFrame);
+        }
+        else if (recycleMode)
+        {
+            AttemptRecycleItem(itemFrame);
+        }
+    }
+
+    public void AttemptUpgradeItem(IDataFrame itemFrame)
+    {
+        if (itemFrame.GetItem().levelUpCost > inventory.scrap)
         {
             itemFrame.PlayContextMessage("NOT ENOUGH SCRAP");
             itemFrame.PlayCardShake();
         }
         else
         {
-            inventory.LevelUp(itemFrame.item);
+            inventory.LevelUp(itemFrame.GetItem());
             invUpgradeUi.UpdateScrapAmount();
             itemFrame.PlayUpgradeEffect();
             itemFrame.PlayCardShake();
@@ -147,9 +201,9 @@ public class InventorySubUi : MonoBehaviour
         }
     }
 
-    public void AttemptRecycleItem(ItemDataFrame frame)
+    public void AttemptRecycleItem(IDataFrame frame)
     {
-        if (frame.item == inventory.activeGun)
+        if (frame.GetItem() == inventory.activeGun)
         {
             if (inventory.inactiveGun == null)
             {
@@ -163,7 +217,7 @@ public class InventorySubUi : MonoBehaviour
             }
         }
 
-        inventory.DisassembleItem(frame.item);
+        inventory.DisassembleItem(frame.GetItem());
         invUpgradeUi.UpdateScrapAmount();
         frame.PlayRecycleEffect();
         frame.PlayCardShake();
