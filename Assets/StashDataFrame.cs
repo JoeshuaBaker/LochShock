@@ -27,6 +27,8 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
     public TMP_Text rightTabText;
     public Button cardBackButton;
 
+    public bool recycleTabs;
+
     public Image upgradeEffect;
     public bool decayUpgradeColor;
     public float timeToDecayUpgrade;
@@ -124,6 +126,22 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
                 playContextMessage = false;
             }
         }
+
+        if (recycleTabs)
+        {
+            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
+
+            leftTabText.color = Color.Lerp( Color.yellow, Color.white, time);
+            rightTabText.color = Color.Lerp( Color.yellow, Color.white, time);
+
+        }
+        else
+        {
+            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
+
+            leftTabText.color = Color.Lerp( new Color(0.5f,0.5f, 1f, 1f), Color.white, time);
+            rightTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
+        }
     }
 
     public void SetItem(Item item)
@@ -171,7 +189,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
 
     public void PlayCardIntro(float maxDelay = 0f, bool playShineEffect = false)
     {
-        animator.Play("StashFrameIntro", -1, UnityEngine.Random.Range(-0.5f, 0f));
+        animator.Play("StashFrameIntro", 0, UnityEngine.Random.Range(-0.5f, 0f));
     }
 
     public void PlayCardOutro(float maxDelay = 0f)
@@ -263,8 +281,8 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
             leftTabText.text = "+" + item.disassembleValue.ToString();
             rightTabText.text = "0";
 
-            leftTabText.color = Color.white;
-            rightTabText.color = Color.white;
+            recycleTabs = true;
+
         }
         else if (invUi.levelUpMode)
         {
@@ -275,8 +293,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
             leftTabText.text = "-" + item.levelUpCost.ToString();
             rightTabText.text = "0";
 
-            leftTabText.color = Color.red;
-            rightTabText.color = Color.red;
+            recycleTabs = false;
         }
     }
 

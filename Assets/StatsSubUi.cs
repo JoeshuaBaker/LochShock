@@ -8,16 +8,20 @@ public class StatsSubUi : MonoBehaviour
 
     public Animator animator;
 
+    public InventoryUpgradeUi invUpgUi;
+
     public GameObject statTextBox;
     public GameObject CharacterTextBox;
 
-    public TMP_Text text;
+    public TMP_Text titleText;
+    public TMP_Text bodyText;
 
     public enum StatBeingDisplayed
     {
-        pageOne,
-        pageTwo,
-        character
+        primaryStats,
+        secondaryStats,
+        characterStats,
+        performanceStats
     }
 
     public StatBeingDisplayed currentDisplayedStat;
@@ -52,50 +56,87 @@ public class StatsSubUi : MonoBehaviour
 
     public void DismissStats(bool focusInv)
     {
-        if (focusInv)
-        {
-            animator.Play("StatsSubUiOutroInv");
-        }
-        else
-        {
-            animator.Play("StatsSubUiOutroUpgrade");
-        }
-
+        animator.Play("StatsSubUiOutroInv");
         checkOutro = true;
     }
 
     public void FocusStats(bool focusInv)
     {
-        if (focusInv)
-        {
-            this.gameObject.SetActive(true);
-            animator.Play("StatsSubUiIntroInv");
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
-            animator.Play("StatsSubUiIntroUpgrade");
-        }
+
+        this.gameObject.SetActive(true);
+        animator.Play("StatsSubUiIntroInv");
+
+        UpdateStatDisplay();
     }
 
     public void OnPageOneButtonPressed()
     {
-        currentDisplayedStat = StatBeingDisplayed.pageOne;
+        currentDisplayedStat = StatBeingDisplayed.primaryStats;
+        UpdateStatDisplay();
     }
 
     public void OnPageTwoButtonPressed()
     {
-        currentDisplayedStat = StatBeingDisplayed.pageTwo;
+        currentDisplayedStat = StatBeingDisplayed.secondaryStats;
+        UpdateStatDisplay();
     }
 
     public void OnCharacterStatsButtonPressed()
     {
-        currentDisplayedStat = StatBeingDisplayed.character;
+        currentDisplayedStat = StatBeingDisplayed.characterStats;
+        UpdateStatDisplay();
     }
 
-    public void UpdateDisplayBasedOnState()
+    public void OnPerformanceButtonPressed()
     {
+        currentDisplayedStat = StatBeingDisplayed.performanceStats;
+        UpdateStatDisplay();
+    }
 
+    public void OnExitButtonPressed()
+    {
+        invUpgUi.OnStatsButtonPressed();
+    }
+
+    public void UpdateStatDisplay()
+    {
+       switch (currentDisplayedStat)
+        {
+            case StatBeingDisplayed.primaryStats:
+
+                titleText.text = "PRIMARY STATS";
+
+                bodyText.text = "here are your primary stats";
+
+                break;
+
+            case StatBeingDisplayed.secondaryStats:
+
+                titleText.text = "SECONDARY STATS";
+
+                bodyText.text = "and secondary stats";
+
+                break;
+
+            case StatBeingDisplayed.characterStats:
+
+                titleText.text = "CHARACTER";
+
+                bodyText.text = "character stats";
+
+                break;
+
+            case StatBeingDisplayed.performanceStats:
+
+                titleText.text = "PERFORMANCE";
+
+                bodyText.text = "damage youve done";
+
+                break;
+
+            default:
+                break;
+        }
     }
 
 }

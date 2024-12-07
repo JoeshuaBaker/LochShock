@@ -14,12 +14,18 @@ public class InventorySubUi : MonoBehaviour
     public bool recycleMode;
     public bool checkOutro;
 
+    public float stashOffset = .1f;
+    public float stashWiggle = 4.5f;
+    public float timeMult = 3f;
+
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
     public ItemDataFrame[] topItemFrames = new ItemDataFrame[5];
     public ItemDataFrame[] bottomItemFrames = new ItemDataFrame[5];
     public ItemDataFrame[] weaponItemFrames = new ItemDataFrame[2];
     public ItemDataFrame[] activeItemFrames = new ItemDataFrame[1];
     public StashDataFrame[] stashItemFrames = new StashDataFrame[2];
+
+    public GameObject[] stashTransforms;
 
 
     // Start is called before the first frame update
@@ -41,6 +47,12 @@ public class InventorySubUi : MonoBehaviour
                 checkOutro = false;
             }
         }
+
+        for(int i = 0; i < stashTransforms.Length; i++)
+        {
+            stashTransforms[i].gameObject.transform.localPosition = new Vector3(Mathf.Sin((Time.unscaledTime * timeMult) + (i * stashOffset) * stashWiggle), 0f, 0f);
+        }
+
     }
 
     void Setup()

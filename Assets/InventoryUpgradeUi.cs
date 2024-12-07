@@ -51,6 +51,7 @@ public class InventoryUpgradeUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (checkOutro)
         {
             AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
@@ -73,6 +74,11 @@ public class InventoryUpgradeUi : MonoBehaviour
 
         shimmerScrollTime += Time.unscaledDeltaTime;
         shimmerMat.SetFloat("_UnscaledTime", shimmerScrollTime);
+    }
+
+    private void OnDestroy()
+    {
+        shimmerMat.SetFloat("_UnscaledTime", 0f);
     }
 
     public void OnLevelUpButtonPressed()

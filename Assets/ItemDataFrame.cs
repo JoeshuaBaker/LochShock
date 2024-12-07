@@ -76,6 +76,8 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
     public float recycleDecayCurrent;
     public float timeToDecayRecycle = 1f;
 
+    public bool recycleTabs;
+
 
     // Start is called before the first frame update
     void Start()
@@ -182,6 +184,22 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
                 contextMessageParent.SetActive(false);
                 playContextMessage = false;
             }
+        }
+
+        if (recycleTabs)
+        {
+            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
+
+            leftTabText.color = Color.Lerp(Color.yellow, Color.white, time);
+            rightTabText.color = Color.Lerp(Color.yellow, Color.white, time);
+
+        }
+        else
+        {
+            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
+
+            leftTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
+            rightTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
         }
     }
 
@@ -503,8 +521,7 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
             leftTabText.text = "+" + item.disassembleValue.ToString();
             rightTabText.text = "0";
 
-            leftTabText.color = Color.white;
-            rightTabText.color = Color.white;
+            recycleTabs = true;
         }
         else if (invUi.levelUpMode)
         {
@@ -515,8 +532,7 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
             leftTabText.text = "-" + item.levelUpCost.ToString();
             rightTabText.text = "0";
 
-            leftTabText.color = Color.red;
-            rightTabText.color = Color.red;
+            recycleTabs = false;
         }
     }
 

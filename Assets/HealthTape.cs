@@ -16,6 +16,7 @@ public class HealthTape : MonoBehaviour
     public int holdFrame;
 
     public Material mat;
+    public Material matInstance;
     public Material lightningMat;
     public SpriteRenderer borderSprite;
     public SpriteRenderer heartSprite;
@@ -55,6 +56,13 @@ public class HealthTape : MonoBehaviour
         {
             timePerFrame = animationDuration / assignedSprites.Length;
         }
+
+
+    }
+
+    private void OnDestroy()
+    {
+        mat.SetFloat("PlayerPos", 0f);
     }
 
     // Update is called once per frame
