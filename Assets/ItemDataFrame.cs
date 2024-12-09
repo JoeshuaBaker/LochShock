@@ -298,6 +298,8 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
             contextMessageDurationCurrent = 0f;
             contextMessageParent.SetActive(false);
         }
+
+        UpdateTabText();
     }
 
     public void ReflectInventoryState(InventoryUI.InventoryUIState state, Item item)
@@ -533,6 +535,10 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
             rightTabText.text = "0";
 
             recycleTabs = false;
+        }
+        else
+        {
+            tabParent.SetActive(false);
         }
     }
 

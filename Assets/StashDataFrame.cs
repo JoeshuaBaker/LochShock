@@ -142,6 +142,9 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
             leftTabText.color = Color.Lerp( new Color(0.5f,0.5f, 1f, 1f), Color.white, time);
             rightTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
         }
+
+        UpdateTabText();
+
     }
 
     public void SetItem(Item item)
@@ -189,7 +192,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
 
     public void PlayCardIntro(float maxDelay = 0f, bool playShineEffect = false)
     {
-        animator.Play("StashFrameIntro", 0, UnityEngine.Random.Range(-0.5f, 0f));
+        animator.Play("StashFrameIntro", 0, 0f);
     }
 
     public void PlayCardOutro(float maxDelay = 0f)
@@ -273,28 +276,40 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
 
     public void UpdateTabText()
     {
-        if (invUi.recycleMode)
+        if(item != null)
         {
-            //TODO items giving/taking upgrade kits
-            //rightTabText.text = "+" + item.upgradeKitsOnRecycle.ToString();
+            if (invUi.recycleMode)
+            {
+                //TODO items giving/taking upgrade kits
+                //rightTabText.text = "+" + item.upgradeKitsOnRecycle.ToString();
 
-            leftTabText.text = "+" + item.disassembleValue.ToString();
-            rightTabText.text = "0";
+                leftTabText.text = "+" + item.disassembleValue.ToString();
+                rightTabText.text = "0";
 
-            recycleTabs = true;
+                recycleTabs = true;
 
+            }
+            else if (invUi.levelUpMode)
+            {
+                //TODO items giving/taking upgrade kits
+                //leftTabText.text = "-" + item.disassembleValue.ToString();
+                //rightTabText.text = "-" + item.upgradeKitsToLevel.ToString();
+
+                leftTabText.text = "-" + item.levelUpCost.ToString();
+                rightTabText.text = "0";
+
+                recycleTabs = false;
+            }
+            else
+            {
+                tabParent.SetActive(false);
+            }
         }
-        else if (invUi.levelUpMode)
+        else
         {
-            //TODO items giving/taking upgrade kits
-            //leftTabText.text = "-" + item.disassembleValue.ToString();
-            //rightTabText.text = "-" + item.upgradeKitsToLevel.ToString();
-
-            leftTabText.text = "-" + item.levelUpCost.ToString();
-            rightTabText.text = "0";
-
-            recycleTabs = false;
+            tabParent.SetActive(false);
         }
+
     }
 
     public Item GetItem()
