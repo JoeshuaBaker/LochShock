@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class EnvironmentalEffectController : MonoBehaviour
+public class EnvironmentalEffectController : MonoBehaviour, ILevelLoadComponent
 {
     public Light2D initialLight;
     public bool initialLightDestroyed;
@@ -200,5 +200,22 @@ public class EnvironmentalEffectController : MonoBehaviour
         var emission = rain.emission;
         emission.rateOverTime = Mathf.Min((gameTime * ( 750f / maxTimeScaling )) + (timeSinceOrbUsed * (250f / orbResetTime)) , 1000f ) - 100f;
         //this probably needs to be looked at again so itdoesnt start raining too soon
+    }
+
+    //Loadable Interface Functions
+    public string LoadLabel()
+    {
+        return "Eerie Particles";
+    }
+
+    public int LoadPriority()
+    {
+        return 1000;
+    }
+
+    public void Load(World world)
+    {
+        EnvironmentalEffectController environmentalEffectInstance = Instantiate(this, Camera.main.transform);
+        world.level.environmentalEffects = environmentalEffectInstance;
     }
 }

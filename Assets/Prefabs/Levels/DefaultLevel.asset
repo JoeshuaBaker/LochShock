@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a2539e5b917c749857920118d758a8, type: 3}
+  m_Name: DefaultLevel
+  m_EditorClassIdentifier: 
+  level:
+    enemyPool: {fileID: 6847320939930338646, guid: 6a5ec3f0df0a24b4b82c83ba59f125d1, type: 3}
+    mapPool: {fileID: 3686959465730733939, guid: fb42258d5f251f04a849d4b1398dc6fc, type: 3}
+    enemyEmitterSpawner: {fileID: 7293946189133774408, guid: 1f65f207ef67c9e42ae508ce057497c8, type: 3}
+    doodadManager: {fileID: 5657827700628792093, guid: 09d9c9f4d11ceba45bfc038e7f40f7ff, type: 3}
+    boss: {fileID: 2328696272206670772, guid: 83d73001c2f9fa04396f598f462ca900, type: 3}
+    environmentalEffects: {fileID: 3782097657568161937, guid: 4eee65980e7ea9342a7c8dd95a95aec9, type: 3}
+    settings: {fileID: 11400000, guid: aeb9a27211d24ad4780b24f9c5d13495, type: 2}
+  loadingString: 

@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3686959465730733938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3686959465730733936}
+  - component: {fileID: 3686959465730733939}
+  m_Layer: 0
+  m_Name: DefaultMapPool
+  m_TagString: World
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3686959465730733936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3686959465730733938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3686959465730733939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3686959465730733938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24adc9b8add75f46b959c172d89d612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maps:
+  - {fileID: 778304412622747737, guid: ec8160a9ce62df2478846da4ca985723, type: 3}
+  - {fileID: 778304412622747737, guid: f95e8d482860b5b4386362d35e687023, type: 3}
+  - {fileID: 778304412622747737, guid: b58aae845e2e2ad43b91852088619ff5, type: 3}
+  - {fileID: 778304412622747737, guid: 88bf62158ab3bc341aced28c4aae51d2, type: 3}
+  - {fileID: 778304412622747737, guid: 1bf56caaecd1a184798da2a45c18b5f4, type: 3}
+  - {fileID: 778304412622747737, guid: d4c4a7fd03afe314aa295235eba2165d, type: 3}
+  - {fileID: 778304412622747737, guid: cf4015b74bd10344884b7fcd8600c37f, type: 3}
+  - {fileID: 778304412622747737, guid: 045916a482983c440867309e08b126d5, type: 3}
+  - {fileID: 778304412622747737, guid: 08578382c183c6348ae28a17bf179504, type: 3}
+  - {fileID: 778304412622747737, guid: 1093aeb08a55a644cab5d5efa6d91dfb, type: 3}
+  - {fileID: 778304412622747737, guid: 30ed22092ca9f2945ae477370e5b6eb2, type: 3}
+  - {fileID: 778304412622747737, guid: 9e0eaf7b5e90fe14492cb876d2506576, type: 3}
+  - {fileID: 778304412622747737, guid: 267787cd6c676aa4ba2e1df8a166b5be, type: 3}
+  - {fileID: 778304412622747737, guid: c10b79b2fa044ac41bc1a67c02cc01e7, type: 3}
+  - {fileID: 778304412622747737, guid: 0139b0f8ef49a704291092100a8d6e41, type: 3}
+  - {fileID: 778304412622747737, guid: 9afc7bd79f6efed42b269e85f5609c8d, type: 3}
+  - {fileID: 778304412622747737, guid: db559493c4716c247914cdf9bc49df16, type: 3}
+  - {fileID: 778304412622747737, guid: 5d1146b462ab53946b75a43fdc10eb90, type: 3}
+  - {fileID: 778304412622747737, guid: e779eb0626cc9d04eafcb1130149ec06, type: 3}
+  - {fileID: 778304412622747737, guid: 42923c69ce6f0bc4d9fae9025ed9af39, type: 3}
+  - {fileID: 778304412622747737, guid: 809ec692a7b70104c9dea4a0c46a791a, type: 3}
+  - {fileID: 778304412622747737, guid: d72006b1d5208ba438b5e6114306e5a3, type: 3}
+  - {fileID: 778304412622747737, guid: 76448ca255c01494983f6509e38954a6, type: 3}
+  - {fileID: 778304412622747737, guid: 684d54d08a87e5b46b633e4ef8134bb8, type: 3}
+  - {fileID: 778304412622747737, guid: 59c854ca60d415a44a994fb8a0d668e4, type: 3}
+  - {fileID: 778304412622747737, guid: da27e7862a485c8458e4b69aa55e11e1, type: 3}
+  - {fileID: 778304412622747737, guid: 01131416287622f40aedaa30efe814b4, type: 3}
+  - {fileID: 778304412622747737, guid: fdfc43275f152de4998afc9c9641a4d8, type: 3}
+  - {fileID: 778304412622747737, guid: 88a63706cff41984eb2e30d2fb2c450c, type: 3}
+  - {fileID: 778304412622747737, guid: 21624340865fbd0478c7e9dd63f31618, type: 3}
+  - {fileID: 778304412622747737, guid: 78e914d8229c7f7428e3317c6fdf61fa, type: 3}
+  - {fileID: 778304412622747737, guid: 4ce76442568a88b41916069eef64447f, type: 3}
+  - {fileID: 778304412622747737, guid: d7dd7c10791fc1d44a8bc7018a02c98d, type: 3}
+  startingMap: {fileID: 778304412622747737, guid: 2e6607af629cfb94387d106b6c1ee135, type: 3}

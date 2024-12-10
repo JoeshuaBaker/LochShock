@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5719881654018424275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5719881654018424273}
+  - component: {fileID: 7293946189133774408}
+  m_Layer: 0
+  m_Name: DefaultEmitterSpawner
+  m_TagString: World
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5719881654018424273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719881654018424275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5047782613334042936}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7293946189133774408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719881654018424275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3ccdd0efdd49a4fb755232549ce95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyEmitterParent: {fileID: 5047782613334042936}
+  enemyEmitters:
+  - {fileID: 1925318805583198977, guid: f74238149d9b4a94db9fa1ec3f3182e6, type: 3}
+  - {fileID: 313591325878783371, guid: 25f72b853300356429eecf626973aa06, type: 3}
+  - {fileID: 1036108636299689413, guid: f44e04c83813b1646816a96bb09365d4, type: 3}
+  - {fileID: 313591325878783371, guid: 25f72b853300356429eecf626973aa06, type: 3}
+  - {fileID: 313591325878783371, guid: 25f72b853300356429eecf626973aa06, type: 3}
+  - {fileID: 1036108636299689413, guid: f44e04c83813b1646816a96bb09365d4, type: 3}
+  - {fileID: 1036108636299689413, guid: f44e04c83813b1646816a96bb09365d4, type: 3}
+  emitterSpawnFrequencyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  emitterPowerBudgetCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemyDifficultyFactor: 0.25
+  orbDifficultyFactor: 0.75
+  emitterSpawnCooldownMax: 6
+  emitterSpawnCooldownMin: 3
+  powerBudgetFloor: 0
+  powerBudgetCeil: 1000
+  onlySpawnIfThereAreNChoices: 1
+  difficultySelector: 0
+  percentReadyToSpawn: 0
+  budgetUsed: 0
+  currentBudget: 0
+  activeEmitters: []
+  currentSpawnCooldown: 0
+  lowestPower: 0
+--- !u!1 &8560613024763509864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5047782613334042936}
+  m_Layer: 0
+  m_Name: EnemyEmitterParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5047782613334042936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560613024763509864}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5719881654018424273}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

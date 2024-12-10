@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BulletHell;
 
-public class EnemyEmitterSpawner : MonoBehaviour
+public class EnemyEmitterSpawner : MonoBehaviour, ILevelLoadComponent
 {
     public Transform enemyEmitterParent;
     public EnemyGun[] enemyEmitters;
@@ -132,9 +132,29 @@ public class EnemyEmitterSpawner : MonoBehaviour
             enemyGun.gameObject.SetActive(true);
             enemyGun.shooting = false;
             enemyGun.ready = true;
-
         }
 
         activeEmitters.Clear();
+    }
+
+    public string LoadLabel()
+    {
+        return "Evil Bullets";
+    }
+
+    public int LoadPriority()
+    {
+        return 1000;
+    }
+
+    public void Load(World world)
+    {
+        EnemyEmitterSpawner instance = Instantiate(this, world.transform);
+        world.level.enemyEmitterSpawner = instance;
+    }
+
+    public void Setup()
+    {
+        
     }
 }

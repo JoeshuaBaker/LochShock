@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6037709577749212580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3820391263137930312}
+  - component: {fileID: 5657827700628792093}
+  m_Layer: 0
+  m_Name: DefaultDoodads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3820391263137930312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037709577749212580}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5657827700628792093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037709577749212580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607e26b3b3670b943a68a909406120fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  offPathBasicDoodadArraySize: 180
+  offPathBasicDoodadArray: []
+  offPathBasicDoodads:
+  - {fileID: 6414674585177112813, guid: 3328419dc5b100249a919724b57edf42, type: 3}
+  - {fileID: 2709881310481546926, guid: 9ff2975c2bd1f544a8b493953cd2be26, type: 3}
+  - {fileID: 6249961820201995661, guid: 00bcf7e10c42e184ca121b34ddee210a, type: 3}
+  doodadHoriLimit: 25
+  doodadVertLimit: 16
+  onPathBasicDoodadArraySize: 0
+  onPathBasicDoodadArray: []
+  onPathBasicDoodads:
+  - {fileID: 4026585295670239749, guid: b47787f3d856c3e4a86b254ebde27b48, type: 3}
+  - {fileID: 6305275250530514260, guid: 2c3d04d2f3d57764fb897553d9dd4028, type: 3}
+  - {fileID: 5448870856350845337, guid: 129d3ea9be6086443b975ce6cdedae08, type: 3}
+  - {fileID: 733803182154612149, guid: a4b37597091325b4b9ba74f1f54a9a7a, type: 3}
+  - {fileID: 2167143718145862854, guid: 63311ec1b7ac8404088e620fbd701528, type: 3}
+  advancedDoodadArraySize: 400
+  advancedDoodad: {fileID: 7605541870679594542, guid: 0a422cc9a85ecae40b3adfe592d5c06a, type: 3}
+  advancedDoodadArray: []

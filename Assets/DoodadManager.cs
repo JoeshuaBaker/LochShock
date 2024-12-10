@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoodadManager : MonoBehaviour
+public class DoodadManager : MonoBehaviour, ILevelLoadComponent
 {
     public Player player;
     public int offPathBasicDoodadArraySize;
@@ -18,7 +18,6 @@ public class DoodadManager : MonoBehaviour
     public int advancedDoodadArraySize;
     public AdvancedDoodad advancedDoodad;
     public AdvancedDoodad[] advancedDoodadArray;
-
 
     void Start()
     {
@@ -124,5 +123,22 @@ public class DoodadManager : MonoBehaviour
 
             }
         }
+    }
+
+    //Loadable Interface Functions
+    public string LoadLabel()
+    {
+        return "Doodads";
+    }
+
+    public int LoadPriority()
+    {
+        return 1000;
+    }
+
+    public void Load(World world)
+    {
+        DoodadManager doodadManagerInstance = Instantiate(this, world.transform);
+        world.level.doodadManager = doodadManagerInstance;
     }
 }

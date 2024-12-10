@@ -43,7 +43,7 @@ public class AudioController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -124,7 +124,11 @@ public class AudioController : MonoBehaviour
 
     //Controls rain ambiance by setting number of rain particles on screen to the RainAmmount RTPC
     public void RainMaker()
-    {        
+    {
+        if(rainSystem == null)
+        {
+            rainSystem = World.activeWorld.level.environmentalEffects.rain;
+        }
         rainAmountRTPC.SetGlobalValue((float)rainSystem.particleCount);
 
         //Debug

@@ -4,7 +4,7 @@ using BulletHell;
 using UnityEngine;
 using Cinemachine;
 
-public class BossSeed : BulletCollidable
+public class BossSeed : BulletCollidable, ILevelLoadComponent
 {
     public Animator animatorSeed;
     public Animator animatorWarning;
@@ -479,5 +479,26 @@ public class BossSeed : BulletCollidable
             }
         }
         return;
+    }
+
+    //Loadable Interface Functions
+    public string LoadLabel()
+    {
+        return "Great Evil";
+    }
+
+    public int LoadPriority()
+    {
+        return 1000;
+    }
+
+    public void Setup()
+    {
+
+    }
+
+    public void Load(World world)
+    {
+        world.level.boss = this;
     }
 }
