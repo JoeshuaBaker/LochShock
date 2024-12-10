@@ -104,7 +104,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1599625709">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3835052393">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -124,7 +124,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="1339134273">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="481405388">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -263,11 +263,39 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1223690193" Name="PlayBossSeedWarning" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossSeedWarning" DurationType="OneShot" DurationMin="0.8" DurationMax="0.92">
+					<IncludedMemoryFiles>
+						<File Id="618149490" Language="SFX">
+							<ShortName>BossWarning_G.wav</ShortName>
+							<Path>SFX/BossWarning_G_10C4C929.wem</Path>
+						</File>
+						<File Id="1062545657" Language="SFX">
+							<ShortName>BossWarning_C.wav</ShortName>
+							<Path>SFX/BossWarning_C_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="739820383" Name="PlayBossSeedWhooshCut" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedWhooshCut" DurationType="OneShot" DurationMin="13.503667" DurationMax="13.503667">
 					<IncludedMemoryFiles>
 						<File Id="596862872" Language="SFX">
 							<ShortName>BossKill_WhooshCut.wav</ShortName>
 							<Path>SFX/BossKill_WhooshCut_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1007833275" Name="PlayBossWarningC" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossWarningC" DurationType="OneShot" DurationMin="0.8" DurationMax="0.8">
+					<IncludedMemoryFiles>
+						<File Id="1062545657" Language="SFX">
+							<ShortName>BossWarning_C.wav</ShortName>
+							<Path>SFX/BossWarning_C_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1007833279" Name="PlayBossWarningG" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossWarningG" DurationType="OneShot" DurationMin="0.92" DurationMax="0.92">
+					<IncludedMemoryFiles>
+						<File Id="618149490" Language="SFX">
+							<ShortName>BossWarning_G.wav</ShortName>
+							<Path>SFX/BossWarning_G_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -318,11 +346,19 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2731152201" Name="PlayDeathWallLoop" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\PlayDeathWallLoop" DurationType="Infinite">
+				<Event Id="2731152201" Name="PlayDeathWallLoop" ObjectPath="\Events\Default Work Unit\GameplayCombat\Enemies\Death Wall\PlayDeathWallLoop" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="864474302" Language="SFX">
-							<ShortName>DeathWall.wav</ShortName>
-							<Path>SFX/DeathWall_D79FB2B7.wem</Path>
+						<File Id="448430882" Language="SFX">
+							<ShortName>DeathWallScreams.wav</ShortName>
+							<Path>SFX/DeathWallScreams_D79FB2B7.wem</Path>
+						</File>
+						<File Id="546910953" Language="SFX">
+							<ShortName>DeathWallDrones.wav</ShortName>
+							<Path>SFX/DeathWallDrones_D79FB2B7.wem</Path>
+						</File>
+						<File Id="844249322" Language="SFX">
+							<ShortName>DeathWallWhispers.wav</ShortName>
+							<Path>SFX/DeathWallWhispers_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -399,6 +435,17 @@
 							<Path>SFX/Explosion_6_F6A9A3BE.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3187851718" Name="PlayFireMissle" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayFireMissle" DurationType="OneShot" DurationMin="1.452989" DurationMax="1.452989">
+					<IncludedMemoryFiles>
+						<File Id="191828263" Language="SFX">
+							<ShortName>FireMissle.wav</ShortName>
+							<Path>SFX/FireMissle_B3DD472F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="1053502162" Name="PlayGoldenGun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayGoldenGun" DurationType="OneShot" DurationMin="3.186667" DurationMax="3.186667">
 					<IncludedMemoryFiles>
@@ -682,22 +729,7 @@
 						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
 					</AuxBusSends>
 				</Event>
-				<Event Id="1023787777" Name="PlayRainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayRainAmbiance" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="77701406" Language="SFX">
-							<ShortName>Heavy Rain.wav</ShortName>
-							<Path>SFX/Heavy Rain_33E97668.wem</Path>
-						</File>
-						<File Id="715414752" Language="SFX">
-							<ShortName>Medium Rain.wav</ShortName>
-							<Path>SFX/Medium Rain_34528CE9.wem</Path>
-						</File>
-						<File Id="999344880" Language="SFX">
-							<ShortName>Little Rain.wav</ShortName>
-							<Path>SFX/Little Rain_34528CE9.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
+				<Event Id="1023787777" Name="PlayRainAmbiance" ObjectPath="\Events\Default Work Unit\Ambiance\PlayRainAmbiance" DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="785535932" Name="PlayReload" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Reload\PlayReload" DurationType="OneShot" DurationMin="1.069184" DurationMax="1.069184">
 					<IncludedMemoryFiles>
 						<File Id="105067499" Language="SFX">
@@ -907,7 +939,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="414174827" Name="PlayTreeChop" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeChop" DurationType="OneShot" DurationMin="1.659312" DurationMax="2.557917">
+				<Event Id="414174827" Name="PlayTreeChop" ObjectPath="\Events\Default Work Unit\Ambiance\PlayTreeChop" DurationType="OneShot" DurationMin="2.273925" DurationMax="3.05573">
 					<IncludedMemoryFiles>
 						<File Id="119699442" Language="SFX">
 							<ShortName>Tree_Leaves1.wav</ShortName>
@@ -1029,15 +1061,15 @@
 				<Event Id="928341504" Name="StopDarkness" ObjectPath="\Events\Default Work Unit\Ambiance\StopDarkness" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 			<GameParameters>
-				<GameParameter Id="340800882" Name="TreeChopSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\TreeChops\TreeChopSpeakerPan_LR"/>
-				<GameParameter Id="1713156707" Name="TreeDistanceFromPlayer" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\TreeChops\TreeDistanceFromPlayer"/>
+				<GameParameter Id="340800882" Name="TreeChopSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\TreeChopSpeakerPan_LR"/>
+				<GameParameter Id="1713156707" Name="TreeDistanceFromPlayer" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\TreeDistanceFromPlayer"/>
+				<GameParameter Id="2203423107" Name="BossWarningSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\BossWarningSpeakerPan_LR"/>
 				<GameParameter Id="2465407525" Name="DistanceFromPath" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromPath"/>
 				<GameParameter Id="2647461264" Name="HighPassFilter" ObjectPath="\Game Parameters\Default Work Unit\HighPassFilter"/>
 				<GameParameter Id="3439749059" Name="SplatAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\SplatAmount"/>
 				<GameParameter Id="3601520982" Name="DistanceFromDeathWall" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\DistanceFromDeathWall"/>
 				<GameParameter Id="3913053919" Name="MineVoiceSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\MineVoiceSpeakerPan_LR"/>
 				<GameParameter Id="4072824823" Name="ExplosionSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\ExplosionSpeakerPan_LR"/>
-				<GameParameter Id="4231214299" Name="RainAmount" ObjectPath="\Game Parameters\Default Work Unit\AmbianceRTPCS\RainAmount"/>
 				<GameParameter Id="4273123112" Name="BulletImpactSpeakerPan_LR" ObjectPath="\Game Parameters\Default Work Unit\SpeakerPans\BulletImpactSpeakerPan_LR"/>
 			</GameParameters>
 		</SoundBank>

@@ -32,23 +32,20 @@
 								<Property Name="Min" Type="Real64" Value="-25"/>
 							</PropertyList>
 						</GameParameter>
-						<Folder Name="TreeChops" ID="{D3184F32-A354-4557-A67E-FD61EAB8C864}" ShortID="636370046">
-							<ChildrenList>
-								<GameParameter Name="TreeDistanceFromPlayer" ID="{E89055BA-446C-4CA9-BE3E-8801694F9B0C}">
-									<PropertyList>
-										<Property Name="InitialValue" Type="Real64" Value="0"/>
-										<Property Name="Max" Type="Real64" Value="6"/>
-									</PropertyList>
-								</GameParameter>
-								<GameParameter Name="TreeChopSpeakerPan_LR" ID="{4254D1F5-498C-4F90-9609-EE58B76B639F}">
-									<PropertyList>
-										<Property Name="InitialValue" Type="Real64" Value="0"/>
-										<Property Name="Max" Type="Real64" Value="25"/>
-										<Property Name="Min" Type="Real64" Value="-25"/>
-									</PropertyList>
-								</GameParameter>
-							</ChildrenList>
-						</Folder>
+						<GameParameter Name="TreeChopSpeakerPan_LR" ID="{4254D1F5-498C-4F90-9609-EE58B76B639F}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="BossWarningSpeakerPan_LR" ID="{70A0F752-D9D6-49FE-B320-DAB6A9089AC6}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="AmbianceRTPCS" ID="{D6E99EA4-9CF0-4FA5-B87C-1928F377A2A7}" ShortID="145393600">
@@ -75,6 +72,12 @@
 							<PropertyList>
 								<Property Name="InitialValue" Type="Real64" Value="10"/>
 								<Property Name="Max" Type="Real64" Value="10"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="TreeDistanceFromPlayer" ID="{E89055BA-446C-4CA9-BE3E-8801694F9B0C}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="6"/>
 							</PropertyList>
 						</GameParameter>
 					</ChildrenList>

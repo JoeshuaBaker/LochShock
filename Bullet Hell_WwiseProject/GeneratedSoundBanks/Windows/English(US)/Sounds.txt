@@ -16,10 +16,13 @@ Event	ID	Name			Wwise Object Path	Notes
 	785535932	PlayReload			\Default Work Unit\GameplayCombat\Player\Reload\PlayReload	
 	794424115	EnemyDie			\Default Work Unit\GameplayCombat\Enemies\EnemyDie	
 	928341504	StopDarkness			\Default Work Unit\Ambiance\StopDarkness	
+	1007833275	PlayBossWarningC			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossWarningC	
+	1007833279	PlayBossWarningG			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossWarningG	
 	1023787777	PlayRainAmbiance			\Default Work Unit\Ambiance\PlayRainAmbiance	
 	1053502162	PlayGoldenGun			\Default Work Unit\GameplayCombat\Player\Guns\PlayGoldenGun	
 	1072538575	PlayPlayerDeathExplosion			\Default Work Unit\GameplayCombat\Player\PlayerDie\PlayPlayerDeathExplosion	
 	1123853166	PlayMenuOpen			\Default Work Unit\UserInterface\Menu\PlayMenuOpen	
+	1223690193	PlayBossSeedWarning			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\Warning Intro\PlayBossSeedWarning	
 	1243877330	PlayOrbGet			\Default Work Unit\UserInterface\Menu\PlayOrbGet	
 	1261806239	PlayNailgun			\Default Work Unit\GameplayCombat\Player\Guns\PlayNailgun	
 	1272740371	PlayBossSeedAttack			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedAttack	
@@ -40,13 +43,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	2131811770	PlayGrappleLatch			\Default Work Unit\GameplayCombat\Items\Grappling Hook\PlayGrappleLatch	
 	2156085297	PlayAxe			\Default Work Unit\GameplayCombat\Items\Melee Weapons\PlayAxe	
 	2474574012	PlayWaterAmbiance			\Default Work Unit\Ambiance\PlayWaterAmbiance	
-	2731152201	PlayDeathWallLoop			\Default Work Unit\GameplayCombat\Enemies\PlayDeathWallLoop	
+	2731152201	PlayDeathWallLoop			\Default Work Unit\GameplayCombat\Enemies\Death Wall\PlayDeathWallLoop	
 	2819765248	PlayBossSeedSlam			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedSlam	
 	2843279659	PlayRailgun			\Default Work Unit\GameplayCombat\Player\Guns\PlayRailgun	
 	3035439363	PlayTorch			\Default Work Unit\GameplayCombat\Player\Guns\PlayTorch	
 	3045243850	PlayBombHit			\Default Work Unit\GameplayCombat\Player\Bomb\PlayBombHit	
 	3085422587	PlayBombAttack			\Default Work Unit\GameplayCombat\Player\Bomb\PlayBombAttack	
 	3086540886	StopAll			\Default Work Unit\Utilities\StopAll	
+	3187851718	PlayFireMissle			\Default Work Unit\GameplayCombat\Player\Guns\PlayFireMissle	
 	3210216424	PlayTakehowbigyourthinkthebulletisandlikedoubleit			\Default Work Unit\GameplayCombat\Player\Guns\PlayTakehowbigyourthinkthebulletisandlikedoubleit	
 	3281581530	PlayBossSeedSpray			\Default Work Unit\GameplayCombat\Enemies\Boss Seed\PlayBossSeedSpray	
 	3287446337	PlayPathArrow			\Default Work Unit\UserInterface\GameplayUI\PlayPathArrow	
@@ -93,18 +97,19 @@ Custom State	ID	Name	State Group	Owner		Notes
 	713369005	PhaseOne	SeedBossPhase	\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseTwoLoop		
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
-	340800882	TreeChopSpeakerPan_LR			\Default Work Unit\SpeakerPans\TreeChops\TreeChopSpeakerPan_LR	
-	1713156707	TreeDistanceFromPlayer			\Default Work Unit\SpeakerPans\TreeChops\TreeDistanceFromPlayer	
+	340800882	TreeChopSpeakerPan_LR			\Default Work Unit\SpeakerPans\TreeChopSpeakerPan_LR	
+	1713156707	TreeDistanceFromPlayer			\Default Work Unit\AmbianceRTPCS\TreeDistanceFromPlayer	
+	2203423107	BossWarningSpeakerPan_LR			\Default Work Unit\SpeakerPans\BossWarningSpeakerPan_LR	
 	2465407525	DistanceFromPath			\Default Work Unit\AmbianceRTPCS\DistanceFromPath	
 	2647461264	HighPassFilter			\Default Work Unit\HighPassFilter	
 	3439749059	SplatAmount			\Default Work Unit\AmbianceRTPCS\SplatAmount	
 	3601520982	DistanceFromDeathWall			\Default Work Unit\AmbianceRTPCS\DistanceFromDeathWall	
 	3913053919	MineVoiceSpeakerPan_LR			\Default Work Unit\SpeakerPans\MineVoiceSpeakerPan_LR	
 	4072824823	ExplosionSpeakerPan_LR			\Default Work Unit\SpeakerPans\ExplosionSpeakerPan_LR	
-	4231214299	RainAmount			\Default Work Unit\AmbianceRTPCS\RainAmount	
 	4273123112	BulletImpactSpeakerPan_LR			\Default Work Unit\SpeakerPans\BulletImpactSpeakerPan_LR	
 
 Effect plug-ins	ID	Name	Type				Notes
+	230977049	Church_Small_Wood (Custom)	Wwise RoomVerb			
 	413939758	Church_Small_Wood (Custom)	Wwise RoomVerb			
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
@@ -115,7 +120,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	14718603	TestTone_High	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\TestTone_9E7EF7AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Utilities\Tones\Test Tones\TestTone_High		34256
 	20665016	DeathBuildUp	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBuildUp_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBuildUp		1253016
 	22615286	Explosion_5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_5_B1CBE153.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_5		320788
-	77701406	Heavy Rain	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Heavy Rain_33E97668.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Rain\Heavy Rain		11724212
 	81940499	SeedAttackBlast2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBlast2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\Seed AttackBlast\SeedAttackBlast2		717284
 	89146956	Mine _Laugh 1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Laugh 1_D5DB95BB.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\MineLaugh\Mine _Laugh 1		1161216
 	89751610	ShotgunShot	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ShotgunShot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Shotgun\ShotgunShot		357720
@@ -127,7 +131,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	109248983	SeedAttackBoom	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBoom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\SeedAttackBoom		667128
 	114432245	Mine _Boom 1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Boom 1_348E7A73.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\MineDie\Mine _Boom 1		988584
 	119699442	Tree_Leaves1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Leaves1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Leaves\Tree_Leaves1		350560
-	123478981	Spear	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Spear_EA96F732.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Spear		289124
+	123478981	Spear	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Spear_EA96F732.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Spear		289124
 	125489747	EnemyDie0	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\EnemyDie0_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\EnemyDie\EnemyDie0		202704
 	137891489	Bomb_Hit	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\bomb hit_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Bomb\Bomb_Hit		975940
 	138415867	SeedBossIntro	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedBossIntro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossIntro\SeedBossIntro		9402944
@@ -135,6 +139,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	178169467	DeathBlip	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBlip_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBlip		1948056
 	181064844	Shell Drops_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Casing Rolls_E5D8D393.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Shell&Silence\Shell Drops_03		434368
 	183134589	Tree_Chop4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop4		284804
+	191828263	FireMissle	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\FireMissle_B3DD472F.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Missle\FireMissle		279036
 	201762883	SeedAttackSlam	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackSlam_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\SeedAttackSlam		667128
 	202478109	Shore	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Ambiance\Shore_C157CC2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Water\Shore		6000896
 	211382726	Shell Drops_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Casing Rolls_6B94B92E.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Shell&Silence\Shell Drops_01		459932
@@ -142,7 +147,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	234192517	Hum	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Hum_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\PlasmaCutter\Hum		44564
 	246812119	Explosion_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_2_AEE514D4.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_2		316552
 	263340089	Big	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Big_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\BigGun\Big		592856
-	271896929	Sword	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_1D7B44B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword		49624
+	271896929	Sword	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_1D7B44B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword		49624
 	276744681	Fire	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Fire_4650532D.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Grappling Hook\Grappling Hook\Fire		398712
 	282769187	Tree_Chop5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop5		273284
 	305114128	Minigun_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Minigun_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Minigun_2		219748
@@ -150,27 +155,29 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	331910188	Waves	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Ambiance\Waves_D7E5C7B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Water\Waves		6000896
 	332849499	Enemy HIt_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_3565AB62.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_01		245904
 	353246839	DarknessSoloLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DarknessLoop_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\DarknessSoloLoop		3682784
-	361608344	Mace	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mace_39110B4B.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Mace		218928
+	361608344	Mace	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mace_39110B4B.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Mace		218928
 	368816489	Tree_Leaves3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Leaves3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Leaves\Tree_Leaves3		339944
 	395173167	Tree_Chop2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop2		271304
 	396661611	Splats_04	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_99B27512.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_04		35944
 	400411533	OutOfAmmo	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OutOfAmmo_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\GunOOAandReload\OutOfAmmo		171296
 	415180428	SeedAttackBlast1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBlast1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\Seed AttackBlast\SeedAttackBlast1		717284
 	416321817	Bass Only	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Bass Only_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MainTheme\Bass Only\Bass Only		6300828
-	427712558	Sword_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_87EC0D40.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_01		43284
+	427712558	Sword_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_87EC0D40.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword_01		43284
 	430063235	Pistol_comp	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Pistol_Comp_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Pistol\Pistol_comp		564800
-	441557646	Sword_05	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_84500A88.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_05		50888
+	441557646	Sword_05	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_84500A88.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword_05		50888
 	444313976	Close Menu	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Close Menu_C952CEE8.wem		\Actor-Mixer Hierarchy\Default Work Unit\UserInterface\Menu\Close Menu		155576
+	448430882	DeathWallScreams	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallScreams_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallScreams		3879668
 	452170018	BossKill_Explode	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Explode_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Explode		1837072
 	454351257	Tree_Trunk2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Trunk2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Trunk\Tree_Trunk2		415132
 	470682631	EnemyDie1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\EnemyDie1_6A1C84D9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\EnemyDie\EnemyDie1		190064
 	484346724	Ocean	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Ambiance\Ocean_C157CC2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Water\Ocean		6000896
 	488649775	Shell Drops	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Casing Rolls_72B5203A.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Shell&Silence\Shell Drops		255428
 	495085106	Splats_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_577B9026.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_01		20984
-	500444692	Sword_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_31266DE8.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_02		33144
+	500444692	Sword_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_31266DE8.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword_02		33144
 	505056655	Minigun_1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Minigun_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Minigun_1		240564
 	505855108	Enemy HIt_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_53E393C1.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_02		195128
 	536700672	PathArrow	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\PathArrow_FAC2E1E6.wem		\Actor-Mixer Hierarchy\Default Work Unit\UserInterface\GameplayUI\PathArrow		920744
+	546910953	DeathWallDrone	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallDrones_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallDrone		3875924
 	563026468	OrbWhoosh	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbWhoosh_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\OrbCollect\OrbWhoosh		65536
 	563564699	OrbSnap	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbSnap_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\OrbCollect\OrbSnap		48476
 	567276659	Shell Drops_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Casing Rolls_BF638FCE.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Shell&Silence\Shell Drops_02		323592
@@ -178,22 +185,22 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	598105689	Deanne B_-Intro	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Deanne B.-Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MainTheme\Deanne B_-Intro\Deanne B_-Intro		1843264
 	602627737	Explosion_4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_4_3AF9CDC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_4		346800
 	605852712	Item Get	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Item Get_33C4700E.wem		\Actor-Mixer Hierarchy\Default Work Unit\UserInterface\Menu\Item Get		407988
+	618149490	BossWarning_G	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossWarning_G_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Warning Intro\BossWarning_G		162352
 	627368805	Tree_Leaves5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Leaves5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Leaves\Tree_Leaves5		334296
 	636856104	SeedBossPhaseTwoLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedBossPhaseTwoLoop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseTwoLoop		15388224
 	636983012	SniperRifle	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SniperRifle_F09460A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\SniperRifle\SniperRifle		519652
 	638514755	Mine _Boom 3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Boom 3_BD81B911.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\MineDie\Mine _Boom 3		988584
 	641663119	Click	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Utilities\Click		53356
-	660630291	Sword_04	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_3DE13E97.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_04		47088
+	660630291	Sword_04	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_3DE13E97.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword_04		47088
 	662568726	Thunder	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Thunder_6E8F1B53.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Thunder		1471012
 	664925435	Tree_Trunk5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Trunk5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Trunk\Tree_Trunk5		318652
-	675874596	Axe	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Axe_6650A6FE.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Axe		319240
+	675874596	Axe	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Axe_6650A6FE.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Axe		319240
 	693364141	Spawn	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Spawn_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Spawn		1178656
-	696096884	Dagger	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Dagger_1A881A6B.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Dagger		399964
+	696096884	Dagger	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Dagger_1A881A6B.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Dagger		399964
 	696228461	Zap_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Zap_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\LightningGun\Zap\Zap_2		70560
 	707434606	Tree_Leaves6	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Leaves6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Leaves\Tree_Leaves6		443184
 	712111082	Mine _Boom 2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Boom 2_BD81B911.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\MineDie\Mine _Boom 2		988584
 	712233213	Splats_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_625EF4F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_02		22000
-	715414752	Medium Rain	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Medium Rain_34528CE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Rain\Medium Rain		11724212
 	715803202	Mine _Build Up	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Build Up_838BCBF5.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\Mine _Build Up		1161216
 	718690992	BossKill_Slam	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Slam_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Slam		2476208
 	736708305	OrbCollect	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OrbCollect_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\OrbCollect\OrbCollect		55392
@@ -206,8 +213,8 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	824954779	Pull	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Pull_A43E3F36.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Grappling Hook\Grappling Hook\Pull		209384
 	839005815	Explosion_1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_1_2EB609F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_1		327284
 	839353267	Explosion_3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_3_B28FE775.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\Explosions\Explosion_3		302984
+	844249322	DeathWallWhispers	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallWhispers_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallWhispers		3875924
 	860048034	Deanne B_-Main Loop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Deanne B.-Main Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MainTheme\Deanne B-Main Loop\Deanne B_-Main Loop		9216064
-	864474302	DeathWallLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWall_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop		3875924
 	876785431	SeedAttackBlast3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBlast3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\Seed AttackBlast\SeedAttackBlast3		717284
 	880469408	Mine _Laugh 2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Mine _Laugh 2_838BCBF5.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Mines\Mines\MineLaugh\Mine _Laugh 2		1161216
 	890243623	Zap_1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Zap_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\LightningGun\Zap\Zap_1		70560
@@ -222,15 +229,15 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	945210713	Splats_05	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_4E63F28C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_05		29848
 	953260848	Railgun	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Railgun_533C4965.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Railgun\Railgun		719452
 	957281549	Tree_Chop3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop3		327864
-	963072889	MeleeBlip	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Melee Use Blip_92152895.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\Melee Blip\Melee Blip\MeleeBlip		28920
+	963072889	MeleeBlip	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Melee Use Blip_92152895.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\Melee Blip\Melee Blip\MeleeBlip		28920
 	963317276	SeedBossPhaseOneLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedBossPhaseOneLoop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseOneLoop		15516740
-	963471314	ItemOnCD	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ItemOnCD_B4BE9FA6.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\ItemOnCD\ItemOnCD		125344
-	999344880	Little Rain	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Little Rain_34528CE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Rain\Little Rain		11724212
+	963471314	ItemOnCD	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ItemOnCD_B4BE9FA6.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\ItemOnCD\ItemOnCD		125344
 	1015425311	Enemy HIt_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_E6618987.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_03		162852
 	1024403126	Tree_Chop6	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop6		265732
 	1030353455	Tree_Chop1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop1		274064
 	1031937630	BossKill_Mission Clear	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Mission Clear_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Mission Clear		1524308
 	1040601827	BossKill_Spray	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossKill_Spray_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Kill Screen\BossKill_Spray		2431524
-	1056279844	Sword_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_4C0E3C1C.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_03		25540
+	1056279844	Sword_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_4C0E3C1C.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Active Items\MeleeWeapons\Sword\Sword_Slash\Sword_03		25540
+	1062545657	BossWarning_C	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\BossWarning_C_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Warning Intro\BossWarning_C		141184
 	1071136170	Explosion	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Explosion_1B6C1EFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Grappling Hook\Grappling Hook\Explosion		455156
 
