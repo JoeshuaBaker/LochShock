@@ -86,12 +86,76 @@ MonoBehaviour:
     bufferSize: 100
   eliteBuffers:
   - {fileID: 1484399506491670002, guid: 1e1f99f8710225244bb5446f6a2528eb, type: 3}
-  - {fileID: 5243191493192438279, guid: 9b64cb6a7bf1291448b5308a26173bbb, type: 3}
   enemyParent: {fileID: 6847320939752456255}
   presetBlocks:
-  - {fileID: 11400000, guid: e09192256e1d9854ea4e81e731a74158, type: 2}
-  - {fileID: 11400000, guid: c8de39e5348ec784d97aa5f917a37c58, type: 2}
+  - {fileID: 11400000, guid: b5d42ea2c95584d498ca6be3ef8fc764, type: 2}
+  - {fileID: 11400000, guid: 4741284bbf0648242bd904cb8263e9f0, type: 2}
+  - {fileID: 11400000, guid: 30e796bfa3bf728438413a1f6d9fffb6, type: 2}
+  - {fileID: 11400000, guid: 50fc9f7cee5d6fa4a8a1970b708664f9, type: 2}
   randomBlocks:
   - {fileID: 11400000, guid: 2d8e609b54bfccd4081ce716d9f082c9, type: 2}
+  - {fileID: 11400000, guid: b2beabbbc79ac544caec0489d8606c73, type: 2}
+  - {fileID: 11400000, guid: 4252a0782cc098046bd71777b763f3a8, type: 2}
+  - {fileID: 11400000, guid: a4cba3710230b6e47be7ebd8a6a76571, type: 2}
+  - {fileID: 11400000, guid: d8a352623827c6740bb5ad5961680c9a, type: 2}
+  - {fileID: 11400000, guid: c8de39e5348ec784d97aa5f917a37c58, type: 2}
+  - {fileID: 11400000, guid: bb4dc9dec4846fe48abc96964b1c92cd, type: 2}
+  - {fileID: 11400000, guid: e09192256e1d9854ea4e81e731a74158, type: 2}
   currentBlock: {fileID: 0}
   blockTimer: 0
+  horizontalSpawnBarrier: 22
+  verticalSpawnBarrier: 20
+  enemySpawn: 0
+  enemySpawnRate: 1
+  adjustedSpawnRate: 1
+  enemySpawnRateFloor: 0.01
+  enemySpawnRateDecay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  orbDecay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemySpawnRateDecayTime: 10
+  orbDecayMaxtime: 1.5

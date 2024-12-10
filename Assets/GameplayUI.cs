@@ -8,9 +8,16 @@ public class GameplayUI : MonoBehaviour
 {
     public TMP_Text timeText;
     public TMP_Text distanceText;
+    public TMP_Text distanceTextBoss;
     public TMP_Text activeAmmoText;
     public TMP_Text inactiveAmmoText;
-    public TMP_Text orbChargeText;
+    public TMP_Text moneyText;
+    public TMP_Text orbText;
+    public TMP_Text orbTextBomb;
+    public TMP_Text bombText;
+    public Image bombFrame;
+    public Color frameColor;
+    public Color frameColorRed;
     public Transform healthParent;
     public List<Animator> healthList;
     public Transform orbParent;
@@ -143,43 +150,27 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    public void SetOrbs(int orbs , bool orbsCharged = false, int orbsChargedNumber = 0)
+    public void SetOrbs(int orbs , int orbsToBomb = 0)
     {
-        if(orbs > orbList.Count)
-        {
-            for (int i = orbList.Count; i < orbs; i++)
-            {
-                orbList.Add(Instantiate(orbPrefab, orbParent));
-            }
-        }
+        orbText.text = $"x{orbs}";
 
-        for(int i = 0; i < orbList.Count; i++)
+        orbTextBomb.text = $"x{orbsToBomb})";
+
+        if (orbs > orbsToBomb)
         {
-            if (!orbsCharged)
-            {
-                orbList[i].gameObject.SetActive(i < orbs);
-            }
-            //else
-            //{
-            //    orbList[i].gameObject.SetActive(false);
-                
-            //}
-            
-        }
-        if (!orbsCharged)
-        {
-            orbChargeText.text = $"BOMB ARMED";
-            //orbChargeText.gameObject.SetActive(false);
-            orbLockBrace.SetActive(false);
+            bombFrame.color = frameColor;
+            bombText.text = "BOMB ENABLED";
         }
         else
         {
-            orbChargeText.text = $"NEXT UPGRADE IMPROVED";
-            //orbChargeText.gameObject.SetActive(true);
-            orbLockBrace.SetActive(true);
+            bombFrame.color = frameColorRed;
+            bombText.text = "NOT ENOUGH ORBS";
         }
-        
+    }
 
+    public void SetMoney(int money)
+    {
+        moneyText.text = $"x{money}";
     }
 
     public void SetAmmo(int activeCurrentAmmo, int activeMaxAmmo, int inactiveCurrentAmmo = -1, int inactiveMaxAmmo = -1)
@@ -200,13 +191,18 @@ public class GameplayUI : MonoBehaviour
     {
         if(!Player.activePlayer.isDead && !bossDead)
         {
-            timeText.text = $"{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}:{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
+            timeText.text = $"<mspace=25>{((int)(Time.timeSinceLevelLoad / 60f)).ToString("00")}</mspace>:<mspace=25>{((int)(Time.timeSinceLevelLoad % 60f)).ToString("00")}";
         }
     }
 
     public void SetDistance()
     {
-        distanceText.text = $"{(int)Mathf.Max(0f, Player.activePlayer.transform.position.x)}m";
+        distanceText.text = $"<mspace=25>{(int)Mathf.Max(0f, Player.activePlayer.transform.position.x)}</mspace>m";
+    }
+
+    public void SetBossDistance(float bossDistance)
+    {
+        distanceTextBoss.text = $"<mspace=25> {(int)bossDistance}</mspace>m";
     }
 
     public void ShowSignalLost()

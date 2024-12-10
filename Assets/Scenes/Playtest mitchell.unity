@@ -16415,11 +16415,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!198 &487366465 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2949729871881454449, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
-  m_PrefabInstance: {fileID: 1287091888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &508567239
 GameObject:
   m_ObjectHideFlags: 0
@@ -42097,11 +42092,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!198 &1073597402 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6757236580324646684, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
-  m_PrefabInstance: {fileID: 1287091888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1081195379
 GameObject:
   m_ObjectHideFlags: 0
@@ -49308,6 +49298,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5728526476707388998, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50.800003
+      objectReference: {fileID: 0}
     - target: {fileID: 5834616174002713538, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -49655,7 +49649,7 @@ PrefabInstance:
     - target: {fileID: 6757236580324646684, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[1].emitter
       value: 
-      objectReference: {fileID: 487366465}
+      objectReference: {fileID: 0}
     - target: {fileID: 6757236580324646684, guid: 05751a6ef27964045b828ed4fd6c163d, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[1].properties
       value: 4
@@ -56216,9 +56210,10 @@ MonoBehaviour:
   distMax: 25
   distCurrent: 0
   droneMinDist: 1.5
+  droneExpandStart: 0
   transitionTime: 1
   transitionTimeCurrent: 0
-  holdTime: 2
+  holdTime: 3
   holdTimeCurrent: 0
   transitionOutTime: 1
   transitionOutTimeCurrent: 0
@@ -77334,7 +77329,7 @@ PrefabInstance:
     - target: {fileID: 101925822, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: rainSystem
       value: 
-      objectReference: {fileID: 1073597402}
+      objectReference: {fileID: 0}
     - target: {fileID: 428562314173900158, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -77640,12 +77635,72 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1598683932}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stacks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: bodySpriteRecoilName
       value: MechBodyRecoil
       objectReference: {fileID: 0}
     - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[4]
+      value: Assembly-CSharp OrbValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[5]
+      value: Assembly-CSharp OrbValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stats.Array.data[0]
+      value: Assembly-CSharp OrbValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: baseStats.stats.Array.data[0].value
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[4].value
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[5].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stats.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[4].combineType
+      value: Assembly-CSharp BaseStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[5].combineType
+      value: Assembly-CSharp Additive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stats.Array.data[0].combineType
+      value: Assembly-CSharp Additive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[4].conditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: baseStats.stats.Array.data[5].conditions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879192211907270932, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
+      propertyPath: scalingStats.stats.Array.data[0].conditions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2018032742444017746, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: m_SortingOrder
@@ -77734,7 +77789,7 @@ PrefabInstance:
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: guns.Array.data[1]
       value: 
-      objectReference: {fileID: 678569258416977484, guid: 8dd36aa27f488194c91670ca89b50112, type: 3}
+      objectReference: {fileID: 1612931165585827626, guid: d58d490f36876184393aafa8e2d38b9a, type: 3}
     - target: {fileID: 7190304627210002517, guid: 86c2e3ba261cec4428e085d5e312cbef, type: 3}
       propertyPath: items.Array.data[0]
       value: 

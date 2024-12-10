@@ -17,6 +17,7 @@ public class Player : BulletCollidable
     //public List<StatBlock> allStats;
 
     public StatBlock baseStats;
+    public StatBlock scalingStats;
     public CombinedStatBlock Stats
     {
         get { return combinedNewStats; }
@@ -909,6 +910,7 @@ public class Player : BulletCollidable
 
         var allNewStats = inventory.GetNewItemStats();
         allNewStats.Add(this.baseStats);
+        allNewStats.Add(this.scalingStats);
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
         inventory.activeGun.ApplyNewStatBlock(combinedNewStats);
@@ -938,12 +940,13 @@ public class Player : BulletCollidable
     {
         if (gameplayUI != null)
         {
-            gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine,
-                inventory.inactiveGun == null ? -1 : inventory.inactiveGun.magazine, inventory.inactiveGun == null ? -1 : inventory.inactiveGun.maxMagazine);
+            //gameplayUI.SetAmmo(inventory.activeGun.magazine, inventory.activeGun.maxMagazine,
+            //    inventory.inactiveGun == null ? -1 : inventory.inactiveGun.magazine, inventory.inactiveGun == null ? -1 : inventory.inactiveGun.maxMagazine);
 
             gameplayUI.SetHp(currentHp, maxHp);
-            gameplayUI.SetOrbs((int)orbsHeld, orbCharged, orbsChargedNumber);
+            gameplayUI.SetOrbs((int)orbsHeld);
             gameplayUI.SetGrapple(grappleCoolDownCurrent, grapplingCoolDownBase);
+            gameplayUI.SetMoney(inventory.scrap);
 
             if (isDead)
             {

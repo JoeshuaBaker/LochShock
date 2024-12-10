@@ -273,6 +273,11 @@ public class SecondaryHitDamage : Stat
         context.AddStatContext(this, DisplayName(), isPercentage: true, baseValue: BaseValue, conditions: conditions);
     }
 }
+
+public class OrbValue : Stat
+{
+    public override float Min => 0f;
+}
 #endregion
 
 #region ActiveItemStats

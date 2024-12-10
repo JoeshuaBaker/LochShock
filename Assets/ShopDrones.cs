@@ -18,6 +18,7 @@ public class ShopDrones : MonoBehaviour
     public float distCurrent;
     private float droneSetDist;
     public float droneMinDist = 1f;
+    public float droneExpandStart;
     private float rotVel;
     private Vector3 droneDist;
 
@@ -52,6 +53,12 @@ public class ShopDrones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Player.activePlayer.dying)
+        {
+            DeactivateShopDrones();
+        }
+
         if (testInOut && !activateShopDrones && !deactivateShopDrones)
         {
             testWaitTimeCurrent += Time.deltaTime;
@@ -73,6 +80,19 @@ public class ShopDrones : MonoBehaviour
         }
     }
 
+    public void ActivateShopDrones()
+    {
+        activateShopDrones = true;
+    }
+
+    public void DeactivateShopDrones()
+    {
+        activateShopDrones = false;
+        deactivateShopDrones = true;
+
+        droneExpandStart = distCurrent;
+
+    }
 
     public void ShopDronesIn()
     {
@@ -114,11 +134,12 @@ public class ShopDrones : MonoBehaviour
                 lightning.startSize = 1f;
                 lightning2.startSize = 1f;
 
-                //shop opens here
-                activateShopDrones = false;
-                deactivateShopDrones = true;
                 holdTimeCurrent = 0f;
                 transitionTimeCurrent = 0f;
+
+                //shop opens here
+
+                DeactivateShopDrones();
 
             }
         }
@@ -138,7 +159,7 @@ public class ShopDrones : MonoBehaviour
         transitionOutTimeCurrent += Time.deltaTime;
         transitionOutTimeScaled = transitionOutTimeCurrent / transitionOutTime;
 
-        distCurrent = Mathf.Lerp(droneMinDist, distMax, transitionOutTimeScaled);
+        distCurrent = Mathf.Lerp(droneExpandStart, distMax, transitionOutTimeScaled);
         droneSetDist = distCurrent;
         droneDist = new Vector3(droneSetDist, 0f, 0f);
 
