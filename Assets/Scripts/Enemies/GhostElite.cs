@@ -30,6 +30,7 @@ public class GhostElite : EliteEnemy
         direction = Utilities.GetDirectionToPlayer(this.transform.position);
         tailSprite.enabled = true;
         rb.simulated = true;
+        mouthAnimator.SetBool("Die", false);
     }
 
     public override void CoordinatorUpdate()

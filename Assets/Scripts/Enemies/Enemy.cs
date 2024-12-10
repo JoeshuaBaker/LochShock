@@ -21,6 +21,9 @@ public abstract class Enemy : BulletCollidable
     public float freezeTime;
     public float freezeTimePerHit = 0.4f;
 
+    public virtual bool dealsTouchDamage => true;
+    public virtual int touchDamage => 1;
+
     public virtual void Start()
     {
     }

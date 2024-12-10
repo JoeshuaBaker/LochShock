@@ -631,22 +631,24 @@ public class Player : BulletCollidable
         int result = Physics2D.OverlapCircle(this.transform.position.xy(), hitbox.bounds.size.x / 2f, hitFilter, hitBuffer);
         if (result > 0)
         {
-            if (invincibilityTime == 0f)
+            int touchDamage = 0;
+            foreach (Collider2D enemyCollider in hitBuffer)
             {
-                TakeDamageFromEnemy(-1);
-            }
-            else
-            {
-                foreach (Collider2D enemyCollider in hitBuffer)
+                Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                if (enemy != null)
                 {
-                    Enemy enemy = enemyCollider.GetComponent<Enemy>();
-                    if (enemy != null)
+                    enemy.TouchPlayer();
+                    if(enemy.dealsTouchDamage)
                     {
-                        enemy.TouchPlayer();
+                        touchDamage = Mathf.Max(touchDamage, enemy.touchDamage);
                     }
                 }
             }
 
+            if(invincibilityTime == 0f && touchDamage > 0)
+            {
+                TakeDamageFromEnemy(touchDamage*-1);
+            }
         }
     }
 

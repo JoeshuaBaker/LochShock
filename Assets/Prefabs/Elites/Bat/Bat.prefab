@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6944415277607334127}
   - component: {fileID: 8083143356780224612}
   - component: {fileID: 7974541907995411627}
-  m_Layer: 0
+  - component: {fileID: 3596387215677851583}
+  m_Layer: 9
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3dba4488f935f2d4495ccba1e6c50082, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -834524961668215238, guid: 440c43dbd878c3748873b066f452157d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6944415277607334127
@@ -123,7 +124,7 @@ MonoBehaviour:
   bonusHpPerMinute: 2
   bonusHpPerOrbUsedMinute: 3
   instanceId: 0
-  hitFreezeColor: {r: 220, g: 243, b: 255, a: 1}
+  hitFreezeColor: {r: 1, g: 1, b: 1, a: 1}
   freezeTime: 0
   freezeTimePerHit: 0.4
   coordinator: {fileID: 0}
@@ -166,6 +167,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  missile: {fileID: -7289137395147291100, guid: 0f03ac82506e5a747aab9230ebbc7813, type: 3}
+  missileFlyTime: 1.5
+  animator: {fileID: 6944415277607334127}
   swarmSize: 0
 --- !u!50 &7974541907995411627
 Rigidbody2D:
@@ -182,9 +186,25 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &3596387215677851583
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2389606129292982108}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

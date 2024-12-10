@@ -216,6 +216,11 @@ public class Mult : StatCombineType
     }
 }
 
+public class GlobalMult : Mult
+{
+    public override int CombinePriority => 1000;
+}
+
 public class Set : StatCombineType
 {
     public override int CombinePriority => 10000;
