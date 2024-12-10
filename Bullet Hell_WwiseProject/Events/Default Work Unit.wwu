@@ -696,17 +696,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="PlayFireMissle" ID="{9417A4C9-7AF9-4B87-BE7D-3C120E0F6F60}">
-											<ChildrenList>
-												<Action Name="" ID="{91BF62FB-4C9B-4327-B7F8-CABE7256F2C6}" ShortID="766584443">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="FireMissle" ID="{54DE91FF-B3CF-4367-AF80-D144CF466619}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-											</ChildrenList>
-										</Event>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="Bomb" ID="{D8D9C2F7-C225-480F-81E5-E547EF2414CA}" ShortID="412961274">
@@ -1051,74 +1040,19 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Folder Name="Warning Intro" ID="{9AF8A012-DB2D-4FA7-9C74-C5C6F6D5940A}" ShortID="450831196">
-											<ChildrenList>
-												<Event Name="PlayBossWarningG" ID="{9F118ED2-3E4F-4D61-9AB2-4AF6B9874DC6}">
-													<ChildrenList>
-														<Action Name="" ID="{DCCB4422-A85A-4898-8091-8E29890CB4AF}" ShortID="390936659">
-															<ReferenceList>
-																<Reference Name="Target">
-																	<ObjectRef Name="BossWarning_G" ID="{E4A3F988-C4C6-4806-A8FC-B155E6D541F2}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-																</Reference>
-															</ReferenceList>
-														</Action>
-													</ChildrenList>
-												</Event>
-												<Event Name="PlayBossWarningC" ID="{2FF0BBEA-27B9-46C7-BF01-7AEEB4DF8B6E}">
-													<ChildrenList>
-														<Action Name="" ID="{46C68ADD-0A58-4C20-B286-F1B514A29051}" ShortID="226224185">
-															<ReferenceList>
-																<Reference Name="Target">
-																	<ObjectRef Name="BossWarning_C" ID="{0B1D9FCC-800A-46C3-9AA9-1A7878BB0883}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-																</Reference>
-															</ReferenceList>
-														</Action>
-													</ChildrenList>
-												</Event>
-												<Event Name="PlayBossSeedWarning" ID="{0B32466B-15C5-4C11-8D10-E11B4FE0A07F}">
-													<ChildrenList>
-														<Action Name="" ID="{A06AAC43-2F8D-4C4D-BCB1-6407ADD3BB38}" ShortID="248462227">
-															<ReferenceList>
-																<Reference Name="Target">
-																	<ObjectRef Name="BossSeedWarning" ID="{1286A47D-E3DD-4365-9316-C556D4496101}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-																</Reference>
-															</ReferenceList>
-														</Action>
-													</ChildrenList>
-												</Event>
-											</ChildrenList>
-										</Folder>
 									</ChildrenList>
 								</Folder>
-								<Folder Name="Death Wall" ID="{1A036F14-EC76-4FB6-850A-77E84E82335A}" ShortID="570389165">
+								<Event Name="PlayDeathWallLoop" ID="{62215258-5991-4933-B04A-AA3C132F1301}">
 									<ChildrenList>
-										<Event Name="PlayDeathWallLoop" ID="{62215258-5991-4933-B04A-AA3C132F1301}">
-											<ChildrenList>
-												<Action Name="" ID="{AC5CCE71-2C44-4794-A107-8072D6BE641B}" ShortID="343933181">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="DeathWallDrone" ID="{3DBDE096-48E1-4C0C-A21D-11325E1F18E6}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-												<Action Name="" ID="{59CD62EE-E2A7-4D57-B3AD-BE2F3D36F958}" ShortID="521621783">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="DeathWallScreams" ID="{AB51DFFD-E8C3-4733-A5E5-C047E904EFC1}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-												<Action Name="" ID="{8C8DE9EF-D8A2-4BB6-B504-5208D15D16BA}" ShortID="467528236">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="DeathWallWhispers" ID="{CA39E241-8C9F-4DEC-9783-05CA698F8A85}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-											</ChildrenList>
-										</Event>
+										<Action Name="" ID="{D37CAD52-5CCF-48CB-B7EF-E2F45306F9E7}" ShortID="723352005">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="DeathWallLoop" ID="{479F54C3-6F4F-4049-AF72-CC652C76AA8A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
 									</ChildrenList>
-								</Folder>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Items" ID="{C56B4B09-5FC5-43FB-BD64-D424FA141ABB}" ShortID="840472236">
@@ -1189,7 +1123,7 @@
 												<Action Name="" ID="{F7FA381F-2658-4874-BC07-C65FAC773899}" ShortID="1068164663">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Sword_Slash" ID="{BFA16B1F-0F15-4D52-8EC1-0AD324300324}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Sword" ID="{BFA16B1F-0F15-4D52-8EC1-0AD324300324}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>

@@ -104,7 +104,7 @@ public class BossSeed : BulletCollidable, ILevelLoadComponent
 
         //AudioSection
         AkSoundEngine.SetState("SeedBossPhase", "PhaseOne");
-        //AkSoundEngine.PostEvent("PlayBossSeedMusic", this.gameObject);
+        AkSoundEngine.PostEvent("PlayBossSeedMusic", this.gameObject);
 
     }
 
