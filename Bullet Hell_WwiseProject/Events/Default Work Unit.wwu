@@ -687,10 +687,21 @@
 										</Event>
 										<Event Name="PlayExplosion" ID="{DCC34B0D-FCEB-4338-A3A3-114036F6BF32}">
 											<ChildrenList>
-												<Action Name="" ID="{E6CB04F8-E9B3-4E30-BA09-0D7F60C21CD4}" ShortID="706445521">
+												<Action Name="" ID="{361926DB-15E9-495B-BA76-3FC25473F32F}" ShortID="55383876">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="Explosions" ID="{F09EF147-1D0B-49A4-993E-5D068CCAEC32}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="Explosions" ID="{A6B60D1A-1F2C-4FFD-92CA-A7560FBC8B36}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayFireMissile" ID="{F9C6B1EE-FC5B-4800-8931-AF68B9E839FB}">
+											<ChildrenList>
+												<Action Name="" ID="{1CA9E18B-8AD2-4724-8DC6-69877B0E35C3}" ShortID="215126834">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="FireMissile" ID="{A812C00F-E1BD-4787-A5C4-D8FD9E53591E}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>

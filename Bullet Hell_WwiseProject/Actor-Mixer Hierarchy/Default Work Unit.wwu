@@ -703,7 +703,7 @@
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>-0</YPos>
+																<YPos>0</YPos>
 																<Flags>5</Flags>
 																<SegmentShape>Exp3</SegmentShape>
 															</Point>
@@ -3782,6 +3782,262 @@
 																</BlendContainer>
 															</ChildrenList>
 														</Folder>
+														<Folder Name="Missile" ID="{7CE69262-EDEF-47FF-A272-4CBB17E70552}" ShortID="299914475">
+															<ChildrenList>
+																<RandomSequenceContainer Name="Explosions" ID="{A6B60D1A-1F2C-4FFD-92CA-A7560FBC8B36}" ShortID="938803636">
+																	<PropertyList>
+																		<Property Name="Volume" Type="Real64">
+																			<ValueList>
+																				<Value>6</Value>
+																			</ValueList>
+																		</Property>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<Sound Name="Explosion_0" ID="{D84D6128-2F4C-4F80-8A5E-2026F1D72347}" ShortID="535314355">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_0" ID="{1261454C-2D05-48D9-9597-3D79B5435485}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.255043561284163"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.255043561284163"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_0.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="792472396"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_0" ID="{1261454C-2D05-48D9-9597-3D79B5435485}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_1" ID="{33F1866D-B6E0-47BF-AAF5-539955CDB03E}" ShortID="453351459">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_1" ID="{C9DFBA51-EE42-433D-9C76-C825BD25BE4C}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.214851944676506"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.214851944676506"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_1.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="839005815"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_1" ID="{C9DFBA51-EE42-433D-9C76-C825BD25BE4C}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_2" ID="{F84B4E7B-74F7-41E4-B472-0AEDE9A1E34D}" ShortID="287730589">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_2" ID="{D10C5AA6-A96A-4615-BDDB-4245C6DF5682}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.220954171142141"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.220954171142141"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_2.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="246812119"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_2" ID="{D10C5AA6-A96A-4615-BDDB-4245C6DF5682}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_3" ID="{FBBE4918-9BE5-40AF-AFB5-E2BA6E54F72E}" ShortID="920594013">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_3" ID="{A019D780-3BA2-47EB-81C4-63D2D234464F}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.208320337881741"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.208320337881741"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_3.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="839353267"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_3" ID="{A019D780-3BA2-47EB-81C4-63D2D234464F}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_4" ID="{08830ABD-E076-4554-A969-B5C1928D5142}" ShortID="50095758">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_4" ID="{5A097514-524C-4B15-9E9D-78B0C397F838}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.109201575366989"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.109201575366989"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_4.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="602627737"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_4" ID="{5A097514-524C-4B15-9E9D-78B0C397F838}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_5" ID="{13A95531-85DB-48D2-82A1-F1A5494AC574}" ShortID="116158553">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_5" ID="{7BC24294-54D1-4882-8E92-FC555D8E5495}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.48058721539298"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.48058721539298"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_5.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="22615286"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_5" ID="{7BC24294-54D1-4882-8E92-FC555D8E5495}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																		<Sound Name="Explosion_6" ID="{64CB9C83-A683-40D9-813F-D1D8F0C00893}" ShortID="86791416">
+																			<ReferenceList>
+																				<Reference Name="Conversion">
+																					<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																				</Reference>
+																				<Reference Name="OutputBus">
+																					<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<ChildrenList>
+																				<AudioFileSource Name="Explosion_6" ID="{EFD329B4-7338-4290-9EBC-0782AB58B4AC}">
+																					<PropertyList>
+																						<Property Name="LoopBegin" Type="Real64" Value="0.243739905318853"/>
+																						<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																						<Property Name="TrimBegin" Type="Real64" Value="0.243739905318853"/>
+																					</PropertyList>
+																					<Language>SFX</Language>
+																					<AudioFile>Explosion_6.wav</AudioFile>
+																					<MediaIDList>
+																						<MediaID ID="895364418"/>
+																					</MediaIDList>
+																				</AudioFileSource>
+																			</ChildrenList>
+																			<ObjectLists/>
+																			<ActiveSourceList>
+																				<ActiveSource Name="Explosion_6" ID="{EFD329B4-7338-4290-9EBC-0782AB58B4AC}" Platform="Linked"/>
+																			</ActiveSourceList>
+																		</Sound>
+																	</ChildrenList>
+																	<ObjectLists/>
+																</RandomSequenceContainer>
+																<Sound Name="FireMissile" ID="{A812C00F-E1BD-4787-A5C4-D8FD9E53591E}" ShortID="861916055">
+																	<PropertyList>
+																		<Property Name="Volume" Type="Real64">
+																			<ValueList>
+																				<Value>-6</Value>
+																			</ValueList>
+																		</Property>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="FireMissle" ID="{E975B5D0-3C52-46A1-9273-20D5819BD41C}">
+																			<PropertyList>
+																				<Property Name="FadeInDuration" Type="Real64" Value="0.0303856907894737"/>
+																				<Property Name="FadeOutDuration" Type="Real64" Value="0.342529605263158"/>
+																				<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="0.425399671052632"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>FireMissle.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="908282937"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ObjectLists/>
+																	<ActiveSourceList>
+																		<ActiveSource Name="FireMissle" ID="{E975B5D0-3C52-46A1-9273-20D5819BD41C}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</Folder>
 													</ChildrenList>
 													<PositioningInfo>
 														<Panner Name="" ID="{6987E02B-ACEA-4447-912B-F57D8B729483}">
@@ -4990,7 +5246,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-0</YPos>
+																		<YPos>0</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Exp3</SegmentShape>
 																	</Point>

@@ -72,6 +72,9 @@ public class Missile : Projectile
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         World.activeWorld.explosionSpawner.CreateExplosion(hitInfo.point, size * explosionRadiusScale, Quaternion.AngleAxis(angle+90f, Vector3.forward));
         hasExploded = true;
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayExplosion", this.gameObject);
     }
 
     public override void CleanupProjectile()

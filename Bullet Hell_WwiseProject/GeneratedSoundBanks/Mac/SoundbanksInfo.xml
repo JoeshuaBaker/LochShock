@@ -124,7 +124,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1492361653" Language="English(US)" Hash="1339134273">
+		<SoundBank Id="1492361653" Language="English(US)" Hash="3903442185">
 			<ObjectPath>\SoundBanks\Default Work Unit\Sounds</ObjectPath>
 			<ShortName>Sounds</ShortName>
 			<Path>English(US)/Sounds.bnk</Path>
@@ -399,6 +399,20 @@
 							<Path>SFX/Explosion_6_F6A9A3BE.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
+					</AuxBusSends>
+				</Event>
+				<Event Id="123600373" Name="PlayFireMissile" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayFireMissile" DurationType="OneShot" DurationMin="1.464038" DurationMax="1.464038">
+					<IncludedMemoryFiles>
+						<File Id="908282937" Language="SFX">
+							<ShortName>FireMissle.wav</ShortName>
+							<Path>SFX/FireMissle_D09F577A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="688956056" Name="Guns" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFXBus\Player\Guns"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="1053502162" Name="PlayGoldenGun" ObjectPath="\Events\Default Work Unit\GameplayCombat\Player\Guns\PlayGoldenGun" DurationType="OneShot" DurationMin="3.186667" DurationMax="3.186667">
 					<IncludedMemoryFiles>

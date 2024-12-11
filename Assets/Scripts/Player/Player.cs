@@ -366,7 +366,10 @@ public class Player : BulletCollidable
             //Audio Section
             if (wasActivated)
             {
-                AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
+                if (inventory.activeItem.damageType == DamageType.None)
+                {
+                    AkSoundEngine.PostEvent("PlayItemUse", this.gameObject);
+                }
             }
             else if(inventory.activeItem != null)
             {
