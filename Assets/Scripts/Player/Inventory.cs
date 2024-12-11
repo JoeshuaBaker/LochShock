@@ -102,33 +102,43 @@ public class Inventory : MonoBehaviour
 
     public void OpenCloseInventory()
     {
-        if(inventoryUI != null)
-        {
 
-            if(invUpgradeUi != null)
+        if (invUpgradeUi != null)
+        {
+            invUpgradeUi.InteractInventory();
+        }
+        else if (inventoryUI != null)
+        {
+            
+            if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
             {
-                invUpgradeUi.InteractInventory();
+                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
             }
             else
             {
-                if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
-                {
-                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
-                }
-                else
-                {
-                    inventoryUI.TransitionToLastState();
-                }
+                inventoryUI.TransitionToLastState();
             }
+            
         }
     }
 
-    public bool Orb(bool isSmall = false, bool maxOrbs = false)
+    public bool Orb(bool isSmall = false, bool maxOrbs = false, bool reroll = false, int rerollCost = 0)
     {
-        if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0 || World.activeWorld.paused)
+        if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0)
             return false;
 
-        if (!isSmall)
+        if (World.activeWorld.paused && !reroll)
+            return false;
+
+        if (reroll)
+        {
+            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas, allItems);
+
+            scrap -= rerollCost;
+            invUpgradeUi.upgradeUi.SetUpgradeItems(items, 0, true);
+            return true;
+        }
+        else if (!isSmall)
         {
             int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
             Player.activePlayer.orbsHeld -= orbsSpent;
@@ -139,6 +149,7 @@ public class Inventory : MonoBehaviour
 
             if (inventoryUI != null)
             {
+
                 if (!maxOrbs)
                 {
                     if(invUpgradeUi != null)

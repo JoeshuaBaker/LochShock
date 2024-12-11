@@ -15,7 +15,7 @@ public interface IDataFrame
     void PlayCardIntro(float maxDelay = 0f, bool playShineEffect = false);
 
 
-    void PlayCardOutro(float maxDelay = 0f);
+    void PlayCardOutro(float maxDelay = 0f, bool keepBack = false);
 
 
     void PlayUpgradeEffect();

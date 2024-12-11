@@ -195,7 +195,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
         animator.Play("StashFrameIntro", 0, 0f);
     }
 
-    public void PlayCardOutro(float maxDelay = 0f)
+    public void PlayCardOutro(float maxDelay = 0f , bool keepBack = false)
     {
         animator.Play("StashFrameOutro", 0, maxDelay);
     }

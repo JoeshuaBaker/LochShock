@@ -38,8 +38,6 @@ public class ShopDrones : MonoBehaviour
     public bool activateShopDrones;
     public bool deactivateShopDrones;
 
-
-
     public bool testInOut;
     public float testWaitTime = 5f;
     private float testWaitTimeCurrent;
@@ -137,7 +135,7 @@ public class ShopDrones : MonoBehaviour
                 holdTimeCurrent = 0f;
                 transitionTimeCurrent = 0f;
 
-                //shop opens here
+                Player.activePlayer.inventory.Orb(true);
 
                 DeactivateShopDrones();
 

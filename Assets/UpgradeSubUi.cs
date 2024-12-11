@@ -49,14 +49,18 @@ public class UpgradeSubUi : MonoBehaviour
 
     public ItemDataFrame[] itemFrames;
     public TMP_Text[] itemAdditionalScrap;
+    public GameObject[] itemFrameParents;
     public TMP_Text skipScrap;
     public int currentValue;
 
     public bool isSetup;
     public bool animate;
     public bool checkOutro;
-    public bool skipping;
-    public bool taking;
+    public bool newShop = true;
+
+    public int rerollCost = 100;
+    public int rerollCostBase = 100;
+    public int rerollCostGrowth = 50;
 
     public Item[] showItems;
 
@@ -92,7 +96,7 @@ public class UpgradeSubUi : MonoBehaviour
         inventory = Player.activePlayer.inventory;
     }
 
-    public void SetUpgradeItems(Item[] items, int upgradeValue = 0)
+    public void SetUpgradeItems(Item[] items, int upgradeValue = 0, bool reroll = false)
     {
         if (!isSetup)
         {
@@ -107,25 +111,42 @@ public class UpgradeSubUi : MonoBehaviour
             Item item = i < items.Length ? items[i] : null;
 
             itemFrames[i].SetItem(item);
+
+            if(item != null)
+            {
+                itemFrameParents[i].SetActive(true);
+                //itemAdditionalScrap[i].text = $"-{items[i].disassembleValue}";
+            }
+            else
+            {
+                itemFrameParents[i].SetActive(false);
+            }
         }
 
-        //scrap pick options
-        currentValue = upgradeValue;
+        skipScrap.text = $"REROLL (<mspace=15>{rerollCost}</mspace>)";
 
-        for (int i = 0; i < itemFrames.Length; i++)
+        if (!reroll)
         {
-            itemAdditionalScrap[i].text = $"+{currentValue - items[i].disassembleValue}";
+            FocusUpgradeUi();
         }
+        else
+        {
 
-        skipScrap.text = $"+{currentValue}";
+            ResetPurchasedCards();
+            IntroduceCards(); 
 
-        skipping = false;
-        taking = false;
-
-        FocusUpgradeUi();
+        }
     }
 
-    public void DismissUpgradeUi(bool closeMenus = false)
+    public void ResetPurchasedCards()
+    {
+        for (int i = 0; i < itemFrames.Length; i++)
+        {
+            itemFrames[i].purchased = false;
+        }
+    }
+
+    public void DismissUpgradeUi(bool resetShop = false)
     {
         animator.Play("UpgradeSubUiOutro");
 
@@ -134,9 +155,9 @@ public class UpgradeSubUi : MonoBehaviour
             itemFrames[i].PlayCardOutro(-.2f);
         }
 
-        if (closeMenus)
+        if (resetShop)
         {
-            invUpgradeUi.UiClose(true);
+            newShop = true;
         }
 
         checkOutro = true;
@@ -150,12 +171,31 @@ public class UpgradeSubUi : MonoBehaviour
 
         animate = true;
 
+        if (newShop)
+        {
+            ResetPurchasedCards();
+            newShop = false;
+        }
+
+        IntroduceCards();
+    }
+
+    public void IntroduceCards()
+    {
         for (int i = 0; i < itemFrames.Length; i++)
         {
             itemFrames[i].PlayCardIntro(-.2f, true);
+            RefreshTabs();
         }
     }
 
+    public void RefreshTabs()
+    {
+        for (int i = 0; i < itemFrames.Length; i++)
+        {
+            itemFrames[i].UpdateTabText();
+        }
+    }
     public void AnimateDetails()
     {
 
@@ -258,53 +298,55 @@ public class UpgradeSubUi : MonoBehaviour
 
     public void Take(ItemDataFrame frame)
     {
-        if (taking)
+
+        if (frame.purchased)
         {
+            return;
+        }
+
+        if(inventory.scrap < frame.item.disassembleValue)
+        {
+            frame.PlayContextMessage("LOL POOR");
+            frame.PlayCardShake();
+
             return;
         }
 
         if (inventory.HasNonStashSpaceFor(frame.item))
         {
+
+            frame.PlayCardOutro(panelBobOffset, true);
+
             inventory.AddItem(frame.item);
 
             frame.PlayUpgradeEffect();
 
-            if (currentValue != 0)
-            {
-                int gainScrap = currentValue - frame.item.disassembleValue;
-                inventory.AddScrap(gainScrap);
-                invUpgradeUi.UpdateScrapAmount();
-            }
+            inventory.AddScrap(-frame.item.disassembleValue);
+            invUpgradeUi.UpdateScrapAmount();
+
+            frame.purchased = true;
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
-
-            taking = true;
-
-            DismissUpgradeUi(true);
         }
         else
         {
             bool addedItem = inventory.AddItem(frame.item);
             if (addedItem)
             {
+                frame.PlayCardOutro(0f, true);
 
                 frame.PlayUpgradeEffect();
+
                 frame.PlayContextMessage("STASHED");
-                
-                if(currentValue != 0)
-                {
-                    int gainScrap = currentValue - frame.item.disassembleValue;
-                    inventory.AddScrap(gainScrap);
-                    invUpgradeUi.UpdateScrapAmount();
-                }
+
+                inventory.AddScrap(-frame.item.disassembleValue);
+                invUpgradeUi.UpdateScrapAmount();
+
+                frame.purchased = true;
 
                 //Audio Section
                 AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
-
-                taking = true;
-
-                DismissUpgradeUi(true);
             }
             else
             {
@@ -312,24 +354,25 @@ public class UpgradeSubUi : MonoBehaviour
                 frame.PlayCardShake();
             }
         }
+
+        RefreshTabs();
+
     }
 
-    public void OnSkipButtonPressed()
+    public void OnRerollButtonPressed()
     {
-        if (skipping)
-        {
-            return;
-        }
 
-        if(currentValue != 0)
+        if (rerollCost <= inventory.scrap)
         {
-            int gainScrap = currentValue;
-            inventory.AddScrap(gainScrap);
+            inventory.Orb(false, false, true, rerollCost);
             invUpgradeUi.UpdateScrapAmount();
+
+            //Audio Section
+            AkSoundEngine.PostEvent("PlayButtonPress", this.gameObject);
         }
-
-        skipping = true;
-
-        DismissUpgradeUi(true);
+        else
+        {
+            Debug.Log("poor");
+        }
     }
 }

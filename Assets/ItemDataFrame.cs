@@ -77,6 +77,10 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
     public float timeToDecayRecycle = 1f;
 
     public bool recycleTabs;
+    public bool keepBack;
+    public bool shopFrame;
+    public bool tooPoor;
+    public bool purchased;
 
 
     // Start is called before the first frame update
@@ -186,18 +190,29 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
             }
         }
 
-        if (recycleTabs)
-        {
-            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
+        float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
 
+        if (shopFrame)
+        {
+            if (!tooPoor)
+            {
+                leftTabText.color = Color.Lerp(Color.cyan, Color.white, time);
+                rightTabText.color = Color.Lerp(Color.cyan, Color.white, time);
+            }
+            else
+            {
+                leftTabText.color = Color.Lerp(Color.red, Color.white, time);
+                rightTabText.color = Color.Lerp(Color.red, Color.white, time);
+            }
+
+        }
+        else if (recycleTabs)
+        {
             leftTabText.color = Color.Lerp(Color.yellow, Color.white, time);
             rightTabText.color = Color.Lerp(Color.yellow, Color.white, time);
-
         }
         else
         {
-            float time = Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f));
-
             leftTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
             rightTabText.color = Color.Lerp(new Color(0.5f, 0.5f, 1f, 1f), Color.white, time);
         }
@@ -378,7 +393,19 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
 
     public void PlayCardIntro(float maxDelay = 0f, bool playShineEffect = false)
     {
+        if (purchased)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+
         flyinAnimator.Play("UiItemIntro", 0, UnityEngine.Random.Range(maxDelay, 0f));
+
+        keepBack = false;
 
         if (playShineEffect)
         {
@@ -386,9 +413,31 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
         }
     }
 
-    public void PlayCardOutro(float maxDelay = 0f)
+    public void PlayCardOutro(float maxDelay = 0f, bool keepBack = false)
     {
-        flyinAnimator.Play("UiItemOutro", 0, UnityEngine.Random.Range(maxDelay, 0f));
+        if (purchased)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+        //if (this.keepBack)
+        //{
+        //    flyinAnimator.Play("UiItemOutro", 0, UnityEngine.Random.Range(maxDelay, 0f));
+        //}
+        //else if (!keepBack)
+        //{
+            flyinAnimator.Play("UiItemOutroBoth", 0, UnityEngine.Random.Range(maxDelay, 0f));
+        //}
+        //else
+        //{
+        //    flyinAnimator.Play("UiItemOutroKeepBack", 0, UnityEngine.Random.Range(maxDelay, 0f));
+
+        //    this.keepBack = keepBack;
+        //}
     }
 
     public void PlayCardDrop()
@@ -510,10 +559,29 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
 
     public void UpdateTabText()
     {
-        if(invUi == null)
+        tabParent.SetActive(false);
+
+        if (shopFrame)
+        {
+            leftTabText.text = item.disassembleValue.ToString();
+            tabParent.SetActive(true);
+
+            if(item.disassembleValue > Player.activePlayer.inventory.scrap)
+            {
+                tooPoor = true;
+            }
+            else
+            {
+                tooPoor = false;
+            }
+        }
+
+
+        if (invUi == null)
         {
             return;
         }
+
 
         if (invUi.recycleMode)
         {
@@ -546,5 +614,4 @@ public class ItemDataFrame : MonoBehaviour, IDataFrame
     {
         return item;
     }
-
 }

@@ -184,7 +184,6 @@ public class InventoryUpgradeUi : MonoBehaviour
         switchButtonText.text = "SHOP";
 
         switchButton.DisableButton();
-        continueButton.EnableButton();
 
         FocusBottomButtons();
     }
@@ -199,7 +198,6 @@ public class InventoryUpgradeUi : MonoBehaviour
         focusInv = false;
         switchButtonText.text = "INVENTORY";
 
-        continueButton.DisableButton();
         switchButton.EnableButton();
 
         FocusBottomButtons();
@@ -214,7 +212,8 @@ public class InventoryUpgradeUi : MonoBehaviour
 
         if (hasActiveUpgrade)
         {
-            OnSwitchButtonPressed();
+            upgradeUi.DismissUpgradeUi(true);
+            UiClose();
         }
         else
         {

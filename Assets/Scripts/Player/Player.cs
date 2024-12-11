@@ -17,7 +17,7 @@ public class Player : BulletCollidable
     //public List<StatBlock> allStats;
 
     public StatBlock baseStats;
-    public StatBlock scalingStats;
+    public StatBlock interestStats;
     public CombinedStatBlock Stats
     {
         get { return combinedNewStats; }
@@ -71,7 +71,9 @@ public class Player : BulletCollidable
     public float smallBombSize;
 
     public ParticleSystem trailPS;
-
+    public ShopDrones shopDrones;
+    public Vector3 lastShop;
+    public float distBetweenShops = 250f;
     public Light2D playerVisionProximity;
     public float orbsHeld;
     public float timeSinceOrbUsed;
@@ -221,6 +223,7 @@ public class Player : BulletCollidable
             OnSecond();
             Move();
             Physics();
+            CheckShop();
             DrawSprites();
             LookAndShoot();
             SetVision();
@@ -415,21 +418,33 @@ public class Player : BulletCollidable
         }
     }
 
+    public void CheckShop()
+    {
+        float dist = this.transform.position.x - lastShop.x;
+
+        if(dist > distBetweenShops)
+        {
+            shopDrones.ActivateShopDrones();
+
+            lastShop.x += distBetweenShops;
+        }
+    }
+
     public void CollectOrb()
     {
-        if(orbsHeld >= 4 && !orbCharged)
-        {
-            inventory.Orb(false,true);
-        }
-        else if (orbCharged)
-        {
-            inventory.Orb();
-            orbCharged = false;
-        }
-        else
-        {
-            inventory.Orb(true);
-        }
+        //if(orbsHeld >= 4 && !orbCharged)
+        //{
+        //    inventory.Orb(false,true);
+        //}
+        //else if (orbCharged)
+        //{
+        //    inventory.Orb();
+        //    orbCharged = false;
+        //}
+        //else
+        //{
+        //    inventory.Orb(true);
+        //}
         orbsHeld += 1;
 
     }
@@ -913,7 +928,7 @@ public class Player : BulletCollidable
 
         var allNewStats = inventory.GetNewItemStats();
         allNewStats.Add(this.baseStats);
-        allNewStats.Add(this.scalingStats);
+        allNewStats.Add(this.interestStats);
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
         inventory.activeGun.ApplyNewStatBlock(combinedNewStats);
