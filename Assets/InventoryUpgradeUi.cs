@@ -17,7 +17,7 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public bool hasActiveUpgrade;
 
-    public bool interactInventory;
+    public bool uiIsActive;
     public bool focusInv;
     public TMP_Text switchButtonText;
 
@@ -64,6 +64,8 @@ public class InventoryUpgradeUi : MonoBehaviour
                     World.activeWorld.Pause(false);
                     OnClose?.Invoke();
                     OnClose = null;
+
+                    uiIsActive = false;
 
                     invUi.gameObject.SetActive(false);
 
@@ -138,12 +140,12 @@ public class InventoryUpgradeUi : MonoBehaviour
     {
         if (!statsActive)
         {
-            statsUi.FocusStats(focusInv);
+            statsUi.FocusStats();
             statsActive = true;
         }
         else
         {
-            statsUi.DismissStats(focusInv);
+            statsUi.DismissStats();
             statsActive = false;
         }
     }
@@ -179,9 +181,10 @@ public class InventoryUpgradeUi : MonoBehaviour
         World.activeWorld.Pause(true);
 
         invUi.DisplayInventory();
-        hasActiveUpgrade = false;
         focusInv = true;
         switchButtonText.text = "SHOP";
+
+        uiIsActive = true;
 
         switchButton.DisableButton();
 
@@ -194,9 +197,10 @@ public class InventoryUpgradeUi : MonoBehaviour
         World.activeWorld.Pause(true);
 
         upgradeUi.SetUpgradeItems(items);
-        hasActiveUpgrade = true;
         focusInv = false;
         switchButtonText.text = "INVENTORY";
+
+        uiIsActive = true;
 
         switchButton.EnableButton();
 
@@ -210,27 +214,18 @@ public class InventoryUpgradeUi : MonoBehaviour
             return;
         }
 
-        if (hasActiveUpgrade)
+        if (uiIsActive)
         {
-            upgradeUi.DismissUpgradeUi(true);
             UiClose();
         }
         else
         {
-            if (!interactInventory)
-            {
-                EnterInventory();
-                interactInventory = true;
-            }
-            else
-            {
-                interactInventory = false;
-                UiClose();
-            }
+            EnterInventory();
+
         }
     }
 
-    public void UiClose(bool tookUpgrade = false)
+    public void UiClose()
     {
         // continue the game
         if (menuUi.menuActive)
@@ -238,14 +233,9 @@ public class InventoryUpgradeUi : MonoBehaviour
             return;
         }
 
-        if (tookUpgrade)
-        {
-            hasActiveUpgrade = false;
-        }
-
         if (statsActive)
         {
-            statsUi.DismissStats(focusInv);
+            statsUi.DismissStats();
             statsActive = false;
         }
 
@@ -253,6 +243,11 @@ public class InventoryUpgradeUi : MonoBehaviour
         {
             invUi.DismissInventory();
         }
+        else
+        {
+            upgradeUi.DismissUpgradeUi();
+        }
+
 
         invUi.AllModesOff();
         cursor.AllTogglesOff();

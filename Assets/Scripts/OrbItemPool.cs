@@ -18,17 +18,21 @@ public class OrbItemPool
     [Range(0, 100)] public int rareChance = 0;
     [Range(0, 100)] public int uncommonChance = 0;
 
-    public Item[] GetItems(ItemResourcesAtlas atlas, Item[] ignoreList = null)
+    public Item[] GetItems(ItemResourcesAtlas atlas, Item[] ignoreList = null, bool useIgnoreList = false)
     {
         Item[] drops = new Item[numDrops];
         HashSet<string> ignoreListNames = new HashSet<string>();
-        foreach(Item item in ignoreList)
+        if(useIgnoreList)
         {
-            if(item != null)
+            foreach (Item item in ignoreList)
             {
-                ignoreListNames.Add(item.DisplayName);
+                if (item != null)
+                {
+                    ignoreListNames.Add(item.DisplayName);
+                }
             }
         }
+
         
         for(int i = 0; i < numDrops; i++)
         {
@@ -65,14 +69,29 @@ public class OrbItemPool
                 type = Item.ItemType.Active;
             }
 
-            Item[] list = atlas.GetItemList(type, rarity).Where(x => !drops.Contains(x) && !ignoreListNames.Contains(x.DisplayName)).ToArray();
-            if (list == null || list.Length == 0)
+            if (useIgnoreList)
             {
-                i--;
-                continue;
+                Item[] list = atlas.GetItemList(type, rarity).Where(x => !ignoreListNames.Contains(x.DisplayName)).ToArray();// !drops.Contains(x) && 
+                if (list == null || list.Length == 0)
+                {
+                    i--;
+                    continue;
+                }
+
+                drops[i] = list[Random.Range(0, list.Length)];
+            }
+            else
+            {
+                Item[] list = atlas.GetItemList(type, rarity);
+                if (list == null || list.Length == 0)
+                {
+                    i--;
+                    continue;
+                }
+
+                drops[i] = list[Random.Range(0, list.Length)];
             }
 
-            drops[i] = list[Random.Range(0, list.Length)];
         }
 
         return drops;

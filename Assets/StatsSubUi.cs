@@ -54,13 +54,13 @@ public class StatsSubUi : MonoBehaviour
         }
     }
 
-    public void DismissStats(bool focusInv)
+    public void DismissStats()
     {
         animator.Play("StatsSubUiOutroInv");
         checkOutro = true;
     }
 
-    public void FocusStats(bool focusInv)
+    public void FocusStats()
     {
 
         this.gameObject.SetActive(true);

@@ -63,6 +63,7 @@ public class UpgradeSubUi : MonoBehaviour
     public int rerollCostGrowth = 50;
 
     public Item[] showItems;
+    public Item[] rerolledItems;
 
     // Start is called before the first frame update
     void Start()
@@ -364,7 +365,18 @@ public class UpgradeSubUi : MonoBehaviour
 
         if (rerollCost <= inventory.scrap)
         {
-            inventory.Orb(false, false, true, rerollCost);
+
+            rerolledItems = new Item[5];
+
+            for (int i =0; i < itemFrames.Length; i++)
+            {
+                if (!itemFrames[i].purchased)
+                {
+                    rerolledItems[i] = itemFrames[i].item;
+                }
+            }
+
+            inventory.Orb(false, false, true, rerollCost, rerolledItems);
             invUpgradeUi.UpdateScrapAmount();
 
             //Audio Section

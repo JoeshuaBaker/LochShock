@@ -53,6 +53,7 @@ public class Inventory : MonoBehaviour
     public int scrap = 0;
     public int scrapPerOrb = 25;
     public int scrapBonusMaxOrb = 100;
+    public int currentItemPool;
     public OrbItemPool[] orbItemPools;
 
     //External References
@@ -102,27 +103,13 @@ public class Inventory : MonoBehaviour
 
     public void OpenCloseInventory()
     {
-
         if (invUpgradeUi != null)
         {
             invUpgradeUi.InteractInventory();
         }
-        else if (inventoryUI != null)
-        {
-            
-            if (inventoryUI.state == InventoryUI.InventoryUIState.Close || inventoryUI.state == InventoryUI.InventoryUIState.Orb)
-            {
-                inventoryUI.TransitionState(InventoryUI.InventoryUIState.Inventory, this);
-            }
-            else
-            {
-                inventoryUI.TransitionToLastState();
-            }
-            
-        }
     }
 
-    public bool Orb(bool isSmall = false, bool maxOrbs = false, bool reroll = false, int rerollCost = 0)
+    public bool Orb(bool isSmall = false, bool maxOrbs = false, bool reroll = false, int rerollCost = 0, Item[] rerolledItems = null)
     {
         if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0)
             return false;
@@ -132,7 +119,7 @@ public class Inventory : MonoBehaviour
 
         if (reroll)
         {
-            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas, allItems);
+            Item[] items = orbItemPools[currentItemPool].GetItems(itemResourcesAtlas, rerolledItems, true);
 
             scrap -= rerollCost;
             invUpgradeUi.upgradeUi.SetUpgradeItems(items, 0, true);
@@ -191,7 +178,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas, allItems);
+            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas);
 
             if (inventoryUI != null)
             {
