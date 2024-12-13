@@ -18,6 +18,7 @@ public class Player : BulletCollidable
 
     public StatBlock baseStats;
     public StatBlock interestStats;
+    public StatBlock rarityStats;
     public CombinedStatBlock Stats
     {
         get { return combinedNewStats; }
@@ -150,6 +151,9 @@ public class Player : BulletCollidable
         inventory.Setup();
         world.SetupContext();
         UpdateStatBlocks();
+
+        interestStats.Stacks = 0;
+        rarityStats.Stacks = 0;
 
         gamepadLookRingSize = Camera.main.ScreenToWorldPoint(new Vector3(0f, 1f, -Camera.main.transform.position.z)).magnitude / 2.25f;
         Debug.Log(gamepadLookRingSize);
@@ -929,6 +933,7 @@ public class Player : BulletCollidable
         var allNewStats = inventory.GetNewItemStats();
         allNewStats.Add(this.baseStats);
         allNewStats.Add(this.interestStats);
+        allNewStats.Add(this.rarityStats);
         allNewStats.AddRange(buffs.Select(x => x.newStats));
         combinedNewStats.UpdateSources(allNewStats);
         inventory.activeGun.ApplyNewStatBlock(combinedNewStats);

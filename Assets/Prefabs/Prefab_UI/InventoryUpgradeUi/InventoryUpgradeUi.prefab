@@ -6114,11 +6114,12 @@ MonoBehaviour:
   inventory: {fileID: 0}
   cursor: {fileID: 0}
   hasActiveUpgrade: 0
-  interactInventory: 0
+  uiIsActive: 0
   focusInv: 0
   switchButtonText: {fileID: 7685555016966272746}
   levelPreview: 0
   heldScrap: {fileID: 7685555015891583697}
+  heldUpgradeKits: {fileID: 6495372108600084269}
   statsActive: 0
   menuActive: 0
   switchButton: {fileID: 7685555015687945663}
@@ -6127,6 +6128,7 @@ MonoBehaviour:
   animator: {fileID: 6829260921459900434}
   shimmerScrollTime: 0
   shimmerMat: {fileID: 2100000, guid: fa387ef41d44e9c459820e02aea634d3, type: 2}
+  setUp: 0
 --- !u!114 &347838920065947917
 MonoBehaviour:
   m_ObjectHideFlags: 0

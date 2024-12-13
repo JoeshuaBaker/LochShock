@@ -10970,11 +10970,21 @@ MonoBehaviour:
     source: {fileID: 0}
     active: 0
   interestStats:
-    stats: []
+    stats:
+    - id: 4
     events:
       events: []
       source: {fileID: 0}
-    stacks: 1
+    stacks: 0
+    source: {fileID: 0}
+    active: 0
+  rarityStats:
+    stats:
+    - id: 5
+    events:
+      events: []
+      source: {fileID: 0}
+    stacks: 0
     source: {fileID: 0}
     active: 0
   combinedNewStats:
@@ -11094,38 +11104,56 @@ MonoBehaviour:
       type: {class: Health, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 4
+          id: 6
         value: 10
         conditions: []
     00000001:
       type: {class: MoveSpeed, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 5
+          id: 7
         value: 3.5
         conditions: []
     00000002:
       type: {class: Vision, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 6
+          id: 8
         value: 1
         conditions: []
     00000003:
       type: {class: DisassembleMult, ns: , asm: Assembly-CSharp}
       data:
         combineType:
-          id: 7
+          id: 9
         value: 1
         conditions: []
     00000004:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+      type: {class: OrbValue, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 10
+        value: 1
+        conditions: []
     00000005:
-      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+      type: {class: ShopLevel, ns: , asm: Assembly-CSharp}
+      data:
+        combineType:
+          id: 11
+        value: 1
+        conditions: []
     00000006:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
     00000007:
       type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000008:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    00000009:
+      type: {class: BaseStat, ns: , asm: Assembly-CSharp}
+    0000000A:
+      type: {class: Additive, ns: , asm: Assembly-CSharp}
+    0000000B:
+      type: {class: Additive, ns: , asm: Assembly-CSharp}
 --- !u!114 &1669104698779981372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16838,31 +16866,111 @@ MonoBehaviour:
   scrap: 0
   scrapPerOrb: 100
   scrapBonusMaxOrb: 100
+  currentItemPool: 0
+  currentPool:
+    numOrbsSpent: 1
+    numDrops: 3
+    legendaryChance: 0
+    epicChance: 0
+    rareChance: 0
+    uncommonChance: 0
   orbItemPools:
   - numOrbsSpent: 1
-    numDrops: 3
+    numDrops: 5
     legendaryChance: 0
-    epicChance: 2
-    rareChance: 10
-    uncommonChance: 40
+    epicChance: 0
+    rareChance: 0
+    uncommonChance: 5
   - numOrbsSpent: 2
-    numDrops: 3
+    numDrops: 5
     legendaryChance: 0
-    epicChance: 15
-    rareChance: 25
-    uncommonChance: 30
+    epicChance: 0
+    rareChance: 0
+    uncommonChance: 20
   - numOrbsSpent: 3
-    numDrops: 4
-    legendaryChance: 5
-    epicChance: 25
-    rareChance: 40
+    numDrops: 5
+    legendaryChance: 0
+    epicChance: 0
+    rareChance: 1
     uncommonChance: 30
   - numOrbsSpent: 4
     numDrops: 5
-    legendaryChance: 15
-    epicChance: 35
-    rareChance: 50
-    uncommonChance: 0
+    legendaryChance: 0
+    epicChance: 0
+    rareChance: 5
+    uncommonChance: 35
+  - numOrbsSpent: 5
+    numDrops: 5
+    legendaryChance: 0
+    epicChance: 0
+    rareChance: 15
+    uncommonChance: 35
+  - numOrbsSpent: 6
+    numDrops: 5
+    legendaryChance: 0
+    epicChance: 2
+    rareChance: 23
+    uncommonChance: 35
+  - numOrbsSpent: 7
+    numDrops: 5
+    legendaryChance: 0
+    epicChance: 5
+    rareChance: 25
+    uncommonChance: 35
+  - numOrbsSpent: 8
+    numDrops: 5
+    legendaryChance: 0
+    epicChance: 7
+    rareChance: 30
+    uncommonChance: 30
+  - numOrbsSpent: 9
+    numDrops: 5
+    legendaryChance: 1
+    epicChance: 10
+    rareChance: 33
+    uncommonChance: 30
+  - numOrbsSpent: 10
+    numDrops: 5
+    legendaryChance: 2
+    epicChance: 15
+    rareChance: 30
+    uncommonChance: 30
+  - numOrbsSpent: 11
+    numDrops: 5
+    legendaryChance: 4
+    epicChance: 17
+    rareChance: 30
+    uncommonChance: 27
+  - numOrbsSpent: 12
+    numDrops: 5
+    legendaryChance: 5
+    epicChance: 19
+    rareChance: 29
+    uncommonChance: 26
+  - numOrbsSpent: 13
+    numDrops: 5
+    legendaryChance: 6
+    epicChance: 21
+    rareChance: 28
+    uncommonChance: 25
+  - numOrbsSpent: 14
+    numDrops: 5
+    legendaryChance: 7
+    epicChance: 23
+    rareChance: 27
+    uncommonChance: 24
+  - numOrbsSpent: 15
+    numDrops: 5
+    legendaryChance: 8
+    epicChance: 24
+    rareChance: 27
+    uncommonChance: 23
+  - numOrbsSpent: 16
+    numDrops: 3
+    legendaryChance: 10
+    epicChance: 25
+    rareChance: 27
+    uncommonChance: 22
   itemResourcesAtlas: {fileID: 11400000, guid: 6851d2033f03e1640a6c53eb629d8597, type: 2}
   inventoryUI: {fileID: 0}
   gameplayUI: {fileID: 0}

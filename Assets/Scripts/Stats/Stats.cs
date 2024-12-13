@@ -278,6 +278,12 @@ public class OrbValue : Stat
 {
     public override float Min => 0f;
 }
+
+public class ShopLevel : Stat
+{
+    public override float Min => 0f;
+}
+
 #endregion
 
 #region ActiveItemStats

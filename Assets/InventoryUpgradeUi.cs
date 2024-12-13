@@ -24,6 +24,7 @@ public class InventoryUpgradeUi : MonoBehaviour
     public bool levelPreview;
 
     public TMP_Text heldScrap;
+    public TMP_Text heldUpgradeKits;
 
     public bool statsActive;
     public bool menuActive;
@@ -39,13 +40,12 @@ public class InventoryUpgradeUi : MonoBehaviour
     public float shimmerScrollTime;
     public Material shimmerMat;
 
+    public bool setUp;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(inventory == null)
-        {
-            inventory = Player.activePlayer.inventory;
-        }
+
     }
 
     // Update is called once per frame
@@ -76,6 +76,15 @@ public class InventoryUpgradeUi : MonoBehaviour
 
         shimmerScrollTime += Time.unscaledDeltaTime;
         shimmerMat.SetFloat("_UnscaledTime", shimmerScrollTime);
+    }
+
+    public void SetUp()
+    {
+        if (inventory == null)
+        {
+            inventory = Player.activePlayer.inventory;
+        }
+        setUp = true;
     }
 
     private void OnDestroy()
@@ -205,6 +214,8 @@ public class InventoryUpgradeUi : MonoBehaviour
         switchButton.EnableButton();
 
         FocusBottomButtons();
+
+        UpdateScrapAmount();
     }
 
     public void InteractInventory()
@@ -256,9 +267,15 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public void UpdateScrapAmount()
     {
+        if (!setUp)
+        {
+            SetUp();
+        }
+
         if(inventory != null)
         {
             heldScrap.text = $"x{inventory.scrap.ToString()}";
+            heldUpgradeKits.text = $"x{inventory.upgradeKits.ToString()}";
         }
     }
 

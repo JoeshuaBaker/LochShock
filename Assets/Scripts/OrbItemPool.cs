@@ -12,7 +12,7 @@ public class OrbItemPool
 
     //ratios for rarity specific to this item pool
     public int numOrbsSpent = 1;
-    [Range(1, 10)] public int numDrops = 3;
+    [Range(1, 10)] public int numDrops = 5;
     [Range(0, 100)] public int legendaryChance = 0;
     [Range(0, 100)] public int epicChance = 0;
     [Range(0, 100)] public int rareChance = 0;

@@ -128,6 +128,7 @@ public class UpgradeSubUi : MonoBehaviour
 
         if (!reroll)
         {
+            ResetPurchasedCards();
             FocusUpgradeUi();
         }
         else

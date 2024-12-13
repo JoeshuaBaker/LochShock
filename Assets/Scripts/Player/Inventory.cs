@@ -50,10 +50,13 @@ public class Inventory : MonoBehaviour
             return allItemsInternal;
         }
     }
+    public float orbValueIntrest = 0.1f;
     public int scrap = 0;
+    public int upgradeKits = 0;
     public int scrapPerOrb = 25;
     public int scrapBonusMaxOrb = 100;
     public int currentItemPool;
+    public OrbItemPool currentPool;
     public OrbItemPool[] orbItemPools;
 
     //External References
@@ -111,11 +114,14 @@ public class Inventory : MonoBehaviour
 
     public bool Orb(bool isSmall = false, bool maxOrbs = false, bool reroll = false, int rerollCost = 0, Item[] rerolledItems = null)
     {
-        if (Player.activePlayer.isDead || Player.activePlayer.orbsHeld <= 0 || orbItemPools == null || orbItemPools.Length == 0)
+
+        if (Player.activePlayer.isDead || orbItemPools == null || orbItemPools.Length == 0)
             return false;
 
         if (World.activeWorld.paused && !reroll)
             return false;
+
+
 
         if (reroll)
         {
@@ -125,7 +131,31 @@ public class Inventory : MonoBehaviour
             invUpgradeUi.upgradeUi.SetUpgradeItems(items, 0, true);
             return true;
         }
-        else if (!isSmall)
+        else
+        {
+            currentItemPool = Mathf.Min((orbItemPools.Length - 1), (int)Player.activePlayer.Stats.GetCombinedStatValue<ShopLevel>());
+            currentPool = orbItemPools[currentItemPool];
+
+            var orbNonBaseValue = (Player.activePlayer.Stats.GetCombinedStatValue<OrbValue>() - Player.activePlayer.baseStats.GetStatValue<OrbValue>()) * Player.activePlayer.orbsHeld;
+            int orbIntrest = (int)Mathf.Ceil(orbNonBaseValue * orbValueIntrest);
+            Player.activePlayer.interestStats.Stacks += orbIntrest;
+
+            scrap += (int)(Player.activePlayer.orbsHeld * Player.activePlayer.Stats.GetCombinedStatValue<OrbValue>());
+            Player.activePlayer.orbsHeld = 0;
+
+            Item[] items = orbItemPools[currentItemPool].GetItems(itemResourcesAtlas);
+
+            invUpgradeUi.EnterUpgrade(items);
+            invUpgradeUi.OnClose = () => 
+            {
+                Player.activePlayer.Bomb(false, true);
+                Player.activePlayer.rarityStats.Stacks += 1;
+            };
+
+            return true;
+
+        }
+        if (!isSmall)
         {
             int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
             Player.activePlayer.orbsHeld -= orbsSpent;
