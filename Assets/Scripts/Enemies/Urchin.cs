@@ -10,6 +10,6 @@ public class Urchin : BasicEnemy
         base.DeathAnimationBegin();
 
         //Audio Section
-        //AkSoundEngine.PostEvent("EnemyDie", this.gameObject);
+        PlayAudioOnEnemy("PlayEnemyDie", "BulletImpactSpeakerPan_LR");
     }
 }

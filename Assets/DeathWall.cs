@@ -20,6 +20,7 @@ public class DeathWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AkSoundEngine.PostEvent("PlayDeathWallLoop", deathWall);
         player = Player.activePlayer;
         wallDeath = false;
     }
@@ -27,7 +28,10 @@ public class DeathWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Aduio Section
         SetDistanceFromPlayer();
+        ControlAudioPan("DeathWallSpeakerPan_LR");
+
         MoveWall();
         WallDamage();
     }
@@ -60,6 +64,7 @@ public class DeathWall : MonoBehaviour
         }
     }
 
+    //Aduio Section
     //Sets deathwall audio based on distance from player
     public void SetDistanceFromPlayer()
     {
@@ -70,4 +75,22 @@ public class DeathWall : MonoBehaviour
 
         return;
     }
+
+    //Controls audio pan for death wall
+    public void ControlAudioPan(string RTPCname)
+    {
+        //Audio Section
+        //Sound is coming from Left of player
+        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Sound is coming from right of player
+        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        return;
+    }
 }
+

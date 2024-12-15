@@ -741,6 +741,10 @@
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
+							<GameParameterRef Name="DistanceFromHealthWall" ID="{07278F4E-9EE3-406C-A310-48CC6BDE3CDC}"/>
+							<Value>1.21</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="SplatAmount" ID="{DFF809FC-5779-4144-8538-F8CEB828DDB2}"/>
 							<Value>0</Value>
 						</RTPCValue>
@@ -762,11 +766,19 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}"/>
-							<Value>10</Value>
+							<Value>8</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="HighPassFilter" ID="{C7D7DAA0-82F3-4792-8E83-0A8C59246A6A}"/>
 							<Value>2</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="HealthWallSpeakerPan_LR" ID="{4D82340C-DAD2-4928-B682-C75C897567A1}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="DeathWallSpeakerPan_LR" ID="{E54FD22B-9C93-4996-969A-6279149602F8}"/>
+							<Value>0</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="DistanceFromPath" ID="{94D158B4-8102-4AF0-8D72-377DC479DB97}"/>
@@ -782,6 +794,7 @@
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="ArrowInvisible" ID="{A81FAEBC-C4AF-41AA-9FCD-18543364473A}"/>
 						<CurrentStateRef Name="None" ID="{70949618-9A96-4890-872E-A352D78A8B8B}"/>
 						<CurrentStateRef Name="None" ID="{712CDCAE-E771-48AB-B6B2-CBF711F72EDA}"/>
 						<CurrentStateRef Name="None" ID="{89C50FDB-A53E-423D-A13C-F7D29B074A99}"/>

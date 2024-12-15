@@ -57,7 +57,8 @@ public class HealthTape : MonoBehaviour
             timePerFrame = animationDuration / assignedSprites.Length;
         }
 
-
+        //Aduio Section
+        AkSoundEngine.PostEvent("PlayHealthWallLoop", this.gameObject);
     }
 
     private void OnDestroy()
@@ -95,8 +96,12 @@ public class HealthTape : MonoBehaviour
 
         Animate();
 
-
+      
         mat.SetFloat("PlayerPos", (Player.activePlayer.transform.position.y *.25f));
+
+        //Audio Section
+        AkSoundEngine.SetRTPCValue("DistanceFromHealthWall", distToPlayer);
+        ControlAudioPan("HealthWallSpeakerPan_LR");
     }
 
     public void Animate()
@@ -179,6 +184,9 @@ public class HealthTape : MonoBehaviour
         Player.activePlayer.UpdateHp(1);
         World.activeWorld.lightningBolt.CallLightning(Player.activePlayer.transform.position);
         lightningParent.SetActive(false);
+
+        //Audio Section
+        AkSoundEngine.PostEvent("PlayHealthWallCollect", this.gameObject);
     }
 
     public void Fade()
@@ -203,4 +211,23 @@ public class HealthTape : MonoBehaviour
             fadeEnd = true;
         }
     }
+
+    //Audio Section
+    //Controls audio pan for health wall
+    public void ControlAudioPan(string RTPCname)
+    {
+        //Audio Section
+        //Sound is coming from Left of player
+        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Sound is coming from right of player
+        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        return;
+    }
+
 }

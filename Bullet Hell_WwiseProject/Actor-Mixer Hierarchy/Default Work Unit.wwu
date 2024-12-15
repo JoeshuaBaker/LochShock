@@ -2334,6 +2334,12 @@
 													</ReferenceList>
 													<ChildrenList>
 														<AudioFileSource Name="OutOfAmmo" ID="{34E3F95B-E406-451E-8A0C-79EF4E49E992}">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.295184522151941"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0737961305379851"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.657069393059368"/>
+															</PropertyList>
 															<Language>SFX</Language>
 															<AudioFile>OutOfAmmo.wav</AudioFile>
 															<MediaIDList>
@@ -2364,6 +2370,12 @@
 													</ReferenceList>
 													<ChildrenList>
 														<AudioFileSource Name="Reload" ID="{35206079-22CE-457B-A17C-E117C9259341}">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.367336496001909"/>
+																<Property Name="FadeOutShape" Type="int16" Value="1"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.475192743764172"/>
+															</PropertyList>
 															<Language>SFX</Language>
 															<AudioFile>Reload.wav</AudioFile>
 															<MediaIDList>
@@ -2425,7 +2437,7 @@
 																		<Property Name="SpeakerPanning3DSpatializationMix" Type="int32" Value="0"/>
 																		<Property Name="Volume" Type="Real64">
 																			<ValueList>
-																				<Value>-9</Value>
+																				<Value>-15</Value>
 																			</ValueList>
 																		</Property>
 																	</PropertyList>
@@ -3788,7 +3800,7 @@
 																	<PropertyList>
 																		<Property Name="Volume" Type="Real64">
 																			<ValueList>
-																				<Value>6</Value>
+																				<Value>20</Value>
 																			</ValueList>
 																		</Property>
 																	</PropertyList>
@@ -4075,209 +4087,24 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<BlendContainer Name="EnemyDie" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" ShortID="574064976">
-											<PropertyList>
-												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-												<Property Name="MaxSoundPerInstance" Type="int16">
-													<ValueList>
-														<Value>1</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{8591040E-C00F-47D2-B63F-A4AAD7E085EC}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="400"/>
-																	<Property Name="Min" Type="Real64" Value="-400"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
-												<Property Name="UseMaxSoundPerInstance" Type="bool">
-													<ValueList>
-														<Value>True</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>12</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="EnemyDie1" ID="{43492215-C8A6-4F3A-8766-19A452A0ABA9}" ShortID="295682975">
-													<PropertyList>
-														<Property Name="Pitch" Type="int32">
-															<ModifierList>
-																<ModifierInfo>
-																	<Modifier Name="" ID="{0850950E-131E-4702-ADC1-5F5E06180671}">
-																		<PropertyList>
-																			<Property Name="Enabled" Type="bool" Value="True"/>
-																			<Property Name="Max" Type="Real64" Value="400"/>
-																			<Property Name="Min" Type="Real64" Value="-400"/>
-																		</PropertyList>
-																	</Modifier>
-																</ModifierInfo>
-															</ModifierList>
-														</Property>
-														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-3</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="EnemyDie1" ID="{F4959E34-DD53-4F51-8F81-8A18AA4E91B5}">
-															<PropertyList>
-																<Property Name="LoopBegin" Type="Real64" Value="0.0127466815186113"/>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0127466815186113"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>EnemyDie1.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="470682631"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="EnemyDie1" ID="{F4959E34-DD53-4F51-8F81-8A18AA4E91B5}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="EnemyDie0" ID="{BDB1ADCA-E0EA-468C-B8BA-49BD33ECB420}" ShortID="938057894">
-													<PropertyList>
-														<Property Name="Pitch" Type="int32">
-															<ModifierList>
-																<ModifierInfo>
-																	<Modifier Name="" ID="{E098D969-F307-4CB6-B9FE-B0F67E00BD3D}">
-																		<PropertyList>
-																			<Property Name="Enabled" Type="bool" Value="True"/>
-																			<Property Name="Max" Type="Real64" Value="400"/>
-																			<Property Name="Min" Type="Real64" Value="-400"/>
-																		</PropertyList>
-																	</Modifier>
-																</ModifierInfo>
-															</ModifierList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="EnemyDie0" ID="{20B21479-0371-40EC-99AC-7A0DFF86452A}">
-															<Language>SFX</Language>
-															<AudioFile>EnemyDie0.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="125489747"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="EnemyDie0" ID="{20B21479-0371-40EC-99AC-7A0DFF86452A}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<RandomSequenceContainer Name="Yelp" ID="{9B788411-0AA8-4501-86B6-C7836EF56736}" ShortID="536837326">
-													<PropertyList>
-														<Property Name="Inclusion" Type="bool">
-															<ValueList>
-																<Value>False</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<Sound Name="Yelp_1" ID="{6CE8D41C-816A-4502-A52F-3471A11C5BDA}" ShortID="1040060547">
-															<ReferenceList>
-																<Reference Name="Conversion">
-																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-																</Reference>
-																<Reference Name="OutputBus">
-																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-																</Reference>
-															</ReferenceList>
-															<ChildrenList>
-																<AudioFileSource Name="Yelp_1" ID="{3E15E2FC-588E-41E2-BE7C-77C2782323D9}">
-																	<Language>SFX</Language>
-																	<AudioFile>Yelp_1.wav</AudioFile>
-																	<MediaIDList>
-																		<MediaID ID="145640481"/>
-																	</MediaIDList>
-																</AudioFileSource>
-															</ChildrenList>
-															<ObjectLists/>
-															<ActiveSourceList>
-																<ActiveSource Name="Yelp_1" ID="{3E15E2FC-588E-41E2-BE7C-77C2782323D9}" Platform="Linked"/>
-															</ActiveSourceList>
-														</Sound>
-														<Sound Name="Yelp_2" ID="{99DB9214-C326-463D-A1FC-B5F709B01F1A}" ShortID="649120810">
-															<ReferenceList>
-																<Reference Name="Conversion">
-																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
-																</Reference>
-																<Reference Name="OutputBus">
-																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
-																</Reference>
-															</ReferenceList>
-															<ChildrenList>
-																<AudioFileSource Name="Yelp_2" ID="{EB866056-C4CF-4D9C-9551-00754CA48921}">
-																	<Language>SFX</Language>
-																	<AudioFile>Yelp_2.wav</AudioFile>
-																	<MediaIDList>
-																		<MediaID ID="62579323"/>
-																	</MediaIDList>
-																</AudioFileSource>
-															</ChildrenList>
-															<ObjectLists/>
-															<ActiveSourceList>
-																<ActiveSource Name="Yelp_2" ID="{EB866056-C4CF-4D9C-9551-00754CA48921}" Platform="Linked"/>
-															</ActiveSourceList>
-														</Sound>
-													</ChildrenList>
-													<ObjectLists/>
-												</RandomSequenceContainer>
-											</ChildrenList>
-											<ObjectLists/>
-										</BlendContainer>
 										<Folder Name="Enemy Hit" ID="{64900A75-59AD-484B-80A4-B618AECDBC99}" ShortID="147893724">
 											<ChildrenList>
 												<ActorMixer Name="Enemy Hit" ID="{7D63B25B-52FF-445C-9A32-C366C92123CC}" ShortID="820633721">
 													<PropertyList>
+														<Property Name="IgnoreParentMaxSoundInstance" Type="bool" Value="True"/>
+														<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+														<Property Name="MaxSoundPerInstance" Type="int16">
+															<ValueList>
+																<Value>5</Value>
+															</ValueList>
+														</Property>
 														<Property Name="OverridePositioning" Type="bool" Value="True"/>
 														<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+														<Property Name="UseMaxSoundPerInstance" Type="bool">
+															<ValueList>
+																<Value>True</Value>
+															</ValueList>
+														</Property>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
@@ -5213,10 +5040,198 @@
 												</ActorMixer>
 											</ChildrenList>
 										</Folder>
+										<Folder Name="EnemyDie" ID="{4D1EE74E-85A7-42E8-BD4A-EAE554804029}" ShortID="250695210">
+											<ChildrenList>
+												<RandomSequenceContainer Name="EnemyDie" ID="{8E44A217-D421-4816-80B0-7CD82C17CD35}" ShortID="328503880">
+													<PropertyList>
+														<Property Name="IgnoreParentMaxSoundInstance" Type="bool" Value="True"/>
+														<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+														<Property Name="MaxSoundPerInstance" Type="int16">
+															<ValueList>
+																<Value>5</Value>
+															</ValueList>
+														</Property>
+														<Property Name="OverridePositioning" Type="bool" Value="True"/>
+														<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+														<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+														<Property Name="UseMaxSoundPerInstance" Type="bool">
+															<ValueList>
+																<Value>True</Value>
+															</ValueList>
+														</Property>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-12</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="EnemyDie" ID="{19EE89C8-D698-4E79-971B-C276F8E2FF6A}" ShortID="489941090">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="EnemyDie" ID="{C83C8ACE-C36C-4E9F-BE68-7A3D29ECD127}">
+																	<PropertyList>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="0.280739263456853"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="1.43930031676413"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>EnemyDie.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="623970650"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="EnemyDie" ID="{C83C8ACE-C36C-4E9F-BE68-7A3D29ECD127}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="EnemyDie_01" ID="{59C92AAC-1D44-4C4A-87D3-952420F4FD41}" ShortID="208317832">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="EnemyDie" ID="{BEB837AB-5303-4725-BF99-8050DA6AFCE9}">
+																	<PropertyList>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="1.48541270963025"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="2.831"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>EnemyDie.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="225681108"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="EnemyDie" ID="{BEB837AB-5303-4725-BF99-8050DA6AFCE9}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="EnemyDie_02" ID="{3E3FDE0E-5A29-41F1-BAD1-79FE77D664F2}" ShortID="695579787">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="EnemyDie" ID="{50CDD787-06F8-4AFA-8F63-24715ABC5C23}">
+																	<PropertyList>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="2.85007303800483"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="3.85765956993177"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>EnemyDie.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="344799588"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="EnemyDie" ID="{50CDD787-06F8-4AFA-8F63-24715ABC5C23}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="EnemyDie_03" ID="{94B06B43-58A4-4F50-9C35-F389C9B802DC}" ShortID="828072221">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Enemies" ID="{3E8260AC-22D5-4BD8-8BF9-B705737FA085}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="EnemyDie" ID="{538419D3-6DD7-484E-8963-46B9E057E2DA}">
+																	<PropertyList>
+																		<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="3.88279120809147"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="4.73515646998942"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>EnemyDie.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="227562631"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ObjectLists/>
+															<ActiveSourceList>
+																<ActiveSource Name="EnemyDie" ID="{538419D3-6DD7-484E-8963-46B9E057E2DA}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+													<PositioningInfo>
+														<Panner Name="" ID="{DF39D46C-0E7C-49A7-8BF3-88B3F06AA628}">
+															<PropertyList>
+																<Property Name="PanX" Type="Real64">
+																	<RTPCList>
+																		<RTPC Name="" ID="{74FD8554-A2B6-499D-8D60-9D8E3BD78220}" ShortID="905344152">
+																			<ReferenceList>
+																				<Reference Name="ControlInput">
+																					<ObjectRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<Curve Name="" ID="{9B81E08E-BD4C-4372-9F66-3CE96D21402D}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>-25</XPos>
+																						<YPos>-200</YPos>
+																						<Flags>5</Flags>
+																					</Point>
+																					<Point>
+																						<XPos>25</XPos>
+																						<YPos>200</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</RTPC>
+																	</RTPCList>
+																</Property>
+															</PropertyList>
+														</Panner>
+													</PositioningInfo>
+													<ObjectLists/>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</Folder>
 									</ChildrenList>
 									<ObjectLists/>
 								</ActorMixer>
 								<ActorMixer Name="DeathWall" ID="{5734958B-B3D7-435F-B9C7-9CB208DB1A4C}" ShortID="780877950">
+									<PropertyList>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
@@ -5226,8 +5241,13 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="DeathWallLoop" ID="{479F54C3-6F4F-4049-AF72-CC652C76AA8A}" ShortID="522702020">
+										<Sound Name="DeathWallLoopComp" ID="{479F54C3-6F4F-4049-AF72-CC652C76AA8A}" ShortID="522702020">
 											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 												<Property Name="OverridePositioning" Type="bool" Value="True"/>
 												<Property Name="SpeakerPanning" Type="int16" Value="1"/>
@@ -5251,7 +5271,7 @@
 																		<SegmentShape>Exp3</SegmentShape>
 																	</Point>
 																	<Point>
-																		<XPos>10</XPos>
+																		<XPos>12</XPos>
 																		<YPos>-200</YPos>
 																		<Flags>37</Flags>
 																	</Point>
@@ -5290,7 +5310,347 @@
 												<ActiveSource Name="DeathWall" ID="{7DF9B50A-4F42-4B64-80B0-FF5D169F7F98}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<BlendContainer Name="DeathWallLoop" ID="{4468DBA2-CA1B-4D99-A3C8-23836B30819F}" ShortID="1015366910">
+											<PropertyList>
+												<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="DeathWallDrones" ID="{A7F42DBC-2489-4026-90CE-15EFF9701B73}" ShortID="436296915">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+														<Property Name="OverridePositioning" Type="bool" Value="True"/>
+														<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-4</Value>
+															</ValueList>
+															<RTPCList>
+																<RTPC Name="" ID="{23136D13-8F21-49B9-80B9-FAA728E9B915}" ShortID="554901730">
+																	<ReferenceList>
+																		<Reference Name="ControlInput">
+																			<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<Curve Name="" ID="{6911347D-8EFC-4AC8-9923-1845D0209E26}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="3"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>0</YPos>
+																				<Flags>5</Flags>
+																				<SegmentShape>Exp3</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>12</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</RTPC>
+															</RTPCList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="DeathWallDrones" ID="{66E84CE4-62EB-4068-80D9-5B64B509D64F}">
+															<PropertyList>
+																<Property Name="CrossfadeDuration" Type="Real64" Value="3445.271"/>
+																<Property Name="LoopBegin" Type="Real64" Value="1.94442105263158"/>
+																<Property Name="LoopEnd" Type="Real64" Value="19.04925"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>DeathWallDrones.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="987536589"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<PositioningInfo>
+														<Panner Name="" ID="{E9E49886-CA14-4D82-AA81-4DA0FC56C5CD}">
+															<PropertyList>
+																<Property Name="PanX" Type="Real64">
+																	<RTPCList>
+																		<RTPC Name="" ID="{EEA3EAA1-EF3F-4B04-8DC5-1C1A79CBE049}" ShortID="910053898">
+																			<ReferenceList>
+																				<Reference Name="ControlInput">
+																					<ObjectRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<Curve Name="" ID="{2515BF59-CC2B-4C02-9039-3CB3BBEFE712}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>-25</XPos>
+																						<YPos>-200</YPos>
+																						<Flags>5</Flags>
+																						<SegmentShape>SCurve</SegmentShape>
+																					</Point>
+																					<Point>
+																						<XPos>25</XPos>
+																						<YPos>200</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</RTPC>
+																	</RTPCList>
+																</Property>
+																<Property Name="PanY" Type="Real64" Value="4.44089209850063E-16"/>
+															</PropertyList>
+														</Panner>
+													</PositioningInfo>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="DeathWallDrones" ID="{66E84CE4-62EB-4068-80D9-5B64B509D64F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="DeathWallScreams" ID="{8D412178-30AB-40BF-A953-344B381F2C14}" ShortID="109687083">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+														<Property Name="OverridePositioning" Type="bool" Value="True"/>
+														<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>4</Value>
+															</ValueList>
+															<RTPCList>
+																<RTPC Name="" ID="{F3D97D96-C6FF-43EE-8D78-25018A2C0FBD}" ShortID="136011344">
+																	<ReferenceList>
+																		<Reference Name="ControlInput">
+																			<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<Curve Name="" ID="{88FEED94-17EF-49F5-8F02-370303D462C0}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="3"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>0</YPos>
+																				<Flags>5</Flags>
+																				<SegmentShape>Exp3</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>5</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>0</Flags>
+																				<SegmentShape>Log3</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>12</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</RTPC>
+															</RTPCList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="DeathWallScreams" ID="{C6F2B349-4205-43AF-93ED-AE9403632370}">
+															<PropertyList>
+																<Property Name="CrossfadeDuration" Type="Real64" Value="4838.87"/>
+																<Property Name="LoopBegin" Type="Real64" Value="2.36330653021442"/>
+																<Property Name="LoopEnd" Type="Real64" Value="17.8725056347466"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>DeathWallScreams.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="210262880"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<PositioningInfo>
+														<Panner Name="" ID="{4A3A3223-A620-4F53-9220-3EC919B3726B}">
+															<PropertyList>
+																<Property Name="PanX" Type="Real64">
+																	<RTPCList>
+																		<RTPC Name="" ID="{7280D87B-7B7E-495C-A982-85D786AB8EC8}" ShortID="501048833">
+																			<ReferenceList>
+																				<Reference Name="ControlInput">
+																					<ObjectRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<Curve Name="" ID="{B9D42C32-CC5E-4C5E-BF68-CDDD14852DD5}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>-25</XPos>
+																						<YPos>-200</YPos>
+																						<Flags>5</Flags>
+																						<SegmentShape>SCurve</SegmentShape>
+																					</Point>
+																					<Point>
+																						<XPos>25</XPos>
+																						<YPos>200</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</RTPC>
+																	</RTPCList>
+																</Property>
+															</PropertyList>
+														</Panner>
+													</PositioningInfo>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="DeathWallScreams" ID="{C6F2B349-4205-43AF-93ED-AE9403632370}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="DeathWallWhispers" ID="{7260AE0C-252A-400A-BC4B-2721A3DA764B}" ShortID="380527302">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+														<Property Name="OverridePositioning" Type="bool" Value="True"/>
+														<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+														<Property Name="Volume" Type="Real64">
+															<RTPCList>
+																<RTPC Name="" ID="{C133C7F3-5545-47EF-B14D-EA110D534744}" ShortID="620108598">
+																	<ReferenceList>
+																		<Reference Name="ControlInput">
+																			<ObjectRef Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<Curve Name="" ID="{2216DDF9-4F82-4BD9-A304-89F5F2C07FF8}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="3"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>0</YPos>
+																				<Flags>5</Flags>
+																				<SegmentShape>Exp3</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>7.5</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>0</Flags>
+																				<SegmentShape>Log3</SegmentShape>
+																			</Point>
+																			<Point>
+																				<XPos>12</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</RTPC>
+															</RTPCList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="DeathWallWhispers" ID="{9672B2DA-9ADB-4968-8936-DCA251BDA007}">
+															<PropertyList>
+																<Property Name="CrossfadeDuration" Type="Real64" Value="3134.262"/>
+																<Property Name="LoopBegin" Type="Real64" Value="1.65271807992203"/>
+																<Property Name="LoopEnd" Type="Real64" Value="18.4750271076998"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>DeathWallWhispers.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="323182171"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<PositioningInfo>
+														<Panner Name="" ID="{109255CE-830B-46F6-9356-EC6811962D8E}">
+															<PropertyList>
+																<Property Name="PanX" Type="Real64">
+																	<RTPCList>
+																		<RTPC Name="" ID="{DFD32B65-737C-4252-B8DA-225FC966BD1B}" ShortID="861082429">
+																			<ReferenceList>
+																				<Reference Name="ControlInput">
+																					<ObjectRef Name="BulletImpactSpeakerPan_LR" ID="{B2B3E005-C7C0-454D-A398-228B27798D7C}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																				</Reference>
+																			</ReferenceList>
+																			<Curve Name="" ID="{CF9E71CB-0F17-4502-AFDE-688C52179C0E}">
+																				<PropertyList>
+																					<Property Name="Flags" Type="int32" Value="1"/>
+																				</PropertyList>
+																				<PointList>
+																					<Point>
+																						<XPos>-25</XPos>
+																						<YPos>-200</YPos>
+																						<Flags>5</Flags>
+																						<SegmentShape>SCurve</SegmentShape>
+																					</Point>
+																					<Point>
+																						<XPos>25</XPos>
+																						<YPos>200</YPos>
+																						<Flags>37</Flags>
+																					</Point>
+																				</PointList>
+																			</Curve>
+																		</RTPC>
+																	</RTPCList>
+																</Property>
+															</PropertyList>
+														</Panner>
+													</PositioningInfo>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="DeathWallWhispers" ID="{9672B2DA-9ADB-4968-8936-DCA251BDA007}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Panner Name="" ID="{CC099FFF-A9D5-456A-9FD5-5754DD2248A1}"/>
+											</PositioningInfo>
+											<ObjectLists/>
+										</BlendContainer>
 									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{7C8F67D1-6461-4311-9459-D190202FE78F}"/>
+									</PositioningInfo>
 									<ObjectLists/>
 								</ActorMixer>
 							</ChildrenList>
@@ -6025,7 +6385,7 @@
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -6039,6 +6399,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="OrbCollect" ID="{49A8C153-8953-4347-9BBD-27AC80A64A77}" ShortID="462203404">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
@@ -6089,6 +6456,11 @@
 												<Property Name="InitialDelay" Type="Real64">
 													<ValueList>
 														<Value>0.2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -6835,6 +7207,161 @@
 										<ActiveSource Name="PathArrow" ID="{0891CE78-91C9-4A69-AF63-2115ED87913D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="GameplayEnvironment" ID="{77F205B7-0431-4138-A215-89D9DD4604CB}" ShortID="552496646">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="20"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Folder Name="HealthWall" ID="{7E5BE0A2-B5EC-44A1-B379-19E31A1C4513}" ShortID="32938816">
+							<ChildrenList>
+								<ActorMixer Name="HealthWall" ID="{B00B9B62-9BE8-440E-A7E9-AD131FCDCA91}" ShortID="875799334">
+									<PropertyList>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="HealthWallCollect" ID="{365FCAA2-D583-4CA5-8210-BC7815CC4904}" ShortID="738338675">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="HealthWallCollect" ID="{4EC75489-00C0-42E6-8A29-EF15C022BBE7}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0471569809941521"/>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>HealthWallCollect.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="245216421"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="HealthWallCollect" ID="{4EC75489-00C0-42E6-8A29-EF15C022BBE7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="HealthWallLoop" ID="{B7C12137-F4C2-4F74-B44C-F12A59D5DBC2}" ShortID="164829027">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-16</Value>
+													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{1A20B39B-DB5C-45EF-B5E5-4E669B126B9D}" ShortID="612604333">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<ObjectRef Name="DistanceFromHealthWall" ID="{07278F4E-9EE3-406C-A310-48CC6BDE3CDC}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{2EADE9EE-8E38-432A-8B6E-4C17D42DDDE9}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Log1</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>5</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{BFC28C40-E84D-4802-8D88-230A6E72B3E8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{86E8E67D-1857-4443-9F36-181150391D0F}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="HealthWallLoop" ID="{3A85F09B-C005-4DA5-8E68-9C510ED8BB9C}">
+													<Language>SFX</Language>
+													<AudioFile>HealthWallLoop.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="638343020"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="HealthWallLoop" ID="{3A85F09B-C005-4DA5-8E68-9C510ED8BB9C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{76F10273-0F58-4FAE-86D0-A3176A7B3CF9}">
+											<PropertyList>
+												<Property Name="PanX" Type="Real64">
+													<RTPCList>
+														<RTPC Name="" ID="{E5A91A9E-8A1B-4FF5-A62E-44D48D2CBDA4}" ShortID="786560787">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<ObjectRef Name="HealthWallSpeakerPan_LR" ID="{4D82340C-DAD2-4928-B682-C75C897567A1}" WorkUnitID="{D72A5104-A66C-4362-8FC5-1952DD0AB339}"/>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{A703ED88-B9DC-4257-A21D-C5E330903CFA}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>-25</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>25</XPos>
+																		<YPos>200</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+										</Panner>
+									</PositioningInfo>
+									<ObjectLists/>
+								</ActorMixer>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

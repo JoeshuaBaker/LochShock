@@ -368,9 +368,9 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="GameplayCombat" ID="{4D9C4F42-3AE7-4572-A0FE-46D29E32A6CE}" ShortID="415756600">
+				<Folder Name="Gameplay" ID="{4D9C4F42-3AE7-4572-A0FE-46D29E32A6CE}" ShortID="415756600">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="Color" Type="int16" Value="11"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -727,7 +727,7 @@
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="EnemyDie" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="EnemyDie" ID="{8E44A217-D421-4816-80B0-7CD82C17CD35}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -739,7 +739,7 @@
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="EnemyDie" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+															<ObjectRef Name="EnemyDie" ID="{8E44A217-D421-4816-80B0-7CD82C17CD35}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -828,28 +828,6 @@
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Event Name="EnemyDie" ID="{0CF15808-1758-4EBA-9630-DFE989D1CD1D}">
-									<ChildrenList>
-										<Action Name="" ID="{7448F525-E35F-4C16-962E-E2CF2A929C5A}" ShortID="303442248">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="EnemyDie" ID="{13294326-3F55-448E-9BC9-2C49C9F24C03}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="PlayEnemyHit" ID="{4912CDA1-5A38-444B-9BD6-A1CA2BCC3BE1}">
-									<ChildrenList>
-										<Action Name="" ID="{FE50C685-6710-4A06-9161-3EE05989661C}" ShortID="554946369">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="EnemyHit" ID="{4CFD6FB4-7820-4411-BBFA-CE4D85CCB64F}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
 								<Folder Name="Mines" ID="{3E876007-4ED5-46DD-8C3D-CC6AE193B66E}" ShortID="100787524">
 									<ChildrenList>
 										<Event Name="PlayMineBuildUp" ID="{8FA43D9C-2F3D-486B-BC8D-B60BEA5EEE23}">
@@ -1053,17 +1031,47 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
-								<Event Name="PlayDeathWallLoop" ID="{62215258-5991-4933-B04A-AA3C132F1301}">
+								<Folder Name="Death Wall" ID="{A358C1B8-2AE0-480C-861D-A83F20B63630}" ShortID="503010991">
 									<ChildrenList>
-										<Action Name="" ID="{D37CAD52-5CCF-48CB-B7EF-E2F45306F9E7}" ShortID="723352005">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="DeathWallLoop" ID="{479F54C3-6F4F-4049-AF72-CC652C76AA8A}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
+										<Event Name="PlayDeathWallLoop" ID="{62215258-5991-4933-B04A-AA3C132F1301}">
+											<ChildrenList>
+												<Action Name="" ID="{AF88C383-1ECC-4C41-8B39-FC1DCADCF0B7}" ShortID="783024108">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="DeathWallLoop" ID="{4468DBA2-CA1B-4D99-A3C8-23836B30819F}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
-								</Event>
+								</Folder>
+								<Folder Name="Basic Enemies" ID="{55B831E0-7F6C-41FB-883F-005F798B0CF5}" ShortID="816793810">
+									<ChildrenList>
+										<Event Name="PlayEnemyDie" ID="{0CF15808-1758-4EBA-9630-DFE989D1CD1D}">
+											<ChildrenList>
+												<Action Name="" ID="{7448F525-E35F-4C16-962E-E2CF2A929C5A}" ShortID="303442248">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="EnemyDie" ID="{8E44A217-D421-4816-80B0-7CD82C17CD35}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayEnemyHit" ID="{4912CDA1-5A38-444B-9BD6-A1CA2BCC3BE1}">
+											<ChildrenList>
+												<Action Name="" ID="{FE50C685-6710-4A06-9161-3EE05989661C}" ShortID="554946369">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="EnemyHit" ID="{4CFD6FB4-7820-4411-BBFA-CE4D85CCB64F}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Items" ID="{C56B4B09-5FC5-43FB-BD64-D424FA141ABB}" ShortID="840472236">
@@ -1212,6 +1220,53 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Environment" ID="{AFF8AF6A-E8DF-40B0-B910-D7D77F52855F}" ShortID="894091099">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="20"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Folder Name="HealthWall" ID="{5DE3201F-0F72-4B5D-B36F-A901E58251DE}" ShortID="716333119">
+									<ChildrenList>
+										<Event Name="PlayHealthWallLoop" ID="{9AD8F851-150E-4001-9BE0-577C404D7E66}">
+											<ChildrenList>
+												<Action Name="" ID="{152181AA-653A-418E-A726-06875DBE7561}" ShortID="2455683">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="HealthWallLoop" ID="{B7C12137-F4C2-4F74-B44C-F12A59D5DBC2}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PlayHealthWallCollect" ID="{D71D7FFD-1816-415A-9F3C-AE0833938A1E}">
+											<ChildrenList>
+												<Action Name="" ID="{45103AA8-E904-4913-960D-AF60BBBD3058}" ShortID="443745561">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="FadeOutCurve" Type="int16" Value="6"/>
+														<Property Name="FadeTime" Type="Real64" Value="1.8"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="HealthWallLoop" ID="{B7C12137-F4C2-4F74-B44C-F12A59D5DBC2}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{F077FC6A-EC9F-4496-9349-A8D51B63A29D}" ShortID="612901417">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="HealthWallCollect" ID="{365FCAA2-D583-4CA5-8210-BC7815CC4904}" WorkUnitID="{4BE266BE-CB0C-481D-B997-613E6578DAFE}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

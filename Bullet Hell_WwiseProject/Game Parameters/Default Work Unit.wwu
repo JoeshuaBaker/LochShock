@@ -49,6 +49,20 @@
 								</GameParameter>
 							</ChildrenList>
 						</Folder>
+						<GameParameter Name="DeathWallSpeakerPan_LR" ID="{E54FD22B-9C93-4996-969A-6279149602F8}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="HealthWallSpeakerPan_LR" ID="{4D82340C-DAD2-4928-B682-C75C897567A1}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="25"/>
+								<Property Name="Min" Type="Real64" Value="-25"/>
+							</PropertyList>
+						</GameParameter>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="AmbianceRTPCS" ID="{D6E99EA4-9CF0-4FA5-B87C-1928F377A2A7}" ShortID="145393600">
@@ -73,8 +87,14 @@
 						</GameParameter>
 						<GameParameter Name="DistanceFromDeathWall" ID="{4979CFA8-4B20-4759-BF3E-9878D8AFF1EA}">
 							<PropertyList>
-								<Property Name="InitialValue" Type="Real64" Value="10"/>
-								<Property Name="Max" Type="Real64" Value="10"/>
+								<Property Name="InitialValue" Type="Real64" Value="12"/>
+								<Property Name="Max" Type="Real64" Value="12"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="DistanceFromHealthWall" ID="{07278F4E-9EE3-406C-A310-48CC6BDE3CDC}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="5"/>
+								<Property Name="Max" Type="Real64" Value="5"/>
 							</PropertyList>
 						</GameParameter>
 					</ChildrenList>

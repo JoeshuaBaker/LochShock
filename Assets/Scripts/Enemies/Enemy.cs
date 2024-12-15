@@ -62,19 +62,22 @@ public abstract class Enemy : BulletCollidable
         }
         
 
+        ////Audio Section
+        ////Sound is coming from Left of player
+        //if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        //{
+        //    AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        //}
+        ////Sound is coming from right of player
+        //else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        //{
+        //    AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        //}
+        ////Play enemy hit sound after panning has been set
+        //AkSoundEngine.PostEvent("PlayEnemyHit", this.gameObject);
+
         //Audio Section
-        //Sound is coming from Left of player
-        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
-        {
-            AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
-        }
-        //Sound is coming from right of player
-        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
-        {
-            AkSoundEngine.SetRTPCValue("BulletImpactSpeakerPan_LR", Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
-        }
-        //Play enemy hit sound after panning has been set
-        AkSoundEngine.PostEvent("PlayEnemyHit", this.gameObject);
+        PlayAudioOnEnemy("PlayEnemyHit", "BulletImpactSpeakerPan_LR");
     }
 
     public virtual void ApplyKnockback(Vector2 force)
@@ -131,5 +134,22 @@ public abstract class Enemy : BulletCollidable
         instanceId = 0;
         this.gameObject.SetActive(true);
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
+    }
+
+    public void PlayAudioOnEnemy(string eventName, string RTPCname)
+    {
+        //Audio Section
+        //Sound is coming from Left of player
+        if (this.gameObject.transform.position.x < Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Sound is coming from right of player
+        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        {
+            AkSoundEngine.SetRTPCValue(RTPCname, Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
+        }
+        //Play enemy hit sound after panning has been set
+        AkSoundEngine.PostEvent(eventName, this.gameObject);
     }
 }
