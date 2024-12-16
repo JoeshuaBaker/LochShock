@@ -98,6 +98,7 @@ Custom State	ID	Name	State Group	Owner		Notes
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	340800882	TreeChopSpeakerPan_LR			\Default Work Unit\SpeakerPans\TreeChops\TreeChopSpeakerPan_LR	
 	599265652	HealthWallSpeakerPan_LR			\Default Work Unit\SpeakerPans\HealthWallSpeakerPan_LR	
+	909413530	DeathWallSpeakerPan_LR			\Default Work Unit\SpeakerPans\DeathWallSpeakerPan_LR	
 	1713156707	TreeDistanceFromPlayer			\Default Work Unit\SpeakerPans\TreeChops\TreeDistanceFromPlayer	
 	2465407525	DistanceFromPath			\Default Work Unit\AmbianceRTPCS\DistanceFromPath	
 	2647461264	HighPassFilter			\Default Work Unit\HighPassFilter	
@@ -126,7 +127,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	89751610	ShotgunShot	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ShotgunShot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Shotgun\ShotgunShot		357720
 	101129085	Wipe	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Wipe_Full_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Bomb\Wipe		1092804
 	104495850	Latch	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Latch_5C855547.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Grappling Hook\Grappling Hook\Latch		316396
-	105067499	Reload	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Reload_73231BF9.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\GunOOAandReload\Reload		83888
+	105067499	Reload	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Reload_EEDF8F89.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\GunOOAandReload\Reload		83888
 	106059129	SeedAttackBuild	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBuild_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\SeedAttackBuild		667128
 	107985428	TreeRustling	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree Rustle_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeRustling		7379220
 	109248983	SeedAttackBoom	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBoom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\SeedAttackBoom		667128
@@ -141,7 +142,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	183134589	Tree_Chop4	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop4		284804
 	201762883	SeedAttackSlam	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackSlam_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\SeedAttackSlam		667128
 	202478109	Shore	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Ambiance\Shore_C157CC2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Water\Shore		6000896
-	210262880	DeathWallScreams	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallScreams_A4AF2A56.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallScreams		3879732
+	210262880	DeathWallScreams	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallScreams_7DAA33F4.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallScreams		3879732
 	211382726	Shell Drops_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Casing Rolls_6B94B92E.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Shell&Silence\Shell Drops_01		459932
 	225681108	EnemyDie_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\EnemyDie_71938E3A.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\EnemyDie\EnemyDie\EnemyDie_01		258416
 	227562631	EnemyDie_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\EnemyDie_B568D977.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\EnemyDie\EnemyDie\EnemyDie_03		163720
@@ -155,7 +156,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	282769187	Tree_Chop5	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop5		273284
 	305114128	Minigun_2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Minigun_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\Guns\Guns\Minigun\Minigun\Minigun_2		219748
 	316136356	DeathBoom	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathBoom_3F3B76C3.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Die\DeathBoom		744372
-	323182171	DeathWallWhispers	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallWhispers_E03B3BBC.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallWhispers		3875988
+	323182171	DeathWallWhispers	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallWhispers_97FCA0EA.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallWhispers		3875988
 	331910188	Waves	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Ambiance\Waves_D7E5C7B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Water\Waves		6000896
 	332849499	Enemy HIt_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_3565AB62.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_01		245904
 	344799588	EnemyDie_02	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\EnemyDie_6CCE244F.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\EnemyDie\EnemyDie\EnemyDie_02		193520
@@ -164,7 +165,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	368816489	Tree_Leaves3	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Leaves3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Leaves\Tree_Leaves3		339944
 	395173167	Tree_Chop2	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop2		271304
 	396661611	Splats_04	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Splats_99B27512.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\Splats\Splats_04		35944
-	400411533	OutOfAmmo	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OutOfAmmo_4B826422.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\GunOOAandReload\OutOfAmmo		102956
+	400411533	OutOfAmmo	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\OutOfAmmo_6F67ED94.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Player\Player\GunOOAandReload\OutOfAmmo		102956
 	415180428	SeedAttackBlast1	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedAttackBlast1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Boss Seed\Boss Seed Attacks\Seed AttackBlast\SeedAttackBlast1		717284
 	416321817	Bass Only	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Bass Only_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\MainTheme\Bass Only\Bass Only		6300828
 	427712558	Sword_01	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Sword_87EC0D40.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\MeleeWeapons\Sword\Sword_01		43284
@@ -236,7 +237,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	963072889	MeleeBlip	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Melee Use Blip_92152895.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\Melee Blip\Melee Blip\MeleeBlip		28920
 	963317276	SeedBossPhaseOneLoop	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\SeedBossPhaseOneLoop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\BossSeedMusic\SeedBossLoops\SeedBossPhaseOneLoop		15516740
 	963471314	ItemOnCD	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\ItemOnCD_B4BE9FA6.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayItems\GamePlayItems\Melee Weapons\ItemOnCD\ItemOnCD		125344
-	987536589	DeathWallDrones	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallDrones_39CD1B44.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallDrones		3990080
+	987536589	DeathWallDrones	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\DeathWallDrones_326DC3EF.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\DeathWall\DeathWallLoop\DeathWallDrones		3990080
 	999344880	Little Rain	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Little Rain_34528CE9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\Rain\Little Rain		11724212
 	1015425311	Enemy HIt_03	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Enemy HIt_E6618987.wem		\Actor-Mixer Hierarchy\Default Work Unit\GameplayCombat\Enemies\Enemies\Enemy Hit\Enemy Hit\EnemyHit\Enemy HIt_03		162852
 	1024403126	Tree_Chop6	Y:\Documents\GitHub\LochShock\Bullet Hell_WwiseProject\.cache\Windows\SFX\Tree_Chop6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiance\WorldAmbiance\TreeChop\Chop\Tree_Chop6		265732

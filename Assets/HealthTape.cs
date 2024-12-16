@@ -223,7 +223,7 @@ public class HealthTape : MonoBehaviour
             AkSoundEngine.SetRTPCValue(RTPCname, 0 - Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
         }
         //Sound is coming from right of player
-        else if (this.gameObject.transform.position.x > Player.activePlayer.transform.position.x)
+        else if (this.gameObject.transform.position.x >= Player.activePlayer.transform.position.x)
         {
             AkSoundEngine.SetRTPCValue(RTPCname, Vector3.Distance(Player.activePlayer.transform.position, this.gameObject.transform.position));
         }
