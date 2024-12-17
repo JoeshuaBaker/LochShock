@@ -441,12 +441,6 @@ public class UpgradeSubUi : MonoBehaviour
     {
         for(int i = 0; i< shopInvFrames.Length; i++)
         {
-            if(shopInvFrames[i].item != null)
-            {
-                Debug.Log($"{shopInvFrames[i].item} lock status {shopInvFrames[i].item.lockCombine}");
-            }
-
-
             if (shopInvFrames[i].item != null && shopInvFrames[i].item.lockCombine)
             {
                 continue;
