@@ -73,14 +73,8 @@ public class GameplayUI : MonoBehaviour
             for (int i = 0; i < microFrames.Length - 1; i++)
             {
                 
-                if(i < 3)
-                {
-                    microFrames[i + 1].item = items[i];
-                }
-                else
-                {
-                    microFrames[i + 1].item = items[i+8];
-                }
+                microFrames[i + 1].item = items[i];
+
             }
         }
 

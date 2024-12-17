@@ -54,6 +54,21 @@ public class Item : MonoBehaviour
         }
     }
 
+    public int disassembleKitValue
+    {
+        get
+        {
+            if(level == 1)
+            {
+                return 0;//(int)rarity * 100; this is for scrap
+            }
+            else
+            {
+                return (int)(rarity) * (int) Mathf.Pow(2 , (level - 2));
+            }
+        }
+    }
+
     public int levelUpCost
     {
         get
@@ -67,6 +82,17 @@ public class Item : MonoBehaviour
             return (int)(baseLevelUpCost + ((level > 1) ? (baseLevelUpCost * Mathf.Pow(levelUpCostScalar, level - 1)) : 0f));
         }
     }
+
+    public int levelUpKitCost
+    {
+        get
+        {
+            return (int)(rarity + 1) * (int)Mathf.Pow(2 , level-1);  
+        }
+
+    }
+
+    public bool lockCombine = false;
 
     private IEnumerable<StatBlock> _newStats = null;
     public IEnumerable<StatBlock> newStatsList

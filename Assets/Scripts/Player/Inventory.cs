@@ -34,19 +34,20 @@ public class Inventory : MonoBehaviour
             allItemsInternal[0] = guns[0];
             allItemsInternal[1] = guns[1];
             allItemsInternal[2] = activeItems[0];
-            allItemsInternal[3] = itemStash[0];
-            allItemsInternal[4] = itemStash[1];
-            allItemsInternal[5] = itemStash[2];
-            allItemsInternal[6] = itemStash[3];
-            allItemsInternal[7] = itemStash[4];
-            allItemsInternal[8] = itemStash[5];
-            allItemsInternal[9] = itemStash[6];
-            allItemsInternal[10] = itemStash[7];
-            allItemsInternal[11] = items[0];
-            allItemsInternal[12] = items[1];
-            allItemsInternal[13] = items[2];
-            allItemsInternal[14] = items[3];
-            allItemsInternal[15] = items[4];
+            allItemsInternal[3] = items[0];
+            allItemsInternal[4] = items[1];
+            allItemsInternal[5] = items[2];
+            allItemsInternal[6] = items[3];
+            allItemsInternal[7] = items[4];
+            allItemsInternal[8] = itemStash[0];
+            allItemsInternal[9] = itemStash[1];
+            allItemsInternal[10] = itemStash[2];
+            allItemsInternal[11] = itemStash[3];
+            allItemsInternal[12] = itemStash[4];
+            allItemsInternal[13] = itemStash[5];
+            allItemsInternal[14] = itemStash[6];
+            allItemsInternal[15] = itemStash[7];
+
             return allItemsInternal;
         }
     }
@@ -331,19 +332,23 @@ public class Inventory : MonoBehaviour
         return index > -1;
     }
 
-    private bool DisassembleInventoryItem(Item item)
-    {
-        int index = Contains(item, out Item[] collection);
+    //private bool DisassembleInventoryItem(Item item, bool gainNoResources = false)
+    //{
+    //    int index = Contains(item, out Item[] collection);
 
-        if(index > -1)
-        {
-            scrap += item.disassembleValue;
-            Destroy(collection[index].gameObject);
-            collection[index] = null;
-        }
+    //    if(index > -1)
+    //    {
+    //        if (!gainNoResources)
+    //        {
+    //            upgradeKits += item.disassembleKitValue;
+    //            scrap += item.disassembleValue;
+    //        }
+    //        Destroy(collection[index].gameObject);
+    //        collection[index] = null;
+    //    }
 
-        return index > -1;
-    }
+    //    return index > -1;
+    //}
 
     public int UnstashItem(Item item)
     {
@@ -371,25 +376,123 @@ public class Inventory : MonoBehaviour
         return -1;
     }
 
-    public void DisassembleItem(Item item)
+    //public void DisassembleItem(Item item)
+    //{
+    //    if(Contains(item))
+    //    {
+    //        DisassembleInventoryItem(item);
+    //    }
+    //    else
+    //    {
+    //        scrap += item.disassembleValue;
+    //    }
+    //}
+
+    public int DisassembleItem(Item item, bool gainNoResources = false)
     {
-        if(Contains(item))
+        int indexReturn = IndexOf(allItems, item, true);
+
+        int index = Contains(item, out Item[] collection);
+
+        if (index > -1)
         {
-            DisassembleInventoryItem(item);
+            if (!gainNoResources)
+            {
+                upgradeKits += item.disassembleKitValue;
+                scrap += item.disassembleValue;
+            }
+            Destroy(collection[index].gameObject);
+            collection[index] = null;
         }
-        else
-        {
-            scrap += item.disassembleValue;
-        }
+
+        return indexReturn;
     }
 
-    public void LevelUp(Item item)
+    public int LevelUp(Item item, bool free = false)
     {
-        if(scrap >= item.levelUpCost)
+        int upgradeIndex = IndexOf(allItems, item, true);
+
+        if(scrap >= item.levelUpCost && !free) //&& upgradeKits >= item.levelUpKitCost && !free)
         {
+            upgradeKits -= item.levelUpKitCost;
             scrap -= item.levelUpCost;
             item.LevelUp();
         }
+        else if(free)
+        {
+            item.LevelUp();
+        }
+
+        return upgradeIndex;
+    }
+
+    public bool TryCombineItem(Item item)
+    {
+        //checks an item to se if it is combineable with inv ie trying to buy while inv is full
+        if (item != null)
+        {
+            foreach (Item comparedItem in allItems)
+            {
+                if (comparedItem != null && item.name == comparedItem.name && item.level == comparedItem.level && !comparedItem.lockCombine)
+                {
+                    CombineItems(comparedItem);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void CombineDuplicateItems()
+    {
+        //check levels of all items
+        // check for duplicates of lowest level item
+        //if no duplicates, check next lowest level
+        //continue untill all levels checked
+        // give ui levelup/destroy event with coresponding items
+        //ui plays event and then reruns CombineDuplicateItems 
+
+        int checkLevelMax = 1;
+        for (int i = 0; i < allItems.Length; i++)
+        {
+            if (allItems[i] != null)
+            {
+                checkLevelMax = Mathf.Max(checkLevelMax, allItems[i].level);
+            }
+        }
+
+        for(int level = 1; level <= checkLevelMax; level++)
+        {
+            for (int i = 0; i < allItems.Length; i++)
+            {
+                // i is setting each item in all items as the item to be checked for
+                Item checkedItem = allItems[i];
+
+                if (checkedItem != null && checkedItem.level == level && !checkedItem.lockCombine)
+                {
+                    //l is being checked to see if matches i
+                    for (int l = 0; l < allItems.Length; l++)
+                    {
+                        if (l != i && allItems[l] != null && !allItems[l].lockCombine && checkedItem.name == allItems[l].name && checkedItem.level == allItems[l].level)
+                        {
+                            CombineItems(checkedItem, allItems[l]);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void CombineItems(Item upgradedItem, Item destroyedItem = null)
+    {
+        int destroyIndex = -1;
+
+        if(destroyedItem != null)
+        {
+            destroyIndex = DisassembleItem(destroyedItem, true);
+        }
+        invUpgradeUi.PlayCardEffects(LevelUp(upgradedItem, true), destroyIndex); // give ints of upgraded and destroyed array positoion
     }
 
     public bool IsItemInStash(Item item)
@@ -414,6 +517,7 @@ public class Inventory : MonoBehaviour
 
     private int Contains(Item item, out Item[] collection)
     {
+
         int index = -1;
         if (itemMap.TryGetValue(item.itemType, out Item[] typeCollection))
         {
@@ -462,14 +566,21 @@ public class Inventory : MonoBehaviour
         return index;
     }
 
-    private int IndexOf(Item[] collection, Item item)
+    private int IndexOf(Item[] collection, Item item, bool checkCombinable = false)
     {
         if (collection == null)
             return -1;
 
         for (int i = 0; i < collection.Length; i++)
         {
-            if (collection[i] == item)
+            if (item != null)
+            {
+                if (collection[i] != null && collection[i] == item && checkCombinable && !collection[i].lockCombine)
+                {
+                    return i;
+                }
+            }
+            if (collection[i] == item )
             {
                 return i;
             }
@@ -507,5 +618,10 @@ public class Inventory : MonoBehaviour
     public void AddScrap(int amount)
     {
         scrap += amount;
+    }
+
+    public void AddKits(int amount)
+    {
+        upgradeKits += amount;
     }
 }

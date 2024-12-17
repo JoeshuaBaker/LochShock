@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UpgradeSubUi : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class UpgradeSubUi : MonoBehaviour
     public InventoryUpgradeUi invUpgradeUi;
     public Inventory inventory;
     public GameObject[] panelComponents;
+
+    public ShopMicroInvFrame[] shopInvFrames;
+    public Color[] invGlowColor;
+    public Sprite[] invItemFrames;
+    public float invGlowDecayPerSecond;
 
     public GameObject[] wingRoots;
     public GameObject[] feathersLeft;
@@ -65,6 +71,7 @@ public class UpgradeSubUi : MonoBehaviour
     public Item[] showItems;
     public Item[] rerolledItems;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +81,8 @@ public class UpgradeSubUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DecayGlow();
+
         if (animate)
         {
             AnimateDetails();
@@ -130,6 +139,7 @@ public class UpgradeSubUi : MonoBehaviour
         {
             ResetPurchasedCards();
             FocusUpgradeUi();
+            UpdateInventoryStatus();
         }
         else
         {
@@ -189,6 +199,7 @@ public class UpgradeSubUi : MonoBehaviour
             itemFrames[i].PlayCardIntro(-.2f, true);
             RefreshTabs();
         }
+        UpdateInventoryStatus();
     }
 
     public void RefreshTabs()
@@ -326,6 +337,8 @@ public class UpgradeSubUi : MonoBehaviour
             inventory.AddScrap(-frame.item.disassembleValue);
             invUpgradeUi.UpdateScrapAmount();
 
+            invUpgradeUi.CheckUpgrades();
+
             frame.purchased = true;
 
             //Audio Section
@@ -345,6 +358,8 @@ public class UpgradeSubUi : MonoBehaviour
                 inventory.AddScrap(-frame.item.disassembleValue);
                 invUpgradeUi.UpdateScrapAmount();
 
+                invUpgradeUi.CheckUpgrades();
+
                 frame.purchased = true;
 
                 //Audio Section
@@ -358,7 +373,7 @@ public class UpgradeSubUi : MonoBehaviour
         }
 
         RefreshTabs();
-
+        UpdateInventoryStatus();
     }
 
     public void OnRerollButtonPressed()
@@ -385,7 +400,60 @@ public class UpgradeSubUi : MonoBehaviour
         }
         else
         {
+            //TODO cant reroll animation
             Debug.Log("poor");
+        }
+    }
+
+    public void PlayCardEffects(int upgraded, int destroyed)
+    {
+        UpdateInventoryStatus();
+        if (upgraded != -1)
+        {
+            shopInvFrames[upgraded].SetColor();
+        }
+        if (destroyed != -1)
+        {
+            shopInvFrames[destroyed].SetColor();
+        }
+    }
+
+    public void UpdateInventoryStatus()
+    {
+        // take the inventory and update all those stupid slots with the correct items
+
+        for(int i =0; i< shopInvFrames.Length; i++)
+        {
+            Item item = inventory.allItems[i];
+
+            if (item == null)
+            {
+                shopInvFrames[i].SetItem(item, invGlowColor[0], invItemFrames[0]);
+            }
+            else
+            {
+                shopInvFrames[i].SetItem(item, invGlowColor[(int)item.rarity], invItemFrames[(int)item.rarity]);
+            }
+        }
+    }
+
+    public void DecayGlow()
+    {
+        for(int i = 0; i< shopInvFrames.Length; i++)
+        {
+            if(shopInvFrames[i].item != null)
+            {
+                Debug.Log($"{shopInvFrames[i].item} lock status {shopInvFrames[i].item.lockCombine}");
+            }
+
+
+            if (shopInvFrames[i].item != null && shopInvFrames[i].item.lockCombine)
+            {
+                continue;
+            }
+            Color color = shopInvFrames[i].glow.color;
+            color.a = Mathf.Max(color.a - (invGlowDecayPerSecond * Time.unscaledDeltaTime), 0f);
+            shopInvFrames[i].glow.color = color;
         }
     }
 }

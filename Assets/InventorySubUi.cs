@@ -20,10 +20,12 @@ public class InventorySubUi : MonoBehaviour
 
     public ItemDataFrame[] allFrames = new ItemDataFrame[10];
     public ItemDataFrame[] topItemFrames = new ItemDataFrame[5];
-    public ItemDataFrame[] bottomItemFrames = new ItemDataFrame[5];
+    public ItemDataFrame[] itemItemFrames = new ItemDataFrame[5];
     public ItemDataFrame[] weaponItemFrames = new ItemDataFrame[2];
     public ItemDataFrame[] activeItemFrames = new ItemDataFrame[1];
     public StashDataFrame[] stashItemFrames = new StashDataFrame[2];
+
+    public IDataFrame[] inventoryAndStashFrames;
 
     public GameObject[] stashTransforms;
 
@@ -31,6 +33,16 @@ public class InventorySubUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inventoryAndStashFrames = new IDataFrame[allFrames.Length + stashItemFrames.Length];
+
+        for(int i = 0; i< allFrames.Length; i++)
+        {
+            inventoryAndStashFrames[i] = allFrames[i];
+        }
+        for(int i = 0; i < stashItemFrames.Length; i++)
+        {
+            inventoryAndStashFrames[i + allFrames.Length] = stashItemFrames[i];
+        }
 
     }
 
@@ -70,7 +82,7 @@ public class InventorySubUi : MonoBehaviour
             itemFrame.slotType = Item.ItemType.Active;
         }
 
-        foreach (ItemDataFrame itemFrame in bottomItemFrames)
+        foreach (ItemDataFrame itemFrame in itemItemFrames)
         {
             itemFrame.slotType = Item.ItemType.Item;
         }
@@ -107,9 +119,9 @@ public class InventorySubUi : MonoBehaviour
         {
             stashItemFrames[i].SetItem(itemStash[i]);
         }
-        for (int i = 0; i < bottomItemFrames.Length; i++)
+        for (int i = 0; i < itemItemFrames.Length; i++)
         {
-            bottomItemFrames[i].SetItem(heldItems[i]);
+            itemItemFrames[i].SetItem(heldItems[i]);
         }
 
         if (!basicSet)
@@ -203,13 +215,23 @@ public class InventorySubUi : MonoBehaviour
             itemFrame.PlayContextMessage("NOT ENOUGH SCRAP");
             itemFrame.PlayCardShake();
         }
+        else if(itemFrame.GetItem().levelUpKitCost > inventory.upgradeKits)
+        {
+            itemFrame.PlayContextMessage("NOT ENOUGH KITS");
+            itemFrame.PlayCardShake();
+        }
         else
         {
+            Item item = itemFrame.GetItem();
+
+            //item.LevelUp();
+
             inventory.LevelUp(itemFrame.GetItem());
             invUpgradeUi.UpdateScrapAmount();
             itemFrame.PlayUpgradeEffect();
             itemFrame.PlayCardShake();
             DisplayInventory(true);
+            invUpgradeUi.CheckUpgrades();
         }
     }
 
@@ -233,6 +255,24 @@ public class InventorySubUi : MonoBehaviour
         invUpgradeUi.UpdateScrapAmount();
         frame.PlayRecycleEffect();
         frame.PlayCardShake();
-        frame.SetItem(null);
+        DisplayInventory(true);
+    }
+
+    public void PlayCardEffects(int upgraded, int destroyed)
+    {
+        Debug.Log(destroyed);
+
+        if (upgraded != -1)
+        {
+            inventoryAndStashFrames[upgraded].PlayUpgradeEffect();
+            inventoryAndStashFrames[upgraded].PlayCardShake();
+            DisplayInventory(true);
+        }
+        if (destroyed != -1)
+        {
+            inventoryAndStashFrames[destroyed].PlayRecycleEffect();
+            inventoryAndStashFrames[destroyed].PlayCardShake();
+            DisplayInventory(true);
+        }
     }
 }

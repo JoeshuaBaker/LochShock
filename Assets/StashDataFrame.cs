@@ -284,7 +284,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
                 //rightTabText.text = "+" + item.upgradeKitsOnRecycle.ToString();
 
                 leftTabText.text = "+" + item.disassembleValue.ToString();
-                rightTabText.text = "0";
+                rightTabText.text = "+" + item.disassembleKitValue.ToString();
 
                 recycleTabs = true;
 
@@ -296,7 +296,7 @@ public class StashDataFrame : MonoBehaviour, IDataFrame
                 //rightTabText.text = "-" + item.upgradeKitsToLevel.ToString();
 
                 leftTabText.text = "-" + item.levelUpCost.ToString();
-                rightTabText.text = "0";
+                rightTabText.text = "-" + item.levelUpKitCost.ToString();
 
                 recycleTabs = false;
             }

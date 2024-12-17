@@ -37,6 +37,10 @@ public class InventoryUpgradeUi : MonoBehaviour
 
     public Action OnClose;
 
+    public bool checkUpgrades;
+    public float timeBetweenUpgradeCheck;
+    public float timeBetweenUpgradeCheckCurrent;
+
     public float shimmerScrollTime;
     public Material shimmerMat;
 
@@ -51,6 +55,24 @@ public class InventoryUpgradeUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (checkUpgrades)
+        {
+            if (checkOutro)
+            {
+                checkUpgrades = false;
+                inventory.CombineDuplicateItems();
+                return;
+            }
+
+            timeBetweenUpgradeCheckCurrent += Time.unscaledDeltaTime;
+            if(timeBetweenUpgradeCheckCurrent >= timeBetweenUpgradeCheck)
+            {
+                timeBetweenUpgradeCheckCurrent = 0f;
+                checkUpgrades = false;
+                inventory.CombineDuplicateItems();
+            }
+        }
 
         if (checkOutro)
         {
@@ -263,6 +285,25 @@ public class InventoryUpgradeUi : MonoBehaviour
         invUi.AllModesOff();
         cursor.AllTogglesOff();
         DismissBottomButtons();
+    }
+
+    public void PlayCardEffects(int upgraded = -1, int destroyed = -1)
+    {
+        if (focusInv)
+        {
+            invUi.PlayCardEffects(upgraded, destroyed);
+        }
+        else
+        {
+            upgradeUi.PlayCardEffects(upgraded, destroyed);
+        }
+
+        CheckUpgrades();
+    }
+
+    public void CheckUpgrades()
+    {
+        checkUpgrades = true;
     }
 
     public void UpdateScrapAmount()
