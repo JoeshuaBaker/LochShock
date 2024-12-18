@@ -20,6 +20,10 @@ public class GhostElite : EliteEnemy
     [SerializeField] private SpriteRenderer mouthSprite;
     [SerializeField] private SpriteRenderer tailSprite;
     [SerializeField] private Animator mouthAnimator;
+    [SerializeField] private TrailRenderer trail;
+    [SerializeField] private Gradient trailGradient;
+    [SerializeField] private Gradient trailGradientFade;
+    [SerializeField] private Gradient lerpGradient;
 
     public override void Setup(EliteCoordinator coordinator)
     {
@@ -31,6 +35,8 @@ public class GhostElite : EliteEnemy
         tailSprite.enabled = true;
         rb.simulated = true;
         mouthAnimator.SetBool("Die", false);
+
+        trail.colorGradient.SetKeys(trailGradient.colorKeys, trailGradient.alphaKeys);
     }
 
     public override void CoordinatorUpdate()
@@ -43,8 +49,24 @@ public class GhostElite : EliteEnemy
             this.transform.position = this.transform.position + (direction.xyz() * velocity * Time.deltaTime);
 
             AnimatorStateInfo animState = mouthAnimator.GetCurrentAnimatorStateInfo(0);
+            if(animState.IsName("Ghost_Die_1") && animState.normalizedTime >= 0.5f)
+            {
+                tailSprite.enabled = false;
+            }
             if (animState.IsName("Ghost_Die_2"))
             {
+                float key = Mathf.Lerp(trailGradient.alphaKeys[1].alpha, trailGradientFade.alphaKeys[1].alpha, animState.normalizedTime);
+                float time = trailGradient.alphaKeys[1].time;
+                GradientAlphaKey alphaKey = new GradientAlphaKey(key, time);
+                GradientAlphaKey[] gradientKeys = new GradientAlphaKey[3];
+                gradientKeys[0] = trailGradient.alphaKeys[0];
+                gradientKeys[1] = alphaKey;
+                gradientKeys[2] = trailGradient.alphaKeys[2];
+
+                lerpGradient.SetKeys(trailGradient.colorKeys, gradientKeys);
+                //lerpGradient.alphaKeys[1].alpha = key;
+                trail.colorGradient = lerpGradient;
+
                 tailSprite.enabled = false;
                 if(animState.normalizedTime >= 1f)
                 {
@@ -109,7 +131,8 @@ public class GhostElite : EliteEnemy
     public override void Die(float delay)
     {
         dying = true;
-        mouthAnimator.SetBool("Die", true);
+        mouthAnimator.Play("Ghost_Die_1");
+        //mouthAnimator.SetBool("Die", true);
         rb.simulated = false;
     }
 

@@ -56,7 +56,7 @@ public class ShopMicroInvFrame : MonoBehaviour
     public void SetColor()
     {
         Color color = glow.color;
-        color.a = 1f;
+        color.a = .6f;
         glow.color = color;
     }
 }
