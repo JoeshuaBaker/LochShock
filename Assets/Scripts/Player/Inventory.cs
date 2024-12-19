@@ -113,7 +113,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool Orb(bool isSmall = false, bool maxOrbs = false, bool reroll = false, int rerollCost = 0, Item[] rerolledItems = null)
+    public bool Orb(bool reroll = false, int rerollCost = 0, Item[] rerolledItems = null)
     {
 
         if (Player.activePlayer.isDead || orbItemPools == null || orbItemPools.Length == 0)
@@ -156,84 +156,6 @@ public class Inventory : MonoBehaviour
             return true;
 
         }
-        if (!isSmall)
-        {
-            int orbsSpent = Player.activePlayer.orbsHeld > orbItemPools.Length ? orbItemPools.Length : (int)Player.activePlayer.orbsHeld;
-            Player.activePlayer.orbsHeld -= orbsSpent;
-
-            Item[] items = orbItemPools[orbsSpent - 1].GetItems(itemResourcesAtlas, allItems);
-
-            scrap += scrapPerOrb;
-
-            if (inventoryUI != null)
-            {
-
-                if (!maxOrbs)
-                {
-                    if(invUpgradeUi != null)
-                    {
-                        invUpgradeUi.EnterUpgrade(items);
-                        invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false, true); };
-                    }
-                    else
-                    {
-                        inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                        inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
-                    }
-                }
-                else
-                {
-                    if(invUpgradeUi != null)
-                    {
-                        scrap += scrapBonusMaxOrb;
-
-                        invUpgradeUi.EnterUpgrade(items);
-                        invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false); };
-                    }
-                    else
-                    {
-                        inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                        inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false); };
-
-                        scrap += scrapBonusMaxOrb;
-                    }
-                }
-              
-            }
-            else
-            {
-                Player.activePlayer.Bomb(false,true);
-            }
-
-            return true;
-        }
-        else
-        {
-            Item[] items = orbItemPools[0].GetItems(itemResourcesAtlas);
-
-            if (inventoryUI != null)
-            {
-                if(invUpgradeUi != null)
-                {
-                    invUpgradeUi.EnterUpgrade(items);
-                    invUpgradeUi.OnClose = () => { Player.activePlayer.Bomb(false, true); };
-                }
-                else
-                {
-
-                    inventoryUI.TransitionState(InventoryUI.InventoryUIState.Orb, this, items);
-                    inventoryUI.OnClose = () => { Player.activePlayer.Bomb(false, true); };
-                }
-            }
-            else
-            {
-                Player.activePlayer.Bomb(false,true);
-            }
-
-            return true;
-
-        }
-
     }
 
     public bool ActivateActiveItem()
@@ -331,25 +253,8 @@ public class Inventory : MonoBehaviour
 
         return index > -1;
     }
-
-    //private bool DisassembleInventoryItem(Item item, bool gainNoResources = false)
-    //{
-    //    int index = Contains(item, out Item[] collection);
-
-    //    if(index > -1)
-    //    {
-    //        if (!gainNoResources)
-    //        {
-    //            upgradeKits += item.disassembleKitValue;
-    //            scrap += item.disassembleValue;
-    //        }
-    //        Destroy(collection[index].gameObject);
-    //        collection[index] = null;
-    //    }
-
-    //    return index > -1;
-    //}
-
+    
+    //depreciated garbage that im not sure new functionality will be derived from
     public int UnstashItem(Item item)
     {
         int index = Contains(item, out Item[] collection);
@@ -375,18 +280,6 @@ public class Inventory : MonoBehaviour
 
         return -1;
     }
-
-    //public void DisassembleItem(Item item)
-    //{
-    //    if(Contains(item))
-    //    {
-    //        DisassembleInventoryItem(item);
-    //    }
-    //    else
-    //    {
-    //        scrap += item.disassembleValue;
-    //    }
-    //}
 
     public int DisassembleItem(Item item, bool gainNoResources = false)
     {

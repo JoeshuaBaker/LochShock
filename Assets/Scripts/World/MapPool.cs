@@ -13,7 +13,7 @@ public class MapPool : MonoBehaviour, ILevelLoadComponent
     public Map playerInBounds = null;
     Map mostRecentMap = null;
     int numMapsInPool = 0;
-    int distToCullMap = 45;
+    public int distToCullMap = 45;
 
     public void Load(World world)
     {

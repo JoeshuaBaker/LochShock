@@ -77,9 +77,8 @@ public class Player : BulletCollidable
     public float distBetweenShops = 250f;
     public Light2D playerVisionProximity;
     public float orbsHeld;
+    public float orbsToBomb = 1f;
     public float timeSinceOrbUsed;
-    public bool orbCharged;
-    public int orbsChargedNumber;
     public Inventory inventory;
     ContactFilter2D hitFilter;
     List<Collider2D> hitBuffer;
@@ -95,8 +94,6 @@ public class Player : BulletCollidable
     public ParticleSystem gunDropPS;
     public ParticleSystem bombRingPS;
     public ParticleSystem bombRingRedPS;
-    public GameObject ring;
-    public Animator ringAnimator;
     public GameObject slashParent;
     public GameObject slashOne;
     public GameObject slashTwo;
@@ -123,7 +120,6 @@ public class Player : BulletCollidable
     public float arrowSecondsToDisplay;
     public bool pulseUp = true;
     public bool pathAbove;
-    public Tile tiletest;
     public bool posForArrowChecked;
     public bool decayVisTimerToZero;
 
@@ -316,11 +312,10 @@ public class Player : BulletCollidable
         bool pressed = context.ReadValueAsButton();
         if (context.started && pressed && !dying)
         {
-            if (!orbCharged && orbsHeld > 0)
+            if (orbsHeld >= orbsToBomb)
             {
-                orbCharged = true;
-                orbsChargedNumber = Mathf.Min((int)orbsHeld, 5);
-
+                orbsHeld -= orbsToBomb;
+                orbsToBomb += 1f;
                 Bomb(false);
             }
         }
@@ -436,21 +431,7 @@ public class Player : BulletCollidable
 
     public void CollectOrb()
     {
-        //if(orbsHeld >= 4 && !orbCharged)
-        //{
-        //    inventory.Orb(false,true);
-        //}
-        //else if (orbCharged)
-        //{
-        //    inventory.Orb();
-        //    orbCharged = false;
-        //}
-        //else
-        //{
-        //    inventory.Orb(true);
-        //}
         orbsHeld += 1;
-
     }
 
     public void SetVision()
@@ -555,8 +536,6 @@ public class Player : BulletCollidable
             int playerX = (int)this.transform.position.x;
 
             Tile tileOnPlayerX = world.RandomPathTileAtXPosition(playerX);
-
-            tiletest = tileOnPlayerX;
 
             if (tileOnPlayerX != null && !posForArrowChecked)
             {
@@ -749,7 +728,6 @@ public class Player : BulletCollidable
             timeSinceOrbUsed = 0f;
         }
 
-
         SetInvincible(invincibilityOnHit * mult);
 
         if (isHit)
@@ -758,9 +736,6 @@ public class Player : BulletCollidable
             bombRingRedPS.Stop();
             bombRingRedPS.Play();
             world.ClearAllEnemyBullets();
-
-            //old damage ring
-            //ringAnimator.Play("RingExpandExtraLargeRed");
         }
         else
         {
@@ -784,12 +759,7 @@ public class Player : BulletCollidable
 
             //Audio Section
             AkSoundEngine.PostEvent("PlayBombAttack", this.gameObject);
-
-            //old damage ring
-            // ringAnimator.Play("RingExpandExtraLarge");
         }
-
-        ring.transform.position = this.transform.position;
 
         playerShake.GenerateImpulse(2f * mult);
 
@@ -967,7 +937,7 @@ public class Player : BulletCollidable
             //    inventory.inactiveGun == null ? -1 : inventory.inactiveGun.magazine, inventory.inactiveGun == null ? -1 : inventory.inactiveGun.maxMagazine);
 
             gameplayUI.SetHp(currentHp, maxHp);
-            gameplayUI.SetOrbs((int)orbsHeld);
+            gameplayUI.SetOrbs((int)orbsHeld, (int) orbsToBomb);
             gameplayUI.SetGrapple(grappleCoolDownCurrent, grapplingCoolDownBase);
             gameplayUI.SetMoney(inventory.scrap);
 
@@ -1021,11 +991,6 @@ public class Player : BulletCollidable
 
         //Audio Section
         AkSoundEngine.PostEvent("PlayPlayerDeathExplosion", this.gameObject);
-
-        ring.transform.position = this.transform.position;
-
-        //old damage ring
-        //ringAnimator.Play("RingExpandExtraLarge");
 
         bombRingPS.Stop();
         bombRingPS.Play();

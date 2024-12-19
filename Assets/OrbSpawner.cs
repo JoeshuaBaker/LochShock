@@ -9,15 +9,16 @@ public class OrbSpawner : MonoBehaviour
     public Vector3 nextOrbX;
     public float minOrbVariation;
     public float maxOrbVariation;
-    public GameObject orb;
+    public OrbScript orb;
     public Transform orbParent;
+
 
     void Start()
     {
         player = Player.activePlayer;
         if(world == null)
         {
-            world = GetComponent<World>();
+            world = World.activeWorld;
         }
         nextOrbX = player.transform.position;
     }
@@ -28,6 +29,7 @@ public class OrbSpawner : MonoBehaviour
         {
             TrySpawnNextOrb();
         }
+
     }
 
     void TrySpawnNextOrb()
@@ -43,8 +45,12 @@ public class OrbSpawner : MonoBehaviour
 
     void SpawnOrb()
     {
-        GameObject spawnedOrb = Instantiate(orb);
-        spawnedOrb.transform.position = nextOrbX;
-        spawnedOrb.transform.parent = orbParent;
+        OrbScript spawnedOrb = Instantiate(orb,nextOrbX,Quaternion.identity, orbParent) ;
+    }
+
+    public void SpawnCollectedOrbAtLocation(Vector3 location)
+    {
+        OrbScript spawnedOrb = Instantiate(orb, location, Quaternion.identity, orbParent);
+        spawnedOrb.isCollected = true;
     }
 }

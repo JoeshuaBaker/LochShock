@@ -10,6 +10,7 @@ public class OrbScript : MonoBehaviour
     public float collectSpeedStart;
     public float collectSpeedGrowth;
     public float cullDistance = 25f;
+    public float collectSpeedMax = 150f;
     public ParticleSystem collectParticle;
     public bool spawnedParticle;
 
@@ -44,7 +45,7 @@ public class OrbScript : MonoBehaviour
             //Audio Section
             OrbAudio(2);
 
-            if (directionToPlayer.magnitude < (directionToPlayer.normalized * collectSpeedStart).magnitude)
+            if (directionToPlayer.magnitude < 0.5f)//(directionToPlayer.normalized * collectSpeedStart).magnitude)
             {
                 this.transform.position = player.transform.position;
                 if(spawnedParticle == false)
@@ -62,12 +63,12 @@ public class OrbScript : MonoBehaviour
             }
             else
             {
-                this.transform.position = this.transform.position + directionToPlayer.normalized * collectSpeedStart;
-                collectSpeedStart = collectSpeedStart + (collectSpeedGrowth * Time.deltaTime);
+                this.transform.position = this.transform.position + directionToPlayer.normalized * (collectSpeedStart* Time.deltaTime);
+                collectSpeedStart = Mathf.Min(collectSpeedMax, collectSpeedStart + (collectSpeedGrowth * Time.deltaTime));
             }
         }
 
-        if (player.transform.position.x - cullDistance > this.transform.position.x)
+        if (player.transform.position.x - cullDistance > this.transform.position.x && !isCollected)
         {
             Destroy(this.gameObject);
         }

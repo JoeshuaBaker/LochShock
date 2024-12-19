@@ -135,7 +135,7 @@ public class ShopDrones : MonoBehaviour
                 holdTimeCurrent = 0f;
                 transitionTimeCurrent = 0f;
 
-                Player.activePlayer.inventory.Orb(true);
+                Player.activePlayer.inventory.Orb();
 
                 DeactivateShopDrones();
 
@@ -152,6 +152,7 @@ public class ShopDrones : MonoBehaviour
         for (int i = 0; i < droneLightning.Length; i++)
         {
             droneLightning[i].gameObject.SetActive(true);
+            Player.activePlayer.orbsToBomb = 1f;
         }
 
         transitionOutTimeCurrent += Time.deltaTime;

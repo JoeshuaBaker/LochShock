@@ -9,8 +9,6 @@ public class GameplayUI : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text distanceText;
     public TMP_Text distanceTextBoss;
-    public TMP_Text activeAmmoText;
-    public TMP_Text inactiveAmmoText;
     public TMP_Text moneyText;
     public TMP_Text orbText;
     public TMP_Text orbTextBomb;
@@ -20,11 +18,9 @@ public class GameplayUI : MonoBehaviour
     public Color frameColorRed;
     public Transform healthParent;
     public List<Animator> healthList;
-    public Transform orbParent;
     public List<Image> orbList;
     public Animator healthPrefab;
     public Image orbPrefab;
-    public GameObject orbLockBrace;
 
     public GameObject middleContainer;
     public GameObject timeContainer;
@@ -36,6 +32,7 @@ public class GameplayUI : MonoBehaviour
     public float bossHpPercent;
     public bool bossDead;
     public bool bossDeathFinished;
+    public TMP_Text bossName;
 
     public float grappleCD;
     public float grappleCDMax;
@@ -150,7 +147,7 @@ public class GameplayUI : MonoBehaviour
 
         orbTextBomb.text = $"x{orbsToBomb})";
 
-        if (orbs > orbsToBomb)
+        if (orbs >= orbsToBomb)
         {
             bombFrame.color = frameColor;
             bombText.text = "BOMB ENABLED";
@@ -165,20 +162,6 @@ public class GameplayUI : MonoBehaviour
     public void SetMoney(int money)
     {
         moneyText.text = $"x{money}";
-    }
-
-    public void SetAmmo(int activeCurrentAmmo, int activeMaxAmmo, int inactiveCurrentAmmo = -1, int inactiveMaxAmmo = -1)
-    {
-        activeAmmoText.text = $"{activeCurrentAmmo}/{activeMaxAmmo}";
-        if(inactiveCurrentAmmo > -1 && inactiveMaxAmmo > -1)
-        {
-            inactiveAmmoText.gameObject.SetActive(true);
-            inactiveAmmoText.text = $"{inactiveCurrentAmmo}/{inactiveMaxAmmo}";
-        }
-        else
-        {
-            inactiveAmmoText.gameObject.SetActive(false);
-        }
     }
 
     public void SetTime()
@@ -224,6 +207,16 @@ public class GameplayUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void TrackBoss()
+    {
+
+    }
+
+    public void StopTrackBoss()
+    {
+
+    }
+
     public void UpdateBossBar()
     {
         if (!bossDead)
@@ -243,7 +236,6 @@ public class GameplayUI : MonoBehaviour
             timeContainer.SetActive(true);
 
             ShowSignalLost();
-
         }
     }
 }

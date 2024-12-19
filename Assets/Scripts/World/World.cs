@@ -21,6 +21,7 @@ public class World : MonoBehaviour
     public GameplayUI gameplayUi;
     public GameObject crosshairVis;
     public DeathWall deathWall;
+    public OrbSpawner orbSpawner;
     public Transform projectilePoolParent;
     public Settings settings => level.settings;
     public EnemyEmitterSpawner enemyEmitterSpawner => level.enemyEmitterSpawner;
@@ -33,10 +34,18 @@ public class World : MonoBehaviour
 
     //internal state variables
 
+    [Header("Stage Length Vars")]
+    public float stageMaxLength = 5000f;
+    public float stageMinLength = 3000f;
+    public float stageCurrentLength;
+    public float stageCompletionAsPercent;
+    public float currentTime;
+    public float minutesBeforeLengthDecay = 12f;
+    public float lengthDecayPerSecond = 5f;
+
     //boss variables
     public BossSeed boss => level.boss;
     public BossSeed spawnedBoss;
-    public int bossSpawnDistance;
     public bool bossSpawned;
     public bool bossDead;
     public bool bossDeathFinished;
@@ -71,6 +80,7 @@ public class World : MonoBehaviour
             spawnContainer.transform.position = player.transform.position;
         }
 
+        stageCurrentLength=stageMaxLength;
         ready = true;
     }
 
@@ -97,7 +107,11 @@ public class World : MonoBehaviour
         {
             mapPool.UpdateMaps();
             enemyPool.UpdateEnemies();
-            UpdateBoss();
+            UpdateStageLength();
+            if(stageCompletionAsPercent >= 1)
+            {
+                UpdateBoss();
+            }
         }
     }
 
@@ -163,12 +177,29 @@ public class World : MonoBehaviour
         }
     }
 
+    public void UpdateStageLength()
+    {
+        currentTime += Time.deltaTime;
+
+        if(currentTime>= minutesBeforeLengthDecay * 60f && !bossSpawned)
+        {
+            if(stageCurrentLength > stageMinLength)
+            {
+                stageCurrentLength -= lengthDecayPerSecond * Time.deltaTime;
+                stageCurrentLength = Mathf.Max(stageCurrentLength, stageMinLength);
+
+            }
+        }
+        stageCompletionAsPercent = Mathf.Max(player.transform.position.x / stageCurrentLength, stageCompletionAsPercent);
+        gameplayUi.SetBossDistance(stageCurrentLength);
+    }
+
     public void UpdateBoss()
     {
-        if(player.transform.position.x >= bossSpawnDistance && !bossSpawned)
+        if(player.transform.position.x >= stageCurrentLength && !bossSpawned)
         {
             spawnedBoss = Instantiate(boss);
-            spawnedBoss.SetDistance(bossSpawnDistance);
+            spawnedBoss.SetDistance((int)stageCurrentLength);
 
             spawnedBoss.bossCurrentHP = spawnedBoss.bossMaxHP;
 
@@ -198,5 +229,24 @@ public class World : MonoBehaviour
 
             gameplayUi.bossHpPercent = spawnedBoss.bossHPPercent;
         }
+    }
+
+    //working on breaking up horrible boss update function
+    public void BossDead()
+    {
+        bossDead = true;
+        gameplayUi.bossDead = true;
+        player.bossDead = true;
+        deathWall.bossDead = true;
+
+        crosshairVis.SetActive(false);
+
+        bossDeathFinished = spawnedBoss.deathFinished;
+        gameplayUi.bossDeathFinished = spawnedBoss.deathFinished;
+    }
+
+    public void BossCutsceneOver()
+    {
+        crosshairVis.SetActive(true);
     }
 }

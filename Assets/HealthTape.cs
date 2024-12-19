@@ -16,8 +16,6 @@ public class HealthTape : MonoBehaviour
     public int holdFrame;
 
     public Material mat;
-    public Material matInstance;
-    public Material lightningMat;
     public SpriteRenderer borderSprite;
     public SpriteRenderer heartSprite;
     public ParticleSystem crossPS;

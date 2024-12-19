@@ -16,7 +16,8 @@ public class ExplosionSpawner : MonoBehaviour
     public int explosionArraySize = 50;
     public float noDebrisBelow;
     public CraterCreator craterCreator;
-    public Transform effectParent;
+    public Transform explosionParent;
+    public Transform dangerZoneParent;
     private int currentExplosion;
     private bool firstPass = true;
     private ParticleSystem.MinMaxCurve ps2BaseValues;
@@ -53,18 +54,16 @@ public class ExplosionSpawner : MonoBehaviour
         for (int i = 0; i < explosionArray.Length; i++)
         {
             explosionArray[i] = Instantiate(explosionPrefab);
-            explosionArray[i].transform.parent = effectParent;
+            explosionArray[i].transform.parent = explosionParent;
             explosionArray[i].SetActive(false);
         }
 
         for (int i = 0; i < dangerZoneArray.Length; i++)
         {
             dangerZoneArray[i] = Instantiate(dangerZonePrefab);
-            dangerZoneArray[i].transform.parent = effectParent;
+            dangerZoneArray[i].transform.parent = dangerZoneParent;
             dangerZoneArray[i].gameObject.SetActive(false);
-
         }
-
     }
 
     // Update is called once per frame

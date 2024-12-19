@@ -392,7 +392,7 @@ public class UpgradeSubUi : MonoBehaviour
                 }
             }
 
-            inventory.Orb(false, false, true, rerollCost, rerolledItems);
+            inventory.Orb(true, rerollCost, rerolledItems);
             invUpgradeUi.UpdateScrapAmount();
 
             //Audio Section
