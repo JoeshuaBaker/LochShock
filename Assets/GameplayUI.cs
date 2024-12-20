@@ -217,6 +217,11 @@ public class GameplayUI : MonoBehaviour
 
     }
 
+    public void SetupBossBar(string bossNameAndTitle)
+    {
+        bossName.text = bossNameAndTitle;
+    }
+
     public void UpdateBossBar()
     {
         if (!bossDead)

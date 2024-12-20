@@ -57,7 +57,7 @@ public class UpgradeSubUi : MonoBehaviour
     public TMP_Text[] itemAdditionalScrap;
     public GameObject[] itemFrameParents;
     public TMP_Text skipScrap;
-    public int currentValue;
+    public TMP_Text gainedScrapText;
 
     public bool isSetup;
     public bool animate;
@@ -106,13 +106,16 @@ public class UpgradeSubUi : MonoBehaviour
         inventory = Player.activePlayer.inventory;
     }
 
-    public void SetUpgradeItems(Item[] items, int upgradeValue = 0, bool reroll = false)
+    public void SetUpgradeItems(Item[] items, int gainedScrap = 0, bool reroll = false)
     {
         if (!isSetup)
         {
             SetUp();
         }
-
+        if(gainedScrap != 0)
+        {
+            gainedScrapText.text = $"+$ {gainedScrap.ToString()}";
+        }
         //Audio Section
         AkSoundEngine.PostEvent("PlayOrbGet", this.gameObject);
 

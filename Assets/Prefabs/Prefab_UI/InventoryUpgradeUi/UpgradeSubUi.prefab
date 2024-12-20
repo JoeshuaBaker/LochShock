@@ -3853,7 +3853,7 @@ MonoBehaviour:
   - {fileID: 777393531452546607}
   - {fileID: 3875615733984658456}
   skipScrap: {fileID: 7112609134933112801}
-  currentValue: 0
+  gainedScrapText: {fileID: 7112609134302191969}
   isSetup: 0
   animate: 0
   checkOutro: 0
@@ -6245,7 +6245,7 @@ RectTransform:
   m_GameObject: {fileID: 7112609134302191971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 7112609133602613178}
   m_RootOrder: 2
@@ -6253,7 +6253,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -88.4}
-  m_SizeDelta: {x: 76.68, y: 31}
+  m_SizeDelta: {x: 92.63, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7112609134302191974
 CanvasRenderer:
@@ -6283,7 +6283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: +$ 9000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f958eb60c1fb884298b0cc90f88f028, type: 2}
   m_sharedMaterial: {fileID: 6481594880814825085, guid: 7f958eb60c1fb884298b0cc90f88f028, type: 2}
@@ -6310,8 +6310,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6322,11 +6322,11 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -35.89
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 5347483474337078262}
   - component: {fileID: 5602886263211781537}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: BossNameAndTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.268
+  m_FillAmount: 0.494
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2390,7 +2390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5895966389113288830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4565,8 +4565,6 @@ MonoBehaviour:
   timeText: {fileID: 6680675173659417394}
   distanceText: {fileID: 6680675174136240623}
   distanceTextBoss: {fileID: 6189798519207558106}
-  activeAmmoText: {fileID: 0}
-  inactiveAmmoText: {fileID: 0}
   moneyText: {fileID: 4229493276625914984}
   orbText: {fileID: 6427850908596486219}
   orbTextBomb: {fileID: 3446793158199252436}
@@ -4585,7 +4583,6 @@ MonoBehaviour:
   - {fileID: 7807870834470390714}
   - {fileID: 897072959478657604}
   - {fileID: 1916579387227827402}
-  orbParent: {fileID: 1651994567247016232}
   orbList:
   - {fileID: 0}
   - {fileID: 0}
@@ -4593,7 +4590,6 @@ MonoBehaviour:
   - {fileID: 0}
   healthPrefab: {fileID: 1262028181600332347, guid: b6f552243e094db4e9a8100e7cebfbef, type: 3}
   orbPrefab: {fileID: 288164112013526046, guid: dff62971c059a654f87da52c9ca5998d, type: 3}
-  orbLockBrace: {fileID: 0}
   middleContainer: {fileID: 6680675174231629047}
   timeContainer: {fileID: 6680675174206229465}
   leftContainer: {fileID: 6680675174718986672}
@@ -4603,6 +4599,7 @@ MonoBehaviour:
   bossHpPercent: 0
   bossDead: 0
   bossDeathFinished: 0
+  bossName: {fileID: 5602886263211781537}
   grappleCD: 0
   grappleCDMax: 0
   signalLost: {fileID: 6680675173385019441}

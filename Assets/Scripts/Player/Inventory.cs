@@ -141,12 +141,15 @@ public class Inventory : MonoBehaviour
             int orbIntrest = (int)Mathf.Ceil(orbNonBaseValue * orbValueIntrest);
             Player.activePlayer.interestStats.Stacks += orbIntrest;
 
-            scrap += (int)(Player.activePlayer.orbsHeld * Player.activePlayer.Stats.GetCombinedStatValue<OrbValue>());
+            int gainedScrap = (int)(Player.activePlayer.orbsHeld * Player.activePlayer.Stats.GetCombinedStatValue<OrbValue>());
+            scrap += gainedScrap;
             Player.activePlayer.orbsHeld = 0;
+
+            Player.activePlayer.gameplayUI.SetOrbs(0, 1);
 
             Item[] items = orbItemPools[currentItemPool].GetItems(itemResourcesAtlas);
 
-            invUpgradeUi.EnterUpgrade(items);
+            invUpgradeUi.EnterUpgrade(items,gainedScrap);
             invUpgradeUi.OnClose = () => 
             {
                 Player.activePlayer.Bomb(false, true);

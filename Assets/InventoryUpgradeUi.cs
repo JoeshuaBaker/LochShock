@@ -220,14 +220,16 @@ public class InventoryUpgradeUi : MonoBehaviour
         switchButton.DisableButton();
 
         FocusBottomButtons();
+
+        UpdateScrapAmount();
     }
 
-    public void EnterUpgrade(Item[] items)
+    public void EnterUpgrade(Item[] items, int gainedScrap)
     {
         // entering upgrade from gameplay
         World.activeWorld.Pause(true);
 
-        upgradeUi.SetUpgradeItems(items);
+        upgradeUi.SetUpgradeItems(items, gainedScrap);
         focusInv = false;
         switchButtonText.text = "INVENTORY";
 
@@ -317,6 +319,8 @@ public class InventoryUpgradeUi : MonoBehaviour
         {
             heldScrap.text = $"x{inventory.scrap.ToString()}";
             heldUpgradeKits.text = $"x{inventory.upgradeKits.ToString()}";
+
+            Player.activePlayer.gameplayUI.SetMoney(inventory.scrap);
         }
     }
 
